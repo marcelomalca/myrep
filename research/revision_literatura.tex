@@ -1,0 +1,277 @@
+\documentclass[11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{enumitem}
+\usepackage{natbib}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+\title{Revisión de literatura\\
+\large Dependencia del empleo y la economía peruana respecto al comercio\\
+internacional de commodities: ¿hay un vacío que llenar?}
+\author{}
+\date{Julio 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Esta revisión ordena la evidencia sobre cómo los shocks de precios internacionales
+de commodities se transmiten a las economías locales y a los mercados de trabajo, con foco
+en el Perú y sus regiones extractivas. Cubre cuatro bloques: (i) la transmisión de booms de
+commodities a economías locales; (ii) la evidencia peruana sobre minería, ingreso, pobreza y
+renta fiscal (canon); (iii) la informalidad como margen de ajuste laboral ante shocks
+comerciales; y (iv) las herramientas de identificación (\textit{shift-share}/Bartik) que
+hacen creíble este tipo de estimación. El objetivo es evaluar si la idea de investigación es
+\emph{interesante}, \emph{factible} y si \emph{cubre un vacío}. Concluyo que el vacío más
+claro y valioso no está en volver a medir el efecto de un boom sobre el ingreso —bien
+documentado— sino en \textbf{la reasignación de la estructura del empleo (sector y
+formalidad) ante la volatilidad de precios, distinguiendo auges de caídas (asimetría) y
+canales de mercado laboral vs.\ renta fiscal}. Al final se propone una idea concreta.
+\end{abstract}
+
+\section{Motivación y pregunta que guía la revisión}
+El Perú es una economía pequeña y abierta cuya canasta exportadora está fuertemente
+concentrada en minerales (cobre, oro, zinc). Entre 2001 y 2013 las exportaciones mineras se
+multiplicaron por un factor cercano a 7,5, lo que convierte al país en un laboratorio natural
+para estudiar la dependencia del empleo y del ingreso respecto a los términos de intercambio.
+La pregunta que organiza esta revisión es: \emph{¿qué sabemos ya, y qué no, sobre cómo los
+shocks de precios internacionales de commodities se transmiten al mercado laboral de las
+regiones extractivas del Perú?}
+
+\section{Bloque 1. Transmisión de shocks de precios de commodities a economías locales}
+
+La literatura moderna abandonó el enfoque puramente macro (la ``maldición de los recursos''
+a nivel país, con resultados frágiles) y se movió hacia diseños \textbf{subnacionales} que
+comparan localidades con distinta exposición a un mismo shock de precios internacional. Dos
+trabajos son referencia obligada.
+
+\citet{dube2013} (\textit{Review of Economic Studies}) explotan shocks exógenos de precios
+internacionales sobre los principales bienes de exportación de Colombia (café y petróleo) y
+muestran que el signo del efecto depende de la naturaleza del bien: una caída del precio del
+café —intensivo en trabajo— reduce salarios y aumenta la violencia (efecto costo de
+oportunidad), mientras que un alza del precio del petróleo —intensivo en capital— eleva
+rentas y también la violencia (efecto ``rapiña''). La lección metodológica y conceptual es
+central: \emph{no todos los commodities transmiten los shocks por el mismo canal}, y la
+intensidad factorial del bien determina si el efecto pasa sobre todo por el mercado laboral o
+por las rentas.
+
+\citet{benguria2018} (NBER WP) estudian la transmisión de los ``super-ciclos'' de precios de
+commodities en economías en desarrollo e incorporan explícitamente la \textbf{informalidad},
+la movilidad interregional y mecanismos de economía política como parte del mecanismo de
+transmisión. Trabajo posterior de los mismos autores \citep{benguria2024} documenta que los
+efectos de un boom son \textbf{espacialmente desiguales} y dependen del nivel de calificación
+del trabajador y de la región. Este es el marco teórico-empírico más cercano a la idea que se
+quiere desarrollar.
+
+\medskip
+\noindent\textbf{Qué se llevan de este bloque:} (a) el diseño correcto es subnacional y de
+exposición diferencial; (b) el canal (salarios vs.\ rentas) depende de la intensidad
+factorial del commodity; (c) la informalidad y la movilidad son parte del mecanismo, no un
+detalle.
+
+\section{Bloque 2. Evidencia peruana: minería, ingreso, pobreza y renta fiscal}
+
+\subsection{Encadenamientos productivos e ingreso local}
+El punto de partida es \citet{aragon2013} (\textit{American Economic Journal: Economic
+Policy}), que estudian la mina de oro Yanacocha con datos de hogares 1997--2006. Encuentran un
+efecto positivo de la demanda de insumos locales de la mina sobre el ingreso real,
+concentrado en el mercado proveedor y su entorno, alcanzando a trabajadores no calificados de
+sectores \emph{no} mineros, junto con un aumento del precio de los bienes no transables. Su
+mensaje —los encadenamientos hacia atrás de la industria extractiva pueden generar
+externalidades positivas— fue muy influyente.
+
+Sin embargo, \citet{aragon2020} (\textit{Environment and Development Economics}) revisitan el
+caso y ofrecen una lectura más matizada: los efectos \textbf{se desvanecen con el agotamiento
+de la mina} y responden a una dinámica de auge-y-caída del consumo. Esta tensión
+(¿efecto permanente o transitorio?) sigue abierta y es directamente relevante para una
+pregunta centrada en volatilidad de precios.
+
+\subsection{Pobreza, desigualdad y el canon minero}
+\citet{loayza2016} (\textit{World Development}) documentan que los distritos beneficiados por
+el boom minero y las transferencias de canon redujeron la pobreza, pero con aumentos de
+desigualdad y efectos heterogéneos según la cercanía a la producción. El canon abre un
+\textbf{segundo canal} —el fiscal— distinto del mercado laboral: el Estado transfiere a los
+gobiernos subnacionales una fracción de los impuestos mineros. La evidencia sobre su
+eficacia es mixta: mientras algunos trabajos hallan mejoras en capital humano
+\citep{aguero2017}, otros cuestionan la eficiencia y la sostenibilidad del gasto y sugieren
+efectos de largo plazo cercanos a nulos \citep{aragon2023}. Para la idea de investigación,
+esto implica que \emph{cualquier estimación del efecto de un shock de precios debe distinguir
+el canal laboral privado del canal fiscal-canon}, o al menos discutir su confusión potencial.
+
+\subsection{Calidad del empleo}
+Un frente emergente —y aún poco poblado— examina no el \emph{nivel} sino la \emph{calidad}
+del empleo generado por la minería en el Perú (condiciones, formalidad, estabilidad), usando
+métodos multidimensionales \citep{jambrina2022}. Es precisamente aquí donde la evidencia es
+más delgada.
+
+\section{Bloque 3. La informalidad como margen de ajuste}
+
+Fuera del Perú, la literatura de comercio y mercados laborales locales muestra que la
+informalidad es un \textbf{margen de ajuste central} ante shocks comerciales.
+\citet{dixcarneiro2017} (\textit{American Economic Review}), en el caso paradigmático de la
+liberalización comercial brasileña, muestran que las regiones más expuestas sufren caídas
+prolongadas del empleo formal y de los salarios, con una dinámica que se \emph{amplifica} en
+el tiempo por la movilidad interregional imperfecta y el ajuste lento del capital. En trabajo
+relacionado, los mismos autores documentan que los tránsitos hacia el desempleo y hacia la
+\textbf{informalidad} son márgenes empíricamente grandes del ajuste al comercio.
+
+La contraparte de precios de recursos existe pero es más escasa: por ejemplo, evidencia sobre
+el \emph{bust} del precio del crudo en Ecuador muestra deterioro del mercado laboral local
+\citep{idb_ecuador}. La asimetría auge/caída —¿la informalidad absorbe los malos tiempos
+más de lo que los buenos la reducen?— está poco explorada para shocks de precios de
+commodities y casi inexplorada para el Perú minero.
+
+\medskip
+\noindent\textbf{Qué se llevan de este bloque:} la informalidad no es solo un resultado de
+interés, es el principal \emph{mecanismo de amortiguación} del mercado laboral. Estudiarla
+como variable de estructura del empleo (y no solo el ingreso promedio) es donde la literatura
+comparada ha encontrado los hallazgos más ricos.
+
+\section{Bloque 4. Identificación: diseños \textit{shift-share} / Bartik}
+
+La factibilidad econométrica descansa en el instrumento de participación-desplazamiento
+(\textit{shift-share} o Bartik): la exposición regional se construye combinando la
+composición productiva \emph{previa} de cada región (participaciones, \textit{shares}) con los
+shocks comunes de precios internacionales (\textit{shifts}). La literatura reciente formalizó
+sus supuestos de identificación desde dos ángulos complementarios:
+\citet{goldsmith2020} (\textit{American Economic Review}) derivan la validez desde la
+exogeneidad de las \emph{participaciones}, mientras que \citet{borusyak2022}
+(\textit{Review of Economic Studies}) y \citet{adao2019} (\textit{Quarterly Journal of
+Economics}) lo hacen desde la exogeneidad de los \emph{shocks} y corrigen la inferencia por la
+correlación entre regiones con exposición similar. Para el caso peruano, las
+\emph{participaciones} serían la especialización minera pre-shock de cada región/provincia
+(p.\ ej.\ VAB minero, empleo minero o presencia de yacimientos en un año base) y los
+\emph{shifts} los precios internacionales de cada metal. Esto hace la estrategia
+\textbf{factible y estándar}, con datos públicos.
+
+\section{Diagnóstico: ¿interesante, factible y con vacío?}
+
+\begin{description}
+  \item[¿Interesante?] Sí. La dependencia del empleo peruano respecto a los términos de
+  intercambio es de primer orden para la política macro-laboral y fiscal, y conecta con
+  debates vivos (volatilidad, informalidad, diversificación productiva).
+  \item[¿Factible?] Sí. Existen (a) datos de hogares con panel rotativo y medición de
+  informalidad (ENAHO), (b) precios internacionales de metales de alta frecuencia y (c) un
+  diseño de identificación consolidado (Bartik). El principal reto es aislar el canal laboral
+  del canal fiscal (canon).
+  \item[¿Cubre un vacío?] \textbf{Parcialmente, y ahí está la oportunidad.} Lo que ya está
+  bien establecido: el \emph{nivel} de ingreso/pobreza sube en el auge minero
+  \citep{aragon2013,loayza2016}. Lo que está \emph{poco} establecido para el Perú:
+  \begin{enumerate}[label=(\roman*)]
+    \item la reasignación de la \textbf{estructura} del empleo (sector y formalidad), no solo
+      el ingreso medio;
+    \item la \textbf{asimetría} entre auges y caídas de precios (la informalidad como
+      amortiguador de los \emph{busts});
+    \item la separación limpia entre el \textbf{canal de mercado laboral} y el
+      \textbf{canal fiscal (canon)};
+    \item el papel de la coexistencia de \textbf{gran minería formal y minería
+      informal/artesanal} en la respuesta del empleo.
+  \end{enumerate}
+\end{description}
+
+\section{Idea de investigación sugerida}
+
+\begin{quote}
+\textbf{``Precios de metales y estructura del empleo en el Perú: reasignación sectorial e
+informalidad como amortiguador ante la volatilidad de los términos de intercambio''.}
+
+\medskip
+\noindent\emph{Pregunta.} ¿Cómo modifican los shocks de precios internacionales de metales la
+\textbf{composición sectorial y de formalidad} del empleo de los hogares en las regiones
+peruanas, y en qué medida ese ajuste es \textbf{asimétrico} entre auges y caídas de precios?
+\end{quote}
+
+\noindent\textbf{Diseño propuesto (resumen).}
+\begin{itemize}[leftmargin=1.4em]
+  \item \emph{Shock:} índice de precios de metales específico por región, construido como
+  \textit{shift-share} = (participación pre-shock de cada metal en la producción/empleo de la
+  región) $\times$ (precio internacional del metal), siguiendo \citet{borusyak2022}.
+  \item \emph{Outcome:} probabilidades de estar en cada celda (sector minero / otro transable
+  / no transable) $\times$ (formal / informal), vía modelo multinomial o LPM, además de
+  ingreso laboral como resultado secundario.
+  \item \emph{Datos:} ENAHO (panel rotativo) 2004--2023; precios de metales (Banco Mundial /
+  BCRP / LME); mapa de exposición minera pre-2004.
+  \item \emph{Valor agregado:} (1) separar auges de caídas para testear asimetría; (2) incluir
+  transferencias de canon como control/canal para aislar el efecto de mercado laboral del
+  fiscal; (3) explotar la heterogeneidad gran minería vs.\ minería informal.
+\end{itemize}
+
+\noindent\textbf{Contribución esperada.} Pasar de ``el boom minero subió el ingreso'' a
+``\emph{cómo} la volatilidad de precios reasigna a los trabajadores entre sectores y entre
+formalidad e informalidad, y si ese ajuste protege o precariza a los hogares en las caídas''.
+Esto llena el vacío señalado en el diagnóstico y dialoga directamente con
+\citet{dixcarneiro2017} y \citet{benguria2024}, llevándolos al terreno —poco cubierto— de los
+shocks de precios de recursos en una economía minera.
+
+\bigskip
+\noindent\textit{Nota sobre las referencias: los datos bibliográficos (revista, volumen, año)
+fueron verificados en fuentes públicas durante la elaboración de esta revisión; conviene
+confirmar números de página y ediciones finales antes de citar en un manuscrito formal.}
+
+\begin{thebibliography}{99}
+\setlength{\itemsep}{2pt}
+
+\bibitem[Adão et al.(2019)]{adao2019}
+Adão, R., Kolesár, M. y Morales, E. (2019). Shift-Share Designs: Theory and Inference.
+\textit{Quarterly Journal of Economics}, 134(4), 1949--2010.
+
+\bibitem[Agüero y Balcázar(2017)]{aguero2017}
+Agüero, J. M. y Balcázar, C. F. (2017). The Value of Redistribution: Natural Resources and the
+Formation of Human Capital under Weak Institutions. \textit{IZA Discussion Paper} No.\ 10884
+(publicado luego en \textit{Journal of Development Economics}).
+
+\bibitem[Aragón y Rud(2013)]{aragon2013}
+Aragón, F. M. y Rud, J. P. (2013). Natural Resources and Local Communities: Evidence from a
+Peruvian Gold Mine. \textit{American Economic Journal: Economic Policy}, 5(2), 1--25.
+
+\bibitem[Aragón y Rud(2020)]{aragon2020}
+Aragón, F. M. y Rud, J. P. (2020). Fading Local Effects: Boom and Bust Evidence from a
+Peruvian Gold Mine. \textit{Environment and Development Economics}, 25(2), 182--203.
+
+\bibitem[Aragón y Winkler(2023)]{aragon2023}
+Aragón, F. M. y Winkler, H. (2023). The Long-Term Impact of a Resource-Based Fiscal Windfall:
+Evidence from the Peruvian Canon. \textit{Resources Policy} (Elsevier).
+
+\bibitem[Benguria et al.(2018)]{benguria2018}
+Benguria, F., Saffie, F. y Urzúa, S. (2018). The Transmission of Commodity Price Super-Cycles.
+\textit{NBER Working Paper} No.\ 24560.
+
+\bibitem[Benguria et al.(2024)]{benguria2024}
+Benguria, F., Saffie, F. y Zhang, S. (2024). Spatial Linkages and the Uneven Effects of a
+Commodity Boom. \textit{Working Paper}.
+
+\bibitem[Borusyak et al.(2022)]{borusyak2022}
+Borusyak, K., Hull, P. y Jaravel, X. (2022). Quasi-Experimental Shift-Share Research Designs.
+\textit{Review of Economic Studies}, 89(1), 181--213.
+
+\bibitem[Dix-Carneiro y Kovak(2017)]{dixcarneiro2017}
+Dix-Carneiro, R. y Kovak, B. K. (2017). Trade Liberalization and Regional Dynamics.
+\textit{American Economic Review}, 107(10), 2908--2946.
+
+\bibitem[Dube y Vargas(2013)]{dube2013}
+Dube, O. y Vargas, J. F. (2013). Commodity Price Shocks and Civil Conflict: Evidence from
+Colombia. \textit{Review of Economic Studies}, 80(4), 1384--1421.
+
+\bibitem[Goldsmith-Pinkham et al.(2020)]{goldsmith2020}
+Goldsmith-Pinkham, P., Sorkin, I. y Swift, H. (2020). Bartik Instruments: What, When, Why, and
+How. \textit{American Economic Review}, 110(8), 2586--2624.
+
+\bibitem[BID/Ecuador(2021)]{idb_ecuador}
+Inter-American Development Bank (2021). The Labor Market Worsening Effects of a Resource Bust:
+Evidence from the Crude Oil Price Shock in Ecuador. \textit{IDB Working Paper} Series.
+
+\bibitem[Jambrina(2022)]{jambrina2022}
+Jambrina-Canseco, B. (2022). Commodity Price Shocks and Quality of Employment in Peru.
+\textit{Working Paper}, Oxford Poverty and Human Development Initiative (OPHI).
+
+\bibitem[Loayza y Rigolini(2016)]{loayza2016}
+Loayza, N. y Rigolini, J. (2016). The Local Impact of Mining on Poverty and Inequality:
+Evidence from the Commodity Boom in Peru. \textit{World Development}, 84, 219--234.
+
+\end{thebibliography}
+
+\end{document}
