@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{Pulido de la pregunta de investigación\\
+\large Shocks de precios de exportación e impactos en hogares peruanos}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Pregunta original}
+\begin{quote}
+¿De qué manera los shocks de precios internacionales de exportación impactan en el ingreso, o la informalidad laboral de los hogares (o sobre otras variables, aún no tengo bien definido esto) peruanos a nivel regional?
+\end{quote}
+
+\section{Diagnóstico: qué falta precisar}
+Una buena pregunta de investigación en economía aplicada suele fijar cinco elementos.
+Marco entre corchetes cuáles ya están definidos y cuáles no:
+
+\begin{enumerate}[label=(\arabic*)]
+  \item \textbf{El shock}: ¿precios de qué productos de exportación? (¿canasta agregada de exportaciones, o commodities específicos como cobre, oro, harina de pescado, café?) \emph{[pendiente]}
+  \item \textbf{La unidad de exposición}: ¿cómo se traduce un shock de precios internacionales en un shock a nivel regional? (p. ej. \textit{shift-share} / Bartik usando la composición productiva de cada región) \emph{[pendiente]}
+  \item \textbf{La variable de resultado (outcome)}: ¿ingreso laboral, informalidad, ambas, o algo más (empleo, pobreza, migración interna, gasto en educación)? \emph{[pendiente — es la ambigüedad principal]}
+  \item \textbf{El nivel de análisis}: región, hogar dentro de región, o individuo dentro de hogar. La pregunta mezcla ``hogares'' con ``a nivel regional''. \emph{[pendiente aclarar]}
+  \item \textbf{El mecanismo / canal esperado}: ¿efecto ingreso vía sector exportador directo, efectos de derrame (spillovers) a sectores no transables, efecto sobre el tipo de cambio real, o reasignación de trabajadores entre sectores formal/informal? \emph{[pendiente]}
+\end{enumerate}
+
+\section{Commodity elegido: minería}
+Se decidió acotar el shock a \textbf{precios internacionales de metales} (cobre, oro, zinc),
+relevantes para regiones con producción minera (p. ej. Áncash, Cajamarca, Arequipa, Moquegua,
+Pasco, La Libertad). Esto permite construir la exposición regional a partir de la
+composición de la producción minera preexistente en cada región (enfoque \textit{shift-share}
+al estilo Aragón y Rud, 2013, sobre minería aurífera en Perú, o Loayza y Rigolini para el
+boom de precios de commodities).
+
+\section{Versiones alternativas por variable de resultado (para discutir)}
+
+\begin{enumerate}[label=\textbf{V\arabic*.}]
+  \item \textit{Ingreso laboral / consumo del hogar}: ¿Cómo afectan los shocks de precios internacionales de metales (cobre, oro, zinc) al ingreso laboral y al consumo de los hogares en regiones mineras del Perú?
+
+  \item \textit{Informalidad laboral}: ¿Los shocks positivos de precios de metales reducen la informalidad laboral en las regiones con mayor exposición minera, o el efecto es ambiguo por la coexistencia de minería informal/artesanal?
+
+  \item \textit{Estructura del empleo (formal/informal, transable/no transable)}: ¿De qué manera un shock de precios mineros reasigna el empleo de los hogares entre el sector minero, otros sectores transables y el sector no transable (comercio, servicios), y qué rol juega la informalidad en esa reasignación?
+
+  \item \textit{Costo de vida / precios locales}: ¿Los shocks de precios de metales elevan el costo de vida local (vivienda, alimentos) en las regiones mineras lo suficiente como para compensar las ganancias nominales de ingreso de los hogares?
+
+  \item \textit{Pobreza y desigualdad regional}: ¿Los booms de precios de metales reducen la pobreza monetaria en las regiones mineras, y ese efecto se distribuye de forma desigual entre hogares vinculados y no vinculados directamente a la actividad minera?
+
+  \item \textit{Ingreso e informalidad como canales conjuntos} (opción integradora): ¿De qué manera los shocks de precios internacionales de metales afectan el ingreso laboral de los hogares peruanos, y en qué medida ese efecto opera a través de cambios en la informalidad laboral, según el grado de dependencia minera de cada región?
+
+  \item \textit{Canon minero / gasto público como canal adicional}: ¿Los shocks de precios de metales afectan el ingreso e informalidad de los hogares únicamente vía mercado laboral privado, o también vía mayor transferencia de canon minero a gobiernos regionales/locales y su gasto público?
+\end{enumerate}
+
+\section{Notas y decisiones pendientes}
+\begin{itemize}
+  \item Commodity(s) definitivo: minería \textbf{[cobre / oro / zinc / canasta de metales — elegir uno o un índice ponderado]}
+  \item Fuente de precios internacionales: \underline{\hspace{4cm}} (p. ej. Banco Mundial, BCRP, London Metal Exchange)
+  \item Fuente de datos de hogares (ENAHO, otra): \underline{\hspace{4cm}}
+  \item Nivel de exposición regional: \underline{\hspace{4cm}} (p. ej. \% de VAB minero, presencia de minas por región/provincia antes del shock)
+  \item Período de análisis: \underline{\hspace{4cm}}
+  \item Estrategia de identificación (shift-share, diff-in-diff, evento, otra): \underline{\hspace{4cm}}
+  \item Outcome principal definitivo (de V1–V7 o combinación): \textbf{V3 — estructura del empleo} (elegida)
+\end{itemize}
+
+\section{Desarrollo de V3: estructura del empleo}
+La opción elegida (V3) plantea que el shock de precios mineros no solo afecta \emph{cuánto}
+ganan los hogares, sino \emph{en qué tipo de empleo} trabajan: sector minero directo,
+otros sectores transables, sector no transable (comercio/servicios), y dentro de cada uno
+de estos, si el empleo es formal o informal. La informalidad deja de ser únicamente un
+outcome y pasa a ser también un \textbf{mecanismo}: un boom minero puede, por ejemplo,
+(a) atraer trabajadores hacia minería informal/artesanal en zonas con presencia de yacimientos,
+(b) formalizar empleo en sectores no transables por efecto ingreso/demanda local, o
+(c) generar informalidad procíclica si la respuesta de oferta laboral es más rápida que la
+formalización de empresas.
+
+\textbf{Elementos que esta versión ya fija:}
+\begin{itemize}
+  \item Nivel de análisis: hogar/individuo, con variables explicativas a nivel región (o provincia).
+  \item Variable dependiente: categoría de empleo (sector minero / otro transable / no transable) $\times$ (formal / informal), o un modelo multinomial de esas categorías.
+  \item Mecanismo priorizado: reasignación sectorial del empleo como canal del efecto del shock, con la informalidad como parte de la categorización de resultado.
+\end{itemize}
+
+\textbf{Elementos que aún quedan abiertos (ver también sección de decisiones pendientes):}
+\begin{itemize}
+  \item Si se usa un solo metal (p. ej. cobre, por su peso en la canasta exportadora peruana) o un índice ponderado por metal y región.
+  \item La medida de exposición regional: \% de VAB minero, número de unidades mineras/concesiones, o empleo minero previo al shock (año base pre-shock para evitar endogeneidad).
+  \item Panel de ENAHO (o corte transversal repetido) y ventana temporal que cubra al menos un ciclo de precios (auge y caída), p. ej. 2004–2020.
+\end{itemize}
+
+\section{Pregunta pulida (versión final)}
+\begin{quote}
+\textbf{¿De qué manera los shocks de precios internacionales de metales (cobre, oro, zinc)
+modifican la estructura sectorial y de formalidad del empleo de los hogares peruanos
+—entre el sector minero, otros sectores transables y el sector no transable—,
+según el grado de exposición minera de cada región?}
+\end{quote}
+
+\textit{Sub-preguntas derivadas:}
+\begin{enumerate}[label=(\alph*)]
+  \item ¿Un shock positivo de precios mineros incrementa la participación del empleo informal en el propio sector minero (minería artesanal/informal) en regiones con mayor exposición?
+  \item ¿El shock genera efectos de derrame (spillovers) sobre el empleo no transable local, y ese empleo adicional es mayoritariamente formal o informal?
+  \item ¿La magnitud y signo de la reasignación sectorial dependen del tipo de metal o de la escala de la explotación minera (gran minería vs. minería artesanal/informal) predominante en la región?
+\end{enumerate}
+
+\emph{Pendiente de cerrar antes de considerarse definitiva: fuente de datos, período exacto,
+medida de exposición regional y estrategia de identificación (ver sección de decisiones
+pendientes).}
+
+\end{document}
