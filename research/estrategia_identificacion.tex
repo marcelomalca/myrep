@@ -1,0 +1,280 @@
+\documentclass[11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{natbib}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+\title{Estrategia de identificación\\
+\large Shocks de precios de metales y estructura del empleo en el Perú:\\
+un diseño \textit{shift-share} (Bartik) centrado en la factibilidad}
+\author{}
+\date{Julio 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Este documento propone una estrategia de identificación \emph{factible} para
+estimar el efecto causal de los shocks de precios internacionales de metales sobre la
+estructura sectorial y de formalidad del empleo de los hogares en las regiones peruanas.
+La estrategia es un diseño \textit{shift-share} (Bartik): la exposición regional se construye
+combinando la especialización minera \emph{pre-determinada} de cada región con la variación
+\emph{exógena} de los precios internacionales de cada metal. El énfasis está puesto en tres
+cosas prácticas: (i) que todos los datos necesarios son públicos y descargables; (ii) que el
+supuesto de identificación es creíble porque el Perú —y con más razón una sola de sus
+regiones— es tomador de precios en los mercados mundiales de metales; y (iii) que los
+supuestos son \emph{contrastables} con pruebas estándar. Se incluye una checklist de
+factibilidad, las ecuaciones a estimar, las amenazas y sus remedios, y un plan mínimo
+viable (MVP) para una primera versión del trabajo.
+\end{abstract}
+
+\tableofcontents
+
+\section{Idea en una frase y por qué es identificable}
+Queremos comparar regiones peruanas que, por su composición productiva histórica, están
+\emph{más} o \emph{menos} expuestas a los metales cuyos precios internacionales suben o bajan.
+La variación explotada no es ``tener minería'' (endógena a muchas cosas), sino la
+\textbf{interacción} entre una exposición fija de base y un precio mundial que ninguna región
+peruana puede mover. Esa interacción es la fuente de identificación.
+
+\medskip
+\noindent\textbf{El activo central de credibilidad:} los precios internacionales de cobre, oro
+y zinc se determinan en mercados globales (LME, mercados de futuros). Una región del Perú
+—Áncash, Cajamarca, Arequipa— es un actor despreciable en ellos. Por tanto, condicional a la
+composición productiva de base, el shock de precios es plausiblemente \emph{exógeno} al
+mercado laboral de esa región. Este es exactamente el supuesto de ``exogeneidad de los
+\textit{shifts}'' de \citet{borusyak2022}, y es lo que hace el diseño defendible.
+
+\section{Datos: todo es público (factibilidad de acceso)}
+
+La Tabla~\ref{tab:datos} resume las fuentes. El punto clave es que \emph{no se requiere ningún
+dato confidencial ni convenios}: todo está disponible en portales oficiales.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Fuentes de datos, todas públicas}
+\label{tab:datos}
+\begin{tabular}{p{3.2cm} p{4.2cm} p{2.3cm} p{4.4cm}}
+\toprule
+\textbf{Componente} & \textbf{Variable} & \textbf{Unidad/frec.} & \textbf{Fuente} \\
+\midrule
+Empleo, ingreso, informalidad & Sector, categoría ocupacional, formalidad (afiliación/registro), ingreso laboral & Individuo/hogar; anual & ENAHO (INEI), microdatos abiertos \\
+\addlinespace
+Precios de metales (\textit{shifts}) & Precio internacional de cobre, oro, zinc, plomo, plata & Mensual/anual & Banco Mundial ``Pink Sheet''; BCRP (series estadísticas); LME \\
+\addlinespace
+Exposición minera (\textit{shares}) & VAB minero o empleo minero por región en año base & Región/depto.; base fija & INEI (cuentas nacionales departamentales); Censo/ENAHO del año base \\
+\addlinespace
+Producción física por metal & Toneladas/onzas por unidad minera y distrito & Distrito; anual & MINEM (Anuario/boletines); INGEMMET (concesiones) \\
+\addlinespace
+Canal fiscal (control) & Transferencias de canon minero y gasto ejecutado & Distrito/región; anual & MEF -- Consulta Amigable (SIAF) \\
+\addlinespace
+Deflactor & IPC EE.UU.\ (precios reales) e IPC Perú & Mensual & BLS / INEI \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Nivel geográfico (decisión de factibilidad).} La ENAHO es representativa a nivel de
+\textbf{departamento} (25 regiones) todos los años, y en varios años permite mayor
+desagregación. Recomiendo fijar la unidad de exposición $r$ en el \textbf{departamento} para
+garantizar representatividad y un panel balanceado de regiones a lo largo de 2004--2023. La
+producción minera por distrito (MINEM) se agrega al departamento para construir las
+participaciones. Usar el departamento evita el principal problema de factibilidad de bajar a
+provincia/distrito: la pérdida de representatividad muestral de la ENAHO.
+
+\paragraph{Estructura temporal.} Se puede usar la ENAHO como \textbf{corte transversal
+repetido} (2004--2023), que es lo más robusto en tamaño muestral. El componente de
+\textbf{panel rotativo} de la ENAHO (hogares seguidos, disponible desde $\sim$2007 en paneles
+de 2--5 años) puede usarse como extensión para mirar transiciones individuales
+formal$\leftrightarrow$informal, pero \emph{no} debe ser la base principal por su menor tamaño
+y atrición. Recomendación: identificar con el corte repetido; usar el panel como chequeo de
+mecanismo.
+
+\section{Construcción del instrumento \textit{shift-share}}
+
+Para cada región $r$ y año $t$ definimos el índice de precios relevante para esa región:
+\begin{equation}
+B_{rt} \;=\; \sum_{m \in M} s_{rm}^{\,0}\; \Delta \ln p_{mt},
+\label{eq:bartik}
+\end{equation}
+donde:
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt]
+  \item $M=\{$cobre, oro, zinc, plomo, plata$\}$ (los metales de mayor peso exportador);
+  \item $s_{rm}^{\,0}$ es la \textbf{participación pre-determinada} del metal $m$ en la
+  economía minera de la región $r$, medida en un \textbf{año base} $0$ anterior a la ventana
+  de análisis (p.\ ej.\ producción física del metal $m$ en $r$ sobre producción minera total
+  de $r$, o su participación en el VAB/empleo);
+  \item $\Delta \ln p_{mt}$ es el cambio (log) del \textbf{precio internacional real} del
+  metal $m$, común a todas las regiones.
+\end{itemize}
+
+\paragraph{Por qué esta construcción es la correcta (y factible).} Las participaciones
+$s_{rm}^{0}$ se fijan \emph{antes} del periodo de estimación, de modo que la variación
+año-a-año de $B_{rt}$ proviene solo de los precios mundiales. Esto materializa la separación
+entre ``dónde estabas expuesto'' (share, potencialmente endógeno pero fijo) y ``qué pasó con
+el precio'' (shift, exógeno). Con 5 metales y $\sim$20 departamentos mineros se obtiene amplia
+variación transversal en la exposición.
+
+\paragraph{Variante recomendada para robustez.} Construir también $B_{rt}$ con participaciones
+del \emph{empleo} minero (no solo producción física), y una versión con precios
+\emph{rezagados} un periodo, para separar efectos contemporáneos de dinámicos.
+
+\section{Especificación econométrica}
+
+\subsection{Ecuación principal (niveles del resultado)}
+Para el individuo $i$ en la región $r$ y año $t$:
+\begin{equation}
+y_{irt} \;=\; \beta\, B_{rt} \;+\; \mathbf{X}_{irt}'\gamma \;+\; \alpha_r \;+\; \delta_t
+\;+\; \big(\alpha_r \cdot t\big) \;+\; \varepsilon_{irt},
+\label{eq:main}
+\end{equation}
+con efectos fijos de región $\alpha_r$ (absorben todo lo permanente de cada departamento:
+geografía, dotación, instituciones), efectos fijos de año $\delta_t$ (absorben el ciclo
+macro-nacional y los shocks comunes), tendencias lineales por región $\alpha_r\cdot t$
+(controlan trayectorias divergentes preexistentes), y controles individuales $\mathbf{X}$
+(edad, sexo, educación, urbano/rural). El coeficiente de interés es $\beta$.
+
+\paragraph{Resultados $y_{irt}$.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.6em, itemsep=1pt]
+  \item \textbf{Informalidad}: indicador $=1$ si el empleo es informal (LPM), interpretación
+  directa de $\beta$ como cambio en la probabilidad.
+  \item \textbf{Estructura sectorial}: modelo \textbf{multinomial} sobre las celdas
+  (minería / otro transable / no transable) $\times$ (formal / informal), para ver la
+  reasignación completa.
+  \item \textbf{Ingreso laboral} (log) como resultado secundario/mecanismo.
+\end{enumerate}
+
+\subsection{Asimetría auge vs.\ caída (contribución central)}
+Separamos la parte positiva y negativa del shock:
+\begin{equation}
+y_{irt} \;=\; \beta^{+} B_{rt}^{+} \;+\; \beta^{-} B_{rt}^{-} \;+\;
+\mathbf{X}_{irt}'\gamma + \alpha_r + \delta_t + (\alpha_r\cdot t) + \varepsilon_{irt},
+\end{equation}
+donde $B_{rt}^{+}=\max(B_{rt},0)$ y $B_{rt}^{-}=\min(B_{rt},0)$. El test $\beta^{+}\neq
+|\beta^{-}|$ evalúa si la informalidad amortigua las caídas más de lo que se reduce en los
+auges. \emph{Esto es lo que la literatura peruana no ha estimado y es barato de implementar.}
+
+\subsection{Aislar el canal laboral del canal fiscal (canon)}
+Para que $\beta$ capture mercado laboral y no gasto público inducido por canon, se incluye la
+transferencia de canon per cápita $C_{rt}$ como control (o como mediador en una descomposición):
+\begin{equation}
+y_{irt} \;=\; \beta\, B_{rt} \;+\; \theta\, C_{rt} \;+\; \mathbf{X}_{irt}'\gamma
++ \alpha_r + \delta_t + (\alpha_r\cdot t) + \varepsilon_{irt}.
+\end{equation}
+Comparar $\beta$ con y sin $C_{rt}$ indica cuánto del efecto opera por la vía fiscal. Los
+datos de canon están en la Consulta Amigable del MEF (factible).
+
+\section{Supuesto de identificación y cómo se contrasta}
+
+\paragraph{Supuesto.} Condicional a $\alpha_r,\delta_t$ y las tendencias, la variación de
+$B_{rt}$ es tan buena como aleatoria respecto a $\varepsilon_{irt}$. Bajo el marco de
+\citet{borusyak2022} basta con la \textbf{exogeneidad de los \textit{shifts}} (precios
+mundiales), que aquí es fuerte: son precios globales frente a una economía regional
+despreciable. Complementariamente, \citet{goldsmith2020} justifican el diseño desde la
+exogeneidad de las \emph{participaciones} de base.
+
+\paragraph{Contrastes de credibilidad (todos estándar y factibles).}
+\begin{enumerate}[leftmargin=1.6em, itemsep=1pt]
+  \item \textbf{Pre-tendencias}: regresión de \emph{leads} del shock; si $B_{r,t+1}$ ``predice''
+  resultados en $t$, hay problema. Fácil de graficar (event-study).
+  \item \textbf{Balance de las participaciones}: correlacionar $s_{rm}^{0}$ con covariables
+  regionales pre-base (\citealp{goldsmith2020}); reportar los pesos de Rotemberg para saber
+  qué metal/región manda la estimación.
+  \item \textbf{Inferencia correcta}: errores estándar agrupados por región y por año; y/o
+  inferencia a nivel de \emph{shock} (AKM) de \citet{adao2019}, que corrige la correlación
+  entre regiones con exposición parecida.
+  \item \textbf{Placebos}: usar precios de metales que la región no produce como falso shock.
+  \item \textbf{Robustez de base}: variar el año base y la definición de participación
+  (producción vs.\ empleo).
+\end{enumerate}
+
+\section{Amenazas a la identificación y remedios (factibles)}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Amenazas y cómo se manejan sin datos adicionales}
+\begin{tabular}{p{4.6cm} p{9.6cm}}
+\toprule
+\textbf{Amenaza} & \textbf{Remedio} \\
+\midrule
+Migración endógena (los trabajadores se mueven hacia regiones en auge, sesgando la muestra) &
+Usar región de \emph{residencia habitual}/nacimiento cuando esté disponible; reportar efectos
+sobre composición demográfica como chequeo; interpretar como efecto sobre residentes. \\
+\addlinespace
+Participaciones endógenas (la especialización minera no es aleatoria) & Fijarlas en año base
+pre-muestra; el FE de región absorbe su nivel; identificación viene del \textit{shift}
+(\citealp{borusyak2022}). \\
+\addlinespace
+Precios de metales correlacionados con el ciclo mundial (demanda de China) & Los FE de año
+$\delta_t$ absorben todo shock \emph{común}; $\beta$ usa solo variación \emph{diferencial} por
+exposición. \\
+\addlinespace
+Pocos ``clusters'' (25 departamentos) para inferencia & Inferencia a nivel de shock (AKM,
+\citealp{adao2019}); \textit{wild cluster bootstrap} como respaldo. \\
+\addlinespace
+Confusión con canon/gasto público & Controlar por canon per cápita del MEF; reportar $\beta$
+con y sin control. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Checklist de factibilidad}
+
+\begin{enumerate}[label=$\square$, leftmargin=1.6em, itemsep=2pt]
+  \item Microdatos ENAHO 2004--2023 descargables del INEI (formato abierto). \textbf{Sí.}
+  \item Precios de metales (Banco Mundial Pink Sheet / BCRP). Series largas, gratuitas. \textbf{Sí.}
+  \item Producción minera por distrito/metal (MINEM). Anuarios públicos. \textbf{Sí.}
+  \item Transferencias de canon (MEF Consulta Amigable). Público. \textbf{Sí.}
+  \item Software: cualquier stack (R/Stata/Python); paquetes de shift-share e inferencia AKM
+  disponibles y gratuitos. \textbf{Sí.}
+  \item Sin datos confidenciales, sin convenios, sin trabajo de campo. \textbf{Sí.}
+\end{enumerate}
+
+\noindent\textbf{Cuello de botella real} (no de acceso, sino de trabajo): la
+\emph{armonización} de la clasificación sectorial y de la definición de informalidad de la
+ENAHO a lo largo de 20 años (cambios de CIIU y de cuestionario). Es tedioso pero estándar;
+existe documentación del INEI y literatura previa que lo ha hecho.
+
+\section{Plan mínimo viable (MVP) para la primera versión}
+\begin{enumerate}[leftmargin=1.6em, itemsep=1pt]
+  \item Construir $s_{rm}^{0}$ con producción física por departamento en el año base y
+  $\Delta\ln p_{mt}$ del Pink Sheet; formar $B_{rt}$.
+  \item Estimar la ecuación~\eqref{eq:main} con \textbf{informalidad} como único resultado y
+  FE de región y año. Reportar el event-study de pre-tendencias.
+  \item Añadir la descomposición auge/caída y el control de canon.
+  \item Extender al modelo multinomial de estructura del empleo.
+\end{enumerate}
+Los pasos 1--2 ya constituyen un resultado publicable como \emph{stylized fact} causal; los
+pasos 3--4 son la contribución diferencial.
+
+\section{Conclusión sobre factibilidad}
+La estrategia es \textbf{altamente factible}: (i) datos 100\% públicos y gratuitos; (ii) un
+supuesto de identificación fuerte y bien fundamentado (precios mundiales exógenos a una región
+peruana); (iii) supuestos \emph{contrastables} con herramientas estándar; y (iv) un camino
+incremental (MVP $\to$ contribución) que permite tener un primer resultado creíble con
+relativamente poco. El riesgo principal no es de identificación ni de acceso a datos, sino de
+\emph{limpieza y armonización} de la ENAHO, que es trabajo conocido y acotado.
+
+\begin{thebibliography}{9}
+\setlength{\itemsep}{2pt}
+\bibitem[Adão et al.(2019)]{adao2019}
+Adão, R., Kolesár, M. y Morales, E. (2019). Shift-Share Designs: Theory and Inference.
+\textit{Quarterly Journal of Economics}, 134(4), 1949--2010.
+\bibitem[Borusyak et al.(2022)]{borusyak2022}
+Borusyak, K., Hull, P. y Jaravel, X. (2022). Quasi-Experimental Shift-Share Research Designs.
+\textit{Review of Economic Studies}, 89(1), 181--213.
+\bibitem[Goldsmith-Pinkham et al.(2020)]{goldsmith2020}
+Goldsmith-Pinkham, P., Sorkin, I. y Swift, H. (2020). Bartik Instruments: What, When, Why, and
+How. \textit{American Economic Review}, 110(8), 2586--2624.
+\end{thebibliography}
+
+\end{document}
