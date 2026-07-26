@@ -1,0 +1,283 @@
+\documentclass[11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+\theoremstyle{definition}
+\newtheorem{supuesto}{Supuesto}
+\newtheorem{hipotesis}{Hipótesis}
+\theoremstyle{plain}
+\newtheorem{prop}{Proposición}
+
+\title{Marco teórico tentativo\\
+\large Shocks de precios de metales y estructura del empleo regional:\\
+un modelo de factores específicos con margen formal--informal}
+\author{}
+\date{Julio 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Este documento propone un \emph{marco teórico tentativo} —pensado como ejemplo de
+estructura lógica— que explica cómo un shock de precios internacionales de metales se transmite
+al mercado de trabajo de una región extractiva y reorganiza el empleo entre sectores y entre
+formalidad e informalidad. La lógica es: primero se fijan supuestos mínimos; luego se describe
+un mecanismo económico en un modelo de \emph{factores específicos} de tres sectores con un
+margen de formalidad endógeno; de ese modelo se derivan proposiciones (estática comparativa);
+y de cada proposición se obtiene una hipótesis \emph{contrastable} que se mapea a una prueba
+empírica concreta. El objetivo no es un modelo definitivo, sino mostrar el andamiaje
+``supuestos $\to$ mecanismo $\to$ proposiciones $\to$ hipótesis $\to$ contraste''.
+\end{abstract}
+
+\tableofcontents
+
+\section{Qué hace un marco teórico y cómo está organizado este}
+Un marco teórico cumple dos funciones: (i) \textbf{disciplinar} la relación entre variables
+—decir por qué esperamos que $X$ afecte a $Y$ y con qué signo— y (ii) \textbf{generar
+predicciones falsables} que el análisis empírico pueda confirmar o refutar. La estructura
+lógica que sigue este documento es:
+\[
+\underbrace{\text{Supuestos}}_{\text{qué asumimos}}
+\;\Rightarrow\;
+\underbrace{\text{Mecanismo (modelo)}}_{\text{por qué se mueven las variables}}
+\;\Rightarrow\;
+\underbrace{\text{Proposiciones}}_{\text{qué implica el modelo}}
+\;\Rightarrow\;
+\underbrace{\text{Hipótesis}}_{\text{qué se contrasta}}.
+\]
+El lector puede reemplazar el contenido de cada bloque por el suyo; lo que importa es que la
+cadena sea coherente y que cada hipótesis se derive de una proposición, no del aire.
+
+\section{Hechos estilizados que el marco debe explicar}
+El modelo se construye para ser consistente con cuatro regularidades documentadas:
+\begin{enumerate}[label=(E\arabic*), leftmargin=2.2em, itemsep=1pt]
+  \item La minería es \textbf{intensiva en capital y en el recurso}, con baja absorción directa
+  de trabajo; sus efectos locales llegan sobre todo por \textbf{encadenamientos} hacia sectores
+  no mineros \citep{aragon2013}.
+  \item Los booms elevan el ingreso y reducen la pobreza local, pero con efectos que pueden ser
+  \textbf{transitorios} (auge--caída) y espacialmente desiguales \citep{aragon2020,loayza2016}.
+  \item La \textbf{informalidad} es el principal margen de ajuste del empleo ante shocks
+  comerciales, absorbiendo trabajadores desplazados del sector formal \citep{dixcarneiro2017}.
+  \item Existe un \textbf{canal fiscal} (canon minero) por el que el shock afecta el gasto
+  público local, distinto del canal de mercado laboral \citep{loayza2016}.
+\end{enumerate}
+
+\section{Supuestos del modelo}
+
+Considérese una región $r$ pequeña dentro de una economía abierta, poblada por $\bar{L}_r$
+trabajadores. La región produce en tres sectores.
+
+\begin{supuesto}[Estructura sectorial]\label{sup:sectores}
+Hay tres sectores: minería $M$ (transable, precio internacional $p$), otros transables $T$
+(precio internacional normalizado a 1) y no transables $N$ (precio local endógeno $q$, p.\ ej.\
+comercio, servicios, construcción).
+\end{supuesto}
+
+\begin{supuesto}[Factores específicos]\label{sup:factores}
+El sector $M$ usa un recurso fijo (el yacimiento) y capital, y emplea trabajo de forma
+relativamente \emph{inelástica}. El trabajo es móvil \emph{entre sectores dentro} de la región,
+pero \textbf{imperfectamente móvil entre regiones} (lo que justifica el análisis regional).
+\end{supuesto}
+
+\begin{supuesto}[Margen de formalidad]\label{sup:formalidad}
+En los sectores $T$ y $N$ cada puesto puede ser formal o informal. La formalidad tiene un costo
+$\tau>0$ (impuestos laborales, regulación) y un beneficio (acceso a capital/escala,
+cumplimiento). Un puesto es formal si el excedente de formalizar es positivo; en el margen, la
+proporción informal depende del salario y de $\tau$.
+\end{supuesto}
+
+\begin{supuesto}[Exposición y shock exógeno]\label{sup:shock}
+La exposición de la región al metal es una participación \textbf{pre-determinada} $s_r\in[0,1]$
+(peso de la minería en su economía de base). El precio $p$ se fija en el mercado mundial y es
+\textbf{exógeno} a la región: $\bar{L}_r$ y $s_r$ no lo mueven.
+\end{supuesto}
+
+\begin{supuesto}[Canal fiscal]\label{sup:canon}
+Una fracción de la renta minera se transfiere al gobierno regional (canon) $C_r=\phi\, s_r\, p$,
+que financia gasto local (parte de él, demanda de trabajo formal).
+\end{supuesto}
+
+\section{El mecanismo: del precio mundial al empleo local}
+
+\subsection{Ingreso regional y demanda de no transables}
+La renta generada por la minería en la región es creciente en el precio y en la exposición:
+\begin{equation}
+Y_r \;=\; \underbrace{\pi_M(p)\, s_r}_{\text{renta minera}}
+\;+\; \underbrace{w_r\,\bar{L}_r}_{\text{ingreso laboral}},
+\qquad \frac{\partial \pi_M}{\partial p}>0.
+\end{equation}
+Como los transables tienen precio dado, el gasto adicional inducido por el boom se vuelca
+desproporcionadamente sobre los \textbf{no transables} (cuyo precio sí puede subir). La demanda
+de $N$ es creciente en el ingreso: $D_N = D_N(q, Y_r)$, con $\partial D_N/\partial Y_r>0$.
+
+\subsection{Salario y precio local en equilibrio}
+El empleo en $N$ satisface $w_r = q\cdot \mathrm{PMg}_L^N$. El vaciado del mercado de no
+transables determina $q$; sustituyendo, el salario regional de equilibrio $w_r$ responde al
+shock a través del ingreso. Formalmente, un aumento de $p$ eleva $Y_r$ en proporción a $s_r$,
+lo que desplaza la demanda de $N$, sube $q$ y con ello $w_r$:
+\begin{equation}
+\frac{\partial w_r}{\partial p} \;=\; \underbrace{s_r}_{\text{exposición}}\cdot
+\underbrace{\Psi}_{>0}\;>\;0,
+\label{eq:dwdp}
+\end{equation}
+donde $\Psi>0$ recoge la fuerza del encadenamiento y la elasticidad de la oferta de $N$. La
+ecuación~\eqref{eq:dwdp} es el corazón del mecanismo: \emph{el shock mundial se transmite al
+salario local en proporción a la exposición regional}.
+
+\subsection{La decisión de formalidad}
+Sea $\theta_r$ la proporción de empleo informal en la región. Un firm-match se formaliza si su
+excedente de formalidad $\Sigma$ supera cero. Ese excedente depende del salario (escala del
+negocio), del costo $\tau$ y de la fase del ciclo:
+\begin{equation}
+\theta_r \;=\; \Theta\big(\,w_r,\ \tau,\ \text{fase}\,\big).
+\end{equation}
+El signo de $\partial \theta_r/\partial w_r$ es \textbf{ambiguo} y ese es el punto teórico
+interesante:
+\begin{itemize}[leftmargin=1.6em, itemsep=1pt]
+  \item \textbf{Canal de formalización (signo $-$):} el boom expande la demanda; las firmas
+  formales, con acceso a crédito y escala, crecen más rápido y absorben trabajadores en empleo
+  formal $\Rightarrow$ $\theta_r$ baja.
+  \item \textbf{Canal de entrada informal (signo $+$):} el boom atrae trabajadores y microu-
+  nidades que entran \emph{informalmente} para capturar rentas rápido (autoempleo, minería
+  artesanal) antes de que las firmas formales se ajusten $\Rightarrow$ $\theta_r$ sube.
+\end{itemize}
+Cuál domina es una \emph{cuestión empírica}: el modelo predice que el efecto neto sobre la
+informalidad no está determinado a priori, y esa indeterminación es una predicción en sí misma.
+
+\subsection{Asimetría auge--caída}
+Introduzca fricciones realistas: costos de despido en el sector formal y rigidez a la baja de
+salarios. Entonces la respuesta a $\Delta p>0$ y a $\Delta p<0$ no es simétrica:
+\begin{itemize}[leftmargin=1.6em, itemsep=1pt]
+  \item En el \textbf{auge}, el empleo formal se crea con fricción (contratación gradual) y
+  parte del ajuste ocurre vía entrada informal.
+  \item En la \textbf{caída}, el empleo formal se destruye y los trabajadores desplazados se
+  refugian en el \textbf{autoempleo informal} como amortiguador \citep{dixcarneiro2017}.
+\end{itemize}
+Luego el aumento de $\theta_r$ en las caídas es mayor, en valor absoluto, que su variación en
+los auges: la informalidad \textbf{amortigua asimétricamente}.
+
+\section{Proposiciones (estática comparativa)}
+
+\begin{prop}[Transmisión salarial proporcional a la exposición]\label{prop:w}
+Bajo los Supuestos~\ref{sup:sectores}--\ref{sup:shock}, un aumento del precio del metal eleva
+el salario local en proporción a la exposición de la región:
+$\partial w_r/\partial p = s_r\,\Psi>0$. Regiones con $s_r=0$ no responden.
+\end{prop}
+
+\begin{prop}[Reasignación sectorial hacia no transables]\label{prop:reasig}
+El empleo se reasigna desde $T$ hacia $N$ (y marginalmente hacia $M$), porque el boom eleva el
+precio relativo de los no transables. La composición sectorial del empleo cambia aun cuando el
+empleo total varíe poco.
+\end{prop}
+
+\begin{prop}[Efecto ambiguo sobre la informalidad]\label{prop:info}
+El signo de $\partial \theta_r/\partial p$ depende de la fuerza relativa del canal de
+formalización frente al de entrada informal; no está determinado por la teoría y debe
+estimarse.
+\end{prop}
+
+\begin{prop}[Asimetría]\label{prop:asim}
+Con costos de despido y rigidez salarial a la baja, la respuesta de la informalidad a una caída
+de precios es mayor (en magnitud) que a un alza equivalente:
+$\big|\partial \theta_r/\partial p\big|_{\Delta p<0} > \big|\partial \theta_r/\partial
+p\big|_{\Delta p>0}$.
+\end{prop}
+
+\begin{prop}[Canal fiscal separable]\label{prop:canon}
+Parte del efecto total sobre el empleo formal opera vía canon $C_r=\phi\,s_r\,p$ y no vía
+mercado laboral privado. Controlar por $C_r$ aísla el canal de mercado laboral.
+\end{prop}
+
+\section{De las proposiciones a las hipótesis contrastables}
+
+Cada hipótesis se deriva de una proposición y se empareja con una prueba empírica (que se
+implementa con el diseño \textit{shift-share} descrito en el documento de estrategia de
+identificación).
+
+\begin{hipotesis}[Transmisión salarial]\label{h:w}
+Un shock positivo de precios de metales incrementa el ingreso laboral de los hogares en las
+regiones más expuestas. \emph{(De la Prop.~\ref{prop:w}; test: $\beta>0$ en la regresión del
+log-ingreso sobre el índice Bartik $B_{rt}$.)}
+\end{hipotesis}
+
+\begin{hipotesis}[Reasignación sectorial]\label{h:reasig}
+El shock aumenta la participación del empleo en no transables (comercio, servicios,
+construcción) respecto a otros transables, en las regiones expuestas. \emph{(De la
+Prop.~\ref{prop:reasig}; test: modelo multinomial de la celda sectorial.)}
+\end{hipotesis}
+
+\begin{hipotesis}[Informalidad, signo abierto]\label{h:info}
+El efecto del shock sobre la probabilidad de empleo informal es distinto de cero, con signo a
+determinar; se espera heterogeneidad entre gran minería (formalizadora) y zonas de minería
+artesanal (informalizadora). \emph{(De la Prop.~\ref{prop:info}; test: $\beta$ sobre indicador
+de informalidad, con interacciones por tipo de minería.)}
+\end{hipotesis}
+
+\begin{hipotesis}[Asimetría auge--caída]\label{h:asim}
+La informalidad responde más a las caídas de precios que a los auges. \emph{(De la
+Prop.~\ref{prop:asim}; test: $\beta^{+}\neq|\beta^{-}|$ separando la parte positiva y negativa
+del shock.)}
+\end{hipotesis}
+
+\begin{hipotesis}[Canal fiscal]\label{h:canon}
+Parte del efecto sobre el empleo formal desaparece al controlar por transferencias de canon,
+evidenciando un canal fiscal distinto del laboral. \emph{(De la Prop.~\ref{prop:canon}; test:
+cambio en $\beta$ al incluir el canon per cápita $C_{rt}$.)}
+\end{hipotesis}
+
+\section{La lógica causal, en un diagrama}
+\begin{center}
+\fbox{\parbox{0.94\textwidth}{\centering
+$\Delta p^{\text{mundial}}_{\text{metal}} \times s_r^{\text{exposición base}}$
+\;$\longrightarrow$\; $\uparrow$ renta e ingreso regional \;$\longrightarrow$\;
+$\uparrow$ demanda de no transables \;$\longrightarrow$\; $\uparrow$ salario local\\[4pt]
+$\longrightarrow$ \; \{ reasignación sectorial \;$+$\; margen formal/informal ambiguo \} \\[4pt]
+con \; \textbf{asimetría} (fricciones de despido/rigidez) \; y \; \textbf{canal fiscal paralelo}
+(canon)
+}}
+\end{center}
+
+\section{Alcances y limitaciones del marco (honestidad teórica)}
+\begin{itemize}[leftmargin=1.6em, itemsep=1pt]
+  \item Es un modelo de \emph{estática comparativa} con fricciones añadidas de forma reducida;
+  no resuelve una dinámica completa de búsqueda. Para la asimetría, una extensión natural es un
+  modelo de búsqueda con destrucción de empleo formal.
+  \item Trata la migración interregional como imperfecta pero exógena; endogeneizarla es una
+  extensión relevante (y una amenaza empírica ya discutida en la estrategia de identificación).
+  \item El margen de formalidad está modelado de forma reducida; podría microfundarse con una
+  decisión firma-por-firma de cumplimiento y enforcement estocástico.
+  \item No se modela explícitamente la heterogeneidad de calificación del trabajador, que
+  \citet{benguria2024} muestran relevante; es una extensión directa (dos tipos de trabajo).
+\end{itemize}
+Estas limitaciones no invalidan las hipótesis: son la ``agenda'' de refinamiento teórico y
+muestran dónde el marco puede crecer.
+
+\begin{thebibliography}{9}
+\setlength{\itemsep}{2pt}
+\bibitem[Aragón y Rud(2013)]{aragon2013}
+Aragón, F. M. y Rud, J. P. (2013). Natural Resources and Local Communities: Evidence from a
+Peruvian Gold Mine. \textit{American Economic Journal: Economic Policy}, 5(2), 1--25.
+\bibitem[Aragón y Rud(2020)]{aragon2020}
+Aragón, F. M. y Rud, J. P. (2020). Fading Local Effects: Boom and Bust Evidence from a Peruvian
+Gold Mine. \textit{Environment and Development Economics}, 25(2), 182--203.
+\bibitem[Benguria et al.(2024)]{benguria2024}
+Benguria, F., Saffie, F. y Zhang, S. (2024). Spatial Linkages and the Uneven Effects of a
+Commodity Boom. \textit{Working Paper}.
+\bibitem[Dix-Carneiro y Kovak(2017)]{dixcarneiro2017}
+Dix-Carneiro, R. y Kovak, B. K. (2017). Trade Liberalization and Regional Dynamics.
+\textit{American Economic Review}, 107(10), 2908--2946.
+\bibitem[Loayza y Rigolini(2016)]{loayza2016}
+Loayza, N. y Rigolini, J. (2016). The Local Impact of Mining on Poverty and Inequality:
+Evidence from the Commodity Boom in Peru. \textit{World Development}, 84, 219--234.
+\end{thebibliography}
+
+\end{document}
