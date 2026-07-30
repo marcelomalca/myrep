@@ -1,0 +1,24 @@
+# Datos ------------------------------------------------------------------------
+# raw/ e interim/ no se versionan: son grandes y reconstruibles con los scripts.
+data/raw/*
+data/interim/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+
+# processed/ se versiona solo si es liviano (< 50 MB)
+data/processed/*.rds
+!data/processed/.gitkeep
+
+# Salidas ----------------------------------------------------------------------
+output/*
+!output/.gitkeep
+
+# R ----------------------------------------------------------------------------
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Sistema ----------------------------------------------------------------------
+.DS_Store
+Thumbs.db
