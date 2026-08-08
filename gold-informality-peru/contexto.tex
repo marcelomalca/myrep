@@ -1,0 +1,292 @@
+%=====================================================================
+%  Contexto y evidencia descriptiva
+%  Precio del oro, mineria informal e informalidad laboral en el Peru
+%=====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+
+\bibpunct{(}{)}{;}{a}{}{,}
+\setlength{\parskip}{2pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\title{\textbf{El precio del oro y la economía informal en el Perú}\\[0.6em]
+\large Contexto y evidencia descriptiva}
+
+\author{Documento de diseño de investigación}
+\date{Agosto de 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Este documento reúne la evidencia descriptiva que motiva la pregunta de investigación. La tesis es que el Perú atraviesa hoy la conjunción de tres condiciones que hacen que la pregunta no sea solo interesante sino urgente. Primero, un choque de precios sin precedente: el oro pasó de unos 279 dólares la onza en 2000 a un promedio superior a 4\,600 en lo que va de 2026, con un alza de 46\,\% solo en 2025, el mayor salto anual del que se tiene registro. Segundo, una respuesta de oferta que ocurre mayoritariamente fuera de la ley: en 2025 el país exportó 209 toneladas de oro contra una producción formal registrada de 108{,}8 toneladas, de modo que \textbf{el oro de origen no declarado es hoy de magnitud comparable al de origen declarado}. Tercero, un marco institucional que no solo no contiene el fenómeno sino que lo acompaña: el registro de formalización minera lleva más de una década prorrogándose y acaba de extenderse hasta diciembre de 2026, mientras las denuncias fiscales por minería ilegal se duplicaron entre 2021 y 2025 y la violencia asociada alcanzó su expresión más visible en la masacre de trece trabajadores en Pataz en mayo de 2025. Sobre un país donde siete de cada diez ocupados son informales, y donde la informalidad rural llega a 94{,}6\,\%, la pregunta de cuánto de esa informalidad responde al precio internacional del oro tiene consecuencias directas de política.
+
+\medskip
+\noindent\textbf{Naturaleza de la evidencia.} Las cifras de este documento provienen de fuentes publicadas ---entidades oficiales, institutos de investigación, monitoreo satelital y prensa especializada--- y están atribuidas una por una. \textbf{No son estadísticas calculadas por el autor a partir de microdatos.} La sección \ref{sec:fuentes} detalla la procedencia y señala qué cifras requieren verificación antes de citarse en un documento final.
+\end{abstract}
+
+\newpage
+\onehalfspacing
+
+%=====================================================================
+\section{Por qué esta pregunta, y por qué ahora}
+%=====================================================================
+
+La minería aurífera informal e ilegal dejó de ser en el Perú un fenómeno de nicho. Por volumen exportado, por valor generado, por territorio afectado y por violencia asociada, se ha convertido en una de las principales economías del país, y probablemente en la más dinámica. Lo notable, para un economista, es que su expansión coincide con un movimiento de precios de origen enteramente externo: el Perú no fija el precio del oro, lo recibe.
+
+Esa combinación ---un choque exógeno grande y persistente, y una respuesta local concentrada en el sector informal--- es exactamente la estructura que permite preguntarse por una relación causal. La pregunta de investigación es si el alza del precio del oro incrementa la informalidad laboral en los distritos con dotación aurífera, y si ese efecto es mayor donde la presencia del Estado es débil.
+
+Este documento no aborda cómo estimar ese efecto, que es materia de los documentos de metodología y datos. Se limita a mostrar que hay algo grande que explicar.
+
+%=====================================================================
+\section{El choque: el precio del oro, 2000--2026}
+%=====================================================================
+
+El punto de partida es la magnitud de la variación de precios. No se trata de fluctuaciones moderadas alrededor de una tendencia, sino de un cambio de nivel de casi dos órdenes de magnitud en un cuarto de siglo, con episodios de alza y de caída suficientemente marcados como para permitir contrastes.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Precio del oro: promedios anuales e hitos}
+\label{tab:precio}
+\small
+\begin{tabular}{l R{3.2cm} L{7.4cm}}
+\toprule
+\textbf{Año} & \textbf{Promedio (US\$/oz)} & \textbf{Observación} \\
+\midrule
+2000 & 279 & Mínimo de varias décadas \\
+2011 & 1\,573 & Máximo intranual cercano a 1\,921 en septiembre \\
+2013 & --- & Peor año de la serie: caída de 28\,\% \\
+2015 & 1\,160 & Piso del ciclo bajista \\
+2020 & 1\,772 & Máximo intranual de 2\,075 en agosto \\
+2024 & 2\,388 & \\
+2025 & 3\,445 & Mayor alza anual registrada: 46\,\% \\
+2026 & 4\,642 & Acumulado del año; máximo de 5\,589 el 28 de enero \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.4em}
+\begin{minipage}{0.92\textwidth}
+\footnotesize \textit{Fuente:} series de precios recopiladas por proveedores comerciales a partir de cotizaciones de la London Bullion Market Association. Cifras de 2025 y 2026 sujetas a verificación (ver sección \ref{sec:fuentes}).
+\end{minipage}
+\end{table}
+
+Tres rasgos de esta serie importan para el diseño de la investigación. El primero es que la variación es grande incluso en términos reales, de modo que no puede atribuirse a inflación. El segundo es que \textbf{no es monotónica}: la caída de 2013 a 2015 es tan pronunciada como las alzas posteriores, lo que ofrece un contraste que un estudio serio debería explotar en lugar de ignorar. El tercero es que el episodio más intenso de toda la serie es reciente ---2025 y 2026---, lo que significa que cualquier trabajo que use datos hasta 2019 o 2020 está dejando fuera justamente el choque más informativo.
+
+%=====================================================================
+\section{La escala: la brecha entre lo que se exporta y lo que se produce}
+%=====================================================================
+
+La forma más clara de dimensionar la minería aurífera no declarada en el Perú es comparar lo que el país exporta con lo que declara producir. La diferencia no tiene explicación benigna: el oro exportado que no aparece en la producción registrada proviene de operaciones que no reportan.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Oro exportado frente a producción formal registrada (toneladas)}
+\label{tab:brecha}
+\small
+\begin{tabular}{l r r r}
+\toprule
+\textbf{Año} & \textbf{Exportado} & \textbf{Producción registrada} & \textbf{Brecha} \\
+\midrule
+2024 & $\approx$ 200 & 108 & $\approx$ 92 \\
+2025 & 209 & 108{,}8 & 100{,}1 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.4em}
+\begin{minipage}{0.92\textwidth}
+\footnotesize \textit{Fuente:} producción registrada del Ministerio de Energía y Minas; volúmenes exportados según reportes recogidos por el Instituto Peruano de Economía y por prensa especializada del sector.
+\end{minipage}
+\end{table}
+
+La lectura es contundente: en 2025 las exportaciones prácticamente duplicaron la producción registrada. Dicho de otro modo, \textbf{por cada tonelada de oro que el Estado peruano observa, sale del país aproximadamente otra que no observa}. Y la brecha creció, porque la producción formal cayó mientras las exportaciones aumentaron.
+
+En valor, las cifras son igualmente elocuentes. Las exportaciones asociadas a minería ilegal habrían superado los 11\,500 millones de dólares en 2025 ---estimaciones cercanas las sitúan en torno a 12\,000 millones---, una cifra 6{,}5 veces mayor que la de una década atrás y 55\,\% superior a la de 2024. El Instituto Peruano de Economía estima que el Perú concentra alrededor del 44\,\% del oro ilícito exportado desde América del Sur. Sumadas las exportaciones de oro ilegal y de cocaína, el conjunto superaría los 18\,000 millones de dólares en 2025.
+
+Conviene detenerse en esta comparación porque ordena prioridades de política. Durante décadas la discusión peruana sobre economías ilegales giró en torno al narcotráfico. Los órdenes de magnitud actuales indican que el oro ilegal es hoy la economía ilícita más grande del país, y que su crecimiento reciente es mucho más rápido. En el acumulado, se estima que en dos décadas la minería ilegal habría producido más de 3\,000 toneladas de oro.
+
+%=====================================================================
+\section{Quiénes trabajan en esto: la informalidad como variable de interés}
+%=====================================================================
+
+El Perú tiene una de las tasas de informalidad laboral más altas de la región, y esa es la variable que la investigación quiere explicar.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Empleo informal en el Perú}
+\label{tab:informalidad}
+\small
+\begin{tabularx}{\textwidth}{X r}
+\toprule
+\textbf{Corte} & \textbf{Tasa de empleo informal} \\
+\midrule
+Nacional, cierre de 2024 & 70{,}9\,\% \\
+Nacional, abril 2024 -- marzo 2025 & 70{,}7\,\% \\
+Nacional, julio 2024 -- junio 2025 & 68{,}7\,\% \\
+\addlinespace
+Área rural & 94{,}6\,\% \\
+Área urbana & 65{,}1\,\% \\
+\addlinespace
+Agricultura, pesca y minería & 91{,}1\,\% \\
+\addlinespace
+Educación primaria o menos & 94{,}4\,\% \\
+Educación secundaria & 81{,}2\,\% \\
+Población ocupada de 14 a 24 años & 85{,}4\,\% \\
+\addlinespace
+Juliaca (Puno) & más de 80\,\% \\
+Ayacucho (ciudad) & 72{,}0\,\% \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.4em}
+\begin{minipage}{0.92\textwidth}
+\footnotesize \textit{Fuente:} Instituto Nacional de Estadística e Informática, informes técnicos de empleo nacional y cuenta satélite de la economía informal, según reportes de prensa económica.
+\end{minipage}
+\end{table}
+
+Dos observaciones conectan estos números con la pregunta de investigación. La primera es que el perfil de la informalidad ---rural, de baja calificación, joven--- coincide casi exactamente con el perfil del trabajador que la minería aurífera informal absorbe. La segunda es que dos de las ciudades con mayor informalidad medida, Juliaca y Ayacucho, están en departamentos auríferos. Esto es sugerente pero no es evidencia causal: son también departamentos pobres, rurales y aislados, y esa es precisamente la razón por la que la investigación necesita un diseño de identificación y no una comparación de medias.
+
+El contraste con el empleo minero formal ayuda a dimensionar. En 2025 la minería formal generó en promedio unos 264\,000 empleos directos, cifra récord, con 276\,765 trabajadores registrados al cierre de diciembre. Frente a eso, en Madre de Dios se estima que alrededor de 80\,000 personas trabajan informalmente en minería, equivalente a cerca del 30\,\% de la población del departamento, donde la minería aurífera representaba el 39{,}4\,\% del valor agregado bruto departamental y generaba apenas 772 empleos formales directos. \textbf{Un solo departamento amazónico concentra un contingente de trabajadores mineros informales equivalente a casi un tercio del empleo minero formal de todo el país.}
+
+%=====================================================================
+\section{El eslabón institucional}
+%=====================================================================
+
+La hipótesis de la investigación no es solo que el precio importa, sino que importa \emph{más} donde el Estado no llega. La evidencia descriptiva sobre el desempeño institucional peruano en esta materia es abundante y apunta en una dirección consistente.
+
+\subsection{Una formalización que no termina}
+
+El Registro Integral de Formalización Minera fue concebido como un mecanismo transitorio. Lleva más de una década prorrogándose. En diciembre de 2025 el Congreso aprobó extenderlo hasta el 31 de diciembre de 2026, o hasta la entrada en vigencia de la ley de la Minería Artesanal y de Pequeña Escala y su reglamento, cuya discusión quedó nuevamente postergada. El Ejecutivo había pedido limitar la prórroga y mantener la exclusión de los mineros ya retirados del registro, argumentando que el mecanismo opera como cobertura de la minería ilegal, de forma especialmente grave en Madre de Dios, Puno y La Libertad. La reincorporación de unos 50\,000 mineros excluidos fue rechazada por 51 votos contra 44, con 11 abstenciones.
+
+El resultado neto de más de una década de formalización es magro: al comparar departamentos, Madre de Dios registraba 247 mineros formalizados frente a 2\,893 en Puno. Son cifras que no guardan proporción con las decenas de miles de personas que trabajan en el sector.
+
+Esto tiene una implicancia metodológica que conviene anticipar: la condición de ``inscrito en el REINFO'' no equivale a formalidad ni a ilegalidad, sino a un limbo administrativo prorrogado por ley. Cualquier medición de informalidad basada en registros debe tratar ese estatus explícitamente.
+
+\subsection{Un \emph{enforcement} intermitente}
+
+Las intervenciones estatales existen, son costosas y funcionan mientras duran. El caso mejor documentado es la Operación Mercurio, iniciada el 19 de febrero de 2019 en La Pampa, Madre de Dios, con un despliegue de 1\,200 policías y 300 militares sostenido hasta marzo de 2020. El monitoreo satelital registró una caída de la deforestación por minería en La Pampa de aproximadamente 92\,\% en 2019 respecto de 2018. Pero la actividad no desapareció: se desplazó geográficamente. Antes, entre 2013 y 2016, se habían realizado 109 acciones de interdicción en Madre de Dios con un presupuesto estimado de 93 millones de soles, sin frenar la expansión del fenómeno.
+
+Que el \emph{enforcement} produzca efectos grandes y locales pero transitorios y desplazables es un hecho descriptivo de primer orden para la investigación: sugiere que la variable institucional es real y operativa, y a la vez advierte que cualquier estimación debe tomar en serio el desplazamiento espacial.
+
+\subsection{Criminalidad creciente}
+
+Las denuncias por minería ilegal ante el Ministerio Público pasaron de 1\,266 en 2021 a 2\,601 en 2025, algo más que una duplicación en cuatro años. La expresión más visible de esta escalada ocurre en Pataz, La Libertad, provincia bajo estado de emergencia desde febrero de 2024. En mayo de 2025 fueron hallados los cuerpos de trece trabajadores de una contratista de la minera Poderosa, secuestrados a fines de abril. Se estima que en los tres años previos alrededor de cien personas murieron en hechos criminales en la provincia, y que desde 2020 se registraron al menos 39 asesinatos de trabajadores junto con múltiples ataques a infraestructura minera. Las organizaciones involucradas no se dedican solo a extraer mineral: operan también en narcotráfico, sicariato y extorsión.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Cronología de precios, política y violencia}
+\label{tab:cronologia}
+\small
+\begin{tabularx}{\textwidth}{L{1.7cm} X}
+\toprule
+\textbf{Año} & \textbf{Hito} \\
+\midrule
+2011--2012 & Pico del ciclo previo de precios; paquete de decretos legislativos de interdicción, entre ellos la prohibición de dragas \\
+2013--2015 & Caída del precio; 109 acciones de interdicción en Madre de Dios entre 2013 y 2016 \\
+2017 & Creación del REINFO \\
+2019 & Operación Mercurio en La Pampa; caída de 92\,\% de la deforestación minera local, con desplazamiento posterior \\
+2021 & 1\,266 denuncias por minería ilegal ante el Ministerio Público \\
+2024 & Estado de emergencia en Pataz desde febrero; precio promedio de 2\,388 dólares \\
+2025 & Masacre de trece trabajadores en Pataz en mayo; precio promedio de 3\,445 dólares, alza de 46\,\%; exportaciones de oro ilegal por más de 11\,500 millones; 2\,601 denuncias \\
+2026 & Prórroga del REINFO hasta diciembre; máximo histórico del oro en enero; ley MAPE nuevamente postergada \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%=====================================================================
+\section{Los costos}
+%=====================================================================
+
+La pregunta de investigación se refiere a informalidad laboral, pero la relevancia del tema no se agota ahí. Los costos documentados de la expansión aurífera informal son de una magnitud que justifica el interés público.
+
+\paragraph{Deforestación.} En 2024 la minería ilegal deforestó 6\,020 hectáreas en Madre de Dios según monitoreo satelital, un 46\,\% menos que en 2023, pero con una pérdida acumulada desde 2018 superior a 141\,000 hectáreas. El 36\,\% de la minería aurífera ocurre en territorios indígenas o áreas naturales protegidas. La literatura académica ya había documentado la relación con el precio: \citet{swenson2011} estimaron una deforestación minera de 1\,915 hectáreas anuales entre 2006 y 2009 y encontraron que el precio internacional del oro se asociaba de forma estrecha con las importaciones peruanas de mercurio.
+
+\paragraph{Mercurio y salud.} La amalgamación con mercurio es la tecnología dominante en la minería aurífera artesanal, y prácticamente la totalidad de las importaciones peruanas de mercurio se destina a esa actividad. Las consecuencias sanitarias están documentadas como problema de salud pública en Madre de Dios, con exposición directa de los trabajadores y contaminación de las fuentes de agua de la cuenca, que afecta a población que no participa en la actividad. Las emisiones son críticas también en Puno, Arequipa y Piura.
+
+\paragraph{Trabajo forzoso y trata.} En La Rinconada, en el distrito de Ananea (Puno), opera el sistema conocido como \emph{cachorreo}, bajo el cual el trabajador labora sin remuneración durante un periodo a cambio del derecho a extraer mineral para sí durante un turno. La Organización Internacional del Trabajo y la organización Verité lo han documentado como un arreglo que expone a los trabajadores a condiciones de trabajo forzoso. La policía de Puno estima que entre 1\,500 y 4\,000 menores de edad son explotados sexualmente en esa localidad. Hay evidencia de explotación laboral y sexual tanto en La Rinconada como en Madre de Dios.
+
+Estos costos importan para la investigación por una razón adicional a la moral: indican que el empleo que genera el auge aurífero informal no es simplemente empleo de baja productividad, sino que en sus formas extremas involucra relaciones laborales coercitivas. Un aumento medido de la ``informalidad'' en estos distritos puede estar captando fenómenos cualitativamente distintos, y conviene tenerlo presente al interpretar los resultados.
+
+%=====================================================================
+\section{Lo que la literatura sabe y lo que no}
+%=====================================================================
+
+La literatura económica sobre el impacto local de la minería en el Perú es sólida, pero estudia mayoritariamente la minería \emph{formal} de gran escala. \citet{aragon2013} muestran, para Yanacocha en Cajamarca con datos de hogares de 1997 a 2006, un efecto positivo de la demanda local de insumos de la mina sobre el ingreso real, que alcanza a trabajadores no calificados fuera del sector minero. \citet{loayza2016} documentan efectos heterogéneos sobre pobreza y desigualdad durante el auge de \emph{commodities}. Trabajos más recientes sobre distritos mineros y sus vecinos entre 2003 y 2019 encuentran efectos positivos sobre el ingreso per cápita de distritos vecinos no mineros.
+
+Del lado de los choques de precios en contextos de institucionalidad débil, la literatura internacional es igualmente sólida: \citet{berman2017} para conflicto en África, \citet{dube2013} para Colombia, y \citet{sviatschi2022} para coca y trayectorias criminales en el propio Perú.
+
+\textbf{El vacío está en la intersección.} No hay, hasta donde alcanza esta revisión, un trabajo que use la variación del precio internacional del oro para identificar el efecto de la actividad extractiva \emph{informal e ilegal} sobre la composición formal-informal del empleo local en el Perú, con la calidad institucional como moderador. La literatura de minería formal no capta este margen por construcción, y la literatura de economías ilegales se ha concentrado en coca y en conflicto armado más que en informalidad laboral.
+
+Ese vacío importa porque el signo del efecto no es obvio. El resultado de \citet{aragon2013} sugiere que un auge minero puede elevar los salarios locales y atraer trabajadores hacia empleos asalariados formales en comercio y servicios. Si eso ocurriera también con la minería informal, la tasa de informalidad no minera podría incluso caer. La pregunta es genuinamente empírica.
+
+%=====================================================================
+\section{Por qué importa}
+%=====================================================================
+
+Tres razones, en orden de concreción.
+
+La primera es de política inmediata. El Congreso peruano decide periódicamente si prorroga el REINFO, y lo hace en ausencia de evidencia causal sobre qué hace la actividad que ese registro cubre al mercado laboral local. Si el auge del oro genera informalidad más allá de la minería, el costo de la prórroga es mayor que el que se discute. Si en cambio genera empleo asalariado y formalización por la vía del ingreso, el argumento de quienes se oponen a la exclusión de mineros tiene más fundamento del que se le reconoce. Ambas posibilidades son consistentes con lo que hoy se sabe, y esa es justamente la razón para investigarlo.
+
+La segunda es de diseño de la intervención estatal. La evidencia descriptiva muestra que las interdicciones funcionan localmente y desplazan la actividad. Saber cuánta informalidad genera un alza de precios, y dónde, permitiría dimensionar el esfuerzo necesario y anticipar hacia dónde se moverá el problema.
+
+La tercera es de oportunidad. El choque de precios de 2025 y 2026 es el mayor de la serie histórica y está ocurriendo ahora. Los datos administrativos y de encuesta que permitirán medirlo estarán disponibles en los próximos años. Un diseño de investigación preparado de antemano ---con el marco de distritos construido, los umbrales pre-registrados y la estrategia de identificación fijada--- está en condiciones de aprovechar ese episodio en lugar de reconstruirlo tardíamente.
+
+%=====================================================================
+\section{Nota sobre las fuentes}\label{sec:fuentes}
+%=====================================================================
+
+La honestidad sobre la procedencia de las cifras es parte del argumento, porque varias de ellas circulan en prensa sin su fuente primaria.
+
+\begin{itemize}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{Cifras de fuente primaria identificable.} Producción minera registrada y empleo minero formal provienen del Ministerio de Energía y Minas. Las tasas de empleo informal provienen del Instituto Nacional de Estadística e Informática. Las cifras de deforestación provienen del monitoreo satelital del proyecto MAAP. Las estimaciones de exportaciones de oro ilegal provienen del Instituto Peruano de Economía. Las denuncias corresponden al Ministerio Público. El sistema \emph{cachorreo} está documentado por la Organización Internacional del Trabajo y por Verité.
+
+\item \textbf{Cifras que requieren verificación antes de su uso final.} Los promedios anuales del precio del oro de la tabla \ref{tab:precio}, en particular los de 2025 y 2026, provienen de agregadores comerciales y deben contrastarse contra la serie oficial de la London Bullion Market Association. Los volúmenes exportados de oro deben contrastarse contra estadísticas de aduanas. Las estimaciones de personas empleadas en minería informal en Madre de Dios y de menores explotados en La Rinconada son estimaciones de rango amplio, apropiadas para dimensionar pero no para cálculos precisos.
+
+\item \textbf{Cifras de distinta vigencia.} Algunos datos departamentales de Madre de Dios corresponden a 2017 y se citan porque no se identificó una actualización comparable; su antigüedad debe declararse si se usan.
+
+\item \textbf{Lo que este documento no es.} No contiene estadísticas calculadas a partir de microdatos. Las tasas de informalidad por región aurífera y no aurífera, la composición sectorial del empleo informal en los distritos del marco, y la correlación entre precio y actividad a nivel distrital son cálculos que requieren acceso a la ENAHO y a los registros administrativos, y que constituyen el paso natural siguiente.
+\end{itemize}
+
+%=====================================================================
+\begin{thebibliography}{9}
+\small
+
+\bibitem[Aragón y Rud(2013)]{aragon2013}
+Aragón, F. M. y J. P. Rud (2013). ``Natural Resources and Local Communities: Evidence from a Peruvian Gold Mine''. \emph{American Economic Journal: Economic Policy}, 5(2), 1--25.
+
+\bibitem[Berman et al.(2017)]{berman2017}
+Berman, N., M. Couttenier, D. Rohner y M. Thoenig (2017). ``This Mine Is Mine! How Minerals Fuel Conflicts in Africa''. \emph{American Economic Review}, 107(6), 1564--1610.
+
+\bibitem[Dube y Vargas(2013)]{dube2013}
+Dube, O. y J. F. Vargas (2013). ``Commodity Price Shocks and Civil Conflict: Evidence from Colombia''. \emph{Review of Economic Studies}, 80(4), 1384--1421.
+
+\bibitem[Loayza y Rigolini(2016)]{loayza2016}
+Loayza, N. y J. Rigolini (2016). ``The Local Impact of Mining on Poverty and Inequality: Evidence from the Commodity Boom in Peru''. \emph{World Development}, 84, 219--234.
+
+\bibitem[Sviatschi(2022)]{sviatschi2022}
+Sviatschi, M. M. (2022). ``Making a NARCO: Childhood Exposure to Illegal Labor Markets and Criminal Life Paths''. \emph{Econometrica}, 90(4), 1835--1878.
+
+\bibitem[Swenson et al.(2011)]{swenson2011}
+Swenson, J. J., C. E. Carter, J.-C. Domec y C. I. Delgado (2011). ``Gold Mining in the Peruvian Amazon: Global Prices, Deforestation, and Mercury Imports''. \emph{PLoS ONE}, 6(4), e18875.
+
+\end{thebibliography}
+
+\end{document}
