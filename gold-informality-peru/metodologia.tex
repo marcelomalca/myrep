@@ -1,0 +1,396 @@
+%=====================================================================
+%  Nota metodológica
+%  Precio del oro e informalidad en distritos auríferos del Perú
+%  Diseño de identificación revisado
+%=====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+
+\bibpunct{(}{)}{;}{a}{}{,}
+\setlength{\parskip}{2pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\Au}{\mathrm{Au}}
+\newcommand{\IHS}{\mathrm{IHS}}
+
+\title{\textbf{Diseño de identificación para estimar el efecto del precio\\ del oro sobre la informalidad en distritos auríferos del Perú}\\[0.6em]
+\large Nota metodológica}
+
+\author{Documento de diseño de investigación}
+\date{Agosto de 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Esta nota revisa la estrategia de identificación del proyecto a la luz de dos referencias: \citet{braakmann2024}, que estima el efecto del precio internacional del oro sobre la localización del delito mediante un DiD con tratamiento binario predeterminado, y \citet{pecastaing2020}, que estima un DDD sobre distritos peruanos usando microdatos de la ENAHO. Ambos papers corrigen elementos de la propuesta metodológica previa. Primero, \textbf{la ENAHO sí admite un diseño con tratamiento asignado a nivel distrital}: lo que no es confiable es la \emph{media distrital} estimada como estadístico, no la asignación de tratamiento por ubigeo con estimación a nivel de hogar y agrupamiento de distritos en bloques. Segundo, \textbf{un indicador de tratamiento binario y predeterminado es perfectamente viable} y no requiere una construcción \emph{shift-share}; lo que hace funcionar al diseño de \citet{braakmann2024} no es la forma del tratamiento sino la granularidad de la unidad, la definición del tratamiento \emph{relativa a la unidad administrativa superior} y una estructura de efectos fijos de alta dimensión. Sobre esa base propongo una especificación principal a nivel de distrito-mes con tratamiento definido como \emph{outlier aurífero dentro de la provincia}, efectos fijos de provincia $\times$ mes $\times$ año, tendencias distritales cuadráticas y estimación por PPML; un diseño complementario a nivel de hogar con la ENAHO siguiendo la estructura DDD de \citet{pecastaing2020}, pero con efectos fijos distritales y estudio de eventos; y una revisión de la inferencia que atiende el problema de \emph{pocos choques} en diseños de exposición $\times$ precio \citep{adao2019}. Discuto además por qué la literatura de DiD escalonado no es aplicable aquí, por qué la transformación IHS debe usarse con cautela \citep{chen2024}, y por qué una regresión cuantílica con interacciones no identifica efectos de tratamiento cuantílicos.
+\end{abstract}
+
+\newpage
+\onehalfspacing
+
+%=====================================================================
+\section{Qué cambia y por qué}
+%=====================================================================
+
+Esta nota sustituye la sección de estrategia empírica del documento de diseño previo. Dos afirmaciones de aquel documento eran incorrectas o estaban formuladas con demasiada fuerza, y conviene corregirlas explícitamente antes de presentar la especificación revisada.
+
+\paragraph{Corrección 1: la ENAHO y el nivel distrital.} Afirmé que la ENAHO ``no sirve'' a nivel distrital. Esa formulación confunde dos cosas distintas. Es cierto que el diseño muestral de la ENAHO no garantiza representatividad para \emph{cada} distrito, de modo que una media distrital calculada con las observaciones de un distrito es un estadístico ruidoso y potencialmente sesgado. Pero eso no es lo que requiere un diseño de diferencias en diferencias con tratamiento geográfico. \citet{pecastaing2020} identifican 55 distritos dentro de bosques secos y 53 fuera, en Piura, Lambayeque y Tumbes, asignan el tratamiento por ubigeo y estiman a nivel de \emph{hogar} sobre muestras agrupadas de 30\,259 y 102\,217 observaciones. Lo que necesita ese diseño no es que cada distrito sea representativo, sino que el \emph{bloque} de distritos tratados y el bloque de control sean representativos de sus respectivas poblaciones, lo cual es una exigencia mucho más débil y razonable. La distinción es central y la formulo así para el resto de la nota:
+
+\begin{quote}
+\emph{El ubigeo distrital de la ENAHO es utilizable como variable de asignación de tratamiento; la media distrital de la ENAHO no es utilizable como variable dependiente.}
+\end{quote}
+
+Esto amplía sustancialmente el espacio de diseños disponibles y hace innecesario condicionar todo el proyecto a la construcción previa de una medida administrativa de informalidad. Las dos advertencias que sí sobreviven se discuten en la sección \ref{sec:enaho}: el uso de factores de expansión y la varianza inducida por el diseño muestral por conglomerados, y el hecho de que un bloque con pocos distritos y pocos hogares por distrito puede tener un número efectivo de conglomerados mucho menor que su número de observaciones.
+
+\paragraph{Corrección 2: tratamiento binario frente a exposición continua.} Sostuve que un DiD con tratamiento binario no era viable y que había que pasar a una construcción \emph{shift-share}. \citet{braakmann2024} muestran que no es así: su ecuación de estimación interactúa un indicador \emph{binario} y predeterminado de barrio (alta densidad de hogares de origen surasiático) con el precio mensual del oro, sin ninguna construcción de participaciones, y el resultado se publica en \emph{AEJ: Applied}. Conviene además notar que la diferencia entre ambos enfoques es menor de lo que sugiere la terminología: tanto su especificación como la mía identifican el parámetro de interés a partir de la interacción entre \emph{variación transversal predeterminada en la exposición} y \emph{variación longitudinal en un precio común}. La construcción \emph{shift-share} es una forma particular de medir la exposición, no una estrategia de identificación distinta. De hecho, \citet{braakmann2024} reportan en su tabla 2, panel B, columna 5, una versión de dosis-respuesta con la participación poblacional continua, y el resultado es coherente con la versión binaria.
+
+Lo que sí sostengo, y creo que sigue en pie, es que el problema del diseño original no era la binarización sino el nivel de agregación. El diseño de \citet{braakmann2024} funciona con casi 35\,000 barrios de unos 1\,500 habitantes, 108 meses y 3{,}7 millones de observaciones, y con el tratamiento definido \emph{como valor atípico dentro de su propia autoridad local}. Es decir, la comparación relevante nunca es ``regiones con oro contra regiones sin oro'': es ``este barrio contra sus vecinos del mismo municipio''. Esa es la lección de diseño que conviene trasladar, y es la que estructura la sección \ref{sec:principal}.
+
+%=====================================================================
+\section{El objeto de identificación}
+%=====================================================================
+
+Sea $P_t$ el precio internacional del oro y $\Au_d$ una medida predeterminada de dotación aurífera del distrito $d$. Todos los diseños de esta nota identifican el mismo objeto:
+\begin{equation}
+\tau \;=\; \frac{\partial^2 \, \mathbb{E}[y_{dt}]}{\partial \ln P_t \; \partial \Au_d},
+\label{eq:objeto}
+\end{equation}
+esto es, la respuesta \emph{diferencial} de la informalidad al precio del oro entre distritos con distinta dotación. Tres consecuencias se siguen de \eqref{eq:objeto} y conviene fijarlas de entrada porque disciplinan todo lo demás.
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{El efecto de nivel del precio no es identificable} una vez que se incluyen efectos fijos de tiempo. El diseño estima efectos relativos. \citet{braakmann2024} son explícitos al respecto: su coeficiente sobre el precio del oro en niveles solo sobrevive cuando \emph{no} se incluyen efectos fijos de mes-año, y su parámetro de interés es siempre la interacción.
+
+\item \textbf{No hay variación en el momento del tratamiento.} El precio del oro se mueve de forma idéntica para todos los distritos. Esto tiene una implicancia que quiero subrayar porque va en contra del reflejo actual: \textbf{la literatura de DiD escalonado no es aplicable aquí}. Los resultados de \citet{callaway2021}, \citet{sunabraham2021} o \citet{dechaisemartin2020} corrigen sesgos que surgen de comparaciones entre unidades tratadas en momentos distintos, y ese problema simplemente no existe en este diseño. Citarlos sería un error de diagnóstico. \citet{braakmann2024} lo señalan en una nota al pie de una línea, y hacen bien.
+
+\item \textbf{Lo que sí es aplicable es la crítica de tratamiento continuo}, pero solo para la variante de dosis-respuesta. Si $\Au_d$ se usa como variable continua, los coeficientes de efectos fijos en dos vías no recuperan en general un promedio interpretable de efectos causales, porque la heterogeneidad del efecto según la dosis introduce sesgo de selección \citep{callaway2024}. Con $\Au_d$ binario ese problema desaparece y el parámetro es un ATT convencional. Este es, en mi opinión, el argumento más fuerte a favor de la especificación binaria como principal, y es una razón que no había considerado.
+\end{enumerate}
+
+%=====================================================================
+\section{Especificación principal a nivel distrito-mes}\label{sec:principal}
+%=====================================================================
+
+\subsection{Definición del tratamiento: atípico dentro de la provincia}
+
+La decisión de diseño más importante que tomo de \citet{braakmann2024} no es la binarización sino la \emph{referencia} de la comparación. Ellos definen un barrio como tratado si su participación de población surasiática excede el percentil 75 más 1{,}5 veces el rango intercuartílico \emph{de su propia autoridad local}. Con eso, la identificación proviene de comparar unidades vecinas dentro de un mismo mercado local, y no de comparar regiones estructuralmente distintas.
+
+La traducción al caso peruano es directa. Defina
+\begin{equation}
+\Au_d \;=\; \mathbf{1}\!\left[\, g_d \;>\; Q_{75}^{p(d)}(g) \;+\; 1{,}5 \cdot \mathrm{IQR}^{p(d)}(g) \,\right],
+\label{eq:tratamiento}
+\end{equation}
+donde $g_d$ es la dotación aurífera predeterminada del distrito $d$ (potencial geológico por km$^2$, o producción aurífera media en un periodo base anterior a la muestra) y los cuantiles se calculan \emph{dentro de la provincia} $p(d)$ a la que pertenece el distrito. La comparación resultante es entre distritos auríferos y no auríferos de la misma provincia.
+
+Esta definición tiene además una justificación conductual análoga a la del paper original. En \citet{braakmann2024} el argumento es que los delincuentes eligen objetivos en la vecindad de su domicilio, de modo que la comparación relevante es local. En el caso peruano el argumento es que la reasignación ocupacional hacia la minería informal ocurre mayoritariamente dentro de mercados laborales locales, con migración de corta distancia. La provincia es una aproximación razonable al mercado laboral local; cuando existan delimitaciones de áreas de mercado laboral basadas en conmutación, deben preferirse.
+
+\paragraph{Restricción muestral.} \citet{braakmann2024} señalan que su definición asegura al menos un barrio tratado en cada autoridad local. En el Perú eso no ocurre: la mayoría de provincias no tiene dotación aurífera alguna, y con efectos fijos de provincia esas unidades no contribuyen a $\tau$. Recomiendo por tanto restringir la muestra principal a provincias que contengan al menos un distrito tratado y un distrito de control, y reportar la muestra completa como robustez. El costo es de potencia y de validez externa; el beneficio es que la comparación queda definida entre unidades que comparten mercado laboral, clima, altitud y gobierno provincial.
+
+\paragraph{Definiciones alternativas.} Siguiendo el panel B de su tabla 2, deben reportarse al menos cuatro variantes: (i) atípico dentro de la provincia (principal); (ii) atípico dentro de la provincia con un umbral absoluto mínimo de dotación, para evitar clasificar como tratados a distritos marginalmente auríferos en provincias sin oro; (iii) decil superior dentro de la provincia y decil superior nacional; y (iv) la versión de dosis-respuesta con $g_d$ continuo y estandarizado. La estabilidad del signo y de la magnitud relativa a través de estas definiciones es una de las pruebas de robustez más informativas del diseño.
+
+\subsection{Ecuación de estimación}
+
+Adaptando la ecuación (1) de \citet{braakmann2024} a la estructura administrativa peruana, la especificación principal es
+\begin{equation}
+y_{dpt} \;=\; \tau \,\bigl(\Au_d \times \ln P_t\bigr) \;+\; \sum_{k}\delta_k\bigl(\Au^k_d \times \ln P^k_t\bigr) \;+\; \alpha_p \;+\; \theta_t \;+\; \gamma_d \, f(t) \;+\; \epsilon_{dpt},
+\label{eq:principal}
+\end{equation}
+donde $d$ indexa distritos anidados en provincias $p$, $t$ indexa meses, $\alpha_p$ son efectos fijos de provincia, $\theta_t$ efectos fijos de mes calendario y año, $\gamma_d f(t)$ son tendencias temporales cuadráticas específicas de cada distrito, y el segundo término controla por la exposición a otros minerales $k$ interactuada con sus respectivos precios. El término $\Au_d$ en niveles se identifica solo cuando $\alpha_p$ son efectos fijos de provincia y no de distrito.
+
+La escalera de especificaciones replica la de su panel A y debe reportarse completa:
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Escalera de especificaciones}
+\label{tab:escalera}
+\small
+\begin{tabularx}{\textwidth}{L{1.1cm} L{4.0cm} L{3.4cm} X}
+\toprule
+\textbf{Col.} & \textbf{Efectos fijos de área} & \textbf{Efectos de tiempo} & \textbf{Qué añade} \\
+\midrule
+(1) & Provincia & Mes calendario & Especificación base; $\Au_d$ estimable en niveles \\
+(2) & Distrito & Mes calendario & Absorbe toda heterogeneidad distrital fija \\
+(3) & Provincia & Provincia $\times$ mes $\times$ año & Absorbe cualquier choque provincial correlacionado con el precio \\
+(4) & Provincia & Mes calendario & PPML sobre conteos \\
+(5) & Provincia & Mes calendario & Resultado binario o extensivo \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La columna (3) merece un comentario porque es la más exigente y la más persuasiva. Los efectos fijos de provincia $\times$ mes $\times$ año absorben \emph{cualquier} choque que afecte a toda una provincia en un momento dado, incluido el canon minero, los precios de otros metales, las campañas de interdicción, los conflictos sociales y el clima. Tras incluirlos, $\tau$ se identifica exclusivamente de la comparación entre distritos auríferos y no auríferos \emph{dentro de la misma provincia y el mismo mes}. En \citet{braakmann2024} el coeficiente pasa de 0{,}057 a 0{,}053 al añadir esta capa, y esa estabilidad es probablemente el resultado individual más convincente del paper. Si en el caso peruano el coeficiente se desploma al incluir efectos fijos provincia-mes-año, el hallazgo es que el efecto opera a escala provincial y no distrital, lo cual sería informativo pero cambiaría la interpretación por completo.
+
+\subsection{Forma funcional: cuándo IHS y cuándo PPML}
+
+\citet{braakmann2024} aplican la transformación de seno hiperbólico inverso tanto a la variable dependiente como al precio, de modo que $\tau$ se interpreta directamente como elasticidad \citep{bellemare2019}. La motivación es la abundancia de ceros: el 47\,\% de sus observaciones barrio-mes registra cero robos.
+
+Este punto requiere una advertencia que no está en el paper y que proviene de literatura muy reciente. \citet{chen2024} muestran que, cuando la variable dependiente contiene ceros, las estimaciones basadas en $\log(1+y)$ o en IHS \emph{dependen arbitrariamente de las unidades de medida} de $y$: reescalar la variable cambia la magnitud del efecto estimado, y en el límite se puede obtener cualquier valor. Un efecto en el margen extensivo y otro en el margen intensivo se mezclan de una forma que no tiene interpretación estructural. Su recomendación es abandonar esas transformaciones y usar o bien PPML sobre la variable en niveles, o bien reportar separadamente el margen extensivo y un efecto intensivo definido explícitamente.
+
+La traducción práctica al proyecto depende de qué se elija como variable dependiente:
+
+\begin{itemize}[leftmargin=1.6em,itemsep=2pt]
+\item \textbf{Si $y_{dt}$ es una tasa de informalidad} (una proporción en $[0,1]$), el problema de \citet{chen2024} no aplica: no hay ceros estructurales y la variable puede usarse en niveles. Esta es la razón principal por la que prefiero una tasa como resultado principal.
+\item \textbf{Si $y_{dt}$ es un conteo} (número de trabajadores informales, número de unidades productivas no registradas), hay ceros en distritos pequeños y debe estimarse por PPML con efectos fijos de alta dimensión \citep{correia2020}, no por MCO sobre IHS. \citet{braakmann2024} reportan justamente una columna Poisson y obtienen resultados coherentes, lo que sugiere que en su caso la elección no era determinante; conviene verificar lo mismo en el caso peruano en lugar de suponerlo.
+\item \textbf{El precio} puede transformarse en logaritmo sin problema, porque nunca es cero. Con la tasa en niveles y el precio en logaritmo, $\tau$ se interpreta como el cambio en puntos porcentuales de la tasa ante un aumento de 1\,\% del precio, lo cual es una unidad perfectamente legible.
+\end{itemize}
+
+\subsection{Frecuencia y sincronía}
+
+\citet{braakmann2024} vinculan el precio del mes con el delito del mismo mes, y dedican un párrafo a justificar por qué el vínculo es contemporáneo: los ladrones no almacenan el botín esperando mejores precios. En el proyecto peruano esa justificación no se traslada automáticamente. La entrada a la minería informal exige inversión en equipo, desplazamiento y a veces migración, de modo que cabe esperar rezagos de varios meses y probable histéresis a la baja. Recomiendo por tanto:
+\begin{enumerate}[leftmargin=1.6em,itemsep=1pt]
+\item Estimar \eqref{eq:principal} con el precio contemporáneo y con rezagos distribuidos de hasta doce meses, reportando la suma de coeficientes.
+\item Estimar por separado los coeficientes asociados a periodos de alza y de baja del precio, para contrastar histéresis. Esta asimetría es una predicción sustantiva del modelo de costos hundidos y no una prueba de robustez.
+\item Reportar el estudio de eventos con la trayectoria completa de coeficientes, cuya forma debe seguir a la serie de precios.
+\end{enumerate}
+
+%=====================================================================
+\section{Diseño con microdatos de la ENAHO}\label{sec:enaho}
+%=====================================================================
+
+\subsection{Estructura general}
+
+\citet{pecastaing2020} organizan su análisis en dos comparaciones anidadas que vale la pena replicar, porque separan dos preguntas distintas: un primer grupo que compara \emph{población rural} de distritos tratados contra población rural de distritos de control, y un segundo grupo que compara la población total de los mismos distritos. La primera comparación se acerca al mecanismo; la segunda estima el efecto sobre la unidad de política. Para el proyecto de oro, la partición natural análoga es entre población en edad de trabajar de zonas rurales y dispersas, donde la minería informal es factible, y población total del distrito.
+
+La especificación a nivel de hogar o individuo, siguiendo su ecuación (1) pero incorporando efectos fijos que su formulación no tiene, es
+\begin{equation}
+y_{hdt} \;=\; \tau \,\bigl(\Au_d \times \ln P_t\bigr) \;+\; \mathbf{X}_{hdt}'\boldsymbol{\beta} \;+\; \alpha_d \;+\; \theta_t \;+\; \gamma_d f(t) \;+\; \epsilon_{hdt},
+\label{eq:enaho}
+\end{equation}
+donde $h$ indexa hogares (o individuos) encuestados en el distrito $d$ en el año $t$, $y_{hdt}$ es un indicador de empleo informal según la definición de la OIT que aplica el INEI, y $\mathbf{X}$ recoge los controles individuales que ellos emplean: edad, educación, estado civil, acceso a agua, electricidad, activos y título de propiedad.
+
+\paragraph{Tres mejoras respecto de la especificación original.} Lo digo con cuidado porque se trata de un paper publicado y la comparación no es de calidad general sino de adecuación al problema de esta nota.
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{Efectos fijos distritales en lugar de dummies de grupo.} \citet{pecastaing2020} incluyen indicadores de zona y de región, no efectos fijos de distrito. Teniendo la ENAHO diez años de cortes transversales repetidos con ubigeo, es posible incluir $\alpha_d$ y absorber toda heterogeneidad distrital invariante en el tiempo. Es una mejora sin costo: el tratamiento varía en el tiempo a través de su interacción con el precio, de modo que $\tau$ sigue identificado.
+\item \textbf{Choque continuo en lugar de indicador de evento.} Ellos discretizan el índice ICEN para definir años de El Niño costero, lo cual es razonable cuando el fenómeno es episódico. El precio del oro no lo es, y discretizarlo reintroduce exactamente la arbitrariedad de fecha de corte que motivó la revisión del diseño. Recomiendo mantener $\ln P_t$ continuo.
+\item \textbf{Estudio de eventos y pre-tendencias.} Su diseño no reporta trayectoria previa. Con diez años de ENAHO es posible estimar la versión dinámica de \eqref{eq:enaho} y aplicar el análisis de sensibilidad de \citet{rambachan2023}. Conviene además tener presente el resultado de \citet{roth2022}: condicionar la publicación de un resultado a haber ``pasado'' una prueba de tendencias previas sesga los estimadores, de modo que la prueba debe reportarse como evidencia y no usarse como filtro.
+\end{enumerate}
+
+\subsection{Advertencias que sí sobreviven}
+
+Corregida la afirmación general, quedan tres cuestiones técnicas del uso de la ENAHO en este diseño que deben resolverse explícitamente.
+
+\paragraph{Factores de expansión.} La ENAHO tiene diseño complejo por conglomerados y estratos. Los coeficientes ponderados y no ponderados responden preguntas distintas; recomiendo reportar ambos y usar los ponderados como principal cuando el objeto de interés sea poblacional.
+
+\paragraph{Número efectivo de conglomerados.} Con tratamiento asignado a nivel distrital, el nivel de agrupamiento correcto es el distrito \citep{abadie2023}. Si el bloque tratado contiene pocas decenas de distritos, el número efectivo de conglomerados es esa cifra y no el número de hogares. \citet{pecastaing2020} usan la corrección de \citet{donald2007} precisamente por esta razón. La práctica actual sería agrupar a nivel distrital y complementar con \emph{wild cluster bootstrap} \citep{cameron2008,mackinnon2023}, o con inferencia de aleatorización cuando el número de distritos tratados sea pequeño \citep{ferman2019}.
+
+\paragraph{Composición de la muestra.} La ENAHO es un corte transversal repetido, no un panel de hogares. Si el auge del oro induce migración hacia los distritos tratados, la composición de la población encuestada cambia con el tratamiento, y $\tau$ mezcla un efecto sobre residentes con un efecto de recomposición. Esto no es un detalle: la migración es parte del mecanismo sustantivo. Recomiendo (i) reportar la condición de migrante reciente y el tamaño poblacional como resultados en sí mismos, (ii) estimar \eqref{eq:enaho} restringiendo a residentes de largo plazo, y (iii) acotar el sesgo de selección por recomposición mediante los límites de \citet{lee2009}.
+
+\subsection{Resultados no lineales y cuantílicos}
+
+\paragraph{Variable dependiente binaria.} Ser informal es un indicador. \citet{pecastaing2020} estiman su DDD por probit y logit y reportan efectos marginales, señalando correctamente que en modelos no lineales el coeficiente del término de interacción no es el efecto de interacción \citep{ai2003,karaca2012}. La advertencia es válida, pero la solución actual es distinta y más simple: \citet{wooldridge2023} muestra que un modelo no lineal de DiD estimado con la parametrización adecuada permite recuperar directamente efectos de tratamiento promedio sin corregir a mano derivadas cruzadas. En la práctica recomiendo: modelo de probabilidad lineal con efectos fijos de alta dimensión como especificación principal, por transparencia e interpretabilidad de los efectos fijos; PPML o el enfoque de \citet{wooldridge2023} como verificación; y evitar el probit con efectos fijos distritales, que además sufre el problema de parámetros incidentales.
+
+\paragraph{Cuantiles.} La regresión cuantílica DDD es la aportación más interesante de \citet{pecastaing2020}: encuentran que la recuperación se concentra en los cuantiles bajos, es decir entre los hogares más pobres. Para el proyecto de oro la pregunta análoga es igual de relevante, porque la hipótesis implica que la entrada a la informalidad debería concentrarse en la parte baja de la distribución de habilidades e ingresos.
+
+Aquí sí hay una objeción de fondo que conviene incorporar. Una regresión cuantílica con términos de interacción estima coeficientes cuantílicos \emph{condicionales}, y estos no identifican efectos de tratamiento cuantílicos salvo bajo el supuesto de invarianza de rango, que es fuerte y raramente defendible. El cuantil 10 de la distribución condicional no corresponde a los mismos hogares antes y después del choque. Las herramientas que sí identifican efectos distribucionales en un marco de diferencias son el modelo de cambios en cambios de \citet{athey2006} y los efectos cuantílicos de tratamiento en DiD de \citet{callawayli2019}. Recomiendo reportar la regresión cuantílica al estilo de \citet{pecastaing2020} por comparabilidad con esa literatura, pero basar cualquier afirmación causal distribucional en \citet{athey2006} o \citet{callawayli2019}.
+
+%=====================================================================
+\section{Triple diferencia}
+%=====================================================================
+
+La estructura DDD de \citet{pecastaing2020} es explícita en incluir las tres interacciones dobles antes de la triple, y esa disciplina notacional conviene mantenerla. Con debilidad institucional predeterminada $W_d$, la especificación es
+\begin{align}
+y_{dpt} \;=\;& \tau_1\bigl(\Au_d \times \ln P_t\bigr) \;+\; \tau_2\bigl(W_d \times \ln P_t\bigr) \;+\; \tau_3\bigl(\Au_d \times W_d\bigr) \nonumber\\
+&+\; \tau_{4}\bigl(\Au_d \times W_d \times \ln P_t\bigr) \;+\; \alpha_p \;+\; \theta_t \;+\; \gamma_d f(t) \;+\; \epsilon_{dpt},
+\label{eq:ddd}
+\end{align}
+donde $\tau_4$ es el parámetro de interés y la predicción es $\tau_4 > 0$. Con efectos fijos de distrito los términos $\Au_d$, $W_d$ y su producto se absorben, pero las interacciones con el tiempo no, y su omisión es el error más frecuente en estos diseños.
+
+Mantengo la reserva expresada en el documento previo: $W_d$ es endógeno a la renta minera y está correlacionado con ruralidad, aislamiento y pobreza de base, de modo que $\tau_4$ puede recoger la respuesta diferencial de zonas marginales a cualquier choque económico. La prueba de falsación obligatoria es reemplazar el par $(\Au_d, P_t)$ por un par análogo de actividad legal ---exposición cafetalera y precio del café, exposición cuprífera y precio del cobre--- y verificar que $\tau_4$ no sea positivo allí. Esta prueba es exactamente del tipo que \citet{braakmann2024} aplican en su figura 2, panel C, cuando reestiman definiendo como tratados a los barrios con alta proporción de población negra o de hogares de baja calificación, grupos sin preferencia documentada por el oro, y encuentran efectos nulos.
+
+%=====================================================================
+\section{Batería de falsación}
+%=====================================================================
+
+La estructura de robustez de \citet{braakmann2024} es transferible casi punto por punto y define lo que a mi juicio debería ser el estándar del proyecto. La tabla \ref{tab:falsacion} traduce cada prueba.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Traducción de la batería de falsación al caso peruano}
+\label{tab:falsacion}
+\small
+\begin{tabularx}{\textwidth}{L{4.6cm} L{4.4cm} X}
+\toprule
+\textbf{Prueba en \citet{braakmann2024}} & \textbf{Análogo peruano} & \textbf{Qué descarta} \\
+\midrule
+Otros delitos sin retorno ligado al oro (robo con violencia, vehículos) & Informalidad en sectores sin vínculo plausible con la minería & Que el efecto sea una tendencia general de la informalidad en esos distritos \\
+\addlinespace
+Otros precios internacionales (petróleo) & Precios de cobre, zinc, plata, café & Que el efecto sea el ciclo de \emph{commodities} y no el oro \\
+\addlinespace
+Indicadores macro alternativos (desempleo local, índice de incertidumbre) & Términos de intercambio, PBI regional, tipo de cambio real & Que el precio del oro esté aproximando el ciclo macroeconómico \\
+\addlinespace
+Otras definiciones de barrio tratado (población negra, baja calificación) & Distritos rurales pobres sin dotación aurífera; distritos con otros minerales & Que el efecto recoja marginalidad o ruralidad en lugar de oro \\
+\addlinespace
+Definiciones alternativas del área tratada & Umbrales alternativos en \eqref{eq:tratamiento}; dosis-respuesta & Sensibilidad al umbral \\
+\addlinespace
+Inferencia de aleatorización & Reasignación placebo de $\Au_d$ dentro de provincia & Inferencia con pocos conglomerados efectivos \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Añado dos pruebas específicas del contexto peruano que no tienen análogo en el paper original. La primera es la caída del precio de 2013--2015: si el mecanismo es real, el coeficiente debe cambiar de signo o atenuarse en ese subperiodo, y la ausencia de respuesta a la baja sería evidencia de histéresis, no de ausencia de efecto. La segunda es la interacción con las campañas de interdicción de 2012 y 2019, que permite verificar que el efecto se atenúa donde y cuando el Estado efectivamente interviene; esta prueba es simultáneamente una falsación y una estimación del parámetro de política.
+
+%=====================================================================
+\section{Inferencia}
+%=====================================================================
+
+Este es el apartado donde la literatura reciente exige más cambios respecto de lo que hacen ambos papers de referencia.
+
+\paragraph{Nivel de agrupamiento.} El tratamiento se asigna a nivel de distrito y no varía dentro de él, de modo que el distrito es el nivel natural de agrupamiento \citep{abadie2023}. \citet{braakmann2024} agrupan a nivel de barrio y verifican robustez a niveles alternativos; conviene replicar esa verificación agrupando a nivel de provincia, que es la unidad de la que provienen los efectos fijos de comparación.
+
+\paragraph{El problema de pocos choques.} Esta es la advertencia más importante de la sección y no aparece en ninguno de los dos papers. En un diseño donde una única serie temporal nacional se interactúa con exposición transversal, todas las unidades reciben el \emph{mismo} choque en cada periodo. \citet{adao2019} muestran que en estos diseños los errores estándar convencionales ---incluso agrupados por unidad--- están severamente sesgados a la baja, porque el residuo está correlacionado entre unidades con exposición similar, y el número efectivo de observaciones independientes lo determina el número de choques y no el número de unidades. Con una sola serie de precios fuertemente autocorrelacionada, ese número efectivo es pequeño. Las respuestas disponibles son: (i) los errores estándar de \citet{adao2019} para diseños de exposición; (ii) agrupamiento en dos vías por distrito y por periodo; (iii) inferencia de aleatorización sobre la asignación de $\Au_d$; y (iv) inferencia basada en series de precios placebo. Recomiendo reportar al menos dos de ellas. Es previsible que los intervalos de confianza resulten sustancialmente más anchos que los convencionales, y es preferible saberlo antes que después.
+
+\paragraph{Dependencia espacial.} Los distritos auríferos están geográficamente agrupados y los derrames por migración son locales. Además de lo anterior, deben reportarse errores estándar espaciales tipo \citet{conley1999} con varios radios de corte.
+
+%=====================================================================
+\section{Derrames espaciales y desplazamiento}
+%=====================================================================
+
+La ecuación (2) de \citet{braakmann2024} es la herramienta más directamente reutilizable de todo el paper y resuelve un problema que en el documento previo quedaba solo enunciado. Ellos calculan, para cada barrio de control, la distancia mínima al barrio tratado más cercano, la discretizan en bandas y la interactúa con el precio:
+\begin{equation}
+y_{dpt} \;=\; \tau\bigl(\Au_d \times \ln P_t\bigr) \;+\; \sum_{b=1}^{B}\pi_b \bigl(C_{db} \times \ln P_t\bigr) \;+\; \sum_{b=1}^{B}\phi_b C_{db} \;+\; \alpha_p \;+\; \theta_t \;+\; \gamma_d f(t) \;+\; \epsilon_{dpt},
+\label{eq:spillover}
+\end{equation}
+donde $C_{db}$ indica que el distrito de control $d$ pertenece a la banda de distancia $b$ respecto del distrito aurífero más cercano. El perfil $\{\pi_b\}$ estimado responde tres preguntas a la vez: si hay derrame positivo hacia los vecinos, a qué distancia se extingue, y si el grupo de control está contaminado.
+
+En el caso peruano el signo esperado de $\pi_b$ es informativo por sí mismo y distingue mecanismos. Si $\pi_b > 0$ para bandas cercanas, el mecanismo es de demanda derivada: el ingreso minero se gasta en distritos vecinos y genera informalidad allí. Si $\pi_b < 0$, el mecanismo es de reasignación de trabajadores: los vecinos pierden población activa hacia el distrito aurífero. Ambos son consistentes con la hipótesis general, pero implican estimaciones agregadas muy distintas, y en el segundo caso el estimador ingenuo de $\tau$ sobreestima el efecto neto sobre el conjunto del territorio. \citet{braakmann2024} añaden dos refinamientos que conviene replicar: controlar por la exposición del propio vecino interactuada con el precio, para separar el derrame verdadero de la simple correlación espacial de la dotación; y usar distancia por red vial además de distancia euclidiana, hallazgo que en su caso resulta relevante y que en la geografía peruana es previsiblemente mucho más importante.
+
+%=====================================================================
+\section{Resumen del diseño revisado}
+%=====================================================================
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Diseño previo y diseño revisado}
+\label{tab:resumen}
+\small
+\begin{tabularx}{\textwidth}{L{3.1cm} L{4.6cm} X}
+\toprule
+\textbf{Elemento} & \textbf{Propuesta previa} & \textbf{Propuesta revisada} \\
+\midrule
+Tratamiento & Exposición continua \emph{shift-share} & Binario, atípico dentro de la provincia; dosis-respuesta como robustez \\
+\addlinespace
+Unidad & Distrito & Distrito, con comparación restringida a provincias con oro \\
+\addlinespace
+Efectos fijos & Distrito y región $\times$ año & Provincia (o distrito), mes calendario, y provincia $\times$ mes $\times$ año \\
+\addlinespace
+Tendencias & Controles $\times$ año & Tendencias cuadráticas por distrito \\
+\addlinespace
+Resultado & Registros administrativos; ENAHO descartada a nivel distrital & ENAHO a nivel de hogar con tratamiento por ubigeo; registros administrativos como fuente complementaria \\
+\addlinespace
+Forma funcional & Lineal & Tasa en niveles; PPML si el resultado es conteo; IHS evitado \\
+\addlinespace
+Distribución & No considerada & Cambios en cambios y efectos cuantílicos de tratamiento \\
+\addlinespace
+Inferencia & Agrupamiento distrital, Conley & Lo anterior más errores de \citet{adao2019} e inferencia de aleatorización \\
+\addlinespace
+Derrames & Enunciados & Estimados con bandas de distancia, ecuación \eqref{eq:spillover} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Dos observaciones finales sobre lo que estos dos papers cambian en el balance del proyecto. La primera es que reducen sustancialmente su riesgo de ejecución: \citet{pecastaing2020} demuestran que la ENAHO permite montar el análisis sin depender de la construcción previa de una medida administrativa de informalidad, que era el cuello de botella identificado en el documento previo. La segunda es que \citet{braakmann2024} proveen una plantilla completa ---definición del tratamiento, escalera de especificaciones, batería de falsación y análisis de derrames--- que ya superó el filtro de una revista general de primer nivel con un choque de precios idéntico. Alinearse con esa plantilla no garantiza el resultado, pero elimina buena parte de la discusión metodológica que de otro modo habría que sostener desde cero.
+
+%=====================================================================
+\appendix
+\section{Notas de implementación}
+
+Estimación con efectos fijos de alta dimensión: \texttt{reghdfe} \citep{correia2017} para las especificaciones lineales, y \texttt{ppmlhdfe} \citep{correia2020} para conteos; ambos son los comandos que emplean \citet{braakmann2024}. Para la especificación de la columna (3) de la tabla \ref{tab:escalera}, los efectos fijos provincia $\times$ mes $\times$ año se declaran como un único factor interactuado. Sensibilidad a tendencias paralelas: \texttt{honestdid}, implementación de \citet{rambachan2023}. Efectos cuantílicos de tratamiento en diferencias: implementaciones de \citet{callawayli2019} y del modelo de cambios en cambios de \citet{athey2006}. Errores estándar para diseños de exposición: implementación de \citet{adao2019}. Inferencia con agrupamiento arbitrario y dependencia espacial: \texttt{acreg}. Para la variante de dosis-respuesta con tratamiento continuo, la implementación asociada a \citet{callaway2024}.
+
+Advertencia de uso: no debe emplearse la familia de estimadores de DiD escalonado (\texttt{csdid}, \texttt{did\_multiplegt}, \texttt{eventstudyinteract}) en la especificación principal. Estos estimadores están diseñados para corregir sesgos derivados de variación en el momento de adopción del tratamiento, y en este diseño el choque de precios es simultáneo para todas las unidades. Aplicarlos aquí no corrige ningún sesgo y sí complica la interpretación.
+
+%=====================================================================
+\begin{thebibliography}{99}
+\small
+
+\bibitem[Abadie et al.(2023)]{abadie2023}
+Abadie, A., S. Athey, G. W. Imbens y J. M. Wooldridge (2023). ``When Should You Adjust Standard Errors for Clustering?''. \emph{Quarterly Journal of Economics}, 138(1), 1--35.
+
+\bibitem[Adão et al.(2019)]{adao2019}
+Adão, R., M. Kolesár y E. Morales (2019). ``Shift-Share Designs: Theory and Inference''. \emph{Quarterly Journal of Economics}, 134(4), 1949--2010.
+
+\bibitem[Ai y Norton(2003)]{ai2003}
+Ai, C. y E. C. Norton (2003). ``Interaction Terms in Logit and Probit Models''. \emph{Economics Letters}, 80(1), 123--129.
+
+\bibitem[Athey e Imbens(2006)]{athey2006}
+Athey, S. y G. W. Imbens (2006). ``Identification and Inference in Nonlinear Difference-in-Differences Models''. \emph{Econometrica}, 74(2), 431--497.
+
+\bibitem[Bellemare y Wichman(2019)]{bellemare2019}
+Bellemare, M. F. y C. J. Wichman (2019). ``Elasticities and the Inverse Hyperbolic Sine Transformation''. \emph{Oxford Bulletin of Economics and Statistics}, 82(1), 50--61.
+
+\bibitem[Braakmann et al.(2024)]{braakmann2024}
+Braakmann, N., A. Chevalier y T. Wilson (2024). ``Expected Returns to Crime and Crime Location''. \emph{American Economic Journal: Applied Economics}, 16(4), 144--160.
+
+\bibitem[Callaway y Li(2019)]{callawayli2019}
+Callaway, B. y T. Li (2019). ``Quantile Treatment Effects in Difference in Differences Models with Panel Data''. \emph{Quantitative Economics}, 10(4), 1579--1618.
+
+\bibitem[Callaway y Sant'Anna(2021)]{callaway2021}
+Callaway, B. y P. H. C. Sant'Anna (2021). ``Difference-in-Differences with Multiple Time Periods''. \emph{Journal of Econometrics}, 225(2), 200--230.
+
+\bibitem[Callaway et al.(2024)]{callaway2024}
+Callaway, B., A. Goodman-Bacon y P. H. C. Sant'Anna (2024). ``Difference-in-Differences with a Continuous Treatment''. NBER Working Paper 32117.
+
+\bibitem[Cameron et al.(2008)]{cameron2008}
+Cameron, A. C., J. B. Gelbach y D. L. Miller (2008). ``Bootstrap-Based Improvements for Inference with Clustered Errors''. \emph{Review of Economics and Statistics}, 90(3), 414--427.
+
+\bibitem[Chen y Roth(2024)]{chen2024}
+Chen, J. y J. Roth (2024). ``Logs with Zeros? Some Problems and Solutions''. \emph{Quarterly Journal of Economics}, 139(2), 891--936.
+
+\bibitem[Conley(1999)]{conley1999}
+Conley, T. G. (1999). ``GMM Estimation with Cross Sectional Dependence''. \emph{Journal of Econometrics}, 92(1), 1--45.
+
+\bibitem[Correia(2017)]{correia2017}
+Correia, S. (2017). ``reghdfe: Stata Module for Linear and Instrumental-Variable/GMM Regression Absorbing Multiple Levels of Fixed Effects''. Statistical Software Components S457874.
+
+\bibitem[Correia et al.(2020)]{correia2020}
+Correia, S., P. Guimarães y T. Zylkin (2020). ``Fast Poisson Estimation with High-Dimensional Fixed Effects''. \emph{Stata Journal}, 20(1), 95--115.
+
+\bibitem[de Chaisemartin y D'Haultf\oe uille(2020)]{dechaisemartin2020}
+de Chaisemartin, C. y X. D'Haultf\oe uille (2020). ``Two-Way Fixed Effects Estimators with Heterogeneous Treatment Effects''. \emph{American Economic Review}, 110(9), 2964--2996.
+
+\bibitem[Donald y Lang(2007)]{donald2007}
+Donald, S. G. y K. Lang (2007). ``Inference with Difference-in-Differences and Other Panel Data''. \emph{Review of Economics and Statistics}, 89(2), 221--233.
+
+\bibitem[Ferman y Pinto(2019)]{ferman2019}
+Ferman, B. y C. Pinto (2019). ``Inference in Differences-in-Differences with Few Treated Groups and Heteroskedasticity''. \emph{Review of Economics and Statistics}, 101(3), 452--467.
+
+\bibitem[Karaca-Mandic et al.(2012)]{karaca2012}
+Karaca-Mandic, P., E. C. Norton y B. Dowd (2012). ``Interaction Terms in Nonlinear Models''. \emph{Health Services Research}, 47(1), 255--274.
+
+\bibitem[Lee(2009)]{lee2009}
+Lee, D. S. (2009). ``Training, Wages, and Sample Selection: Estimating Sharp Bounds on Treatment Effects''. \emph{Review of Economic Studies}, 76(3), 1071--1102.
+
+\bibitem[MacKinnon et al.(2023)]{mackinnon2023}
+MacKinnon, J. G., M. Ø. Nielsen y M. D. Webb (2023). ``Cluster-Robust Inference: A Guide to Empirical Practice''. \emph{Journal of Econometrics}, 232(2), 272--299.
+
+\bibitem[Pécastaing y Chávez(2020)]{pecastaing2020}
+Pécastaing, N. y C. Chávez (2020). ``The Impact of \emph{El Niño} Phenomenon on Dry Forest-Dependent Communities' Welfare in the Northern Coast of Peru''. \emph{Ecological Economics}, 178, 106820.
+
+\bibitem[Rambachan y Roth(2023)]{rambachan2023}
+Rambachan, A. y J. Roth (2023). ``A More Credible Approach to Parallel Trends''. \emph{Review of Economic Studies}, 90(5), 2555--2591.
+
+\bibitem[Roth(2022)]{roth2022}
+Roth, J. (2022). ``Pretest with Caution: Event-Study Estimates after Testing for Parallel Trends''. \emph{American Economic Review: Insights}, 4(3), 305--322.
+
+\bibitem[Sun y Abraham(2021)]{sunabraham2021}
+Sun, L. y S. Abraham (2021). ``Estimating Dynamic Treatment Effects in Event Studies with Heterogeneous Treatment Effects''. \emph{Journal of Econometrics}, 225(2), 175--199.
+
+\bibitem[Wooldridge(2023)]{wooldridge2023}
+Wooldridge, J. M. (2023). ``Simple Approaches to Nonlinear Difference-in-Differences with Panel Data''. \emph{The Econometrics Journal}, 26(3), C31--C66.
+
+\end{thebibliography}
+
+\end{document}
