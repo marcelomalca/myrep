@@ -1,0 +1,486 @@
+%=====================================================================
+%  Precio del oro, minería informal e informalidad laboral en el Perú
+%  Evaluación de viabilidad de un diseño de diferencias en diferencias
+%=====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+
+\bibpunct{(}{)}{;}{a}{}{,}
+\setlength{\parskip}{2pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\Exp}{\mathrm{Exp}}
+
+\title{\textbf{Precio del oro, minería informal e informalidad laboral\\ en distritos auríferos del Perú}\\[0.6em]
+\large Una evaluación de viabilidad del diseño de identificación\\
+\large (diferencias en diferencias, triples diferencias y alternativas)}
+
+\author{Documento de diseño de investigación}
+\date{Agosto de 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Este documento evalúa la viabilidad empírica de estimar el efecto causal de las variaciones del precio internacional del oro sobre la informalidad laboral en distritos auríferos del Perú. La hipótesis de partida es que, ante baja capacidad estatal y débil \emph{enforcement}, un alza del precio del oro incrementa la minería informal e ilegal y, por derrame, la informalidad en actividades no mineras. Concluyo que la pregunta es \textbf{viable y valiosa}, pero que el diseño propuesto originalmente ---comparar regiones auríferas contra no auríferas mediante un DiD binario--- \textbf{no es el diseño correcto} y muy probablemente no produciría estimaciones creíbles. Los tres problemas centrales son: (i) el precio del oro es un \emph{shock} común, continuo y sin quiebre limpio, de modo que la partición ``antes/después'' es arbitraria; (ii) a nivel departamental hay solo 25 conglomerados y una enorme heterogeneidad interna, lo que destruye tanto la credibilidad de tendencias paralelas como la inferencia; y (iii) la variable dependiente natural, la tasa de informalidad de la ENAHO, \textbf{no es representativa a nivel distrital}, que es justamente el nivel donde la variación de exposición aurífera es informativa. Propongo en su lugar un diseño principal de \textbf{exposición continua tipo \emph{shift-share}} (potencial aurífero predeterminado $\times$ precio mundial) sobre un panel distrital 2004--2024, con estudio de eventos, complementado por (a) una triple diferencia con capacidad estatal predeterminada, (b) diseños de eventos nítidos alrededor de choques de \emph{enforcement} (D.L.~1100 de 2012; Operación Mercurio de 2019), y (c) una estrategia de medición de la variable dependiente basada en registros administrativos (planilla electrónica, RUC) en lugar de encuestas. Presento cálculos de potencia, una hoja de ruta de datos y un semáforo de viabilidad por componente.
+
+\medskip
+\noindent\textbf{Palabras clave:} informalidad, minería artesanal y de pequeña escala, precios de \emph{commodities}, capacidad estatal, diferencias en diferencias, \emph{shift-share}.
+
+\noindent\textbf{Clasificación JEL:} O17, Q33, K42, J46, R11.
+\end{abstract}
+
+\newpage
+\onehalfspacing
+
+%=====================================================================
+\section{Introducción}
+%=====================================================================
+
+La pregunta que se propone investigar es: \emph{¿cuál es el efecto de la variación del precio internacional del oro sobre la informalidad laboral en los distritos auríferos del Perú?} La hipótesis de trabajo tiene tres eslabones. Primero, un alza del precio del oro eleva el retorno de la extracción aurífera. Segundo, donde la presencia del Estado es débil y el \emph{enforcement} es bajo, ese retorno se captura desproporcionadamente a través de minería informal o ilegal, porque el costo esperado de operar fuera de la ley es bajo. Tercero, el ingreso generado por esa actividad genera demanda derivada (comercio, transporte, alojamiento, servicios, construcción) que también se organiza informalmente, de modo que el efecto agregado sobre el empleo informal excede al empleo minero informal directo.
+
+La hipótesis es razonable, tiene respaldo teórico y descriptivo, y es de política relevante. La pregunta de este documento no es si la hipótesis es plausible, sino si es \emph{identificable} con los datos peruanos disponibles y con el diseño propuesto. Mi veredicto, resumido, es el siguiente:
+
+\begin{itemize}[leftmargin=1.6em,itemsep=2pt]
+\item \textbf{La pregunta es viable.} Existe variación exógena (precio mundial), existe variación cruzada predeterminada (dotación geológica) y existen datos de resultado con cobertura distrital y anual, aunque no los más obvios.
+\item \textbf{El diseño propuesto no lo es, tal como está planteado.} ``Regiones auríferas versus no auríferas, antes y después de un alza del precio'' es un DiD binario sobre un tratamiento que no es binario, sobre un evento que no es un evento, y con un número de conglomerados demasiado pequeño.
+\item \textbf{El cuello de botella real no es la econometría sino la medición del resultado.} La ENAHO, fuente estándar de informalidad en el Perú, no tiene representatividad distrital. Resolver esto ---o aceptar trabajar a nivel provincial--- determina todo lo demás.
+\item \textbf{La dimensión institucional (el tercer eslabón de la hipótesis) es la contribución más original}, y es la que justifica pasar a una triple diferencia. También es la más frágil, porque la capacidad estatal es endógena a la renta minera.
+\end{itemize}
+
+Las secciones \ref{sec:contexto} y \ref{sec:modelo} fijan contexto y un marco conceptual mínimo que disciplina qué parámetro se quiere estimar. La sección \ref{sec:empirica} desarrolla la estrategia empírica, empezando por un diagnóstico de por qué el DiD binario falla y terminando en el diseño recomendado. La sección \ref{sec:datos} es un inventario crítico de datos. La sección \ref{sec:amenazas} enumera amenazas a la identificación con sus pruebas asociadas. La sección \ref{sec:potencia} presenta cálculos de potencia. La sección \ref{sec:viabilidad} consolida el semáforo de viabilidad y una hoja de ruta.
+
+\paragraph{Relación con la literatura.} El trabajo se ubica en la intersección de tres literaturas. La primera estudia el impacto local de la minería en el Perú: \citet{aragon2013} muestran, para Yanacocha (Cajamarca), efectos positivos de la demanda local de insumos de una mina \emph{formal} sobre el ingreso real, incluyendo trabajadores no calificados fuera del sector minero; \citet{loayza2016} documentan efectos heterogéneos sobre pobreza y desigualdad durante el auge de \emph{commodities}; \citet{ticci2015} analizan desarrollo local en zonas extractivas. Nótese que esta literatura estudia mayoritariamente la minería \emph{formal} de gran escala: el objeto de este proyecto ---la minería informal e ilegal de pequeña escala--- es precisamente el margen que esa literatura no captura. La segunda literatura usa precios mundiales de minerales como fuente de variación exógena en contextos de institucionalidad débil: \citet{berman2017} para conflicto en África, \citet{dube2013} para Colombia, \citet{sviatschi2022} para coca y trayectorias criminales en el Perú. La tercera es la literatura de informalidad y desarrollo \citep{laporta2014,ulyssea2018}, que provee el marco de elección ocupacional formal/informal. La contribución potencial del proyecto es unir las tres: usar el precio del oro como \emph{shock} exógeno para identificar el efecto de una economía ilegal sobre la composición formal/informal del empleo, con el \emph{enforcement} como moderador explícito.
+
+%=====================================================================
+\section{Contexto}\label{sec:contexto}
+%=====================================================================
+
+Cuatro hechos del contexto peruano son directamente relevantes para el diseño.
+
+\paragraph{(1) El Perú es tomador de precios.} El país es uno de los mayores productores mundiales de oro, pero su participación es lo suficientemente pequeña como para que la producción peruana no determine el precio LBMA. Esto es central: sostiene la exogeneidad del \emph{shock}. Sin embargo, la exogeneidad no es gratuita en el sentido de que el precio del oro se mueve con el ciclo financiero global (tasas reales, aversión al riesgo), que también afecta al Perú por otros canales.
+
+\paragraph{(2) La geología aurífera es heterogénea y esto importa para el diseño.} El oro peruano se extrae en al menos tres regímenes distintos: (i) yacimientos de roca dura de gran escala en la sierra norte (Cajamarca, La Libertad), donde coexiste minería formal industrial con minería informal de vetas y con reprocesamiento; (ii) yacimientos aluviales amazónicos (Madre de Dios), dominados por operaciones informales e ilegales de pequeña escala y alta movilidad; (iii) yacimientos filonianos en el sur (Arequipa, Ayacucho, Puno, Ica), la zona clásica de la minería artesanal. Estos regímenes tienen elasticidades de oferta, tecnologías, costos de entrada y visibilidad satelital \emph{muy} diferentes. Tratarlos como un solo ``tratamiento aurífero'' promedia efectos heterogéneos y es una de las razones por las que un DiD binario resulta poco informativo.
+
+\paragraph{(3) El marco de formalización crea quiebres artificiales en la variable dependiente.} El Registro Integral de Formalización Minera (REINFO), con más de 50\,000 inscritos, y sus antecedentes normativos, generan cambios de estatus legal que \emph{no} corresponden a cambios reales en la organización productiva. Un minero inscrito en el REINFO no es formal ni ilegal: está en un limbo administrativo. Cualquier medida de informalidad basada en registros debe tratar esto explícitamente, porque de lo contrario se confunde formalización nominal con formalización efectiva.
+
+\paragraph{(4) Existen choques de \emph{enforcement} nítidos y fechados.} A diferencia del precio, la política de interdicción sí tiene fechas: el paquete de decretos legislativos de 2012 (entre ellos el D.L.~1100, que prohíbe dragas y equipos similares) y la Operación Mercurio, iniciada el 19 de febrero de 2019 en La Pampa (Madre de Dios) con despliegue policial y militar sostenido. La evidencia de monitoreo satelital documenta una caída de la deforestación por minería en La Pampa de aproximadamente 92\,\% en 2019 respecto a 2018, con desplazamiento geográfico posterior de la actividad \citep{maap2019}. Estos eventos son, desde el punto de vista del diseño, mucho más ``DiD-ables'' que el precio, y deben aprovecharse.
+
+%=====================================================================
+\section{Marco conceptual: qué parámetro queremos}\label{sec:modelo}
+%=====================================================================
+
+Un modelo mínimo de elección ocupacional disciplina la especificación empírica y, sobre todo, aclara qué interacción se está buscando.
+
+Considere un distrito $i$ en el periodo $t$ con un continuo de trabajadores indexados por su habilidad $\theta$. Un trabajador puede emplearse en el sector formal, obteniendo $w^F_{it}$, o en el sector informal ligado al oro, obteniendo
+\begin{equation}
+w^{I}_{it}(\theta) \;=\; \theta \, \cdot \, A_i \, \cdot \, P_t \;-\; \kappa \, E_{it},
+\label{eq:wI}
+\end{equation}
+donde $P_t$ es el precio mundial del oro, $A_i$ es la productividad aurífera del distrito (dotación geológica, accesibilidad del yacimiento, tecnología disponible), $E_{it}$ es la intensidad de \emph{enforcement} y $\kappa$ traduce el \emph{enforcement} en costo esperado (probabilidad de interdicción $\times$ pérdida de capital y sanción). Un trabajador elige el sector informal si $w^I_{it}(\theta) > w^F_{it}$, lo que define un umbral $\bar\theta_{it}$ y una tasa de participación informal minera $m_{it} = 1 - F(\bar\theta_{it})$.
+
+Diferenciando, se obtienen las tres predicciones que la estrategia empírica debe poner a prueba:
+\begin{align}
+\frac{\partial m_{it}}{\partial P_t} &> 0, \qquad\text{creciente en } A_i,
+\label{eq:pred1}\\[2pt]
+\frac{\partial^2 m_{it}}{\partial P_t \, \partial A_i} &> 0,
+\label{eq:pred2}\\[2pt]
+\frac{\partial^2 m_{it}}{\partial P_t \, \partial E_{it}} &< 0.
+\label{eq:pred3}
+\end{align}
+
+La ecuación \eqref{eq:pred2} es lo que identifica un diseño de exposición continua: no el efecto del precio (absorbido por los efectos fijos de tiempo), sino el \emph{diferencial} de respuesta entre distritos con distinta dotación. La ecuación \eqref{eq:pred3} es exactamente la triple diferencia que el proyecto propone, y es su parte más interesante.
+
+\paragraph{Efecto directo versus derrame.} Sea $L^{I}_{it}$ el empleo informal total y $m_{it}$ el empleo informal minero. La hipótesis del proyecto no es solo que $\partial m_{it}/\partial P_t > 0$ ---eso es casi mecánico--- sino que existe un multiplicador local:
+\begin{equation}
+\frac{\partial (L^{I}_{it} - m_{it})}{\partial P_t} \;>\; 0 ,
+\label{eq:spillover}
+\end{equation}
+es decir, que la informalidad crece \emph{también} fuera de la minería. Esta distinción tiene una implicancia empírica que conviene fijar desde el diseño: \textbf{el resultado principal debe estimarse excluyendo el sector minero}, y el efecto sobre minería debe reportarse por separado como ``primera etapa'' o verificación del mecanismo. Si no se hace esta separación, el resultado es trivialmente positivo y no prueba la hipótesis interesante. Nótese además que el signo de \eqref{eq:spillover} no está garantizado teóricamente: el trabajo de \citet{aragon2013} sugiere que un \emph{boom} minero puede elevar los salarios locales y, con ello, atraer trabajadores hacia empleos asalariados formales en el comercio y los servicios. El efecto neto sobre la tasa de informalidad no minera es, en principio, ambiguo, lo cual es un buen argumento para que la pregunta sea empírica.
+
+%=====================================================================
+\section{Estrategia empírica}\label{sec:empirica}
+%=====================================================================
+
+\subsection{Diagnóstico: por qué el DiD binario propuesto no funciona}
+
+Antes de proponer una alternativa, conviene ser explícito sobre los problemas del diseño ``regiones auríferas versus no auríferas, antes y después''.
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{No hay un ``después''.} El precio del oro no tiene un quiebre único: sube de forma sostenida entre 2002 y 2012, cae entre 2013 y 2015, se recupera desde 2019 y vuelve a subir en años recientes. Elegir una fecha de corte es una decisión del investigador, y los resultados serán sensibles a ella. Cualquier árbitro señalará esto de inmediato. La variación de precios es \emph{continua}, y un diseño que la binariza descarta la mayor parte de la información útil ---incluida la caída de 2013--2015, que es una prueba de falsación valiosísima: si el mecanismo es real, la informalidad debería responder también a la baja (o mostrar histéresis, lo cual sería un hallazgo en sí mismo).
+
+\item \textbf{El tratamiento no es binario.} ``Ser aurífero'' es un continuo. Cajamarca, La Libertad, Madre de Dios, Puno, Arequipa y Ayacucho difieren en orden de magnitud en dotación, en tipo de yacimiento y en la fracción informal de la producción. Dicotomizar introduce error de medición no clásico en el tratamiento y hace que el estimador promedie efectos muy heterogéneos con pesos opacos.
+
+\item \textbf{Con 25 departamentos, la inferencia no es defendible.} Con pocos conglomerados, los errores estándar por conglomerado están sesgados a la baja \citep{cameron2008}, y la autocorrelación serial de series largas agrava el problema \citep{bertrand2004}. Más importante: con 5 o 6 unidades tratadas, ninguna prueba de tendencias paralelas tiene poder. Un $p$-valor no significativo en el pre-periodo no sería evidencia de tendencias paralelas, sino evidencia de que no se puede distinguir nada.
+
+\item \textbf{Las regiones son demasiado agregadas.} La minería informal es un fenómeno de escala distrital, incluso submunicipal. Madre de Dios como unidad mezcla el corredor minero con Puerto Maldonado; Cajamarca mezcla Hualgayoc con Jaén. La agregación departamental diluye el tratamiento hacia cero (sesgo de atenuación) y, peor, contamina el grupo de control con distritos auríferos en departamentos clasificados como ``no auríferos''.
+
+\item \textbf{La alternativa que propone (``distritos auríferos con minería formal versus distritos sin minería formal'') identifica otra cosa.} La presencia de minería \emph{formal} es un resultado endógeno de la política, la geología y la titulación, no una medida de dotación. Comparar esos dos grupos mezcla el efecto de la dotación con el efecto del régimen de propiedad y de la presencia corporativa. Esa comparación es interesante como \emph{heterogeneidad} (¿la minería formal desplaza o atrae a la informal?), pero no como identificación principal.
+\end{enumerate}
+
+Ninguno de estos problemas es fatal para la \emph{pregunta}; todos son fatales para \emph{ese} diseño. La solución es mantener la lógica de diferencias en diferencias pero reemplazar el tratamiento binario por una exposición continua predeterminada interactuada con el precio, y bajar la unidad de análisis al distrito.
+
+\subsection{Diseño principal: exposición continua tipo \emph{shift-share}}
+
+Defina la exposición aurífera predeterminada del distrito $i$, $\Exp_i$, construida \emph{exclusivamente} con información anterior al inicio de la muestra (véase la sección \ref{sec:datos} para las opciones de construcción). La especificación principal es un panel distrital anual:
+\begin{equation}
+y_{it} \;=\; \beta \,\bigl(\Exp_i \times \ln P_t\bigr) \;+\; \mathbf{X}_i' \boldsymbol{\gamma}_t \;+\; \sum_{k} \delta_k \bigl(\Exp^{k}_i \times \ln P^{k}_t\bigr) \;+\; \alpha_i \;+\; \lambda_{r(i)t} \;+\; \varepsilon_{it},
+\label{eq:main}
+\end{equation}
+donde $y_{it}$ es la tasa de informalidad (no minera), $\alpha_i$ son efectos fijos de distrito, $\lambda_{r(i)t}$ son efectos fijos de región $\times$ año, $\mathbf{X}_i'\boldsymbol{\gamma}_t$ permite que características predeterminadas (altitud, rugosidad, distancia a la capital provincial, pobreza inicial, ruralidad inicial) tengan efectos que varían libremente en el tiempo, y el tercer término controla por exposición a \emph{otros} minerales $k$ (cobre, plata, zinc, plomo) interactuada con sus respectivos precios. Este último control es indispensable: los precios de metales co-mueven y los distritos auríferos peruanos son frecuentemente polimetálicos, de modo que sin él $\beta$ captura el ciclo de \emph{commodities} completo y no el oro.
+
+El parámetro de interés $\beta$ responde a la ecuación \eqref{eq:pred2}: es el efecto diferencial de un alza del precio sobre distritos con mayor dotación. El efecto de nivel del precio es absorbido por los efectos fijos de tiempo y \emph{no} es identificable ---esto es una limitación inherente, no un defecto corregible, y debe declararse honestamente: el diseño estima efectos relativos, no el efecto agregado del \emph{boom} del oro sobre la informalidad nacional.
+
+\paragraph{Estudio de eventos y tendencias previas.} La versión dinámica reemplaza el término de interacción por un conjunto de coeficientes año a año:
+\begin{equation}
+y_{it} \;=\; \sum_{s \neq s_0} \beta_s \bigl(\Exp_i \times \mathbf{1}[t=s]\bigr) \;+\; \mathbf{X}_i'\boldsymbol{\gamma}_t \;+\; \alpha_i \;+\; \lambda_{r(i)t} \;+\; \varepsilon_{it}.
+\label{eq:event}
+\end{equation}
+La prueba clave es que la trayectoria de $\hat\beta_s$ siga la trayectoria del precio del oro: plana cuando el precio está plano, creciente durante 2003--2012, decreciente o plana durante 2013--2015. Esta ``coincidencia de forma'' es una prueba de falsación mucho más exigente y persuasiva que una prueba de tendencias previas convencional, y es el principal argumento de credibilidad que el paper puede ofrecer. La robustez a violaciones acotadas de tendencias paralelas debe reportarse siguiendo \citet{rambachan2023}.
+
+\paragraph{Advertencia sobre el estimador.} Con tratamiento continuo, los coeficientes de efectos fijos en dos vías no recuperan en general un promedio interpretable de efectos causales: la heterogeneidad de efectos según la dosis introduce sesgo de selección incluso bajo tendencias paralelas generalizadas \citep{callaway2024}. En la práctica esto implica: (i) reportar el estimador TWFE como \emph{benchmark}; (ii) reportar también estimaciones por grupos discretos de dosis (por ejemplo, cuartiles de $\Exp_i$ frente al cuartil inferior), que sí admiten una interpretación de tipo ATT; y (iii) discutir el supuesto de ``efecto fuerte de tratamiento paralelo'' que se requiere para interpretar diferencias entre dosis. Los problemas conocidos de TWFE con adopción escalonada \citep{callaway2021,dechaisemartin2020} son menos relevantes aquí porque el ``momento de tratamiento'' es común, pero la heterogeneidad de dosis sí lo es.
+
+\paragraph{Validez del \emph{shift-share}.} La identificación puede sostenerse desde la exogeneidad de las participaciones o desde la exogeneidad de los \emph{shocks} \citep{goldsmith2020,borusyak2022}. Aquí el caso natural es el primero: la dotación geológica es predeterminada respecto a cualquier decisión económica de la muestra. El supuesto sustantivo no es que la geología sea ``aleatoria'' ---no lo es, está correlacionada con altitud, aislamiento y pobreza histórica--- sino que, condicional a $\mathbf{X}_i'\boldsymbol{\gamma}_t$, los distritos con más y menos dotación no habrían divergido en informalidad por razones distintas al precio del oro. La prueba de forma del párrafo anterior es lo que da fuerza a ese supuesto.
+
+\subsection{Triple diferencia: el papel del \emph{enforcement}}
+
+El tercer eslabón de la hipótesis ---que el efecto opera porque el Estado está ausente--- se formaliza como en \eqref{eq:pred3}:
+\begin{equation}
+y_{it} = \beta_1 \bigl(\Exp_i \times \ln P_t\bigr) + \beta_2 \bigl(\Exp_i \times \ln P_t \times W_i\bigr) + \beta_3\bigl(W_i \times \ln P_t\bigr) + \mathbf{X}_i'\boldsymbol{\gamma}_t + \alpha_i + \lambda_{r(i)t} + \varepsilon_{it},
+\label{eq:ddd}
+\end{equation}
+donde $W_i$ mide debilidad institucional predeterminada. La predicción es $\beta_2 > 0$. Todas las interacciones de orden inferior deben incluirse; con efectos fijos de distrito, $W_i$ y $\Exp_i$ en niveles se absorben, pero sus interacciones con el tiempo no, y omitirlas es el error más común en estos diseños.
+
+\paragraph{Cómo medir $W_i$.} Cuatro candidatos, en orden de preferencia:
+\begin{enumerate}[leftmargin=1.6em,itemsep=1pt]
+\item El \textbf{Índice de Densidad del Estado} del PNUD, disponible a nivel distrital, que agrega identidad (DNI), salud (médicos por habitante), educación, saneamiento y electrificación. Es la medida más usada en el Perú y la más defendible ante un árbitro peruano.
+\item \textbf{Presencia coercitiva}: comisarías, personal policial, sedes de fiscalía y juzgados por habitante; distancia por carretera a la capital provincial y a la sede de la Fiscalía Especializada en Materia Ambiental.
+\item \textbf{Capacidad municipal}: ejecución presupuestal, personal profesional y recaudación propia municipal (RENAMU / Consulta Amigable del MEF).
+\item \textbf{Geografía de la impunidad}: rugosidad del terreno y accesibilidad, que predicen el costo de interdicción de manera plausiblemente exógena. Este es el más limpio en términos de exogeneidad y el más débil en términos de contenido institucional.
+\end{enumerate}
+
+\paragraph{Advertencia central sobre la triple diferencia.} $W_i$ es endógeno de una manera que no se resuelve fijándolo en el periodo inicial. La debilidad estatal está correlacionada con ruralidad, pobreza, aislamiento y baja formalidad de base. Si los distritos con Estado débil tienen respuestas diferentes a \emph{cualquier} \emph{shock} económico ---no solo al del oro--- entonces $\beta_2$ no identifica el papel del \emph{enforcement} sino el de la marginalidad general. La prueba de falsación obligatoria es estimar \eqref{eq:ddd} reemplazando el par (oro, $\Exp_i$) por otro \emph{shock} de precio con exposición análoga (por ejemplo, café o cobre, actividades legales): si $\beta_2$ también es positivo allí, el resultado no es sobre \emph{enforcement}. Recomiendo presentar la triple diferencia como resultado \emph{secundario}, no como diseño principal, precisamente por esta fragilidad.
+
+\subsection{Diseños complementarios (recomendados, no opcionales)}
+
+Un paper creíble sobre esta pregunta debería combinar el diseño principal con al menos dos de los siguientes.
+
+\paragraph{(A) Choques de \emph{enforcement} como eventos nítidos.} A diferencia del precio, la interdicción sí tiene fechas. El paquete de 2012 y la Operación Mercurio de 2019 permiten un DiD convencional con ``antes/después'' bien definido, comparando distritos intervenidos con distritos auríferos comparables no intervenidos. Esto identifica directamente el parámetro $\kappa E_{it}$ del modelo \eqref{eq:wI} y, combinado con el diseño de precios, permite hablar del \emph{enforcement} con evidencia causal en lugar de con una interacción. Es, en mi opinión, la vía más prometedora para publicar, y la que menos depende de supuestos discutibles. Debe atenderse el desplazamiento geográfico documentado \citep{maap2019}: el ``control'' puede recibir la actividad expulsada, lo que sesga el efecto \emph{al alza} en valor absoluto; la solución es estimar efectos sobre anillos de distancia y reportar el efecto agregado sobre el corredor completo.
+
+\paragraph{(B) Discontinuidad geológica espacial.} Los límites de las franjas metalogenéticas y de los cuerpos intrusivos son fronteras que cortan el territorio sin coincidir con fronteras administrativas ni con determinantes socioeconómicos. Comparar centros poblados a uno y otro lado de esos límites, en el espíritu de \citet{dell2010}, permite un RD espacial con controles de tendencia geográfica flexible. Es exigente en datos georreferenciados (INGEMMET / GEOCATMIN), pero convertiría el trabajo en algo bastante más ambicioso que un DiD.
+
+\paragraph{(C) Control sintético y DiD sintético para Madre de Dios.} Madre de Dios es un caso donde el tratamiento es masivo y la unidad es una sola. El DiD sintético \citep{arkhangelsky2021} es apropiado para estimar el efecto agregado regional y proporciona una figura muy legible. Es un complemento narrativo, no la identificación principal.
+
+\paragraph{(D) Primera etapa satelital.} Para el régimen aluvial amazónico, la huella minera es observable desde el espacio con alta frecuencia (MAAP, Global Forest Watch, Amazon Mining Watch). Esto permite documentar explícitamente la primera etapa ``precio $\to$ actividad minera informal'' antes de pasar al resultado laboral, algo que fortalece mucho el argumento. La limitación es severa y hay que declararla: \textbf{esta primera etapa solo existe para el oro aluvial}; en Cajamarca y La Libertad la minería informal de vetas es esencialmente invisible al sensor. Un paper que use deforestación como medida de minería informal está, de facto, estudiando Madre de Dios.
+
+\paragraph{(E) Nivel individual con exposición provincial.} Estimar sobre microdatos de la ENAHO, con exposición definida a nivel provincial e interacciones con características individuales (edad, educación, condición de migrante reciente). Pierde resolución geográfica pero gana en la medición del resultado y permite hablar de \emph{quién} entra a la informalidad, y en particular de si el efecto opera por migración o por recomposición de la población local.
+
+\subsection{Inferencia}
+Conglomerados a nivel de distrito para el diseño principal; conglomerados a nivel de provincia o de área de mercado laboral si se sospecha correlación espacial dentro de corredores mineros. Dado que la variación de tratamiento está fuertemente concentrada geográficamente, recomiendo reportar además errores estándar espaciales de tipo \citet{conley1999} y, para las especificaciones con pocos conglomerados efectivos, \emph{wild cluster bootstrap} \citep{cameron2008}. Para el estudio de eventos, prueba conjunta de los coeficientes previos y análisis de sensibilidad de \citet{rambachan2023}.
+
+%=====================================================================
+\section{Datos: inventario crítico}\label{sec:datos}
+%=====================================================================
+
+Esta sección es la más importante del documento, porque la viabilidad del proyecto se decide aquí y no en la econometría.
+
+\subsection{El problema central: medir informalidad a nivel distrital}
+
+La ENAHO es la fuente estándar de informalidad en el Perú y aplica las definiciones de la OIT (sector informal: unidades productivas no registradas ante la administración tributaria; empleo informal: puestos sin protección social ni beneficios de ley). Su problema para este proyecto es decisivo: \textbf{por diseño muestral la ENAHO tiene representatividad departamental, y no provincial ni distrital}. Usarla directamente a nivel distrital produciría estimaciones con error de muestreo enorme y, peor, con error \emph{correlacionado con el tamaño del distrito}, que a su vez correlaciona con la exposición minera. Esto no es un detalle técnico: es una fuente de sesgo con signo predecible.
+
+Hay cuatro salidas, que no son excluyentes:
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{Subir la unidad de análisis a provincia o departamento.} Honesto y simple; cuesta poder estadístico y reintroduce parte del problema de agregación. Es la opción de menor riesgo si el tiempo es limitado. Con 196 provincias el diseño sigue siendo viable (véase la sección \ref{sec:potencia}).
+\item \textbf{Medir informalidad con registros administrativos.} La planilla electrónica (T-Registro y PLAME) permite construir empleo asalariado formal privado \emph{a nivel distrital y con frecuencia mensual}, y el MTPE publica indicadores laborales distritales derivados de ella. Combinada con proyecciones de población en edad de trabajar del INEI, produce una \emph{tasa de formalidad asalariada distrital}, cuyo complemento es una medida de informalidad. Ventajas: cobertura censal, alta frecuencia, resolución distrital. Limitación clara: mide el margen asalariado formal y no captura bien el trabajo independiente, que es el grueso de la informalidad peruana. Complementar con conteo de contribuyentes activos (RUC) y de empresas por distrito.
+\item \textbf{Estimación en áreas pequeñas.} Combinar ENAHO con censos al estilo de los mapas de pobreza distritales del INEI. Metodológicamente aceptable, pero introduce dependencia del modelo de imputación en la variable dependiente, lo que es delicado cuando el regresor de interés puede estar correlacionado con los predictores usados en la imputación. Si se usa, debe ser robustez, no resultado principal.
+\item \textbf{Censos de población 2007 y 2017.} Dan cobertura distrital completa y variables de ocupación y categoría ocupacional. La limitación es obvia: dos puntos en el tiempo. Sirven para una ``larga diferencia'' 2007--2017 que cubre casi exactamente el auge del oro, y como validación de las medidas administrativas. No permiten estudio de eventos.
+\end{enumerate}
+
+\paragraph{Recomendación.} Construir el resultado principal con registros administrativos a nivel distrital (opción 2), validar contra la ENAHO agregada a nivel provincial (opción 1), y usar la larga diferencia censal (opción 4) como robustez. Reportar los tres. La coherencia entre fuentes con sesgos distintos es más persuasiva que la precisión de cualquiera de ellas.
+
+\subsection{Construcción de la exposición $\Exp_i$}
+
+Tres opciones, en orden de preferencia por exogeneidad:
+\begin{enumerate}[leftmargin=1.6em,itemsep=1pt]
+\item \textbf{Potencial geológico}: ocurrencias auríferas y franjas metalogenéticas de INGEMMET/\allowbreak GEOCATMIN; para el régimen aluvial, presencia de terrazas y llanuras aluviales aptas. Es la medida más limpia porque es literalmente anterior a la actividad económica. Es también la más costosa de construir (SIG).
+\item \textbf{Producción aurífera histórica predeterminada}: producción distrital promedio en un periodo base anterior a la muestra, de las declaraciones estadísticas mensuales (ESTAMIN) y anuarios del MINEM. Más fácil, pero ya es un resultado económico y no una dotación pura; usar solo el periodo base y nunca valores contemporáneos.
+\item \textbf{Minería colonial y republicana temprana}: presencia de asientos mineros históricos. Exógena por construcción, pero mide potencial con mucho ruido y arrastra los efectos institucionales persistentes documentados por \citet{dell2010}, que es exactamente el canal que se quiere separar. Usar como instrumento o robustez, no como medida principal.
+\end{enumerate}
+Recomiendo (1) como principal, (2) como robustez, y reportar la correlación entre ambas.
+
+\subsection{Tabla de fuentes}
+
+La tabla \ref{tab:datos} resume las fuentes, su cobertura y su limitación principal. Vale la pena subrayar dos filas. Primero, el REINFO es tentador como medida directa de minería informal, pero la inscripción responde a incentivos de política (plazos, amnistías, requisitos para vender oro legalmente) y no a la actividad extractiva; usarlo como variable dependiente confundiría formalización nominal con actividad real. Segundo, el domicilio fiscal del RUC no coincide necesariamente con el lugar de operación, lo que introduce error de medición espacial que tenderá a atenuar los coeficientes.
+
+\begin{table}[p]
+\centering
+\singlespacing
+\caption{Inventario de datos, cobertura y limitaciones}
+\label{tab:datos}
+\small
+\begin{tabularx}{\textwidth}{L{2.7cm} L{3.0cm} L{2.7cm} X}
+\toprule
+\textbf{Variable} & \textbf{Fuente} & \textbf{Nivel / frec.} & \textbf{Limitación principal} \\
+\midrule
+Precio del oro & LBMA; Banco Mundial (\emph{Pink Sheet}); BCRP & Nacional / mensual & Co-movimiento con otros metales y con el ciclo financiero global \\
+\addlinespace
+Informalidad (principal) & Planilla electrónica (T-Reg./PLAME), MTPE & Distrital / mensual & Solo margen asalariado formal; no capta independientes \\
+\addlinespace
+Informalidad (validación) & ENAHO, INEI & Departamental (prov. con agregación) / anual & \textbf{Sin representatividad distrital} \\
+\addlinespace
+Informalidad (robustez) & Censos 2007 y 2017, INEI & Distrital / 2 cortes & Solo dos periodos; no permite estudio de eventos \\
+\addlinespace
+Empresas y contribuyentes & Registro RUC, SUNAT & Distrital / anual & Domicilio fiscal $\neq$ lugar de operación \\
+\addlinespace
+Producción aurífera & ESTAMIN / anuarios, MINEM & Unidad minera $\to$ distrital / mensual & Solo producción declarada (formal) \\
+\addlinespace
+Minería informal & REINFO, MINEM & Distrital / continua & Inscripción endógena a la política; no mide actividad \\
+\addlinespace
+Potencial geológico & INGEMMET / GEOCATMIN & Georreferenciado & Requiere trabajo SIG considerable \\
+\addlinespace
+Huella minera & MAAP, Global Forest Watch, Amazon Mining Watch & Píxel / anual & \textbf{Solo detecta oro aluvial amazónico} \\
+\addlinespace
+Capacidad estatal & IDE (PNUD); RENAMU; MEF & Distrital / anual o puntual & Endógena a la renta minera \\
+\addlinespace
+Conflictos sociales & Defensoría del Pueblo & Distrital / mensual & Reportes, no incidencia real \\
+\addlinespace
+Controles geográficos & Modelos de elevación, redes viales & Distrital & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%=====================================================================
+\section{Amenazas a la identificación}\label{sec:amenazas}
+%=====================================================================
+
+La tabla \ref{tab:amenazas} lista las amenazas que considero de primer orden, con la respuesta de diseño correspondiente. No son todas iguales: las tres primeras (ciclo de \emph{commodities}, migración y derrames espaciales) atacan directamente la validez interna del diseño principal y deben resolverse antes de reportar cualquier resultado; las restantes afectan la interpretación más que la identificación.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Amenazas principales y respuestas de diseño}
+\label{tab:amenazas}
+\small
+\begin{tabularx}{\textwidth}{L{3.4cm} X L{4.6cm}}
+\toprule
+\textbf{Amenaza} & \textbf{Por qué importa} & \textbf{Respuesta} \\
+\midrule
+Ciclo de \emph{commodities} & Los precios de cobre, plata y zinc co-mueven con el oro; los distritos auríferos son a menudo polimetálicos & Controlar exposición $\times$ precio para cada mineral; usar la caída 2013--2015 como falsación \\
+\addlinespace
+Migración interna (SUTVA) & La minería informal atrae migrantes; el denominador poblacional distrital es endógeno & Definir unidades como áreas de mercado laboral; reportar numerador y denominador por separado; usar condición de migrante en ENAHO \\
+\addlinespace
+Derrames espaciales & El control vecino recibe actividad desplazada, sesgando el efecto al alza & Anillos de distancia; excluir vecinos inmediatos; errores estándar de \citet{conley1999} \\
+\addlinespace
+Endogeneidad de $\Exp_i$ & La geología correlaciona con altitud, aislamiento y pobreza histórica & Controles predeterminados $\times$ año; estudio de eventos con prueba de forma; RD geológico \\
+\addlinespace
+REINFO y formalización & Cambios de estatus administrativo sin cambio productivo real & Excluir minería del resultado principal; controlar por normativa; reportar con y sin \\
+\addlinespace
+Coca y otras economías ilegales & Se superponen geográficamente y responden a sus propios precios & Controlar exposición a coca $\times$ precio \citep{sviatschi2022} \\
+\addlinespace
+Conflicto social minero & Los conflictos anti-mineros responden al precio y afectan el empleo local & Controlar conflictos de la Defensoría; heterogeneidad por presencia de gran minería \\
+\addlinespace
+Efecto mecánico vs.\ derrame & El empleo minero informal \emph{es} informalidad & Resultado principal excluyendo minería; ecuación \eqref{eq:spillover} \\
+\addlinespace
+Canon minero & El precio eleva la transferencia fiscal a distritos con minería \emph{formal}, afectando el empleo público y la formalidad & Controlar canon per cápita; contrastar distritos con y sin minería formal \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La amenaza del canon merece una nota aparte porque es específica del Perú y es una \emph{contra-hipótesis} genuina, no un simple control. Un alza del precio del oro incrementa la renta minera formal y, con rezago, las transferencias de canon a los gobiernos subnacionales de los distritos productores. Eso eleva el gasto público local, el empleo formal y potencialmente la formalidad ---es decir, opera en dirección \emph{contraria} a la hipótesis del proyecto, y solo en distritos con minería formal titulada. Esto convierte la comparación entre distritos auríferos con y sin minería formal (la segunda idea del planteamiento original) en algo mucho más interesante de lo que parecía: no es una identificación alternativa, sino la prueba que separa dos mecanismos con signos opuestos.
+
+%=====================================================================
+\section{Potencia estadística}\label{sec:potencia}
+%=====================================================================
+
+Un cálculo de potencia \emph{ex ante} es indispensable, porque el riesgo principal del proyecto no es el sesgo sino la imprecisión. Bajo un panel de $T=20$ años, con desviación estándar del residuo de la tasa de informalidad de $0{,}05$ tras efectos fijos y autocorrelación $\rho$, el efecto mínimo detectable (5\,\% bilateral, 80\,\% de potencia) es el de la tabla \ref{tab:potencia}. El ajuste por autocorrelación usa $T_{\text{ef}} = T/[1+(T-1)\rho]$, en el espíritu de \citet{bertrand2004}.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Efecto mínimo detectable (puntos porcentuales de la tasa de informalidad)}
+\label{tab:potencia}
+\small
+\begin{tabular}{L{7.2cm} c c c}
+\toprule
+\textbf{Diseño y muestra} & $N$ & $\rho=0{,}5$ & $\rho=0{,}8$ \\
+\midrule
+DiD binario, panel distrital completo & 1\,874 & 1{,}31 & 1{,}63 \\
+DiD binario, distritos auríferos y controles pareados & 600 & 2{,}32 & 2{,}88 \\
+DiD binario, solo distritos auríferos & 200 & 4{,}02 & 4{,}99 \\
+\addlinespace
+\emph{Shift-share} continuo, panel distrital completo\,$^{a}$ & 1\,874 & 0{,}27 & 0{,}34 \\
+\emph{Shift-share} continuo, muestra restringida\,$^{a}$ & 600 & 0{,}48 & 0{,}60 \\
+\addlinespace
+\emph{Shift-share} continuo, panel provincial (ENAHO)\,$^{a,b}$ & 196 & 1{,}24 & --- \\
+\emph{Shift-share} continuo, panel departamental (ENAHO)\,$^{a,b}$ & 25 & 3{,}48 & --- \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.4em}
+\begin{minipage}{0.92\textwidth}
+\footnotesize \textit{Notas:} $^{a}$ Efecto de un alza del precio de 50\,\% ($\Delta\ln P = 0{,}405$) para un distrito con exposición una desviación estándar por encima de la media. $^{b}$ Supone $\sigma_\varepsilon = 0{,}03$ por agregación; con $\sigma_\varepsilon = 0{,}05$ los valores son $2{,}07$ y $5{,}80$ respectivamente. Todos los cálculos suponen $T=20$, $\sigma_\varepsilon = 0{,}05$ salvo indicación en contrario, y prueba bilateral al 5\,\% con 80\,\% de potencia.
+\end{minipage}
+\end{table}
+
+La lectura es inequívoca y refuerza el diagnóstico de la sección \ref{sec:empirica}. El diseño de exposición continua a nivel distrital detecta efectos de menos de medio punto porcentual, mientras que el DiD binario a nivel departamental ---la propuesta original--- solo detecta efectos superiores a 3--6 puntos porcentuales. Dado que la tasa de informalidad peruana se mueve típicamente en el rango de 1 a 3 puntos porcentuales por año a nivel agregado, un diseño departamental está esencialmente garantizado a producir un resultado nulo no informativo. Esta es, probablemente, la razón más práctica para abandonarlo.
+
+%=====================================================================
+\section{Evaluación de viabilidad y hoja de ruta}\label{sec:viabilidad}
+%=====================================================================
+
+\subsection{Semáforo por componente}
+
+La tabla \ref{tab:viabilidad} califica cada pieza del proyecto por separado, porque la viabilidad no es un juicio único: hay componentes de riesgo bajo que pueden ejecutarse de inmediato y componentes de riesgo alto cuyo fracaso no debería arrastrar al resto del trabajo. La lectura práctica es que el proyecto debe estructurarse de modo que el resultado principal descanse en los componentes de viabilidad alta, y que la triple diferencia y la medición de la minería informal se traten como extensiones cuya ausencia no invalida el artículo.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Evaluación de viabilidad}
+\label{tab:viabilidad}
+\small
+\begin{tabularx}{\textwidth}{L{4.4cm} L{1.9cm} X}
+\toprule
+\textbf{Componente} & \textbf{Viabilidad} & \textbf{Comentario} \\
+\midrule
+Variación exógena en el precio & \textbf{Alta} & El Perú es tomador de precios; series públicas y largas \\
+Exposición predeterminada & \textbf{Alta} & Datos geológicos y de producción base disponibles; requiere trabajo SIG \\
+Resultado a nivel distrital & \textbf{Media} & Depende de registros administrativos; la ENAHO no sirve a ese nivel \\
+Resultado a nivel provincial & \textbf{Alta} & ENAHO agregada; menor poder pero suficiente \\
+Separar derrame de efecto directo & \textbf{Media} & Exige clasificación sectorial fina y excluir minería \\
+Medir minería informal & \textbf{Media--baja} & Solo satelital en la Amazonía; REINFO es endógeno \\
+Triple diferencia con \emph{enforcement} & \textbf{Media--baja} & $W_i$ endógeno; requiere falsación con otros \emph{shocks} \\
+DiD binario regional (propuesta original) & \textbf{Baja} & Pocos conglomerados, tratamiento binarizado, potencia insuficiente \\
+Eventos de interdicción (2012, 2019) & \textbf{Alta} & Fechas nítidas; el diseño más publicable \\
+RD geológico & \textbf{Media} & Muy atractivo pero intensivo en SIG \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Veredicto}
+
+El proyecto es viable y vale la pena, con tres condiciones que considero no negociables:
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{Abandonar la comparación regional binaria como diseño principal.} Mantenerla, si acaso, como ilustración descriptiva en la introducción. La identificación debe venir de exposición continua a nivel distrital interactuada con el precio, con estudio de eventos que replique la forma de la serie de precios.
+\item \textbf{Resolver la medición del resultado antes de escribir una línea de código econométrico.} Recomiendo dedicar las primeras semanas exclusivamente a construir la tasa de formalidad distrital con planilla electrónica y RUC, y a validarla contra la ENAHO provincial y los censos de 2007 y 2017. Si esa validación falla, el proyecto debe reformularse a nivel provincial; eso es perfectamente aceptable, pero hay que saberlo temprano.
+\item \textbf{Separar explícitamente el efecto mecánico del derrame.} El resultado principal debe excluir el sector minero. De lo contrario, el trabajo prueba algo que nadie discute.
+\end{enumerate}
+
+Añado una recomendación estratégica: \textbf{el ángulo de \emph{enforcement} rinde más como diseño que como interacción}. Los eventos de interdicción de 2012 y 2019 permiten identificar el papel del Estado con un DiD nítido, en lugar de inferirlo de una triple diferencia con un moderador endógeno. Un trabajo estructurado como ``el precio genera informalidad donde hay oro; la interdicción la revierte parcialmente y la desplaza geográficamente'' es a la vez más creíble y más interesante en términos de política que uno que solo reporte una interacción triple positiva.
+
+\subsection{Hoja de ruta sugerida}
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Plan de trabajo}
+\label{tab:cronograma}
+\small
+\begin{tabularx}{\textwidth}{L{2.4cm} X}
+\toprule
+\textbf{Etapa} & \textbf{Actividad} \\
+\midrule
+Meses 1--2 & Construcción y validación de la variable dependiente distrital (planilla electrónica, RUC, censos). Decisión sobre la unidad de análisis. \\
+Meses 2--3 & Construcción de $\Exp_i$ con INGEMMET/\allowbreak GEOCATMIN y ESTAMIN; exposición a otros minerales; controles predeterminados. \\
+Mes 4 & Hechos estilizados y validación descriptiva: correlación entre precio, producción declarada, REINFO, huella satelital en Madre de Dios. \\
+Meses 5--6 & Estimación principal: \emph{shift-share} continuo, estudio de eventos, heterogeneidad por régimen geológico. \\
+Meses 7--8 & Diseños complementarios: eventos de interdicción, DiD sintético para Madre de Dios, nivel individual con ENAHO. \\
+Mes 9 & Robustez: falsaciones, sensibilidad a tendencias paralelas \citep{rambachan2023}, inferencia espacial. \\
+Meses 10--12 & Redacción; contraste con las contra-hipótesis de canon y de salarios locales. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%=====================================================================
+\section{Conclusión}
+%=====================================================================
+
+La hipótesis planteada ---que el precio del oro incrementa la informalidad allí donde el Estado no llega--- es coherente, relevante y empíricamente abordable en el Perú. El principal riesgo del proyecto no es que la hipótesis sea falsa, sino que el diseño elegido no tenga la resolución necesaria para distinguirla de sus alternativas. Un DiD binario entre regiones auríferas y no auríferas carece de potencia, binariza un tratamiento continuo y define un ``después'' que no existe en los datos. Un diseño de exposición continua a nivel distrital, con estudio de eventos que reproduzca la forma de la serie de precios y complementado por eventos nítidos de \emph{enforcement}, convierte la misma pregunta en un ejercicio identificable.
+
+Conviene además tener presente que el resultado puede no ir en la dirección esperada. La literatura sobre minería formal en el Perú documenta efectos positivos sobre ingresos y sobre empleo asalariado local; si el auge del oro eleva los salarios locales lo suficiente, la tasa de informalidad no minera podría incluso caer. Un diseño que solo pueda detectar el signo esperado no es un diseño, es una confirmación. La virtud de la estrategia propuesta es que puede recuperar cualquiera de los dos signos, y distinguir por qué.
+
+%=====================================================================
+\begin{thebibliography}{99}
+\small
+
+\bibitem[Aragón y Rud(2013)]{aragon2013}
+Aragón, F. M. y J. P. Rud (2013). ``Natural Resources and Local Communities: Evidence from a Peruvian Gold Mine''. \emph{American Economic Journal: Economic Policy}, 5(2), 1--25.
+
+\bibitem[Arkhangelsky et al.(2021)]{arkhangelsky2021}
+Arkhangelsky, D., S. Athey, D. A. Hirshberg, G. W. Imbens y S. Wager (2021). ``Synthetic Difference-in-Differences''. \emph{American Economic Review}, 111(12), 4088--4118.
+
+\bibitem[Berman et al.(2017)]{berman2017}
+Berman, N., M. Couttenier, D. Rohner y M. Thoenig (2017). ``This Mine Is Mine! How Minerals Fuel Conflicts in Africa''. \emph{American Economic Review}, 107(6), 1564--1610.
+
+\bibitem[Bertrand et al.(2004)]{bertrand2004}
+Bertrand, M., E. Duflo y S. Mullainathan (2004). ``How Much Should We Trust Differences-in-Differences Estimates?''. \emph{Quarterly Journal of Economics}, 119(1), 249--275.
+
+\bibitem[Borusyak et al.(2022)]{borusyak2022}
+Borusyak, K., P. Hull y X. Jaravel (2022). ``Quasi-Experimental Shift-Share Research Designs''. \emph{Review of Economic Studies}, 89(1), 181--213.
+
+\bibitem[Callaway y Sant'Anna(2021)]{callaway2021}
+Callaway, B. y P. H. C. Sant'Anna (2021). ``Difference-in-Differences with Multiple Time Periods''. \emph{Journal of Econometrics}, 225(2), 200--230.
+
+\bibitem[Callaway et al.(2024)]{callaway2024}
+Callaway, B., A. Goodman-Bacon y P. H. C. Sant'Anna (2024). ``Difference-in-Differences with a Continuous Treatment''. NBER Working Paper 32117.
+
+\bibitem[Cameron et al.(2008)]{cameron2008}
+Cameron, A. C., J. B. Gelbach y D. L. Miller (2008). ``Bootstrap-Based Improvements for Inference with Clustered Errors''. \emph{Review of Economics and Statistics}, 90(3), 414--427.
+
+\bibitem[Conley(1999)]{conley1999}
+Conley, T. G. (1999). ``GMM Estimation with Cross Sectional Dependence''. \emph{Journal of Econometrics}, 92(1), 1--45.
+
+\bibitem[de Chaisemartin y D'Haultf\oe uille(2020)]{dechaisemartin2020}
+de Chaisemartin, C. y X. D'Haultf\oe uille (2020). ``Two-Way Fixed Effects Estimators with Heterogeneous Treatment Effects''. \emph{American Economic Review}, 110(9), 2964--2996.
+
+\bibitem[Dell(2010)]{dell2010}
+Dell, M. (2010). ``The Persistent Effects of Peru's Mining \emph{Mita}''. \emph{Econometrica}, 78(6), 1863--1903.
+
+\bibitem[Dube y Vargas(2013)]{dube2013}
+Dube, O. y J. F. Vargas (2013). ``Commodity Price Shocks and Civil Conflict: Evidence from Colombia''. \emph{Review of Economic Studies}, 80(4), 1384--1421.
+
+\bibitem[Goldsmith-Pinkham et al.(2020)]{goldsmith2020}
+Goldsmith-Pinkham, P., I. Sorkin y H. Swift (2020). ``Bartik Instruments: What, When, Why, and How''. \emph{American Economic Review}, 110(8), 2586--2624.
+
+\bibitem[La Porta y Shleifer(2014)]{laporta2014}
+La Porta, R. y A. Shleifer (2014). ``Informality and Development''. \emph{Journal of Economic Perspectives}, 28(3), 109--126.
+
+\bibitem[Loayza y Rigolini(2016)]{loayza2016}
+Loayza, N. y J. Rigolini (2016). ``The Local Impact of Mining on Poverty and Inequality: Evidence from the Commodity Boom in Peru''. \emph{World Development}, 84, 219--234.
+
+\bibitem[MAAP(2019)]{maap2019}
+MAAP --- Monitoring of the Andean Amazon Project (2019). ``Gran reducción de minería ilegal en la Amazonía peruana tras la Operación Mercurio''. Informe de monitoreo satelital.
+
+\bibitem[Rambachan y Roth(2023)]{rambachan2023}
+Rambachan, A. y J. Roth (2023). ``A More Credible Approach to Parallel Trends''. \emph{Review of Economic Studies}, 90(5), 2555--2591.
+
+\bibitem[Sviatschi(2022)]{sviatschi2022}
+Sviatschi, M. M. (2022). ``Making a NARCO: Childhood Exposure to Illegal Labor Markets and Criminal Life Paths''. \emph{Econometrica}, 90(4), 1835--1878.
+
+\bibitem[Swenson et al.(2011)]{swenson2011}
+Swenson, J. J., C. E. Carter, J.-C. Domec y C. I. Delgado (2011). ``Gold Mining in the Peruvian Amazon: Global Prices, Deforestation, and Mercury Imports''. \emph{PLoS ONE}, 6(4), e18875.
+
+\bibitem[Ticci y Escobal(2015)]{ticci2015}
+Ticci, E. y J. Escobal (2015). ``Extractive Industries and Local Development in the Peruvian Highlands''. \emph{Environment and Development Economics}, 20(1), 101--126.
+
+\bibitem[Ulyssea(2018)]{ulyssea2018}
+Ulyssea, G. (2018). ``Firms, Informality, and Development: Theory and Evidence from Brazil''. \emph{American Economic Review}, 108(8), 2015--2047.
+
+\end{thebibliography}
+
+\end{document}
