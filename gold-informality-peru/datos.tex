@@ -1,0 +1,310 @@
+%=====================================================================
+%  Datos
+%  Construccion del marco de distritos tratados y de control
+%=====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+
+\bibpunct{(}{)}{;}{a}{}{,}
+\setlength{\parskip}{2pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\Au}{\mathrm{Au}}
+
+\title{\textbf{Datos: construcción del marco de distritos tratados\\ y de control}\\[0.6em]
+\large Precio del oro e informalidad en distritos auríferos del Perú}
+
+\author{Documento de diseño de investigación}
+\date{Agosto de 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Este documento operacionaliza la definición de tratamiento de la nota metodológica: qué distritos son tratados, cuáles son control, y cómo se construye cada variable a partir de fuentes públicas. Tres decisiones lo estructuran. Primero, el tratamiento se asigna por \textbf{umbral absoluto pre-registrado} sobre la dotación aurífera predeterminada, y no por la regla de valor atípico dentro de la unidad superior de \citet{braakmann2024}: con unos 9{,}7 distritos por provincia frente a los cerca de 100 barrios por autoridad local del caso británico, esa regla es inestable y, en provincias donde casi todos los distritos tienen dotación nula, degenera en ``tiene algo de oro''. La comparación local se recupera con efectos fijos de provincia y bandas de distancia. Segundo, la dotación se mide con \textbf{unidades distintas según el régimen geológico}, porque un conteo de ocurrencias ordena bien la roca dura y el filoniano pero subrepresenta gravemente el oro aluvial amazónico. Tercero, el marco se restringe a los siete departamentos auríferos, unos 600 distritos, lo que fija la potencia del diseño en el escenario intermedio de los cálculos previos. Se entrega un pipeline ejecutable y determinista, más una lista provisional de 78 distritos que es una \textbf{hipótesis a validar y no un resultado}.
+
+\medskip
+\noindent\textbf{Nota de acceso.} Los archivos fuente no pudieron descargarse al preparar este documento: la política de red del entorno de trabajo bloquea los servidores de INGEMMET, MINEM, INEI y la Plataforma Nacional de Datos Abiertos. Por eso el documento especifica el protocolo y entrega el código que produce la partición, en lugar de la partición misma.
+\end{abstract}
+
+\newpage
+\onehalfspacing
+
+%=====================================================================
+\section{Objetivo y alcance}
+%=====================================================================
+
+La nota metodológica define el tratamiento como una función de la dotación aurífera predeterminada $g_d$ del distrito. Este documento convierte esa definición en un procedimiento que un tercero puede auditar y reproducir: qué archivo, qué campo, qué umbral, qué código.
+
+El marco se restringe a siete departamentos: \textbf{Arequipa, Ayacucho, Cajamarca, Ica, La Libertad, Madre de Dios y Puno}. Son los que concentran la producción aurífera formal e informal del país y cubren los tres regímenes geológicos relevantes. La restricción tiene un costo que conviene declarar de entrada y al que vuelvo en la sección \ref{sec:limitaciones}: deja fuera a Áncash, Apurímac, Cusco, Moquegua y Tacna, que son justamente los departamentos de los que saldrían los distritos de otros minerales que necesita la batería de falsación.
+
+El tamaño resultante ---del orden de 600 distritos--- coincide con el escenario intermedio de los cálculos de potencia del documento de viabilidad, con un efecto mínimo detectable de aproximadamente 2{,}3 a 2{,}9 puntos porcentuales para el diseño binario. Esto es deliberado: el alcance restringido no es solo una decisión de conveniencia, sino que sitúa al proyecto en un rango de potencia conocido.
+
+%=====================================================================
+\section{Universo geográfico}
+%=====================================================================
+
+\subsection{Marco de referencia y \emph{vintage}}
+
+Toda la construcción parte del padrón nacional de ubigeos del INEI, fijado a una \emph{vintage} declarada. La elección no es inocua: el número de distritos del Perú ha crecido a lo largo del periodo de estudio, y los códigos de ubigeo no son estables.
+
+\subsection{Armonización temporal: un problema que suele pasarse por alto}
+
+Entre 2004 y 2024 se crearon distritos nuevos, casi siempre por escisión de distritos existentes. Esto rompe el panel de dos maneras. La unidad nueva aparece de la nada a mitad de la muestra, sin historia previa; y su distrito madre pierde superficie y población de un año al siguiente, generando un salto en cualquier tasa construida sobre esa población que no responde a nada económico. Si además la escisión ocurre en un distrito minero ---algo frecuente, porque los centros poblados mineros presionan por autonomía administrativa cuando la actividad crece--- el salto está correlacionado con el tratamiento, y el sesgo tiene signo predecible.
+
+El procedimiento es reagregar: todo distrito creado después de la \emph{vintage} base se suma de vuelta a su distrito madre, de modo que la unidad de análisis sea una geografía constante a lo largo de todo el periodo. Esto requiere una tabla de equivalencias construida a partir de las leyes de creación, que es trabajo manual y debe documentarse fila por fila. El pipeline la exige como insumo explícito y reporta cuántas unidades reagregó.
+
+\subsection{El problema del tamaño de provincia}\label{sec:tamano}
+
+La nota metodológica proponía trasladar la regla de \citet{braakmann2024}: tratado es el distrito cuya dotación excede el percentil 75 más 1{,}5 veces el rango intercuartílico \emph{de su propia provincia}. Al operacionalizarla aparece un obstáculo que invalida su uso como regla principal.
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Granularidad comparada}
+\label{tab:granularidad}
+\small
+\begin{tabular}{L{6.4cm} r r}
+\toprule
+& \textbf{\citet{braakmann2024}} & \textbf{Perú} \\
+\midrule
+Unidades de análisis & $\approx$ 34\,750 barrios & $\approx$ 1\,890 distritos \\
+Unidades de agrupamiento & 348 autoridades locales & 196 provincias \\
+Unidades por grupo (media) & $\approx$ 100 & $\approx$ 9{,}7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Con una decena de distritos por provincia, el rango intercuartílico se estima sobre muy pocos puntos y la regla es inestable. El problema más grave no es la varianza sino la degeneración: en una provincia donde la mayoría de distritos tiene dotación exactamente cero, el rango intercuartílico es cero y el umbral colapsa al percentil 75, de modo que cualquier distrito con dotación positiva queda clasificado como tratado. La regla deja de ser un criterio de valor atípico y se convierte en ``tiene algo de oro'', que es un criterio distinto y mucho más grueso.
+
+Esto no es una conjetura. El pipeline calcula la regla y reporta en qué fracción de la muestra resulta aplicable, exigiendo un mínimo de distritos por provincia y descartando los casos de rango intercuartílico nulo. En una simulación con la estructura administrativa esperada, la regla resultó aplicable en menos del 8\,\% de los distritos. Un criterio que no se puede evaluar en el 92\,\% de la muestra no puede ser la regla principal.
+
+%=====================================================================
+\section{Fuentes primarias}
+%=====================================================================
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Insumos requeridos}
+\label{tab:fuentes}
+\small
+\begin{tabularx}{\textwidth}{L{3.7cm} L{3.5cm} X}
+\toprule
+\textbf{Insumo} & \textbf{Fuente} & \textbf{Uso} \\
+\midrule
+Padrón de ubigeos & INEI & Marco de unidades y superficie \\
+Equivalencias de ubigeo & Leyes de creación & Armonización temporal \\
+Ocurrencias auríferas & INGEMMET / GEOCATMIN, servicio \texttt{SERV\_METALOGENETICO} & Medida principal de $g_d$ \\
+Franjas metalogenéticas & INGEMMET / GEOCATMIN & Validación del régimen geológico \\
+Aptitud aluvial & Construcción propia sobre red hidrográfica & $g_d$ en el régimen aluvial \\
+Límites distritales & INEI, cartografía & Unión espacial y distancias \\
+Producción minera & MINEM, ESTAMIN y anuarios & Validación de $g_d$; exclusiones \\
+Covariables distritales & INEI, censos; modelos de elevación & Tabla de balance \\
+Distritos cocaleros & DEVIDA / UNODC & Exclusiones \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Para cada archivo debe registrarse la URL exacta, la fecha de descarga y una suma de verificación. Sin ese registro el ejercicio no es reproducible, porque los portales actualizan los archivos sin versionarlos.
+
+\paragraph{Sobre el acceso.} Los servicios de INGEMMET exponen los datos a través de una interfaz ArcGIS REST, que permite descarga programática de las capas en lugar de navegación manual por el visor. Esa es la vía recomendada, porque deja constancia de la consulta exacta. Como se indicó, no fue posible ejecutarla al preparar este documento.
+
+%=====================================================================
+\section{Construcción de la dotación aurífera}
+%=====================================================================
+
+\subsection{Los tres regímenes y por qué importan aquí}
+
+El documento de viabilidad ya señalaba que el oro peruano se extrae en tres regímenes distintos. En la construcción de datos esa heterogeneidad deja de ser una observación de contexto y se vuelve un problema de medición concreto.
+
+\begin{itemize}[leftmargin=1.6em,itemsep=3pt]
+\item \textbf{Roca dura} (Cajamarca, La Libertad). Depósitos puntuales, bien representados en el catálogo de ocurrencias. Un conteo de ocurrencias por unidad de superficie ordena correctamente a los distritos.
+\item \textbf{Filoniano} (Arequipa, Ayacucho, Ica, sierra de Puno). Vetas angostas, también puntuales, con densidad alta de ocurrencias pequeñas. El conteo funciona, aunque sobrepondera depósitos marginales.
+\item \textbf{Aluvial} (Madre de Dios, cuencas amazónicas de Puno). El oro está disperso en terrazas y llanuras de inundación. \textbf{No hay ocurrencias puntuales que contar.} Un criterio basado en el catálogo clasificaría a Madre de Dios como región de dotación baja, que es exactamente el error opuesto al que interesa evitar: es la región donde la minería informal es más intensa y el caso emblemático del proyecto.
+\end{itemize}
+
+La consecuencia es que $g_d$ no puede tener una definición única. Se mide en ocurrencias por cada 100~km$^2$ en los regímenes puntuales, y como proporción de la superficie distrital con aptitud aluvial en el régimen aluvial. Como las unidades son distintas, los umbrales también lo son, y la comparación de magnitudes entre regímenes carece de sentido. Esto obliga a estratificar la asignación por régimen, que es la decisión de diseño central de este documento.
+
+\subsection{Definición}
+
+Sea $O_d$ el número de ocurrencias con oro como elemento principal o secundario dentro del distrito $d$, $S_d$ su superficie en km$^2$, y $A_d$ la superficie con aptitud aluvial. Entonces
+\begin{equation}
+g_d \;=\;
+\begin{cases}
+100 \cdot O_d / S_d & \text{si el régimen es roca dura o filoniano,}\\[4pt]
+\min\{A_d / S_d,\; 1\} & \text{si el régimen es aluvial.}
+\end{cases}
+\label{eq:gd}
+\end{equation}
+
+Dos notas de implementación que parecen menores y no lo son. Las áreas deben calcularse sobre una proyección equivalente y las distancias sobre una proyección métrica: hacerlo directamente sobre coordenadas geográficas devuelve grados cuadrados, no kilómetros cuadrados, y el error pasa desapercibido porque los números resultantes siguen pareciendo razonables. Y el numerador de la proporción aluvial proviene de la cartografía mientras el denominador viene del padrón, de modo que pequeñas inconsistencias entre ambas fuentes pueden producir proporciones mayores que uno; el pipeline las trunca y lo deja registrado.
+
+\subsection{Medida de validación}
+
+La producción aurífera declarada al MINEM en un periodo base anterior a la muestra sirve como validación externa de $g_d$, no como medida principal: es un resultado económico y no una dotación, y solo capta la producción formal. La comprobación relevante es de concordancia ordinal ---que los distritos con producción base alta estén entre los de $g_d$ alto--- y de cobertura: si aparecen distritos con producción formal relevante y dotación medida nula, la medida geológica tiene un problema.
+
+%=====================================================================
+\section{Regla de asignación}\label{sec:regla}
+%=====================================================================
+
+\subsection{Regla principal}
+
+Dado el diagnóstico de la sección \ref{sec:tamano}, el tratamiento se define por umbral absoluto estratificado por régimen:
+\begin{equation}
+\Au_d \;=\; \mathbf{1}\bigl[\, g_d \;\geq\; \bar{g}_{r(d)} \,\bigr],
+\label{eq:regla}
+\end{equation}
+donde $r(d)$ es el régimen del distrito y $\bar{g}_r$ el umbral pre-registrado para ese régimen. La comparación local ---que era el aporte de la regla de \citet{braakmann2024}--- se recupera por dos vías que no dependen del tamaño de la provincia: los efectos fijos de provincia de la ecuación principal, que restringen la comparación a distritos de la misma provincia, y las bandas de distancia, que la hacen explícita.
+
+La ventaja práctica de \eqref{eq:regla} sobre la regla de valor atípico es que es estable, evaluable en toda la muestra e interpretable sin referencia a la composición de la provincia. Su desventaja es que traslada todo el peso al valor de $\bar{g}_r$, que es una elección del investigador. Por eso los umbrales deben fijarse antes de mirar cualquier variable de resultado y declararse junto con las reglas alternativas.
+
+\subsection{Reglas alternativas, declaradas de antemano}
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+\item Umbrales desplazados hacia arriba y hacia abajo, para trazar la sensibilidad del conjunto tratado.
+\item Regla de valor atípico dentro de la provincia, en el subconjunto de provincias donde es aplicable.
+\item Regla de decil superior dentro del departamento.
+\item Versión de dosis-respuesta con $g_d$ continuo estandarizado dentro de régimen.
+\end{enumerate}
+
+La estabilidad del signo a través de estas variantes es la prueba de robustez que sustituye a la justificación teórica del umbral. Conviene reportar además cuántos distritos cambian de estatus entre reglas: si el conjunto tratado es esencialmente el mismo, la elección del umbral deja de ser un punto de discusión.
+
+\subsection{Bandas de distancia}
+
+Para cada distrito se calcula la distancia entre su centroide y el centroide del distrito tratado más cercano, y se discretiza en bandas. Los distritos tratados forman la banda cero. Estas bandas alimentan directamente la ecuación de derrames de la nota metodológica, y su perfil estimado distingue los dos mecanismos posibles: un perfil positivo en bandas cercanas indica demanda derivada, y uno negativo indica reasignación de trabajadores desde los vecinos hacia el distrito aurífero.
+
+%=====================================================================
+\section{Criterios de exclusión}
+%=====================================================================
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Exclusiones}
+\label{tab:exclusiones}
+\small
+\begin{tabularx}{\textwidth}{L{3.9cm} X}
+\toprule
+\textbf{Criterio} & \textbf{Justificación} \\
+\midrule
+Producción base relevante de otro metal, en distritos no tratados & Su informalidad responde al precio de ese metal; incluirlos como control contamina la comparación con el ciclo de \emph{commodities} \\
+\addlinespace
+Superposición con zonas cocaleras & La economía ilegal alternativa responde a su propio precio y se superpone geográficamente con parte del área de estudio \\
+\addlinespace
+Cambios de límites no armonizables & Si no se puede reconstruir una geografía constante, la unidad no es comparable consigo misma a lo largo del panel \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La primera exclusión se aplica solo a distritos \emph{no} tratados. Un distrito aurífero que además produce cobre sigue siendo tratado: excluirlo sesgaría la muestra hacia los distritos monometálicos, que no son representativos de la geología peruana. El control por exposición a otros minerales interactuada con sus precios, ya previsto en la especificación, es la herramienta correcta para ese caso.
+
+%=====================================================================
+\section{Lista provisional de distritos}
+%=====================================================================
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\small
+\begin{tabularx}{\textwidth}{X}
+\toprule
+\textbf{Advertencia.} La lista siguiente \textbf{no es un resultado del procedimiento descrito arriba}. Es un conjunto de hipótesis armado a partir de conocimiento del sector minero peruano, cuyo propósito es doble: orientar la verificación de las fuentes y permitir detectar errores gruesos en la salida del pipeline. Ninguna entrada sustituye a la verificación contra INGEMMET y MINEM, y las clasificadas con confianza baja deben tratarse como candidatas a descarte. La asignación definitiva es la que produzca el código sobre los datos reales.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\singlespacing
+\caption{Composición de la lista provisional (78 distritos, 24 provincias)}
+\label{tab:provisional}
+\small
+\begin{tabular}{L{3.6cm} r r r r r}
+\toprule
+& & \multicolumn{3}{c}{\textbf{Confianza}} & \\
+\cmidrule(lr){3-5}
+\textbf{Departamento} & \textbf{Distritos} & Alta & Media & Baja & \textbf{Régimen} \\
+\midrule
+Arequipa & 15 & 6 & 7 & 2 & Filoniano \\
+La Libertad & 13 & 3 & 10 & 0 & Roca dura \\
+Puno & 13 & 1 & 12 & 0 & Filoniano y aluvial \\
+Cajamarca & 11 & 6 & 5 & 0 & Roca dura \\
+Ayacucho & 9 & 0 & 4 & 5 & Filoniano \\
+Ica & 9 & 0 & 4 & 5 & Filoniano \\
+Madre de Dios & 8 & 4 & 3 & 1 & Aluvial \\
+\midrule
+\textbf{Total} & \textbf{78} & \textbf{20} & \textbf{45} & \textbf{13} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+El detalle por distrito está en \texttt{code/provisional\_districts.csv}, con una fila por unidad y las columnas de departamento, provincia, distrito, régimen, base de inclusión y confianza. La base de inclusión distingue cuatro categorías: presencia de mina formal identificada, minería informal documentada, operación histórica, y mera pertenencia a franja metalogenética. Catorce entradas descansan únicamente en la franja, y trece de ellas son las clasificadas con confianza baja; se concentran en Ayacucho e Ica, que aportan cinco cada uno. Son las primeras que deben confirmarse o descartarse.
+
+La columna de ubigeo se deja deliberadamente vacía. Asignarla a mano invitaría a errores silenciosos; el pipeline debe resolverla por unión contra el padrón oficial y reportar las filas que no encuentren correspondencia, que es el punto donde suelen aparecer las discrepancias de nombre.
+
+Dos observaciones sobre la composición. La primera es que Madre de Dios aporta solo ocho distritos, no porque su minería sea menor sino porque el departamento tiene apenas once distritos en total: es un caso de unidades administrativas muy grandes, donde el distrito es una aproximación gruesa al mercado laboral local. La segunda es que la lista está dominada por entradas de confianza media basadas en minería informal documentada, lo cual refleja la naturaleza del objeto de estudio: la actividad que interesa es precisamente la que no aparece en los registros formales.
+
+%=====================================================================
+\section{Diagnósticos de validación}
+%=====================================================================
+
+El pipeline produce tres diagnósticos que deben revisarse antes de usar el marco.
+
+\paragraph{Balance de covariables predeterminadas.} Medias de tratados y controles, diferencia y diferencia estandarizada, para altitud, rugosidad, superficie, población base, ruralidad, pobreza base y distancia a la capital provincial. No se espera balance perfecto: la dotación aurífera está correlacionada con altitud y aislamiento, y esa es precisamente la razón por la que la identificación descansa en efectos fijos y tendencias, no en la comparabilidad transversal. Lo que la tabla debe descartar es un desbalance extremo que haga inverosímil cualquier supuesto de tendencias comunes.
+
+\paragraph{Concordancia entre medidas de dotación.} Tabulación cruzada entre $g_d$ geológico y producción base declarada. Interesan las celdas discordantes: dotación alta sin producción es esperable y benigno, mientras que producción sin dotación medida indica un fallo de la unión espacial o del filtro de ocurrencias.
+
+\paragraph{Sensibilidad del conjunto tratado.} Número de distritos tratados como función del umbral, por régimen. Si el conjunto cambia de tamaño de forma abrupta alrededor del umbral elegido, la partición es frágil y conviene reportar resultados para varios umbrales en lugar de uno.
+
+Adicionalmente, el pipeline registra el número de filas al final de cada etapa. Es una salvaguarda barata contra el modo de fallo más común en este tipo de construcción, que es perder observaciones en una unión mal especificada sin notarlo.
+
+%=====================================================================
+\section{Reproducibilidad}
+%=====================================================================
+
+El código acompaña a este documento en \texttt{code/}. El diseño responde a tres exigencias.
+
+Es \textbf{determinista}: dados los mismos insumos produce exactamente la misma partición, sin componentes aleatorios ni dependencias del orden de las filas. \textbf{Falla ruidosamente}: si falta un insumo, aborta nombrando el archivo, su fuente y sus columnas esperadas, en lugar de continuar con datos parciales y producir un marco incompleto que parezca válido. Y concentra todos los umbrales en un \textbf{bloque de constantes} al inicio, de modo que el conjunto completo de decisiones del diseño sea visible en una pantalla y pueda pre-registrarse.
+
+El pipeline se probó de extremo a extremo con insumos sintéticos que replican la estructura administrativa esperada. Esa prueba valida el flujo y las uniones espaciales; no valida ningún resultado sustantivo, que depende enteramente de los datos reales.
+
+%=====================================================================
+\section{Limitaciones conocidas}\label{sec:limitaciones}
+%=====================================================================
+
+\paragraph{El alcance restringido rompe la batería de falsación.} Al limitar el marco a los siete departamentos auríferos se pierden los distritos productores de otros metales que la nota metodológica requería como grupo de falsación, y que se concentran en Áncash, Apurímac, Cusco, Moquegua y Tacna. La prueba de que el efecto responde al oro y no al ciclo de \emph{commodities} es de las más importantes del diseño y no debería sacrificarse. La solución es barata: construir un marco auxiliar mínimo con esos departamentos, usado exclusivamente para esa prueba, sin incorporarlo a la muestra principal. Recomiendo hacerlo.
+
+\paragraph{El distrito es una aproximación gruesa en la Amazonía.} En Madre de Dios los distritos son enormes y contienen tanto corredores mineros como ciudades sin relación con la minería. Tambopata, que incluye Puerto Maldonado, es el caso claro. Donde exista cartografía de centros poblados conviene descender a esa unidad, al menos como robustez.
+
+\paragraph{La aptitud aluvial es una construcción propia.} A diferencia del catálogo de ocurrencias, que es un producto oficial, la capa de aptitud aluvial debe construirse. Eso introduce grados de libertad del investigador justo en la variable que define el tratamiento para el caso emblemático del estudio. Debe documentarse con el mismo detalle que el resto y someterse a análisis de sensibilidad.
+
+\paragraph{La lista provisional no es evidencia.} Se incluye porque acelera la verificación, no porque respalde ninguna afirmación. Cualquier uso de este marco debe partir de la salida del pipeline sobre datos oficiales.
+
+%=====================================================================
+\begin{thebibliography}{9}
+\small
+
+\bibitem[Braakmann et al.(2024)]{braakmann2024}
+Braakmann, N., A. Chevalier y T. Wilson (2024). ``Expected Returns to Crime and Crime Location''. \emph{American Economic Journal: Applied Economics}, 16(4), 144--160.
+
+\bibitem[Pécastaing y Chávez(2020)]{pecastaing2020}
+Pécastaing, N. y C. Chávez (2020). ``The Impact of \emph{El Niño} Phenomenon on Dry Forest-Dependent Communities' Welfare in the Northern Coast of Peru''. \emph{Ecological Economics}, 178, 106820.
+
+\end{thebibliography}
+
+\end{document}

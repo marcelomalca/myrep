@@ -1,0 +1,79 @@
+departamento,provincia,distrito,regimen,base_inclusion,confianza,ubigeo,nota
+Cajamarca,Cajamarca,Cajamarca,roca_dura,mina_formal,alta,,Area de influencia de Yanacocha
+Cajamarca,Cajamarca,Banos del Inca,roca_dura,mina_formal,alta,,Area de influencia de Yanacocha
+Cajamarca,Cajamarca,La Encanada,roca_dura,mina_formal,alta,,Area de influencia de Yanacocha
+Cajamarca,Hualgayoc,Hualgayoc,roca_dura,mina_formal,alta,,Distrito minero historico; polimetalico con Au
+Cajamarca,Hualgayoc,Bambamarca,roca_dura,informal_documentada,media,,Verificar peso relativo del oro
+Cajamarca,Hualgayoc,Chugur,roca_dura,mina_formal,media,,Verificar adscripcion distrital de la unidad
+Cajamarca,Cajabamba,Cachachi,roca_dura,mina_formal,alta,,Shahuindo
+Cajamarca,Cajabamba,Cajabamba,roca_dura,informal_documentada,media,,
+Cajamarca,Santa Cruz,Pulan,roca_dura,mina_formal,alta,,La Zanja
+Cajamarca,San Miguel,San Miguel,roca_dura,mina_historica,media,,Operacion historica; verificar vigencia en periodo muestral
+Cajamarca,San Pablo,Tumbaden,roca_dura,franja_metalogenetica,media,,Verificar contra ocurrencias INGEMMET
+La Libertad,Pataz,Pataz,roca_dura,mina_formal,alta,,Distrito minero de vetas con informalidad alta
+La Libertad,Pataz,Parcoy,roca_dura,mina_formal,alta,,Retamas; informalidad alta
+La Libertad,Pataz,Buldibuyo,roca_dura,informal_documentada,media,,
+La Libertad,Pataz,Tayabamba,roca_dura,informal_documentada,media,,
+La Libertad,Pataz,Huaylillas,roca_dura,informal_documentada,media,,
+La Libertad,Pataz,Chillia,roca_dura,informal_documentada,media,,
+La Libertad,Pataz,Huancaspata,roca_dura,informal_documentada,media,,
+La Libertad,Santiago de Chuco,Quiruvilca,roca_dura,mina_formal,alta,,Lagunas Norte
+La Libertad,Santiago de Chuco,Santiago de Chuco,roca_dura,informal_documentada,media,,
+La Libertad,Sanchez Carrion,Huamachuco,roca_dura,informal_documentada,media,,
+La Libertad,Sanchez Carrion,Sanagoran,roca_dura,informal_documentada,media,,
+La Libertad,Sanchez Carrion,Curgos,roca_dura,informal_documentada,media,,
+La Libertad,Otuzco,Usquil,roca_dura,informal_documentada,media,,
+Madre de Dios,Tambopata,Inambari,aluvial,informal_documentada,alta,,Corredor La Pampa y Delta-1
+Madre de Dios,Tambopata,Laberinto,aluvial,informal_documentada,alta,,
+Madre de Dios,Tambopata,Tambopata,aluvial,informal_documentada,media,,Incluye Puerto Maldonado; alta poblacion no minera
+Madre de Dios,Tambopata,Las Piedras,aluvial,informal_documentada,media,,
+Madre de Dios,Manu,Huepetuhe,aluvial,informal_documentada,alta,,Principal foco aluvial historico
+Madre de Dios,Manu,Madre de Dios,aluvial,informal_documentada,alta,,Boca Colorado
+Madre de Dios,Manu,Manu,aluvial,informal_documentada,media,,Amplia superficie protegida; verificar exclusiones
+Madre de Dios,Tahuamanu,Tahuamanu,aluvial,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Puno,San Antonio de Putina,Ananea,filoniano,informal_documentada,alta,,La Rinconada
+Puno,Sandia,Sandia,filoniano,informal_documentada,media,,
+Puno,Sandia,Cuyocuyo,filoniano,informal_documentada,media,,
+Puno,Sandia,Limbani,filoniano,informal_documentada,media,,
+Puno,Sandia,Phara,filoniano,informal_documentada,media,,
+Puno,Sandia,Patambuco,filoniano,informal_documentada,media,,
+Puno,Sandia,Alto Inambari,aluvial,informal_documentada,media,,Regimen aluvial dentro de departamento mayormente filoniano
+Puno,Sandia,Yanahuaya,aluvial,informal_documentada,media,,
+Puno,Carabaya,Ollachea,filoniano,mina_formal,media,,Verificar estado del proyecto en periodo muestral
+Puno,Carabaya,Ayapata,filoniano,informal_documentada,media,,
+Puno,Carabaya,San Gaban,aluvial,informal_documentada,media,,
+Puno,Carabaya,Coasa,filoniano,informal_documentada,media,,
+Puno,Carabaya,Crucero,filoniano,informal_documentada,media,,
+Arequipa,Caraveli,Caraveli,filoniano,informal_documentada,alta,,Nucleo de mineria artesanal del sur medio
+Arequipa,Caraveli,Chala,filoniano,informal_documentada,alta,,Centro de acopio y procesamiento
+Arequipa,Caraveli,Chaparra,filoniano,informal_documentada,alta,,
+Arequipa,Caraveli,Huanuhuanu,filoniano,informal_documentada,alta,,
+Arequipa,Caraveli,Quicacha,filoniano,informal_documentada,media,,
+Arequipa,Caraveli,Atico,filoniano,informal_documentada,media,,
+Arequipa,Caraveli,Jaqui,filoniano,informal_documentada,media,,
+Arequipa,Caraveli,Yauca,filoniano,informal_documentada,media,,
+Arequipa,Caraveli,Acari,filoniano,informal_documentada,media,,
+Arequipa,Caraveli,Lomas,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Arequipa,Condesuyos,Yanaquihua,filoniano,informal_documentada,alta,,
+Arequipa,Condesuyos,Rio Grande,filoniano,informal_documentada,media,,
+Arequipa,Condesuyos,Chuquibamba,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Arequipa,Camana,Mariano Nicolas Valcarcel,filoniano,informal_documentada,alta,,Secocha; procesamiento
+Arequipa,Camana,Ocona,filoniano,informal_documentada,media,,
+Ayacucho,Lucanas,Sancos,filoniano,informal_documentada,media,,
+Ayacucho,Lucanas,Otoca,filoniano,informal_documentada,media,,
+Ayacucho,Lucanas,San Juan,filoniano,informal_documentada,media,,
+Ayacucho,Lucanas,Saisa,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ayacucho,Lucanas,Lucanas,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ayacucho,Parinacochas,Pullo,filoniano,informal_documentada,media,,
+Ayacucho,Parinacochas,Coracora,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ayacucho,Paucar del Sara Sara,Pausa,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ayacucho,Paucar del Sara Sara,Sara Sara,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ica,Nasca,Nasca,filoniano,informal_documentada,media,,
+Ica,Nasca,Vista Alegre,filoniano,informal_documentada,media,,
+Ica,Nasca,El Ingenio,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ica,Nasca,Changuillo,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ica,Palpa,Palpa,filoniano,informal_documentada,media,,
+Ica,Palpa,Rio Grande,filoniano,informal_documentada,media,,
+Ica,Palpa,Tibillo,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ica,Palpa,Santa Cruz,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
+Ica,Palpa,Llipata,filoniano,franja_metalogenetica,baja,,Inclusion dudosa; verificar
