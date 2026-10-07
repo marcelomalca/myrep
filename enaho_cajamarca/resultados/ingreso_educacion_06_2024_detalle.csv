@@ -1,6 +1,6 @@
 nivel_educativo,n_muestral,poblacion_expandida,ingreso_promedio,error_estandar,ic95_inf,ic95_sup,cv_pct,mediana,confiable
 Sin nivel,203,50409,374.5,38.2,299.8,449.3,10.2,269.8,sí
-Educación inicial,1,479,125.9,0.0,125.9,125.9,0.0,125.9,referencial
+Educación inicial,1,479,125.9,,,,,125.9,referencial
 Primaria incompleta,453,130155,802.8,114.4,578.6,1027.1,14.3,553.8,sí
 Primaria completa,444,145268,806.2,58.9,690.7,921.6,7.3,562.2,sí
 Secundaria incompleta,190,73373,755.7,56.4,645.1,866.2,7.5,521.3,sí

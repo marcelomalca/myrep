@@ -1,0 +1,14 @@
+nivel_educativo,n_muestral,poblacion_expandida,ingreso_promedio,error_estandar,ic95_inf,ic95_sup,cv_pct,mediana,confiable
+Sin nivel,906,43962,393.0,20.4,353.1,432.9,5.2,262.8,sí
+Educación inicial,2,176,295.7,130.9,39.2,552.2,44.3,125.9,referencial
+Primaria incompleta,2312,131561,638.1,37.0,565.5,710.6,5.8,437.8,sí
+Primaria completa,2157,141726,784.1,28.5,728.3,839.9,3.6,578.5,sí
+Secundaria incompleta,1042,80238,866.7,58.2,752.6,980.8,6.7,575.3,sí
+Secundaria completa,1877,156527,1078.9,32.5,1015.2,1142.6,3.0,861.5,sí
+Superior no universitaria incompleta,206,20156,1160.5,108.3,948.2,1372.9,9.3,799.9,sí
+Superior no universitaria completa,707,59868,1937.9,89.1,1763.3,2112.5,4.6,1600.3,sí
+Superior universitaria incompleta,225,20608,1115.7,86.2,946.8,1284.7,7.7,900.7,sí
+Superior universitaria completa,599,45284,3133.2,198.8,2743.5,3522.9,6.3,2763.6,sí
+Maestría / doctorado,174,11849,4927.2,323.4,4293.4,5561.0,6.6,4067.9,sí
+Básica especial,2,456,1350.1,,,,,1367.2,referencial
+Total,10211,712594,1142.5,41.9,1060.3,1224.7,3.7,702.1,sí

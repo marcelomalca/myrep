@@ -1,0 +1,7 @@
+nivel_educativo,n_muestral,poblacion_expandida,ingreso_promedio,error_estandar,ic95_inf,ic95_sup,cv_pct,mediana,confiable
+Primaria o menos,5377,317424,669.2,23.7,622.7,715.6,3.5,464.7,sí
+Secundaria,2919,236765,1007.0,32.6,943.0,1071.0,3.2,754.0,sí
+Superior no universitaria,913,80024,1742.1,72.8,1599.5,1884.7,4.2,1320.8,sí
+Superior universitaria,998,77740,2871.8,172.4,2533.8,3209.8,6.0,2464.6,sí
+Básica especial,2,456,1350.1,,,,,1367.2,referencial
+Total,10211,712594,1142.5,41.9,1060.3,1224.7,3.7,702.1,sí
