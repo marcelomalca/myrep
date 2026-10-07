@@ -63,6 +63,62 @@ Al combinar los cinco años, todos los niveles son confiables (CV < 10%) salvo
 "Educación inicial" (2 casos) y "Básica especial" (2 casos, ambos de 2023 y del
 mismo conglomerado), que siguen siendo solo referenciales.
 
+## Fay-Herriot (estimación de áreas pequeñas)
+
+```bash
+python fay_herriot.py                     # 2020-2024 combinados
+python fay_herriot.py --anios 2024        # un solo año (más contraste didáctico)
+python grafico_fay_herriot.py             # o --periodo 2024
+python validar_fay_herriot.py             # opcional: compara con samplics (pip install samplics)
+```
+
+### Idea
+
+El estimador directo usa solo la muestra del área. Cuando la muestra es chica, es
+muy impreciso. Fay-Herriot combina el directo con una predicción de un modelo de
+regresión ajustado sobre **todas** las áreas, y pondera según la precisión de cada una.
+
+Las áreas son **departamento × nivel educativo** (25 × 12 = 300). El modelo trabaja
+en logaritmos, porque los efectos de departamento y de educación son multiplicativos:
+
+| Nivel | Ecuación |
+|---|---|
+| Muestreo | `y_d = θ_d + e_d`, con `e_d ~ N(0, ψ_d)` y `y_d` = log del promedio directo |
+| Enlace | `θ_d = x_d'β + u_d`, con `u_d ~ N(0, σ²_u)` |
+| EBLUP | `θ̂_d = γ_d·y_d + (1 − γ_d)·x_d'β̂`, con `γ_d = σ²_u / (σ²_u + ψ_d)` |
+
+- **Covariables `x_d`:** constante + efectos fijos de departamento + efectos fijos de nivel educativo.
+  La predicción sintética de "Cajamarca × Maestría" es, entonces, el efecto Cajamarca por el efecto Maestría.
+  En una aplicación real se agregarían covariables externas (por ejemplo, del Censo 2017).
+- **Varianzas `ψ_d`:** FH supone que son conocidas, pero las áreas con 1 o 2 casos no tienen
+  varianza estimable. Se suavizan con una función generalizada de varianza (GVF),
+  `log ψ_d = a + b·log n_d`, ajustada con las áreas de al menos 30 casos. Por eso, en el gráfico de γ,
+  todas las áreas caen sobre una misma curva.
+- **σ²_u:** REML con Fisher scoring. **β:** mínimos cuadrados generalizados.
+- **Error:** MSE de Prasad-Rao (`g1 + g2 + 2·g3`). Las áreas sin muestra reciben solo la predicción sintética,
+  con MSE `σ²_u + g2`.
+- **Vuelta a soles:** `exp(θ̂ + MSE/2)`, una corrección de sesgo simple.
+- **Validación:** la implementación coincide con `samplics` (σ²_u, β, EBLUP y MSE iguales hasta ~1e-7).
+
+### Resultados – Cajamarca
+
+![Directo vs. Fay-Herriot, Cajamarca 2020-2024](resultados/fay_herriot_06_2020-2024_comparacion.png)
+
+![Peso del directo según tamaño de muestra](resultados/fay_herriot_06_2020-2024_gamma.png)
+
+Qué muestra el ejercicio:
+
+- **Áreas grandes** (primaria, secundaria): γ ≈ 0.8–0.9. FH casi no cambia el directo, pero reduce un poco el CV.
+- **Áreas chicas** ("Educación inicial" y "Básica especial", 2 casos cada una): γ ≈ 0.02. FH reemplaza el
+  directo por la predicción del modelo. Básica especial pasa de S/ 1,350 (2 casos) a S/ 473.
+- **Áreas atípicas:** en Cajamarca, los universitarios completos y con maestría ganan más de lo que predice el
+  modelo aditivo. FH los "jala" hacia la predicción sintética: de S/ 3,133 a S/ 2,878 y de S/ 4,927 a S/ 4,250.
+  Ese es el costo de Fay-Herriot: menos varianza a cambio de posible sesgo cuando el área no se parece al modelo.
+- **Con un solo año (2024)** el efecto es mucho mayor: γ baja a 0.2–0.7 y Básica especial (0 casos) se estima
+  solo con el modelo (S/ 608, CV 28%). Ver `resultados/fay_herriot_06_2024_*`.
+- **El CV de FH no incluye el error del modelo.** Un CV bajo en un área casi sintética (por ejemplo,
+  Educación inicial: 12.5%) dice que el modelo es preciso, no que sea correcto para esa área.
+
 ## Advertencias
 
 - 2020 fue un año de pandemia. Su ingreso promedio (S/ 1,025 en soles de 2024) es el más bajo del periodo y reduce un poco el promedio combinado; ver `*_por_anio.csv`.
