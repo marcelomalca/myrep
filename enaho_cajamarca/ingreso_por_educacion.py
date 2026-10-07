@@ -122,6 +122,8 @@ def tabla(df, base, categorias, columna):
         en_dominio = base if cat == "Total" else base & (df[columna] == cat)
         sub = df[en_dominio]
         if sub.empty:
+            filas.append({"nivel_educativo": cat, "n_muestral": 0, "poblacion_expandida": 0,
+                          "confiable": "sin casos"})
             continue
         media, ee = media_ponderada(df, en_dominio)
         cv = ee / media

@@ -10,6 +10,7 @@ del Perú (por defecto Cajamarca, ubigeo `06`) usando los microdatos de la
 pip install -r requirements.txt
 python ingreso_por_educacion.py                    # Cajamarca, 2024
 python ingreso_por_educacion.py --departamento 15  # otro departamento (ubigeo de 2 dígitos)
+python grafico_ingreso_educacion.py                # gráfico con los 12 niveles de p301a
 ```
 
 La primera ejecución descarga el módulo 05 (~17 MB comprimido) del
@@ -46,6 +47,14 @@ Se generan tres tablas:
 | **Total** | 2,128 | **1,218** | 1,096 – 1,339 | 721 |
 
 Todos los grupos tienen CV < 10%.
+
+### Detalle por los 12 niveles educativos de la ENAHO
+
+![Ingreso por nivel educativo, Cajamarca 2024](resultados/ingreso_educacion_06_2024_grafico.png)
+
+"Básica especial" no tiene casos entre los ocupados con ingreso de Cajamarca, y
+"Educación inicial" (1 caso) y "Superior no universitaria incompleta" (CV 19%)
+son solo referenciales.
 
 ## Advertencias
 
