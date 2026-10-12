@@ -1,2 +1,14 @@
 __pycache__/
 *.pyc
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.fls
+*.fdb_latexmk
+*.synctex.gz
