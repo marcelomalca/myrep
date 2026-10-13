@@ -64,7 +64,10 @@ verificación. A partir del campo de elementos principales se seleccionaron 1030
 yacimientos cuyo primer elemento principal es el oro (Au). Estos se agregaron por
 departamento, provincia y distrito usando los códigos de ubigeo del Instituto
 Nacional de Estadística e Informática (INEI) y se representaron en un mapa
-coroplético distrital elaborado en R. Los yacimientos de oro se distribuyen en 22
+coroplético distrital elaborado en R. Se describe además la procedencia de los
+datos: la base es compilada por la Dirección de Recursos Minerales y Energéticos
+de INGEMMET a partir de fuentes secundarias, y cada registro representa una mina,
+proyecto, prospecto u ocurrencia. Los yacimientos de oro se distribuyen en 22
 departamentos, 125 provincias y 358 distritos. Arequipa (15.4\,\%), Madre de Dios
 (14.1\,\%), La Libertad (10.2\,\%) y Puno (9.6\,\%) concentran casi la mitad del
 total, y la provincia de Tambopata reúne por sí sola 116 yacimientos. Se discuten
@@ -116,6 +119,155 @@ en formato GeoJSON, derivados de la cartografía del INEI, con 1834 polígonos
 \parencite{juaneladio-geojson}, y (b) la tabla de códigos de ubigeo del INEI con
 los nombres de departamentos, provincias y distritos, que incluye 1895 distritos
 \parencite{castagnetto-ubigeo}.
+
+\subsection{Procedencia de los datos}
+
+Esta sección describe cómo se generan los datos de la capa de yacimientos, según
+la documentación publicada por INGEMMET y el contenido de los propios registros.
+Comprender su origen es necesario para interpretar correctamente qué representa
+cada punto y qué no.
+
+\subsubsection{Institución responsable}
+
+La información es producida por INGEMMET, organismo técnico adscrito al sector
+Energía y Minas. Dentro de la institución, la base de datos de yacimientos fue
+desarrollada por el Programa de Metalogenia de la Dirección de Recursos
+Minerales y Energéticos (DRME) \parencite{huanacuni2010guia}. Esta base es el
+insumo del Mapa Metalogenético del Perú, cuya versión 2020 fue elaborada por el
+mismo equipo \parencite{acosta2020}. Su gestión informática se
+desarrolló junto con la Oficina de Sistemas de Información de INGEMMET a partir
+de 2007, en el denominado Módulo del Mapa Metalogenético
+\parencite{huanacuni2010cpg}. Los registros conservan el código del proyecto que
+los originó (\texttt{CD\_PROY}), que es el mismo para toda la capa, y los campos
+\texttt{RESPONS} y \texttt{REVISADO} identifican al profesional responsable y,
+cuando existe, al revisor de cada registro.
+
+\subsubsection{Forma de recolección}
+
+La base no proviene de un censo ni de una encuesta, sino de la
+\textit{compilación, actualización y validación} de información de fuentes
+secundarias \parencite{huanacuni2010cpg}. Según INGEMMET, las fuentes son los
+anuarios y reportes anuales del Ministerio de Energía y Minas, las memorias de
+compañías mineras, los boletines e informes técnicos del propio INGEMMET, los
+estudios de franjas metalogenéticas, los artículos de revistas especializadas en
+geología económica, las tesis universitarias y la prensa especializada del sector
+minero \parencite{huanacuni2010guia,ingemmet2026servicio}. En algunos
+yacimientos, la información se complementa con estudios de laboratorio de
+muestras de la litoteca institucional (descripciones petrográficas,
+mineragráficas y espectrales), aunque esto ocurre solo en ocho registros de toda
+la capa.
+
+INGEMMET clasifica la confiabilidad de la información según su fuente en tres
+niveles: (1) reportes oficiales, boletines, memorias de empresas, artículos
+científicos y tesis; (2) notas de la prensa especializada; y (3) comunicaciones
+verbales de profesionales del sector. Según INGEMMET, más del 90\,\% de los
+datos están validados y son de alta calidad, y el resto son datos referenciales
+de notas de prensa y comunicaciones verbales \parencite{ingemmet2026servicio}. En 2010 se indicaba que la base se
+actualizaba semestralmente \parencite{huanacuni2010cpg}. Además, INGEMMET invita a
+los usuarios a enviar observaciones y correcciones por correo electrónico
+\parencite{huanacuni2010guia}.
+
+\subsubsection{Unidad de observación}
+
+Cada registro de la capa es un \textit{punto} que representa la ubicación de una
+concentración mineral conocida: una mina, un proyecto, un prospecto o una
+ocurrencia. En algunos casos, el punto representa un distrito minero que agrupa
+varias unidades, como Orcopampa o Yanacocha \parencite{ingemmet2026servicio}. El
+término \textit{yacimiento}, tal como se usa en la capa y en este informe,
+abarca por lo tanto situaciones económicas muy distintas, que la base distingue
+en el campo \texttt{COD\_TIPO}. La Tabla~\ref{tab:tipos} resume la composición de
+los 1030 registros de oro analizados y las definiciones de INGEMMET.
+
+\begin{table}[htbp]
+\caption{Yacimientos de oro según tipo de registro}
+\label{tab:tipos}
+\centering
+\interlineadosencillo
+\begin{threeparttable}
+\small
+\begin{tabular}{@{}lrrp{8.2cm}@{}}
+\toprule
+Tipo & $n$ & \% & Definición de INGEMMET \\
+\midrule
+Ocurrencia & 361 & 35.0 & Concentración natural de minerales de interés
+económico cuya explotación no sería rentable bajo las condiciones
+prevalecientes. \\
+Mina & 315 & 30.6 & Mina activa donde se extrae mineral, o mina cerrada. \\
+Prospecto & 215 & 20.9 & Zona prospectada con resultados de interés
+económico que requieren estudios de mayor detalle para confirmarlo. \\
+Proyecto & 138 & 13.4 & Depósito en estado avanzado de exploración, con
+recursos reconocidos. \\
+Yacimiento & 1 & 0.1 & Sin definición publicada. \\
+\midrule
+Total & 1030 & 100.0 & \\
+\bottomrule
+\end{tabular}
+\vspace{6pt}
+\begin{tablenotes}[flushleft]
+\small
+\item \textit{Nota.} Tipo según el campo \texttt{COD\_TIPO}. Las definiciones
+se adaptaron de \textcite{huanacuni2010guia}. Elaboración propia a partir de datos
+de GEOCATMIN \parencite{ingemmet2026}.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+El tipo de depósito (\texttt{T\_YACIM}) sigue una clasificación de INGEMMET en
+11 tipos y 50 subtipos, adaptada de Niggli, Lindgren y Schneiderhöhn
+\parencite{huanacuni2010guia}. Entre los yacimientos de oro predominan los
+depósitos hidrotermales sin clasificación genética (tipo X; 435 registros, de
+los cuales 400 son vetas), los depósitos hidrotermales (tipo III; 314 registros,
+principalmente epitermales, orogénicos y relacionados con intrusivos) y los
+depósitos exóticos (tipo IX; 254 registros, de los cuales 241 son placeres); 23
+registros no tienen tipo asignado. Por último, el campo \texttt{ELE\_PRINC} lista
+los elementos económicos principales ``ordenados según su importancia''
+\parencite{ingemmet2026servicio}, lo que respalda el criterio de selección
+descrito más adelante.
+
+\subsubsection{Cobertura temporal}
+
+La capa no es una serie de tiempo ni corresponde a un año de referencia único.
+Es un inventario acumulado que se actualiza de forma continua, y cada consulta
+devuelve su estado en ese momento. Su antecedente directo es la base de
+operaciones y proyectos de oro de 2010, que reunía 1136 registros compilados
+hasta abril de ese año \parencite{huanacuni2010guia}. En la capa actual, la
+fecha de creación de los registros de oro (\texttt{CREATIONDATE}) va de
+noviembre de 2011 a agosto de 2026. El 74.8\,\% se creó en 2012 y el 15.5\,\%
+en 2021, lo que sugiere cargas masivas en esos años. Esta fecha corresponde a la
+incorporación del registro a la base actual, no necesariamente a la fecha de
+la información que contiene. La última edición (\texttt{EDITDATE}) es posterior
+a 2020 en 233 registros (22.6\,\%), y 218 registros (21.2\,\%) tienen una fecha
+de revisión (\texttt{FECHA\_REV}) entre 2021 y 2026. Los demás no han sido
+editados desde 2012--2016. En consecuencia, atributos que cambian en el tiempo,
+como el estado de la operación (\texttt{ESTADO}), reflejan la situación a la
+fecha de la última actualización de cada registro. La consulta para este
+informe se realizó el 12 de octubre de 2026.
+
+\subsubsection{Referencia espacial}
+
+La cobertura es nacional. Según la documentación, las ubicaciones se registran
+en coordenadas UTM con datum WGS84, en las zonas 17, 18 y 19
+\parencite{ingemmet2026servicio}; de los registros de oro, 571 están en la zona
+18, 324 en la 19 y 135 en la 17. El servicio entrega además las coordenadas en
+grados decimales (WGS84), que son las que se usaron en este trabajo. La altitud
+solo está registrada en 178 casos (17.3\,\%).
+
+\subsubsection{Calidad y completitud de los registros}
+
+La calidad de cada registro está codificada en el campo \texttt{CD\_CALIDAD}. La
+capa actual usa cuatro códigos (Calidad-A a Calidad-D), distintos de los tres
+niveles numéricos descritos en la documentación, y su equivalencia no está
+publicada. Entre los registros de oro, el 95.5\,\% tiene el código Calidad-B, 41
+tienen Calidad-C, 3 Calidad-D y 2 Calidad-A. Todos los registros están marcados
+como publicables (\texttt{REGISTRO}).
+
+Los campos de identificación, tipo, elementos y ubicación están casi completos,
+pero los campos descriptivos tienen una cobertura baja. Entre los registros de
+oro, el estado de la operación falta en el 57.2\,\% y la escala de producción
+minera (\texttt{CATEGORIA}) en el 75.0\,\%. Solo 47 registros tienen datos de
+recursos, 48 de reservas y 30 de producción. Por ello, este informe se limita a
+contar registros y no intenta estimar el tamaño ni la importancia económica de
+los yacimientos.
 
 \subsection{Herramientas}
 
@@ -404,8 +556,12 @@ Al interpretar estos resultados deben tenerse en cuenta varias limitaciones:
 \begin{enumerate}
   \item \textit{Número de registros frente a importancia económica.} Las tablas
   y el mapa cuentan registros de yacimientos, no su tamaño, producción ni
-  reservas. Un distrito con muchos yacimientos pequeños puede aparecer más
-  destacado que otro con un único yacimiento de gran escala.
+  reservas. Además, solo el 30.6\,\% de los registros de oro son minas; el resto
+  son ocurrencias (35.0\,\%), prospectos (20.9\,\%) y proyectos (13.4\,\%). Por
+  ejemplo, los 145 registros de Madre de Dios corresponden en su totalidad a
+  depósitos exóticos (placeres y aluviales), y la mitad de ellos (74) son
+  ocurrencias. Un distrito con muchas ocurrencias o yacimientos pequeños puede
+  aparecer más destacado que otro con un único yacimiento de gran escala.
   \item \textit{Efecto del tamaño de los distritos.} En un mapa coroplético, los
   distritos extensos, como los de Madre de Dios, tienen mayor peso visual que los
   distritos andinos pequeños con un número similar de yacimientos. Una
