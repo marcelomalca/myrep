@@ -1,0 +1,996 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE ECONOMÍA FINANCIERA — Plan de estudio integrado
+%
+%  Texto base:
+%    SA  — Saunders, Cornett y Erhemjamts, Financial Markets and
+%          Institutions (McGraw-Hill, 8.ª ed., 2022)
+%  Valoración de activos:
+%    CA  — Campbell, Financial Decisions and Markets (Princeton, 2017)
+%    CO  — Cochrane, Asset Pricing (Princeton, ed. revisada, 2005)
+%  Instituciones, banca e internacional:
+%    ME  — Mishkin y Eakins, Financial Markets and Institutions
+%          (Pearson, 10.ª ed. global, 2023)
+%    GTB — Greenbaum, Thakor y Boot, Contemporary Financial
+%          Intermediation (Academic Press, 4.ª ed., 2019)
+%    KO  — Krugman, Obstfeld y Melitz, Economía internacional
+%          (Pearson, 10.ª ed., 2016)
+%  Programas PUCP integrados: 1ECO06 (Introducción a las Finanzas),
+%    1FIN27 (Finanzas Internacionales), 1FIN31 (Regulación Financiera),
+%    1FIN32 (Temas en Finanzas 1), 1FIN09 (Teoría y Gestión de Portafolios);
+%    además, 1F0124 (Sistemas Financieros, Universidad del Pacífico).
+%
+%  Compilar con:  pdflatex EconomiaFinanciera.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+
+%------------------------------------------------------------------ colores ---
+% Gama de azules
+\definecolor{mhnavy}{RGB}{0,38,84}        % azul marino
+\definecolor{mhdeep}{RGB}{0,59,119}       % azul profundo
+\definecolor{mhblue}{RGB}{0,92,169}       % azul principal
+\definecolor{mhroyal}{RGB}{35,85,190}     % azul real
+\definecolor{mhcerulean}{RGB}{0,123,191}  % azul cerúleo
+\definecolor{mhcyan}{RGB}{0,150,199}      % azul cian
+\definecolor{mhsky}{RGB}{90,170,228}      % azul cielo
+\definecolor{mhsteel}{RGB}{70,110,155}    % azul acero
+\definecolor{mhslate}{RGB}{88,108,140}    % azul pizarra
+\definecolor{mhgraphite}{RGB}{45,60,85}   % azul grafito (texto secundario)
+\definecolor{mhice}{RGB}{210,229,247}     % azul hielo
+\definecolor{mhpale}{RGB}{235,243,252}    % azul pálido
+\definecolor{mhmist}{RGB}{246,250,255}    % azul bruma
+
+\colorlet{azulosc}{mhnavy}
+\colorlet{grisclaro}{mhpale}
+% Un azul distinto para cada libro
+\definecolor{colorSA}{RGB}{0,70,140}      % cobalto
+\definecolor{colorCA}{RGB}{0,120,190}     % cerúleo
+\definecolor{colorCO}{RGB}{0,135,165}     % azul petróleo
+\definecolor{colorME}{RGB}{40,70,170}     % azul real
+\definecolor{colorGTB}{RGB}{85,85,175}    % azul lavanda
+\definecolor{colorKO}{RGB}{25,110,215}    % azul brillante
+\definecolor{colorPUCP}{RGB}{85,105,135}  % azul pizarra
+
+\usepackage[colorlinks=true,linkcolor=mhnavy,urlcolor=mhblue]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{mhnavy}}{\thesection.}{0.6em}
+  {\textcolor{mhblue}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{mhblue}\titlerule[1.6pt]}\vspace{1.2pt}{\color{mhsky}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{mhblue}}{\thesubsection}{0.6em}
+  {\textcolor{mhsky}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{mhnavy}}
+  {}{\textcolor{mhcerulean}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{mhsky}\titlerule*[0.7em]{.}}\textcolor{mhblue}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{mhnavy}Sílabo de Economía Financiera}
+\rhead{\footnotesize\sffamily\color{mhblue}Saunders et al. $\cdot$ Campbell $\cdot$ Cochrane $\cdot$ Mishkin--Eakins $\cdot$ Greenbaum et al.}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{mhblue}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{mhblue}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{mhsky}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{mhblue}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{mhblue}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera azul marino y filas alternas en azul pálido
+\arrayrulecolor{mhblue}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{mhpale}}
+
+% Encabezados de párrafo en azul
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{mhblue}#1}}
+
+% Franja decorativa de azules
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {mhnavy,mhdeep,mhblue,mhroyal,mhcerulean,mhcyan,mhsky,mhice}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\SA}[1]{\etiqueta{colorSA}{SA}\nobreak\hspace{0.25em}\textcolor{colorSA}{#1}}
+\newcommand{\CA}[1]{\etiqueta{colorCA}{CA}\nobreak\hspace{0.25em}\textcolor{colorCA}{#1}}
+\newcommand{\CO}[1]{\etiqueta{colorCO}{CO}\nobreak\hspace{0.25em}\textcolor{colorCO}{#1}}
+\newcommand{\ME}[1]{\etiqueta{colorME}{ME}\nobreak\hspace{0.25em}\textcolor{colorME}{#1}}
+\newcommand{\GTB}[1]{\etiqueta{colorGTB}{GTB}\nobreak\hspace{0.25em}\textcolor{colorGTB}{#1}}
+\newcommand{\KO}[1]{\etiqueta{colorKO}{KO}\nobreak\hspace{0.25em}\textcolor{colorKO}{#1}}
+
+% Un tema: número en recuadro azul + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{mhblue}{\color{white}#1}}}%
+   {\color{mhnavy}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{mhsky}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{mhblue}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{mhroyal}{Profundización:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=mhpale, borderline west={2.5pt}{0pt}{mhsky},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{mhgraphite}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{mhslate}{Consulta:}{{\color{mhgraphite}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+% Artículos que no proceden de los programas (entran en las horas)
+\newcommand{\articulosB}[1]{\linealectura{mhcerulean}{Artículos:}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{mhgraphite}#1}}}
+
+% Encabezado de bloque: banda azul marino, franja de azules y recuadro de presentación
+\newcommand{\bloque}[2]{%
+  \clearpage
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=mhnavy, borderline west={7pt}{0pt}{mhsky},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\sffamily\Large\bfseries\color{white}#1}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=mhpale, borderline west={3pt}{0pt}{mhblue},
+      borderline south={0.6pt}{0pt}{mhsky},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{mhgraphite}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[mhnavy] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[mhsky] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de azules bajo la banda
+  \foreach \c [count=\i from 0] in {mhnavy,mhdeep,mhblue,mhroyal,mhcerulean,mhcyan,mhsky,mhice}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {mhice,mhsky,mhcyan,mhcerulean,mhroyal,mhblue,mhdeep,mhnavy}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.9cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Economía Financiera\par}
+\vspace{0.4cm}
+{\sffamily\Large\color{mhice} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{mhblue}\textcolor{mhsky}{\rule[0.5ex]{2.2cm}{0.6pt}}\quad Texto base\quad\textcolor{mhsky}{\rule[0.5ex]{2.2cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorSA}{SA} \quad {\color{mhnavy}Anthony Saunders, Marcia Millon Cornett y Otgontsetseg Erhemjamts}\par}
+{\normalsize \emph{\color{colorSA}Financial Markets and Institutions}\par}
+{\small\color{mhslate} McGraw-Hill, 8.ª edición, 2022 --- 25 capítulos\par}
+\vspace{0.6cm}
+{\sffamily\large\bfseries\color{mhblue}\textcolor{mhsky}{\rule[0.5ex]{2.2cm}{0.6pt}}\quad Valoración de activos\quad\textcolor{mhsky}{\rule[0.5ex]{2.2cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorCA}{CA} \quad {\color{mhnavy}John Y. Campbell}\par}
+{\normalsize \emph{\color{colorCA}Financial Decisions and Markets: A Course in Asset Pricing}\par}
+{\small\color{mhslate} Princeton University Press, 2017 --- 12 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorCO}{CO} \quad {\color{mhnavy}John H. Cochrane}\par}
+{\normalsize \emph{\color{colorCO}Asset Pricing}\par}
+{\small\color{mhslate} Princeton University Press, edición revisada, 2005 --- 21 capítulos\par}
+\vspace{0.6cm}
+{\sffamily\large\bfseries\color{mhblue}\textcolor{mhsky}{\rule[0.5ex]{1.2cm}{0.6pt}}\quad Instituciones, banca y finanzas internacionales\quad\textcolor{mhsky}{\rule[0.5ex]{1.2cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorME}{ME} \quad {\color{mhnavy}Frederic S. Mishkin y Stanley G. Eakins}\par}
+{\normalsize \emph{\color{colorME}Financial Markets and Institutions}\par}
+{\small\color{mhslate} Pearson, 10.ª edición global, 2023 --- 27 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorGTB}{GTB} \quad {\color{mhnavy}Stuart I. Greenbaum, Anjan V. Thakor y Arnoud W. A. Boot}\par}
+{\normalsize \emph{\color{colorGTB}Contemporary Financial Intermediation}\par}
+{\small\color{mhslate} Academic Press, 4.ª edición, 2019 --- 18 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorKO}{KO} \quad {\color{mhnavy}Paul R. Krugman, Maurice Obstfeld y Marc J. Melitz}\par}
+{\normalsize \emph{\color{colorKO}Economía internacional: teoría y política}\par}
+{\small\color{mhslate} Pearson, 10.ª edición, 2016 --- capítulos de finanzas internacionales\par}
+\vspace{0.2cm}
+{\large\color{mhnavy} Xavier Freixas y Jean-Charles Rochet\par}
+{\normalsize \emph{\color{mhsteel}Microeconomics of Banking}\par}
+{\small\color{mhslate} MIT Press, 1999 --- capítulos de teoría bancaria\par}
+\vspace{0.5cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de cinco programas de la PUCP\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{mhblue}{\normalsize\sffamily\bfseries\color{white} Ocho bloques temáticos --- unos 5 meses}\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{ocho bloques temáticos} y avanza de lo
+institucional a lo analítico y de vuelta a la política: primero el sistema
+financiero, las tasas de interés y los mercados con Saunders et al.; después
+la valoración de activos con Campbell y Cochrane, del portafolio de media y
+varianza al factor de descuento estocástico y las macrofinanzas; luego la
+banca, la regulación y las crisis; y, al final, las finanzas internacionales
+con énfasis en el Perú. Conviene cerrar cada bloque antes de abrir el
+siguiente.
+
+\medskip
+\noindent\destacado{Por qué un curso aparte.} El sílabo de macroeconomía deja
+fuera las finanzas, la banca y casi toda la macroeconomía internacional; de la
+política peruana solo trata la dolarización desde la política monetaria (su
+tema 13.7). Este plan llena ese vacío de forma acotada, con el foco puesto en
+la economía y no en la gestión de empresas o de inversiones.
+
+\medskip
+\noindent\destacado{Requisitos.} Del sílabo de microeconomía, la decisión bajo
+incertidumbre (Bloque 4) y el equilibrio general con mercados contingentes
+(Bloque 10); del de macroeconomía, el consumo intertemporal (Bloque 2), el
+modelo de Ramsey (Bloque 4) y el dinero (Bloque 8); del de econometría, el GMM
+(Bloque 9). El Bloque 1 puede empezarse sin ellos.
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorSA}{\textbf{Saunders et al.}} aporta la mecánica, con
+        ejemplos numéricos: valoración, duración, mercados e instrumentos,
+        balances bancarios y gestión de riesgos.
+  \item \textcolor{colorME}{\textbf{Mishkin y Eakins}} aporta la economía: de
+        qué dependen las tasas de interés, por qué existen los intermediarios,
+        por qué ocurren las crisis y cómo funciona el sistema financiero
+        internacional. Es el texto de Sistemas Financieros (Universidad del
+        Pacífico). En los Bloques 1, 2 y 6 cada tema se lee en uno de los dos,
+        según sea de mecánica o de economía, y el otro queda como consulta.
+  \item \textcolor{colorCA}{\textbf{Campbell}} es la lectura principal de
+        valoración de activos (Bloques 3 a 5): riguroso, breve y conectado con
+        la evidencia empírica.
+  \item \textcolor{colorCO}{\textbf{Cochrane}} es la referencia del enfoque del
+        factor de descuento estocástico y de su estimación por GMM. Se lee
+        \emph{después} de Campbell.
+  \item \textbf{Freixas y Rochet} dan la teoría microeconómica de la banca:
+        por qué existen los intermediarios, las corridas y la regulación
+        (Bloques 6 y 7). Se usa la edición en inglés de la carpeta de
+        macroeconomía, un escaneo completo sin capa de texto.
+  \item \textcolor{colorGTB}{\textbf{Greenbaum, Thakor y Boot}} cubren la
+        titulización, el contrato de depósito y la crisis de 2008 (temas 6.4 y
+        7.2); el resto queda como consulta.
+  \item \textcolor{colorKO}{\textbf{Krugman, Obstfeld y Melitz}}, junto con
+        las lecturas de 1FIN27, sostienen el Bloque 8.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Qué entra en las horas.} Las líneas \emph{Lecturas},
+\emph{Profundización}, \emph{Artículos} y \emph{Artículos (PUCP)} entran en el
+cómputo de horas; \emph{Artículos} son lecturas que no proceden de los
+programas.
+Las líneas \emph{Consulta} y \emph{Consulta (PUCP)} remiten a libros de la
+carpeta y a referencias de los programas que no entran (Anexo E).
+
+\medskip
+\noindent\destacado{Material excluido.} Quedan fuera las finanzas corporativas,
+la gestión de portafolios, la matemática financiera en tiempo continuo, la
+valoración de derivados y la gestión de riesgos con fines profesionales. El
+detalle está en el Anexo B.
+
+\medskip
+\noindent\destacado{Notación.} \SA{n} remite al capítulo $n$ de Saunders et al.,
+y \CA{n}, \CO{n}, \ME{n}, \GTB{n} y \KO{n}, al capítulo de los demás textos.
+Si solo entra parte de un capítulo se indican secciones: \CA{6.4} es la
+sección 4 del capítulo 6 de Campbell. Saunders et al., Mishkin y Eakins y
+Greenbaum et al.\ no numeran sus secciones, así que se citan por capítulo o
+apéndice (\SA{3A}). \emph{Consulta} remite a libros de la carpeta que no
+entran en el cómputo de horas (Anexo E).
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan: 200 horas distribuidas en \textbf{20 semanas de
+contenido}, que equivalen a \textbf{unos 5 meses de calendario}, a un ritmo de
+diez horas semanales.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón.
+La columna de horas es la que gobierna el reparto. Si hay semanas perdidas por
+feriados, viajes o imprevistos, el ajuste correcto es alargar el calendario,
+no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{mhnavy}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+1--2 & Bloque 1 --- El sistema financiero y las tasas de interés & 2 & 20 \\
+3--4 & Bloque 2 --- Mercados e instrumentos financieros & 2 & 20 \\
+5--6 & Bloque 3 --- Riesgo, portafolio y CAPM & 2 & 20 \\
+\rowcolor{mhice}\textbf{7--9} & \textbf{Bloque 4 --- El factor de descuento estocástico} & \textbf{3} & \textbf{30} \\
+\rowcolor{mhice}\textbf{10--12} & \textbf{Bloque 5 --- Valoración intertemporal y macrofinanzas} & \textbf{3} & \textbf{30} \\
+\rowcolor{mhice}\textbf{13--15} & \textbf{Bloque 6 --- Intermediación financiera y banca} & \textbf{3} & \textbf{30} \\
+\rowcolor{mhice}\textbf{16--18} & \textbf{Bloque 7 --- Regulación, crisis y estabilidad financiera} & \textbf{3} & \textbf{30} \\
+19--20 & Bloque 8 --- Finanzas internacionales & 2 & 20 \\
+\midrule
+\rowcolor{mhice}\multicolumn{2}{l}{\textbf{Total}} & \textbf{20} & \textbf{200} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana y una sesión de
+dos horas el sábado para ejercicios y datos.
+
+\medskip
+\noindent\destacado{El tramo largo.} Los Bloques 4 y 5 (semanas 7--12) son el
+núcleo analítico del plan y el punto donde el avance suele atascarse: el
+paso del CAPM al factor de descuento estocástico exige el equilibrio con
+mercados contingentes del sílabo de microeconomía.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 6, 12 y 18. Si en alguno de esos cortes se acumula más de una semana de
+retraso, se alarga el calendario y no se comprime el bloque siguiente.
+
+\subsection*{Detalle semana a semana}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{mhnavy}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & 1 & 1.1 Mercados e instituciones financieras; 1.2 Determinantes de las tasas de interés & 10 \\
+2  & 1 & 1.3 Tasas de interés y valoración: duración y convexidad; 1.4 Banco central, política monetaria y tasas & 10 \\
+\midrule
+3  & 2 & 2.1 Mercados de dinero y de bonos; 2.2 Mercado de acciones y eficiencia & 10 \\
+4  & 2 & 2.3 Hipotecas y titulización; 2.4 Derivados & 10 \\
+\midrule
+5  & 3 & 3.1 Decisión bajo incertidumbre (repaso); 3.2 Elección de portafolio de media y varianza & 10 \\
+6  & 3 & 3.3 CAPM, APT y modelos de factores & 10 \\
+\midrule
+7  & 4 & 4.1 La ecuación básica de valoración & 10 \\
+8  & 4 & 4.2 Mercados contingentes y ausencia de arbitraje; 4.3 Factor de descuento, betas y frontera & 10 \\
+9  & 4 & 4.4 GMM y pruebas de modelos de valoración & 10 \\
+\midrule
+10 & 5 & 5.1 Valor presente, eficiencia y predictibilidad; 5.2 Valoración basada en el consumo y sus enigmas & 10 \\
+11 & 5 & 5.3 Preferencias recursivas, riesgo de largo plazo y hábitos; 5.4 Valoración basada en la producción & 10 \\
+12 & 5 & 5.5 Estructura temporal de tasas; 5.6 Aplicación: tasas, precios de activos e IA & 10 \\
+\midrule
+13 & 6 & 6.1 Por qué existen los intermediarios; 6.2 Bancos e instituciones financieras & 10 \\
+14 & 6 & 6.3 Riesgos de las instituciones financieras; 6.4 Depósitos, corridas, titulización y banca en la sombra & 10 \\
+15 & 6 & 6.5 El sistema financiero peruano & 10 \\
+\midrule
+16 & 7 & 7.1 Regulación bancaria: de Basilea I a Basilea III & 10 \\
+17 & 7 & 7.2 Crisis financieras: anatomía e historia & 10 \\
+18 & 7 & 7.3 Prestamista de última instancia y política macroprudencial & 10 \\
+\midrule
+19 & 8 & 8.1 Tipo de cambio y paridades; 8.2 El sistema monetario internacional & 10 \\
+20 & 8 & 8.3 Crisis en economías emergentes; 8.4 Política monetaria y cambiaria en el Perú & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\bloque{Bloque 1 --- El sistema financiero y las tasas de interés --- 2 semanas}
+{Los conceptos de base de todo el plan: qué hacen los mercados y las
+instituciones financieras, de qué dependen las tasas de interés y cómo se
+valora un activo. Cubre las primeras semanas de 1ECO06 y de 1FIN32 y la
+Unidad 1 de Sistemas Financieros (Universidad del Pacífico).}
+
+\tema{1.1 Mercados e instituciones financieras}
+\lecturas{\ME{1--2}}
+\consultalib{\SA{1} \quad Cecchetti y Schoenholtz (2015), caps.~1--3}
+\nota{Mercados primarios y secundarios, de dinero y de capitales; el papel de
+los intermediarios y la globalización financiera. El apéndice de \SA{1} sobre
+la crisis de 2008, de consulta, adelanta el Bloque 7.}
+
+\tema{1.2 Determinantes de las tasas de interés}
+\lecturas{\ME{4--5}}
+\consultalib{\SA{2}}
+\nota{La teoría de fondos prestables, la prima por riesgo de impago, liquidez
+e inflación, y una primera mirada a la estructura temporal (que se formaliza
+en el tema 5.5).}
+
+\tema{1.3 Tasas de interés y valoración de activos: duración y convexidad}
+\lecturas{\SA{3} \quad \SA{3A--3B}}
+\consultalib{\ME{3} \quad Bodie, Kane y Marcus (2018), cap.~14}
+\nota{Valoración de bonos y acciones por flujos descontados, efecto de la
+madurez y del cupón, duración e inmunización.}
+
+\tema{1.4 Banco central, política monetaria y tasas de interés}
+\lecturas{\ME{9--10}}
+\consultalib{\SA{4} \quad Cecchetti y Schoenholtz (2015), caps.~15--18}
+\nota{Instrumentos de política monetaria y su efecto sobre las tasas de
+mercado. Enlaza con el Bloque 8 del sílabo de macroeconomía; la aplicación
+al Perú está en el tema 8.4.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Mercados e instrumentos financieros --- 2 semanas}
+{Un recorrido por los mercados con Saunders et al.: qué se negocia, quién
+participa y cómo se valora cada instrumento. Cubre 1FIN32 y la Unidad 3 de
+Sistemas Financieros.}
+
+\tema{2.1 Mercados de dinero y de bonos}
+\lecturas{\SA{5--6}}
+\consultalib{\ME{11--12} \quad Tuckman (2002), caps.~1--3}
+
+\tema{2.2 Mercado de acciones y eficiencia de los mercados}
+\lecturas{\SA{8} \quad \ME{6}}
+\consultalib{\ME{13} \quad Bodie, Kane y Marcus (2018), caps.~11--12}
+\nota{Hipótesis de mercados eficientes y sus anomalías; \SA{8B} explica los
+estudios de eventos.}
+
+\tema{2.3 Mercado hipotecario y titulización}
+\lecturas{\SA{7} \quad \SA{25}}
+\consultalib{\ME{14}}
+\nota{Los valores respaldados por hipotecas, protagonistas de la crisis de
+2008 (tema 7.2).}
+
+\tema{2.4 Derivados: futuros, opciones y \emph{swaps}}
+\lecturas{\SA{10} \quad \SA{24}}
+\consultalib{Hull (2021), caps.~1--2 \quad Bodie, Kane y Marcus (2018), caps.~20--23}
+\nota{Qué son y para qué los usan las instituciones financieras: cobertura de
+riesgos. La valoración de opciones en tiempo continuo queda fuera
+(\SA{10A} la resume).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Riesgo, portafolio y CAPM --- 2 semanas}
+{La teoría clásica de 1ECO06 y de 1FIN09 en la versión de Campbell. Supone el
+Bloque 4 del sílabo de microeconomía.}
+
+\tema{3.1 Decisión bajo incertidumbre y aversión al riesgo (repaso)}
+\consultalib{\CA{1}}
+\nota{Utilidad esperada, aversión absoluta y relativa al riesgo y dominancia
+estocástica, en el lenguaje de las finanzas. Repite el Bloque 4 del sílabo de
+microeconomía, que es requisito; por eso no suma horas.}
+
+\tema{3.2 Elección de portafolio de media y varianza}
+\lecturas{\CA{2}}
+\consultalib{Bodie, Kane y Marcus (2018), caps.~5--7}
+\nota{Diversificación, frontera eficiente, activo libre de riesgo y teorema de
+separación (Markowitz).}
+
+\tema{3.3 CAPM, APT y modelos de factores}
+\lecturas{\CA{3} \quad \SA{8A}}
+\apoyo{\CO{9.1--9.4}}
+\consultalib{Bodie, Kane y Marcus (2018), caps.~8--10 y 13}
+\nota{El CAPM y su evidencia, los factores de Fama--French y la teoría de
+valoración por arbitraje.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- El factor de descuento estocástico --- 3 semanas}
+{El enfoque moderno de la valoración de activos: un solo principio ---precio
+igual a la esperanza del pago descontado por el factor de descuento
+estocástico--- del que se derivan el CAPM, la ausencia de arbitraje y los
+modelos de factores. Supone el Bloque 10 del sílabo de microeconomía.}
+
+\tema{4.1 La ecuación básica de valoración}
+\lecturas{\CO{1--2}}
+\nota{El factor de descuento como tasa marginal de sustitución, la tasa libre
+de riesgo, la corrección por riesgo y el equilibrio general.}
+
+\tema{4.2 Mercados contingentes y ausencia de arbitraje}
+\lecturas{\CA{4.1--4.2} \quad \CO{3--4}}
+\nota{Probabilidades neutrales al riesgo, ley de un solo precio y existencia de
+un factor de descuento positivo.}
+
+\tema{4.3 Factor de descuento, betas y frontera de media y varianza}
+\lecturas{\CA{4.3} \quad \CO{5.1--5.2} \quad \CO{6.1--6.3}}
+\nota{La cota de Hansen--Jagannathan y la equivalencia entre factor de
+descuento, representación beta y frontera eficiente.}
+
+\tema{4.4 GMM y pruebas de modelos de valoración}
+\lecturas{\CA{4.4--4.5} \quad \CO{10} \quad \CO{12}}
+\articulosB{Hansen y Singleton (1982)}
+\consultalib{Cochrane (2005), caps.~11 y 13 \quad Campbell, Lo y MacKinlay (1997)}
+\nota{Estimación de ecuaciones de Euler por GMM, que inauguran Hansen y
+Singleton (1982), y regresiones de Fama--MacBeth.
+Aplica el Bloque 9 del sílabo de econometría. \CA{4.5} trata los límites al
+arbitraje.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Valoración intertemporal y macrofinanzas --- 3 semanas}
+{El puente entre la valoración de activos y la macroeconomía. Explica por qué
+los precios de los activos contienen información sobre las expectativas de
+crecimiento, y cierra con la aplicación a la inteligencia artificial.}
+
+\tema{5.1 Valor presente, eficiencia y predictibilidad de los retornos}
+\lecturas{\CA{5}}
+\apoyo{\CO{20.1}}
+\nota{La descomposición de Campbell--Shiller y la volatilidad de los precios
+de las acciones.}
+
+\tema{5.2 Valoración basada en el consumo y sus enigmas}
+\lecturas{\CA{6.1--6.3}}
+\apoyo{\CO{21.1}}
+\articulosB{Lucas (1978) \quad Mehra y Prescott (1985)}
+\nota{El enigma de la prima de riesgo, el de la tasa libre de riesgo y el de la
+volatilidad. Usa la ecuación de Euler del Bloque 2 del sílabo de
+macroeconomía. Lucas (1978) es el modelo de equilibrio del que parte la
+valoración basada en el consumo, y Mehra y Prescott (1985), el artículo que
+planteó el enigma de la prima de riesgo.}
+
+\tema{5.3 Preferencias recursivas, riesgo de largo plazo y hábitos}
+\lecturas{\CA{6.4--6.8}}
+\apoyo{\CO{21.2}}
+\nota{Epstein--Zin, riesgo de largo plazo, aversión a la ambigüedad y
+formación de hábitos.}
+
+\tema{5.4 Valoración basada en la producción}
+\lecturas{\CA{7}}
+\nota{Inversión con costos de ajuste, la $q$ de Tobin y el equilibrio general
+con producción. Enlaza con el modelo de Ramsey del sílabo de macroeconomía.}
+
+\tema{5.5 La estructura temporal de las tasas de interés}
+\lecturas{\CA{8.1--8.4} \quad \CO{19.1--19.3}}
+\consultalib{Bodie, Kane y Marcus (2018), cap.~15}
+\nota{Hipótesis de expectativas, primas por plazo y modelos afines.}
+
+\tema{5.6 Aplicación: tasas de interés, precios de activos e inteligencia artificial}
+\lecturas{Chow, Halperin y Mazlish (2023) \quad Van Nieuwerburgh (2026)}
+\nota{Más crecimiento esperado eleva las tasas reales (ecuación de Euler del
+tema 5.2); el primer trabajo usa esa relación para leer qué esperan los
+mercados de la IA. El segundo estima cuánto cuesta financiar la inversión en
+IA y qué rentabilidad necesita. Ambos están en el módulo G.6 del sílabo de
+macroeconomía. Son documentos recientes: conviene revisar la versión vigente
+antes de citarlos.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Intermediación financiera y banca --- 3 semanas}
+{Por qué existen los bancos, cómo gestionan sus riesgos y por qué son frágiles,
+con la teoría de Freixas y Rochet. Cierra con el sistema financiero peruano.
+Cubre la Unidad 4 de Sistemas Financieros y el primer tema de 1FIN31.}
+
+\tema{6.1 Por qué existen los intermediarios financieros}
+\lecturas{\ME{7} \quad Freixas y Rochet (1999), cap.~2}
+\articulosB{Diamond (1984)}
+\consultalib{\GTB{2--3} \quad Cecchetti y Schoenholtz (2015), cap.~11}
+\consulta{Freixas y Rochet (1999), cap.~1}
+\nota{Costos de transacción, información asimétrica, selección adversa y
+riesgo moral; la «especialidad» de los bancos (\SA{1}). Diamond (1984)
+explica al banco como monitor delegado.}
+
+\tema{6.2 Bancos e instituciones financieras: balances y desempeño}
+\lecturas{\SA{11--12}}
+\consultalib{\GTB{4} \quad Saunders et al.\ (2022), caps.~14--19}
+\nota{El balance de un banco comercial, el análisis de rentabilidad por el
+ROE y una mirada a las demás instituciones: seguros, fondos de inversión, de
+pensiones y empresas \emph{fintech}.}
+
+\tema{6.3 Riesgos de las instituciones financieras}
+\lecturas{\SA{20--23}}
+\consultalib{\GTB{5--7} \quad Freixas y Rochet (1999), cap.~8}
+\nota{Riesgo de crédito, de liquidez, de tasa de interés y de insolvencia, y su
+gestión dentro del balance: brecha de duración, colchones de liquidez y
+análisis de crédito.}
+
+\tema{6.4 Depósitos, corridas, titulización y banca en la sombra}
+\lecturas{\GTB{11--12} \quad Freixas y Rochet (1999), cap.~7}
+\articulosB{Diamond y Dybvig (1983)}
+\nota{El contrato de depósito, las corridas bancarias, el seguro de depósitos y
+la intermediación fuera del sistema bancario. Diamond y Dybvig (1983) es el
+modelo de referencia de las corridas; Freixas y Rochet lo extienden al riesgo
+sistémico y al mercado interbancario.}
+
+\tema{6.5 El sistema financiero peruano}
+\lecturas{BCRP, \emph{Reporte de Estabilidad Financiera} (edición más reciente)}
+\consultalib{Superintendencia de Banca, Seguros y AFP (SBS), estadísticas del sistema financiero}
+\nota{Estructura del sistema: banca múltiple, financieras, cajas municipales y
+rurales, AFP y seguros; concentración, dolarización del crédito y de los
+depósitos, y morosidad. Quién supervisa qué (la SBS y el BCRP) y cómo funciona
+el Fondo de Seguro de Depósitos. Conviene leerlo con los datos de la SBS a
+mano: aplica al caso peruano los Bloques 1, 2 y 6.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Regulación, crisis y estabilidad financiera --- 3 semanas}
+{Sigue el curso 1FIN31 (Regulación Financiera, P.~Collazos), que usa a Saunders
+y a Freixas y Rochet, y el bloque de crisis de 1FIN27.}
+
+\tema{7.1 Regulación bancaria: de Basilea I a Basilea III}
+\lecturas{\SA{13} \quad \SA{13E} \quad \ME{18} \quad Freixas y Rochet (1999), cap.~9}
+\articulos{Admati, DeMarzo, Hellwig y Pfleiderer (2011)}
+\articulosB{Holmström y Tirole (1997)}
+\consultalib{\GTB{15--16} \quad Hull (2015), caps.~15--16}
+\consulta{Dewatripont y Tirole (1994)}
+\nota{Por qué se regula a los bancos, el requerimiento de capital ponderado por
+riesgo y su evolución, y la intervención del supervisor (modelo de
+Dewatripont--Tirole). Holmström y Tirole (1997) muestran por qué el capital de
+los bancos limita el crédito a las empresas.}
+
+\tema{7.2 Crisis financieras: anatomía e historia}
+\lecturas{\ME{8} \quad \GTB{14} \quad Kindleberger y Aliber, caps.~1--2}
+\articulos{Kaminsky y Reinhart (1999) \quad Laeven y Valencia (2018)}
+\consultalib{Kindleberger y Aliber, caps.~3--9 y 13}
+\nota{El ciclo de expansión del crédito, burbuja y pánico; las crisis gemelas,
+bancarias y de balanza de pagos; la crisis de 2008.}
+
+\tema{7.3 Prestamista de última instancia y política macroprudencial}
+\lecturas{Kindleberger y Aliber, caps.~11--12}
+\articulos{Reinhart y Rogoff (2011) \quad Bernanke y Gertler (1995)}
+\articulosB{Lorenzoni (2008) \quad Bianchi (2011)}
+\consultalib{Jeanne y Korinek (2010) \quad Farhi y Werning (2016)}
+\nota{El canal del crédito y el acelerador financiero conectan este tema con el
+Bloque 15 del sílabo de macroeconomía (temas 15.4 y 15.5). Lorenzoni (2008) y
+Bianchi (2011) explican por qué hay sobreendeudamiento: cada deudor no
+internaliza el efecto de sus deudas sobre los precios de los activos que sirven
+de colateral. Es la justificación de la política macroprudencial, y Bianchi la
+desarrolla para economías emergentes con paradas súbitas.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Finanzas internacionales --- 2 semanas}
+{Sigue el curso 1FIN27 (Finanzas Internacionales, A.~Segura): sistema
+monetario internacional, crisis de economías emergentes y la política
+monetaria en una economía semidolarizada.}
+
+\tema{8.1 Tipo de cambio, paridad de tasas de interés y paridad del poder de compra}
+\lecturas{\SA{9} \quad \ME{15} \quad \KO{14--16}}
+
+\tema{8.2 El sistema monetario internacional y los regímenes cambiarios}
+\lecturas{\ME{16} \quad \KO{18--19}}
+\articulos{Obstfeld, Shambaugh y Taylor (2004) \quad Ilzetzki, Reinhart y Rogoff (2017)}
+\nota{El patrón oro, Bretton Woods, la flotación y el trilema.}
+
+\tema{8.3 Globalización financiera y crisis en economías emergentes}
+\lecturas{\ME{25} \quad \KO{20} \quad \KO{22}}
+\articulos{Calvo y Reinhart (2000) \quad Eichengreen, Hausmann y Panizza (2002)}
+\consultalib{Uribe y Schmitt-Grohé (2015), caps.~6, 10 y 11}
+\consulta{Eichengreen y Gupta (2016) \quad Rajan (2005)}
+\nota{Miedo a flotar, pecado original, paradas súbitas y deuda soberana.}
+\nota{Los capítulos de Uribe y Schmitt-Grohé siguen el borrador de marzo de 2015,
+como en los sílabos de macroeconomía y de economía internacional: el 11 es la
+deuda soberana, que en la edición publicada de 2017 es el capítulo 13.}
+
+\tema{8.4 Política monetaria y cambiaria en una economía semidolarizada: el Perú}
+\articulos{BCRP (2022) \quad Armas y Grippa (2006) \quad Rossini, Montoro y Luna (2020) \quad Morán (2017)}
+\consulta{Montoro, Pérez y Herrada (2020)}
+\consultalib{Rossini y Vega (2007) \quad Castillo, Pérez Forero y Tuesta (2011)}
+\nota{Metas de inflación con dolarización parcial, encajes, intervención
+cambiaria y \emph{swaps} del BCRP, y las medidas frente a la pandemia.}
+\nota{Rossini y Vega (2007) y Castillo, Pérez Forero y Tuesta (2011) estudian el
+mecanismo de transmisión en el Perú; los usa el curso de Política Monetaria del
+BCRP. El tema 13.7 del sílabo de macroeconomía ve la misma pregunta desde la
+teoría: metas de inflación con hojas de balance dolarizadas.}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+Capítulos de cada libro que entran en el plan y temas donde se leen. Lo que
+queda fuera se detalla en el Anexo B.
+
+\newcommand{\mapa}[2]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.1cm}X>{\raggedright\arraybackslash}p{3.8cm}}
+\toprule
+\rowcolor{mhnavy}\cab{Cap.} & \cab{Título} & \cab{Temas} \\
+\midrule
+#2
+\bottomrule
+\end{tabularx}
+}}
+
+\mapa{A.1 Saunders, Cornett y Erhemjamts, \emph{Financial Markets and Institutions} (texto base)}{%
+1 & Introduction & consulta (1.1) \\
+2 & Determinants of Interest Rates & consulta (1.2) \\
+3 & Interest Rates and Security Valuation (con apéndices 3A y 3B) & 1.3 \\
+4 & The Federal Reserve System, Monetary Policy, and Interest Rates & consulta (1.4) \\
+5--6 & Money Markets; Bond Markets & 2.1 \\
+7 & Mortgage Markets & 2.3 \\
+8 & Stock Markets (con apéndices 8A y 8B) & 2.2, 3.3 \\
+9 & Foreign Exchange Markets & 8.1 \\
+10 & Derivative Securities Markets & 2.4 \\
+11--12 & Commercial Banks; Financial Statements and Analysis & 6.2 \\
+13 & Regulation of Commercial Banks (con apéndice 13E) & 7.1 \\
+20--23 & Types of Risks; Managing Credit, Liquidity, Interest Rate and Insolvency Risk & 6.3 \\
+24 & Managing Risk off the Balance Sheet with Derivative Securities & 2.4 \\
+25 & Loan Sales and Securitization & 2.3 \\
+}
+
+\mapa{A.2 Campbell, \emph{Financial Decisions and Markets}}{%
+1 & Choice under Uncertainty & consulta (3.1) \\
+2 & Static Portfolio Choice & 3.2 \\
+3 & Static Equilibrium Asset Pricing & 3.3 \\
+4 & The Stochastic Discount Factor (4.1--4.5) & 4.2, 4.3, 4.4 \\
+5 & Present Value Relations & 5.1 \\
+6 & Consumption-Based Asset Pricing & 5.2, 5.3 \\
+7 & Production-Based Asset Pricing & 5.4 \\
+8 & Fixed-Income Securities (8.1--8.4) & 5.5 \\
+}
+
+\mapa{A.3 Cochrane, \emph{Asset Pricing}}{%
+1--2 & Consumption-Based Model and Overview; Applying the Basic Model & 4.1 \\
+3--4 & Contingent Claims Markets; The Discount Factor & 4.2 \\
+5--6 & Mean-Variance Frontier and Beta Representations; Relation between Discount Factors, Betas, and Mean-Variance Frontiers (selección) & 4.3 \\
+9 & Factor Pricing Models (9.1--9.4) & 3.3 \\
+10 & GMM in Explicit Discount Factor Models & 4.4 \\
+12 & Regression-Based Tests of Linear Factor Models & 4.4 \\
+19 & Term Structure of Interest Rates (19.1--19.3) & 5.5 \\
+20 & Expected Returns in the Time Series and Cross Section (20.1) & 5.1 \\
+21 & Equity Premium Puzzle and Consumption-Based Models & 5.2, 5.3 \\
+}
+
+\mapa{A.4 Mishkin y Eakins, \emph{Financial Markets and Institutions}}{%
+1--2 & Why Study Financial Markets and Institutions?; Overview of the Financial System & 1.1 \\
+3--5 & Interest Rates: Meaning, Changes, Risk and Term Structure & 1.2 (cap.~3, consulta en 1.3) \\
+6 & Are Financial Markets Efficient? & 2.2 \\
+7 & Why Do Financial Institutions Exist? & 6.1 \\
+8 & Why Do Financial Crises Occur? & 7.2 \\
+9--10 & Central Banks; Conduct of Monetary Policy & 1.4 \\
+11--14 & Money, Bond, Stock and Mortgage Markets & consulta (2.1--2.3) \\
+15--16 & The Foreign Exchange Market; The International Financial System & 8.1, 8.2 \\
+18 & Financial Regulation & 7.1 \\
+25 & Financial Crises in Emerging Market Economies & 8.3 \\
+}
+
+\mapa{A.5 Greenbaum, Thakor y Boot, \emph{Contemporary Financial Intermediation}}{%
+2--3 & The Nature and Variety of Financial Intermediation; The What, How, and Why of Financial Intermediaries & consulta (6.1) \\
+4 & Bank Risks & consulta (6.2) \\
+5--7 & Interest Rate Risk; Liquidity Risk; Spot Lending and Credit Risk & consulta (6.3) \\
+11--12 & Securitization; The Deposit Contract, Deposit Insurance, and Shadow Banking & 6.4 \\
+14 & The 2007--2009 Financial Crisis and Other Financial Crises & 7.2 \\
+15--16 & Objectives of Bank Regulation; Milestones in Banking Legislation and Regulatory Reform & consulta (7.1) \\
+}
+
+\mapa{A.6 Krugman, Obstfeld y Melitz, \emph{Economía internacional}}{%
+14 & Los tipos de cambio y el mercado de divisas: un enfoque de activos & 8.1 \\
+15 & El dinero, los tipos de interés y los tipos de cambio & 8.1 \\
+16 & El nivel de precios y el tipo de cambio a largo plazo & 8.1 \\
+18 & Los tipos de cambio fijos y la intervención en los mercados de divisas & 8.2 \\
+19 & Sistemas monetarios internacionales: una visión histórica & 8.2 \\
+20 & Globalización financiera: oportunidades y crisis & 8.3 \\
+22 & Países en desarrollo: crecimiento, crisis y reforma & 8.3 \\
+}
+
+\mapa{A.7 Freixas y Rochet, \emph{Microeconomics of Banking}}{%
+1 & Introduction & consulta (6.1) \\
+2 & The Role of Financial Intermediaries & 6.1 \\
+7 & Individual Bank Runs and Systemic Risk & 6.4 \\
+8 & Managing Risks in the Banking Firm & consulta (6.3) \\
+9 & The Regulation of Banks & 7.1 \\
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo B. Lo que no entra en el plan}
+\addcontentsline{toc}{section}{Anexo B. Lo que no entra en el plan}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.6cm}X}
+\toprule
+\rowcolor{mhnavy}\cab{Materia} & \cab{Capítulos y secciones} \\
+\midrule
+Otras instituciones financieras & \SA{14--19} (consulta en el tema 6.2); \ME{19--22}, \ME{26--27} \\
+Gestión de riesgos con fines profesionales & \ME{23--24}; \GTB{8--10}, \GTB{13}, \GTB{17--18} \\
+Valoración de activos avanzada & \CA{9--12} (portafolio intertemporal, finanzas de los hogares, información asimétrica y liquidez); \CO{7--8}, \CO{11}, \CO{13--18}; \CO{20.2--20.3} \\
+Macroeconomía abierta & \KO{13}, \KO{17}, \KO{21}; los capítulos de comercio internacional \\
+Materias de otros cursos & Finanzas corporativas, gestión de portafolios, matemática financiera en tiempo continuo y valoración de derivados. Ver Anexo D \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent La traducción de Freixas y Rochet de la carpeta (\emph{Economía
+bancaria}) es una imagen de solo 29 páginas; el plan usa en su lugar la edición
+en inglés de 1999 que está en la carpeta de macroeconomía, completa aunque sin
+capa de texto. Las presentaciones de regulación financiera
+(L01 a L13) también son imágenes sin texto (se revisaron L01 y L11).
+
+%------------------------------------------------------------------------------
+\section*{Anexo C. Programas utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas utilizados}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{6.0cm}X}
+\toprule
+\rowcolor{mhnavy}\cab{Programa} & \cab{Temas del plan} \\
+\midrule
+1ECO06, Introducción a las Finanzas (2025-2, A.~Segura) & Bloques 1 a 3 \\
+1FIN32, Temas en Finanzas 1: mercado de capitales (2025-2, P.~Bringas) & Bloques 1 y 2; 3.2, 3.3 \\
+1FIN09, Teoría y Gestión de Portafolios (2025-2, J.~Villavicencio) & Bloque 3; la gestión de portafolios, en el Anexo D.1 \\
+1FIN31, Regulación Financiera (2025-2, P.~Collazos) & 6.1, 6.4, 7.1 \\
+1FIN27, Finanzas Internacionales (2025-2, A.~Segura) & Bloques 7 y 8 \\
+1F0124, Sistemas Financieros (Universidad del Pacífico, 2022-2) & Bloques 1, 2 y 6; 1.4 \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Programas de la carpeta que no se usaron}, por pertenecer a
+finanzas de empresa o a métodos ya cubiertos: Análisis Financiero 1 (1FIN02),
+Finanzas Cuantitativas 1, 2 y Avanzadas (1FIN18, 1FIN04 y 1FIN25),
+Instrumentos Financieros (1FIN06), Activos Alternativos (1FIN19), Finanzas
+Corporativas 2 (FIN210), Microfinanzas (FIN220) y Plan de Negocios (GES235).
+Tópicos de Econometría Financiera (FIN222) ya está en el material opcional del
+sílabo de econometría. También se revisó el programa de Moneda y Banca de la
+Universidad Nacional de Cajamarca, que sigue a Mishkin.
+
+%------------------------------------------------------------------------------
+\section*{Anexo D. Material opcional}
+\addcontentsline{toc}{section}{Anexo D. Material opcional}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica
+el cronograma.
+
+\subsection*{D.1 Finanzas de empresa y gestión de portafolios}
+Berk y DeMarzo (2023); Bodie, Kane y Marcus (2018), partes V y VII; programas
+1FIN09 y FIN210.
+
+\subsection*{D.2 Valoración en tiempo continuo y derivados}
+Sigue los programas de Finanzas Cuantitativas (1FIN18, 1FIN04 y 1FIN25): Hull
+(2021); Back (2017); Duffie (2001); \CO{17--19}.
+
+\subsection*{D.3 Medición de riesgos y econometría financiera}
+Valor en riesgo, pérdida esperada y CoVaR: Hull (2015), caps.~12--14; Anexo D.1
+del sílabo de macroeconometría. Modelos de volatilidad: Bloque 9 de ese
+sílabo. Econometría de los mercados financieros: Campbell, Lo y MacKinlay
+(1997).
+
+\subsection*{D.4 Teoría de los mercados e instituciones desde los fundamentos}
+Para profundizar el Bloque 6 con modelos: Sussman (2023); LeRoy y Werner
+(2000); Hens y Rieger (2010), que añade finanzas conductuales.
+
+\subsection*{D.5 \emph{Fintech}, criptomonedas y microfinanzas}
+\SA{19}; el tema opcional de criptomonedas de 1FIN27; el programa FIN220
+(Microfinanzas).
+
+\subsection*{D.6 Proyecto aplicado con datos peruanos}
+No tiene horas asignadas; conviene hacerlo en las sesiones de los sábados de
+los Bloques 4 y 5.
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item \textbf{Curva de rendimiento.} Estimar la curva de los bonos soberanos en
+        soles con el modelo de Nelson y Siegel (1987), con datos del BCRP, y
+        leer su pendiente con la hipótesis de expectativas (tema 5.5).
+  \item \textbf{CAPM y factores.} Con retornos de acciones de la Bolsa de
+        Valores de Lima, estimar betas y aplicar regresiones de Fama y MacBeth
+        (1973) (temas 3.3 y 4.4).
+  \item \textbf{Ecuación de Euler.} Estimar por GMM la ecuación de Euler del
+        consumo con datos peruanos, a la Hansen y Singleton (tema 4.4).
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\section*{Anexo E. Referencias}
+\addcontentsline{toc}{section}{Anexo E. Referencias}
+
+\subsection*{E.1 Textos del plan}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Campbell, J. Y. (2017). \emph{Financial Decisions and Markets: A Course in Asset Pricing}. Princeton University Press.
+\item Cochrane, J. H. (2005). \emph{Asset Pricing}, ed. revisada. Princeton University Press.
+\item Freixas, X. y J.-C. Rochet (1999). \emph{Microeconomics of Banking}. MIT Press (carpeta de macroeconomía).
+\item Greenbaum, S. I., A. V. Thakor y A. W. A. Boot (2019). \emph{Contemporary Financial Intermediation}, 4.ª ed. Academic Press.
+\item Kindleberger, C. P. y R. Z. Aliber. \emph{Manías, pánicos y cracs: historia de las crisis financieras}. Versión de la carpeta, con epílogo 2010--2020.
+\item Krugman, P. R., M. Obstfeld y M. J. Melitz (2016). \emph{Economía internacional: teoría y política}, 10.ª ed. Pearson.
+\item Mishkin, F. S. y S. G. Eakins (2023). \emph{Financial Markets and Institutions}, 10.ª ed. global. Pearson.
+\item Saunders, A., M. M. Cornett y O. Erhemjamts (2022). \emph{Financial Markets and Institutions}, 8.ª ed. McGraw-Hill.
+\item BCRP. \emph{Reporte de Estabilidad Financiera}. Banco Central de Reserva del Perú, edición semestral más reciente.
+\end{itemize}
+}
+
+\subsection*{E.2 Libros de consulta de la carpeta (sin horas)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Back, K. E. (2017). \emph{Asset Pricing and Portfolio Choice Theory}, 2.ª ed. Oxford University Press.
+\item Berk, J. y P. DeMarzo (2023). \emph{Corporate Finance}, 6.ª ed. Pearson.
+\item Bodie, Z., A. Kane y A. J. Marcus (2018). \emph{Investments}, 11.ª ed. McGraw-Hill.
+\item Campbell, J. Y., A. W. Lo y A. C. MacKinlay (1997). \emph{The Econometrics of Financial Markets}. Princeton University Press (carpeta de econometría).
+\item Cecchetti, S. G. y K. L. Schoenholtz (2015). \emph{Money, Banking, and Financial Markets}, 4.ª ed. McGraw-Hill.
+\item Duffie, D. (2001). \emph{Dynamic Asset Pricing Theory}, 3.ª ed. Princeton University Press.
+\item Hens, T. y M. O. Rieger (2010). \emph{Financial Economics: A Concise Introduction to Classical and Behavioral Finance}. Springer.
+\item Hull, J. C. (2015). \emph{Risk Management and Financial Institutions}, 4.ª ed. Wiley.
+\item Hull, J. C. (2021). \emph{Options, Futures, and Other Derivatives}, 11.ª ed. Pearson.
+\item LeRoy, S. F. y J. Werner (2000). \emph{Principles of Financial Economics}. Versión preliminar de los autores.
+\item Sussman, O. (2023). \emph{The Economics of Financial Markets and Institutions: From First Principles}. Oxford University Press.
+\item Tuckman, B. (2002). \emph{Fixed Income Securities}, 2.ª ed. Wiley.
+\item Uribe, M. y S. Schmitt-Grohé (2015). \emph{Open Economy Macroeconomics}. Borrador del 17 de marzo de 2015; publicado por Princeton University Press, 2017 (carpeta de macroeconomía).
+\end{itemize}
+}
+
+\subsection*{E.3 Referencias tomadas de los programas}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Admati, A., P. DeMarzo, M. Hellwig y P. Pfleiderer (2011). Fallacies, Irrelevant Facts, and Myths in the Discussion of Capital Regulation: Why Bank Equity is Not Expensive. Rock Center for Corporate Governance, Stanford University, Working Paper 86.
+\item Armas, A. y F. Grippa (2006). Metas de inflación en una economía dolarizada: la experiencia del Perú. En A. Armas y A. Ize (eds.), \emph{Dolarización financiera: la agenda de política}. BCRP y FMI.
+\item BCRP (2022). Estabilidad monetaria: diseño e implementación de la política monetaria. Folleto institucional.
+\item Bernanke, B. y M. Gertler (1995). Inside the Black Box: The Credit Channel of Monetary Policy Transmission. NBER Working Paper 5146.
+\item Calvo, G. y C. Reinhart (2000). Fear of Floating. NBER Working Paper 7993.
+\item Dewatripont, M. y J. Tirole (1994). \emph{The Prudential Regulation of Banks}. MIT Press.
+\item Eichengreen, B. y P. Gupta (2016). Managing Sudden Stops. World Bank Policy Research Working Paper 7639.
+\item Eichengreen, B., R. Hausmann y U. Panizza (2002). Original Sin: The Pain, the Mystery and the Road to Redemption. Banco Interamericano de Desarrollo.
+\item Ilzetzki, E., C. Reinhart y K. Rogoff (2017). Exchange Arrangements Entering the 21st Century: Which Anchor Will Hold? NBER Working Paper 23134.
+\item Kaminsky, G. y C. Reinhart (1999). The Twin Crises: The Causes of Banking and Balance-of-Payments Problems. \emph{American Economic Review}, 89(3), 473--500.
+\item Laeven, L. y F. Valencia (2018). Systemic Banking Crises Revisited. IMF Working Paper 18/206.
+\item Montoro, C., F. Pérez y R. Herrada (2020). Medidas del BCRP frente a la pandemia del nuevo coronavirus. \emph{Revista Moneda}, 182, 10--18.
+\item Morán, M. (2017). El swap cambiario del BCRP: ¿qué es y cómo funciona? \emph{Revista Moneda}, 170, 8--15.
+\item Obstfeld, M., J. Shambaugh y A. Taylor (2004). The Trilemma in History: Tradeoffs among Exchange Rates, Monetary Policies and Capital Mobility. NBER Working Paper 10396.
+\item Rajan, R. (2005). Has Financial Development Made the World Riskier? NBER Working Paper 11728.
+\item Reinhart, C. y K. Rogoff (2011). From Financial Crash to Debt Crisis. \emph{American Economic Review}, 101(5), 1676--1706.
+\item Rossini, R., C. Montoro y M. Luna (2020). Desarrollo del mercado financiero y política monetaria: la experiencia peruana. \emph{Revista Estudios Económicos}, BCRP, 39, 9--20.
+\end{itemize}
+}
+
+\subsection*{E.4 Otras referencias}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Bianchi, J. (2011). Overborrowing and Systemic Externalities in the Business Cycle. \emph{American Economic Review}, 101(7), 3400--3426.
+\item Castillo, P., F. Pérez Forero y V. Tuesta (2011). Los mecanismos de transmisión de la política monetaria en el Perú. \emph{Revista Estudios Económicos}, BCRP, 21.
+\item Chow, T., B. Halperin y J. Z. Mazlish (2023). Transformative AI, Existential Risk, and Real Interest Rates. Documento de trabajo.
+\item Diamond, D. W. (1984). Financial Intermediation and Delegated Monitoring. \emph{Review of Economic Studies}, 51(3), 393--414.
+\item Diamond, D. W. y P. H. Dybvig (1983). Bank Runs, Deposit Insurance, and Liquidity. \emph{Journal of Political Economy}, 91(3), 401--419.
+\item Fama, E. F. y J. D. MacBeth (1973). Risk, Return, and Equilibrium: Empirical Tests. \emph{Journal of Political Economy}, 81(3), 607--636.
+\item Farhi, E. e I. Werning (2016). A Theory of Macroprudential Policies in the Presence of Nominal Rigidities. \emph{Econometrica}, 84(5), 1645--1704.
+\item Hansen, L. P. y K. J. Singleton (1982). Generalized Instrumental Variables Estimation of Nonlinear Rational Expectations Models. \emph{Econometrica}, 50(5), 1269--1286.
+\item Holmström, B. y J. Tirole (1997). Financial Intermediation, Loanable Funds, and the Real Sector. \emph{Quarterly Journal of Economics}, 112(3), 663--691.
+\item Jeanne, O. y A. Korinek (2010). Excessive Volatility in Capital Flows: A Pigouvian Taxation Approach. \emph{American Economic Review}, 100(2), 403--407.
+\item Lorenzoni, G. (2008). Inefficient Credit Booms. \emph{Review of Economic Studies}, 75(3), 809--833.
+\item Lucas, R. E. (1978). Asset Prices in an Exchange Economy. \emph{Econometrica}, 46(6), 1429--1445.
+\item Mehra, R. y E. C. Prescott (1985). The Equity Premium: A Puzzle. \emph{Journal of Monetary Economics}, 15(2), 145--161.
+\item Nelson, C. R. y A. F. Siegel (1987). Parsimonious Modeling of Yield Curves. \emph{Journal of Business}, 60(4), 473--489.
+\item Rossini, R. y M. Vega (2007). El mecanismo de transmisión de la política monetaria en un entorno de dolarización financiera: el caso del Perú entre 1996 y 2006. \emph{Revista Estudios Económicos}, BCRP, 14.
+\item Van Nieuwerburgh, S. (2026). Financing the AI Buildout. \emph{Brookings Papers on Economic Activity}; NBER Working Paper 35865.
+\end{itemize}
+}
+
+\vspace{1.2cm}
+\franjas[2pt]
+\begin{center}\small\color{mhslate}
+Plan de lectura de elaboración propia. Los títulos de los capítulos
+corresponden a las obras citadas y se reproducen únicamente con fines de
+referencia bibliográfica. La asignación de capítulos y secciones se basa en
+los índices de los libros de la carpeta; los temas de los cursos proceden de
+los programas citados en el Anexo C.
+\end{center}
+
+\end{document}
