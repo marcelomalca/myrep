@@ -1,0 +1,1338 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE ECONOMÍA MATEMÁTICA — Plan de estudio integrado
+%
+%  Textos base:
+%    CG  — Chávez y Gallardo, Álgebra lineal y optimización para el análisis
+%          económico (Fondo Editorial PUCP, 2026) — ejemplar físico; se cita
+%          por el índice de capítulos y secciones
+%    CT  — Carter, Foundations of Mathematical Economics (MIT Press, 2001)
+%    DF  — De la Fuente, Mathematical Methods and Models for Economists
+%          (Cambridge University Press, 2000)
+%  Optimización dinámica:
+%    KS  — Kamien y Schwartz, Dynamic Optimization (Elsevier, 2.ª ed., 1991)
+%    LR  — Lomelí y Rumbos, Métodos dinámicos en economía (ITAM)
+%    MS  — Meinsma y van der Schaft, A Course on Optimal Control (Springer, 2023)
+%    DP  — Sargent y Stachurski, Dynamic Programming, vol. I (2025)
+%    ST  — Stachurski, Economic Dynamics: Theory and Computation (MIT, 2.ª ed.)
+%    BL  — Bonifaz y Lama, Optimización dinámica y teoría económica (UP)
+%    LU  — Luenberger, Optimization by Vector Space Methods (Wiley, 1969)
+%    EL  — Elaydi, An Introduction to Difference Equations (Springer, 3.ª ed.)
+%  Programas PUCP integrados: MAT291 (Matemáticas para economistas),
+%    1ECO75 (Economía Matemática Intermedia), MAT693 (Concavidad y
+%    Optimización), MAT659 (Temas Avanzados en Economía Matemática) y
+%    MAT835 (Control Óptimo Estocástico); de referencia, MAT616 y MAT656.
+%
+%  Compilar con:  pdflatex EconomiaMatematica.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de violetas
+\definecolor{tonoOscuro}{RGB}{46,4,82}              % oscuro
+\definecolor{tonoProfundo}{RGB}{68,6,121}           % profundo
+\definecolor{tonoPrincipal}{RGB}{89,8,160}          % principal
+\definecolor{tonoA}{RGB}{138,25,179}                % variante cálida
+\definecolor{tonoB}{RGB}{75,15,179}                 % variante fría
+\definecolor{tonoC}{RGB}{56,21,193}                 % variante viva
+\definecolor{tonoClaro}{RGB}{162,95,221}            % claro
+\definecolor{tonoAcero}{RGB}{99,63,131}             % acero
+\definecolor{tonoPizarra}{RGB}{111,86,134}          % pizarra
+\definecolor{tonoGrafito}{RGB}{57,39,73}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{228,207,247}           % hielo
+\definecolor{tonoPalido}{RGB}{243,233,251}          % pálido
+\definecolor{tonoBruma}{RGB}{250,246,254}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorCG}{RGB}{36,15,138}
+\definecolor{colorCT}{RGB}{60,20,184}
+\definecolor{colorDF}{RGB}{63,18,161}
+\definecolor{colorKS}{RGB}{63,15,138}
+\definecolor{colorLR}{RGB}{95,20,184}
+\definecolor{colorMS}{RGB}{94,18,161}
+\definecolor{colorDP}{RGB}{90,15,138}
+\definecolor{colorST}{RGB}{131,20,184}
+\definecolor{colorBL}{RGB}{125,18,161}
+\definecolor{colorLU}{RGB}{116,15,138}
+\definecolor{colorEL}{RGB}{167,20,184}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Economía Matemática}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}Chávez--Gallardo $\cdot$ Carter $\cdot$ De la Fuente $\cdot$ Kamien--Schwartz}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\CG}[1]{\etiqueta{colorCG}{CG}\nobreak\hspace{0.25em}\textcolor{colorCG}{#1}}
+\newcommand{\CT}[1]{\etiqueta{colorCT}{CT}\nobreak\hspace{0.25em}\textcolor{colorCT}{#1}}
+\newcommand{\DF}[1]{\etiqueta{colorDF}{DF}\nobreak\hspace{0.25em}\textcolor{colorDF}{#1}}
+\newcommand{\KS}[1]{\etiqueta{colorKS}{KS}\nobreak\hspace{0.25em}\textcolor{colorKS}{#1}}
+\newcommand{\LR}[1]{\etiqueta{colorLR}{LR}\nobreak\hspace{0.25em}\textcolor{colorLR}{#1}}
+\newcommand{\MS}[1]{\etiqueta{colorMS}{MS}\nobreak\hspace{0.25em}\textcolor{colorMS}{#1}}
+\newcommand{\DP}[1]{\etiqueta{colorDP}{DP}\nobreak\hspace{0.25em}\textcolor{colorDP}{#1}}
+\newcommand{\ST}[1]{\etiqueta{colorST}{ST}\nobreak\hspace{0.25em}\textcolor{colorST}{#1}}
+\newcommand{\BL}[1]{\etiqueta{colorBL}{BL}\nobreak\hspace{0.25em}\textcolor{colorBL}{#1}}
+\newcommand{\LU}[1]{\etiqueta{colorLU}{LU}\nobreak\hspace{0.25em}\textcolor{colorLU}{#1}}
+\newcommand{\EL}[1]{\etiqueta{colorEL}{EL}\nobreak\hspace{0.25em}\textcolor{colorEL}{#1}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+% Encabezado de parte: banda a todo el ancho en el tono principal
+\newcommand{\parte}[1]{%
+  \clearpage
+  \phantomsection\addcontentsline{toc}{section}{\textbf{#1}}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPrincipal, halign=center, top=16pt, bottom=16pt,
+      borderline north={3pt}{0pt}{tonoClaro}, borderline south={3pt}{0pt}{tonoClaro},
+      before skip=0pt, after skip=0pt]
+    {\sffamily\LARGE\bfseries\color{white}#1}
+  \end{tcolorbox}\par\bigskip
+  \global\recienpartetrue}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Economía Matemática\par}
+\vspace{0.4cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos base\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorCG}{CG} \quad {\color{tonoOscuro}Jorge Chávez y Marcelo Gallardo}\par}
+{\normalsize \emph{\color{colorCG}Álgebra lineal y optimización para el análisis económico}\par}
+{\small\color{tonoPizarra} Fondo Editorial PUCP, 2026 --- 10 capítulos (ejemplar físico)\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorCT}{CT} \quad {\color{tonoOscuro}Michael Carter}\par}
+{\normalsize \emph{\color{colorCT}Foundations of Mathematical Economics}\par}
+{\small\color{tonoPizarra} The MIT Press, 2001 --- 6 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorDF}{DF} \quad {\color{tonoOscuro}Ángel de la Fuente}\par}
+{\normalsize \emph{\color{colorDF}Mathematical Methods and Models for Economists}\par}
+{\small\color{tonoPizarra} Cambridge University Press, 2000 --- 13 capítulos\par}
+\vspace{0.6cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Optimización dinámica\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorKS}{KS} \quad {\color{tonoOscuro}Morton I. Kamien y Nancy L. Schwartz}\par}
+{\normalsize \emph{\color{colorKS}Dynamic Optimization: The Calculus of Variations and Optimal Control in Economics and Management}\par}
+{\small\color{tonoPizarra} Elsevier, 2.ª edición, 1991 --- dos partes\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorLR}{LR} \quad {\color{tonoOscuro}Héctor Lomelí y Beatriz Rumbos}\par}
+{\normalsize \emph{\color{colorLR}Métodos dinámicos en economía}\par}
+{\small\color{tonoPizarra} ITAM, versión de la carpeta --- 14 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorDP}{DP} \quad {\color{tonoOscuro}Thomas J. Sargent y John Stachurski}\par}
+{\normalsize \emph{\color{colorDP}Dynamic Programming, Volume I: Finite States}\par}
+{\small\color{tonoPizarra} Versión de abril de 2025 --- 10 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorMS}{MS} \quad {\color{tonoOscuro}Gjerrit Meinsma y Arjan van der Schaft}\par}
+{\normalsize \emph{\color{colorMS}A Course on Optimal Control}\par}
+{\small\color{tonoPizarra} Springer, 2023 --- 5 capítulos y 2 apéndices\par}
+\vspace{0.5cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de siete programas de la PUCP\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Catorce bloques temáticos --- 8 meses}\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{catorce bloques temáticos}, agrupados en
+dos partes de peso parecido. La \textbf{Parte I} (Bloques 1 a 8) construye la
+matemática estática: lenguaje y orden, álgebra lineal, análisis en espacios
+métricos, puntos fijos, cálculo diferencial, convexidad y optimización con
+restricciones. La \textbf{Parte II} (Bloques 9 a 14) se dedica a la dinámica:
+ecuaciones diferenciales y en diferencias, cálculo de variaciones, control
+óptimo y programación dinámica, y cierra con aplicaciones y temas avanzados.
+Conviene cerrar cada bloque antes de abrir el siguiente.
+
+\medskip
+\noindent\destacado{Por qué un curso aparte.} Los sílabos de microeconomía y de
+macroeconomía no tienen pretramo matemático: suponen directamente este plan,
+que estudia estas herramientas a fondo. La Parte II desarrolla en particular el control óptimo, el
+cálculo de variaciones y la programación dinámica, que el sílabo de
+macroeconomía usa desde su Bloque 1 y lleva a nivel de posgrado en su
+Bloque 14, que se estudia antes de los modelos DSGE de su Bloque 12.
+
+\medskip
+\noindent\destacado{Relación con los demás sílabos.} Lo ideal es hacer este plan
+antes que los de microeconomía y macroeconomía, o al menos la Parte I antes
+del primero y la Parte II antes del segundo: los Bloques 9 y 10 antes de su
+tema 1.6, el Bloque 12 antes de su Bloque 4 y el Bloque 13 antes de su
+Bloque 14. El Bloque 14 del
+sílabo de macroeconomía da por conocido el análisis real del capítulo~3 de
+Stokey, Lucas y Prescott: los Bloques 3, 4 y 13 de este plan lo cubren. La
+teoría de juegos queda fuera porque ocupa los Bloques 6 y 7 del sílabo de
+microeconomía, y los métodos numéricos, porque corresponden a otro curso
+(Anexo B).
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorCG}{\textbf{Chávez y Gallardo}} es el texto base de la
+        Parte I: es el libro del curso MAT291 de la PUCP, que dictan sus
+        autores, y cubre el álgebra lineal, la topología, la convexidad y la
+        optimización estática. Se lee \emph{primero}.
+  \item \textcolor{colorCT}{\textbf{Carter}} es la profundización rigurosa de
+        la Parte I y la lectura principal de lo que Chávez y Gallardo no
+        tratan: órdenes, correspondencias, teoremas del máximo y de punto fijo,
+        teoremas de separación en general y estática comparativa monótona.
+  \item \textcolor{colorDF}{\textbf{De la Fuente}} aporta el cálculo
+        diferencial y la función implícita en la Parte I, y es el texto base de
+        los sistemas dinámicos y de las aplicaciones de la Parte II.
+  \item \textcolor{colorKS}{\textbf{Kamien y Schwartz}} es la referencia del
+        cálculo de variaciones y del control óptimo (Bloques 11 y 12);
+        \textcolor{colorLR}{\textbf{Lomelí y Rumbos}} y
+        \textcolor{colorBL}{\textbf{Bonifaz y Lama}} dan la versión en
+        castellano, con aplicaciones.
+  \item \textcolor{colorDP}{\textbf{Sargent y Stachurski}} es el texto
+        principal de la programación dinámica moderna (Bloques 13 y 14);
+        \textcolor{colorST}{\textbf{Stachurski}} lo extiende a espacios de
+        estado generales.
+  \item \textcolor{colorMS}{\textbf{Meinsma y van der Schaft}} conecta el
+        cálculo de variaciones, el principio del máximo y la ecuación de
+        Hamilton--Jacobi--Bellman, y cubre el control lineal-cuadrático.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Qué entra en las horas.} Las líneas \emph{Lecturas} y
+\emph{Profundización} entran en el cómputo de horas. Las líneas
+\emph{Consulta} y \emph{Consulta (PUCP)} remiten a libros de la carpeta y a
+referencias de los programas que no entran (Anexo E).
+
+\medskip
+\noindent\destacado{Sobre los ejercicios.} La matemática se aprende demostrando y
+resolviendo. De la Fuente trae más de doscientos problemas resueltos (su
+apéndice), Kamien y Schwartz cierran cada sección con ejercicios, y Sargent y
+Stachurski incluyen soluciones seleccionadas (su apéndice~C). Se recomienda
+reservar al menos tres de las diez horas semanales para ejercicios.
+
+\medskip
+\noindent\destacado{Notación.} \CG{n.m} remite a la sección $m$ del capítulo $n$
+de Chávez y Gallardo, según el índice del ejemplar físico; \CT{n.m}, \DF{n.m},
+\LR{n.m}, \MS{n.m}, \DP{n.m}, \ST{n.m}, \LU{n.m} y \EL{n.m}, a las secciones de
+los demás libros. De la Fuente subdivide sus secciones con letras: \DF{7.1c}
+es el apartado c de la sección 1 del capítulo 7. Kamien y Schwartz numeran
+las secciones dentro de cada parte: \KS{I.9} es la sección 9 de la Parte I
+(cálculo de variaciones) y \KS{II.3}, la sección 3 de la Parte II (control
+óptimo). Bonifaz y Lama numeran sus capítulos en romanos: \BL{III.2} es la
+sección 2 del capítulo III.
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan: 340 horas distribuidas en \textbf{34 semanas de
+contenido}, que equivalen a \textbf{8 meses de calendario}, a un ritmo de diez
+horas semanales.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón.
+La columna de horas es la que gobierna el reparto. Si hay semanas perdidas por
+feriados, viajes o imprevistos, el ajuste correcto es alargar el calendario,
+no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte I --- Fundamentos y optimización estática}}} \\
+1     & Bloque 1 --- Lenguaje matemático, conjuntos y orden & 1 & 10 \\
+2--4  & Bloque 2 --- Álgebra lineal & 3 & 30 \\
+5--6  & Bloque 3 --- Análisis en espacios métricos y normados & 2 & 20 \\
+7--8  & Bloque 4 --- Correspondencias, teorema del máximo y puntos fijos & 2 & 20 \\
+9--10 & Bloque 5 --- Cálculo diferencial en $\mathbb{R}^n$ & 2 & 20 \\
+11--12 & Bloque 6 --- Convexidad & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{13--15} & \textbf{Bloque 7 --- Optimización estática} & \textbf{3} & \textbf{30} \\
+16    & Bloque 8 --- Estática comparativa y aplicaciones microeconómicas & 1 & 10 \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte II --- Dinámica y optimización dinámica}}} \\
+17--18 & Bloque 9 --- Ecuaciones diferenciales y en diferencias & 2 & 20 \\
+19--20 & Bloque 10 --- Sistemas dinámicos multidimensionales & 2 & 20 \\
+21--23 & Bloque 11 --- Cálculo de variaciones & 3 & 30 \\
+\rowcolor{tonoHielo}\textbf{24--27} & \textbf{Bloque 12 --- Control óptimo} & \textbf{4} & \textbf{40} \\
+\rowcolor{tonoHielo}\textbf{28--31} & \textbf{Bloque 13 --- Programación dinámica} & \textbf{4} & \textbf{40} \\
+32--34 & Bloque 14 --- Aplicaciones y temas avanzados & 3 & 30 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{34} & \textbf{340} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana para teoría y
+una sesión de dos horas el sábado para ejercicios.
+
+\medskip
+\noindent\destacado{El reparto entre las dos partes.} La Parte I ocupa 16 semanas
+y la Parte II, 18. El peso de la segunda es deliberado: el control óptimo y la
+programación dinámica (Bloques 12 y 13, ocho semanas) son el núcleo del plan.
+
+\medskip
+\noindent\destacado{Los tramos difíciles.} Los Bloques 3 y 4 (semanas 5--8) son el
+primer salto de abstracción: espacios métricos, compacidad y teoremas de punto
+fijo. El segundo es el paso del control óptimo a la programación dinámica
+(semanas 27--29), donde el teorema de la aplicación contractiva del tema 3.4
+reaparece como herramienta central.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 8, 16 y 27. Si en alguno de esos cortes se acumula más de una semana de
+retraso, se alarga el calendario y no se comprime el bloque siguiente.
+
+\subsection*{Detalle semana a semana}
+
+{\small\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & 1 & 1.1 Lógica, conjuntos, funciones y números reales; 1.2 Relaciones, órdenes y retículos & 10 \\
+\midrule
+2  & 2 & 2.1 Espacios y subespacios vectoriales, bases y dimensión; 2.2 Transformaciones lineales & 10 \\
+3  & 2 & 2.3 Rango y sistemas de ecuaciones lineales; 2.4 Valores y vectores propios & 10 \\
+4  & 2 & 2.5 Matrices simétricas y formas cuadráticas & 10 \\
+\midrule
+5  & 3 & 3.1 Normas, distancias y aproximación; 3.2 Sucesiones y topología de $\mathbb{R}^n$; 3.3 Continuidad & 10 \\
+6  & 3 & 3.4 Completitud y teorema de la aplicación contractiva; 3.5 Compacidad, conexidad y teorema de Weierstrass & 10 \\
+\midrule
+7  & 4 & 4.1 Correspondencias y su continuidad; 4.2 El teorema del máximo & 10 \\
+8  & 4 & 4.3 Teoremas de punto fijo; 4.4 Funciones monótonas y supermodularidad & 10 \\
+\midrule
+9  & 5 & 5.1 Derivada, derivadas parciales y jacobiano; 5.2 Taylor y teorema de la función inversa & 10 \\
+10 & 5 & 5.3 Teorema de la función implícita y estática comparativa; 5.4 Funciones homogéneas & 10 \\
+\midrule
+11 & 6 & 6.1 Conjuntos convexos y conos; 6.2 Separación y lema de Farkas & 10 \\
+12 & 6 & 6.3 Funciones cóncavas y convexas; 6.4 Funciones cuasicóncavas y cuasiconvexas & 10 \\
+\midrule
+13 & 7 & 7.1 El problema general y el enfoque geométrico; 7.2 Optimización sin restricciones & 10 \\
+14 & 7 & 7.3 El problema de Lagrange; 7.4 El problema de Karush--Kuhn--Tucker: condiciones necesarias & 10 \\
+15 & 7 & 7.5 Condiciones suficientes, programación cóncava y lineal; 7.6 Dualidad y punto silla & 10 \\
+\midrule
+16 & 8 & 8.1 Teorema de la envolvente y estática comparativa; 8.2 Preferencias, utilidad y equilibrio general & 10 \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+{\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+17 & 9 & 9.1 Conceptos básicos, existencia y unicidad; 9.2 Ecuaciones diferenciales escalares & 10 \\
+18 & 9 & 9.3 Ecuaciones en diferencias escalares; 9.4 Ecuaciones en diferencias estocásticas & 10 \\
+\midrule
+19 & 10 & 10.1 Sistemas lineales continuos y discretos; 10.2 Sistemas no lineales en el plano & 10 \\
+20 & 10 & 10.3 Estabilidad y funciones de Liapunov; 10.4 Aplicaciones: IS-LM, previsión perfecta, Solow y OLG; 10.5 Transformada de Laplace & 10 \\
+\midrule
+21 & 11 & 11.1 La ecuación de Euler--Lagrange; 11.2 Segundo orden y restricciones integrales & 10 \\
+22 & 11 & 11.3 Transversalidad y extremos libres; 11.4 Horizonte infinito y diagramas de fase & 10 \\
+23 & 11 & 11.5 Esquinas y restricciones de desigualdad; 11.6 Optimización en espacios de funciones & 10 \\
+\midrule
+24 & 12 & 12.1 El principio del máximo; 12.2 Condiciones suficientes & 10 \\
+25 & 12 & 12.3 Condiciones terminales y varias variables; 12.4 Descuento y horizonte infinito & 10 \\
+26 & 12 & 12.5 Restricciones sobre controles y estados; 12.6 Saltos, existencia y formulaciones alternativas & 10 \\
+27 & 12 & 12.7 Control lineal-cuadrático y ecuación de Riccati; 12.8 Interpretación económica y aplicaciones & 10 \\
+\midrule
+28 & 13 & 13.1 Principio de optimalidad y ecuación de Bellman; 13.2 Horizonte infinito y contracciones & 10 \\
+29 & 13 & 13.3 Ecuación de Euler y métodos de solución; 13.4 Operadores, orden y puntos fijos & 10 \\
+30 & 13 & 13.5 Cadenas de Markov y procesos de decisión de Markov; 13.6 Parada óptima & 10 \\
+31 & 13 & 13.7 La ecuación de Hamilton--Jacobi--Bellman; 13.8 Espacios de estado generales & 10 \\
+\midrule
+32 & 14 & 14.1 Búsqueda de empleo; 14.2 Crecimiento óptimo en tiempo discreto y continuo & 10 \\
+33 & 14 & 14.3 Inversión con costos de ajuste; 14.4 Descuento estocástico y preferencias recursivas & 10 \\
+34 & 14 & 14.5 Procesos de decisión recursivos, robustez y ambigüedad; 14.6 Decisión en tiempo continuo & 10 \\
+\bottomrule
+\end{tabularx}
+}
+}
+
+%==============================================================================
+\parte{Parte I --- Fundamentos y optimización estática}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 1 --- Lenguaje matemático, conjuntos y orden --- 1 semana}
+{El lenguaje con el que está escrito todo lo demás: lógica, métodos de
+demostración, conjuntos y relaciones. Las relaciones de orden reaparecen en
+las preferencias (tema 8.2), en la estática comparativa monótona (tema 4.4) y
+en la programación dinámica (tema 13.4). Cubre el primer tema de MAT659.}
+
+\tema{1.1 Lógica, conjuntos, funciones y números reales}
+\lecturas{\DF{1.1--1.2} \quad \DF{1.4} \quad \DF{1.6}}
+\apoyo{\CT{1.1}}
+\consultalib{Corbae, Stinchcombe y Zeman (2009), caps.~1--3}
+\nota{Cuantificadores, implicación y métodos de prueba (directa, por
+contradicción, por inducción). La propiedad del supremo es la base de la
+completitud del tema 3.4.}
+
+\tema{1.2 Relaciones, órdenes y retículos}
+\lecturas{\CT{1.2} \quad \DF{1.3}}
+\consulta{Bridges y Mehta (1995)}
+\nota{Relaciones de equivalencia, órdenes parciales y débiles, retículos y el
+orden de Pareto. \CT{1.2.6} adelanta el problema de la agregación de
+preferencias.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Álgebra lineal --- 3 semanas}
+{Capítulos 1 a 3 de Chávez y Gallardo, con De la Fuente y Carter como
+profundización. Cubre el Módulo 1 de 1ECO75 (independencia lineal,
+sistemas, diagonalización y formas cuadráticas).}
+
+\tema{2.1 Espacios y subespacios vectoriales, bases y dimensión}
+\lecturas{\CG{1.1--1.3}}
+\apoyo{\DF{3.1} \quad \CT{1.4.1--1.4.2}}
+\consultalib{Simon y Blume (1994), caps.~10--11 y 27}
+
+\tema{2.2 Transformaciones lineales}
+\lecturas{\CG{1.4}}
+\apoyo{\DF{3.2--3.4} \quad \CT{3.1--3.3}}
+\nota{Núcleo, imagen e isomorfismos; las funciones lineales entre espacios
+normados y su norma (\DF{3.4}) se usan en el tema 5.1. \CT{3.3.2} introduce
+los hiperplanos del tema 6.2.}
+
+\tema{2.3 Rango y sistemas de ecuaciones lineales}
+\lecturas{\CG{2.1--2.3}}
+\apoyo{\CT{3.6}}
+\consultalib{Simon y Blume (1994), caps.~7--9}
+\nota{\CT{3.6.2} trata los sistemas de desigualdades lineales, preparación del
+lema de Farkas (tema 6.2); \CT{3.6.3--3.6.4} aplica la teoría a los modelos de
+insumo-producto y a las cadenas de Markov, que vuelven en el tema 13.5.}
+
+\tema{2.4 Valores y vectores propios}
+\lecturas{\CG{3.1--3.2}}
+\apoyo{\DF{3.5--3.6} \quad \CT{3.5.1--3.5.2}}
+\consultalib{Simon y Blume (1994), cap.~23}
+\nota{Semejanza de matrices y diagonalización. Es la herramienta con la que se
+resuelven los sistemas dinámicos lineales del tema 10.1.}
+
+\tema{2.5 Matrices simétricas y formas cuadráticas}
+\lecturas{\CG{3.3}}
+\apoyo{\CT{3.4} \quad \CT{3.5.3} \quad \DF{6}, apéndice (formas cuadráticas)}
+\consultalib{Simon y Blume (1994), cap.~16}
+\nota{Formas bilineales, productos internos y criterios de definición de una
+matriz. Son las condiciones de segundo orden de los Bloques 7 y 11.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Análisis en espacios métricos y normados --- 2 semanas}
+{El capítulo 4 de Chávez y Gallardo en $\mathbb{R}^n$ y su generalización a
+espacios métricos con De la Fuente y Carter. Cubre el Módulo 2 de 1ECO75.
+Es el análisis real que el sílabo de macroeconomía (tema 14.1) da por
+conocido al leer a Stokey, Lucas y Prescott.}
+
+\tema{3.1 Normas, distancias y aproximación}
+\lecturas{\CG{4.1--4.2} \quad \DF{2.1}}
+\apoyo{\CT{1.5}}
+\nota{Espacios métricos y normados; las normas equivalentes de \DF{2.10} se
+leen en el tema 3.5.}
+
+\tema{3.2 Sucesiones y topología de $\mathbb{R}^n$}
+\lecturas{\CG{4.3} \quad \DF{2.2--2.4}}
+\apoyo{\CT{1.3.1}}
+\nota{Convergencia, conjuntos abiertos y cerrados, interior, clausura y
+frontera.}
+
+\tema{3.3 Continuidad}
+\lecturas{\DF{2.5--2.6}}
+\apoyo{\CT{2.3.1--2.3.3}}
+\nota{Límites, continuidad, semicontinuidad y continuidad uniforme. El
+vocabulario de funciones de \CT{2.1.1--2.1.4} se consulta según haga falta.}
+
+\tema{3.4 Completitud y teorema de la aplicación contractiva}
+\lecturas{\DF{2.7}}
+\apoyo{\CT{1.3.2} \quad \ST{3.1--3.2}}
+\consultalib{Acemoglu (2009), secc.~6.3}
+\nota{Sucesiones de Cauchy, espacios completos y el teorema de Banach. Es la
+base de la programación dinámica en horizonte infinito (tema 13.2).}
+
+\tema{3.5 Compacidad, conexidad y teorema de Weierstrass}
+\lecturas{\DF{2.8--2.10}}
+\consultalib{Corbae, Stinchcombe y Zeman (2009), caps.~4 y 6 \quad Acemoglu (2009), apéndice A.1--A.4}
+\nota{Caracterizaciones de la compacidad y existencia de máximos de funciones
+continuas sobre compactos: el resultado de existencia del tema 7.1.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Correspondencias, teorema del máximo y puntos fijos --- 2 semanas}
+{Los «tres teoremas fundamentales de la economía matemática» que Carter
+destaca: el teorema del máximo, el de punto fijo de Brouwer y el del
+hiperplano separador (este último, en el tema 6.2). Aquí Carter es lectura
+principal. Cubre el segundo y el tercer tema de MAT659.}
+
+\tema{4.1 Correspondencias y su continuidad}
+\lecturas{\CT{2.1.5} \quad \CT{2.3.4} \quad \DF{2.11}}
+\consultalib{Acemoglu (2009), apéndice A.5}
+\nota{Hemicontinuidad superior e inferior y gráfica cerrada. Las
+correspondencias de demanda y de mejor respuesta son el ejemplo económico.}
+
+\tema{4.2 El teorema del máximo}
+\lecturas{\CT{2.3.5} \quad \DF{7.2a}}
+\consulta{Rockafellar y Wets (2009) \quad Royset (2020)}
+\nota{Continuidad de la función valor y hemicontinuidad superior de la
+correspondencia de maximizadores (Berge). La generalización a convergencia
+de conjuntos (hipertopologías) de MAT659 queda en el Anexo D.3.}
+
+\tema{4.3 Teoremas de punto fijo}
+\lecturas{\CT{2.4} \quad \DF{5.3}}
+\nota{Tarski, Banach y Brouwer, con Kakutani como extensión a
+correspondencias. Son los resultados de existencia del equilibrio general
+(sílabo de microeconomía, tema 9.3) y del equilibrio de Nash (tema 6.4 de ese
+sílabo).}
+
+\tema{4.4 Funciones monótonas, supermodularidad y teorema del máximo monótono}
+\lecturas{\CT{2.2}}
+\apoyo{\DP{2.2}}
+\consulta{Topkis (1998), caps.~2--3}
+\nota{Funciones supermodulares en retículos y soluciones óptimas crecientes:
+la estática comparativa sin derivadas que MAT659 desarrolla en su tercera
+parte. Se aplica en el tema 8.1. \DP{2.2} trata el orden puntual y la
+monotonía paramétrica que reaparecen en la programación dinámica.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Cálculo diferencial en $\mathbb{R}^n$ --- 2 semanas}
+{Chávez y Gallardo no dedican un capítulo al cálculo; aquí De la Fuente es el
+texto principal y Carter la profundización. Cubre la Sesión 2.4 de 1ECO75 y
+las series de Taylor de su sumilla.}
+
+\tema{5.1 Derivada, derivadas parciales y jacobiano}
+\lecturas{\DF{4.1--4.3}}
+\apoyo{\CT{4.1--4.3}}
+\consultalib{Simon y Blume (1994), caps.~14 y 30}
+\nota{La derivada como aproximación lineal (Fréchet), derivadas direccionales
+y teorema del valor medio.}
+
+\tema{5.2 Diferenciabilidad continua, Taylor y teorema de la función inversa}
+\lecturas{\DF{4.4}}
+\apoyo{\CT{4.4} \quad \CT{4.5.1}}
+\consultalib{Bonifaz y Winkelried (2003), cap.~III}
+
+\tema{5.3 Teorema de la función implícita y estática comparativa}
+\lecturas{\DF{5.1--5.2}}
+\apoyo{\CT{4.5.2} \quad \CT{6.3}}
+\consultalib{Simon y Blume (1994), cap.~15}
+\nota{Modelos lineales, derivadas de funciones implícitas y estática
+comparativa de modelos de equilibrio.}
+
+\tema{5.4 Funciones homogéneas y homotéticas}
+\lecturas{\DF{4.5}}
+\apoyo{\CT{3.8} \quad \CT{4.6.2}}
+\consultalib{Simon y Blume (1994), cap.~20}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Convexidad --- 2 semanas}
+{Capítulos 5 y 6 de Chávez y Gallardo. Cubre las primeras unidades de MAT693
+(conjuntos convexos, separación, concavidad generalizada) y las dos primeras
+semanas de MAT291.}
+
+\tema{6.1 Conjuntos convexos y conos}
+\lecturas{\CG{5.1} \quad \DF{6.1a--c}}
+\apoyo{\CT{1.4.3--1.4.5}}
+\consultalib{Boyd y Vandenberghe (2004), cap.~2}
+\nota{Conjuntos afines, combinaciones y envolturas convexas, conos convexos e
+interior relativo.}
+
+\tema{6.2 Separación de conjuntos convexos y lema de Farkas}
+\lecturas{\CG{5.2--5.3} \quad \DF{6.1d}}
+\apoyo{\CT{3.9} (hasta 3.9.3)}
+\nota{Hiperplanos separadores y de soporte, el teorema de Hahn--Banach y los
+teoremas de la alternativa. El lema de Farkas es la pieza que justifica las
+condiciones de Kuhn--Tucker (tema 7.4).}
+
+\tema{6.3 Funciones cóncavas y convexas}
+\lecturas{\CG{6.1--6.2} \quad \DF{6.2}}
+\apoyo{\CT{3.7.1} \quad \CT{4.6.1}}
+\consultalib{Boyd y Vandenberghe (2004), cap.~3}
+\nota{Caracterizaciones con el epígrafo, la derivada y el hessiano.}
+
+\tema{6.4 Funciones cuasicóncavas y cuasiconvexas}
+\lecturas{\CG{6.3} \quad \DF{6.3}}
+\apoyo{\CT{3.7.2--3.7.3}}
+\consultalib{Simon y Blume (1994), cap.~21}
+\nota{La cuasiconcavidad es la traducción matemática de las preferencias
+convexas. \CT{3.7.3} da los teoremas del máximo bajo convexidad.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Optimización estática --- 3 semanas}
+{Capítulos 7 a 9 de Chávez y Gallardo, el núcleo de MAT291 (Lagrange y
+Karush--Kuhn--Tucker), del Módulo 3 de 1ECO75 y de las unidades centrales de
+MAT693.}
+
+\tema{7.1 El problema general y el enfoque geométrico}
+\lecturas{\CG{7.1--7.2}}
+\apoyo{\CT{5.1}}
+\nota{Existencia (Weierstrass, tema 3.5), máximos locales y globales y
+optimización sobre un conjunto convexo (\DF{7.1a}).}
+
+\tema{7.2 Optimización sin restricciones: soluciones interiores}
+\lecturas{\CG{7.3}}
+\apoyo{\CT{5.2}}
+\consultalib{Simon y Blume (1994), cap.~17}
+\nota{Condiciones de primer y segundo orden; las formas cuadráticas del tema
+2.5 deciden la naturaleza del punto crítico.}
+
+\tema{7.3 El problema de Lagrange}
+\lecturas{\CG{8.1--8.2} \quad \DF{7.1b}}
+\apoyo{\CT{5.3}}
+\consultalib{Simon y Blume (1994), caps.~18--19}
+\nota{Carter da cuatro enfoques del multiplicador (perturbación, geométrico,
+función implícita y lagrangiano) y su lectura como precio sombra
+(\CT{5.3.5}).}
+
+\tema{7.4 El problema de Karush--Kuhn--Tucker: condiciones necesarias}
+\lecturas{\CG{9.1} \quad \CG{9.3} \quad \DF{7.1c}}
+\apoyo{\CT{5.4.1--5.4.2}}
+\nota{El problema mixto, las condiciones de no negatividad y las
+calificaciones de las restricciones.}
+
+\tema{7.5 Condiciones suficientes, programación cóncava y programación lineal}
+\lecturas{\CG{9.2} \quad \DF{7.1d}}
+\apoyo{\CT{5.4.3--5.4.5}}
+\nota{Suficiencia bajo concavidad y cuasiconcavidad; programación cóncava sin
+diferenciabilidad.}
+
+\tema{7.6 Dualidad lagrangiana y punto silla}
+\lecturas{\CT{3.9.2} \quad \CT{3.7.4}}
+\apoyo{\LU{8.1--8.6}}
+\consultalib{Boyd y Vandenberghe (2004), cap.~5}
+\nota{Teoremas minimax, punto silla del lagrangiano y dualidad en espacios
+vectoriales (Luenberger). Es la unidad e de MAT693 y la puerta al
+tratamiento funcional del tema 11.6.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Estática comparativa y aplicaciones microeconómicas --- 1 semana}
+{El cierre de la Parte I: cómo cambia la solución de un problema de
+optimización cuando cambian los parámetros, y la aplicación a la teoría del
+consumidor. Capítulo 6 de Carter y capítulo 10 de Chávez y Gallardo.}
+
+\tema{8.1 Teorema de la envolvente y estática comparativa}
+\lecturas{\CG{8.3} \quad \CT{6.1--6.2} \quad \DF{7.2b--c}}
+\nota{Tres enfoques: preferencia revelada, función valor (envolvente) y
+monotonía (que aplica el tema 4.4). Es la unidad f de MAT693 y la
+herramienta de la dualidad del Bloque 2 del sílabo de microeconomía.}
+
+\tema{8.2 Preferencias, utilidad y equilibrio general}
+\lecturas{\CG{10.1--10.3} \quad \DF{8.1--8.3}}
+\apoyo{\CT{1.6}}
+\nota{Representación de preferencias por funciones de utilidad, demanda y
+existencia del equilibrio walrasiano con los teoremas de punto fijo del
+tema 4.3. Se lee como aplicación de la matemática: el desarrollo económico
+está en los Bloques 1, 2 y 9 del sílabo de microeconomía.}
+
+%==============================================================================
+\parte{Parte II --- Dinámica y optimización dinámica}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Ecuaciones diferenciales y en diferencias --- 2 semanas}
+{Primera parte de la dinámica de MAT291 (temas d y e) y de la sumilla de
+1ECO75. De la Fuente da la teoría y Lomelí y Rumbos, la versión en castellano
+con aplicaciones.}
+
+\tema{9.1 Conceptos básicos, existencia y unicidad}
+\lecturas{\DF{9.1--9.2} \quad \DF{9.6}}
+\consultalib{Acemoglu (2009), apéndice B}
+\nota{Problemas de valor inicial y de frontera, flujo de un sistema autónomo,
+estados estacionarios y estabilidad; existencia local, soluciones maximales y
+dependencia de las condiciones iniciales.}
+
+\tema{9.2 Ecuaciones diferenciales escalares}
+\lecturas{\DF{9.3} \quad \DF{9.5} \quad \LR{2--3}}
+\consultalib{Bonifaz y Winkelried (2003), cap.~IV \quad Simon y Blume (1994), cap.~24}
+\nota{Ecuaciones lineales de coeficientes constantes, ecuaciones no lineales
+autónomas, diagramas de fase de una variable y dinámica comparativa.}
+
+\tema{9.3 Ecuaciones en diferencias escalares}
+\lecturas{\DF{9.4} \quad \LR{6}}
+\apoyo{\EL{1.1--1.3} \quad \EL{1.5--1.7}}
+\consultalib{Bonifaz y Winkelried (2003), cap.~VI}
+\nota{Estabilidad de puntos fijos, ciclos, bifurcaciones y caos en el modelo
+logístico.}
+
+\tema{9.4 Ecuaciones en diferencias estocásticas y expectativas racionales}
+\lecturas{\LR{9}}
+\nota{Iteración hacia adelante, burbujas y forma reducida: la entrada a los
+modelos con expectativas racionales del Bloque 9 del sílabo de
+macroeconomía.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 10 --- Sistemas dinámicos multidimensionales --- 2 semanas}
+{Sistemas lineales y no lineales, diagramas de fase en el plano y
+estabilidad. Cubre las Sesiones 4.1 y 4.2 de 1ECO75 y el tema de sistemas
+dinámicos de MAT291.}
+
+\tema{10.1 Sistemas lineales en tiempo continuo y discreto}
+\lecturas{\DF{10.1--10.2} \quad \LR{4} \quad \LR{7}}
+\apoyo{\EL{3.1--3.3}}
+\consultalib{Simon y Blume (1994), cap.~25}
+\nota{Solución por diagonalización (tema 2.4), valores propios complejos y
+repetidos, espacios estable e inestable.}
+
+\tema{10.2 Sistemas no lineales en el plano: diagramas de fase y linealización}
+\lecturas{\DF{10.3} \quad \LR{5}}
+\nota{Clasificación de los puntos de equilibrio de los sistemas $2\times 2$ y
+análisis de puntos silla, la estructura de casi todos los modelos
+macroeconómicos con previsión perfecta.}
+
+\tema{10.3 Estabilidad y funciones de Liapunov}
+\lecturas{\MS{B.1--B.4} \quad \LR{8}}
+\apoyo{\EL{4.1--4.6}}
+\nota{Definiciones de estabilidad, el método directo de Liapunov y el
+principio de invariancia de LaSalle. \LR{8} lo aplica a la estabilidad del
+equilibrio walrasiano (el tâtonnement).}
+
+\tema{10.4 Aplicaciones: IS-LM dinámico, previsión perfecta, Solow y OLG}
+\lecturas{\DF{11.1--11.4}}
+\apoyo{\ST{4.1}}
+\nota{Dornbusch, un modelo de precios de acciones, Solow y Diamond. \ST{4.1}
+añade la estabilidad global y la equivalencia de dinámicas por conjugación.}
+
+\tema{10.5 La transformada de Laplace y la dinámica de transición}
+\lecturas{Heijdra (2017), apéndice matemático, secc.~A.6}
+\nota{Definición y propiedades de la transformada de Laplace, y su uso para
+resolver sistemas lineales de ecuaciones diferenciales con choques que cambian
+en el tiempo. Es la técnica con que Heijdra obtiene la dinámica de transición
+en el modelo de Ramsey (cap.~13), que el sílabo de macroeconomía lee en los
+temas 4.7 y 4.8.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 11 --- Cálculo de variaciones --- 3 semanas}
+{El tema f de MAT291 y la sumilla de 1ECO75 (ecuación de Euler--Lagrange y
+condiciones de transversalidad). De la Fuente no lo trata; el texto base es
+la Parte I de Kamien y Schwartz, con Meinsma y van der Schaft para la
+teoría y Lomelí y Rumbos y Bonifaz y Lama para las aplicaciones.}
+
+\tema{11.1 El problema más simple y la ecuación de Euler--Lagrange}
+\lecturas{\KS{I.1--I.5} \quad \LR{11.1--11.2}}
+\apoyo{\MS{1.1--1.3} \quad \BL{I} \quad \BL{II.1}}
+\consulta{Cerdá (2001) \quad Chiang (1992)}
+\nota{Derivación por variaciones admisibles, casos especiales de la ecuación de
+Euler, la identidad de Beltrami y la extracción óptima de recursos.}
+
+\tema{11.2 Condiciones de segundo orden y restricciones integrales}
+\lecturas{\KS{I.6--I.7} \quad \LR{11.5}}
+\apoyo{\MS{1.6--1.7} \quad \BL{II.3}}
+\nota{Condición de Legendre, suficiencia bajo concavidad y el problema
+isoperimétrico.}
+
+\tema{11.3 Condiciones de transversalidad y extremos libres}
+\lecturas{\KS{I.8--I.12} \quad \LR{11.4} \quad \LR{11.6}}
+\apoyo{\MS{1.4--1.5} \quad \BL{II.2}}
+\nota{Valor final libre, horizonte libre, extremos restringidos, valor de
+rescate y análisis de sensibilidad.}
+
+\tema{11.4 Horizonte infinito y diagramas de fase}
+\lecturas{\KS{I.15--I.17} \quad \LR{11.3} \quad \LR{11.7}}
+\apoyo{\BL{II.4}}
+\nota{Problemas autónomos, trayectorias de aproximación más rápida, análisis
+diagramático y el modelo de Ramsey como problema variacional.}
+
+\tema{11.5 Esquinas, restricciones de desigualdad y varias funciones}
+\lecturas{\KS{I.13--I.14} \quad \KS{I.18}}
+\nota{Condiciones de Weierstrass--Erdmann y restricciones en $(t,x)$: el
+límite del cálculo de variaciones que motiva el control óptimo.}
+
+\tema{11.6 El cálculo de variaciones como optimización en espacios de funciones}
+\lecturas{\LU{7.1--7.6}}
+\nota{Diferenciales de Gâteaux y de Fréchet, extremos de funcionales y la
+ecuación de Euler--Lagrange como condición de primer orden en un espacio
+normado. Une el Bloque 7 con el Bloque 11.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 12 --- Control óptimo --- 4 semanas}
+{El núcleo de la Parte II. Cubre el tema f de MAT291, las Sesiones 4.3--4.4 de
+1ECO75 y el control determinístico de MAT835. Es el control óptimo que el
+sílabo de macroeconomía supone desde su Bloque 4, donde se usa para el modelo
+de Ramsey. Kamien y Schwartz (Parte II) es el
+texto principal.}
+
+\tema{12.1 El principio del máximo}
+\lecturas{\DF{12.2a} \quad \KS{II.1--II.2} \quad \LR{12.1--12.2}}
+\apoyo{\MS{2.1--2.5} \quad \BL{III.1}}
+\consulta{Cerdá (2001) \quad Léonard y Van Long (1992)}
+\nota{Hamiltoniano, variable de coestado y condiciones necesarias. \MS{2}
+deriva el principio del mínimo desde los multiplicadores de Lagrange.}
+
+\tema{12.2 Condiciones suficientes}
+\lecturas{\DF{12.2b} \quad \KS{II.3} \quad \KS{II.15}}
+\apoyo{\BL{III.3} \quad \MS{2.8}}
+\nota{Teoremas de suficiencia de Mangasarian y de Arrow, y el papel de la
+convexidad (Bloque 6).}
+
+\tema{12.3 Condiciones terminales y varias variables}
+\lecturas{\KS{II.5--II.7} \quad \LR{12.3} \quad \LR{12.6}}
+\apoyo{\MS{2.6--2.7} \quad \BL{III.2}}
+\nota{Punto final fijo, libre o restringido; horizonte libre; varios estados y
+controles.}
+
+\tema{12.4 Descuento, hamiltoniano a valor corriente y horizonte infinito}
+\lecturas{\KS{II.8--II.9} \quad \LR{12.4--12.5}}
+\apoyo{\BL{III.5--III.6}}
+\consultalib{Acemoglu (2009), secc.~7.3--7.5}
+\nota{Dinámica comparativa, equilibrios de problemas autónomos y la
+controversia sobre la condición de transversalidad en horizonte infinito.}
+
+\tema{12.5 Restricciones sobre controles y estados}
+\lecturas{\DF{12.2c} \quad \KS{II.10--II.13} \quad \KS{II.17} \quad \LR{13}}
+\nota{Controles acotados, soluciones \emph{bang-bang} y singulares,
+restricciones mixtas e integrales y restricciones de desigualdad sobre el
+estado.}
+
+\tema{12.6 Saltos, existencia y formulaciones alternativas}
+\lecturas{\KS{II.14} \quad \KS{II.16} \quad \KS{II.18}}
+\apoyo{\LU{9.5--9.6}}
+\nota{El principio de Pontryagin en su forma general y la existencia de
+soluciones; saltos en el estado y cambios de régimen. Luenberger lo deduce
+de la teoría local de la optimización con restricciones (tema 7.6).}
+
+\tema{12.7 Control lineal-cuadrático y ecuación de Riccati}
+\lecturas{\MS{4.1--4.5}}
+\nota{El regulador lineal-cuadrático por el principio del mínimo y por
+programación dinámica, la ecuación diferencial de Riccati y su versión
+algebraica en horizonte infinito. Prepara el tema 14.2 del sílabo de
+macroeconomía.}
+
+\tema{12.8 Interpretación económica y aplicaciones}
+\lecturas{\LR{12.7--12.8} \quad \KS{II.4} \quad \BL{III.4}}
+\consultalib{Acemoglu (2009), secc.~7.7--7.8}
+\nota{El coestado como precio sombra (Dorfman), la comparación con el cálculo
+de variaciones, la contaminación óptima y el modelo neoclásico de
+crecimiento (\BL{III.6}).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 13 --- Programación dinámica --- 4 semanas}
+{El tema g de MAT291 y la programación dinámica de 1ECO75, MAT616 y MAT835.
+Sargent y Stachurski es el texto principal: trabaja con estados finitos, lo
+que permite demostrar todo con álgebra lineal y puntos fijos (Bloques 2 a 4).
+El sílabo de macroeconomía (Bloque 14) retoma el tema con Stokey, Lucas y
+Prescott y lo lleva al cómputo antes de estudiar los modelos DSGE.}
+
+\tema{13.1 Principio de optimalidad y ecuación de Bellman}
+\lecturas{\DF{12.1a} \quad \DP{1.1} \quad \LR{14.1--14.3}}
+\apoyo{\MS{3.1--3.3} \quad \BL{IV.1--IV.2}}
+\nota{Horizonte finito e inducción hacia atrás; el problema de búsqueda de
+empleo como ejemplo guía.}
+
+\tema{13.2 Horizonte infinito, operador de Bellman y contracciones}
+\lecturas{\DF{12.1b} \quad \DP{1.2--1.3} \quad \LR{14.4}}
+\consultalib{Acemoglu (2009), secc.~6.1--6.5}
+\consulta{Stokey, Lucas y Prescott (1989), caps.~3--4}
+\nota{Problemas estacionarios descontados: existencia y unicidad de la función
+valor por el teorema de la aplicación contractiva (tema 3.4) y política
+óptima.}
+
+\tema{13.3 Ecuación de Euler y métodos de solución}
+\lecturas{\BL{IV.2--IV.3} \quad \LR{14.5--14.6}}
+\nota{La condición de Benveniste--Scheinkman, la ecuación de Euler y la
+transversalidad; aproximaciones sucesivas y el método de «adivinar y
+verificar» en el modelo de Ramsey discreto.}
+
+\tema{13.4 Operadores, orden y puntos fijos}
+\lecturas{\DP{2.1} \quad \DP{2.3}}
+\nota{Estabilidad local, tasas de convergencia, matrices no negativas y
+operadores lineales; junto con el orden de \DP{2.2} (tema 4.4), es la caja de
+herramientas del resto del libro.}
+
+\tema{13.5 Cadenas de Markov y procesos de decisión de Markov}
+\lecturas{\DP{3} \quad \DP{5.1--5.2}}
+\apoyo{\ST{4.2--4.3} \quad \LR{14.7}}
+\nota{Distribuciones estacionarias y ergodicidad, esperanzas condicionales y el
+modelo general de decisión de Markov: optimalidad, iteración de la función
+valor y de la política, ahorro e inversión óptimos.}
+
+\tema{13.6 Parada óptima}
+\lecturas{\DP{4}}
+\consulta{Øksendal (2010)}
+\nota{Valoración de una empresa con salida, opciones americanas e
+investigación y desarrollo. Es la versión en tiempo discreto de la primera
+unidad de MAT835.}
+
+\tema{13.7 La ecuación de Hamilton--Jacobi--Bellman}
+\lecturas{\MS{3.4--3.6} \quad \KS{II.21}}
+\nota{La programación dinámica en tiempo continuo, su relación con el
+principio del máximo (el coestado como derivada de la función valor) y las
+funciones de Liapunov de costo restante. Es la segunda unidad de MAT835.}
+
+\tema{13.8 Programación dinámica en espacios de estado generales}
+\lecturas{\ST{10.1} \quad \ST{12.1}}
+\consultalib{Acemoglu (2009), cap.~16}
+\nota{El problema con estados continuos y choques, optimalidad, y
+monotonía y concavidad de la función valor y de la política. Las nociones de
+teoría de la medida que usa se consultan en \ST{7} y \ST{9} (Anexo D.1).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 14 --- Aplicaciones y temas avanzados --- 3 semanas}
+{Primero, las aplicaciones clásicas de De la Fuente, resueltas con las tres
+técnicas de la Parte II; después, los temas avanzados de Sargent y Stachurski:
+descuento estocástico, preferencias recursivas, robustez y tiempo continuo.}
+
+\tema{14.1 Búsqueda de empleo}
+\lecturas{\DF{13.1}}
+\apoyo{\DP{3.3}}
+\nota{El modelo básico de búsqueda y un modelo macroeconómico basado en
+búsqueda; \DP{3.3} añade el estado markoviano y la separación.}
+
+\tema{14.2 Crecimiento óptimo en tiempo discreto y continuo}
+\lecturas{\DF{13.2} \quad \DF{13.4}}
+\consultalib{Acemoglu (2009), secc.~6.6 y 7.7}
+\nota{La función de política y la ecuación de Euler del crecimiento óptimo
+discreto; el modelo de Cass--Koopmans con impuestos y el costo de bienestar
+de la tributación de factores.}
+
+\tema{14.3 Inversión con costos de ajuste}
+\lecturas{\DF{13.3}}
+\apoyo{\DP{5.2.3}}
+\consultalib{Acemoglu (2009), secc.~7.8}
+\nota{La $q$ de Tobin y la acumulación de capital en una economía pequeña y
+abierta. Enlaza con el tema 5.4 del sílabo de economía financiera.}
+
+\tema{14.4 Descuento estocástico y preferencias recursivas}
+\lecturas{\DP{6.1--6.3} \quad \DP{7.1--7.2}}
+\nota{Factores de descuento variables y la condición del radio espectral,
+valoración de activos, el teorema de Knaster--Tarski en espacios de
+funciones y las preferencias de Epstein--Zin y sensibles al riesgo. Es la
+base matemática del tema 5.3 del sílabo de economía financiera.}
+
+\tema{14.5 Procesos de decisión recursivos, robustez y ambigüedad}
+\lecturas{\DP{7.3} \quad \DP{8}}
+\apoyo{\DP{9}}
+\nota{Operadores de Koopmans, condiciones del tipo de Blackwell, procesos
+contractivos y eventualmente contractivos, agentes adversarios, robustez y
+ambigüedad; \DP{9} los unifica en la programación dinámica abstracta.}
+
+\tema{14.6 Decisión en tiempo continuo}
+\lecturas{\DP{10}}
+\consulta{Fleming y Soner (2010) \quad Pham (2010)}
+\nota{Cadenas de Markov en tiempo continuo, semigrupos y procesos de decisión
+en tiempo continuo, con el problema de búsqueda como aplicación. Es el
+puente hacia el control óptimo estocástico de MAT835 (Anexo D.2).}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+Capítulos de cada libro que entran en el plan y temas donde se leen. Lo que
+queda fuera se detalla en el Anexo B.
+
+\newcommand{\mapa}[2]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.3cm}X>{\raggedright\arraybackslash}p{3.6cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Temas} \\
+\midrule
+#2
+\bottomrule
+\end{tabularx}
+}}
+
+\mapa{A.1 Chávez y Gallardo, \emph{Álgebra lineal y optimización para el análisis económico} (texto base de la Parte I)}{%
+1 & Elementos de álgebra lineal & 2.1, 2.2 \\
+2 & Sistema lineal de ecuaciones algebraicas & 2.3 \\
+3 & Vectores y valores propios & 2.4, 2.5 \\
+4 & Espacios vectoriales topológicos & 3.1, 3.2 \\
+5 & Conjuntos convexos & 6.1, 6.2 \\
+6 & Funciones convexas y cóncavas & 6.3, 6.4 \\
+7 & Introducción a la optimización & 7.1, 7.2 \\
+8 & El problema de Lagrange & 7.3, 8.1 \\
+9 & El problema de Karush--Kuhn--Tucker & 7.4, 7.5 \\
+10 & Relaciones de preferencia y equilibrio general & 8.2 \\
+}
+
+\mapa{A.2 Carter, \emph{Foundations of Mathematical Economics}}{%
+1 & Sets and Spaces (1.1--1.6) & 1.1, 1.2, 2.1, 3.1, 3.2, 3.4, 6.1, 8.2 \\
+2 & Functions (2.1--2.4) & 3.3, 4.1--4.4 \\
+3 & Linear Functions (3.1--3.9) & 2.2--2.5, 5.4, 6.2--6.4, 7.6 \\
+4 & Smooth Functions (4.1--4.6) & 5.1--5.4, 6.3 \\
+5 & Optimization (5.1--5.4) & 7.1--7.5 \\
+6 & Comparative Statics (6.1--6.3) & 5.3, 8.1 \\
+}
+
+\mapa{A.3 De la Fuente, \emph{Mathematical Methods and Models for Economists}}{%
+1 & Review of Basic Concepts (1.1--1.4, 1.6) & 1.1, 1.2 \\
+2 & Metric and Normed Spaces & 3.1--3.5, 4.1 \\
+3 & Vector Spaces and Linear Transformations & 2.1, 2.2, 2.4 \\
+4 & Differential Calculus & 5.1, 5.2, 5.4 \\
+5 & Static Models and Comparative Statics (5.1--5.3) & 4.3, 5.3 \\
+6 & Convex Sets and Concave Functions (con apéndice) & 2.5, 6.1--6.4 \\
+7 & Static Optimization (7.1--7.2) & 4.2, 7.1, 7.3--7.5, 8.1 \\
+8 & Some Applications to Microeconomics (8.1--8.3) & 8.2 \\
+9 & Dynamical Systems I: Basic Concepts and Scalar Systems & 9.1--9.3 \\
+10 & Dynamical Systems II: Higher Dimensions (10.1--10.3) & 10.1, 10.2 \\
+11 & Dynamical Systems III: Some Applications (11.1--11.4) & 10.4 \\
+12 & An Introduction to Dynamic Optimization & 12.1, 12.2, 12.5, 13.1, 13.2 \\
+13 & Some Applications of Dynamic Optimization (13.1--13.4) & 14.1--14.3 \\
+}
+
+\mapa{A.4 Kamien y Schwartz, \emph{Dynamic Optimization}}{%
+I.1--I.18 & Calculus of Variations (completa) & 11.1--11.5 \\
+II.1--II.18 & Optimal Control (hasta Jumps in the State Variable) & 12.1--12.6, 12.8 \\
+II.21 & Dynamic Programming & 13.7 \\
+}
+
+\mapa{A.5 Lomelí y Rumbos, \emph{Métodos dinámicos en economía}}{%
+2--3 & Ecuaciones diferenciales lineales; no lineales de primer orden & 9.2 \\
+4--5 & Sistemas de ecuaciones diferenciales lineales; análisis cualitativo & 10.1, 10.2 \\
+6--7 & Dinámica discreta; sistemas de ecuaciones en diferencias lineales & 9.3, 10.1 \\
+8 & La mano invisible & 10.3 \\
+9 & Ecuaciones en diferencias estocásticas & 9.4 \\
+11 & Introducción al cálculo en variaciones & 11.1--11.4 \\
+12--13 & Teoría de control; problemas con restricciones & 12.1, 12.3--12.5, 12.8 \\
+14 & Elementos de programación dinámica & 13.1--13.3, 13.5 \\
+}
+
+\mapa{A.6 Sargent y Stachurski, \emph{Dynamic Programming}, vol.~I}{%
+1 & Introduction & 13.1, 13.2 \\
+2 & Operators and Fixed Points & 4.4, 13.4 \\
+3 & Markov Dynamics & 13.5, 14.1 \\
+4 & Optimal Stopping & 13.6 \\
+5 & Markov Decision Processes (5.1--5.2) & 13.5, 14.3 \\
+6 & Stochastic Discounting (6.1--6.3) & 14.4 \\
+7 & Nonlinear Valuation (7.1--7.3) & 14.4, 14.5 \\
+8--9 & Recursive Decision Processes; Abstract Dynamic Programming & 14.5 \\
+10 & Continuous Time & 14.6 \\
+}
+
+\mapa{A.7 Meinsma y van der Schaft, \emph{A Course on Optimal Control}}{%
+1 & Calculus of Variations (1.1--1.7) & 11.1--11.3 \\
+2 & Minimum Principle (2.1--2.8) & 12.1--12.3 \\
+3 & Dynamic Programming (3.1--3.6) & 13.1, 13.7 \\
+4 & Linear Quadratic Control (4.1--4.5) & 12.7 \\
+B & Differential Equations and Lyapunov Functions (B.1--B.4) & 10.3 \\
+}
+
+\mapa{A.8 Otros textos del plan}{%
+--- & Bonifaz y Lama, \emph{Optimización dinámica y teoría económica}: caps.~I--IV & 11.1--11.4, 12.1--12.4, 12.8, 13.1, 13.3 \\
+--- & Stachurski, \emph{Economic Dynamics}: secc.~3.1--3.2, 4.1--4.3, 10.1, 12.1 & 3.4, 10.4, 13.5, 13.8 \\
+--- & Luenberger, \emph{Optimization by Vector Space Methods}: secc.~7.1--7.6, 8.1--8.6, 9.5--9.6 & 7.6, 11.6, 12.6 \\
+--- & Elaydi, \emph{An Introduction to Difference Equations}: secc.~1.1--1.3, 1.5--1.7, 3.1--3.3, 4.1--4.6 & 9.3, 10.1, 10.3 \\
+--- & Heijdra, \emph{Foundations of Modern Macroeconomics}: apéndice matemático, secc.~A.6 & 10.5 \\
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo B. Lo que no entra en el plan}
+\addcontentsline{toc}{section}{Anexo B. Lo que no entra en el plan}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Materia} & \cab{Capítulos, secciones y programas} \\
+\midrule
+Teoría de juegos & \DF{8.4}; el tema h de MAT291. Está en los Bloques 6 y 7 del sílabo de microeconomía \\
+Métodos numéricos & \ST{2}, \ST{6.2--6.3}, \ST{10.2}; \DP{2.1.4} y las secciones de cómputo de \DP{1.3.2} y \DP{5.1.4}; \LU{10}; Boyd y Vandenberghe (2004), caps.~9--11; las unidades h e i de MAT693; MAT237; el curso de Childers (CMU) y Judd (1998). Corresponden a otro curso \\
+Estimación estructural & \DP{5.3} (ecuaciones de Bellman modificadas, \emph{Q-factors}); corresponde al sílabo de microeconometría \\
+Microeconomía aplicada & \DF{8.5} (competencia imperfecta); la mayor parte de MAT656. Están en el sílabo de microeconomía \\
+Teoría de la medida y dinámica estocástica avanzada & \ST{7--9}, \ST{11}, \ST{12.2}; Corbae et al.\ (2009), cap.~7 (Anexo D.1) \\
+Control avanzado & \KS{II.19--II.20} (retardos y ecuaciones de estado integrales), \KS{II.22--II.23} (control estocástico y juegos diferenciales, Anexos D.2 y D.4); \MS{5}; \EL{10} \\
+Ecuaciones en diferencias avanzadas & \EL{5--9} \\
+Análisis funcional & \LU{2--6} (Anexo D.5) \\
+Programación dinámica a nivel de posgrado en macroeconomía & Stokey, Lucas y Prescott (1989), caps.~4--5 y 9; Ljungqvist y Sargent (2018). Están en el Bloque 14 del sílabo de macroeconomía \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Archivos de la carpeta que no se usaron por ser imágenes sin
+texto}: Chiang, \emph{Elements of Dynamic Optimization}
+(\texttt{elements-of-dynamic-optimization.pdf}); Cerdá, \emph{Optimización
+dinámica} (\texttt{optimizacion-dinamica-2-pdf-cerda.pdf}); Dixit,
+\emph{Optimization in Economic Theory}; el archivo
+\texttt{Optimizacionestaticaydinamicaeneconomia.pdf}; Sargent, \emph{Dynamic
+Macroeconomic Theory}; y la copia de Stokey, Lucas y Prescott de la carpeta
+de macroeconomía. Cerdá, Chiang y Stokey et al.\ se citan como consulta
+porque los usan MAT291, 1ECO75 y MAT616.
+
+\medskip
+\noindent\destacado{Duplicados}: Lomelí y Rumbos (en \texttt{Optimizacion} y en
+\texttt{Metodos numericos}), Bonifaz y Winkelried, Chiang (\emph{Métodos
+fundamentales}), MAT835 y MAT659 aparecen dos veces en la carpeta.
+
+%------------------------------------------------------------------------------
+\section*{Anexo C. Programas utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas utilizados}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{5.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Programa} & \cab{Temas del plan} \\
+\midrule
+MAT291, Matemáticas para economistas (pregrado, 2025-2, J.~Chávez; jefes de práctica M.~Gallardo y R.~Crousillat) & Preferencias (8.2), convexidad y optimización estática (Bloques 6 y 7), sistemas dinámicos (Bloques 9 y 10), cálculo de variaciones y control (Bloques 11 y 12), programación dinámica (Bloque 13). La teoría de juegos queda fuera \\
+1ECO75, Economía Matemática Intermedia (Maestría en Economía, 2025-1, R.~Huamán y L.~Ramos) & Módulo 1, Bloque 2; módulo 2, Bloques 3, 5 y 6; módulo 3, Bloque 7; módulo 4, Bloques 10 y 12 \\
+MAT693, Concavidad y Optimización (Maestría en Matemáticas Aplicadas, 2025-2, J.~E.~Martínez-Legaz y A.~Jordán) & Unidades a y b, Bloque 6; c y d, 7.2--7.5; e, 7.6; f, 8.1; g, 6.4 \\
+MAT659, Temas Avanzados en Economía Matemática (2021-0, A.~Jordán) & Órdenes, 1.2; teorema del máximo, 4.2; supermodularidad y estática comparativa, 4.4 y 8.1; hipertopologías y convexidad discreta, Anexo D.3 \\
+MAT835, Control Óptimo Estocástico (2025-2, J.~Farfán) & Control determinístico y ecuación HJB, 13.7; parada óptima, 13.6; tiempo continuo, 14.6; el resto, Anexo D.2 \\
+MAT616, Macroeconomía Dinámica (2023-2, J.~C.~Aquino) & De referencia para el Bloque 13; su desarrollo está en el Bloque 14 del sílabo de macroeconomía \\
+MAT656, Introducción a la Economía Matemática (2026-1, A.~Jordán) & De referencia para 8.2; su contenido está en el sílabo de microeconomía \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Programas de la carpeta que no se usaron}: Investigación de
+Operaciones (IOP222, IOP224 e Investigación de Operaciones 2), por ser de
+ingeniería; Cálculo Numérico (MAT237) y \emph{Computational Methods for
+Economics} (CMU), por ser métodos numéricos. También se revisó el
+\emph{Math Camp} de Murphy (Pennsylvania): su parte de optimización coincide
+con el Bloque 7 y su parte de medida y probabilidad corresponde al sílabo de
+econometría.
+
+%------------------------------------------------------------------------------
+\section*{Anexo D. Material opcional}
+\addcontentsline{toc}{section}{Anexo D. Material opcional}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica
+el cronograma.
+
+\subsection*{D.1 Teoría de la medida y dinámica estocástica}
+\ST{7--9} (integración, cadenas de Markov con densidad y probabilidad con
+teoría de la medida), \ST{11} (dinámica estocástica) y \ST{12.2} (recompensas
+no acotadas); Corbae et al.\ (2009), cap.~7. Momento sugerido: con el tema
+13.8.
+
+\subsection*{D.2 Control óptimo estocástico}
+Sigue el programa MAT835: \KS{II.22} como introducción; después Øksendal
+(2010), Fleming y Soner (2010) y Pham (2010), que no están en la carpeta.
+Requiere D.1 y el tema 14.6.
+
+\subsection*{D.3 Análisis variacional y convexidad discreta}
+Sigue la segunda y la tercera parte de MAT659: convergencia de conjuntos y
+estabilidad de problemas de optimización (Rockafellar y Wets, 2009; Royset,
+2020) y convexidad discreta con bienes indivisibles (Murota, 1998; Danilov,
+Koshevoy y Murota, 2001).
+
+\subsection*{D.4 Juegos diferenciales y control con retardos}
+\KS{II.19--II.20} y \KS{II.23}. Requiere el Bloque 12 y los juegos dinámicos
+del sílabo de microeconomía.
+
+\subsection*{D.5 Optimización en espacios vectoriales}
+\LU{2--6}: espacios de Hilbert, espacios duales, Hahn--Banach y operadores
+adjuntos. Es la base funcional de los temas 7.6, 11.6 y 12.6.
+
+\subsection*{D.6 Optimización convexa}
+Boyd y Vandenberghe (2004), caps.~2--5, para profundizar los Bloques 6 y 7 con
+la teoría de dualidad y los teoremas de la alternativa (secc.~5.8).
+
+\subsection*{D.7 Sistemas dinámicos en castellano}
+Chávez, \emph{Sistemas dinámicos para el análisis económico}, de acceso libre
+en el repositorio institucional de la PUCP: es el complemento natural de
+Chávez y Gallardo para los Bloques 9 y 10. Bonifaz y Winkelried (2003)
+cubre sucesiones, series, ecuaciones diferenciales y en diferencias con
+aplicaciones peruanas.
+
+%------------------------------------------------------------------------------
+\section*{Anexo E. Referencias}
+\addcontentsline{toc}{section}{Anexo E. Referencias}
+
+\subsection*{E.1 Textos del plan}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Bonifaz, J. L. y R. Lama (2013). \emph{Optimización dinámica y teoría económica}, 1.ª ed.\ corregida. Apuntes de Estudio 33. Universidad del Pacífico.
+\item Carter, M. (2001). \emph{Foundations of Mathematical Economics}. The MIT Press.
+\item Chávez, J. y M. Gallardo (2026). \emph{Álgebra lineal y optimización para el análisis económico}. Fondo Editorial de la PUCP.
+\item De la Fuente, A. (2000). \emph{Mathematical Methods and Models for Economists}. Cambridge University Press.
+\item Elaydi, S. (2005). \emph{An Introduction to Difference Equations}, 3.ª ed. Springer.
+\item Heijdra, B. J. (2017). \emph{Foundations of Modern Macroeconomics}, 3.ª ed., con L. S. M. Reijnders y W. E. Romp. Oxford University Press (carpeta de macroeconomía).
+\item Kamien, M. I. y N. L. Schwartz (1991). \emph{Dynamic Optimization: The Calculus of Variations and Optimal Control in Economics and Management}, 2.ª ed. Elsevier.
+\item Lomelí, H. y B. Rumbos. \emph{Métodos dinámicos en economía: otra búsqueda del tiempo perdido}. ITAM. Versión de la carpeta (2001); publicado por Thomson en 2003.
+\item Luenberger, D. G. (1969). \emph{Optimization by Vector Space Methods}. Wiley.
+\item Meinsma, G. y A. van der Schaft (2023). \emph{A Course on Optimal Control}. Springer.
+\item Sargent, T. J. y J. Stachurski (2025). \emph{Dynamic Programming, Volume I: Finite States}. Versión de los autores, abril de 2025.
+\item Stachurski, J. (2022). \emph{Economic Dynamics: Theory and Computation}, 2.ª ed. The MIT Press. Versión preliminar de la carpeta (2024).
+\end{itemize}
+}
+
+\subsection*{E.2 Libros de consulta de la carpeta (sin horas)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Acemoglu, D. (2009). \emph{Introduction to Modern Economic Growth}. Princeton University Press (carpeta de desarrollo y crecimiento).
+\item Bonifaz, J. L. y D. Winkelried (2003). \emph{Matemáticas para la economía dinámica}, 1.ª ed.\ corregida. Universidad del Pacífico.
+\item Boyd, S. y L. Vandenberghe (2004). \emph{Convex Optimization}. Cambridge University Press.
+\item Corbae, D., M. B. Stinchcombe y J. Zeman (2009). \emph{An Introduction to Mathematical Analysis for Economic Theory and Econometrics}. Princeton University Press.
+\item Simon, C. P. y L. Blume (1994). \emph{Mathematics for Economists}. W. W. Norton.
+\end{itemize}
+}
+
+\subsection*{E.3 Referencias tomadas de los programas}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Bridges, D. y G. Mehta (1995). \emph{Representations of Preference Orderings}. Lecture Notes in Economics and Mathematical Systems. Springer.
+\item Cerdá, E. (2001). \emph{Optimización dinámica}. Prentice Hall.
+\item Chiang, A. C. (1992). \emph{Elements of Dynamic Optimization}. McGraw-Hill.
+\item Danilov, V., G. Koshevoy y K. Murota (2001). Discrete Convexity and Equilibria in Economies with Indivisible Goods and Money. \emph{Mathematical Social Sciences}, 41, 251--273.
+\item Fleming, W. H. y H. M. Soner (2010). \emph{Controlled Markov Processes and Viscosity Solutions}, 2.ª ed. Springer.
+\item Léonard, D. y N. Van Long (1992). \emph{Optimal Control Theory and Static Optimization in Economics}. Cambridge University Press.
+\item Murota, K. (1998). Discrete Convex Analysis. \emph{Mathematical Programming}, 83, 313--371.
+\item Øksendal, B. (2010). \emph{Stochastic Differential Equations: An Introduction with Applications}, 6.ª ed. Springer.
+\item Pham, H. (2010). \emph{Continuous-time Stochastic Control and Optimization with Financial Applications}. Springer.
+\item Rockafellar, R. T. y R. Wets (2009). \emph{Variational Analysis}. Springer.
+\item Royset, J. O. (2020). Set-Convergence and Its Applications: A Tutorial. \emph{Set-Valued and Variational Analysis}, 28, 707--732.
+\item Stokey, N. L. y R. E. Lucas, con E. C. Prescott (1989). \emph{Recursive Methods in Economic Dynamics}. Harvard University Press.
+\item Topkis, D. M. (1998). \emph{Supermodularity and Complementarity}. Princeton University Press.
+\end{itemize}
+}
+
+\subsection*{E.4 Otras referencias}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Chávez, J. \emph{Sistemas dinámicos para el análisis económico}. Repositorio institucional de la PUCP (acceso libre).
+\item Judd, K. L. (1998). \emph{Numerical Methods in Economics}. The MIT Press (citado solo en el Anexo B).
+\item Ljungqvist, L. y T. J. Sargent (2018). \emph{Recursive Macroeconomic Theory}, 4.ª ed. The MIT Press (citado solo en el Anexo B).
+\end{itemize}
+}
+
+\vspace{1.2cm}
+\franjas[2pt]
+\begin{center}\small\color{tonoPizarra}
+Plan de lectura de elaboración propia. Los títulos de los capítulos
+corresponden a las obras citadas y se reproducen únicamente con fines de
+referencia bibliográfica. La asignación de capítulos y secciones se basa en
+los índices de los libros de la carpeta y, para Chávez y Gallardo, en el
+índice del ejemplar físico; los temas de los cursos proceden de los
+programas citados en el Anexo C.
+\end{center}
+
+\end{document}

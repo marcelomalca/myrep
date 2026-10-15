@@ -1,0 +1,1197 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE ECONOMÍA INTERNACIONAL — Plan de estudio integrado
+%
+%  Comercio internacional:
+%    FE  — Feenstra, Advanced International Trade: Theory and Evidence
+%          (Princeton University Press, 2004)
+%    KO  — Krugman, Obstfeld y Melitz, Economía internacional: teoría y
+%          política (Pearson, 10.ª ed., 2016)
+%    HK  — Helpman y Krugman, Trade Policy and Market Structure (MIT, 1989)
+%  Macroeconomía internacional:
+%    SW  — Schmitt-Grohé, Uribe y Woodford, International Macroeconomics
+%          (borrador de mayo de 2016)
+%    US  — Uribe y Schmitt-Grohé, Open Economy Macroeconomics (borrador de
+%          marzo de 2015; Princeton University Press, 2017)
+%    VE  — Végh, Open Economy Macroeconomics in Developing Countries
+%          (MIT Press, 2013)
+%    GA  — Galí, Monetary Policy, Inflation, and the Business Cycle
+%          (Princeton University Press, 2008)
+%  Programas PUCP integrados: ECO208 (Economía Internacional I), 1ECO16
+%    (Economía Internacional 2), 1ECO83 (Economía Internacional, maestría),
+%    1ECO93 (Finanzas Internacionales), 2ECO03 (Macroeconomía Avanzada),
+%    1ECO74 (Macroeconomía Intermedia) y ECO338 (Tópicos de Macroeconomía
+%    Avanzada 2).
+%
+%  Compilar con:  pdflatex EconomiaInternacional.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de rojos y burdeos
+\definecolor{tonoOscuro}{RGB}{82,4,17}              % oscuro
+\definecolor{tonoProfundo}{RGB}{121,6,26}           % profundo
+\definecolor{tonoPrincipal}{RGB}{160,8,34}          % principal
+\definecolor{tonoA}{RGB}{179,31,25}                 % variante cálida
+\definecolor{tonoB}{RGB}{179,15,69}                 % variante fría
+\definecolor{tonoC}{RGB}{193,21,107}                % variante viva
+\definecolor{tonoClaro}{RGB}{221,95,116}            % claro
+\definecolor{tonoAcero}{RGB}{131,63,74}             % acero
+\definecolor{tonoPizarra}{RGB}{134,86,94}           % pizarra
+\definecolor{tonoGrafito}{RGB}{73,39,45}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{247,207,214}           % hielo
+\definecolor{tonoPalido}{RGB}{251,233,236}          % pálido
+\definecolor{tonoBruma}{RGB}{254,246,247}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorFE}{RGB}{138,15,81}
+\definecolor{colorKO}{RGB}{184,20,87}
+\definecolor{colorHK}{RGB}{161,18,59}
+\definecolor{colorSW}{RGB}{138,15,36}
+\definecolor{colorUS}{RGB}{184,20,28}
+\definecolor{colorVE}{RGB}{161,29,18}
+\definecolor{colorGA}{RGB}{138,40,15}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Economía Internacional}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}Feenstra $\cdot$ Krugman et al. $\cdot$ Uribe--Schmitt-Grohé $\cdot$ Végh}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\FE}[1]{\etiqueta{colorFE}{FE}\nobreak\hspace{0.25em}\textcolor{colorFE}{#1}}
+\newcommand{\KO}[1]{\etiqueta{colorKO}{KO}\nobreak\hspace{0.25em}\textcolor{colorKO}{#1}}
+\newcommand{\HK}[1]{\etiqueta{colorHK}{HK}\nobreak\hspace{0.25em}\textcolor{colorHK}{#1}}
+\newcommand{\SW}[1]{\etiqueta{colorSW}{SW}\nobreak\hspace{0.25em}\textcolor{colorSW}{#1}}
+\newcommand{\US}[1]{\etiqueta{colorUS}{US}\nobreak\hspace{0.25em}\textcolor{colorUS}{#1}}
+\newcommand{\VE}[1]{\etiqueta{colorVE}{VE}\nobreak\hspace{0.25em}\textcolor{colorVE}{#1}}
+\newcommand{\GA}[1]{\etiqueta{colorGA}{GA}\nobreak\hspace{0.25em}\textcolor{colorGA}{#1}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+% Encabezado de parte: banda a todo el ancho en el tono principal
+\newcommand{\parte}[1]{%
+  \clearpage
+  \phantomsection\addcontentsline{toc}{section}{\textbf{#1}}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPrincipal, halign=center, top=16pt, bottom=16pt,
+      borderline north={3pt}{0pt}{tonoClaro}, borderline south={3pt}{0pt}{tonoClaro},
+      before skip=0pt, after skip=0pt]
+    {\sffamily\LARGE\bfseries\color{white}#1}
+  \end{tcolorbox}\par\bigskip
+  \global\recienpartetrue}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Economía Internacional\par}
+\vspace{0.4cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Comercio internacional\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorFE}{FE} \quad {\color{tonoOscuro}Robert C. Feenstra}\par}
+{\normalsize \emph{\color{colorFE}Advanced International Trade: Theory and Evidence}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2004 --- 11 capítulos y 2 apéndices\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorKO}{KO} \quad {\color{tonoOscuro}Paul R. Krugman, Maurice Obstfeld y Marc J. Melitz}\par}
+{\normalsize \emph{\color{colorKO}Economía internacional: teoría y política}\par}
+{\small\color{tonoPizarra} Pearson, 10.ª edición, 2016 --- 22 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorHK}{HK} \quad {\color{tonoOscuro}Elhanan Helpman y Paul R. Krugman}\par}
+{\normalsize \emph{\color{colorHK}Trade Policy and Market Structure}\par}
+{\small\color{tonoPizarra} The MIT Press, 1989 --- 9 capítulos\par}
+\vspace{0.6cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Macroeconomía internacional\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorSW}{SW} \quad {\color{tonoOscuro}Stephanie Schmitt-Grohé, Martín Uribe y Michael Woodford}\par}
+{\normalsize \emph{\color{colorSW}International Macroeconomics}\par}
+{\small\color{tonoPizarra} Borrador de mayo de 2016 --- 13 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorUS}{US} \quad {\color{tonoOscuro}Martín Uribe y Stephanie Schmitt-Grohé}\par}
+{\normalsize \emph{\color{colorUS}Open Economy Macroeconomics}\par}
+{\small\color{tonoPizarra} Borrador de marzo de 2015 (Princeton University Press, 2017) --- 11 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorVE}{VE} \quad {\color{tonoOscuro}Carlos A. Végh}\par}
+{\normalsize \emph{\color{colorVE}Open Economy Macroeconomics in Developing Countries}\par}
+{\small\color{tonoPizarra} The MIT Press, 2013 --- 17 capítulos\par}
+\vspace{0.5cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de siete programas de la PUCP\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Nueve bloques temáticos --- 6 meses}\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{nueve bloques temáticos}, agrupados en dos
+partes. La \textbf{Parte I} (Bloques 1 a 4) es el comercio internacional: de la
+ventaja comparativa ricardiana y las dotaciones de factores a la competencia
+imperfecta, las empresas heterogéneas, la ecuación de gravedad y la política
+comercial. La \textbf{Parte II} (Bloques 5 a 9) es la macroeconomía
+internacional desde la perspectiva de una economía pequeña, abierta y
+emergente: la cuenta corriente, el tipo de cambio real, los ciclos económicos,
+la política cambiaria, los flujos de capital, el sobreendeudamiento y la deuda
+soberana. Conviene cerrar cada bloque antes de abrir el siguiente.
+
+\medskip
+\noindent\destacado{Por qué un curso aparte.} El comercio internacional no aparece
+en ningún otro sílabo del conjunto. La macroeconomía internacional, en cambio,
+aparece en dos, pero acotada: el sílabo de macroeconomía la limita al
+Bloque 3 (cuenta corriente intertemporal y tipo de cambio real con De
+Gregorio), deja fuera los capítulos de economía abierta de Romer y de
+Campante et al.\ y cita solo como consulta, sin horas, los de Acemoglu,
+Walsh y Galí; el de economía financiera dedica su
+Bloque 8 a las finanzas internacionales con Krugman et al. Este plan
+desarrolla ambos frentes con los textos de posgrado.
+
+\medskip
+\noindent\destacado{Relación con los demás sílabos.} Los capítulos 14 a 16, 18 a 20
+y 22 de Krugman et al.\ ya se leen en el Bloque 8 del sílabo de economía
+financiera; aquí se citan como consulta para repasarlos. La Parte I supone la
+teoría del consumidor, el equilibrio general y la competencia monopolística del
+sílabo de microeconomía; la Parte II, el modelo de Ramsey (Bloque 4) y el
+modelo neokeynesiano (Bloque 13) del sílabo de macroeconomía, y las
+herramientas de los Bloques 9 a 13 del sílabo de economía matemática.
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorKO}{\textbf{Krugman, Obstfeld y Melitz}} abre cada tema
+        de la Parte I con la intuición, los gráficos y la evidencia. Es el
+        texto de ECO208 y de 1ECO16. Se lee \emph{primero}.
+  \item \textcolor{colorFE}{\textbf{Feenstra}} es el texto base de la Parte I:
+        da la versión formal de cada modelo y, sobre todo, su contrastación
+        empírica. Es el texto de 1ECO16 y del Módulo 1 de 1ECO83.
+  \item \textcolor{colorHK}{\textbf{Helpman y Krugman}} es la referencia de la
+        política comercial con competencia imperfecta (Bloque 4).
+  \item \textcolor{colorSW}{\textbf{Schmitt-Grohé, Uribe y Woodford}} es el
+        texto de entrada de la Parte II: cuentas externas, cuenta corriente
+        intertemporal, tipo de cambio real, deuda externa y dinero, con
+        modelos de dos períodos y mucha evidencia.
+  \item \textcolor{colorUS}{\textbf{Uribe y Schmitt-Grohé}} es el texto
+        principal de la Parte II en su nivel de posgrado: ciclos en economías
+        emergentes, términos de intercambio, rigidez salarial y política
+        cambiaria, controles de capital, sobreendeudamiento y deuda soberana.
+  \item \textcolor{colorVE}{\textbf{Végh}} aporta la tradición de la
+        macroeconomía de los países en desarrollo: enfoque monetario de la
+        balanza de pagos, estabilización de la inflación alta, flujos de
+        capital, dolarización y crisis. Se lee como profundización.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Qué entra en las horas.} Las líneas \emph{Lecturas},
+\emph{Profundización} y \emph{Artículos (PUCP)} entran en el cómputo de horas.
+Las líneas \emph{Consulta} y \emph{Consulta (PUCP)} remiten a libros de la
+carpeta y a referencias de los programas que no entran (Anexo E).
+
+\medskip
+\noindent\destacado{Material excluido.} Quedan fuera las finanzas internacionales
+que ya cubre el sílabo de economía financiera, los métodos numéricos de
+solución de modelos y los temas de coyuntura de los programas (fragmentación
+geoeconómica, guerra comercial, informes de organismos), salvo los que
+cuentan con un texto analítico. El detalle está en el Anexo B.
+
+\medskip
+\noindent\destacado{Notación.} \FE{n}, \KO{n}, \VE{n} y \GA{n} remiten al
+capítulo $n$ de Feenstra, Krugman et al., Végh y Galí: ninguno de ellos
+numera sus secciones en el índice, así que se citan por capítulo. \HK{n.m},
+\SW{n.m} y \US{n.m} remiten a la sección $m$ del capítulo $n$ de Helpman y
+Krugman, Schmitt-Grohé et al.\ y Uribe y Schmitt-Grohé. \emph{Consulta}
+remite a libros de la carpeta que no entran en el cómputo de horas
+(Anexo E).
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan: 260 horas distribuidas en \textbf{26 semanas de
+contenido}, que equivalen a \textbf{6 meses de calendario}, a un ritmo de diez
+horas semanales.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón.
+La columna de horas es la que gobierna el reparto. Si hay semanas perdidas por
+feriados, viajes o imprevistos, el ajuste correcto es alargar el calendario,
+no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte I --- Comercio internacional}}} \\
+1--2   & Bloque 1 --- Comercio mundial y ventaja comparativa ricardiana & 2 & 20 \\
+3--5   & Bloque 2 --- Dotaciones de factores y distribución del ingreso & 3 & 30 \\
+6--8   & Bloque 3 --- Rendimientos crecientes, empresas y gravedad & 3 & 30 \\
+9--11  & Bloque 4 --- Política comercial & 3 & 30 \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte II --- Macroeconomía internacional}}} \\
+\rowcolor{tonoHielo}\textbf{12--15} & \textbf{Bloque 5 --- La cuenta corriente} & \textbf{4} & \textbf{40} \\
+16--17 & Bloque 6 --- Integración financiera y tipo de cambio real & 2 & 20 \\
+18--20 & Bloque 7 --- Ciclos económicos en economías abiertas y emergentes & 3 & 30 \\
+21--23 & Bloque 8 --- Dinero, tipo de cambio y política cambiaria & 3 & 30 \\
+24--26 & Bloque 9 --- Flujos de capital, crisis y deuda soberana & 3 & 30 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{26} & \textbf{260} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana y una sesión de
+dos horas el sábado para ejercicios y datos.
+
+\medskip
+\noindent\destacado{El reparto entre las dos partes.} El comercio ocupa 11
+semanas y la macroeconomía internacional, 15. La diferencia se explica porque
+la Parte II reúne tres textos de posgrado y porque la Parte I se apoya en la
+microeconomía ya estudiada.
+
+\medskip
+\noindent\destacado{El tramo largo.} El Bloque 7 (semanas 18--20) es el núcleo
+cuantitativo del plan: el modelo de ciclos reales de economía pequeña y
+abierta exige la log-linealización y los sistemas dinámicos de los sílabos de
+macroeconomía (Bloque 14) y de economía matemática (Bloque 10).
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 11 y 20. Si en alguno de esos cortes se acumula más de una semana de
+retraso, se alarga el calendario y no se comprime el bloque siguiente.
+
+\subsection*{Detalle semana a semana}
+
+{\small\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & 1 & 1.1 El comercio mundial: una visión general; 1.2 El modelo ricardiano & 10 \\
+2  & 1 & 1.3 El modelo ricardiano con un continuo de bienes y su evidencia & 10 \\
+\midrule
+3  & 2 & 2.1 El modelo de factores específicos; 2.2 El modelo de Heckscher--Ohlin y sus teoremas & 10 \\
+4  & 2 & 2.3 Muchos bienes y factores: el modelo de Heckscher--Ohlin--Vanek; 2.4 La evidencia empírica & 10 \\
+5  & 2 & 2.5 El modelo estándar, los términos de intercambio y los auges de materias primas & 10 \\
+\midrule
+6  & 3 & 3.1 Economías externas de escala y localización; 3.2 Competencia monopolística y comercio intraindustrial & 10 \\
+7  & 3 & 3.3 La ecuación de gravedad; 3.4 Empresas heterogéneas: el modelo de Melitz & 10 \\
+8  & 3 & 3.5 Comercio de insumos intermedios, deslocalización y salarios; 3.6 Empresas multinacionales & 10 \\
+\midrule
+9  & 4 & 4.1 Instrumentos de política comercial y protección efectiva; 4.2 Política comercial con competencia imperfecta & 10 \\
+10 & 4 & 4.3 Economía política de la política comercial; 4.4 Acuerdos comerciales regionales & 10 \\
+11 & 4 & 4.5 Comercio, desarrollo y crecimiento; 4.6 Comercio y desigualdad: evidencia y el caso peruano & 10 \\
+\midrule
+12 & 5 & 5.1 Balanza de pagos y posición de inversión internacional; 5.2 Sostenibilidad de la cuenta corriente & 10 \\
+13 & 5 & 5.3 La cuenta corriente en una economía de dotación; 5.4 Inversión y cuenta corriente & 10 \\
+14 & 5 & 5.5 Incertidumbre y prueba del enfoque intertemporal; 5.6 Ajuste externo en economías pequeñas y grandes & 10 \\
+15 & 5 & 5.7 Déficits gemelos y equivalencia ricardiana; 5.8 Imperfecciones del mercado de capitales & 10 \\
+\midrule
+16 & 6 & 6.1 Movilidad del capital y paridades de tasas de interés; 6.2 Determinantes del tipo de cambio real & 10 \\
+17 & 6 & 6.3 Bienes no transables y precios intertemporales; 6.4 El modelo TNT y las paradas súbitas & 10 \\
+\midrule
+18 & 7 & 7.1 Hechos estilizados del ciclo en el mundo; 7.2 El modelo RBC de economía pequeña y abierta & 10 \\
+19 & 7 & 7.3 Ciclos en economías emergentes; 7.4 Choques de tasa de interés & 10 \\
+20 & 7 & 7.5 Términos de intercambio; 7.6 Ciclos internacionales y los enigmas de la macroeconomía abierta & 10 \\
+\midrule
+21 & 8 & 8.1 Dinero, inflación y tipo de cambio nominal; 8.2 Producción a corto plazo y áreas monetarias óptimas & 10 \\
+22 & 8 & 8.3 Rigidez salarial, desempleo y política cambiaria óptima; 8.4 El modelo neokeynesiano de economía abierta & 10 \\
+23 & 8 & 8.5 Regímenes cambiarios y miedo a flotar; 8.6 Estabilización de la inflación alta & 10 \\
+\midrule
+24 & 9 & 9.1 Flujos de capital y paradas súbitas; 9.2 Controles de capital & 10 \\
+25 & 9 & 9.3 Sobreendeudamiento y externalidades financieras; 9.4 Crisis de balanza de pagos & 10 \\
+26 & 9 & 9.5 Deuda externa y deuda soberana; 9.6 Dolarización y crisis financieras & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+%==============================================================================
+\parte{Parte I --- Comercio internacional}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 1 --- Comercio mundial y ventaja comparativa ricardiana --- 2 semanas}
+{Los hechos del comercio mundial y el primer modelo de la ventaja
+comparativa. Cubre los temas 1 y 2 de ECO208, el tema 1 de 1ECO16 y la primera
+parte del Módulo 1 de 1ECO83.}
+
+\tema{1.1 El comercio mundial: una visión general}
+\lecturas{\KO{1--2}}
+\nota{Quién comercia con quién, el tamaño de las economías y la distancia: la
+versión intuitiva de la ecuación de gravedad que el tema 3.3 formaliza.}
+
+\tema{1.2 El modelo ricardiano}
+\lecturas{\KO{3} \quad \FE{1} (modelo ricardiano)}
+\nota{Productividad del trabajo, ventaja comparativa, salarios relativos y
+ganancias del comercio.}
+
+\tema{1.3 El modelo ricardiano con un continuo de bienes y su evidencia}
+\articulos{Dornbusch, Fischer y Samuelson (1977) \quad Bernhofen y Brown (2004)}
+\consulta{Costinot (2009) \quad Bernhofen y Brown (2005)}
+\nota{El modelo de Dornbusch--Fischer--Samuelson, base de los modelos
+cuantitativos modernos; Japón tras su apertura en el siglo XIX como prueba
+directa de la ventaja comparativa.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Dotaciones de factores y distribución del ingreso --- 3 semanas}
+{Los modelos de factores específicos y de Heckscher--Ohlin, sus teoremas y su
+contrastación. Cubre los temas 2 a 5 de 1ECO16, los temas 3 a 5 de ECO208 y
+la sesión 1.2 del Módulo 1 de 1ECO83.}
+
+\tema{2.1 El modelo de factores específicos}
+\lecturas{\KO{4} \quad \FE{3} (factores específicos)}
+\articulos{Neary (1978)}
+\nota{Quién gana y quién pierde con el comercio en el corto plazo, cuando
+algunos factores no pueden cambiar de sector.}
+
+\tema{2.2 El modelo de Heckscher--Ohlin y sus teoremas}
+\lecturas{\KO{5} \quad \FE{1} (modelo de dos sectores) \quad \FE{2}}
+\articulos{Stolper y Samuelson (1941) \quad Rybczynski (1955)}
+\nota{Los teoremas de Stolper--Samuelson, de Rybczynski, de Heckscher--Ohlin y
+de igualación del precio de los factores, con la dualidad de costos que
+Feenstra usa en todo el libro.}
+
+\tema{2.3 Muchos bienes y factores: el modelo de Heckscher--Ohlin--Vanek}
+\lecturas{\FE{3}}
+\articulos{Dornbusch, Fischer y Samuelson (1980)}
+\nota{El contenido factorial del comercio y las generalizaciones de los
+teoremas a dimensiones mayores.}
+
+\tema{2.4 La evidencia empírica}
+\lecturas{\FE{2} (secciones empíricas)}
+\articulos{Leamer (1980) \quad Trefler (1993) \quad Trefler (1995) \quad Davis y Weinstein (2001)}
+\consulta{Bowen, Leamer y Sveikauskas (1987) \quad Bernhofen y Brown (2016)}
+\nota{La paradoja de Leontief, el comercio «faltante» y las pruebas con
+diferencias tecnológicas entre países.}
+
+\tema{2.5 El modelo estándar, los términos de intercambio y los auges de materias primas}
+\lecturas{\KO{6}}
+\articulos{Corden y Neary (1982)}
+\consulta{Corden (1984) \quad Deaton y Laroque (1992) \quad Hausmann y Klinger (2008)}
+\nota{Crecimiento sesgado, transferencias y términos de intercambio; la
+enfermedad holandesa en una economía pequeña con recursos naturales, el tema
+de la sesión 1.3 de 1ECO83 y del tema 8 de ECO208.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Rendimientos crecientes, empresas y gravedad --- 3 semanas}
+{La «nueva teoría» del comercio (Krugman) y la «nueva nueva teoría» de las
+empresas heterogéneas (Melitz). Cubre los temas 6 y 7 de 1ECO16, el tema 6 de
+ECO208 y el Módulo 2 de 1ECO83.}
+
+\tema{3.1 Economías externas de escala y localización internacional}
+\lecturas{\KO{7}}
+\nota{Concentración geográfica, el efecto del mercado interno y el papel de la
+historia en el patrón de especialización.}
+
+\tema{3.2 Competencia monopolística y comercio intraindustrial}
+\lecturas{\FE{5} (modelo de Krugman) \quad \HK{7.1--7.4}}
+\articulos{Krugman (1979) \quad Krugman (1980)}
+\consultalib{Dagenais y Muet (1992), cap.~1}
+\nota{Preferencias por la variedad de Dixit--Stiglitz (sílabo de
+microeconomía), comercio entre países parecidos y el efecto del mercado
+interno.}
+
+\tema{3.3 La ecuación de gravedad}
+\lecturas{\FE{5} (ecuación de gravedad)}
+\articulos{Anderson y van Wincoop (2003) \quad McCallum (1995)}
+\consulta{Anderson (1979) \quad Helpman (1987) \quad Hummels y Levinsohn (1995)}
+\nota{Fundamentos teóricos, la resistencia multilateral y el efecto frontera
+entre Canadá y Estados Unidos.}
+
+\tema{3.4 Empresas heterogéneas: el modelo de Melitz}
+\lecturas{\KO{8}}
+\articulos{Melitz (2003) \quad Bernard y Jensen (1999) \quad Bustos (2011)}
+\consulta{Khandelwal (2010) \quad Kugler y Verhoogen (2012)}
+\nota{Selección de las empresas más productivas en la exportación,
+reasignación dentro de la industria y ganancias de productividad. Bustos
+estudia la mejora tecnológica de las empresas argentinas con el MERCOSUR.}
+
+\tema{3.5 Comercio de insumos intermedios, deslocalización y salarios}
+\lecturas{\FE{4}}
+\nota{La fragmentación de la producción y su efecto sobre la prima salarial
+por calificación; enlaza con el tema 4.6.}
+
+\tema{3.6 Empresas multinacionales y organización de la empresa}
+\lecturas{\FE{11}}
+\apoyo{\FE{Apéndice B} (modelos de elección discreta)}
+\nota{Inversión extranjera directa horizontal y vertical, contratos
+incompletos e integración vertical frente a subcontratación.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Política comercial --- 3 semanas}
+{Instrumentos, competencia imperfecta, economía política, acuerdos regionales y
+efectos distributivos. Cubre los temas 7 a 9 de ECO208, el tema 8 de 1ECO16,
+los Módulos 3 y 4 de 1ECO83 y la primera parte de Helpman y Krugman.}
+
+\tema{4.1 Instrumentos de política comercial y protección efectiva}
+\lecturas{\KO{9} \quad \FE{7} \quad \FE{8}}
+\apoyo{\HK{2.1--2.6}}
+\articulos{Corden (1971)}
+\nota{Aranceles, cuotas, subsidios a la exportación y restricciones voluntarias
+en equilibrio parcial y general; el arancel óptimo, el \emph{dumping} y la
+protección efectiva del Módulo 4 de 1ECO83.}
+
+\tema{4.2 Política comercial con competencia imperfecta}
+\lecturas{\HK{3--6}}
+\consultalib{McLaren (2013), cap.~4}
+\nota{Aranceles frente a un monopolista extranjero, oligopolio de Cournot y
+de Bertrand, traslado de beneficios y política comercial estratégica
+(Brander--Spencer).}
+
+\tema{4.3 Economía política de la política comercial}
+\lecturas{\KO{10} \quad \FE{9}}
+\nota{Grupos de interés, la protección en venta de Grossman--Helpman y la
+negociación internacional en la OMC.}
+
+\tema{4.4 Acuerdos comerciales regionales}
+\lecturas{\FE{6}}
+\articulos{Panagariya (2000) \quad Limão (2006) \quad Estevadeordal, Freund y Ornelas (2008) \quad Tovar (2012)}
+\consulta{Bown y Tovar (2016) \quad Tovar (2019) \quad Banco Mundial (2020)}
+\nota{Creación y desviación de comercio y la discusión sobre si los acuerdos
+preferenciales son escalones o tropiezos hacia la liberalización multilateral,
+con evidencia latinoamericana.}
+
+\tema{4.5 Comercio, desarrollo y crecimiento}
+\lecturas{\KO{11} \quad \FE{10}}
+\consultalib{Acemoglu (2009), secc.~19.3--19.7}
+\nota{Sustitución de importaciones, promoción de exportaciones, industria
+naciente y los modelos de comercio con crecimiento endógeno.}
+
+\tema{4.6 Comercio y desigualdad: evidencia y el caso peruano}
+\lecturas{\KO{12} \quad Morales, Pierola y Sánchez-Navarro (2021)}
+\articulos{Pavcnik (2017) \quad Autor, Dorn y Hanson (2013)}
+\consultalib{Sanborn, Pareja y Quispe (2024)}
+\consulta{FMI (2023), \emph{Geo-economic Fragmentation and the Future of Multilateralism}}
+\nota{El «\emph{shock} de China» en los mercados laborales locales y el efecto
+de la competencia importada sobre la informalidad y los salarios en la
+manufactura peruana. Sanborn et al.\ documentan la presencia económica china
+en el Perú, de Marcona a Chancay.}
+
+%==============================================================================
+\parte{Parte II --- Macroeconomía internacional}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- La cuenta corriente --- 4 semanas}
+{Las cuentas externas y el enfoque intertemporal de la cuenta corriente, de
+los modelos de dos períodos de Schmitt-Grohé et al.\ a los de horizonte
+infinito de Uribe y Schmitt-Grohé. Retoma el Bloque 3 del sílabo de
+macroeconomía con más profundidad. Cubre la sesión 1.3 de 1ECO93 y la
+sesión 4.2 de su Módulo 4.}
+
+\tema{5.1 Balanza de pagos y posición de inversión internacional}
+\lecturas{\SW{1.1--1.8} \quad \KO{13}}
+\nota{Cuenta corriente y financiera, efectos de valoración y la «materia
+oscura» de Estados Unidos.}
+
+\tema{5.2 Sostenibilidad de la cuenta corriente}
+\lecturas{\SW{2.1--2.4}}
+\nota{¿Puede un país tener déficits perpetuos de balanza comercial o de cuenta
+corriente? Restricción presupuestaria intertemporal y condición de no juego
+de Ponzi.}
+
+\tema{5.3 La cuenta corriente en una economía de dotación}
+\lecturas{\SW{3.1--3.7} \quad \US{2.1--2.2}}
+\apoyo{\VE{1}}
+\nota{Choques temporales y permanentes de producción, de términos de
+intercambio y de tasa de interés. El modelo de horizonte infinito de \US{2}
+muestra que la cuenta corriente es contracíclica cuando los choques son
+persistentes.}
+
+\tema{5.4 Inversión y cuenta corriente}
+\lecturas{\SW{4.1--4.4} \quad \US{3.1--3.5}}
+\nota{Decisión de inversión, curva de ahorro, choques de productividad
+permanentes y temporales y costos de ajuste del capital.}
+
+\tema{5.5 Incertidumbre y prueba del enfoque intertemporal}
+\lecturas{\SW{5.1--5.2} \quad \US{2.3--2.5}}
+\nota{Ahorro precautorio, la gran moderación y las pruebas econométricas del
+enfoque intertemporal de la cuenta corriente.}
+
+\tema{5.6 Ajuste externo en economías pequeñas y grandes}
+\lecturas{\SW{6.1--6.6}}
+\nota{Primas de riesgo país, la hipótesis del exceso de ahorro mundial y los
+controles de capital óptimos en un modelo de dos países.}
+
+\tema{5.7 Déficits gemelos y equivalencia ricardiana}
+\lecturas{\SW{7.1--7.6}}
+\nota{El sector público en la economía abierta y las condiciones bajo las que
+el déficit fiscal se traslada a la cuenta corriente.}
+
+\tema{5.8 Imperfecciones del mercado de capitales}
+\lecturas{\VE{2}}
+\consulta{Obstfeld y Rogoff (1996), caps.~1--2}
+\nota{Restricciones de endeudamiento, primas de riesgo crecientes y su efecto
+sobre el consumo y la cuenta corriente en economías emergentes.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Integración financiera y tipo de cambio real --- 2 semanas}
+{Cuán integrados están los mercados de capital y qué determina el tipo de
+cambio real. Retoma los temas 3.3 y 3.4 del sílabo de macroeconomía y el tema
+8.1 del de economía financiera.}
+
+\tema{6.1 Movilidad del capital y paridades de tasas de interés}
+\lecturas{\SW{8.1--8.3}}
+\articulos{Feldstein y Horioka (1980)}
+\consultalib{\KO{14--15} (leídos en el sílabo de economía financiera)}
+\nota{Correlaciones entre ahorro e inversión, diferenciales de tasas de interés
+y el enigma de la paridad descubierta.}
+
+\tema{6.2 Determinantes del tipo de cambio real}
+\lecturas{\SW{9.1--9.6}}
+\articulos{Taylor y Taylor (2004) \quad Gopinath y Rigobon (2008)}
+\consultalib{\KO{16} (leído en el sílabo de economía financiera)}
+\nota{Ley de un solo precio, paridad del poder de compra, bienes no
+transables, el efecto Balassa--Samuelson, barreras comerciales y
+microfundamentos de los índices de precios. Es el tema 9 de 1ECO16.}
+
+\tema{6.3 Bienes no transables y precios intertemporales}
+\lecturas{\US{7.9--7.10}}
+\apoyo{\VE{3--4}}
+\nota{El tipo de cambio real como precio relativo de los no transables y su
+papel como precio intertemporal en una economía de dotación.}
+
+\tema{6.4 El modelo TNT y las paradas súbitas}
+\lecturas{\SW{10.1--10.5} \quad \US{7.11--7.12}}
+\nota{Choques de demanda agregada y ajuste del tipo de cambio real ante las
+paradas súbitas de Argentina (2001), Chile (años ochenta) y Turquía (2001).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Ciclos económicos en economías abiertas y emergentes --- 3 semanas}
+{Los capítulos 1 y 4 a 7 de Uribe y Schmitt-Grohé. Cubre los temas de economía
+abierta de 1ECO74 (ciclos reales en economía abierta y términos de
+intercambio), las sesiones 1.1 y 1.2 de 2ECO03 y la sección 4 de ECO338.}
+
+\tema{7.1 Hechos estilizados del ciclo en el mundo}
+\lecturas{\US{1.1--1.8}}
+\nota{Diez regularidades: la volatilidad del consumo y la contraciclicidad de
+la balanza comercial, en países pobres, emergentes y ricos.}
+
+\tema{7.2 El modelo RBC de economía pequeña y abierta}
+\lecturas{\US{4.1--4.10}}
+\articulos{Mendoza (1991) \quad Schmitt-Grohé y Uribe (2003)}
+\nota{Descentralización, calibración, aproximación de la dinámica, mercados
+completos frente a incompletos y las formas de inducir estacionariedad (el
+problema de «cerrar» los modelos de economía pequeña). Las sesiones 1.1 y 1.2
+de 2ECO03 comparan los dos tipos de mercados.}
+
+\tema{7.3 Ciclos en economías emergentes}
+\lecturas{\US{5.1--5.7}}
+\articulos{Aguiar y Gopinath (2007) \quad García-Cicco, Pancrazi y Uribe (2010)}
+\nota{¿El ciclo es la tendencia? Choques permanentes de productividad frente a
+fricciones financieras, con estimación bayesiana sobre un siglo de datos.}
+
+\tema{7.4 Choques de tasa de interés}
+\lecturas{\US{6.1--6.7}}
+\nota{Un modelo empírico y uno teórico de los choques a la tasa de interés
+internacional y al riesgo país, y los factores de riesgo global.}
+
+\tema{7.5 Términos de intercambio}
+\lecturas{\US{7.1--7.8}}
+\articulos{Schmitt-Grohé y Uribe (2018)}
+\consulta{Castillo y Rojas (2014) \quad Rodríguez, Villanueva y Castillo (2018)}
+\nota{El efecto Harberger--Laursen--Metzler y la importancia de los choques de
+términos de intercambio en un modelo RBC con transables y no transables;
+evidencia para el Perú y América Latina.}
+\nota{Para un importador neto de energía, un alza del precio del petróleo opera
+como un deterioro de los términos de intercambio. La versión de economía
+cerrada, con la energía como insumo de la producción, es el RBC con energía del
+tema 12.6 del sílabo de macroeconomía.}
+
+\tema{7.6 Ciclos internacionales y los enigmas de la macroeconomía abierta}
+\articulos{Backus, Kehoe y Kydland (1992) \quad Backus y Smith (1993) \quad Obstfeld y Rogoff (2000)}
+\consulta{Meese y Rogoff (1983) \quad Itskhoki y Mukhin (2021) \quad Gabaix y Maggiori (2015)}
+\nota{Comovimiento internacional, el enigma de Backus--Smith, Feldstein--Horioka
+y la desconexión del tipo de cambio: la sección 4 de ECO338.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Dinero, tipo de cambio y política cambiaria --- 3 semanas}
+{La parte nominal: tipo de cambio, rigideces, regímenes cambiarios y la
+estabilización de la inflación. Cubre el Módulo 2 de 1ECO93, el Módulo 2 de
+2ECO03 y los temas 10 y 11 de 1ECO16.}
+
+\tema{8.1 Dinero, inflación y tipo de cambio nominal}
+\lecturas{\SW{13.1--13.5}}
+\apoyo{\VE{5--6}}
+\nota{Teoría cuantitativa, déficit fiscal e inflación, tipo de cambio fijo y
+crecimiento constante del dinero, impuesto inflacionario y el enfoque
+monetario de la balanza de pagos.}
+
+\tema{8.2 Producción a corto plazo y áreas monetarias óptimas}
+\lecturas{\KO{17} \quad \KO{21}}
+\articulos{Bayoumi (1994) \quad Rose (2000)}
+\consulta{Barro y Tenreyro (2007) \quad Mongelli (2002)}
+\nota{El modelo DD--AA de producción y tipo de cambio a corto plazo y la teoría
+de las áreas monetarias óptimas aplicada al euro.}
+
+\tema{8.3 Rigidez salarial, desempleo y política cambiaria óptima}
+\lecturas{\SW{11.1--11.2} \quad \US{8.1--8.4} \quad \US{8.8--8.10}}
+\apoyo{\US{8.11--8.15}}
+\nota{Rigidez a la baja de los salarios nominales, el costo de las paridades
+fijas y la política cambiaria óptima, con la periferia europea en 2008--2011
+como caso.}
+
+\tema{8.4 El modelo neokeynesiano de economía abierta}
+\lecturas{\GA{7}}
+\articulos{De Paoli (2009)}
+\consultalib{Walsh (2010), secc.~9.1--9.5}
+\nota{La economía pequeña y abierta de Galí y Monacelli: curva de Phillips,
+IS dinámica y reglas de política. El sílabo de macroeconomía lo cita solo
+como consulta (tema 13.1); Walsh añade el modelo de dos países de
+Obstfeld--Rogoff y la coordinación de políticas.}
+
+\tema{8.5 Regímenes cambiarios y miedo a flotar}
+\lecturas{\VE{11}}
+\articulos{Calvo y Reinhart (2002) \quad Fischer (2001) \quad Calvo y Mishkin (2003) \quad Obstfeld y Rogoff (1995)}
+\consultalib{\KO{18--19} (leídos en el sílabo de economía financiera)}
+\nota{Elección óptima del régimen cambiario, la visión bipolar y por qué las
+economías emergentes temen flotar.}
+
+\tema{8.6 Estabilización de la inflación alta}
+\lecturas{\VE{12--13}}
+\nota{Anclas nominales y reales, programas basados en el tipo de cambio y en
+el dinero, y el ciclo de auge y recesión de las estabilizaciones; marco para
+la hiperinflación peruana de 1988--1990.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Flujos de capital, crisis y deuda soberana --- 3 semanas}
+{Los capítulos 9 a 11 de Uribe y Schmitt-Grohé y la última parte de Végh.
+Cubre los Módulos 1, 3 y 4 de 1ECO93, los Módulos 1 y 3 de 2ECO03, el tema
+12 de 1ECO16 y la dolarización de 1ECO74.}
+
+\tema{9.1 Flujos de capital y paradas súbitas}
+\lecturas{\VE{14}}
+\articulos{Cavallo, Powell, Pedemonte y Tavella (2015) \quad Forbes y Warnock (2021)}
+\consultalib{Acemoglu (2009), secc.~19.1--19.2}
+\consulta{Koepke (2019) \quad Ahmed y Zlate (2014)}
+\nota{Determinantes de los flujos hacia economías emergentes, olas de entradas
+y salidas y las respuestas de política.}
+
+\tema{9.2 Controles de capital}
+\lecturas{\US{9.1--9.9}}
+\consulta{Ostry, Ghosh, Chamon y Qureshi (2012)}
+\nota{Política fiscal de primer óptimo con tipo de cambio fijo, controles de
+capital como segundo óptimo y su carácter prudencial.}
+
+\tema{9.3 Sobreendeudamiento y externalidades financieras}
+\lecturas{\US{10.1--10.2}}
+\articulos{Mendoza (2010) \quad Bianchi (2011)}
+\consulta{Bianchi y Mendoza (2020) \quad Aoki, Benigno y Kiyotaki (2021)}
+\nota{Credibilidad imperfecta, restricciones de colateral y la externalidad
+pecuniaria que justifica la política macroprudencial (sesiones 1.3--1.6 de
+2ECO03 y 3.2 de 1ECO93).}
+
+\tema{9.4 Crisis de balanza de pagos}
+\lecturas{\SW{13.6} \quad \VE{16}}
+\articulos{Agénor, Bhandari y Flood (1992)}
+\consultalib{\KO{20} y \KO{22} (leídos en el sílabo de economía financiera)}
+\consulta{Obstfeld, \emph{The Logic of Currency Crises}}
+\nota{Crisis de primera generación (ataques especulativos, Perú 1985--1990),
+de segunda generación (la libra esterlina en 1992) y de tercera (Asia 1997).}
+
+\tema{9.5 Deuda externa y deuda soberana}
+\lecturas{\SW{12.1--12.4} \quad \US{11.1--11.6}}
+\apoyo{\US{11.7--11.9}}
+\nota{La crisis de la deuda de los ochenta, esquemas de reducción de deuda, el
+costo del impago y el modelo de Eaton--Gersovitz.}
+
+\tema{9.6 Dolarización y crisis financieras}
+\lecturas{\VE{15} \quad \VE{17}}
+\articulos{Christiano, Dalgic y Nurbekyan (2021) \quad Carrasco y Florián (2025)}
+\consulta{Carrasco, Florián y Nivín (2019) \quad Céspedes, Chang y Velasco (2017)}
+\consultalib{Castillo, Montoro y Tuesta (2009) \quad Montoro y Ortiz (2016) \quad Gopinath (2019)}
+\nota{Determinantes de la dolarización financiera, crisis gemelas, intervención
+cambiaria y acumulación de reservas en una economía semidolarizada como la
+peruana (Módulo 3 de 2ECO03).}
+\nota{Castillo, Montoro y Tuesta (2009) dan el modelo de equilibrio general con
+dolarización para el Perú; Montoro y Ortiz (2016), un modelo de la intervención
+cambiaria y su interacción con la regla de tasas; Gopinath (2019), el marco de
+políticas integradas del FMI. Los tres los usa el curso de Política Monetaria
+del BCRP.}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+Capítulos de cada libro que entran en el plan y temas donde se leen. Lo que
+queda fuera se detalla en el Anexo B.
+
+\newcommand{\mapa}[2]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.1cm}X>{\raggedright\arraybackslash}p{3.4cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Temas} \\
+\midrule
+#2
+\bottomrule
+\end{tabularx}
+}}
+
+\mapa{A.1 Feenstra, \emph{Advanced International Trade}}{%
+1 & Preliminaries: Two-Sector Models & 1.2, 2.2 \\
+2 & The Heckscher-Ohlin Model & 2.2, 2.4 \\
+3 & Many Goods and Factors & 2.1, 2.3 \\
+4 & Trade in Intermediate Inputs and Wages & 3.5 \\
+5 & Increasing Returns and the Gravity Equation & 3.2, 3.3 \\
+6 & Gains from Trade and Regional Agreements & 4.4 \\
+7 & Import Tariffs and Dumping & 4.1 \\
+8 & Import Quotas and Export Subsidies & 4.1 \\
+9 & Political Economy of Trade Policy & 4.3 \\
+10 & Trade and Endogenous Growth & 4.5 \\
+11 & Multinationals and Organization of the Firm & 3.6 \\
+B & Discrete Choice Models & 3.6 \\
+}
+
+\mapa{A.2 Krugman, Obstfeld y Melitz, \emph{Economía internacional}}{%
+1--2 & Introducción; Comercio mundial: una visión general & 1.1 \\
+3 & Productividad del trabajo y ventaja comparativa: el modelo ricardiano & 1.2 \\
+4 & Factores específicos y distribución de la renta & 2.1 \\
+5 & Recursos y comercio: el modelo de Heckscher-Ohlin & 2.2 \\
+6 & El modelo estándar de comercio & 2.5 \\
+7 & Economías externas de escala y localización internacional de la producción & 3.1 \\
+8 & Las empresas en la economía global & 3.4 \\
+9 & Los instrumentos de la política comercial & 4.1 \\
+10 & La economía política de la política comercial & 4.3 \\
+11 & La política comercial en los países en desarrollo & 4.5 \\
+12 & Controversias de la política comercial & 4.6 \\
+13 & La contabilidad nacional y la balanza de pagos & 5.1 \\
+17 & La producción nacional y el tipo de cambio a corto plazo & 8.2 \\
+21 & Áreas monetarias óptimas y el euro & 8.2 \\
+}
+
+\mapa{A.3 Helpman y Krugman, \emph{Trade Policy and Market Structure}}{%
+2 & Trade Policy under Perfect Competition (2.1--2.6) & 4.1 \\
+3--4 & Protection and Domestic Market Power; Foreign Market Power & 4.2 \\
+5--6 & Strategic Export Policy; Strategic Import Policy & 4.2 \\
+7 & Intraindustry Trade (7.1--7.4) & 3.2 \\
+}
+
+\mapa{A.4 Schmitt-Grohé, Uribe y Woodford, \emph{International Macroeconomics}}{%
+1 & Global Imbalances & 5.1 \\
+2 & Current Account Sustainability & 5.2 \\
+3 & A Theory of Current Account Determination & 5.3 \\
+4 & Current Account Determination in a Production Economy & 5.4 \\
+5 & Uncertainty and the Current Account & 5.5 \\
+6 & External Adjustment in Small and Large Economies & 5.6 \\
+7 & Twin Deficits & 5.7 \\
+8 & International Capital Market Integration & 6.1 \\
+9 & Determinants of the Real Exchange Rate & 6.2 \\
+10 & Aggregate Demand Shocks and Real Exchange Rates & 6.4 \\
+11 & Exchange Rate Policy and Unemployment & 8.3 \\
+12 & The Macroeconomics of External Debt & 9.5 \\
+13 & Monetary Policy and Nominal Exchange Rate Determination & 8.1, 9.4 \\
+}
+
+\mapa{A.5 Uribe y Schmitt-Grohé, \emph{Open Economy Macroeconomics}}{%
+1 & Business-Cycle Facts Around the World (1.1--1.8) & 7.1 \\
+2 & An Open Endowment Economy & 5.3, 5.5 \\
+3 & An Open Economy with Capital & 5.4 \\
+4 & The Small-Open-Economy Real-Business-Cycle Model (4.1--4.10) & 7.2 \\
+5 & Emerging-Country Business Cycles Through the Lens of the SOE-RBC Model & 7.3 \\
+6 & Interest-Rate Shocks & 7.4 \\
+7 & Tradable Goods, Nontradable Goods, the Terms of Trade, and the Real Exchange Rate & 6.3, 6.4, 7.5 \\
+8 & Nominal Rigidity, Exchange Rates, and Unemployment & 8.3 \\
+9 & Exchange Rate Policy and Capital Controls & 9.2 \\
+10 & Overborrowing & 9.3 \\
+11 & Sovereign Debt & 9.5 \\
+}
+
+\mapa{A.6 Végh, \emph{Open Economy Macroeconomics in Developing Countries}}{%
+1--2 & The Basic Intertemporal Model; Capital Market Imperfections & 5.3, 5.8 \\
+3--4 & Intertemporal Prices; Nontradable Goods and Relative Prices & 6.3 \\
+5--6 & The Basic Monetary Model; The Monetary Approach to the Balance of Payments & 8.1 \\
+11 & Optimal Exchange Rate Regimes & 8.5 \\
+12--13 & Real Anchors; Stopping High Inflation & 8.6 \\
+14 & Capital Inflows & 9.1 \\
+15 & Dollarization & 9.6 \\
+16 & Balance-of-Payments Crises & 9.4 \\
+17 & Financial Crises & 9.6 \\
+}
+
+\mapa{A.7 Galí, \emph{Monetary Policy, Inflation, and the Business Cycle}}{%
+7 & Monetary Policy and the Open Economy & 8.4 \\
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo B. Lo que no entra en el plan}
+\addcontentsline{toc}{section}{Anexo B. Lo que no entra en el plan}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Materia} & \cab{Capítulos y secciones} \\
+\midrule
+Finanzas internacionales ya cubiertas & \KO{14--16}, \KO{18--20} y \KO{22}: Bloque 8 del sílabo de economía financiera; aquí, solo consulta \\
+Métodos numéricos & \US{4.11--4.16} (aproximaciones de primer orden, momentos, impulso-respuesta y código de Matlab); \HK{8} (cuantificación); Piermartini y Teh (2005) \\
+Índices de precios y productividad & \FE{Apéndice A} \\
+Política macroeconómica de corto plazo en Végh & \VE{7--10} (política temporal, precios rígidos, política de tasas de interés y política fiscal y monetaria óptima) (Anexo D.2) \\
+Comercio y política con enfoque de casos & McLaren (2013): solo el cap.~4 como consulta \\
+Temas de coyuntura & Los informes y notas de organismos del Módulo 3 de 1ECO83 (BID, CAF, CEPAL, FMI, OMC, MINCETUR), salvo FMI (2023) como consulta \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Archivos de la carpeta que no se usaron}: Obstfeld y Rogoff,
+\emph{Foundations of International Macroeconomics} (carpeta de
+macroeconomía), por ser una imagen sin texto; se cita como consulta porque lo
+usa 1ECO93. La copia de Krugman et al.\ terminada en
+\texttt{.crdownload} es una descarga incompleta; la 9.ª edición y la versión de
+2006 quedan sustituidas por la 10.ª. Tampoco se usaron Dagenais y Muet (eds.),
+\emph{International Trade Modelling} (salvo su cap.~1 como
+consulta), por tratarse de una colección de estudios empíricos de comienzos de los años
+noventa; Shaikh (2009), \emph{Teorías del comercio internacional}, cuyo texto
+escaneado es de mala calidad (Anexo D.4); y el trabajo de Liu (2023), un
+informe de estudiante.
+
+\medskip
+\noindent\destacado{Versiones de Uribe y Schmitt-Grohé}: la carpeta de economía
+internacional tiene un borrador de agosto de 2014 (11 capítulos, 567 páginas)
+con un nombre de archivo que indica la edición de 2017; el plan usa el
+borrador de marzo de 2015 de la carpeta de macroeconomía, más completo
+(capítulo 7 ampliado y secciones 11.7--11.9) y el mismo que cita el sílabo de
+macroeconomía.
+
+%------------------------------------------------------------------------------
+\section*{Anexo C. Programas utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas utilizados}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{5.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Programa} & \cab{Temas del plan} \\
+\midrule
+ECO208, Economía Internacional I (pregrado, 2025-2 y 2026-1, J.~D.~Gallardo) & Temas 1 a 9 del programa: Bloques 1 a 4; tema 10 (balanza de pagos y tipo de cambio), 5.1 y 6.1 \\
+1ECO16, Economía Internacional 2 (pregrado, 2025-2, P.~Tovar) & Temas 1 a 7: Bloques 1 a 3; tema 8, 4.4; temas 9 a 11, 6.2, 8.2 y 8.5; tema 12, 9.4 \\
+1ECO83, Economía Internacional (Maestría en Economía, 2025-2, R.~Castellares, A.~Fairlie y D.~Schydlowsky) & Módulo 1, Bloques 1 y 2; módulo 2, Bloque 3; módulo 3, 4.4 y 4.6; módulo 4, 4.1 \\
+1ECO93, Finanzas Internacionales (Maestría en Economía, 2025-2) & Módulo 1, 5.2 y 9.4; módulo 2, 8.2; módulo 3, 9.1 y 9.3; módulo 4, 5.1, 5.8, 9.5 y 9.6 \\
+2ECO03, Macroeconomía Avanzada (Maestría en Economía, 2025-2) & Módulo 1, 7.2, 9.2 y 9.3; módulo 2, 8.4; módulo 3, 9.6 \\
+1ECO74, Macroeconomía Intermedia (Maestría en Economía, 2026-1) & Ciclos reales en economía abierta y términos de intercambio, Bloque 7; dolarización, 9.6 \\
+ECO338, Tópicos de Macroeconomía Avanzada~2 (pregrado, 2026-2, C.~Vásquez) & Sección 4 (macroeconomía internacional), 7.6 \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Programas de la carpeta que no se usaron}: 1FIN27 (Finanzas
+Internacionales, 2026-1), porque la versión 2025-2 ya está integrada en el
+sílabo de economía financiera. El módulo 4 de 2ECO03 (búsqueda y
+emparejamiento) y las unidades de economía cerrada de 1ECO74 ya están en el
+sílabo de macroeconomía.
+
+%------------------------------------------------------------------------------
+\section*{Anexo D. Material opcional}
+\addcontentsline{toc}{section}{Anexo D. Material opcional}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica
+el cronograma.
+
+\subsection*{D.1 Comercio y política comercial con casos}
+McLaren (2013), \emph{International Trade}: cada capítulo parte de un problema
+de política real (autosuficiencia alimentaria, el TLCAN, el medio ambiente,
+el trabajo infantil, el déficit comercial y el renminbi).
+
+\subsection*{D.2 Política macroeconómica de corto plazo en economías en desarrollo}
+\VE{7--10}: política temporal, precios rígidos, defensa de la moneda con la
+tasa de interés y política fiscal y monetaria óptima en la economía abierta.
+Momento sugerido: tras el Bloque 8.
+
+\subsection*{D.3 Modelos cuantitativos de política comercial}
+Piermartini y Teh (2005), \emph{Demystifying Modelling Methods for Trade
+Policy} (OMC); \HK{8}. Requiere métodos numéricos que corresponden a otro
+curso.
+
+\subsection*{D.4 Visiones heterodoxas del comercio}
+Shaikh (2009), \emph{Teorías del comercio internacional}: crítica de la ventaja
+comparativa desde la teoría de la ventaja absoluta y los costos reales.
+
+\subsection*{D.5 Coyuntura y fragmentación geoeconómica}
+Los informes del Módulo 3 de 1ECO83: Banco Mundial (2020), FMI (2023), OMC
+(2024) y los documentos sobre los acuerdos comerciales del Perú y la Alianza
+del Pacífico.
+
+%------------------------------------------------------------------------------
+\section*{Anexo E. Referencias}
+\addcontentsline{toc}{section}{Anexo E. Referencias}
+
+\subsection*{E.1 Textos del plan}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Feenstra, R. C. (2004). \emph{Advanced International Trade: Theory and Evidence}. Princeton University Press.
+\item Galí, J. (2008). \emph{Monetary Policy, Inflation, and the Business Cycle: An Introduction to the New Keynesian Framework}. Princeton University Press (carpeta de macroeconomía).
+\item Helpman, E. y P. R. Krugman (1989). \emph{Trade Policy and Market Structure}. The MIT Press.
+\item Krugman, P. R., M. Obstfeld y M. J. Melitz (2016). \emph{Economía internacional: teoría y política}, 10.ª ed. Pearson.
+\item Morales, F., M. D. Pierola y D. Sánchez-Navarro (2021). Import Competition in the Manufacturing Sector in Peru: Its Impact on Informality and Wages. \emph{Economía}, 44(88), 45--75.
+\item Schmitt-Grohé, S., M. Uribe y M. Woodford (2016). \emph{International Macroeconomics}. Borrador del 4 de mayo de 2016; publicado como \emph{International Macroeconomics: A Modern Approach}, Princeton University Press, 2022.
+\item Uribe, M. y S. Schmitt-Grohé (2015). \emph{Open Economy Macroeconomics}. Borrador del 17 de marzo de 2015; publicado por Princeton University Press, 2017 (carpeta de macroeconomía).
+\item Végh, C. A. (2013). \emph{Open Economy Macroeconomics in Developing Countries}. The MIT Press.
+\end{itemize}
+}
+
+\subsection*{E.2 Libros de consulta de la carpeta (sin horas)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Acemoglu, D. (2009). \emph{Introduction to Modern Economic Growth}. Princeton University Press (carpeta de desarrollo y crecimiento).
+\item Dagenais, M. G. y P.-A. Muet (eds.) (1992). \emph{International Trade Modelling}. Chapman \& Hall.
+\item McLaren, J. (2013). \emph{International Trade: Economic Analysis of Globalization and Policy}. Wiley.
+\item Piermartini, R. y R. Teh (2005). \emph{Demystifying Modelling Methods for Trade Policy}. Discussion Paper 10, Organización Mundial del Comercio.
+\item Sanborn, C. A., A. Pareja y D. Quispe (2024). \emph{De Marcona a Chancay: la presencia económica y empresarial china en el Perú, 1992--2023}. Documento de Investigación 28, Universidad del Pacífico.
+\item Shaikh, A. (2009). \emph{Teorías del comercio internacional}.
+\item Walsh, C. E. (2010). \emph{Monetary Theory and Policy}, 3.ª ed. The MIT Press (carpeta de macroeconomía).
+\end{itemize}
+}
+
+\subsection*{E.3 Referencias tomadas de los programas}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Agénor, P.-R., J. Bhandari y R. Flood (1992). Speculative Attacks and Models of Balance of Payments Crises. \emph{IMF Staff Papers}, 39(2).
+\item Aguiar, M. y G. Gopinath (2007). Emerging Market Business Cycles: The Cycle Is the Trend. \emph{Journal of Political Economy}, 115(1), 69--102.
+\item Ahmed, S. y A. Zlate (2014). Capital Flows to Emerging Market Economies: A Brave New World? \emph{Journal of International Money and Finance}, 48, 221--248.
+\item Anderson, J. (1979). A Theoretical Foundation for the Gravity Equation. \emph{American Economic Review}, 69(1), 106--116.
+\item Anderson, J. y E. van Wincoop (2003). Gravity with Gravitas: A Solution to the Border Puzzle. \emph{American Economic Review}, 93(1), 170--192.
+\item Aoki, K., G. Benigno y N. Kiyotaki (2021). Monetary and Financial Policies for Emerging Market Economies. Mimeo.
+\item Autor, D., D. Dorn y G. Hanson (2013). The China Syndrome: Local Labor Market Effects of Import Competition in the United States. \emph{American Economic Review}, 103(6), 2121--2168.
+\item Backus, D. K., P. J. Kehoe y F. E. Kydland (1992). International Real Business Cycles. \emph{Journal of Political Economy}, 100, 745--775.
+\item Backus, D. K. y G. W. Smith (1993). Consumption and Real Exchange Rates in Dynamic Economies with Non-Traded Goods. \emph{Journal of International Economics}, 35, 297--316.
+\item Banco Mundial (2020). The Evolution of Deep Trade Agreements. Policy Research Working Paper 9283.
+\item Barro, R. y S. Tenreyro (2007). Economic Effects of Currency Unions. \emph{Economic Inquiry}, 45(1), 1--23.
+\item Bayoumi, T. (1994). A Formal Model of Optimum Currency Areas. IMF Working Paper 94/42.
+\item Bernard, A. y J. B. Jensen (1999). Exceptional Exporter Performance: Cause, Effect, or Both? \emph{Journal of International Economics}, 47(1), 1--25.
+\item Bernhofen, D. y J. Brown (2004). A Direct Test of the Theory of Comparative Advantage: The Case of Japan. \emph{Journal of Political Economy}, 112(1), 48--67.
+\item Bernhofen, D. y J. Brown (2005). An Empirical Assessment of the Comparative Advantage Gains from Trade: Evidence from Japan. \emph{American Economic Review}, 95(1), 208--225.
+\item Bernhofen, D. y J. Brown (2016). Testing the General Validity of the Heckscher-Ohlin Theorem. \emph{American Economic Journal: Microeconomics}, 8(4), 54--90.
+\item Bianchi, J. (2011). Overborrowing and Systemic Externalities in the Business Cycle. \emph{American Economic Review}, 101(7), 3400--3426.
+\item Bianchi, J. y E. Mendoza (2020). A Fisherian Approach to Financial Crises: Lessons from the Sudden Stops Literature. \emph{Review of Economic Dynamics}, 37, 254--283.
+\item Bowen, H., E. Leamer y L. Sveikauskas (1987). Multicountry, Multifactor Tests of the Factor Abundance Theory. \emph{American Economic Review}, 77(5), 791--809.
+\item Bown, C. y P. Tovar (2016). Preferential Liberalization, Antidumping, and Safeguards: Stumbling Block Evidence from MERCOSUR. \emph{Economics \& Politics}, 28(3), 262--294.
+\item Bustos, P. (2011). Trade Liberalization, Exports, and Technology Upgrading: Evidence on the Impact of MERCOSUR on Argentinian Firms. \emph{American Economic Review}, 101(1), 304--340.
+\item Calvo, G. y F. Mishkin (2003). The Mirage of Exchange Rate Regimes for Emerging Market Economies. \emph{Journal of Economic Perspectives}, 17(4), 99--118.
+\item Calvo, G. y C. Reinhart (2002). Fear of Floating. \emph{Quarterly Journal of Economics}, 117(2), 379--408.
+\item Carrasco, A. y D. Florián (2025). External Shocks and FX Intervention Policy in Financially Dollarized Economies. \emph{Journal of Macroeconomics}, 84, 103672.
+\item Carrasco, A., D. Florián y R. Nivín (2019). SFX Interventions, Financial Intermediation, and External Shocks in Emerging Economies. Documento de Trabajo 2019-022, BCRP.
+\item Castillo, P. y Y. Rojas (2014). Términos de intercambio y productividad total de factores: evidencia empírica de los mercados emergentes de América Latina. \emph{Revista Estudios Económicos}, 28, 27--46. BCRP.
+\item Cavallo, E., A. Powell, M. Pedemonte y P. Tavella (2015). A New Taxonomy of Sudden Stops. \emph{Journal of International Money and Finance}, 51, 47--70.
+\item Céspedes, L. F., R. Chang y A. Velasco (2017). Financial Intermediation, Real Exchange Rates, and Unconventional Policies in an Open Economy. \emph{Journal of International Economics}, 108(S1), S76--S86.
+\item Christiano, L., H. Dalgic y A. Nurbekyan (2021). Financial Dollarization: Efficient Intranational Risk Sharing or Prescription for Disaster? NBER Working Paper 29034.
+\item Corden, W. M. (1971). The Substitution Problem in the Theory of Effective Protection. \emph{Journal of International Economics}, 1(1), 37--57.
+\item Corden, W. M. (1984). Booming Sector and Dutch Disease Economics: Survey and Consolidation. \emph{Oxford Economic Papers}, 36(3), 359--380.
+\item Corden, W. M. y J. P. Neary (1982). Booming Sector and De-Industrialisation in a Small Open Economy. \emph{Economic Journal}, 92(368), 825--848.
+\item Costinot, A. (2009). On the Origins of Comparative Advantage. \emph{Journal of International Economics}, 77, 255--264.
+\item Davis, D. y D. Weinstein (2001). An Account of Global Factor Trade. \emph{American Economic Review}, 91(5), 1423--1453.
+\item De Paoli, B. (2009). Monetary Policy and Welfare in a Small Open Economy. \emph{Journal of International Economics}, 77(1), 11--22.
+\item Deaton, A. y G. Laroque (1992). On the Behaviour of Commodity Prices. \emph{Review of Economic Studies}, 59(1), 1--23.
+\item Dornbusch, R., S. Fischer y P. A. Samuelson (1977). Comparative Advantage, Trade and Payments in a Ricardian Model with a Continuum of Goods. \emph{American Economic Review}, 67(5), 823--839.
+\item Dornbusch, R., S. Fischer y P. A. Samuelson (1980). Heckscher-Ohlin Trade Theory with a Continuum of Goods. \emph{Quarterly Journal of Economics}, 95(2), 203--224.
+\item Estevadeordal, A., C. Freund y E. Ornelas (2008). Does Regionalism Affect Trade Liberalization Toward Nonmembers? \emph{Quarterly Journal of Economics}, 123(4), 1531--1575.
+\item Feldstein, M. y C. Horioka (1980). Domestic Saving and International Capital Flows. \emph{Economic Journal}, 90, 314--329.
+\item Fischer, S. (2001). Exchange Rate Regimes: Is the Bipolar View Correct? \emph{Journal of Economic Perspectives}, 15(3), 3--24.
+\item FMI (2023). Geo-economic Fragmentation and the Future of Multilateralism. Staff Discussion Note 2023/001.
+\item Forbes, K. y F. Warnock (2021). Capital Flow Waves---or Ripples? Extreme Capital Flow Movements since the Crisis. \emph{Journal of International Money and Finance}, 116.
+\item Gabaix, X. y M. Maggiori (2015). International Liquidity and Exchange Rate Dynamics. \emph{Quarterly Journal of Economics}, 130(3), 1369--1420.
+\item García-Cicco, J., R. Pancrazi y M. Uribe (2010). Real Business Cycles in Emerging Countries? \emph{American Economic Review}, 100, 2510--2531.
+\item Gopinath, G. y R. Rigobon (2008). Sticky Borders. \emph{Quarterly Journal of Economics}, 123(2), 531--575.
+\item Hausmann, R. y B. Klinger (2008). A Growth Diagnosis in Peru. Harvard University, mimeo.
+\item Helpman, E. (1987). Imperfect Competition and International Trade: Evidence from Fourteen Industrial Countries. \emph{Journal of the Japanese and International Economies}, 1, 62--81.
+\item Hummels, D. y J. Levinsohn (1995). Monopolistic Competition and International Trade: Reconsidering the Evidence. \emph{Quarterly Journal of Economics}, 110(3), 799--836.
+\item Itskhoki, O. y D. Mukhin (2021). Exchange Rate Disconnect in General Equilibrium. \emph{Journal of Political Economy}, 129(8), 2183--2232.
+\item Khandelwal, A. (2010). The Long and Short (of) Quality Ladders. \emph{Review of Economic Studies}, 77(4), 1450--1476.
+\item Koepke, R. (2019). What Drives Capital Flows to Emerging Markets? A Survey of the Empirical Literature. \emph{Journal of Economic Surveys}, 33, 516--540.
+\item Krugman, P. (1979). Increasing Returns, Monopolistic Competition, and International Trade. \emph{Journal of International Economics}, 9(4), 469--479.
+\item Krugman, P. (1980). Scale Economies, Product Differentiation, and the Pattern of Trade. \emph{American Economic Review}, 70(5), 950--959.
+\item Kugler, M. y E. Verhoogen (2012). Prices, Plant Size, and Product Quality. \emph{Review of Economic Studies}, 79(1), 307--339.
+\item Leamer, E. (1980). The Leontief Paradox, Reconsidered. \emph{Journal of Political Economy}, 88(3), 495--503.
+\item Limão, N. (2006). Preferential Trade Agreements as Stumbling Blocks for Multilateral Trade Liberalization: Evidence for the United States. \emph{American Economic Review}, 96(3), 896--914.
+\item McCallum, J. (1995). National Borders Matter: Canada-U.S. Regional Trade Patterns. \emph{American Economic Review}, 85(3), 615--623.
+\item Meese, R. y K. Rogoff (1983). Empirical Exchange Rate Models of the Seventies: Do They Fit Out of Sample? \emph{Journal of International Economics}, 14, 3--24.
+\item Melitz, M. (2003). The Impact of Trade on Intra-Industry Reallocations and Aggregate Industry Productivity. \emph{Econometrica}, 71(6), 1695--1725.
+\item Mendoza, E. (1991). Real Business Cycles in a Small Open Economy. \emph{American Economic Review}, 81(4), 797--818.
+\item Mendoza, E. (2010). Sudden Stops, Financial Crises, and Leverage. \emph{American Economic Review}, 100(5), 1941--1966.
+\item Mongelli, F. (2002). «New» Views on the Optimum Currency Area Theory: What Is EMU Telling Us? ECB Working Paper 138.
+\item Neary, J. P. (1978). Short-Run Capital Specificity and the Pure Theory of International Trade. \emph{Economic Journal}, 88(351), 488--510.
+\item Obstfeld, M. \emph{The Logic of Currency Crises}. Universidad de California en Berkeley.
+\item Obstfeld, M. y K. Rogoff (1995). The Mirage of Fixed Exchange Rates. \emph{Journal of Economic Perspectives}, 9(4), 73--96.
+\item Obstfeld, M. y K. Rogoff (1996). \emph{Foundations of International Macroeconomics}. The MIT Press.
+\item Obstfeld, M. y K. Rogoff (2000). The Six Major Puzzles in International Macroeconomics: Is There a Common Cause? \emph{NBER Macroeconomics Annual}, 15, 339--390.
+\item Ostry, J., A. Ghosh, M. Chamon y M. Qureshi (2012). Tools for Managing Financial-Stability Risks from Capital Inflows. \emph{Journal of International Economics}, 88(2), 407--421.
+\item Panagariya, A. (2000). Preferential Trade Liberalization: The Traditional Theory and New Developments. \emph{Journal of Economic Literature}, 38(2), 287--331.
+\item Pavcnik, N. (2017). The Impact of Trade on Inequality in Developing Countries. NBER Working Paper 23878.
+\item Rodríguez, G., P. Villanueva y P. Castillo (2018). Driving Economic Fluctuations in Peru: The Role of the Terms of Trade. \emph{Empirical Economics}, 55(3), 1089--1119.
+\item Rose, A. (2000). One Money, One Market: Estimating the Effect of Common Currencies on Trade. \emph{Economic Policy}, 15(30), 7--45.
+\item Rybczynski, T. M. (1955). Factor Endowment and Relative Commodity Prices. \emph{Economica}, 22(88), 336--341.
+\item Schmitt-Grohé, S. y M. Uribe (2003). Closing Small Open Economy Models. \emph{Journal of International Economics}, 61, 163--185.
+\item Schmitt-Grohé, S. y M. Uribe (2018). How Important Are Terms-of-Trade Shocks? \emph{International Economic Review}, 59(1), 85--111.
+\item Stolper, W. y P. Samuelson (1941). Protection and Real Wages. \emph{Review of Economic Studies}, 9(1), 58--73.
+\item Taylor, A. y M. Taylor (2004). The Purchasing Power Parity Debate. \emph{Journal of Economic Perspectives}, 18(4), 135--158.
+\item Tovar, P. (2012). Preferential Trade Agreements and Unilateral Liberalization: Evidence from CAFTA. \emph{World Trade Review}, 11(4), 591--619.
+\item Tovar, P. (2019). Preferential and Multilateral Liberalization: Evidence from Latin America's Use of Tariffs, Antidumping and Safeguards. \emph{Journal of Development Economics}, 141.
+\item Trefler, D. (1993). International Factor Price Differences: Leontief Was Right! \emph{Journal of Political Economy}, 101(6), 961--987.
+\item Trefler, D. (1995). The Case of the Missing Trade and Other Mysteries. \emph{American Economic Review}, 85(5), 1029--1046.
+\end{itemize}
+}
+
+\subsection*{E.4 Otras referencias}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Castillo, P., C. Montoro y V. Tuesta (2009). Un modelo de equilibrio general con dolarización para la economía peruana. \emph{Revista Estudios Económicos}, BCRP, 17, 9--50.
+\item Gopinath, G. (2019). A Case for an Integrated Policy Framework. Jackson Hole Economic Policy Symposium, Federal Reserve Bank of Kansas City.
+\item Montoro, C. y M. Ortiz (2016). Foreign Exchange Intervention and Monetary Policy Design: A Market Microstructure Analysis. BCRP, Documento de Trabajo.
+\end{itemize}
+}
+
+\vspace{1.2cm}
+\franjas[2pt]
+\begin{center}\small\color{tonoPizarra}
+Plan de lectura de elaboración propia. Los títulos de los capítulos
+corresponden a las obras citadas y se reproducen únicamente con fines de
+referencia bibliográfica. La asignación de capítulos y secciones se basa en
+los índices de los libros de la carpeta; los temas de los cursos proceden de
+los programas citados en el Anexo C.
+\end{center}
+
+\end{document}

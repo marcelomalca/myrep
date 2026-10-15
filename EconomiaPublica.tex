@@ -1,0 +1,1962 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE ECONOMÍA PÚBLICA — Plan de estudio integrado
+%
+%  Teoría de la economía pública:
+%    GR  — Gruber, Public Finance and Public Policy (Worth, 3.ª ed., 2011)
+%    SR  — Stiglitz y Rosengard, Economics of the Public Sector (Norton,
+%          4.ª ed., 2015)
+%    HM  — Hindriks y Myles, Intermediate Public Economics (borrador de
+%          junio de 2004; MIT Press, 2006)
+%    AS  — Atkinson y Stiglitz, Lectures on Public Economics (Princeton,
+%          edición actualizada, 2015)
+%    SA  — Salanié, The Economics of Taxation (MIT Press, 2003)
+%  Elección pública, evaluación y finanzas públicas:
+%    MU  — Mueller, Public Choice III (Cambridge University Press, 2003)
+%    DR  — Drazen, Political Economy in Macroeconomics (Princeton, 2000)
+%    BO  — Boardman, Greenberg, Vining y Weimer, Cost-Benefit Analysis
+%          (Cambridge University Press, 5.ª ed., 2018)
+%    BG  — Barrantes, Manrique y Glave, Economía pública (Material de
+%          Enseñanza 9, PUCP, 2.ª ed., 2023)
+%  Textos complementarios con horas:
+%    PT  — Persson y Tabellini, Political Economics (MIT Press, 2000)
+%    HE  — Heer, Public Economics: The Macroeconomic Perspective (Springer, 2019)
+%    KC  — Kocherlakota, The New Dynamic Public Finance (Princeton, 2010)
+%    MA  — Mendoza y Anastacio, La historia fiscal del Perú: 1980-2020
+%          (Fondo Editorial PUCP, 2021)
+%    RB  — Corbacho, Fretes Cibils y Lora (eds.), Recaudar no basta (BID, 2013)
+%    UR  — Urrunaga, Hiraoka y Risso, Fundamentos de economía pública
+%          (Universidad del Pacífico, 2014)
+%    NC  — Arias, notas de clase (diapositivas) de 1ECO36, Finanzas Públicas
+%  Programas integrados: 1ECO18 (Economía Pública), 1ECO36 (Finanzas
+%    Públicas), 1ECO81 (Economía Pública, maestría) y 1ECO40 (Pensiones y
+%    Seguridad Social) de la PUCP; MIT OCW 14.41 (otoño de 2024) y ECO1028
+%    (Public Choice, Dublin City University, 2026) como referencias externas.
+%
+%  Compilar con:  pdflatex EconomiaPublica.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de naranjas
+\definecolor{tonoOscuro}{RGB}{82,36,4}              % oscuro
+\definecolor{tonoProfundo}{RGB}{121,52,6}           % profundo
+\definecolor{tonoPrincipal}{RGB}{160,69,8}          % principal
+\definecolor{tonoA}{RGB}{179,117,25}                % variante cálida
+\definecolor{tonoB}{RGB}{179,53,15}                 % variante fría
+\definecolor{tonoC}{RGB}{193,33,21}                 % variante viva
+\definecolor{tonoClaro}{RGB}{221,146,95}            % claro
+\definecolor{tonoAcero}{RGB}{131,90,63}             % acero
+\definecolor{tonoPizarra}{RGB}{134,105,86}          % pizarra
+\definecolor{tonoGrafito}{RGB}{73,53,39}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{247,223,207}           % hielo
+\definecolor{tonoPalido}{RGB}{251,240,233}          % pálido
+\definecolor{tonoBruma}{RGB}{254,249,246}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorGR}{RGB}{124,17,14}
+\definecolor{colorSR}{RGB}{170,32,19}
+\definecolor{colorHM}{RGB}{147,34,16}
+\definecolor{colorAS}{RGB}{124,35,14}
+\definecolor{colorSA}{RGB}{170,56,19}
+\definecolor{colorMU}{RGB}{147,55,16}
+\definecolor{colorDR}{RGB}{124,52,14}
+\definecolor{colorBO}{RGB}{170,79,19}
+\definecolor{colorBG}{RGB}{147,75,16}
+\definecolor{colorPT}{RGB}{124,69,14}
+\definecolor{colorHE}{RGB}{170,103,19}
+\definecolor{colorKC}{RGB}{147,96,16}
+\definecolor{colorMA}{RGB}{124,87,14}
+\definecolor{colorRB}{RGB}{170,127,19}
+\definecolor{colorUR}{RGB}{147,116,16}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Economía Pública}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}Gruber $\cdot$ Stiglitz--Rosengard $\cdot$ Atkinson--Stiglitz $\cdot$ Mueller}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\GR}[1]{\etiqueta{colorGR}{GR}\nobreak\hspace{0.25em}\textcolor{colorGR}{#1}}
+\newcommand{\SR}[1]{\etiqueta{colorSR}{SR}\nobreak\hspace{0.25em}\textcolor{colorSR}{#1}}
+\newcommand{\HM}[1]{\etiqueta{colorHM}{HM}\nobreak\hspace{0.25em}\textcolor{colorHM}{#1}}
+\newcommand{\AS}[1]{\etiqueta{colorAS}{AS}\nobreak\hspace{0.25em}\textcolor{colorAS}{#1}}
+\newcommand{\SA}[1]{\etiqueta{colorSA}{SA}\nobreak\hspace{0.25em}\textcolor{colorSA}{#1}}
+\newcommand{\MU}[1]{\etiqueta{colorMU}{MU}\nobreak\hspace{0.25em}\textcolor{colorMU}{#1}}
+\newcommand{\DR}[1]{\etiqueta{colorDR}{DR}\nobreak\hspace{0.25em}\textcolor{colorDR}{#1}}
+\newcommand{\BO}[1]{\etiqueta{colorBO}{BO}\nobreak\hspace{0.25em}\textcolor{colorBO}{#1}}
+\newcommand{\BG}[1]{\etiqueta{colorBG}{BG}\nobreak\hspace{0.25em}\textcolor{colorBG}{#1}}
+\newcommand{\PT}[1]{\etiqueta{colorPT}{PT}\nobreak\hspace{0.25em}\textcolor{colorPT}{#1}}
+\newcommand{\HE}[1]{\etiqueta{colorHE}{HE}\nobreak\hspace{0.25em}\textcolor{colorHE}{#1}}
+\newcommand{\KC}[1]{\etiqueta{colorKC}{KC}\nobreak\hspace{0.25em}\textcolor{colorKC}{#1}}
+\newcommand{\MA}[1]{\etiqueta{colorMA}{MA}\nobreak\hspace{0.25em}\textcolor{colorMA}{#1}}
+\newcommand{\RB}[1]{\etiqueta{colorRB}{RB}\nobreak\hspace{0.25em}\textcolor{colorRB}{#1}}
+\newcommand{\UR}[1]{\etiqueta{colorUR}{UR}\nobreak\hspace{0.25em}\textcolor{colorUR}{#1}}
+\newcommand{\NC}[1]{\textcolor{colorPUCP}{\textbf{NC#1}}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+% Encabezado de parte: banda a todo el ancho en el tono principal
+\newcommand{\parte}[1]{%
+  \clearpage
+  \phantomsection\addcontentsline{toc}{section}{\textbf{#1}}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPrincipal, halign=center, top=16pt, bottom=16pt,
+      borderline north={3pt}{0pt}{tonoClaro}, borderline south={3pt}{0pt}{tonoClaro},
+      before skip=0pt, after skip=0pt]
+    {\sffamily\LARGE\bfseries\color{white}#1}
+  \end{tcolorbox}\par\bigskip
+  \global\recienpartetrue}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Economía Pública\par}
+\vspace{0.3cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Teoría de la economía pública\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.25cm}
+{\large\etiqueta{colorGR}{GR} \quad {\color{tonoOscuro}Jonathan Gruber}\par}
+{\normalsize \emph{\color{colorGR}Public Finance and Public Policy}\par}
+{\small\color{tonoPizarra} Worth Publishers, 3.ª edición, 2011 --- 25 capítulos\par}
+\vspace{0.15cm}
+{\large\etiqueta{colorSR}{SR} \quad {\color{tonoOscuro}Joseph E. Stiglitz y Jay K. Rosengard}\par}
+{\normalsize \emph{\color{colorSR}Economics of the Public Sector}\par}
+{\small\color{tonoPizarra} W.\,W. Norton, 4.ª edición, 2015 --- 28 capítulos\par}
+\vspace{0.15cm}
+{\large\etiqueta{colorHM}{HM} \quad {\color{tonoOscuro}Jean Hindriks y Gareth D. Myles}\par}
+{\normalsize \emph{\color{colorHM}Intermediate Public Economics}\par}
+{\small\color{tonoPizarra} Borrador de junio de 2004 (The MIT Press, 2006) --- 23 capítulos\par}
+\vspace{0.15cm}
+{\large\etiqueta{colorAS}{AS} \quad {\color{tonoOscuro}Anthony B. Atkinson y Joseph E. Stiglitz}\par}
+{\normalsize \emph{\color{colorAS}Lectures on Public Economics}\par}
+{\small\color{tonoPizarra} Princeton University Press, edición actualizada, 2015 --- 18 lecciones\par}
+\vspace{0.15cm}
+{\large\etiqueta{colorSA}{SA} \quad {\color{tonoOscuro}Bernard Salanié}\par}
+{\normalsize \emph{\color{colorSA}The Economics of Taxation}\par}
+{\small\color{tonoPizarra} The MIT Press, 2003 --- 10 capítulos\par}
+\vspace{0.15cm}
+{\large\etiqueta{colorBG}{BG} \quad {\color{tonoOscuro}Roxana Barrantes, Silvana Manrique y Carla Glave}\par}
+{\normalsize \emph{\color{colorBG}Economía pública}\par}
+{\small\color{tonoPizarra} Material de Enseñanza 9, Departamento de Economía de la PUCP, 2.ª edición, 2023 --- 12 capítulos\par}
+\vspace{0.4cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Elección pública, economía política y evaluación\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.25cm}
+{\large\etiqueta{colorMU}{MU} \quad {\color{tonoOscuro}Dennis C. Mueller}\par}
+{\normalsize \emph{\color{colorMU}Public Choice III}\par}
+{\small\color{tonoPizarra} Cambridge University Press, 2003 --- 29 capítulos\par}
+\vspace{0.15cm}
+{\large\etiqueta{colorDR}{DR} \quad {\color{tonoOscuro}Allan Drazen}\par}
+{\normalsize \emph{\color{colorDR}Political Economy in Macroeconomics}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2000 --- 14 capítulos\par}
+\vspace{0.15cm}
+{\large\etiqueta{colorBO}{BO} \quad {\color{tonoOscuro}Anthony E. Boardman, David H. Greenberg, Aidan R. Vining y David L. Weimer}\par}
+{\normalsize \emph{\color{colorBO}Cost--Benefit Analysis: Concepts and Practice}\par}
+{\small\color{tonoPizarra} Cambridge University Press, 5.ª edición, 2018 --- 20 capítulos\par}
+\vspace{0.4cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de cuatro programas de la PUCP y de MIT 14.41,\par}
+{\normalsize\color{colorPUCP} y con informes del MEF, la OCDE, el Banco Mundial, el BID y la CEPAL\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Catorce bloques temáticos --- 7 meses y medio}\par}
+\vspace{0.1cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{catorce bloques temáticos}, agrupados en
+cuatro partes. La \textbf{Parte I} (Bloques 1 a 4) da los fundamentos: el
+sector público y sus herramientas, las externalidades, los bienes públicos y
+el federalismo fiscal, y la elección pública. La \textbf{Parte II} (Bloques 5
+a 7) estudia el gasto: su análisis y evaluación, el seguro social y las
+pensiones, la salud, la educación y la redistribución. La \textbf{Parte III}
+(Bloques 8 a 10) es la tributación: incidencia y eficiencia, tributación
+óptima y tributación aplicada. La \textbf{Parte IV} (Bloques 11 a 14) parte de
+la economía política de la política fiscal y lleva todo lo anterior a las
+finanzas públicas en la práctica, con el Perú como caso: cuentas fiscales, deuda y reglas, presupuesto y calidad del gasto,
+descentralización, sistema tributario y reforma fiscal. Conviene cerrar cada
+bloque antes de abrir el siguiente.
+
+\medskip
+\noindent\destacado{Por qué un curso aparte.} La economía pública aparece en los
+demás sílabos solo en partes. El de microeconomía dedica su Bloque 11 a las
+externalidades, los bienes públicos y el bienestar social, y su Bloque 13 al
+diseño de mecanismos. El de macroeconomía trata la restricción
+presupuestaria del gobierno, la equivalencia ricardiana, la sostenibilidad de
+la deuda, el suavizamiento de impuestos y la economía política de los
+déficits (temas 2.4 a 2.8), la imposición del capital en el modelo de Ramsey
+(4.8), la seguridad social (7.3 y 7.5) y la teoría fiscal del nivel de precios
+(8.7). Ninguno estudia la tributación (incidencia, exceso de gravamen,
+tributación óptima y aplicada), el análisis y la evaluación del gasto, el
+seguro social, la elección pública ni las instituciones de las finanzas
+públicas peruanas, que son el núcleo de este plan.
+
+\medskip
+\noindent\destacado{Relación con los demás sílabos.} El plan supone la teoría
+del consumidor y la dualidad (Bloque 2 del sílabo de microeconomía), el
+equilibrio general (Bloque 9) y la información asimétrica (Bloque 12), y la
+optimización estática del sílabo de economía matemática (Bloque 7). La
+Parte III usa a fondo la dualidad y el principio de revelación (tema 13.3 del
+sílabo de microeconomía). Los temas de evaluación (1.3 y 5.6) remiten al
+sílabo de microeconometría para los métodos; los de economía política, deuda y
+política fiscal (Bloques 11 y 12), a los Bloques 2, 9 y 13 del sílabo de
+macroeconomía. Donde hay
+superposición, lo ya leído se cita aquí como consulta.
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorGR}{\textbf{Gruber}} abre la mayoría de los temas con
+        la intuición, los gráficos y la evidencia empírica. Es el texto de
+        MIT 14.41. Se lee \emph{primero}.
+  \item \textcolor{colorSR}{\textbf{Stiglitz y Rosengard}} es el texto base de
+        1ECO18: aporta la mirada institucional, el marco del análisis del
+        gasto y el tratamiento de cada impuesto.
+  \item \textcolor{colorBG}{\textbf{Barrantes, Manrique y Glave}} son las notas
+        de 1ECO18: cortas, en castellano y con el caso peruano (sector
+        público, análisis costo-beneficio de normas, análisis de impacto
+        regulatorio, tributación y presupuesto).
+  \item \textcolor{colorHM}{\textbf{Hindriks y Myles}} dan la versión formal de
+        nivel intermedio de casi todos los temas teóricos y sirven de puente
+        hacia los textos de posgrado.
+  \item \textcolor{colorAS}{\textbf{Atkinson y Stiglitz}} y
+        \textcolor{colorSA}{\textbf{Salanié}} son los textos de posgrado de la
+        tributación (incidencia, exceso de gravamen y tributación óptima) y el
+        núcleo del Módulo 3 de 1ECO81.
+  \item \textcolor{colorMU}{\textbf{Mueller}} es el tratado de elección
+        pública: reglas de votación, competencia electoral, búsqueda de
+        rentas, burocracia, federalismo, tamaño del Estado y ciclos políticos
+        (Bloque 4 y temas 3.4, 11.2 y 11.6).
+  \item \textcolor{colorDR}{\textbf{Drazen}} es el texto de la economía
+        política de la política fiscal: inconsistencia temporal y compromiso,
+        ciclos políticos, redistribución, demoras de las reformas y sesgo hacia
+        el déficit (Bloque 11 y tema 4.4).
+  \item \textcolor{colorBO}{\textbf{Boardman et al.}} es el manual de análisis
+        costo-beneficio (Bloque 5).
+  \item \textcolor{colorPT}{\textbf{Persson y Tabellini}},
+        \textcolor{colorHE}{\textbf{Heer}} y
+        \textcolor{colorKC}{\textbf{Kocherlakota}} entran en dosis puntuales:
+        la economía política formal, la macroeconomía de las finanzas
+        públicas y la nueva finanza pública dinámica.
+  \item Las \textcolor{colorPUCP}{\textbf{notas de clase de 1ECO36}}
+        (Arias), \textcolor{colorRB}{\textbf{BID (2013)}},
+        \textcolor{colorMA}{\textbf{Mendoza y Anastacio}} y los informes del
+        MEF, la OCDE, el Banco Mundial y la CEPAL cubren las finanzas
+        públicas peruanas y latinoamericanas (Parte IV y Bloque 10).
+\end{itemize}
+
+\medskip
+\noindent\destacado{Qué entra en las horas.} Las líneas \emph{Lecturas},
+\emph{Profundización} y \emph{Artículos (PUCP)} entran en el cómputo de horas,
+incluidas las diapositivas de 1ECO36 y los informes de la carpeta. Las
+líneas \emph{Consulta} y \emph{Consulta (PUCP)} remiten a libros, documentos
+y referencias de los programas que no entran (Anexo E). Los informes extensos
+se leen por las secciones indicadas; sus anexos estadísticos se consultan.
+
+\medskip
+\noindent\destacado{Sobre los ejercicios.} MIT 14.41 publica sus conjuntos de
+problemas y sus exámenes con soluciones (Anexo D.1). Gruber cierra cada
+capítulo con preguntas y problemas, y Hindriks y Myles y Persson y Tabellini
+con ejercicios formales. Se recomienda reservar dos de las diez horas
+semanales para ejercicios en las Partes I a III y, en la Parte IV, para
+trabajar con las cifras del MEF (Consulta Amigable, cuadros del MMM) y del
+BCRP.
+
+\medskip
+\noindent\destacado{Material excluido.} Quedan fuera los métodos numéricos (las
+secciones cuantitativas de Heer y el capítulo 6 de Kocherlakota), la teoría de
+la regulación y la organización industrial (1ECO82), las instituciones
+políticas comparadas, la teoría monetaria y los modelos de proyección del
+BCRP que hay en la carpeta, y la contabilidad nacional. El detalle está en el
+Anexo B.
+
+\medskip
+\noindent\destacado{Notación.} \GR{n.m}, \HM{n.m}, \SA{n.m}, \MU{n.m}, \DR{n.m},
+\PT{n.m}, \HE{n.m} y \MA{n.m} remiten a la sección $m$ del capítulo $n$ de cada libro, y
+\BG{n.m}, a las notas de 1ECO18. Atkinson y Stiglitz numeran sus secciones
+«12--2»: aquí se escriben \AS{12.2}. \SR{n}, \BO{n}, \KC{n} y \RB{n} remiten
+a capítulos, porque sus índices no numeran las secciones. \UR{II.2.3} es la
+sección 2.3 de la parte II de Urrunaga et al. \NC{3} es la nota de clase 3
+(diapositivas) de 1ECO36, y «diap.» indica las diapositivas. Gruber se cita
+por la 3.ª edición de la carpeta (2011); MIT 14.41 usa la 7.ª (2022), así que
+con otra edición conviene ubicar los temas por título. El borrador de
+Hindriks y Myles numera sus capítulos de otro modo que la edición de 2006:
+la tributación de bienes, que aquí es \HM{15}, es el cap.~14 del libro que
+cita 1ECO81.
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan: 330 horas distribuidas en \textbf{33 semanas de
+contenido}, que equivalen a \textbf{unos 7 meses y medio de calendario}, a un
+ritmo de diez horas semanales. El núcleo de 30 semanas (7 meses) se amplió
+en tres para incorporar el Bloque 11, basado en Drazen.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón.
+La columna de horas es la que gobierna el reparto. Si hay semanas perdidas por
+feriados, viajes o imprevistos, el ajuste correcto es alargar el calendario,
+no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte I --- Fundamentos}}} \\
+1--2   & Bloque 1 --- El sector público y las herramientas de la economía pública & 2 & 20 \\
+3      & Bloque 2 --- Externalidades & 1 & 10 \\
+4--5   & Bloque 3 --- Bienes públicos, bienes locales y federalismo fiscal & 2 & 20 \\
+6--7   & Bloque 4 --- Elección pública & 2 & 20 \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte II --- Gasto público, seguro social y redistribución}}} \\
+8--10  & Bloque 5 --- Análisis del gasto público y evaluación social & 3 & 30 \\
+11--12 & Bloque 6 --- Seguro social y pensiones & 2 & 20 \\
+13--14 & Bloque 7 --- Salud, educación y redistribución & 2 & 20 \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte III --- Tributación}}} \\
+15--17 & Bloque 8 --- Incidencia y eficiencia de los impuestos & 3 & 30 \\
+\rowcolor{tonoHielo}\textbf{18--20} & \textbf{Bloque 9 --- Tributación óptima} & \textbf{3} & \textbf{30} \\
+21--23 & Bloque 10 --- Tributación aplicada & 3 & 30 \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte IV --- Economía política y finanzas públicas en la práctica}}} \\
+24--26 & Bloque 11 --- Economía política de la política fiscal & 3 & 30 \\
+27--29 & Bloque 12 --- Política fiscal, deuda y sostenibilidad & 3 & 30 \\
+30--31 & Bloque 13 --- Presupuesto, calidad del gasto y descentralización & 2 & 20 \\
+32--33 & Bloque 14 --- Sistema tributario peruano y reforma fiscal & 2 & 20 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{33} & \textbf{330} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana y una sesión de
+dos horas el sábado para ejercicios y datos.
+
+\medskip
+\noindent\destacado{El reparto entre las partes.} Los fundamentos y el gasto
+ocupan siete semanas cada uno; la tributación, nueve; la economía política y
+las finanzas públicas en la práctica, diez. La tributación recibe más tiempo
+porque reúne la teoría más exigente del plan (incidencia general y
+tributación óptima) y la revisión de cada impuesto; la Parte IV, porque suma
+el bloque de Drazen al estudio de las finanzas públicas peruanas.
+
+\medskip
+\noindent\destacado{El tramo largo.} El Bloque 9 (semanas 18--20) es el núcleo
+analítico del plan: la tributación óptima exige la dualidad del consumidor, la
+optimización con restricciones y, en el modelo de Mirrlees, la restricción de
+compatibilidad de incentivos. Conviene repasar antes el Bloque 2 del sílabo
+de microeconomía y el Bloque 7 del de economía matemática.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 7, 14, 23 y 29. Si en alguno de esos cortes se acumula más de una semana de
+retraso, se alarga el calendario y no se comprime el bloque siguiente.
+
+\subsection*{Detalle semana a semana}
+
+{\small\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & 1 & 1.1 El sector público: alcance, tamaño y funciones; 1.2 Eficiencia, equidad y bienestar social & 10 \\
+2  & 1 & 1.3 Herramientas empíricas: de la correlación a la causalidad; 1.4 Teorías del Estado: fallas de mercado y fallas de gobierno & 10 \\
+\midrule
+3  & 2 & 2.1 Teoría de las externalidades: Pigou, Coase y precios frente a cantidades; 2.2 Externalidades en la práctica: medio ambiente y tributación correctiva & 10 \\
+\midrule
+4  & 3 & 3.1 Bienes públicos: la regla de Samuelson y la provisión privada; 3.2 Mecanismos de provisión: Lindahl y Clarke--Groves & 10 \\
+5  & 3 & 3.3 Bienes club, bienes públicos locales y la hipótesis de Tiebout; 3.4 Federalismo fiscal: asignación de funciones y transferencias & 10 \\
+\midrule
+6  & 4 & 4.1 Reglas de votación: unanimidad, mayoría y votante mediano; 4.2 Democracia representativa: competencia electoral y paradoja del voto & 10 \\
+7  & 4 & 4.3 Búsqueda de rentas, grupos de interés y burocracia; 4.4 El tamaño del Estado: hechos y explicaciones & 10 \\
+\midrule
+8  & 5 & 5.1 El análisis del gasto público y el proceso de políticas en el Perú; 5.2 Análisis costo-beneficio I: el método y sus fundamentos & 10 \\
+9  & 5 & 5.3 ACB II: valoración de impactos en los mercados; 5.4 ACB III: descuento, tasa social de descuento y riesgo & 10 \\
+10 & 5 & 5.5 ACB IV: valoración sin mercado y ponderaciones distributivas; 5.6 Análisis de impacto regulatorio y costo-efectividad & 10 \\
+\midrule
+11 & 6 & 6.1 Teoría del seguro social: información asimétrica y seguro óptimo; 6.2 Pensiones: reparto, capitalización y reforma & 10 \\
+12 & 6 & 6.3 Pensiones en América Latina y el Perú; 6.4 Seguro de desempleo, discapacidad y flexiguridad & 10 \\
+\midrule
+13 & 7 & 7.1 Salud: fallas de mercado, seguros y sistemas de salud; 7.2 Educación: provisión pública, competencia y retornos & 10 \\
+14 & 7 & 7.3 Distribución del ingreso, pobreza y programas de transferencias; 7.4 Economía pública conductual & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+\newpage
+{\small\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+15 & 8 & 8.1 Sistemas tributarios: tipos, principios y estructura; 8.2 Incidencia en equilibrio parcial & 10 \\
+16 & 8 & 8.3 Incidencia en equilibrio general: el modelo de Harberger; 8.4 Incidencia fiscal neta & 10 \\
+17 & 8 & 8.5 Exceso de gravamen y costo marginal de los fondos públicos; 8.6 Impuestos y oferta de trabajo & 10 \\
+\midrule
+18 & 9 & 9.1 Impuestos indirectos óptimos: Ramsey y la eficiencia productiva; 9.2 Muchos consumidores y reforma tributaria & 10 \\
+19 & 9 & 9.3 El impuesto óptimo a la renta: el modelo de Mirrlees; 9.4 Fórmulas con elasticidades y progresividad óptima & 10 \\
+20 & 9 & 9.5 Tributación mixta: el teorema de Atkinson--Stiglitz y las críticas; 9.6 La tributación del capital & 10 \\
+\midrule
+21 & 10 & 10.1 El impuesto a la renta personal; 10.2 Impuestos al ahorro, a la riqueza y al riesgo & 10 \\
+22 & 10 & 10.3 El impuesto a la renta de las empresas y la inversión; 10.4 Tributación internacional y competencia fiscal & 10 \\
+23 & 10 & 10.5 El IVA y la imposición al consumo; 10.6 Evasión y administración tributaria & 10 \\
+\midrule
+24 & 11 & 11.1 Inconsistencia temporal y compromiso en la política fiscal; 11.2 Elecciones y ciclos políticos oportunistas & 10 \\
+25 & 11 & 11.3 Ciclos partidarios, competencia y deuda estratégica; 11.4 Economía política de la redistribución & 10 \\
+26 & 11 & 11.5 Inacción, demora y crisis; 11.6 Déficits, deuda e instituciones presupuestarias & 10 \\
+\midrule
+27 & 12 & 12.1 Las cuentas fiscales: presupuesto, déficit y deuda; 12.2 Sostenibilidad de la deuda y riesgos fiscales & 10 \\
+28 & 12 & 12.3 El balance estructural; 12.4 Reglas e instituciones fiscales & 10 \\
+29 & 12 & 12.5 Política fiscal anticíclica, multiplicadores y discrecionalidad; 12.6 La historia fiscal del Perú y el Marco Macroeconómico Multianual & 10 \\
+\midrule
+30 & 13 & 13.1 El sistema presupuestario y la gestión de las finanzas públicas; 13.2 Calidad del gasto, inversión pública y servicio civil & 10 \\
+31 & 13 & 13.3 Empresas públicas, banca pública e inclusión financiera; 13.4 La descentralización fiscal en el Perú & 10 \\
+\midrule
+32 & 14 & 14.1 El sistema tributario peruano: estructura, rendimiento y gastos tributarios; 14.2 Recursos naturales y régimen fiscal minero & 10 \\
+33 & 14 & 14.3 ¿Por qué recaudan poco los países en desarrollo?; 14.4 Reforma fiscal para el crecimiento y la equidad & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+%==============================================================================
+\parte{Parte I --- Fundamentos}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 1 --- El sector público y las herramientas de la economía pública --- 2 semanas}
+{Qué hace el Estado y con qué herramientas se lo estudia: el tamaño y las
+funciones del sector público, los criterios de eficiencia y equidad, los
+métodos empíricos y las razones ---y los límites--- de la intervención.
+Cubre la introducción y la línea de base de 1ECO18, la sesión 1.1 de 1ECO81,
+la semana 1 de 1ECO36 (2025-1) y la clase 1 de MIT 14.41.}
+
+\tema{1.1 El sector público: alcance, tamaño y funciones}
+\lecturas{\GR{1} \quad \SR{1} \quad \BG{1}}
+\apoyo{\HM{2}}
+\consultalib{\SR{2} \quad \AS{1} \quad \UR{I.1.3}}
+\nota{Las cuatro preguntas de la economía pública según Gruber (cuándo
+intervenir, cómo, con qué efectos y por qué el Estado hace lo que hace), las
+funciones de asignación, distribución y estabilización, y el sector público
+peruano en cifras: ingresos, gastos, deuda y niveles de gobierno.}
+
+\tema{1.2 Eficiencia, equidad y bienestar social}
+\lecturas{\GR{2} \quad \SR{3} \quad \BG{3}}
+\apoyo{\HM{13}}
+\consultalib{\SR{7} \quad \HM{6--7} \quad \MU{23} \quad \MU{25} \quad Feldman y Serrano (2006), caps.~9--10}
+\nota{Maximización restringida, equilibrio y bienestar; los teoremas del
+bienestar y la imposibilidad de los impuestos de suma fija personalizados;
+utilitarismo, Rawls y comparabilidad interpersonal. Las funciones de
+bienestar y el teorema de Arrow ya se vieron en los temas 11.4 y 11.5 del
+sílabo de microeconomía; aquí se repasan con la vista puesta en la
+tributación óptima (Bloque 9).}
+
+\tema{1.3 Herramientas empíricas: de la correlación a la causalidad}
+\lecturas{\GR{3} \quad \BG{10}}
+\articulos{Gertler et al.\ (2016), caps.~1--3}
+\consultalib{Vásquez (ed.) (2013), caps.~9--10}
+\nota{Ensayos aleatorios, cuasi experimentos, diferencias en diferencias,
+variables instrumentales y regresión discontinua aplicados a la política
+pública. Los métodos están completos en el sílabo de microeconometría; aquí
+basta con saber leer críticamente la evidencia que citan los textos.}
+
+\tema{1.4 Teorías del Estado: fallas de mercado y fallas de gobierno}
+\lecturas{\SR{4} \quad \BG{2} \quad \HM{3}}
+\articulos{Banco Mundial (1997), caps.~1--2}
+\consultalib{\AS{10--11} \quad \UR{I.2}}
+\consulta{Stiglitz (1998) \quad Tanzi (2000) \quad Buchanan y Musgrave (1999) \quad Mazzucato (2021)}
+\nota{Por qué fallan los mercados (competencia imperfecta, bienes públicos,
+externalidades, mercados incompletos e información imperfecta) y por qué
+también falla el Estado; las teorías del crecimiento del sector público
+(Wagner, Baumol) y del gobierno excesivo (Niskanen, el Leviatán), que se
+retoman en el tema 4.4. El Banco Mundial (1997) plantea el ajuste entre el papel del Estado y su
+capacidad.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Externalidades --- 1 semana}
+{Las externalidades y sus remedios privados y públicos, con su aplicación al
+medio ambiente y a la tributación correctiva. Cubre el tema de externalidades
+de 1ECO18, la sesión 1.4 de 1ECO81 y las clases 2 a 4 de MIT 14.41; amplía el
+tema 11.1 del sílabo de microeconomía.}
+
+\tema{2.1 Teoría de las externalidades: Pigou, Coase y precios frente a cantidades}
+\lecturas{\GR{5} \quad \BG{4} \quad \HM{10}}
+\consultalib{\SR{6} \quad \MU{2.6--2.12} \quad \UR{I.2.3} \quad Feldman y Serrano (2006), cap.~7}
+\consulta{Baumol y Oates (1988), cap.~4 \quad Ostrom (2011)}
+\nota{La ineficiencia del equilibrio con externalidades, el impuesto
+pigouviano, los permisos negociables, la internalización y el teorema de
+Coase; la elección entre precios y cantidades cuando hay incertidumbre
+(Weitzman); los bienes comunes y su gobierno.}
+
+\tema{2.2 Externalidades en la práctica: medio ambiente y tributación correctiva}
+\lecturas{\GR{6.1--6.2} \quad \RB{11}}
+\apoyo{\SA{10}}
+\consultalib{Field y Field (2017), caps.~10--13 \quad \AS{14.5}}
+\nota{La lluvia ácida y el comercio de emisiones, el calentamiento global y
+los impuestos al carbono; los impuestos sobre los «males» en América Latina
+(combustibles, tabaco, alcohol, emisiones) y el debate sobre el doble
+dividendo. En el Perú cumple ese papel el impuesto selectivo al consumo.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Bienes públicos, bienes locales y federalismo fiscal --- 2 semanas}
+{La provisión de bienes públicos y el reparto de funciones entre niveles de
+gobierno: la regla de Samuelson, la provisión privada, los mecanismos de
+revelación, los bienes club, el modelo de Tiebout y el federalismo fiscal.
+Cubre el tema de bienes públicos de 1ECO18, las sesiones 1.2 y 1.3 y el
+Módulo 2 (sesiones 2.1 a 2.3) de 1ECO81 y las clases 5 y 8 de MIT 14.41.}
+
+\tema{3.1 Bienes públicos: la regla de Samuelson y la provisión privada}
+\lecturas{\GR{7} \quad \BG{5.1--5.3} \quad \HM{8.1--8.4} \quad \HM{8.8--8.9}}
+\articulos{Samuelson (1955)}
+\consultalib{\SR{5} \quad \MU{2.1--2.5} \quad \MU{2.13} \quad \DR{9} \quad \UR{I.2.2}}
+\consulta{Bergstrom, Blume y Varian (1986) \quad Oakland (1987)}
+\nota{Rivalidad y exclusión, la condición de Samuelson, el problema del
+polizón y la provisión privada: equilibrio de Nash con contribuciones
+voluntarias, neutralidad frente a las transferencias, campañas de
+recaudación y la evidencia experimental.}
+
+\tema{3.2 Mecanismos de provisión: Lindahl y Clarke--Groves}
+\lecturas{\BG{5.4--5.5} \quad \HM{8.5--8.7}}
+\apoyo{\AS{16.1--16.6}}
+\consultalib{\MU{8.1} \quad \UR{II.1.1} \quad Feldman y Serrano (2006), cap.~8}
+\consulta{Laffont (1989), caps.~1--2}
+\nota{El equilibrio de Lindahl, por qué nadie revela su disposición a pagar y
+cómo el mecanismo pivotal de Clarke--Groves logra que se revele. Atkinson y
+Stiglitz añaden la distribución y los bienes privados provistos públicamente.
+El diseño de mecanismos en general está en los temas 13.3 a 13.5 del sílabo
+de microeconomía.}
+
+\tema{3.3 Bienes club, bienes públicos locales y la hipótesis de Tiebout}
+\lecturas{\HM{9} \quad \GR{10.2}}
+\articulos{Tiebout (1956) \quad Buchanan (1965)}
+\consultalib{\AS{17.1--17.4} \quad \MU{9.1--9.5}}
+\consulta{Berglas y Pines (1981)}
+\nota{El tamaño óptimo de un club y la exclusión, los bienes públicos locales
+y el «voto con los pies»; las pruebas empíricas, en particular la
+capitalización de impuestos y servicios locales en el precio de la vivienda.}
+
+\tema{3.4 Federalismo fiscal: asignación de funciones y transferencias}
+\lecturas{\GR{10.1} \quad \GR{10.3} \quad \HM{19} \quad \NC{8} (diap.~1--10)}
+\apoyo{\MU{10.1} \quad \MU{10.3}}
+\articulos{Hines y Thaler (1995)}
+\consultalib{\SR{26--27} \quad \AS{17.5} \quad \HM{20.3--20.4} \quad Oates (1999)}
+\consulta{Musgrave y Musgrave (1992) \quad Shah (2006)}
+\nota{El teorema de la descentralización, el dilema entre eficiencia y
+estabilización, la rendición de cuentas y el riesgo compartido; las
+transferencias en bloque, condicionadas y de contrapartida y el efecto
+«papel matamoscas»: el dinero se queda donde cae. El caso peruano está en el
+tema 13.4.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Elección pública --- 2 semanas}
+{Cómo deciden los votantes, los políticos, los burócratas y los grupos de
+interés: las reglas de votación, la competencia electoral, la búsqueda de
+rentas, la burocracia y el tamaño del Estado. Mueller es el texto base; los
+ciclos políticos y los déficits se estudian con Drazen en el Bloque 11.
+Cubre el tema de elección social de 1ECO18, la parte de elección pública de
+la sesión 1.3 de 1ECO81, la clase 7 de MIT 14.41 y el programa de elección
+pública ECO1028 de Dublin City University (carpeta de economía política).}
+
+\tema{4.1 Reglas de votación: unanimidad, mayoría y votante mediano}
+\lecturas{\GR{9.1--9.2} \quad \BG{6} \quad \MU{4} \quad \MU{5.1--5.4}}
+\apoyo{\HM{4}}
+\consultalib{\MU{5.5--5.13} \quad \MU{6--7} \quad \MU{24} \quad \SR{9} \quad \UR{III.1.3} \quad Feldman y Serrano (2006), caps.~12--13}
+\nota{La unanimidad de Wicksell y Lindahl y sus costos de decisión, la mayoría
+óptima de Buchanan y Tullock, los ciclos de Condorcet y el votante mediano con
+preferencias unimodales; el intercambio de votos y el control de la agenda. El
+teorema de Arrow se estudió en el sílabo de microeconomía y \MU{24} lo
+repasa.}
+
+\tema{4.2 Democracia representativa: competencia electoral y paradoja del voto}
+\lecturas{\GR{9.3} \quad \MU{11} \quad \MU{12.1--12.3} \quad \MU{14.1--14.4}}
+\apoyo{Feddersen (2004)}
+\consultalib{\MU{13} \quad \MU{14.5--14.7} \quad \PT{3.2--3.4} \quad Holcombe (1989)}
+\nota{El modelo de Downs y sus límites (el conjunto no cubierto, candidatos
+con preferencias, entrada de partidos), las pruebas del votante mediano, el
+voto probabilístico y por qué la gente vota aunque su voto casi nunca sea
+decisivo: el votante racional, el expresivo y el ético.}
+
+\tema{4.3 Búsqueda de rentas, grupos de interés y burocracia}
+\lecturas{\GR{9.4} \quad \MU{15} \quad \MU{16.1--16.2} \quad \MU{16.6}}
+\articulos{Bardhan et al.\ (2024)}
+\consultalib{\HM{5} \quad \MU{17} \quad \MU{20} \quad \PT{7.3} \quad \UR{III.1.4--1.5}}
+\consulta{Olson (1992), caps.~I--II}
+\nota{El juego de Tullock y la disipación de rentas; las rentas que crean la
+regulación, los aranceles y otras actividades del Estado, y cuánto cuestan;
+el burócrata que maximiza su presupuesto (Niskanen) y el Estado como
+Leviatán; el clientelismo: cuándo los votantes premian las transferencias
+focalizadas frente a los bienes públicos.}
+
+\tema{4.4 El tamaño del Estado: hechos y explicaciones}
+\lecturas{\MU{21} \quad \DR{14.1--14.3}}
+\apoyo{\MU{22.4--22.5}}
+\nota{El crecimiento del Estado en el siglo XX y sus explicaciones: el Estado
+como proveedor de bienes públicos y como redistribuidor (Meltzer--Richard), la
+ley de Wagner, el efecto Baumol, los grupos de interés, la burocracia y la
+ilusión fiscal; y la relación entre el tamaño del Estado, la productividad y
+el crecimiento.}
+
+%==============================================================================
+\parte{Parte II --- Gasto público, seguro social y redistribución}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Análisis del gasto público y evaluación social --- 3 semanas}
+{Cómo decide el Estado qué gastar y cómo evalúa lo que gasta: el marco del
+análisis del gasto, el análisis costo-beneficio completo, el análisis de
+impacto regulatorio y el de costo-efectividad. Cubre la Parte II de 1ECO18
+(incluido el método de su trabajo del semestre) y la clase 6 de MIT 14.41.}
+
+\tema{5.1 El análisis del gasto público y el proceso de políticas en el Perú}
+\lecturas{\SR{10} \quad \BG{7} \quad \UR{II.2}}
+\apoyo{Morón y Sanborn (2007), caps.~3--4}
+\consultalib{\SR{12}}
+\consulta{Zúñiga y Ramos (2024), unidad~2, cap.~3}
+\nota{Las preguntas del análisis del gasto (necesidad, falla que corrige,
+alternativas, eficiencia, distribución y equidad), las transferencias en
+efectivo frente a los subsidios en especie y quiénes deciden en el Perú: el
+Ejecutivo, el MEF, el Congreso, los gobiernos subnacionales y la burocracia.}
+
+\tema{5.2 Análisis costo-beneficio I: el método y sus fundamentos}
+\lecturas{\GR{8} \quad \BG{8} \quad \BO{1--2}}
+\consultalib{\SR{11} \quad \BO{3} \quad \UR{II.1.2--1.3}}
+\consulta{Barrantes (2018)}
+\nota{Los pasos de un análisis costo-beneficio, el criterio de Kaldor--Hicks,
+la disposición a pagar, el costo de oportunidad y quiénes cuentan
+(\emph{standing}); la experiencia peruana con el análisis costo-beneficio de
+normas.}
+
+\tema{5.3 ACB II: valoración de impactos en los mercados}
+\lecturas{\BO{5--8}}
+\consultalib{\BO{4}}
+\nota{Los excedentes en los mercados de productos y de insumos, los impactos
+en mercados secundarios (cuándo contarlos y cuándo no) y la predicción y
+monetización de los impactos. La estimación directa de la demanda
+(\BO{4}) supone la econometría de los otros sílabos.}
+
+\tema{5.4 ACB III: descuento, tasa social de descuento y riesgo}
+\lecturas{\BO{9--10} \quad \AS{15.4}}
+\consultalib{\BO{11--12}}
+\nota{Valor presente, inflación y horizontes largos; los enfoques de la tasa
+social de descuento (costo de oportunidad del capital, tasa social de
+preferencia temporal, precio sombra del capital, tasas decrecientes). En el
+Perú la tasa social de descuento la fija el MEF para los proyectos de
+Invierte.pe (tema 13.2).}
+
+\tema{5.5 ACB IV: valoración sin mercado y ponderaciones distributivas}
+\lecturas{\BO{13} \quad \BO{15} \quad \BO{19}}
+\consultalib{\BO{16--17} \quad \BO{20}}
+\nota{El valor de existencia, los métodos de preferencias reveladas (precios
+hedónicos, costo de viaje, gastos defensivos) y el análisis con pesos
+distributivos, que conecta la evaluación de proyectos con la función de
+bienestar social del tema 1.2.}
+
+\tema{5.6 Análisis de impacto regulatorio y costo-efectividad}
+\lecturas{\BG{9} \quad \BO{18}}
+\articulos{OCDE (2008) \quad Ortiz de Zevallos y Guerra-García (1998)}
+\consultalib{\BO{14}}
+\consulta{Osinergmin (2016)}
+\nota{Los análisis de necesidad, efectividad y proporcionalidad de una norma;
+el análisis costo-efectividad y costo-utilidad cuando los beneficios no se
+pueden monetizar. El método de Ortiz de Zevallos y Guerra-García es el que
+usa 1ECO18 para evaluar proyectos de ley.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Seguro social y pensiones --- 2 semanas}
+{Por qué el Estado asegura y cómo: la teoría del seguro social y su
+aplicación a las pensiones, el desempleo y la discapacidad, con el sistema
+previsional peruano. Cubre las clases 10 a 12 de MIT 14.41, la semana 12 de
+1ECO36 y las clases 1 a 7 de 1ECO40.}
+
+\tema{6.1 Teoría del seguro social: información asimétrica y seguro óptimo}
+\lecturas{\GR{12} \quad \HM{12}}
+\consultalib{Chetty y Finkelstein (2013)}
+\nota{El valor del seguro con utilidad cóncava, la selección adversa y el
+desmoronamiento de los mercados, el tamizado y la señalización, el riesgo
+moral, el desplazamiento del autoseguro y la regla del seguro social óptimo
+que equilibra el suavizamiento del consumo con el riesgo moral. Repasa el
+Bloque 12 del sílabo de microeconomía.}
+
+\tema{6.2 Pensiones: reparto, capitalización y reforma}
+\lecturas{\GR{13} \quad \HM{22}}
+\articulos{Barr y Diamond (2009)}
+\consultalib{\HE{6.3--6.4}}
+\consulta{Cipriani (2014) \quad Grech (2018)}
+\nota{La seguridad social como seguro de longevidad y como transferencia
+entre generaciones; sus efectos sobre el ahorro y la jubilación; la crisis de
+los sistemas de reparto con el envejecimiento y los errores analíticos más
+comunes en las reformas. El modelo de generaciones traslapadas con seguridad
+social está en los temas 7.3 y 7.5 del sílabo de macroeconomía.}
+
+\tema{6.3 Pensiones en América Latina y el Perú}
+\lecturas{\NC{6}}
+\articulos{BID (2019) \quad FUNDEF (2020) \quad Olivera (2020)}
+\consulta{Arenas de Mesa (2019) \quad Bando, Galiani y Gertler (2020) \quad Bernal, Olivera y Suhrcke (2024) \quad Olivera e Iparraguirre (2022) \quad OCDE (2019)}
+\nota{El sistema dual peruano (el Sistema Nacional de Pensiones, de reparto, y
+el Sistema Privado, de capitalización), la baja cobertura por la
+informalidad, las pensiones no contributivas (Pensión 65), las brechas de
+género y el costo fiscal de las reformas. La Ley 32123 (2024), de
+modernización del sistema previsional, es el marco vigente.}
+
+\tema{6.4 Seguro de desempleo, discapacidad y flexiguridad}
+\lecturas{\GR{14} \quad \SR{16}}
+\apoyo{Kreiner y Svarer (2022)}
+\consultalib{Cahuc, Carcillo y Zylberberg (2014), cap.~13}
+\nota{El seguro de desempleo, el de discapacidad y el de accidentes de
+trabajo: beneficios por suavizar el consumo frente a costos por riesgo moral;
+el modelo danés, que combina despidos flexibles, prestaciones generosas y
+obligaciones de búsqueda; las cuentas individuales de cesantía (la CTS
+peruana) como alternativa.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Salud, educación y redistribución --- 2 semanas}
+{Los grandes rubros del gasto social y la redistribución: salud, educación,
+programas contra la pobreza y lo que la economía del comportamiento cambia en
+el diseño de las intervenciones. Cubre las clases 9 y 13 a 16 de MIT 14.41,
+los capítulos de gasto en la práctica de Stiglitz y Rosengard que lee 1ECO18
+y la clase 10 de 1ECO40.}
+
+\tema{7.1 Salud: fallas de mercado, seguros y sistemas de salud}
+\lecturas{\GR{15} \quad \SR{13}}
+\apoyo{McPake y Normand (2008), cap.~21}
+\consultalib{\GR{16} \quad \HM{12.8} \quad McPake y Normand (2008), caps.~8, 19--20 y 22}
+\nota{Por qué el mercado de la salud es peculiar (incertidumbre, información
+asimétrica, demanda inducida), cuán generoso debe ser el seguro con los
+pacientes y con los proveedores, y los modelos de sistemas: servicio nacional,
+seguro social y seguro voluntario.}
+
+\tema{7.2 Educación: provisión pública, competencia y retornos}
+\lecturas{\GR{11} \quad \SR{14}}
+\articulos{Dhaliwal et al.\ (2011)}
+\consultalib{Cahuc, Carcillo y Zylberberg (2014), cap.~4}
+\nota{Por qué el Estado financia y provee educación (externalidades,
+restricciones de crédito, igualdad de oportunidades), los vales y la
+competencia entre escuelas, los retornos privados y sociales, y la
+comparación de intervenciones educativas por su costo-efectividad.}
+
+\tema{7.3 Distribución del ingreso, pobreza y programas de transferencias}
+\lecturas{\GR{17} \quad \HM{14} \quad \SA{8.1--8.4}}
+\consultalib{\SR{15} \quad \SA{8.5--8.6} \quad Vásquez (ed.) (2013), caps.~1, 3 y 6}
+\nota{La medición de la desigualdad (Gini, índice de Atkinson) y de la
+pobreza (Foster--Greer--Thorbecke), el riesgo moral de los programas de
+bienestar y cómo reducirlo (focalización, condicionalidades, requisitos), el
+ingreso mínimo garantizado, el impuesto negativo, los subsidios a los
+salarios bajos y el salario mínimo.}
+
+\tema{7.4 Economía pública conductual}
+\lecturas{\GR{6.3--6.4}}
+\apoyo{Thaler y Sunstein (2003) \quad Madrian y Shea (2001)}
+\articulos{Camerer et al.\ (2003) \quad Brown et al.\ (2008)}
+\consultalib{Chetty, Looney y Kroft (2009) \quad DellaVigna (2009)}
+\consulta{Allcott, Lockwood y Taubinsky (2018)}
+\nota{El tabaquismo y las adicciones como «internalidades», el poder de las
+opciones por defecto en el ahorro previsional, el enigma de la baja demanda de
+rentas vitalicias y el paternalismo asimétrico o libertario: corregir sesgos
+sin imponer costos a quien decide bien. Corresponde a los sesgos conductuales
+de la sumilla de 1ECO18 y a las semanas 8 y 9 de ECO1028.}
+
+%==============================================================================
+\parte{Parte III --- Tributación}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Incidencia y eficiencia de los impuestos --- 3 semanas}
+{Quién paga realmente los impuestos y cuánto cuestan: los sistemas
+tributarios, la incidencia en equilibrio parcial y general, la incidencia
+fiscal neta, el exceso de gravamen y los efectos sobre la oferta de trabajo.
+Cubre la Parte III de 1ECO18 salvo la tributación óptima, la sesión 3.1 de
+1ECO81 y las clases 17 a 20 de MIT 14.41.}
+
+\tema{8.1 Sistemas tributarios: tipos, principios y estructura}
+\lecturas{\GR{18} \quad \SR{17} \quad \BG{11.1--11.3}}
+\consultalib{\UR{IV.1.1--1.2}}
+\nota{Tipos de impuestos, tasas medias y marginales, progresividad, equidad
+horizontal y vertical, los principios del beneficio y de la capacidad de pago,
+la base de Haig--Simons y la unidad de tributación; los atributos de un buen
+sistema tributario: eficiencia, sencillez administrativa, flexibilidad,
+transparencia y equidad.}
+
+\tema{8.2 Incidencia en equilibrio parcial}
+\lecturas{\GR{19.1--19.2} \quad \SR{18} \quad \SA{1.1}}
+\apoyo{\HM{11.5--11.6}}
+\consultalib{\BG{11.5} \quad \AS{6.1}}
+\consulta{Fullerton y Metcalf (2002)}
+\nota{Las tres reglas de la incidencia (la incidencia legal no importa, paga
+el lado inelástico y la división depende de las elasticidades), los impuestos
+a la planilla, la incidencia con competencia imperfecta y la diferencia entre
+impuestos específicos y \emph{ad valorem}.}
+
+\tema{8.3 Incidencia en equilibrio general: el modelo de Harberger}
+\lecturas{\GR{19.3} \quad \SA{1.2} \quad \AS{6.2--6.4}}
+\articulos{Harberger (1962)}
+\consultalib{\AS{6.5--6.6} \quad \AS{7} \quad \UR{IV.2.2}}
+\consulta{Fullerton y Ta (2017)}
+\nota{El modelo de dos sectores y dos factores, la incidencia del impuesto a
+la renta de las empresas y la generalización a cualquier impuesto; Atkinson y
+Stiglitz extienden el análisis a mercados imperfectos y a economías sin
+equilibrio de mercado. Urrunaga et al.\ exponen el modelo de Harberger en
+castellano.}
+
+\tema{8.4 Incidencia fiscal neta}
+\lecturas{\AS{9.1--9.3} \quad \GR{19.4}}
+\articulos{Piggott y Whalley (1987) \quad Lustig (2017)}
+\consultalib{\AS{9.4--9.5}}
+\consulta{Lustig, Pessino y Scott (2014)}
+\nota{La incidencia distributiva conjunta de los impuestos y el gasto y sus
+problemas de interpretación; la metodología del proyecto Compromiso con la
+Equidad (CEQ) aplicada a América Latina, con el Perú entre los casos.}
+
+\tema{8.5 Exceso de gravamen y costo marginal de los fondos públicos}
+\lecturas{\GR{20.1} \quad \SR{19} \quad \SA{2.2--2.3}}
+\articulos{Slemrod y Yitzhaki (2001)}
+\consultalib{\HM{15.2} \quad \MU{22.1} \quad \UR{IV.1.3}}
+\consulta{Dahlby (2008) \quad Auerbach y Hines (2002)}
+\nota{El triángulo de Harberger, por qué la pérdida crece con el cuadrado de
+la tasa, su medición con la variación equivalente y la curva de Laffer; el
+costo marginal de los fondos públicos como puente entre la tributación y la
+evaluación del gasto del Bloque 5.}
+
+\tema{8.6 Impuestos y oferta de trabajo}
+\lecturas{\GR{21} \quad \SA{2.1.1}}
+\apoyo{\AS{2}}
+\consultalib{\HM{16.2--16.3} \quad \HE{5.3}}
+\nota{Efectos ingreso y sustitución, el margen extensivo y el intensivo, la
+evidencia (elasticidades bajas para los hombres y más altas en la
+participación de las mujeres casadas) y las políticas que promueven el
+empleo, como el crédito tributario por ingresos laborales.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Tributación óptima --- 3 semanas}
+{El núcleo normativo de la economía pública: cómo recaudar al menor costo de
+eficiencia y con la equidad deseada, de Ramsey y Diamond--Mirrlees a
+Mirrlees, las fórmulas de Saez, el teorema de Atkinson--Stiglitz y la
+imposición del capital. Cubre las sesiones 3.2 a 3.4 de 1ECO81 y el tema de
+tributación óptima de 1ECO18.}
+
+\tema{9.1 Impuestos indirectos óptimos: Ramsey y la eficiencia productiva}
+\lecturas{\HM{15.3--15.5} \quad \SA{3}}
+\apoyo{\AS{12.1--12.3}}
+\consultalib{\GR{20.2} \quad \SR{20} \quad \HM{15.9}}
+\consulta{Myles (1995), cap.~4 \quad Diamond y Mirrlees (1971) \quad Stern (1987)}
+\nota{La regla de Ramsey (reducción proporcional de las demandas
+compensadas), la regla de la inversa de la elasticidad y sus casos
+especiales; el teorema de eficiencia productiva de Diamond y Mirrlees: no
+gravar los bienes intermedios. Los precios del sector público
+(Ramsey--Boiteux) siguen la misma lógica.}
+
+\tema{9.2 Muchos consumidores y reforma tributaria}
+\lecturas{\HM{15.6--15.8} \quad \AS{12.4--12.5}}
+\articulos{Ahmad y Stern (1984)}
+\consulta{Myles (1995), cap.~6}
+\nota{La regla de Ramsey con consumidores heterogéneos (Diamond), la teoría
+de la reforma tributaria marginal, el óptimo inverso y las mejoras de Pareto;
+la aplicación de Ahmad y Stern a los impuestos indirectos de la India.}
+
+\tema{9.3 El impuesto óptimo a la renta: el modelo de Mirrlees}
+\lecturas{\GR{20.3} \quad \HM{16.4--16.5} \quad \HM{17.1--17.5} \quad \SA{4}}
+\consultalib{\AS{13}}
+\consulta{Mirrlees (1971) \quad Sheshinski (1972) \quad Myles (1995), cap.~5 \quad Kaplow (2008), caps.~4--5}
+\nota{El problema de información (el Estado observa el ingreso, no la
+habilidad), el principio de revelación y la restricción de compatibilidad de
+incentivos, el impuesto lineal óptimo y los resultados de Mirrlees: tasa
+marginal nula en los extremos y tasas óptimas más bien planas en las
+simulaciones. Repasa el tema 12.5 del sílabo de microeconomía.}
+
+\tema{9.4 Fórmulas con elasticidades y progresividad óptima}
+\lecturas{\HM{16.6--16.8}}
+\articulos{Saez (2001) \quad Diamond y Saez (2011)}
+\consulta{Piketty y Saez (2013) \quad Heathcote, Storesletten y Violante (2014) \quad Mertens (2013)}
+\nota{La tasa marginal óptima en función de la elasticidad del ingreso
+gravable, la forma de la distribución y los pesos sociales; la tasa óptima
+para los ingresos más altos y el caso a favor de un impuesto progresivo.}
+
+\tema{9.5 Tributación mixta: el teorema de Atkinson--Stiglitz y las críticas}
+\lecturas{\SA{5} \quad \SA{7} \quad \HM{17.6--17.8}}
+\articulos{Mankiw, Weinzierl y Yagan (2009)}
+\consultalib{\AS{14.1--14.3}}
+\consulta{Atkinson y Stiglitz (1976) \quad Jacobs y Boadway (2014) \quad Kaplow (2008), cap.~6 \quad Sørensen (2006) \quad Weinzierl (2014)}
+\nota{El impuesto negativo como impuesto lineal; por qué, con separabilidad
+débil entre consumo y ocio, los impuestos indirectos sobran cuando hay un
+impuesto óptimo a la renta; las críticas (equidad horizontal, reformas,
+administración y política) y las lecciones de la teoría para la política.}
+
+\tema{9.6 La tributación del capital}
+\lecturas{\SA{6}}
+\apoyo{\KC{1--2}}
+\consultalib{\AS{8} \quad \AS{14.4} \quad \HE{5.4} \quad \KC{3--5} \quad \DR{11.2}}
+\consulta{Chamley (1986) \quad Kaplow (2008), cap.~9 \quad Myles (1995), cap.~13}
+\nota{El resultado de tasa cero sobre el capital en el largo plazo
+(Chamley--Judd), sus supuestos y sus excepciones con generaciones
+traslapadas; el problema de credibilidad, que se estudia en el tema 11.1; la nueva finanza pública
+dinámica, que sustituye el enfoque de Ramsey por el de Mirrlees dinámico y
+justifica gravar el ahorro. La imposición del capital en el modelo de Ramsey
+está en el tema 4.8 del sílabo de macroeconomía.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 10 --- Tributación aplicada --- 3 semanas}
+{Los impuestos uno por uno ---renta personal, ahorro y riqueza, renta
+empresarial, tributación internacional e IVA--- y la evasión y la
+administración tributaria, con la evidencia latinoamericana del BID. Cubre el
+Módulo 4 de 1ECO81, las semanas 4, 5 y 7 de 1ECO36 y las clases 21 a 24 de
+MIT 14.41.}
+
+\tema{10.1 El impuesto a la renta personal}
+\lecturas{\SR{22} \quad \RB{7} \quad \BG{11.4}}
+\nota{La base imponible, las deducciones, la unidad de tributación y la
+progresividad efectiva; por qué en América Latina el impuesto a la renta
+personal es «un cascarón vacío»: pocos contribuyentes, rentas del capital que
+escapan y deducciones que erosionan la base.}
+
+\tema{10.2 Impuestos al ahorro, a la riqueza y al riesgo}
+\lecturas{\GR{22} \quad \GR{23}}
+\apoyo{\AS{3.1--3.2}}
+\consultalib{\AS{3.3--3.5} \quad \AS{4} \quad \SA{2.1.2--2.1.3} \quad \SR{21}}
+\nota{El ahorro y los impuestos en el modelo de ciclo de vida, las cuentas de
+ahorro previsional con ventajas tributarias, los impuestos y la toma de
+riesgos, las ganancias de capital, los impuestos a las herencias y el impuesto
+a la propiedad.}
+
+\tema{10.3 El impuesto a la renta de las empresas y la inversión}
+\lecturas{\GR{24.1--24.5} \quad \RB{8}}
+\apoyo{\AS{5.2}}
+\consultalib{\SR{23} \quad \AS{5}}
+\consulta{Auerbach, Devereux y Simpson (2008) \quad Gravelle y Smetters (2001)}
+\nota{Por qué se grava a las sociedades, la estructura del impuesto, su
+incidencia, el costo de uso del capital y los efectos sobre la inversión y el
+financiamiento (Modigliani--Miller con impuestos, el sesgo hacia la deuda,
+los dividendos); la competencia por la inversión mediante incentivos en
+América Latina. El costo de uso del capital está en el tema 2.2 del sílabo de
+macroeconomía.}
+
+\tema{10.4 Tributación internacional y competencia fiscal}
+\lecturas{\GR{24.6} \quad \SR{24} \quad \HM{20.2} \quad \NC{3} (diap.~32--38)}
+\articulos{Cobham y Janský (2018)}
+\consulta{OCDE (2013)}
+\nota{Residencia frente a fuente, el crédito por impuestos pagados en el
+exterior, los precios de transferencia y la planificación tributaria
+agresiva; la competencia tributaria entre jurisdicciones y la estimación de la
+pérdida de recaudación por elusión corporativa en cada país.}
+
+\tema{10.5 El IVA y la imposición al consumo}
+\lecturas{\GR{25} \quad \RB{9} \quad \SA{9}}
+\consultalib{\SR{25}}
+\consulta{Auerbach (2006) \quad Barreix, Bès y Roca (2010) \quad Kotlikoff, Lagarda y Marín (2023)}
+\nota{Las equivalencias entre impuestos, el impuesto al consumo frente al
+impuesto a la renta, el impuesto plano y el IVA en la práctica: base, tasas,
+exoneraciones y devoluciones. El IVA personalizado que devuelve el impuesto a
+los hogares pobres se discute en el tema 14.4.}
+
+\tema{10.6 Evasión y administración tributaria}
+\lecturas{\HM{18} \quad \RB{6} \quad \BG{11.6} \quad \NC{3} (diap.~25--31)}
+\articulos{Hutton (2017)}
+\consultalib{MEF (2024), recuadro~5}
+\consulta{Slemrod y Yitzhaki (2002) \quad Sandmo (2004) \quad Keen y Slemrod (2017) \quad Silvani y Baer (1997)}
+\nota{El modelo de Allingham y Sandmo, las auditorías y las sanciones, la
+moral tributaria y las interacciones sociales; cómo se mide la brecha del IVA
+y qué hace eficaz a una administración tributaria. Las diapositivas de
+1ECO36 muestran la evasión del IGV y del impuesto a la renta de tercera
+categoría en el Perú.}
+
+%==============================================================================
+\parte{Parte IV --- Economía política y finanzas públicas en la práctica}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 11 --- Economía política de la política fiscal --- 3 semanas}
+{Por qué la política fiscal observada se aparta de la óptima: la
+inconsistencia temporal y los mecanismos de compromiso, los ciclos políticos,
+la economía política de la redistribución, las demoras de las reformas y el
+sesgo hacia el déficit, con sus remedios institucionales. Drazen es el texto
+base. El bloque abre la Parte IV porque usa la tributación del capital
+(tema 9.6) y la redistribución (Bloque 7) y prepara las reglas fiscales del
+Bloque 12. Cubre la semana 4 de ECO1028 y amplía los temas 2.8 y 6.6--6.7 del
+sílabo de macroeconomía.}
+
+\tema{11.1 Inconsistencia temporal y compromiso en la política fiscal}
+\lecturas{\DR{4.1--4.3} \quad \DR{4.6} \quad \DR{5.1--5.3} \quad \DR{5.5}}
+\apoyo{\PT{12.1--12.2}}
+\consultalib{\DR{6} \quad \PT{11}}
+\nota{La tentación de gravar el capital ya acumulado, la inconsistencia
+temporal entendida como conflicto de intereses, el dilema entre compromiso y
+flexibilidad, y las leyes, constituciones, delegaciones y estructuras fiscales
+que permiten comprometerse. La versión monetaria (Barro--Gordon, reputación e
+independencia del banco central) está en los temas 9.4 y 9.5 del sílabo de
+macroeconomía.}
+
+\tema{11.2 Elecciones y ciclos políticos oportunistas}
+\lecturas{\DR{7.1--7.3} \quad \MU{19.4}}
+\apoyo{Shi y Svensson (2006)}
+\consultalib{\MU{19.1--19.2} \quad \PT{16}}
+\nota{Cómo las elecciones disciplinan y a la vez distorsionan la política: el
+ciclo oportunista de Nordhaus, los ciclos con expectativas racionales e
+información asimétrica sobre la competencia del gobernante, y los ciclos
+presupuestarios y su evidencia, que los encuentra mayores en los países en
+desarrollo y donde hay menos votantes informados.}
+
+\tema{11.3 Ciclos partidarios, competencia y deuda estratégica}
+\lecturas{\DR{7.4--7.6} \quad \DR{7.9}}
+\consultalib{\DR{7.7--7.8} \quad \MU{19.3} \quad \MU{19.5--19.6}}
+\nota{Los ciclos partidarios (Hibbs y Alesina), la competencia del gobernante
+y el voto prospectivo, el valor de las promesas de campaña y cómo un gobierno
+puede atar las manos de su sucesor mediante la deuda, el puente con el
+tema 11.6.}
+
+\tema{11.4 Economía política de la redistribución}
+\lecturas{\DR{8.1--8.3} \quad \DR{8.6--8.7} \quad \PT{6.1}}
+\consultalib{\DR{8.4--8.5} \quad \PT{6.2--6.4} \quad \MU{3}}
+\nota{El modelo de Meltzer y Richard y por qué la redistribución observada no
+siempre crece con la desigualdad, las transferencias diferenciadas hacia los
+grupos con poder político, la redistribución entre generaciones (la política
+de la seguridad social) y la redistribución cuando hay movilidad social.
+Complementa el análisis normativo del Bloque 7.}
+
+\tema{11.5 Inacción, demora y crisis}
+\lecturas{\DR{10.1--10.8}}
+\consultalib{\DR{13.2--13.5}}
+\nota{Por qué se demoran reformas que mejorarían el bienestar: los intereses
+creados, la incertidumbre sobre quién gana (Fernandez y Rodrik), la guerra de
+desgaste por la carga del ajuste (Alesina y Drazen), los modelos de propiedad
+común y las crisis como catalizadoras de reformas. Es la base de la economía
+política de la reforma fiscal (tema 14.4).}
+
+\tema{11.6 Déficits, deuda e instituciones presupuestarias}
+\lecturas{\DR{14.4--14.5} \quad \PT{13.1--13.4} \quad \MU{19.7}}
+\articulos{Banco Mundial (2017), panorama general}
+\consultalib{\PT{13.5}}
+\nota{Las explicaciones políticas de los déficits persistentes (ilusión
+fiscal, fondo común, deuda estratégica, inestabilidad política, estabilizaciones
+demoradas) y las instituciones presupuestarias que los contienen: reglas
+numéricas, procedimientos jerárquicos o colegiados y transparencia; la
+gobernanza como condición para que funcionen. Parte de los temas 2.7 y 2.8
+del sílabo de macroeconomía; las reglas fiscales peruanas se estudian en el
+tema 12.4.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 12 --- Política fiscal, deuda y sostenibilidad --- 3 semanas}
+{La lectura de las cuentas fiscales: déficit, deuda y sostenibilidad, el
+balance estructural, las reglas e instituciones fiscales, la política fiscal
+anticíclica y la historia fiscal peruana, con el Marco Macroeconómico
+Multianual y la opinión del Consejo Fiscal. Cubre las semanas 1 y 2 de
+1ECO36 y complementa los temas 2.4 a 2.8 y el Bloque 13 del sílabo de
+macroeconomía.}
+
+\tema{12.1 Las cuentas fiscales: presupuesto, déficit y deuda}
+\lecturas{\GR{4} \quad \NC{1} (diap.~1--22)}
+\apoyo{\SR{28}}
+\consultalib{\HE{7.2}}
+\consulta{Arias (2025): «El Estado como botín», «Nos estamos consumiendo los ahorros fiscales» y «La sostenibilidad del déficit fiscal»}
+\nota{Cómo se mide la posición fiscal (resultado económico y primario,
+gobierno general frente a sector público no financiero, deuda bruta y neta),
+los problemas de medición y por qué importan los déficits. La restricción
+presupuestaria intertemporal y la equivalencia ricardiana están en los temas
+2.4 y 2.5 del sílabo de macroeconomía.}
+
+\tema{12.2 Sostenibilidad de la deuda y riesgos fiscales}
+\lecturas{\HE{7.3} \quad \HE{7.6} \quad \NC{1} (diap.~30--33) \quad MEF (2024), secc.~7}
+\apoyo{OCDE (2023a), secc.~3.4 y 3.6}
+\consultalib{\HE{7.4--7.5} \quad \DR{12.8}}
+\nota{La aritmética de la deuda, el saldo primario que la estabiliza y las
+pruebas de tensión; los pasivos contingentes explícitos (garantías,
+asociaciones público-privadas, demandas judiciales) e implícitos (empresas
+públicas, desastres naturales); el impago soberano. La sostenibilidad y el
+señoreaje están en el tema 2.6 del sílabo de macroeconomía.}
+
+\tema{12.3 El balance estructural}
+\lecturas{Granda, Liendo y Rojas (2012) \quad BCRP (2008) \quad \NC{1} (diap.~23--29) \quad MEF (2024), secc.~6.1}
+\nota{Cómo se aísla del resultado fiscal el efecto del ciclo económico y de
+los precios de los minerales para medir el impulso fiscal discrecional: la
+brecha del producto, las elasticidades de los ingresos y los precios de largo
+plazo de los metales. Es la base de la orientación de la política fiscal que
+evalúan el MEF y el Consejo Fiscal.}
+
+\tema{12.4 Reglas e instituciones fiscales}
+\lecturas{\NC{2} \quad \MA{2}}
+\apoyo{Butrón y Céspedes (2020)}
+\articulos{BID (2012), cap.~1 \quad Bonato (2019)}
+\consultalib{MEF (2024), recuadro~4 y secc.~6.5}
+\consulta{Arias (2025): «Reglas fiscales, MMM y rebaja de calificación»}
+\nota{Tipos de reglas (de déficit, de deuda, de gasto y de balance
+estructural), cláusulas de escape y consejos fiscales; la secuencia peruana
+desde la Ley de Prudencia y Transparencia Fiscal (1999) hasta el Decreto
+Legislativo 1276 (2016) y sus modificaciones, la última por el Decreto
+Legislativo 1621 (2024). La economía política de las reglas está en el
+tema 11.6.}
+
+\tema{12.5 Política fiscal anticíclica, multiplicadores y discrecionalidad}
+\lecturas{Taylor (2000) \quad Auerbach (2009) \quad DeLong y Summers (2012)}
+\apoyo{Fatás y Mihov (2013)}
+\consultalib{\HE{4.4--4.5}}
+\nota{Estabilizadores automáticos frente a medidas discrecionales, el nuevo
+activismo fiscal tras la crisis de 2008, la política fiscal en una economía
+deprimida con la tasa de interés en su límite inferior y el costo, para el
+crecimiento, de una política fiscal volátil. El multiplicador en el modelo
+neokeynesiano y la cota inferior cero están en el Bloque 13 del sílabo de
+macroeconomía.}
+
+\tema{12.6 La historia fiscal del Perú y el Marco Macroeconómico Multianual}
+\lecturas{\MA{1} \quad \MA{5--7}}
+\apoyo{MEF (2024), secc.~1--3, 6.2--6.3 y 10}
+\consultalib{\MA{3.2--3.3} \quad \MA{4.2--4.3} \quad MEF (2026) \quad FMI (2026) \quad CEPAL (2026)}
+\nota{De la dominancia fiscal de los años ochenta a la consolidación: el
+papel de los precios de los minerales frente al de las leyes fiscales, los
+beneficios de la responsabilidad fiscal y el golpe de la COVID-19. La
+opinión del Consejo Fiscal (sección 10 del MMM) se lee junto con el marco;
+conviene repetir el ejercicio con la edición vigente, el MMM 2027--2030 de
+agosto de 2026.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 13 --- Presupuesto, calidad del gasto y descentralización --- 2 semanas}
+{Cómo se programa, ejecuta y evalúa el gasto en el Perú: el sistema
+presupuestario, la revisión de pares de la OCDE, la calidad del gasto, la
+inversión pública y el servicio civil, las empresas y la banca públicas y la
+descentralización fiscal. Cubre las semanas 10, 11, 13 y 14 de 1ECO36, el
+anexo de las notas de 1ECO18 y la sesión 2.4 de 1ECO81.}
+
+\tema{13.1 El sistema presupuestario y la gestión de las finanzas públicas}
+\lecturas{Banco Mundial (2011) \quad \BG{anexo} \quad \NC{5} (diap.~1--22) \quad OCDE (2023b)}
+\apoyo{OCDE (2023a), cap.~1 y secc.~2.5--2.6}
+\consultalib{OCDE (2023a), secc.~2.1--2.4 y 2.8--2.9 y cap.~3}
+\consulta{Robinson y Last (2009)}
+\nota{Los principios y las fases del proceso presupuestario (programación,
+formulación, aprobación, ejecución y evaluación), el presupuesto por
+resultados y el participativo, el SIAF y las modificaciones presupuestarias.
+La Ley 28411 que describe Banco Mundial (2011) fue sustituida en 2018 por el
+Decreto Legislativo 1440, dentro del marco de administración financiera del
+Decreto Legislativo 1436; las diapositivas de 1ECO36 usan el marco vigente.}
+
+\tema{13.2 Calidad del gasto, inversión pública y servicio civil}
+\lecturas{\NC{5} (diap.~23--31) \quad OCDE (2023a), cap.~5}
+\articulos{Banco Mundial (2025), caps.~3--4}
+\consultalib{OCDE (2023a), cap.~4 \quad Vásquez (ed.) (2013), cap.~14}
+\consulta{Armijo y Espada (2014) \quad Dal Bó, Finan y Rossi (2013) \quad Arias (2025): «Construyamos un Estado meritocrático»}
+\nota{Las causas de la baja ejecución, la evaluación de la calidad del gasto,
+el paso del SNIP a Invierte.pe, la brecha entre la programación y la ejecución
+de la inversión y el régimen salarial del sector público. La revisión del
+Banco Mundial (2025) es el diagnóstico más reciente.}
+
+\tema{13.3 Empresas públicas, banca pública e inclusión financiera}
+\lecturas{\SR{8} \quad \NC{7}}
+\apoyo{Banco de la Nación (2026)}
+\articulos{Pérez Caldentey y Titelman (2018), pp.~37--60}
+\consultalib{\AS{15.1--15.3} \quad \DR{13.7}}
+\nota{Por qué produce el Estado (monopolios naturales, objetivos sociales),
+la eficiencia de las empresas públicas frente a las privadas, la
+privatización y la regulación; el Banco de la Nación como agente financiero
+del Estado (pagaduría, recaudación, pago de programas sociales) y como
+instrumento de inclusión financiera donde no llega la banca privada.}
+
+\tema{13.4 La descentralización fiscal en el Perú}
+\lecturas{\NC{8} (diap.~11--30) \quad \RB{5}}
+\articulos{CEPAL (2017), pp.~93--116 \quad Mendoza (2023)}
+\consultalib{OCDE (2023a), secc.~2.7}
+\consulta{Bahl y Martínez-Vázquez (2006) \quad Banco Mundial (2010) \quad Banco Mundial (2021) \quad Arias (2025): «Repensando la descentralización»}
+\nota{Las transferencias intergubernamentales (el canon, los recursos
+ordinarios y el Foncomún), la baja recaudación propia de los gobiernos
+regionales y locales (el impuesto predial), la pereza fiscal y el balance
+del proceso iniciado en 2002.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 14 --- Sistema tributario peruano y reforma fiscal --- 2 semanas}
+{El cierre aplicado: la estructura y el rendimiento del sistema tributario
+peruano, los gastos tributarios, el régimen fiscal minero, por qué los
+países en desarrollo recaudan poco y qué reforma fiscal haría falta. Cubre las
+semanas 3, 6 y 8 de 1ECO36, el tema de tributación en el Perú de 1ECO18 y sus
+lecturas de control sobre tributación y desarrollo.}
+
+\tema{14.1 El sistema tributario peruano: estructura, rendimiento y gastos tributarios}
+\lecturas{\NC{3} (diap.~1--24) \quad \BG{12}}
+\articulos{CEPAL (2017), cap.~1 \quad CEPAL (2019)}
+\consultalib{MEF (2024), recuadro~6}
+\consulta{MEF (2022) \quad Arias (2018) \quad Arias (2025): «¿A quién benefician los gastos tributarios?» y «Más privilegios tributarios»}
+\nota{Las fuentes del presupuesto, el IGV, el ISC, los aranceles, el impuesto
+a la renta y el predial; el nivel y la estructura de la carga tributaria
+frente a América Latina y la OCDE; las brechas de política y de cumplimiento
+y los gastos tributarios (exoneraciones y regímenes especiales) y su costo.}
+
+\tema{14.2 Recursos naturales y régimen fiscal minero}
+\lecturas{\RB{10} \quad \NC{3} (diap.~39--51) \quad \MA{3.1} \quad \MA{4.1}}
+\apoyo{FMI (2012)}
+\consultalib{Dammert (2021), secc.~1.3 y 15.2}
+\consulta{Arias (2025): «La renta minera» y «La exitosa reforma del régimen fiscal minero»}
+\nota{La renta económica de los recursos y el diseño de su tributación
+(regalías, impuestos sobre utilidades, impuestos a la renta del recurso); la
+reforma minera peruana de 2011 (regalía sobre la utilidad operativa,
+impuesto especial y gravamen especial a la minería), la carga fiscal efectiva
+y la dependencia de la recaudación respecto de los precios de los minerales.}
+
+\tema{14.3 ¿Por qué recaudan poco los países en desarrollo?}
+\lecturas{\RB{1} \quad \RB{4}}
+\articulos{Besley y Persson (2014) \quad Tanzi y Zee (2001)}
+\consultalib{\RB{2--3} \quad \MU{12.5}}
+\consulta{Stiglitz (2009)}
+\nota{La capacidad fiscal como inversión del Estado, la informalidad, la
+estructura productiva y la legitimidad; los mitos sobre la tributación en
+América Latina y las recomendaciones de política tributaria para países en
+desarrollo.}
+
+\tema{14.4 Reforma fiscal para el crecimiento y la equidad}
+\lecturas{\NC{4} \quad \RB{13}}
+\articulos{Arias (2021) \quad Banco Mundial (2025), cap.~2}
+\consultalib{\RB{12} \quad \AS{18}}
+\consulta{Arias (2025): «La madre de todas las reformas» y «El impuesto predial y la importancia del catastro fiscal»}
+\nota{Las propuestas para el Perú: ampliar la base del impuesto a la renta
+personal y gravar mejor las rentas del capital, racionalizar las
+exoneraciones y los regímenes especiales, fortalecer el predial y el
+catastro, el IVA personalizado (tema 10.5), la facturación electrónica, la
+calidad del gasto y el retorno a la sostenibilidad; y la economía política de
+armar un programa de reformas (tema 11.5).}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+Capítulos de cada libro que entran en el plan y temas donde se leen;
+«(c)» indica que se citan solo como consulta. Lo que queda fuera se detalla
+en el Anexo B.
+
+\newcommand{\mapa}[2]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.1cm}X>{\raggedright\arraybackslash}p{3.4cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Temas} \\
+\midrule
+#2
+\bottomrule
+\end{tabularx}
+}}
+
+\newcommand{\mapadoc}[2]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{X>{\raggedright\arraybackslash}p{3.4cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Documento} & \cab{Temas} \\
+\midrule
+#2
+\bottomrule
+\end{tabularx}
+}}
+
+\mapa{A.1 Gruber, \emph{Public Finance and Public Policy} (3.ª ed.)}{%
+1 & Why Study Public Finance? & 1.1  \\
+2 & Theoretical Tools of Public Finance & 1.2  \\
+3 & Empirical Tools of Public Finance & 1.3  \\
+4 & Budget Analysis and Deficit Financing & 12.1  \\
+5 & Externalities: Problems and Solutions & 2.1  \\
+6 & Externalities in Action: Environmental and Health Externalities (6.1--6.2; 6.3--6.4) & 2.2; 7.4  \\
+7 & Public Goods & 3.1  \\
+8 & Cost-Benefit Analysis & 5.2  \\
+9 & Political Economy (9.1--9.2; 9.3; 9.4) & 4.1; 4.2; 4.3  \\
+10 & State and Local Government Expenditures (10.1, 10.3; 10.2) & 3.4; 3.3  \\
+11 & Education & 7.2  \\
+12 & Social Insurance: The New Function of Government & 6.1  \\
+13 & Social Security & 6.2  \\
+14 & Unemployment Insurance, Disability Insurance, and Workers' Compensation & 6.4  \\
+15 & Health Insurance I: Health Economics and Private Health Insurance & 7.1  \\
+16 & Health Insurance II: Medicare, Medicaid, and Health Care Reform & 7.1 (c)  \\
+17 & Income Distribution and Welfare Programs & 7.3  \\
+18 & Taxation in the United States and Around the World & 8.1  \\
+19 & The Equity Implications of Taxation: Tax Incidence (19.1--19.2; 19.3; 19.4) & 8.2; 8.3; 8.4  \\
+20 & Tax Inefficiencies and Their Implications for Optimal Taxation (20.1; 20.2; 20.3) & 8.5; 9.1 (c); 9.3  \\
+21 & Taxes on Labor Supply & 8.6  \\
+22--23 & Taxes on Savings; Taxes on Risk Taking and Wealth & 10.2  \\
+24 & Corporate Taxation (24.1--24.5; 24.6) & 10.3; 10.4  \\
+25 & Fundamental Tax Reform & 10.5  \\
+}
+
+\mapa{A.2 Stiglitz y Rosengard, \emph{Economics of the Public Sector} (4.ª ed.)}{%
+1 & Defining Public Sector Responsibilities & 1.1  \\
+2 & Measuring Public Sector Size & 1.1 (c)  \\
+3 & Market Efficiency & 1.2  \\
+4 & Market Failure & 1.4  \\
+5 & Public Goods and Publicly Provided Private Goods & 3.1 (c)  \\
+6 & Externalities and the Environment & 2.1 (c)  \\
+7 & Efficiency and Equity & 1.2 (c)  \\
+8 & Public Production of Goods and Services & 13.3  \\
+9 & Public Choice & 4.1 (c)  \\
+10 & Framework for Analysis of Expenditure Policy & 5.1  \\
+11 & Evaluating Public Expenditure & 5.2 (c)  \\
+12 & Defense, Research, and Technology & 5.1 (c)  \\
+13 & Health Care & 7.1  \\
+14 & Education & 7.2  \\
+15 & Welfare Programs and the Redistribution of Income & 7.3 (c)  \\
+16 & Social Insurance & 6.4  \\
+17 & Introduction to Taxation & 8.1  \\
+18 & Tax Incidence & 8.2  \\
+19 & Taxation and Economic Efficiency & 8.5  \\
+20 & Optimal Taxation & 9.1 (c)  \\
+21 & Taxation of Capital & 10.2 (c)  \\
+22 & The Personal Income Tax & 10.1  \\
+23 & The Corporation Income Tax & 10.3 (c)  \\
+24 & A Student's Guide to Tax Avoidance & 10.4  \\
+25 & Reform of the Tax System & 10.5 (c)  \\
+26--27 & Intergovernmental Fiscal Relations; Subnational Taxes and Expenditures & 3.4 (c)  \\
+28 & Fiscal Deficits and Government Debt & 12.1  \\
+}
+
+\mapa{A.3 Hindriks y Myles, \emph{Intermediate Public Economics} (borrador de 2004)}{%
+2 & Government & 1.1  \\
+3 & Theories of the Public Sector & 1.4  \\
+4 & Voting & 4.1  \\
+5 & Rent-Seeking & 4.3 (c)  \\
+6--7 & Competitive Economies; Efficiency of Competition & 1.2 (c)  \\
+8 & Public Goods (8.1--8.4, 8.8--8.9; 8.5--8.7) & 3.1; 3.2  \\
+9 & Club Goods and Local Public Goods & 3.3  \\
+10 & Externalities & 2.1  \\
+11 & Imperfect Competition (11.5--11.6) & 8.2  \\
+12 & Asymmetric Information (12.8) & 6.1; 7.1 (c)  \\
+13 & Optimality and Comparability & 1.2  \\
+14 & Inequality and Poverty & 7.3  \\
+15 & Commodity Taxation (15.2; 15.3--15.5; 15.6--15.8; 15.9) & 8.5 (c); 9.1; 9.2; 9.1 (c)  \\
+16 & Income Taxation (16.2--16.3; 16.4--16.5; 16.6--16.8) & 8.6 (c); 9.3; 9.4  \\
+17 & Limits to Redistribution (17.1--17.5; 17.6--17.8) & 9.3; 9.5  \\
+18 & Tax Evasion & 10.6  \\
+19 & Fiscal Federalism & 3.4  \\
+20 & Fiscal Competition (20.2; 20.3--20.4) & 10.4; 3.4 (c)  \\
+22 & Social Security and Debt & 6.2  \\
+}
+
+\mapa{A.4 Atkinson y Stiglitz, \emph{Lectures on Public Economics}}{%
+1 & Introduction: Public Economics & 1.1 (c)  \\
+2 & Household Decisions, Income Taxation, and Labour Supply & 8.6  \\
+3 & Taxation, Savings, and Decisions over Time (3.1--3.2) & 10.2  \\
+4 & Taxation and Risk-Taking & 10.2 (c)  \\
+5 & Taxation and the Firm (5.2) & 10.3  \\
+6 & Tax Incidence: Simple Competitive Equilibrium Model (6.2--6.4) & 8.3  \\
+7 & Tax Incidence: Departures from the Standard Model & 8.3 (c)  \\
+8 & Taxation and Debt in a Growing Economy & 9.6 (c)  \\
+9 & Distributional Effect of Taxation and Public Expenditure (9.1--9.3) & 8.4  \\
+10--11 & Theories of the State and Public Economics; Normative Analysis & 1.4 (c)  \\
+12 & The Structure of Indirect Taxation (12.1--12.3; 12.4--12.5) & 9.1; 9.2  \\
+13 & The Structure of Income Taxation & 9.3 (c)  \\
+14 & A More General Treatment of the Optimal Tax Problem & 9.5 (c); 9.6 (c); 2.2 (c)  \\
+15 & Public Sector Pricing and Production (15.1--15.3; 15.4) & 13.3 (c); 5.4  \\
+16 & Public Goods and Publicly Provided Private Goods & 3.2  \\
+17 & Local Public Goods & 3.3 (c); 3.4 (c)  \\
+18 & Public Economics: Theory and Policy & 14.4 (c)  \\
+}
+
+\mapa{A.5 Salanié, \emph{The Economics of Taxation}}{%
+1 & Tax Incidence (1.1; 1.2) & 8.2; 8.3  \\
+2 & Distortions and Welfare Losses (2.1.1; 2.2--2.3) & 8.6; 8.5  \\
+3 & Indirect Taxation & 9.1  \\
+4 & Direct Taxation & 9.3  \\
+5 & Mixed Taxation & 9.5  \\
+6 & The Taxation of Capital & 9.6  \\
+7 & Criticisms of Optimal Taxation & 9.5  \\
+8 & Low-Income Support (8.1--8.4) & 7.3  \\
+9 & The Consumption Tax & 10.5  \\
+10 & Environmental Taxation & 2.2  \\
+}
+
+\mapa{A.6 Mueller, \emph{Public Choice III}}{%
+2 & The reason for collective choice -- allocative efficiency & 2.1 (c); 3.1 (c)  \\
+3 & The reason for collective choice -- redistribution & 11.4 (c) \\
+4 & The choice of voting rule & 4.1  \\
+5 & Majority rule -- positive properties (5.1--5.4) & 4.1  \\
+6--7 & Majority rule -- normative properties; Simple alternatives to majority rule & 4.1 (c)  \\
+8 & Complicated alternatives to majority rule (8.1) & 3.2 (c)  \\
+9 & Exit, voice, and disloyalty (9.1--9.5) & 3.3 (c)  \\
+10 & Federalism (10.1, 10.3) & 3.4  \\
+11 & Two-party competition -- deterministic voting & 4.2  \\
+12 & Two-party competition -- probabilistic voting (12.1--12.3; 12.5) & 4.2; 14.3 (c)  \\
+13 & Multiparty systems & 4.2 (c)  \\
+14 & The paradox of voting (14.1--14.4) & 4.2  \\
+15 & Rent seeking & 4.3  \\
+16 & Bureaucracy (16.1--16.2, 16.6) & 4.3  \\
+17 & Legislatures and bureaucracies & 4.3 (c)  \\
+19 & Political competition and macroeconomic performance (19.4; 19.7; 19.1--19.3, 19.5--19.6) & 11.2; 11.6; 11.2--11.3 (c) \\
+20 & Interest groups, campaign contributions, and lobbying & 4.3 (c)  \\
+21 & The size of government & 4.4 \\
+22 & Government size and economic performance (22.1; 22.4--22.5) & 8.5 (c); 4.4 \\
+23--25 & Social welfare functions; The impossibility of a social ordering; A just social contract & 1.2 (c); 4.1 (c)  \\
+}
+
+\mapa{A.7 Drazen, \emph{Political Economy in Macroeconomics}}{%
+4 & The Time-Consistency Problem (4.1--4.3, 4.6) & 11.1 \\
+5 & Laws, Institutions, and Delegated Authority (5.1--5.3, 5.5) & 11.1 \\
+6 & Credibility and Reputation & 11.1 (c) \\
+7 & Elections and Changes of Policymakers (7.1--7.3; 7.4--7.6, 7.9; 7.7--7.8) & 11.2; 11.3; 11.3 (c) \\
+8 & Redistribution (8.1--8.3, 8.6--8.7; 8.4--8.5) & 11.4; 11.4 (c) \\
+9 & Public Goods & 3.1 (c) \\
+10 & Inaction, Delay, and Crisis & 11.5 \\
+11 & Factor Accumulation and Growth (11.2) & 9.6 (c) \\
+12 & The International Economy (12.8) & 12.2 (c) \\
+13 & Economic Reform and Transition (13.2--13.5; 13.7) & 11.5 (c); 13.3 (c) \\
+14 & The Size of Government and the Number of Nations (14.1--14.3; 14.4--14.5) & 4.4; 11.6 \\
+}
+
+\mapa{A.8 Boardman et al., \emph{Cost--Benefit Analysis} (5.ª ed.)}{%
+1--2 & Introduction to Cost--Benefit Analysis; Conceptual Foundations of Cost--Benefit Analysis & 5.2  \\
+3--4 & Microeconomic Foundations of CBA; Direct Estimation of Demand Schedules & 5.2 (c); 5.3 (c)  \\
+5--8 & Valuing Impacts in Output, Input and Secondary Markets; Predicting and Monetizing Impacts & 5.3  \\
+9--10 & Discounting Future Impacts and Handling Inflation; The Social Discount Rate & 5.4  \\
+11--12 & Dealing with Uncertainty; Risk, Option Price, and Option Value & 5.4 (c)  \\
+13 & Existence Value & 5.5  \\
+14 & Valuing Impacts from Observed Behavior: Experiments and Quasi-Experiments & 5.6 (c)  \\
+15 & Valuing Impacts from Observed Behavior: Indirect Market Methods & 5.5  \\
+16--17 & Contingent Valuation; Shadow Prices from Secondary Sources & 5.5 (c)  \\
+18 & Cost--Effectiveness Analysis and Cost--Utility Analysis & 5.6  \\
+19 & Distributionally Weighted CBA & 5.5  \\
+20 & How Accurate Is CBA? & 5.5 (c)  \\
+}
+
+\mapa{A.9 Barrantes, Manrique y Glave, \emph{Economía pública} (2.ª ed.)}{%
+1 & Una mirada al sector público del Perú en el siglo XXI & 1.1  \\
+2 & El Estado y el sector público & 1.4  \\
+3 & Fundamentos de la economía del bienestar & 1.2  \\
+4 & Externalidades & 2.1  \\
+5 & Bienes públicos (5.1--5.3; 5.4--5.5) & 3.1; 3.2  \\
+6 & Elección social & 4.1  \\
+7 & La acción del sector público en la economía & 5.1  \\
+8 & Análisis costo-beneficio & 5.2  \\
+9 & Análisis de impacto regulatorio & 5.6  \\
+10 & Evaluación de impacto & 1.3  \\
+11 & Teoría de la tributación (11.1--11.3; 11.4; 11.5; 11.6) & 8.1; 10.1; 8.2 (c); 10.6  \\
+12 & Tributación en el Perú & 14.1  \\
+Anexo & Presupuesto público en el Perú & 13.1  \\
+}
+
+\mapa{A.10 Persson y Tabellini, \emph{Political Economics}}{%
+3 & Electoral Competition (3.2--3.4) & 4.2 (c)  \\
+6 & General-Interest Politics (6.1; 6.2--6.4) & 11.4; 11.4 (c) \\
+7 & Special-Interest Politics (7.3) & 4.3 (c)  \\
+11--12 & Dynamic Policy Problems; Capital Taxation (12.1--12.2) & 11.1 (c); 11.1 \\
+13 & Public Debt (13.1--13.4; 13.5) & 11.6; 11.6 (c) \\
+16 & Electoral Cycles & 11.2 (c) \\
+}
+
+\mapa{A.11 Heer, \emph{Public Economics} y Kocherlakota, \emph{The New Dynamic Public Finance}}{%
+HE 4 & Government Consumption (4.4--4.5) & 12.5 (c)  \\
+HE 5 & Income Taxation (5.3; 5.4) & 8.6 (c); 9.6 (c)  \\
+HE 6 & Pensions (6.3--6.4) & 6.2 (c)  \\
+HE 7 & Public Debt (7.2; 7.3, 7.6; 7.4--7.5) & 12.1 (c); 12.2; 12.2 (c)  \\
+KC 1--2 & Introduction; The Ramsey Approach and Its Problems & 9.6  \\
+KC 3--5 & Dynamic Social Contracting; Dynamic Optimal Taxation; Intergenerational Taxation & 9.6 (c)  \\
+}
+
+\mapa{A.12 BID (2013), \emph{Recaudar no basta}}{%
+1 & Los mitos al desnudo & 14.3  \\
+2--3 & La política de la política tributaria; Impuestos para enfrentar los contratiempos & 14.3 (c)  \\
+4 & Cuidado con la informalidad & 14.3  \\
+5 & Más ingresos propios para más desarrollo local & 13.4  \\
+6 & Aprovechando al máximo la administración tributaria & 10.6  \\
+7 & El impuesto a la renta personal: un cascarón vacío & 10.1  \\
+8 & El impuesto a la renta empresarial: el arte de competir por la inversión y aumentar la recaudación & 10.3  \\
+9 & El impuesto al valor agregado: que sea lo que es & 10.5  \\
+10 & Impuestos a las materias primas pensando en el futuro & 14.2  \\
+11 & Gravar los «males» para proteger los bienes & 2.2  \\
+12 & Los impuestos heterodoxos: lo bueno, lo malo y lo feo & 14.4 (c)  \\
+13 & Cómo armar un programa de reformas tributarias & 14.4  \\
+}
+
+\mapa{A.13 Mendoza y Anastacio, \emph{La historia fiscal del Perú: 1980--2020}}{%
+1 & Las finanzas públicas en la historia de América Latina y el Perú: ¿qué es lo que sabemos? & 12.6  \\
+2 & El marco de análisis y las hipótesis de la investigación & 12.4  \\
+3 & Hipótesis y evidencia: los principales hechos estilizados (3.1; 3.2--3.3) & 14.2; 12.6 (c)  \\
+4 & Hipótesis y evidencia: principales resultados econométricos (4.1; 4.2--4.3) & 14.2; 12.6 (c)  \\
+5--7 & Los beneficios de la responsabilidad fiscal; COVID-19; Conclusiones & 12.6  \\
+}
+
+\mapa{A.14 Urrunaga, Hiraoka y Risso, \emph{Fundamentos de economía pública}}{%
+I & Intervención del Estado en una economía de mercado (1.3; 2; 2.2; 2.3) & 1.1 (c); 1.4 (c); 3.1 (c); 2.1 (c)  \\
+II & Gasto público (1.1; 1.2--1.3; 2) & 3.2 (c); 5.2 (c); 5.1  \\
+III & Elección pública (1.3; 1.4--1.5) & 4.1 (c); 4.3 (c)  \\
+IV & Impuestos (1.1--1.2; 1.3; 2.2) & 8.1 (c); 8.5 (c); 8.3 (c)  \\
+}
+
+\mapa{A.15 Notas de clase de 1ECO36 (L.~A.~Arias)}{%
+NC1 & La estabilidad macroeconómica: ingresos, gasto, déficit y deuda (diap.~1--22; 23--29; 30--33) & 12.1; 12.3; 12.2  \\
+NC2 & Las reglas fiscales & 12.4  \\
+NC3 & Teoría y práctica del sistema tributario peruano (diap.~1--24; 25--31; 32--38; 39--51) & 14.1; 10.6; 10.4; 14.2  \\
+NC4 & Reforma fiscal para el crecimiento y la equidad & 14.4  \\
+NC5 & El presupuesto público y la evaluación de la calidad del gasto (diap.~1--22; 23--31) & 13.1; 13.2  \\
+NC6 & El sistema de pensiones & 6.3  \\
+NC7 & La inclusión financiera y el rol del Banco de la Nación & 13.3  \\
+NC8 & Descentralización fiscal (diap.~1--10; 11--30) & 3.4; 13.4  \\
+}
+
+\mapadoc{A.16 Informes y documentos de la carpeta}{%
+OCDE (2023a), \emph{Gestión de las finanzas públicas en el Perú}: cap.~1, secc.~2.5--2.6; cap.~5; secc.~3.4 y 3.6 & 13.1; 13.2; 12.2  \\
+OCDE (2023b), versión resumida de la revisión de pares & 13.1  \\
+MEF (2024), \emph{Marco Macroeconómico Multianual 2025--2028}: secc.~7; 6.1; 1--3, 6.2--6.3 y 10 & 12.2; 12.3; 12.6  \\
+Granda, Liendo y Rojas (2012), MEF; BCRP (2008), Notas de Estudios 51 & 12.3  \\
+Butrón y Céspedes (2020), \emph{Moneda} 181 & 12.4  \\
+Taylor (2000); Auerbach (2009); DeLong y Summers (2012); Fatás y Mihov (2013) & 12.5  \\
+Banco Mundial (2011), \emph{El sistema presupuestario en el Perú} & 13.1  \\
+Banco de la Nación (2026), «Banco de la Nación en 2025» & 13.3  \\
+Morón y Sanborn (2007), \emph{Los desafíos del policymaking en el Perú} & 5.1  \\
+Kreiner y Svarer (2022), \emph{Danish Flexicurity} & 6.4  \\
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo B. Lo que no entra en el plan}
+\addcontentsline{toc}{section}{Anexo B. Lo que no entra en el plan}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Materia} & \cab{Capítulos y secciones} \\
+\midrule
+Métodos numéricos & Las secciones de simulación y calibración de Heer (modelos de Ramsey y de generaciones traslapadas resueltos numéricamente, \HE{4.4}, \HE{5.7}, \HE{6.5} y \HE{7.5}) y \KC{6}; corresponden a otro curso (Anexo D.3) \\
+Macroeconomía ya cubierta & \HE{2--3} (modelos de Ramsey y de generaciones traslapadas), \HM{21} (eficiencia intertemporal) y \HM{23} (crecimiento): Bloques 4 y 7 del sílabo de macroeconomía \\
+Organización industrial y regulación & \HM{11.1--11.4} y \HM{11.7--11.9} (competencia imperfecta y regulación de monopolios y oligopolios) y el programa 1ECO82; el tema 12.7 del sílabo de microeconomía cubre la regulación con información asimétrica \\
+Instituciones políticas comparadas & \PT{4--5} y \PT{8--10} (agencia, políticos partidarios, reglas electorales y regímenes) y \MU{18} (dictadura): Bloque 6 del sílabo de macroeconomía \\
+Política monetaria en Drazen & \DR{4.4--4.5} y \DR{5.4} (Barro--Gordon, señoreaje e independencia del banco central): temas 9.4 y 9.5 del sílabo de macroeconomía; \DR{6} solo como consulta \\
+Otros capítulos de Drazen & \DR{2--3} (herramientas y mecanismos de decisión, ya cubiertos por los sílabos de micro y macro y por Mueller), \DR{11} salvo 11.2 (Bloque 6 del sílabo de macroeconomía), \DR{12} salvo 12.8 (economía internacional), \DR{13.6} y \DR{13.8} (transición de las economías planificadas) y \DR{14.6} (el número de naciones) (Anexo D.6) \\
+Crecimiento y política monetaria en Persson y Tabellini & \PT{14} (crecimiento), \PT{15} y \PT{17} (credibilidad e instituciones de la política monetaria): Bloques 6 y 9 del sílabo de macroeconomía; \PT{16} (ciclos electorales), solo como consulta en 11.2 \\
+Elección pública constitucional y normativa & \MU{26--29} (la constitución como contrato, derechos liberales y balance de la elección pública) (Anexo D.2) \\
+Programas de los Estados Unidos & \GR{16} y las secciones institucionales de Gruber se leen como contexto; solo consulta \\
+Partes de los programas PUCP & El cálculo actuarial, la demografía y la riqueza previsional de 1ECO40 (clases 3, 8 y 15) y las lecturas sobre género y pensiones (clase 12), salvo como consulta en 6.3 \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Archivos de la carpeta que no se usaron.} De la carpeta de
+economía pública: \emph{Teoría y política monetaria y bancaria} de Rivas
+(\texttt{TMB.pdf}, duplicado en la carpeta de macroeconomía) y el documento
+de política monetaria del Banco Central de Chile (\texttt{DPE\_38}), que
+pertenecen a la teoría monetaria; los dos documentos de trabajo del BCRP
+sobre modelos de proyección (2003 y 2022), la \emph{Guía metodológica de la
+Nota Semanal} del BCRP, el manual de cuentas nacionales trimestrales del FMI,
+las páginas guardadas de los cursos IMFx, el capítulo de programación
+financiera y la nota del Banco Central de Chile sobre el stock de capital,
+que corresponden a la macroeconomía aplicada; el programa de matemáticas del
+BCRP (\texttt{MATE.pdf}) y la guía docente de métodos numéricos
+(\texttt{2023\_33443}), ya considerados en el sílabo de economía matemática;
+el programa de macroeconometría de la UdeSA; la nota sobre el impacto de la
+COVID-19 en los pagos (sistema de pagos); el afiche del BCRP, que es una
+imagen sin texto; los dos archivos comprimidos, las capturas de pantalla y
+las imágenes guardadas.
+
+\medskip
+\noindent\destacado{Textos de 1ECO36 sin capa de texto.} Los doce capítulos de
+Arias (2025), \emph{Horizontes fiscales y políticos}, de la carpeta de
+1ECO36 son impresiones a PDF sin texto seleccionable: se citan solo como
+consulta (PUCP), en los temas 12.1, 12.4, 13.2, 13.4, 14.1, 14.2 y 14.4. Los
+otros dos capítulos que pide 1ECO36 (sobre protección social y la «pensión
+por consumo») no están en la carpeta.
+
+\medskip
+\noindent\destacado{Versiones.} Gruber se usa en su 3.ª edición (2011) y
+Hindriks y Myles en el borrador de 2004 (véase la nota de notación). El
+archivo de \emph{Recaudar no basta} se llama «BID 2012», pero el libro es de
+2013, como lo cita 1ECO36. La revisión de pares de la OCDE que 1ECO36 cita
+como «OCDE (2022)» es el informe publicado en 2023 que está en la carpeta. El
+libro de Mendoza y Anastacio está duplicado en la carpeta de macroeconomía;
+se usa la copia de la carpeta de economía pública.
+
+%------------------------------------------------------------------------------
+\section*{Anexo C. Programas utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas utilizados}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{5.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Programa} & \cab{Temas del plan} \\
+\midrule
+1ECO18, Economía Pública (pregrado, 2025-1 y 2026-2, R.~Barrantes) & Introducción y línea de base, Bloque 1; Parte I, Bloques 2 a 4; Parte II, Bloque 5 y temas 7.1 a 7.3; Parte III, Bloque 8 y temas 9.1 y 9.3; tributación en el Perú, 14.1; lecturas de control, 1.4, 4.3, 11.6 y 14.3; sesgos conductuales, 7.4 \\
+1ECO36, Finanzas Públicas (pregrado, 2025-1 y 2026-1, L.~A.~Arias) & Semanas 1 y 2, 12.1 y 12.4; semanas 3, 6 y 8, Bloque 14; semanas 4, 5 y 7, Bloque 10; semanas 10 y 11, 13.1 y 13.2; semana 12, 6.3; semana 13, 13.3; semana 14, 13.4 \\
+1ECO81, Economía Pública (Maestría en Economía, 2025-1, E.~Beteta y F.~Vásquez) & Módulo 1, Bloques 1 a 3 y 4.1; módulo 2, 3.3, 3.4 y 13.4; módulo 3, Bloques 8 y 9; módulo 4, 10.3 y 10.6 \\
+1ECO40, Pensiones y Seguridad Social (pregrado, 2024-2, J.~Olivera) & Clases 1 a 7, 6.2 y 6.3; clase 10, 7.4; clases 13 y 14, consulta en 6.3 \\
+MIT OCW 14.41, Public Finance and Public Policy (otoño de 2024, J.~Gruber) & Clases 1 a 24: Bloques 1 a 8 y 10, en un orden parecido; conjuntos de problemas y exámenes en el Anexo D.1 \\
+ECO1028, Public Choice (Dublin City University, 2026, B.~Gietner; carpeta de economía política) & Semanas 2, 3, 5 y 8, Bloque 4; semana 4, 11.2; semana 6, 3.4; semana 9, 7.4 \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Programas de la carpeta que no se usaron}: 1ECO82 (Teoría de
+la Regulación, 2026-1), que corresponde a la organización industrial, y
+1ECO38 (Economía y Género, carpeta de bienestar). La semana 10 de ECO1028
+(instituciones y desarrollo) ya está en el Bloque 6 del sílabo de
+macroeconomía.
+
+%------------------------------------------------------------------------------
+\section*{Anexo D. Material opcional}
+\addcontentsline{toc}{section}{Anexo D. Material opcional}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica
+el cronograma.
+
+\subsection*{D.1 Ejercicios y exámenes de MIT 14.41}
+El sitio de MIT OpenCourseWare de 14.41 (otoño de 2024) publica los videos de
+las clases, los conjuntos de problemas y los exámenes, con sus soluciones.
+Sirven de práctica para los Bloques 1 a 8 y 10; usan la 7.ª edición de
+Gruber.
+
+\subsection*{D.2 Elección pública constitucional y normativa}
+\MU{26--29}: la constitución como contrato utilitarista, los derechos
+liberales y el balance de lo que la elección pública ha aportado al estudio
+de la política. Momento sugerido: tras el Bloque 4.
+
+\subsection*{D.3 Finanzas públicas cuantitativas}
+Las secciones de simulación de Heer (\HE{4.4}, \HE{5.7}, \HE{6.5} y \HE{7.5})
+y \KC{6}: modelos calibrados de impuestos, pensiones y deuda. Requieren los
+métodos numéricos que corresponden a otro curso.
+
+\subsection*{D.4 Informes periódicos para seguir la coyuntura fiscal}
+El Marco Macroeconómico Multianual (agosto) y el Informe de Actualización de
+Proyecciones Macroeconómicas (abril) del MEF, con la opinión del Consejo
+Fiscal; la sección de finanzas públicas del Reporte de Inflación del BCRP; la
+Nota Tributaria de la SUNAT; el \emph{Fiscal Monitor} del FMI (abril y
+octubre); el \emph{Panorama Fiscal de América Latina y el Caribe} de la
+CEPAL; y las estadísticas tributarias de América Latina de la OCDE, la CEPAL,
+el CIAT y el BID. Los capítulos de Arias (2025) de la carpeta comentan la
+coyuntura fiscal peruana reciente.
+
+\subsection*{D.5 Manuales de referencia}
+Los cinco volúmenes del \emph{Handbook of Public Economics} (Auerbach y
+Feldstein; Auerbach, Chetty, Feldstein y Saez), que citan 1ECO18 y 1ECO81;
+Myles (1995), \emph{Public Economics}; Kaplow (2008), \emph{The Theory of
+Taxation and Public Economics}; y Laffont (1989), \emph{Fundamentals of Public
+Economics}.
+
+\subsection*{D.6 Economía política de la macroeconomía abierta y de la transición}
+\DR{12} (regímenes cambiarios, crisis, cooperación internacional, controles de
+capital, deuda soberana y ayuda externa) y \DR{13} (reforma y transición de
+las economías planificadas). Momento sugerido: tras el Bloque 11.
+
+%------------------------------------------------------------------------------
+\section*{Anexo E. Referencias}
+\addcontentsline{toc}{section}{Anexo E. Referencias}
+
+\subsection*{E.1 Textos del plan}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Atkinson, A. B. y J. E. Stiglitz (2015). \emph{Lectures on Public Economics}, edición actualizada. Princeton University Press.
+\item Barrantes, R., S. Manrique y C. Glave (2023). \emph{Economía pública}, 2.ª ed. Material de Enseñanza 9, Departamento de Economía, PUCP.
+\item Boardman, A. E., D. H. Greenberg, A. R. Vining y D. L. Weimer (2018). \emph{Cost--Benefit Analysis: Concepts and Practice}, 5.ª ed. Cambridge University Press.
+\item Corbacho, A., V. Fretes Cibils y E. Lora (eds.) (2013). \emph{Recaudar no basta: los impuestos como instrumento de desarrollo}. Banco Interamericano de Desarrollo.
+\item Drazen, A. (2000). \emph{Political Economy in Macroeconomics}. Princeton University Press (carpeta de economía política).
+\item Gruber, J. (2011). \emph{Public Finance and Public Policy}, 3.ª ed. Worth Publishers.
+\item Heer, B. (2019). \emph{Public Economics: The Macroeconomic Perspective}. Springer.
+\item Hindriks, J. y G. D. Myles (2004). \emph{Intermediate Public Economics}. Borrador de junio de 2004; publicado por The MIT Press, 2006.
+\item Kocherlakota, N. R. (2010). \emph{The New Dynamic Public Finance}. Princeton University Press.
+\item Mendoza, W. y Y. Anastacio (2021). \emph{La historia fiscal del Perú: 1980--2020. Colapso, estabilización, consolidación y el golpe de la COVID-19}. Fondo Editorial PUCP.
+\item Mueller, D. C. (2003). \emph{Public Choice III}. Cambridge University Press (carpeta de economía política).
+\item Persson, T. y G. Tabellini (2000). \emph{Political Economics: Explaining Economic Policy}. The MIT Press (carpeta de economía política).
+\item Salanié, B. (2003). \emph{The Economics of Taxation}. The MIT Press.
+\item Stiglitz, J. E. y J. K. Rosengard (2015). \emph{Economics of the Public Sector}, 4.ª ed. W. W. Norton.
+\item Urrunaga, R., T. Hiraoka y A. Risso (2014). \emph{Fundamentos de economía pública}. Apuntes de Estudio 43, Universidad del Pacífico.
+\end{itemize}
+}
+
+\subsection*{E.2 Informes, documentos y diapositivas de la carpeta}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Arias, L. A. Notas de clase NC1 a NC8 (diapositivas). Finanzas Públicas, 1ECO36, PUCP.
+\item Auerbach, A. J. (2009). Implementing the New Fiscal Policy Activism. \emph{American Economic Review}, 99(2), 543--549.
+\item Banco de la Nación (2026). «Banco de la Nación en 2025», cap.~4 del informe institucional del banco.
+\item Banco Mundial (2011). \emph{El sistema presupuestario en el Perú: notas para no especialistas} (N. Shack, «Sistema Nacional de Presupuesto Público»). Proyecto de Mejoramiento de los Servicios de Justicia, Lima.
+\item BCRP (2008). Metodología de cálculo del resultado estructural. \emph{Notas de Estudios del BCRP}, 51.
+\item Butrón, L. y N. Céspedes (2020). Dos décadas del Marco Macrofiscal peruano. \emph{Moneda}, 181, BCRP.
+\item DeLong, J. B. y L. H. Summers (2012). Fiscal Policy in a Depressed Economy. \emph{Brookings Papers on Economic Activity}, primavera, 233--297.
+\item Fatás, A. e I. Mihov (2013). Policy Volatility, Institutions, and Economic Growth. \emph{Review of Economics and Statistics}, 95(2), 362--376.
+\item Granda, A., C. Liendo y C. Rojas (2012). \emph{El indicador de balance estructural: una herramienta analítica de la política fiscal}. Dirección General de Política Macroeconómica, MEF.
+\item Kreiner, C. T. y M. Svarer (2022). Danish Flexicurity: Rights and Duties. CEBI Working Paper 16/22, Universidad de Copenhague.
+\item MEF (2024). \emph{Marco Macroeconómico Multianual 2025--2028}. Ministerio de Economía y Finanzas, agosto de 2024.
+\item Morón, E. y C. Sanborn (2007). \emph{Los desafíos del policymaking en el Perú: actores, instituciones y reglas de juego}. Documento de Trabajo 77, Centro de Investigación de la Universidad del Pacífico.
+\item OCDE (2023a). \emph{Gestión de las finanzas públicas en el Perú}. OECD Publishing.
+\item OCDE (2023b). \emph{Gestión de las finanzas públicas en el Perú: una revisión de pares de la OCDE. Mensajes principales} (versión resumida).
+\item Taylor, J. B. (2000). Reassessing Discretionary Fiscal Policy. \emph{Journal of Economic Perspectives}, 14(3), 21--36.
+\end{itemize}
+}
+
+\subsection*{E.3 Libros de consulta de la carpeta (sin horas)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Arias, L. A. (2025). \emph{Horizontes fiscales y políticos: desafíos y retos para el nuevo gobernante del Perú}. Doce capítulos en la carpeta de 1ECO36, sin capa de texto.
+\item Cahuc, P., S. Carcillo y A. Zylberberg (2014). \emph{Labor Economics}, 2.ª ed. The MIT Press (carpeta de economía del trabajo).
+\item Dammert, A. (2021). \emph{Economía minera}. Fondo Editorial PUCP (carpeta de economía de los recursos naturales).
+\item Feldman, A. M. y R. Serrano (2006). \emph{Welfare Economics and Social Choice Theory}, 2.ª ed. Springer (carpeta de economía del bienestar).
+\item Field, B. C. y M. K. Field (2017). \emph{Environmental Economics: An Introduction}, 7.ª ed. McGraw-Hill (carpeta de economía de los recursos naturales).
+\item McPake, B. y C. Normand (2008). \emph{Health Economics: An International Perspective}, 2.ª ed. Routledge (carpeta de economía de la salud).
+\item Vásquez, E. (ed.) (2013). \emph{Inversión social: indicadores, bases de datos e iniciativas}. Universidad del Pacífico.
+\end{itemize}
+}
+
+\subsection*{E.4 Referencias tomadas de los programas y lecturas externas}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Ahmad, E. y N. Stern (1984). The Theory of Reform and Indian Indirect Taxes. \emph{Journal of Public Economics}, 25(3), 259--298.
+\item Allcott, H., B. Lockwood y D. Taubinsky (2018). Ramsey Strikes Back: Optimal Commodity Taxes and Redistribution in the Presence of Salience Effects. NBER Working Paper 24233.
+\item Arenas de Mesa, A. (2019). \emph{Los sistemas de pensiones en la encrucijada: desafíos para la sostenibilidad en América Latina}. Libros de la CEPAL 159.
+\item Arias, L. A. (2018). \emph{El Perú hacia la OCDE: la agenda pendiente para la política tributaria 2018--2021}. Grupo de Justicia Fiscal.
+\item Arias, L. A. (2021). \emph{Política fiscal y tributaria frente a la pandemia global del coronavirus}.
+\item Armijo, M. y M. V. Espada (2014). \emph{Calidad del gasto público y reformas institucionales en América Latina}. Serie Macroeconomía del Desarrollo 156, CEPAL.
+\item Atkinson, A. B. y J. E. Stiglitz (1976). The Design of Tax Structure: Direct versus Indirect Taxation. \emph{Journal of Public Economics}, 6(1--2), 55--75.
+\item Auerbach, A. J. (2006). The Choice between Income and Consumption Taxes: A Primer. NBER Working Paper 12307.
+\item Auerbach, A. J., M. P. Devereux y H. Simpson (2008). Taxing Corporate Income. NBER Working Paper 14494.
+\item Auerbach, A. J. y J. R. Hines (2002). Taxation and Economic Efficiency. En A. J. Auerbach y M. Feldstein (eds.), \emph{Handbook of Public Economics}, vol.~3, cap.~21. North-Holland.
+\item Bahl, R. y J. Martínez-Vázquez (2006). Sequencing Fiscal Decentralization. World Bank Policy Research Working Paper 3914.
+\item Banco Mundial (1997). \emph{Informe sobre el desarrollo mundial 1997: el Estado en un mundo en transformación}. Washington, D.\,C.
+\item Banco Mundial (2010). \emph{El proceso de descentralización y su relación con la eficiencia del gasto público}. Informe 52885-PE.
+\item Banco Mundial (2017). \emph{World Development Report 2017: Governance and the Law}. Washington, D.\,C.
+\item Banco Mundial (2021). \emph{Repensar el futuro del Perú: notas de política para transformar al Estado en un gestor de bienestar y desarrollo}.
+\item Banco Mundial (2025). \emph{Perú: revisión de las finanzas públicas}. Washington, D.\,C.
+\item Bando, R., S. Galiani y P. Gertler (2020). The Effects of Noncontributory Pensions on Material and Subjective Well-Being. \emph{Economic Development and Cultural Change}, 68(4), 1233--1255.
+\item Bardhan, P., S. Mitra, D. Mookherjee y A. Nath (2024). How Do Voters Respond to Welfare vis-à-vis Public Good Programs? Theory and Evidence of Political Clientelism. NBER Working Paper 32158.
+\item Barr, N. y P. Diamond (2009). Reforming Pensions: Principles, Analytical Errors and Policy Directions. \emph{International Social Security Review}, 62(2), 5--29.
+\item Barrantes, R. (2018). Derechos y rentabilidad del dinero público: ¿cuán útil es el análisis de beneficio-costo para garantizar el ejercicio de derechos a los ciudadanos? En R. Farfán, S. Mariani y C. O'Neill (eds.), \emph{Repensando las reglas de juego}, 57--84. Universidad del Pacífico.
+\item Barreix, A., M. Bès y J. Roca (2010). \emph{El IVA personalizado: aumentando la recaudación y compensando a los más pobres}. BID.
+\item Baumol, W. J. y W. E. Oates (1988). \emph{The Theory of Environmental Policy}, 2.ª ed. Cambridge University Press.
+\item Berglas, E. y D. Pines (1981). Clubs, Local Public Goods and Transportation Models: A Synthesis. \emph{Journal of Public Economics}, 15(2), 141--162.
+\item Bergstrom, T., L. Blume y H. Varian (1986). On the Private Provision of Public Goods. \emph{Journal of Public Economics}, 29(1), 25--49.
+\item Bernal, N., J. Olivera y M. Suhrcke (2024). The Effects of Social Pensions on Nutrition-Related Health Outcomes of the Poor: Quasi-Experimental Evidence from Peru. \emph{Health Economics}, 33(5), 971--991.
+\item Besley, T. y T. Persson (2014). Why Do Developing Countries Tax So Little? \emph{Journal of Economic Perspectives}, 28(4), 99--120.
+\item BID (2012). \emph{Las instituciones fiscales del mañana}. Banco Interamericano de Desarrollo.
+\item BID (2019). \emph{Diagnóstico del sistema de pensiones peruano y avenidas de reforma}. Nota Técnica IDB-TN-1776.
+\item Bonato, L. (2019). Peru's Fiscal Framework: An Outsider Perspective.
+\item Brown, J. R., J. R. Kling, S. Mullainathan y M. V. Wrobel (2008). Why Don't People Insure Late-Life Consumption? A Framing Explanation of the Under-Annuitization Puzzle. \emph{American Economic Review}, 98(2), 304--309.
+\item Buchanan, J. M. (1965). An Economic Theory of Clubs. \emph{Economica}, 32(125), 1--14.
+\item Buchanan, J. M. y R. A. Musgrave (1999). \emph{Public Finance and Public Choice: Two Contrasting Visions of the State}. The MIT Press.
+\item Camerer, C., S. Issacharoff, G. Loewenstein, T. O'Donoghue y M. Rabin (2003). Regulation for Conservatives: Behavioral Economics and the Case for «Asymmetric Paternalism». \emph{University of Pennsylvania Law Review}, 151(3), 1211--1254.
+\item CEPAL (2017). \emph{Consensos y conflictos en la política tributaria de América Latina}. CEPAL.
+\item CEPAL (2019). Gastos tributarios y los objetivos de desarrollo sostenible. En \emph{Panorama Fiscal de América Latina y el Caribe 2019}, cap.~IV. CEPAL.
+\item Chamley, C. (1986). Optimal Taxation of Capital Income in General Equilibrium with Infinite Lives. \emph{Econometrica}, 54(3), 607--622.
+\item Chetty, R. y A. Finkelstein (2013). Social Insurance: Connecting Theory to Data. En A. J. Auerbach, R. Chetty, M. Feldstein y E. Saez (eds.), \emph{Handbook of Public Economics}, vol.~5, cap.~3. North-Holland.
+\item Chetty, R., A. Looney y K. Kroft (2009). Salience and Taxation: Theory and Evidence. \emph{American Economic Review}, 99(4), 1145--1177.
+\item Cipriani, G. P. (2014). Population Aging and PAYG Pensions in the OLG Model. \emph{Journal of Population Economics}, 27(1), 251--256.
+\item Cobham, A. y P. Janský (2018). Global Distribution of Revenue Loss from Corporate Tax Avoidance: Re-estimation and Country Results. \emph{Journal of International Development}, 30(2), 206--232.
+\item Dahlby, B. (2008). \emph{The Marginal Cost of Public Funds: Theory and Applications}. The MIT Press.
+\item Dal Bó, E., F. Finan y M. A. Rossi (2013). Strengthening State Capabilities: The Role of Financial Incentives in the Call to Public Service. \emph{Quarterly Journal of Economics}, 128(3), 1169--1218.
+\item DellaVigna, S. (2009). Psychology and Economics: Evidence from the Field. \emph{Journal of Economic Literature}, 47(2), 315--372.
+\item Dhaliwal, I., E. Duflo, R. Glennerster y C. Tulloch (2011). Comparative Cost-Effectiveness Analysis to Inform Policy in Developing Countries: A General Framework with Applications for Education. J-PAL, MIT.
+\item Diamond, P. A. y J. A. Mirrlees (1971). Optimal Taxation and Public Production I: Production Efficiency. \emph{American Economic Review}, 61(1), 8--27.
+\item Diamond, P. y E. Saez (2011). The Case for a Progressive Tax: From Basic Research to Policy Recommendations. \emph{Journal of Economic Perspectives}, 25(4), 165--190.
+\item Feddersen, T. J. (2004). Rational Choice Theory and the Paradox of Not Voting. \emph{Journal of Economic Perspectives}, 18(1), 99--112.
+\item FMI (2012). \emph{Fiscal Regimes for Extractive Industries: Design and Implementation}. Fondo Monetario Internacional.
+\item Fullerton, D. y G. E. Metcalf (2002). Tax Incidence. En A. J. Auerbach y M. Feldstein (eds.), \emph{Handbook of Public Economics}, vol.~4, cap.~26. North-Holland.
+\item Fullerton, D. y C. L. Ta (2017). Public Finance in a Nutshell: A Cobb Douglas Teaching Tool for General Equilibrium Tax Incidence and Excess Burden. NBER Working Paper 23064.
+\item FUNDEF (2020). \emph{Temas selectos de pensiones: tendencias, reformas recientes y otros aspectos relevantes}. Nota de Política Pública 2020-01, Fundación de Estudios Financieros.
+\item Gertler, P. J., S. Martínez, P. Premand, L. B. Rawlings y C. M. J. Vermeersch (2016). \emph{La evaluación de impacto en la práctica}, 2.ª ed. BID y Banco Mundial.
+\item Gravelle, J. y K. Smetters (2001). Who Bears the Burden of the Corporate Tax in the Open Economy? NBER Working Paper 8280.
+\item Grech, A. G. (2018). What Makes Pension Reforms Sustainable? \emph{Sustainability}, 10(8).
+\item Harberger, A. C. (1962). The Incidence of the Corporation Income Tax. \emph{Journal of Political Economy}, 70(3), 215--240.
+\item Heathcote, J., K. Storesletten y G. L. Violante (2014). Optimal Tax Progressivity: An Analytical Framework. NBER Working Paper 19899.
+\item Hines, J. R. y R. H. Thaler (1995). Anomalies: The Flypaper Effect. \emph{Journal of Economic Perspectives}, 9(4), 217--226.
+\item Holcombe, R. G. (1989). The Median Voter Model in Public Choice Theory. \emph{Public Choice}, 61(2), 115--125.
+\item Hutton, E. (2017). \emph{Modelo y metodología para la estimación de la brecha tributaria en relación con el impuesto al valor agregado}. Fondo Monetario Internacional.
+\item Jacobs, B. y R. Boadway (2014). Optimal Linear Commodity Taxation under Optimal Non-linear Income Taxation. \emph{Journal of Public Economics}, 117, 201--210.
+\item Kaplow, L. (2008). \emph{The Theory of Taxation and Public Economics}. Princeton University Press.
+\item Keen, M. y J. Slemrod (2017). Optimal Tax Administration. IMF Working Paper 17/8.
+\item Kotlikoff, L. J., G. Lagarda y G. Marín (2023). A Personalized VAT with Capital Transfers: A Reform to Protect Low-Income Households in Mexico. IDB Working Paper 1475.
+\item Laffont, J.-J. (1989). \emph{Fundamentals of Public Economics}. The MIT Press.
+\item Lustig, N. (2017). El impacto del sistema tributario y el gasto social en la distribución del ingreso y la pobreza en América Latina: una aplicación del marco metodológico del proyecto Compromiso con la Equidad (CEQ). \emph{El Trimestre Económico}, 84(335), 493--568.
+\item Lustig, N., C. Pessino y J. Scott (2014). The Impact of Taxes and Social Spending on Inequality and Poverty in Argentina, Bolivia, Brazil, Mexico, Peru, and Uruguay: Introduction to the Special Issue. \emph{Public Finance Review}, 42(3), 287--303.
+\item Madrian, B. C. y D. F. Shea (2001). The Power of Suggestion: Inertia in 401(k) Participation and Savings Behavior. \emph{Quarterly Journal of Economics}, 116(4), 1149--1187.
+\item Mankiw, N. G., M. Weinzierl y D. Yagan (2009). Optimal Taxation in Theory and Practice. \emph{Journal of Economic Perspectives}, 23(4), 147--174.
+\item Mazzucato, M. (2021). \emph{Mission Economy: A Moonshot Guide to Changing Capitalism}. Harper Business.
+\item MEF (2022). \emph{Análisis del rendimiento de los tributos 2021}. Ministerio de Economía y Finanzas.
+\item Mendoza, A. (2023). \emph{La descentralización fiscal 2017--2022}. Grupo Propuesta Ciudadana.
+\item Mertens, K. (2013). Marginal Tax Rates and Income: New Time Series Evidence. NBER Working Paper 19171.
+\item Mirrlees, J. A. (1971). An Exploration in the Theory of Optimum Income Taxation. \emph{Review of Economic Studies}, 38(2), 175--208.
+\item Musgrave, R. A. y P. B. Musgrave (1992). \emph{Hacienda pública teórica y aplicada}, 5.ª ed. McGraw-Hill.
+\item Myles, G. D. (1995). \emph{Public Economics}. Cambridge University Press.
+\item Oakland, W. H. (1987). Theory of Public Goods. En A. J. Auerbach y M. Feldstein (eds.), \emph{Handbook of Public Economics}, vol.~2, cap.~9. North-Holland.
+\item Oates, W. E. (1999). An Essay on Fiscal Federalism. \emph{Journal of Economic Literature}, 37(3), 1120--1149.
+\item OCDE (2008). \emph{Introductory Handbook for Undertaking Regulatory Impact Analysis (RIA)}. OCDE.
+\item OCDE (2013). \emph{Addressing Base Erosion and Profit Shifting}. OECD Publishing.
+\item OCDE (2019). \emph{OECD Reviews of Pension Systems: Peru}. OECD Publishing.
+\item Olivera, J. (2020). Reformando el sistema de pensiones en Perú: costo fiscal, nivel de pensiones, brecha de género y desigualdad. Documento de Trabajo 496, Departamento de Economía, PUCP.
+\item Olivera, J. e Y. Iparraguirre (2022). The Gender Gap in Pension Savings: Evidence from Peru's Individual Capitalization System. LISER Working Paper 2022-06.
+\item Olson, M. (1992). \emph{La lógica de la acción colectiva: bienes públicos y la teoría de grupos}. Limusa.
+\item Ortiz de Zevallos, G. y G. Guerra-García (1998). \emph{Análisis costo-beneficio de las normas}. Instituto Apoyo y USAID.
+\item Osinergmin (2016). \emph{Guía de Política Regulatoria N.º 1: guía metodológica para la realización de análisis de impacto regulatorio en Osinergmin}. Lima.
+\item Ostrom, E. (2011). \emph{El gobierno de los bienes comunes: la evolución de las instituciones de acción colectiva}. Fondo de Cultura Económica.
+\item Pérez Caldentey, E. y D. Titelman (eds.) (2018). \emph{La inclusión financiera para la inserción productiva y el papel de la banca de desarrollo}. CEPAL.
+\item Piggott, J. y J. Whalley (1987). Interpreting Net Fiscal Incidence Calculations. \emph{Review of Economics and Statistics}, 69(4), 685--694.
+\item Piketty, T. y E. Saez (2013). Optimal Labor Income Taxation. En A. J. Auerbach, R. Chetty, M. Feldstein y E. Saez (eds.), \emph{Handbook of Public Economics}, vol.~5, cap.~7. North-Holland.
+\item Robinson, M. y D. Last (2009). \emph{A Basic Model of Performance-Based Budgeting}. Technical Notes and Manuals, Fondo Monetario Internacional.
+\item Saez, E. (2001). Using Elasticities to Derive Optimal Income Tax Rates. \emph{Review of Economic Studies}, 68(1), 205--229.
+\item Samuelson, P. A. (1955). Diagrammatic Exposition of a Theory of Public Expenditure. \emph{Review of Economics and Statistics}, 37(4), 350--356.
+\item Sandmo, A. (2004). The Theory of Tax Evasion: A Retrospective View. Discussion Paper 31/04, Norwegian School of Economics.
+\item Shah, A. (2006). \emph{Intergovernmental Fiscal Transfers: Principles and Practice}. Banco Mundial.
+\item Sheshinski, E. (1972). The Optimal Linear Income-Tax. \emph{Review of Economic Studies}, 39(3), 297--302.
+\item Shi, M. y J. Svensson (2006). Political Budget Cycles: Do They Differ across Countries and Why? \emph{Journal of Public Economics}, 90(8--9), 1367--1389.
+\item Silvani, C. y K. Baer (1997). Designing a Tax Administration Reform Strategy: Experiences and Guidelines. IMF Working Paper 97/30.
+\item Slemrod, J. y S. Yitzhaki (2001). Integrating Expenditure and Tax Decisions: The Marginal Cost of Funds and the Marginal Benefit of Projects. NBER Working Paper 8196.
+\item Slemrod, J. y S. Yitzhaki (2002). Tax Avoidance, Evasion, and Administration. En A. J. Auerbach y M. Feldstein (eds.), \emph{Handbook of Public Economics}, vol.~3, cap.~22. North-Holland.
+\item Sørensen, P. B. (2006). The Theory of Optimal Taxation: What Is the Policy Relevance? EPRU Working Paper.
+\item Stern, N. (1987). The Theory of Optimal Commodity and Income Taxation: An Introduction. En D. Newbery y N. Stern (eds.), \emph{The Theory of Taxation for Developing Countries}. Oxford University Press.
+\item Stiglitz, J. E. (1998). Distinguished Lecture on Economics in Government: The Private Uses of Public Interests: Incentives and Institutions. \emph{Journal of Economic Perspectives}, 12(2), 3--22.
+\item Stiglitz, J. E. (2009). Development-Oriented Tax Policy. Initiative for Policy Dialogue Working Paper.
+\item Tanzi, V. (2000). El papel del Estado y la calidad del sector público. \emph{Revista de la CEPAL}, 71, 7--22.
+\item Tanzi, V. y H. Zee (2001). \emph{La política tributaria en los países en desarrollo}. Temas de Economía 27, Fondo Monetario Internacional.
+\item Thaler, R. H. y C. R. Sunstein (2003). Libertarian Paternalism. \emph{American Economic Review}, 93(2), 175--179.
+\item Tiebout, C. M. (1956). A Pure Theory of Local Expenditures. \emph{Journal of Political Economy}, 64(5), 416--424.
+\item Weinzierl, M. (2014). The Promise of Positive Optimal Taxation: Normative Diversity and a Role for Equal Sacrifice. \emph{Journal of Public Economics}, 118, 128--142.
+\item Zúñiga, H. y C. Ramos (2024). \emph{Manual de introducción al derecho}. Fondo Editorial de la Universidad del Pacífico.
+\end{itemize}
+}
+
+\subsection*{E.5 Fuentes en línea consultadas}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item CEPAL (2026). \emph{Panorama Fiscal de América Latina y el Caribe 2026} (LC/PUB.2026/4-P). Santiago.
+\item FMI (2026). \emph{Fiscal Monitor}, abril de 2026. Washington, D.\,C.
+\item MEF (2026). \emph{Marco Macroeconómico Multianual 2027--2030}. Ministerio de Economía y Finanzas, agosto de 2026.
+\item MIT OpenCourseWare (2024). 14.41 \emph{Public Finance and Public Policy}, otoño de 2024 (J. Gruber).
+\end{itemize}
+}
+
+\vspace{1.2cm}
+\franjas[2pt]
+\begin{center}\small\color{tonoPizarra}
+Plan de lectura de elaboración propia. Los títulos de los capítulos
+corresponden a las obras citadas y se reproducen únicamente con fines de
+referencia bibliográfica. La asignación de capítulos y secciones se basa en
+los índices de los libros de la carpeta; los temas de los cursos proceden de
+los programas citados en el Anexo C.
+\end{center}
+
+\end{document}

@@ -1,0 +1,1523 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE MACROECONOMETRÍA — Plan de estudio integrado
+%
+%  Textos base:
+%    MHH — Martin, Hurn y Harris, Econometric Modelling with Time Series
+%          (Cambridge, 2013)
+%    BE  — Bårdsen, Eitrheim, Jansen y Nymoen, The Econometrics of
+%          Macroeconomic Modelling (Oxford, 2005)
+%  Textos de apoyo:
+%    En  — Enders, Applied Econometric Time Series (Wiley, 4.ª ed., 2014)
+%    Hm  — Hamilton, Time Series Analysis (Princeton, 1994)
+%    KL  — Kilian y Lütkepohl, Structural Vector Autoregressive Analysis
+%          (Cambridge, 2017)
+%    BM  — Blake y Mumtaz, Applied Bayesian Econometrics for Central
+%          Bankers (Bank of England, ed. actualizada 2017)
+%    Fa  — Fair, Macroeconomic Modeling: The Cowles Commission Approach
+%          (MIT Press, 2024)
+%    ET  — Elliott y Timmermann, Economic Forecasting (Princeton, 2016)
+%          (lectura principal del Bloque 15, de pronóstico)
+%    Ps  — Pesaran, Time Series and Panel Data Econometrics (Oxford, 2015)
+%  Programas PUCP integrados: 1ECO24 (2025-1, 2025-2, 2026-1),
+%    1ECO78 (2024-2, 2025-2, 2026-2), 2ECO01 (unidad 4); además, el
+%    programa de Macroeconometría del Curso de Extensión del BCRP (2004).
+%
+%  Compilar con:  pdflatex Macroeconometria.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de turquesas
+\definecolor{tonoOscuro}{RGB}{4,75,82}              % oscuro
+\definecolor{tonoProfundo}{RGB}{6,110,121}          % profundo
+\definecolor{tonoPrincipal}{RGB}{8,145,160}         % principal
+\definecolor{tonoA}{RGB}{25,133,179}                % variante cálida
+\definecolor{tonoB}{RGB}{15,179,168}                % variante fría
+\definecolor{tonoC}{RGB}{21,193,153}                % variante viva
+\definecolor{tonoClaro}{RGB}{95,208,221}            % claro
+\definecolor{tonoAcero}{RGB}{63,124,131}            % acero
+\definecolor{tonoPizarra}{RGB}{86,129,134}          % pizarra
+\definecolor{tonoGrafito}{RGB}{39,70,73}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{207,243,247}           % hielo
+\definecolor{tonoPalido}{RGB}{233,249,251}          % pálido
+\definecolor{tonoBruma}{RGB}{246,253,254}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorMHH}{RGB}{15,138,105}
+\definecolor{colorBE}{RGB}{20,184,155}
+\definecolor{colorEn}{RGB}{18,161,149}
+\definecolor{colorHm}{RGB}{15,137,138}
+\definecolor{colorKL}{RGB}{20,167,184}
+\definecolor{colorBM}{RGB}{18,133,161}
+\definecolor{colorFa}{RGB}{15,103,138}
+\definecolor{colorET}{RGB}{20,122,184}
+\definecolor{colorPs}{RGB}{18,94,161}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Macroeconometría}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}Martin--Hurn--Harris $\cdot$ Bårdsen et al. $\cdot$ Enders $\cdot$ Hamilton $\cdot$ Kilian--Lütkepohl}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\MHH}[1]{\etiqueta{colorMHH}{MHH}\nobreak\hspace{0.25em}\textcolor{colorMHH}{#1}}
+\newcommand{\BE}[1]{\etiqueta{colorBE}{BE}\nobreak\hspace{0.25em}\textcolor{colorBE}{#1}}
+\newcommand{\EN}[1]{\etiqueta{colorEn}{En}\nobreak\hspace{0.25em}\textcolor{colorEn}{#1}}
+\newcommand{\HM}[1]{\etiqueta{colorHm}{Hm}\nobreak\hspace{0.25em}\textcolor{colorHm}{#1}}
+\newcommand{\KL}[1]{\etiqueta{colorKL}{KL}\nobreak\hspace{0.25em}\textcolor{colorKL}{#1}}
+\newcommand{\BM}[1]{\etiqueta{colorBM}{BM}\nobreak\hspace{0.25em}\textcolor{colorBM}{#1}}
+\newcommand{\FA}[1]{\etiqueta{colorFa}{Fa}\nobreak\hspace{0.25em}\textcolor{colorFa}{#1}}
+\newcommand{\ET}[1]{\etiqueta{colorET}{ET}\nobreak\hspace{0.25em}\textcolor{colorET}{#1}}
+\newcommand{\PS}[1]{\etiqueta{colorPs}{Ps}\nobreak\hspace{0.25em}\textcolor{colorPs}{#1}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+% Artículos que no proceden de los programas PUCP (entran en las horas)
+\newcommand{\articulosB}[1]{\linealectura{tonoB}{Artículos:}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Macroeconometría\par}
+\vspace{0.4cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos base\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorMHH}{MHH} \quad {\color{tonoOscuro}Vance Martin, Stan Hurn y David Harris}\par}
+{\normalsize \emph{\color{colorMHH}Econometric Modelling with Time Series: Specification, Estimation and Testing}\par}
+{\small\color{tonoPizarra} Cambridge University Press, 2013 --- 21 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorBE}{BE} \quad {\color{tonoOscuro}Gunnar Bårdsen, Øyvind Eitrheim, Eilev S. Jansen y Ragnar Nymoen}\par}
+{\normalsize \emph{\color{colorBE}The Econometrics of Macroeconomic Modelling}\par}
+{\small\color{tonoPizarra} Oxford University Press, 2005 --- 11 capítulos y apéndice\par}
+\vspace{0.35cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos de apoyo\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorEn}{En} \quad {\color{tonoOscuro}Walter Enders}\par}
+{\normalsize \emph{\color{colorEn}Applied Econometric Time Series}\par}
+{\small\color{tonoPizarra} Wiley, 4.ª edición, 2014 --- 7 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorHm}{Hm} \quad {\color{tonoOscuro}James D. Hamilton}\par}
+{\normalsize \emph{\color{colorHm}Time Series Analysis}\par}
+{\small\color{tonoPizarra} Princeton University Press, 1994 --- 22 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorKL}{KL} \quad {\color{tonoOscuro}Lutz Kilian y Helmut Lütkepohl}\par}
+{\normalsize \emph{\color{colorKL}Structural Vector Autoregressive Analysis}\par}
+{\small\color{tonoPizarra} Cambridge University Press, 2017 --- 19 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorBM}{BM} \quad {\color{tonoOscuro}Andrew Blake y Haroon Mumtaz}\par}
+{\normalsize \emph{\color{colorBM}Applied Bayesian Econometrics for Central Bankers}\par}
+{\small\color{tonoPizarra} Bank of England, CCBS, edición actualizada, 2017 --- 7 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorFa}{Fa} \quad {\color{tonoOscuro}Ray C. Fair}\par}
+{\normalsize \emph{\color{colorFa}Macroeconomic Modeling: The Cowles Commission Approach}\par}
+{\small\color{tonoPizarra} MIT Press, 2024 --- 18 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorET}{ET} \quad {\color{tonoOscuro}Graham Elliott y Allan Timmermann}\par}
+{\normalsize \emph{\color{colorET}Economic Forecasting}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2016 --- 21 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorPs}{Ps} \quad {\color{tonoOscuro}M. Hashem Pesaran}\par}
+{\normalsize \emph{\color{colorPs}Time Series and Panel Data Econometrics}\par}
+{\small\color{tonoPizarra} Oxford University Press, 2015 --- capítulo 17\par}
+\vspace{0.35cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de tres cursos de la PUCP (siete programas) y uno del BCRP\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Quince bloques temáticos y un pretramo --- 10 meses}\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{quince bloques temáticos} y un pretramo, y
+sigue el orden de los cursos de series de tiempo de la PUCP: primero los
+procesos univariados estacionarios y no estacionarios, luego los modelos
+multivariados (VAR, VAR estructurales y cointegración), después los modelos de
+espacio de estados, volatilidad y no linealidad, a continuación la
+econometría bayesiana y, al final, la estimación de modelos DSGE y la
+construcción y evaluación de modelos macroeconométricos. Cierra con un bloque
+dedicado al pronóstico económico, que reúne los modelos de todo el plan bajo
+una misma pregunta: cómo pronosticar, cómo evaluar y comparar pronósticos y
+cómo combinarlos. Conviene cerrar cada bloque antes de abrir el siguiente.
+
+\medskip
+\noindent\destacado{Requisito.} El plan supone el sílabo de econometría,
+en particular la teoría asintótica (Bloque 4), el GMM (Bloque 9) y la máxima
+verosimilitud (Bloque 10). El pretramo los repasa en el lenguaje de las series
+de tiempo. Este sílabo desarrolla el módulo opcional de macroeconometría del
+sílabo de macroeconomía (Anexo G.3) y lo amplía.
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorEn}{\textbf{Enders}} aporta la intuición y las
+        aplicaciones. Se lee \emph{primero} en los Bloques 1 a 10.
+  \item \textcolor{colorMHH}{\textbf{Martin, Hurn y Harris}} es el texto base
+        del tramo de series de tiempo. Trata todos los modelos con un mismo
+        marco ---la máxima verosimilitud--- y fija la notación.
+  \item \textcolor{colorHm}{\textbf{Hamilton}} es la referencia rigurosa:
+        asintótica, raíces unitarias, cointegración, filtro de Kalman y
+        cambio de régimen. Es el texto básico de 1ECO24 y de 2ECO01.
+  \item \textcolor{colorKL}{\textbf{Kilian y Lütkepohl}} es la lectura
+        principal de los VAR estructurales (Bloques 5 y 6) y de las
+        proyecciones locales.
+  \item \textcolor{colorBM}{\textbf{Blake y Mumtaz}} es la lectura principal
+        de la econometría bayesiana (Bloques 11 a 13), con códigos en Matlab
+        para replicar cada ejemplo.
+  \item \textcolor{colorBE}{\textbf{Bårdsen et al.}} y
+        \textcolor{colorFa}{\textbf{Fair}} sostienen el Bloque 14: cómo se
+        construye, se evalúa y se usa un modelo macroeconométrico.
+  \item \textcolor{colorET}{\textbf{Elliott y Timmermann}} es la lectura
+        principal del Bloque 15 (pronóstico). En los bloques anteriores
+        aparece solo como consulta; en el Bloque 15 entra en las horas.
+        \textcolor{colorPs}{\textbf{Pesaran}} (cap.~17) da un resumen
+        compacto de los mismos temas y sirve de profundización.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Qué entra en las horas.} Las líneas \emph{Lecturas},
+\emph{Profundización}, \emph{Artículos} y \emph{Artículos (PUCP)} entran en el
+cómputo de horas.
+Las líneas \emph{Consulta} y \emph{Consulta (PUCP)} remiten a libros de la
+carpeta y a referencias de los programas que no entran (Anexo E).
+
+\medskip
+\noindent\destacado{Material excluido.} Quedan fuera las partes de Martin, Hurn y
+Harris que repiten el sílabo de econometría (regresión lineal y no lineal,
+métodos no paramétricos, datos discretos), los temas propios de finanzas
+(valor en riesgo, CoVaR) y el panel VAR, que pasan al material opcional. El
+detalle está en el Anexo B.
+
+\medskip
+\noindent\destacado{Sobre el software y los ejercicios.} La macroeconometría se
+aprende estimando. Enders trae sus bases de datos en la carpeta (en formatos
+EViews, SAS y texto); Blake y Mumtaz, códigos en Matlab para cada capítulo;
+Martin, Hurn y Harris, ejercicios con programas en el sitio del libro.
+Conviene replicar cada semana al menos una aplicación, de preferencia con
+datos del BCRP.
+
+\medskip
+\noindent\destacado{Notación.} \MHH{n} remite al capítulo $n$ de Martin, Hurn y
+Harris, y \BE{n}, \EN{n}, \HM{n}, \KL{n}, \BM{n}, \FA{n}, \ET{n} y \PS{n}, al
+capítulo de los demás textos. Si solo entra parte de un capítulo se indican secciones:
+\HM{17.6} es la sección 6 del capítulo 17 de Hamilton. Enders y Blake y Mumtaz
+numeran las secciones dentro de cada capítulo: \EN{5.13} es la sección 13 del
+capítulo 5. \emph{Consulta} remite a libros de la carpeta que no entran en el
+cómputo de horas (Anexo E).
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan: 430 horas distribuidas en \textbf{43 semanas de
+contenido}, que equivalen a \textbf{unos 10 meses de calendario}, a un ritmo de
+diez horas semanales.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón.
+La columna de horas es la que gobierna el reparto. Si hay semanas perdidas por
+feriados, viajes o imprevistos, el ajuste correcto es alargar el calendario,
+no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+1 & Pretramo --- Máxima verosimilitud para series de tiempo & 1 & 10 \\
+2--3 & Bloque 1 --- Ecuaciones en diferencias y estacionariedad & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{4--6} & \textbf{Bloque 2 --- Modelos ARMA y pronóstico} & \textbf{3} & \textbf{30} \\
+7--8 & Bloque 3 --- Asintótica, regresión dinámica y análisis espectral & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{9--11} & \textbf{Bloque 4 --- Tendencias y raíces unitarias} & \textbf{3} & \textbf{30} \\
+\rowcolor{tonoHielo}\textbf{12--14} & \textbf{Bloque 5 --- Vectores autorregresivos} & \textbf{3} & \textbf{30} \\
+\rowcolor{tonoHielo}\textbf{15--18} & \textbf{Bloque 6 --- VAR estructurales y proyecciones locales} & \textbf{4} & \textbf{40} \\
+\rowcolor{tonoHielo}\textbf{19--21} & \textbf{Bloque 7 --- Cointegración y modelos VECM} & \textbf{3} & \textbf{30} \\
+\rowcolor{tonoHielo}\textbf{22--24} & \textbf{Bloque 8 --- Espacio de estados, filtro de Kalman y factores} & \textbf{3} & \textbf{30} \\
+25--26 & Bloque 9 --- Modelos de volatilidad & 2 & 20 \\
+27--28 & Bloque 10 --- Modelos no lineales y regresión cuantílica & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{29--31} & \textbf{Bloque 11 --- Econometría bayesiana: fundamentos y MCMC} & \textbf{3} & \textbf{30} \\
+\rowcolor{tonoHielo}\textbf{32--34} & \textbf{Bloque 12 --- VAR bayesianos y modelos con parámetros cambiantes} & \textbf{3} & \textbf{30} \\
+35--36 & Bloque 13 --- Estimación de modelos DSGE & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{37--39} & \textbf{Bloque 14 --- Modelización macroeconométrica y pronóstico} & \textbf{3} & \textbf{30} \\
+\rowcolor{tonoHielo}\textbf{40--43} & \textbf{Bloque 15 --- Pronóstico económico: evaluación, combinación y \emph{nowcasting}} & \textbf{4} & \textbf{40} \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{43} & \textbf{430} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana para la teoría y
+una sesión de dos horas el sábado para estimar con datos.
+
+\medskip
+\noindent\destacado{Los tramos largos.} Los Bloques 5 a 7 (semanas 12--21) forman
+el núcleo del plan: el análisis multivariado que usan los bancos centrales.
+Los Bloques 11 a 13 (semanas 29--36) forman un recorrido continuo por la
+econometría bayesiana y son el punto donde el avance suele atascarse, porque
+exigen programar. El Bloque 15 (semanas 40--43) vuelve sobre todos los
+modelos anteriores desde el punto de vista del pronóstico y se apoya, sobre
+todo, en los Bloques 2, 5, 8 y 12.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 11, 21, 28, 36 y 39. Si en alguno de esos cortes se acumula más de una
+semana de retraso, se alarga el calendario y no se comprime el bloque
+siguiente.
+
+\newpage
+\subsection*{Detalle semana a semana}
+
+{\footnotesize\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & Pretramo & P.1 La verosimilitud en series de tiempo; P.2 Optimización numérica y pruebas clásicas & 10 \\
+\midrule
+2  & 1 & 1.1 Las series macroeconómicas; 1.2 Ecuaciones en diferencias & 10 \\
+3  & 1 & 1.3 Operadores de rezagos; 1.4 Estacionariedad y ergodicidad & 10 \\
+\midrule
+4  & 2 & 2.1 Procesos MA, AR y ARMA & 10 \\
+5  & 2 & 2.2 Metodología de Box--Jenkins; 2.3 Estimación por MCO y máxima verosimilitud & 10 \\
+6  & 2 & 2.4 Pronóstico; 2.5 Estacionalidad e inestabilidad de parámetros & 10 \\
+\midrule
+7  & 3 & 3.1 Teoremas límite con dependencia; 3.2 Regresión dinámica y modelos ADL & 10 \\
+8  & 3 & 3.3 Análisis espectral; 3.4 Filtros lineales: Hodrick--Prescott y paso de banda & 10 \\
+\midrule
+9  & 4 & 4.1 Tendencias determinísticas y estocásticas; 4.2 Movimiento browniano y TLC funcional & 10 \\
+10 & 4 & 4.3 Pruebas de Dickey--Fuller y Phillips--Perron; 4.4 Potencia y pruebas más potentes & 10 \\
+11 & 4 & 4.5 Quiebres estructurales; 4.6 Descomposiciones de tendencia y ciclo & 10 \\
+\midrule
+12 & 5 & 5.1 Representación de un VAR; 5.2 Estimación y especificación & 10 \\
+13 & 5 & 5.3 Causalidad de Granger y pronóstico & 10 \\
+14 & 5 & 5.4 Funciones de impulso-respuesta y descomposición de varianza & 10 \\
+\midrule
+15 & 6 & 6.1 De la forma reducida a la estructural; 6.2 Restricciones de corto plazo & 10 \\
+16 & 6 & 6.3 Restricciones de largo plazo; 6.4 Inferencia y bootstrap & 10 \\
+17 & 6 & 6.5 Restricciones de signos; 6.6 Instrumentos externos y heteroscedasticidad & 10 \\
+18 & 6 & 6.7 Proyecciones locales; 6.8 Descomposiciones históricas y contrafactuales & 10 \\
+\midrule
+19 & 7 & 7.1 Regresión espuria; 7.2 Cointegración y método de Engle--Granger & 10 \\
+20 & 7 & 7.3 El VECM y el método de Johansen & 10 \\
+21 & 7 & 7.4 Identificación, pruebas y dinámica; 7.5 VAR estructurales con cointegración & 10 \\
+\midrule
+22 & 8 & 8.1 Forma de espacio de estados; 8.2 Filtro de Kalman y suavizado & 10 \\
+23 & 8 & 8.3 Estimación por máxima verosimilitud; 8.4 Parámetros cambiantes y variables no observables & 10 \\
+24 & 8 & 8.5 Modelos de factores, componentes principales y FAVAR & 10 \\
+\midrule
+25 & 9 & 9.1 Modelos ARCH y GARCH; 9.2 Extensiones univariadas & 10 \\
+26 & 9 & 9.3 GARCH multivariado & 10 \\
+\midrule
+27 & 10 & 10.1 Modelos de umbral y de transición suave; 10.2 Cambio de régimen de Markov & 10 \\
+28 & 10 & 10.3 Dinámica no lineal y redes neuronales; 10.4 Regresión cuantílica y crecimiento en riesgo & 10 \\
+\midrule
+29 & 11 & 11.1 El enfoque bayesiano; 11.2 Regresión lineal bayesiana & 10 \\
+30 & 11 & 11.3 Muestreo de Gibbs & 10 \\
+31 & 11 & 11.4 Metropolis--Hastings, convergencia y Monte Carlo hamiltoniano & 10 \\
+\midrule
+32 & 12 & 12.1 VAR bayesianos y sus distribuciones a priori & 10 \\
+33 & 12 & 12.2 VAR bayesianos estructurales y pronóstico condicional; 12.3 Espacio de estados bayesiano & 10 \\
+34 & 12 & 12.4 TVP-VAR y volatilidad estocástica; 12.5 FAVAR, frecuencias mixtas y cambio de régimen & 10 \\
+\midrule
+35 & 13 & 13.1 VAR y DSGE; 13.2 Estimación bayesiana de modelos DSGE & 10 \\
+36 & 13 & 13.3 GMM, calibración y métodos de simulación & 10 \\
+\midrule
+37 & 14 & 14.1 Metodología de la modelización; 14.2 Exogeneidad, invarianza y crítica de Lucas & 10 \\
+38 & 14 & 14.3 Inflación, salarios y curva de Phillips; 14.4 La curva de Phillips neokeynesiana y el dinero & 10 \\
+39 & 14 & 14.5 Transmisión monetaria, reglas y multiplicadores; 14.6 Pronóstico y su evaluación & 10 \\
+\midrule
+40 & 15 & 15.1 Pérdida y pronóstico óptimo; 15.2 Diseño fuera de muestra y datos en tiempo real & 10 \\
+41 & 15 & 15.3 Selección de modelos y pronóstico univariado; 15.4 Pronóstico multivariado & 10 \\
+42 & 15 & 15.5 Evaluación y comparación de pronósticos; 15.6 Combinación e inestabilidad & 10 \\
+43 & 15 & 15.7 Densidades, intervalos y \emph{fan charts}; 15.8 \emph{Nowcasting} y frecuencias mixtas & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\bloque{Pretramo --- Máxima verosimilitud para series de tiempo --- 1 semana}
+{Repaso del principio de máxima verosimilitud en el marco que usa Martin, Hurn y
+Harris para todo el libro. Supone el Bloque 10 del sílabo de econometría; aquí
+se vuelve a ver con observaciones dependientes y con la notación del texto
+base.}
+
+\tema{P.1 La verosimilitud en series de tiempo}
+\lecturas{\MHH{1} \quad \MHH{2.1--2.5}}
+\nota{Distribuciones conjuntas y condicionales de observaciones dependientes,
+descomposición de la verosimilitud por predicción, condiciones de regularidad
+y propiedades asintóticas.}
+
+\tema{P.2 Optimización numérica y pruebas clásicas}
+\lecturas{\MHH{3} \quad \MHH{4}}
+\apoyo{\HM{5.7}}
+\nota{Métodos de Newton y cuasi-Newton, cálculo de errores estándar y pruebas
+de razón de verosimilitud, Wald y multiplicador de Lagrange.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 1 --- Ecuaciones en diferencias y estacionariedad --- 2 semanas}
+{Los temas 1 a 3 de 1ECO24 (2026-1) y la sesión 1.1 de 1ECO78: las
+herramientas para describir la dinámica de una serie antes de estimarla.}
+
+\tema{1.1 Las series de tiempo macroeconómicas}
+\lecturas{\EN{1.1} \quad \MHH{13.1--13.2}}
+\consultalib{Fair (2024), cap.~2 \quad Neusser (2016), cap.~1}
+\nota{Hechos estilizados de las series macroeconómicas y financieras:
+tendencia, persistencia, estacionalidad y volatilidad cambiante.}
+
+\tema{1.2 Ecuaciones en diferencias y sus soluciones}
+\lecturas{\EN{1.2--1.8}}
+\apoyo{\HM{1}}
+\nota{Solución por iteración, ecuaciones homogéneas, soluciones particulares y
+método de coeficientes indeterminados. Multiplicadores dinámicos.}
+
+\tema{1.3 Operadores de rezagos}
+\lecturas{\EN{1.9}}
+\apoyo{\HM{2}}
+
+\tema{1.4 Estacionariedad, ergodicidad y ruido blanco}
+\lecturas{\EN{2.1} \quad \EN{2.3} \quad \MHH{13.4}}
+\apoyo{\HM{3.1--3.2}}
+\consultalib{Brockwell y Davis (2009), cap.~1}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Modelos ARMA y pronóstico --- 3 semanas}
+{El análisis univariado estacionario: el tema 4 de 1ECO24, la sesión 1.1 de
+1ECO78 y el tema 1 de la Unidad 4 de 2ECO01.}
+
+\tema{2.1 Procesos MA, AR y ARMA}
+\lecturas{\EN{2.2} \quad \EN{2.4--2.7} \quad \MHH{13.3} \quad \MHH{13.5}}
+\apoyo{\HM{3.3--3.7}}
+\consultalib{Neusser (2016), cap.~2 \quad Shumway y Stoffer, cap.~3}
+\nota{Condiciones de estacionariedad e invertibilidad, funciones de
+autocorrelación simple y parcial, función generadora de autocovarianzas.}
+
+\tema{2.2 Metodología de Box--Jenkins}
+\lecturas{\EN{2.8} \quad \EN{2.10} \quad \MHH{13.7} \quad \MHH{13.9}}
+\apoyo{\HM{4.8}}
+\nota{Identificación, elección del número de rezagos con criterios de
+información, estimación y diagnóstico de residuos.}
+
+\tema{2.3 Estimación por MCO y por máxima verosimilitud}
+\lecturas{\MHH{13.6} \quad \MHH{13.8}}
+\apoyo{\HM{5.1--5.6} \quad \HM{5.8}}
+\nota{Verosimilitud exacta y condicional de procesos AR, MA y ARMA gaussianos.}
+
+\tema{2.4 Pronóstico}
+\lecturas{\EN{2.9} \quad \EN{2.13}}
+\apoyo{\HM{4.1--4.3} \quad \HM{4.6}}
+\consultalib{Elliott y Timmermann (2016), caps.~2 y 7}
+\nota{Pronóstico óptimo bajo pérdida cuadrática, error de predicción e
+intervalos de predicción, y descomposición de Wold. La evaluación, la
+comparación y la combinación de pronósticos se estudian en el Bloque 15.}
+
+\tema{2.5 Estacionalidad e inestabilidad de parámetros}
+\lecturas{\EN{2.11--2.12}}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Asintótica, regresión dinámica y análisis espectral --- 2 semanas}
+{La teoría asintótica con observaciones dependientes (tema 7 de 1ECO24 y
+sesión 2.1 de 1ECO78), la regresión con series de tiempo y el análisis en el
+dominio de la frecuencia (sesión 2.4 de 1ECO78).}
+
+\tema{3.1 Teoremas límite para observaciones dependientes}
+\lecturas{\HM{7}}
+\consultalib{White (2001), caps.~3 y 5 \quad Hayashi (2000), cap.~6 \quad Hansen (2021), cap.~14}
+\nota{Ergodicidad, diferencias martingala, ley de los grandes números y teorema
+central del límite para procesos dependientes; estimación de la varianza de
+largo plazo.}
+
+\tema{3.2 Regresión dinámica y modelos autorregresivos de rezagos distribuidos}
+\lecturas{\EN{5.1--5.4} \quad \MHH{7.1--7.7}}
+\apoyo{\HM{8}}
+\consultalib{Davidson y MacKinnon (2004), cap.~13.4}
+\nota{Funciones de transferencia, análisis de intervención y regresiones con
+errores autocorrelacionados y variables dependientes rezagadas.}
+
+\tema{3.3 Análisis espectral}
+\lecturas{\HM{6.1--6.3}}
+\apoyo{\HM{10.4}}
+\consultalib{Neusser (2016), cap.~6 \quad Brockwell y Davis (2009), caps.~4 y 10}
+\nota{El espectro poblacional, el periodograma y su estimación.}
+
+\tema{3.4 Filtros lineales: Hodrick--Prescott y paso de banda}
+\lecturas{\HM{6.4}}
+\consulta{Christiano y Fitzgerald (2003) \quad Cogley y Nason (1995)}
+\nota{Qué hace cada filtro en el dominio de la frecuencia y por qué el filtro
+de Hodrick--Prescott puede generar ciclos espurios. Prepara la discusión del
+producto potencial en el tema 8.4.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Tendencias y raíces unitarias --- 3 semanas}
+{La no estacionariedad univariada: temas 8 y 9 de 1ECO24, sesiones 2.1 y 2.2
+de 1ECO78 y tema 3 de la Unidad 4 de 2ECO01. La asintótica no estándar del
+tema 4.2 es la parte más técnica del plan.}
+
+\tema{4.1 Tendencias determinísticas y estocásticas}
+\lecturas{\EN{4.1--4.3} \quad \MHH{16.1--16.3}}
+\apoyo{\HM{15} \quad \HM{16}}
+
+\tema{4.2 Movimiento browniano, teorema central del límite funcional y asintótica no estándar}
+\lecturas{\MHH{16.4--16.5}}
+\apoyo{\HM{17.1--17.5} \quad \HM{18.1}}
+\consultalib{White (2001), cap.~7}
+
+\tema{4.3 Pruebas de Dickey--Fuller, Dickey--Fuller aumentada y Phillips--Perron}
+\lecturas{\EN{4.4--4.7} \quad \MHH{17.1--17.5} \quad \MHH{17.7}}
+\apoyo{\HM{17.6--17.7}}
+\consultalib{Pfaff (2008) \quad Hayashi (2000), cap.~9}
+
+\tema{4.4 Potencia, regresores determinísticos y pruebas más potentes}
+\lecturas{\EN{4.9--4.10} \quad \MHH{17.6}}
+\apoyo{\HM{17.8}}
+\consulta{Elliott, Rothenberg y Stock (1996)}
+\nota{Pruebas DF-GLS, KPSS y otras alternativas.}
+
+\tema{4.5 Quiebres estructurales y raíces unitarias}
+\lecturas{\EN{4.8} \quad \EN{7.12} \quad \MHH{17.8}}
+\consultalib{Kilian y Lütkepohl (2017), cap.~19}
+
+\tema{4.6 Descomposiciones de tendencia y ciclo}
+\lecturas{\EN{4.12}}
+\consultalib{Neusser (2016), apéndice D}
+\nota{Descomposición de Beveridge--Nelson y modelos de componentes no
+observados; se completan con el filtro de Kalman en el tema 8.4.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Vectores autorregresivos --- 3 semanas}
+{El tema 10 de 1ECO24, la sesión 1.2 de 1ECO78 y el tema 2 de la Unidad 4 de
+2ECO01. Kilian y Lütkepohl es la lectura principal desde aquí hasta el
+Bloque 7.}
+
+\tema{5.1 Representación de un VAR: estabilidad y representación de Wold}
+\lecturas{\EN{5.5} \quad \KL{2.1--2.2} \quad \MHH{13.10}}
+\apoyo{\HM{10.1--10.3}}
+\consultalib{Lütkepohl (2005), cap.~2 \quad Neusser (2016), caps.~10 y 12}
+
+\tema{5.2 Estimación, selección de rezagos y diagnóstico}
+\lecturas{\EN{5.6} \quad \KL{2.3} \quad \KL{2.6--2.8}}
+\apoyo{\HM{11.1} \quad \HM{11.3}}
+\consultalib{Lütkepohl (2005), caps.~3--5}
+
+\tema{5.3 Causalidad de Granger y pronóstico}
+\lecturas{\EN{5.8} \quad \KL{2.4--2.5} \quad \KL{7.1--7.4}}
+\apoyo{\HM{11.2}}
+\consultalib{Elliott y Timmermann (2016), cap.~9}
+\nota{Kilian y Lütkepohl explican por qué la causalidad de Granger dejó de
+usarse como prueba de causalidad en macroeconomía.}
+
+\tema{5.4 Funciones de impulso-respuesta y descomposición de la varianza}
+\lecturas{\EN{5.7} \quad \KL{4.1--4.2}}
+\apoyo{\HM{11.4--11.5}}
+\articulos{Sims (1980) \quad Stock y Watson (2001)}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- VAR estructurales y proyecciones locales --- 4 semanas}
+{El tema 11 de 1ECO24, la sesión 1.3 de 1ECO78 y el VAR estructural del curso
+del BCRP. Es el bloque más largo: la identificación de choques es la
+herramienta central del análisis de política monetaria y fiscal.}
+
+\tema{6.1 De la forma reducida a la estructural: choques estructurales}
+\lecturas{\EN{5.10} \quad \KL{7.5--7.6} \quad \KL{8.1--8.3} \quad \MHH{14.1--14.3}}
+\apoyo{\HM{11.6}}
+
+\tema{6.2 Identificación por restricciones de corto plazo}
+\lecturas{\EN{5.11--5.12} \quad \KL{8.4--8.5} \quad \KL{9.1--9.4} \quad \MHH{14.4--14.5}}
+\articulos{Bernanke y Mihov (1998)}
+\nota{Modelos recursivos (Cholesky) y no recursivos; estimación por método de
+momentos, variables instrumentales y máxima verosimilitud con información
+completa.}
+
+\tema{6.3 Identificación por restricciones de largo plazo}
+\lecturas{\EN{5.13--5.14} \quad \KL{10} \quad \KL{11.1--11.3}}
+\articulos{Blanchard y Quah (1989)}
+
+\tema{6.4 Inferencia: método delta y bootstrap}
+\lecturas{\KL{12.1--12.5}}
+\apoyo{\HM{11.7}}
+\nota{Bandas de confianza para funciones de impulso-respuesta, bootstrap con
+corrección de sesgo y errores frecuentes en la inferencia.}
+
+\tema{6.5 Identificación por restricciones de signos}
+\lecturas{\KL{13.1--13.6} \quad \KL{13.9}}
+\articulos{Uhlig (2005)}
+
+\tema{6.6 Instrumentos externos, datos de alta frecuencia y heteroscedasticidad}
+\lecturas{\KL{14} \quad \KL{15}}
+\nota{Identificación con instrumentos externos (\emph{proxy} SVAR), con
+sorpresas de política medidas en futuros de alta frecuencia y con cambios de
+volatilidad.}
+
+\tema{6.7 Proyecciones locales}
+\lecturas{\KL{12.8} \quad Montiel Olea, Plagborg-Møller, Qian y Wolf (2025)}
+\articulos{Jordà (2005)}
+\nota{Proyecciones locales frente a VAR: mismo objeto de estimación, distinto
+equilibrio entre sesgo y varianza. El artículo de Montiel Olea et al. está en
+la carpeta.}
+
+\tema{6.8 Descomposiciones históricas, escenarios y contrafactuales}
+\lecturas{\KL{4.3--4.6}}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Cointegración y modelos VECM --- 3 semanas}
+{La no estacionariedad multivariada: el tema 12 de 1ECO24, la sesión 2.3 de
+1ECO78 y el tema 3 de la Unidad 4 de 2ECO01. Martin, Hurn y Harris es la
+lectura principal.}
+
+\tema{7.1 Variables integradas y regresión espuria}
+\lecturas{\EN{6.1--6.2}}
+\apoyo{\HM{18.2--18.3}}
+
+\tema{7.2 Cointegración, corrección de errores y método de Engle--Granger}
+\lecturas{\EN{6.3--6.6} \quad \MHH{18.1--18.2}}
+\apoyo{\HM{19.1--19.3}}
+\consultalib{Pfaff (2008)}
+
+\tema{7.3 El VECM y el método de máxima verosimilitud de Johansen}
+\lecturas{\EN{6.7--6.9} \quad \MHH{18.3--18.4} \quad \KL{3.1--3.3}}
+\apoyo{\HM{20.1--20.3}}
+\consultalib{Lütkepohl (2005), caps.~6--8}
+
+\tema{7.4 Identificación, pruebas y dinámica de los sistemas cointegrados}
+\lecturas{\EN{6.10--6.11} \quad \MHH{18.5--18.8} \quad \KL{3.4--3.6}}
+\apoyo{\HM{20.4}}
+\nota{Identificación de los vectores de cointegración, pruebas sobre ellos y
+funciones de impulso-respuesta en el VECM.}
+
+\tema{7.5 VAR estructurales con variables cointegradas}
+\lecturas{\KL{12.6--12.7}}
+\consultalib{Lütkepohl (2005), cap.~9 \quad Garratt, Lee, Pesaran y Shin (2006)}
+\nota{Inferencia en VAR integrados y cerca de la raíz unitaria; el enfoque
+estructural de largo plazo de Garratt et al. queda como consulta.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Espacio de estados, filtro de Kalman y modelos de factores --- 3 semanas}
+{El tema 13 de 1ECO24, las sesiones 1.4 y 2.4 de 1ECO78 y el curso del BCRP.
+La forma de espacio de estados es el puente hacia los modelos bayesianos con
+parámetros cambiantes (Bloque 12) y hacia la estimación de modelos DSGE
+(Bloque 13).}
+
+\tema{8.1 La forma de espacio de estados}
+\lecturas{\MHH{15.1--15.2}}
+\apoyo{\HM{13.1}}
+\consultalib{Lütkepohl (2005), cap.~18 \quad Neusser (2016), cap.~17}
+
+\tema{8.2 El filtro de Kalman: predicción, actualización y suavizado}
+\lecturas{\MHH{15.3--15.4} \quad \BM{3.4}}
+\apoyo{\HM{13.2--13.3} \quad \HM{13.5--13.6}}
+
+\tema{8.3 Estimación por máxima verosimilitud e inferencia}
+\lecturas{\MHH{15.6}}
+\apoyo{\HM{13.4} \quad \HM{13.7}}
+
+\tema{8.4 Parámetros cambiantes y variables no observables}
+\lecturas{\HM{13.8}}
+\consulta{Kim y Nelson (1999) \quad Harvey (1990)}
+\nota{Producto potencial, tasa natural y tendencias como estados no
+observables; el filtro de Hodrick--Prescott como caso particular del
+suavizado de Kalman.}
+
+\tema{8.5 Modelos de factores, componentes principales y FAVAR}
+\lecturas{\MHH{15.5} \quad \MHH{15.7} \quad \KL{16.1--16.2}}
+\consultalib{Hansen (2021), caps.~11.12--11.16}
+\articulos{Stock y Watson (2002)}
+\nota{Extracción de factores con el filtro de Kalman y con componentes
+principales; relación con los modelos VARMA. Es el tema 9 de 1ECO24
+(2025-2).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Modelos de volatilidad --- 2 semanas}
+{El tema 14 de 1ECO24 y el módulo de volatilidad de 1ECO78. La volatilidad
+estocástica se estudia en el Bloque 12, con métodos bayesianos.}
+
+\tema{9.1 Modelos ARCH y GARCH}
+\lecturas{\EN{3.1--3.5} \quad \EN{3.8} \quad \MHH{20.1--20.3}}
+\apoyo{\HM{21.1} \quad \MHH{9.1--9.4}}
+\consultalib{Tsay (2010), cap.~3}
+\nota{Estimación por máxima verosimilitud y por cuasi-máxima verosimilitud
+(\MHH{9}).}
+
+\tema{9.2 Extensiones univariadas}
+\lecturas{\EN{3.6--3.7} \quad \EN{3.9--3.10} \quad \MHH{20.4--20.5}}
+\apoyo{\HM{21.2}}
+\nota{GARCH-M, EGARCH, TARCH, IGARCH y FIGARCH; distribuciones condicionales
+no normales.}
+
+\tema{9.3 GARCH multivariado e impulso-respuesta de la volatilidad}
+\lecturas{\EN{3.11--3.12} \quad \MHH{20.6}}
+\consultalib{Lütkepohl (2005), cap.~16 \quad Tsay (2013), cap.~7}
+\consulta{Engle (2002)}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 10 --- Modelos no lineales y regresión cuantílica --- 2 semanas}
+{Los temas opcionales de 1ECO24 (umbrales y cambio de régimen), los modelos no
+lineales de 1ECO78, el curso del BCRP y la regresión cuantílica con series de
+tiempo (sesión 2.4 de 1ECO78).}
+
+\tema{10.1 Pruebas de no linealidad, modelos de umbral y de transición suave}
+\lecturas{\EN{7.1--7.7} \quad \EN{7.9} \quad \MHH{19.1--19.3}}
+\consultalib{Chen y Tsay (2019)}
+\nota{Modelos TAR, SETAR, LSTAR y ESTAR (las regresiones de umbral y de
+transición suave del curso del BCRP).}
+
+\tema{10.2 Cambio de régimen de Markov}
+\lecturas{\EN{7.8} \quad \MHH{19.6}}
+\apoyo{\HM{22}}
+\consulta{Kim y Nelson (1999)}
+\nota{El filtro de Hamilton; la versión bayesiana se ve en el tema 12.5.}
+
+\tema{10.3 Dinámica no lineal, redes neuronales y VAR no lineales}
+\lecturas{\EN{7.10--7.11} \quad \MHH{19.4} \quad \MHH{19.8} \quad \KL{18.1--18.4}}
+\nota{Funciones de impulso-respuesta generalizadas, raíces unitarias con
+ajuste no lineal y redes neuronales artificiales, la introducción al
+aprendizaje automático que piden 1ECO24 (2025-2) y 1ECO78.}
+
+\tema{10.4 Regresión cuantílica con series de tiempo y crecimiento en riesgo}
+\lecturas{Hansen (2021), cap.~24}
+\articulos{Adrian, Boyarchenko y Giannone (2019)}
+\consultalib{Elliott y Timmermann (2016), cap.~13}
+\nota{Pronóstico de la densidad condicional del PBI y medición del
+\emph{growth at risk}. Hansen está en la carpeta de econometría y es el texto
+del tema 13.5 de ese sílabo. La evaluación de estas densidades se ve en el
+tema 15.7.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 11 --- Econometría bayesiana: fundamentos y MCMC --- 3 semanas}
+{\textbf{Bloque nuevo respecto de 1ECO24.} Es la sesión 3.1 y el módulo 4 de
+1ECO78. Blake y Mumtaz es la lectura principal y trae los códigos para
+replicar cada algoritmo; Hamilton y Greene dan la base formal.}
+
+\tema{11.1 El enfoque bayesiano: distribución a priori, verosimilitud y posterior}
+\lecturas{\BM{1.1--1.2}}
+\apoyo{\HM{12.1}}
+\consultalib{Greene (2012), caps.~16.1--16.4 \quad McElreath (2016), caps.~1--3}
+\nota{El teorema de Bayes, las distribuciones marginales y condicionales y las
+diferencias entre la econometría clásica y la bayesiana.}
+
+\tema{11.2 El modelo de regresión lineal bayesiano}
+\lecturas{\BM{1.2} \quad \BM{1.5}}
+\consultalib{Greene (2012), cap.~16.3 \quad McElreath (2016), caps.~4--6}
+\consulta{Koop (2003)}
+\nota{Distribuciones a priori conjugadas e informativas, elección de
+hiperparámetros, verosimilitud marginal y comparación de modelos.}
+
+\tema{11.3 El muestreo de Gibbs}
+\lecturas{\BM{1.3}}
+\apoyo{\HM{12.3}}
+\consultalib{Greene (2012), cap.~16.5}
+\articulos{Casella y George (1992)}
+\nota{Errores autocorrelacionados y heteroscedásticos como extensiones del
+muestreador.}
+
+\tema{11.4 Metropolis--Hastings, convergencia y Monte Carlo hamiltoniano}
+\lecturas{\BM{5.1--5.4} \quad \BM{5.6} \quad \BM{5.8}}
+\consultalib{McElreath (2016), cap.~8}
+\consulta{Chib (2001) \quad Gelman et al. (2013)}
+\nota{Algoritmos de paseo aleatorio y de independencia, diagnósticos de
+convergencia y cálculo de la verosimilitud marginal. El Monte Carlo
+hamiltoniano y los métodos variacionales que menciona 1ECO78 se introducen con
+McElreath.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 12 --- VAR bayesianos y modelos con parámetros cambiantes --- 3 semanas}
+{Las sesiones 3.1 a 3.3 de 1ECO78: los modelos que hoy usan los bancos
+centrales para pronosticar y analizar la política monetaria.}
+
+\tema{12.1 VAR bayesianos y sus distribuciones a priori}
+\lecturas{\BM{2.1--2.5} \quad \BM{2.9} \quad \KL{5}}
+\apoyo{\HM{12.2}}
+\consultalib{Elliott y Timmermann (2016), cap.~5}
+\articulos{Litterman (1986) \quad Koop y Korobilis (2010)}
+\nota{Distribuciones a priori de Minnesota, normal-Wishart inversa y de estado
+estacionario; observaciones ficticias. 1ECO78 añade el tratamiento de los
+valores extremos de la pandemia de 2020.}
+
+\tema{12.2 VAR bayesianos estructurales y pronóstico condicional}
+\lecturas{\BM{2.6--2.7} \quad \KL{9.5} \quad \KL{13.6--13.7}}
+\nota{Restricciones de signos con muestreo de Gibbs, el papel de la
+distribución a priori de la matriz de rotación, pronósticos condicionales y
+escenarios.}
+
+\tema{12.3 Modelos de espacio de estados bayesianos}
+\lecturas{\BM{3.1--3.5}}
+\consulta{Carter y Kohn (1994) \quad Durbin y Koopman (2002)}
+\nota{El algoritmo de Carter y Kohn para muestrear los estados.}
+
+\tema{12.4 VAR con parámetros cambiantes y volatilidad estocástica}
+\lecturas{\BM{3.6} \quad \BM{5.5} \quad \BM{7} \quad \KL{18.5}}
+\consulta{Cogley y Sargent (2005) \quad Kim, Shephard y Chib (1998)}
+\nota{El TVP-VAR-SV, la volatilidad estocástica y el modelo de factores con
+parámetros cambiantes.}
+
+\tema{12.5 FAVAR bayesiano, frecuencias mixtas, VAR grandes y cambio de régimen}
+\lecturas{\BM{3.7--3.8} \quad \BM{4} \quad \KL{16.3}}
+\consultalib{Elliott y Timmermann (2016), cap.~10}
+\nota{\emph{Nowcasting} con datos de frecuencia mixta y modelos de cambio de
+régimen de Markov estimados con el muestreo de Gibbs. Las versiones clásicas
+del \emph{nowcasting} (MIDAS, ecuaciones puente y factores dinámicos con
+datos faltantes) se ven en el tema 15.8.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 13 --- Estimación de modelos DSGE --- 2 semanas}
+{La sesión 3.4 de 1ECO78 y los temas de GMM y calibración del curso del BCRP.
+Enlaza con el Bloque 12 del sílabo de macroeconomía.}
+
+\tema{13.1 VAR y modelos DSGE: solución y forma de espacio de estados}
+\lecturas{\KL{6} \quad \BE{Apéndice A.2}}
+\consultalib{Fair (2024), cap.~16 \quad Favero (2001), cap.~8}
+\nota{Solución de modelos con expectativas racionales, su forma de espacio de
+estados y la relación entre los VAR y los DSGE.}
+
+\tema{13.2 Estimación bayesiana de modelos DSGE lineales}
+\lecturas{\BM{6}}
+\consulta{Herbst y Schorfheide (2016) \quad Fernández-Villaverde y Rubio-Ramírez (2007)}
+\nota{Elección de observables y de distribuciones a priori, el algoritmo de
+Metropolis--Hastings y el diagnóstico de la estimación. Los filtros no
+lineales (Kalman extendido y de partículas) quedan como consulta.}
+
+\tema{13.3 GMM, calibración y métodos de simulación}
+\lecturas{\MHH{10} \quad \MHH{12.1--12.5}}
+\apoyo{\HM{14}}
+\consultalib{Favero (2001), caps.~7--8}
+\nota{GMM para ecuaciones de Euler, inferencia indirecta, método eficiente de
+momentos y momentos simulados; la calibración como alternativa a la
+estimación.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 14 --- Modelización macroeconométrica y pronóstico --- 3 semanas}
+{Los textos de modelización: cómo se construye un modelo macroeconométrico
+completo, cómo se evalúa y cómo se usa para analizar la política y
+pronosticar. Retoma la cointegración (Bloque 7) y la crítica de Lucas, y
+prepara el Bloque 15.}
+
+\tema{14.1 Metodología: Cowles Commission, LSE y VAR}
+\lecturas{\BE{1--2} \quad \FA{1} \quad \FA{3--4} \quad \KL{6.4}}
+\consultalib{Fair (2024), caps.~5--8 \quad Favero (2001), caps.~4--6}
+\nota{Modelos grandes y pequeños, el papel de la teoría y de los datos, la
+identificación de subsistemas. El modelo de Fair para Estados Unidos ilustra
+el enfoque de la Cowles Commission.}
+
+\tema{14.2 Exogeneidad, invarianza y crítica de Lucas}
+\lecturas{\BE{4.5} \quad \BE{9.4} \quad \BE{Apéndice A.1}}
+
+\tema{14.3 Inflación, salarios y curva de Phillips}
+\lecturas{\BE{3--6}}
+\nota{El modelo \emph{main-course} de inflación en economías abiertas, la
+curva de Phillips y la NAIRU, la negociación salarial y la dinámica de
+salarios y precios con corrección de errores.}
+
+\tema{14.4 La curva de Phillips neokeynesiana y el dinero}
+\lecturas{\BE{7--8}}
+\nota{Estimación y evaluación de la NKPC; demanda de dinero e inflación.}
+
+\tema{14.5 Transmisión monetaria, reglas de política y multiplicadores}
+\lecturas{\BE{9--10} \quad \BE{Apéndice A.3} \quad \FA{10} \quad \FA{13}}
+\consultalib{Fair (2024), caps.~9, 11, 12, 14 y 15}
+\nota{Canales de transmisión, evaluación de reglas de tasa de interés,
+multiplicadores del gasto público y efectos de los choques de inflación.}
+
+\tema{14.6 Pronóstico con modelos macroeconométricos y su evaluación}
+\lecturas{\BE{11}}
+\nota{Modelos con corrección de errores frente a VAR en diferencias y la
+falla de pronóstico ante cambios de media. Es el puente hacia el Bloque 15,
+donde la evaluación y la combinación de pronósticos se estudian con detalle.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 15 --- Pronóstico económico: evaluación, combinación y \emph{nowcasting} --- 4 semanas}
+{\textbf{Bloque nuevo.} Reúne los modelos de todo el plan bajo la pregunta del
+pronóstico: cómo se diseña un ejercicio fuera de muestra, con qué referentes
+se compara, cómo se prueba si un modelo pronostica mejor que otro, cómo se
+combinan pronósticos y cómo se evalúan los pronósticos de densidad. Cierra con
+el \emph{nowcasting}, la herramienta con la que los bancos centrales leen la
+coyuntura. Elliott y Timmermann es la lectura principal y Pesaran (cap.~17) la
+profundización. Conviene acompañar cada semana con un ejercicio en datos del
+BCRP: inflación y PBI, con la Encuesta de Expectativas Macroeconómicas como
+referente.}
+
+\tema{15.1 Funciones de pérdida, pronóstico óptimo y reglas de puntuación}
+\lecturas{\ET{2.1--2.5} \quad \ET{3.1--3.4}}
+\apoyo{\PS{17.1--17.5}}
+\nota{Pérdida cuadrática, absoluta y asimétrica (lin-lin y linex); el
+pronóstico óptimo bajo cada una; pronósticos puntuales, de intervalo y de
+densidad; reglas de puntuación para distribuciones; incertidumbre de
+parámetros en el enfoque clásico y en el bayesiano.}
+
+\tema{15.2 Diseño fuera de muestra, referentes y datos en tiempo real}
+\lecturas{\ET{16.1--16.2} \quad \ET{17.8} \quad \ET{21.3}}
+\apoyo{\PS{17.7} \quad \PS{17.9}}
+\consultalib{Stock y Watson (2012), caps.~14 y 16.2}
+\articulosB{Atkeson y Ohanian (2001) \quad Croushore y Stark (2001) \quad
+Marcellino, Stock y Watson (2006)}
+\nota{Ventanas recursivas y móviles, elección del punto de corte de la
+muestra, pronósticos multiperiodo iterados y directos. Referentes que hay que
+batir: paseo aleatorio, AR, media móvil de Atkeson y Ohanian y pronósticos de
+encuestas. Datos en tiempo real: por qué evaluar con las cifras disponibles en
+cada fecha y no con las revisadas (las revisiones del PBI del INEI y del BCRP
+son un buen caso).}
+
+\tema{15.3 Selección de modelos y pronóstico univariado}
+\lecturas{\ET{6.1--6.5} \quad \ET{7.3--7.5} \quad \ET{20.1--20.2}}
+\consultalib{Cowpertwait y Metcalfe (2009), cap.~3 \quad Cryer y Chan (2008),
+caps.~9 y 10.5 \quad Hyndman y Athanasopoulos (2021), caps.~5, 8 y 9}
+\nota{Criterios de información frente a validación cruzada para series de
+tiempo; \emph{lasso} como selector. Pronóstico con ARIMA y SARIMA,
+suavizamiento exponencial y Holt--Winters (modelos ETS) y componentes no
+observados; pronóstico de variables con tendencia. Retoma los Bloques 2 y 4
+desde la óptica del pronóstico.}
+
+\tema{15.4 Pronóstico multivariado y con muchos predictores}
+\lecturas{\ET{9.2--9.6} \quad \ET{10.1--10.5} \quad \ET{6.6} \quad \ET{11.3}}
+\apoyo{\PS{21.7}}
+\consultalib{Hansen (2021), caps.~29.5--29.10 y 29.17 \quad Hastie, Tibshirani
+y Friedman (2009), caps.~3.4, 10 y 15 \quad Sosa Escudero (2024) \quad Del
+Negro y Schorfheide (2013) \quad Pesaran (2015), cap.~33.6}
+\articulosB{Bańbura, Giannone y Reichlin (2010) \quad Medeiros, Vasconcelos,
+Veiga y Zilberman (2021)}
+\nota{VAR, VAR bayesianos grandes, DSGE y pronóstico condicional; factores y
+componentes principales como forma de usar cientos de predictores;
+\emph{ridge}, \emph{lasso}, \emph{bagging}, bosques aleatorios y
+\emph{boosting} aplicados al pronóstico de la inflación, siempre comparados
+con los referentes del tema 15.2. Las técnicas de aprendizaje automático se
+estudian en el tema 13.6 del sílabo de econometría; aquí solo se aplican.}
+
+\tema{15.5 Evaluación y comparación de pronósticos}
+\lecturas{\ET{15.1--15.3} \quad \ET{16.3--16.4} \quad \ET{17.1--17.7} \quad \ET{17.10}}
+\apoyo{\PS{17.10--17.12}}
+\articulosB{Diebold y Mariano (1995) \quad Clark y West (2007) \quad
+Giacomini y White (2006)}
+\consultalib{Mincer y Zarnowitz (1969) \quad West (1996) \quad Hansen, Lunde
+y Nason (2011) \quad Diebold (2015)}
+\nota{Insesgamiento y eficiencia: regresiones de Mincer--Zarnowitz y pruebas
+de racionalidad. Pruebas de \emph{encompassing}. Igualdad de pérdida esperada
+con la prueba de Diebold--Mariano; por qué falla con modelos anidados y la
+corrección de Clark--West; la habilidad predictiva condicional de
+Giacomini--White. Comparación de muchos modelos y minería de datos:
+\emph{reality check}, SPA y \emph{model confidence set}. Comparación dentro y
+fuera de muestra.}
+
+\tema{15.6 Combinación de pronósticos e inestabilidad}
+\lecturas{\ET{14.1--14.4} \quad \ET{14.6--14.7} \quad \ET{19.1--19.3} \quad \ET{19.6--19.7}}
+\apoyo{\PS{17.8}}
+\articulosB{Bates y Granger (1969) \quad Stock y Watson (2004)}
+\consultalib{Timmermann (2006) \quad Rossi (2013) \quad Clements y Hendry
+(1998) \quad Stock y Watson (2007)}
+\nota{Pesos óptimos y su estimación; por qué el promedio simple suele ganar
+(el «puzzle de la combinación»); promedios bayesianos de modelos. Quiebres y
+desempeño predictivo: ventanas móviles, correcciones de intercepto y
+combinación como defensa frente a la inestabilidad. Enlaza con los temas 4.5
+y 12.4 y con la falla de pronóstico del tema 14.6.}
+
+\tema{15.7 Pronósticos de densidad, intervalos y \emph{fan charts}}
+\lecturas{\ET{13.4--13.5} \quad \ET{14.5} \quad \ET{18.1--18.3} \quad \ET{18.5}}
+\apoyo{\PS{17.14}}
+\articulosB{Diebold, Gunther y Tay (1998) \quad Gneiting y Raftery (2007)}
+\consultalib{Britton, Fisher y Whitley (1998)}
+\nota{Cómo se construye un pronóstico de densidad (simulación, bootstrap,
+distribución predictiva bayesiana y regresión cuantílica) y cómo se comunica
+en un \emph{fan chart}, como los del Reporte de Inflación del BCRP.
+Evaluación con la transformada integral de probabilidad (PIT), el puntaje
+logarítmico y el CRPS; evaluación de intervalos y combinación de densidades.
+Permite evaluar las densidades del \emph{growth at risk} (10.4) y de los BVAR
+(Bloque 12).}
+
+\tema{15.8 \emph{Nowcasting} y datos de frecuencia mixta}
+\lecturas{\ET{21.4}}
+\articulosB{Giannone, Reichlin y Small (2008) \quad Ghysels, Sinko y Valkanov
+(2007) \quad Bańbura, Giannone, Modugno y Reichlin (2013)}
+\consultalib{Baffigi, Golinelli y Parigi (2004) \quad Dagum y Cholette (2006),
+caps.~6--7}
+\nota{Ecuaciones puente, regresiones MIDAS y modelos de factores dinámicos con
+el filtro de Kalman y datos faltantes (el borde irregular de los datos);
+contenido informativo de cada publicación. Desagregación temporal (Denton,
+Chow--Lin) para pasar de datos anuales o trimestrales a mensuales. Aplicación:
+\emph{nowcast} del PBI trimestral peruano con el PBI mensual y los indicadores
+adelantados del BCRP. Retoma el Bloque 8 y el tema 12.5.}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+Capítulos de cada libro que entran en el plan y temas donde se leen. Las
+secciones excluidas se detallan en el Anexo B.
+
+\newcommand{\mapa}[2]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.1cm}X>{\raggedright\arraybackslash}p{3.8cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Temas} \\
+\midrule
+#2
+\bottomrule
+\end{tabularx}
+}}
+
+\mapa{A.1 Martin, Hurn y Harris, \emph{Econometric Modelling with Time Series} (texto base)}{%
+1 & The Maximum Likelihood Principle & P.1 \\
+2 & Properties of Maximum Likelihood Estimators (2.1--2.5) & P.1 \\
+3 & Numerical Estimation Methods & P.2 \\
+4 & Hypothesis Testing & P.2 \\
+7 & Autocorrelated Regression Models (7.1--7.7) & 3.2 \\
+9 & Quasi-Maximum Likelihood Estimation (9.1--9.4) & 9.1 \\
+10 & Generalized Method of Moments & 13.3 \\
+12 & Estimation by Simulation (12.1--12.5) & 13.3 \\
+13 & Linear Time Series Models & 1.1, 1.4, 2.1, 2.2, 2.3, 5.1 \\
+14 & Structural Vector Autoregressions & 6.1, 6.2 \\
+15 & Latent Factor Models & 8.1, 8.2, 8.3, 8.5 \\
+16 & Nonstationary Distribution Theory & 4.1, 4.2 \\
+17 & Unit Root Testing & 4.3, 4.4, 4.5 \\
+18 & Cointegration & 7.2, 7.3, 7.4 \\
+19 & Nonlinearities in Mean (19.1--19.4, 19.6, 19.8) & 10.1, 10.2, 10.3 \\
+20 & Nonlinearities in Variance (20.1--20.6) & 9.1, 9.2, 9.3 \\
+}
+
+\mapa{A.2 Bårdsen, Eitrheim, Jansen y Nymoen, \emph{The Econometrics of Macroeconomic Modelling} (texto base)}{%
+1 & Introduction & 14.1 \\
+2 & Methodological issues of large-scale macromodels & 14.1 \\
+3 & Inflation in open economies: the main-course model & 14.3 \\
+4 & The Phillips curve & 14.2, 14.3 \\
+5 & Wage bargaining and price-setting & 14.3 \\
+6 & Wage--price dynamics & 14.3 \\
+7 & The New Keynesian Phillips curve & 14.4 \\
+8 & Money and inflation & 14.4 \\
+9 & Transmission channels and model properties & 14.2, 14.5 \\
+10 & Evaluation of monetary policy rules & 14.5 \\
+11 & Forecasting using econometric models & 14.6 \\
+Ap. & The Lucas critique; rational expectations models; interim multipliers & 13.1, 14.2, 14.5 \\
+}
+
+\mapa{A.3 Enders, \emph{Applied Econometric Time Series}}{%
+1 & Difference Equations & 1.1, 1.2, 1.3 \\
+2 & Stationary Time-Series Models & 1.4, 2.1, 2.2, 2.4, 2.5 \\
+3 & Modeling Volatility & 9.1, 9.2, 9.3 \\
+4 & Models with Trend (sin 4.11) & 4.1, 4.3, 4.4, 4.5, 4.6 \\
+5 & Multiequation Time-Series Models & 3.2, 5.1--5.4, 6.1, 6.2, 6.3 \\
+6 & Cointegration and Error-Correction Models & 7.1, 7.2, 7.3, 7.4 \\
+7 & Nonlinear Models and Breaks & 4.5, 10.1, 10.2, 10.3 \\
+}
+
+\mapa{A.4 Hamilton, \emph{Time Series Analysis}}{%
+1 & Difference Equations & 1.2 \\
+2 & Lag Operators & 1.3 \\
+3 & Stationary ARMA Processes & 1.4, 2.1 \\
+4 & Forecasting & 2.2, 2.4 \\
+5 & Maximum Likelihood Estimation (sin 5.9) & P.2, 2.3 \\
+6 & Spectral Analysis & 3.3, 3.4 \\
+7 & Asymptotic Distribution Theory & 3.1 \\
+8 & Linear Regression Models & 3.2 \\
+10 & Covariance-Stationary Vector Processes (10.1--10.4) & 3.3, 5.1 \\
+11 & Vector Autoregressions & 5.2, 5.3, 5.4, 6.1, 6.4 \\
+12 & Bayesian Analysis & 11.1, 11.3, 12.1 \\
+13 & The Kalman Filter & 8.1--8.4 \\
+14 & Generalized Method of Moments & 13.3 \\
+15--16 & Nonstationary Time Series; Deterministic Time Trends & 4.1 \\
+17 & Univariate Processes with Unit Roots (17.1--17.8) & 4.2, 4.3, 4.4 \\
+18 & Unit Roots in Multivariate Time Series & 4.2, 7.1 \\
+19 & Cointegration & 7.2 \\
+20 & Full-Information ML Analysis of Cointegrated Systems & 7.3, 7.4 \\
+21 & Time Series Models of Heteroskedasticity & 9.1, 9.2 \\
+22 & Modeling Time Series with Changes in Regime & 10.2 \\
+}
+
+\mapa{A.5 Kilian y Lütkepohl, \emph{Structural Vector Autoregressive Analysis}}{%
+2 & Vector Autoregressive Models & 5.1, 5.2, 5.3 \\
+3 & Vector Error Correction Models & 7.3, 7.4 \\
+4 & Structural VAR Tools & 5.4, 6.8 \\
+5 & Bayesian VAR Analysis & 12.1 \\
+6 & VAR Models and other Macroeconometric Models & 13.1, 14.1 \\
+7 & A Historical Perspective on Causal Inference & 5.3, 6.1 \\
+8 & Identification by Short-Run Restrictions & 6.1, 6.2 \\
+9 & Estimation Subject to Short-Run Restrictions & 6.2, 12.2 \\
+10 & Identification by Long-Run Restrictions & 6.3 \\
+11 & Estimation Subject to Long-Run Restrictions (11.1--11.3) & 6.3 \\
+12 & Inference in Models Identified by Short- or Long-Run Restrictions (12.1--12.8) & 6.4, 6.7, 7.5 \\
+13 & Identification by Sign Restrictions (sin 13.8) & 6.5, 12.2 \\
+14 & Identification by Heteroskedasticity or Non-Gaussianity & 6.6 \\
+15 & Identification Based on Extraneous Data & 6.6 \\
+16 & Structural VAR Analysis in a Data-Rich Environment (16.1--16.3) & 8.5, 12.5 \\
+18 & Nonlinear Structural VAR Models (18.1--18.5) & 10.3, 12.4 \\
+}
+
+\mapa{A.6 Blake y Mumtaz, \emph{Applied Bayesian Econometrics for Central Bankers}}{%
+1 & Gibbs Sampling for Linear Regression Models & 11.1, 11.2, 11.3 \\
+2 & Gibbs Sampling for Vector Autoregressions & 12.1, 12.2 \\
+3 & Gibbs Sampling for State Space Models & 8.2, 12.3, 12.4, 12.5 \\
+4 & Gibbs Sampling for Markov Switching Models & 12.5 \\
+5 & An Introduction to the Metropolis Hastings Algorithm & 11.4, 12.4 \\
+6 & Bayesian Estimation of Linear DSGE Models & 13.2 \\
+7 & State-Space Models with Time-Varying Parameters & 12.4 \\
+}
+
+\mapa{A.7 Fair, \emph{Macroeconomic Modeling: The Cowles Commission Approach}}{%
+1 & Why This Book? & 14.1 \\
+3 & The Econometrics & 14.1 \\
+4 & Specification and Estimation of the US Model & 14.1 \\
+10 & Size of Fed's Effect on Output, Unemployment, and Inflation & 14.5 \\
+13 & Size of Government Spending Multipliers & 14.5 \\
+}
+
+\mapa{A.8 Elliott y Timmermann, \emph{Economic Forecasting} (Bloque 15)}{%
+2 & Loss Functions (2.1--2.5) & 15.1 \\
+3 & The Parametric Forecasting Problem (3.1--3.4) & 15.1 \\
+6 & Model Selection (6.1--6.6) & 15.3, 15.4 \\
+7 & Univariate Linear Prediction Models (7.3--7.5) & 15.3 \\
+9 & Vector Autoregressions (9.2--9.6) & 15.4 \\
+10 & Forecasting in a Data-Rich Environment (10.1--10.5) & 15.4 \\
+11 & Nonparametric Forecasting Methods (11.3) & 15.4 \\
+13 & Volatility and Density Forecasting (13.4--13.5) & 15.7 \\
+14 & Forecast Combinations (sin 14.8) & 15.6, 15.7 \\
+15 & Desirable Properties of Forecasts (15.1--15.3) & 15.5 \\
+16 & Evaluation of Individual Forecasts (16.1--16.4) & 15.2, 15.5 \\
+17 & Evaluation and Comparison of Multiple Forecasts (17.1--17.8, 17.10) & 15.2, 15.5 \\
+18 & Evaluating Density Forecasts (18.1--18.3, 18.5) & 15.7 \\
+19 & Forecasting under Model Instability (19.1--19.3, 19.6--19.7) & 15.6 \\
+20 & Trending Variables and Forecasting (20.1--20.2) & 15.3 \\
+21 & Forecasting Nonstandard Data (21.3--21.4) & 15.2, 15.8 \\
+}
+
+\mapa{A.9 Pesaran, \emph{Time Series and Panel Data Econometrics} (profundización)}{%
+17 & Introduction to Forecasting (17.1--17.5, 17.7--17.12, 17.14) & 15.1, 15.2, 15.5, 15.6, 15.7 \\
+21 & Vector Autoregressive Models (21.7) & 15.4 \\
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo B. Capítulos y secciones que no entran en el plan}
+\addcontentsline{toc}{section}{Anexo B. Capítulos y secciones que no entran en el plan}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Materia} & \cab{Capítulos y secciones} \\
+\midrule
+Ya cubierto en el sílabo de econometría & \MHH{5--6} y \MHH{8} (regresión lineal, no lineal y heteroscedástica), \MHH{11} (métodos no paramétricos), \MHH{21} (series de tiempo discretas); \HM{9} (ecuaciones simultáneas) \\
+Datos de panel & \EN{4.11} (raíces unitarias en panel); panel VAR de 1ECO78. Ver Anexo D.2 \\
+Finanzas & Valor en riesgo, pérdida esperada, \emph{backtesting} y CoVaR de 1ECO78. Ver Anexo D.1 \\
+Otras secciones & \MHH{7.8}, \MHH{12.6} (modelos en tiempo continuo), \MHH{19.5}, \MHH{19.7}; \HM{5.9}, \HM{10.5}, \HM{17.9}; \KL{11.4--11.5}, \KL{12.9}, \KL{13.8}, \KL{16.4--16.5}, \KL{17} (choques no fundamentales), \KL{18.6--18.9}, \KL{19} (consulta en el tema 4.5) \\
+Fair, capítulos de consulta & \FA{2}, \FA{5--9}, \FA{11--12}, \FA{14--16} (citados como consulta); \FA{17--18} (modelos multipaís y material adicional) \\
+Elliott y Timmermann & \ET{1} (introducción), \ET{4} (estimación basada en la pérdida), \ET{5} (consulta en el tema 12.1), \ET{8} (los modelos no lineales del Bloque 10 bastan), \ET{11.1--11.2}, \ET{12} (pronósticos binarios), \ET{13.1--13.3} y \ET{13.6--13.7} (volatilidad, propia de finanzas), \ET{18.4}, \ET{20.3--20.5}, \ET{21.1--21.2} (conteos y duraciones) \\
+Pesaran & Todo salvo los capítulos 17 y 21.7; el resto del libro repite temas del plan o del sílabo de econometría \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent Hamilton tiene dos copias en la carpeta. La de la carpeta Time Series
+es un escaneo sin texto; la que se usa en el plan es la de la carpeta de
+econometría (edición de Princeton, versión de 2020). El texto de Favero
+(2001) se ve bien en pantalla pero su texto no se puede extraer, por lo que
+solo se cita como consulta.
+
+%------------------------------------------------------------------------------
+\section*{Anexo C. Programas de la PUCP utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas de la PUCP utilizados}
+
+\subsection*{C.1 Econometría Intermedia: Macro (1ECO24, pregrado; 2025-1, 2025-2 y 2026-1)}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{6.2cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Tema del programa} & \cab{Temas del plan} \\
+\midrule
+Características de los datos macroeconómicos & 1.1 \\
+Ecuaciones en diferencias y operadores de rezagos & 1.2, 1.3 \\
+Teoría asintótica para series temporales & P, 3.1 \\
+Procesos ARMA, pronósticos y máxima verosimilitud & Bloque 2 \\
+Tendencias determinísticas y raíces unitarias & Bloque 4 \\
+VAR y SVAR & Bloques 5 y 6 \\
+Proyecciones locales (2025-2) & 6.7 \\
+Cointegración y VECM & Bloque 7 \\
+Espacio de estados, filtro de Kalman y otros filtros & 3.4, Bloque 8 \\
+Modelos de factores y FAVAR (2025-2) & 8.5 \\
+Modelos de volatilidad & Bloque 9 \\
+Umbrales y cambio de régimen (opcionales) & 10.1, 10.2 \\
+Inteligencia artificial y aprendizaje automático (2025-2) & 10.3 y tema 13.6 del sílabo de econometría \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{C.2 Econometría Avanzada: Series de Tiempo (1ECO78, maestría; 2024-2, 2025-2 y 2026-2)}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{6.2cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Módulo o sesión} & \cab{Temas del plan} \\
+\midrule
+M1. ARMA, VAR, SVAR e introducción al filtro de Kalman & Bloques 2, 5 y 6; 8.1--8.3 \\
+M2. Asintótica, raíces unitarias y cointegración & 3.1, Bloques 4 y 7 \\
+M2. Análisis espectral y modelos de factores (2024-2) & 3.3, 8.5 \\
+M2. Medidas de riesgo (2025-2, 2026-2) & Anexo D.1 \\
+M2. Regresión cuantílica, CoVaR y \emph{growth at risk} & 10.4; Anexo D.1 \\
+M3. Econometría bayesiana y BVAR & Bloques 11 y 12 \\
+M3. Proyecciones locales & 6.7 \\
+M3. Espacio de estados bayesiano, TVP-VAR-SV y \emph{nowcasting} & 12.3, 12.4, 12.5 \\
+M3. Factores dinámicos y FAVAR & 8.5, 12.5 \\
+M3. Panel VAR & Anexo D.2 \\
+M3. Estimación de DSGE y filtros no lineales & Bloque 13 \\
+M3. Aprendizaje automático & 10.3 \\
+M4. MCMC, volatilidad bayesiana y volatilidad estocástica & 11.3, 11.4, 12.4 \\
+M4. Carter--Kohn y Durbin--Koopman & 12.3 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{C.3 Otros programas}
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item \textbf{Econometría Intermedia (2ECO01, maestría, 2026-1), Unidad 4}:
+        ARMA (Bloque 2), VAR y SVAR (Bloques 5 y 6), raíces unitarias y
+        cointegración (Bloques 4 y 7). Las Unidades 1 a 3 están en el sílabo
+        de econometría.
+  \item \textbf{Macroeconometría (BCRP, 2004)}, 51.º Curso de Extensión
+        Universitaria, E.~Morón: VAR estructural (Bloque 6), GMM y calibración
+        (13.3), espacio de estados (Bloque 8), regresiones de umbral y de
+        transición suave (10.1).
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\section*{Anexo D. Material opcional}
+\addcontentsline{toc}{section}{Anexo D. Material opcional}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica
+el cronograma.
+
+\subsection*{D.1 Medidas de riesgo financiero}
+Sigue las sesiones 2.3 y 2.4 de 1ECO78. Momento sugerido: después de los
+Bloques 9 y 10.
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item Valor en riesgo, pérdida esperada y \emph{backtesting}: Tsay (2010),
+        cap.~7; Christoffersen (2009).
+  \item Riesgo sistémico y CoVaR: Adrian y Brunnermeier (2016); Acharya,
+        Pedersen, Philippon y Richardson (2010); Brownlees y Engle (2012).
+\end{itemize}
+
+\subsection*{D.2 Panel VAR y raíces unitarias en panel}
+Sigue la sesión 3.3 de 1ECO78 y requiere la carpeta Panel Data. Punto de
+partida: \EN{4.11}.
+
+\subsection*{D.3 Software}
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item \textbf{EViews y R}: bases de datos y archivos de Enders (carpeta
+        Enders); Pfaff (2008) para raíces unitarias y cointegración en R;
+        Shumway y Stoffer para series de tiempo en R.
+  \item \textbf{Matlab}: códigos de Blake y Mumtaz y su apéndice de
+        introducción a Matlab (\BM{8}).
+  \item \textbf{JMulTi}: Lütkepohl y Krätzig (2004).
+  \item \textbf{Pronóstico (Bloque 15)}: en R, \texttt{forecast} o
+        \texttt{fable} (ARIMA y ETS), \texttt{midasr} (regresiones MIDAS),
+        \texttt{scoringRules} (puntaje logarítmico y CRPS) y \texttt{MCS}
+        (\emph{model confidence set}); en Python, \texttt{statsmodels}.
+  \item \textbf{Datos}: el complemento BCRPData para descargar series del BCRP;
+        la Encuesta de Expectativas Macroeconómicas del BCRP como referente de
+        pronóstico.
+\end{itemize}
+
+\subsection*{D.4 Proyecto aplicado opcional: política monetaria y fiscal en el Perú}
+Consolida los Bloques 4 a 7, 12 y 15. Momento sugerido: los pasos 1 a 5
+después del Bloque 12 y el paso 6 después del Bloque 15; no tiene horas
+asignadas.
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item \textbf{Datos.} Series mensuales o trimestrales del BCRP: actividad,
+        inflación, tasa de interés de referencia, tipo de cambio y crédito.
+  \item \textbf{Propiedades univariadas.} Raíces unitarias y quiebres (Bloque 4).
+  \item \textbf{VAR estructural.} Identificación recursiva y por signos; comparar
+        con proyecciones locales (Bloque 6).
+  \item \textbf{Largo plazo.} Cointegración entre las variables nominales
+        (Bloque 7).
+  \item \textbf{BVAR.} Estimación bayesiana y pronóstico condicional
+        (Bloque 12).
+  \item \textbf{Pronóstico.} Ejercicio pseudo fuera de muestra de la
+        inflación y del PBI, de preferencia con datos en tiempo real; prueba
+        de Diebold--Mariano (o de Clark--West) frente al paseo aleatorio y a
+        la Encuesta de Expectativas del BCRP; combinación de los pronósticos
+        del ARIMA, el BVAR y el modelo de factores; \emph{fan chart} evaluado
+        con la PIT; y \emph{nowcast} del PBI trimestral con el PBI mensual
+        (Bloque 15).
+  \item \textbf{Referencias peruanas} (1ECO24, 2026-1): Lahura (2017) sobre el
+        traspaso de la tasa de referencia; Castillo y Lahura (2022) y Aguilar
+        y Lahura (2026) sobre política fiscal.
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\section*{Anexo E. Referencias}
+\addcontentsline{toc}{section}{Anexo E. Referencias}
+
+\subsection*{E.1 Textos del plan}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Bårdsen, G., Ø. Eitrheim, E. S. Jansen y R. Nymoen (2005). \emph{The Econometrics of Macroeconomic Modelling}. Oxford University Press.
+\item Blake, A. y H. Mumtaz (2017). \emph{Applied Bayesian Econometrics for Central Bankers}, edición actualizada. Centre for Central Banking Studies, Bank of England.
+\item Elliott, G. y A. Timmermann (2016). \emph{Economic Forecasting}. Princeton University Press.
+\item Enders, W. (2014). \emph{Applied Econometric Time Series}, 4.ª ed. Wiley.
+\item Fair, R. C. (2024). \emph{Macroeconomic Modeling: The Cowles Commission Approach}. MIT Press.
+\item Hamilton, J. D. (1994). \emph{Time Series Analysis}. Princeton University Press.
+\item Kilian, L. y H. Lütkepohl (2017). \emph{Structural Vector Autoregressive Analysis}. Cambridge University Press.
+\item Martin, V., S. Hurn y D. Harris (2013). \emph{Econometric Modelling with Time Series: Specification, Estimation and Testing}. Cambridge University Press.
+\item Montiel Olea, J. L., M. Plagborg-Møller, E. Qian y C. K. Wolf (2025). Local Projections or VARs? A Primer for Macroeconomists. Documento de trabajo, versión del 21 de marzo de 2025.
+\item Pesaran, M. H. (2015). \emph{Time Series and Panel Data Econometrics}. Oxford University Press (carpeta Panel Data).
+\end{itemize}
+}
+
+\subsection*{E.2 Libros de consulta de la carpeta (sin horas)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Brockwell, P. J. y R. A. Davis (2009). \emph{Time Series: Theory and Methods}, 2.ª ed. Springer.
+\item Chen, R. y R. S. Tsay (2019). \emph{Nonlinear Time Series Analysis}. Wiley.
+\item Cowpertwait, P. S. P. y A. V. Metcalfe (2009). \emph{Introductory Time Series with R}. Springer.
+\item Cryer, J. D. y K.-S. Chan (2008). \emph{Time Series Analysis: With Applications in R}, 2.ª ed. Springer (carpeta de econometría).
+\item Dagum, E. B. y P. A. Cholette (2006). \emph{Benchmarking, Temporal Distribution, and Reconciliation Methods for Time Series}. Lecture Notes in Statistics 186. Springer (carpeta de econometría).
+\item Davidson, R. y J. G. MacKinnon (2004). \emph{Econometric Theory and Methods}. Oxford University Press (carpeta de econometría).
+\item Favero, C. A. (2001). \emph{Applied Macroeconometrics}. Oxford University Press.
+\item Garratt, A., K. Lee, M. H. Pesaran e Y. Shin (2006). \emph{Global and National Macroeconometric Modelling: A Long-Run Structural Approach}. Oxford University Press.
+\item Greene, W. H. (2012). \emph{Econometric Analysis}, 7.ª ed. Pearson (carpeta de econometría).
+\item Hansen, B. E. (2021). \emph{Econometrics}. Manuscrito, University of Wisconsin (carpeta de econometría).
+\item Hastie, T., R. Tibshirani y J. Friedman (2009). \emph{The Elements of Statistical Learning}, 2.ª ed. Springer (carpeta de econometría).
+\item Hayashi, F. (2000). \emph{Econometrics}. Princeton University Press (carpeta de econometría).
+\item Hyndman, R. J. y G. Athanasopoulos (2021). \emph{Forecasting: Principles and Practice}, 3.ª ed. OTexts (de libre acceso en línea; no está en la carpeta).
+\item Lütkepohl, H. (2005). \emph{New Introduction to Multiple Time Series Analysis}. Springer.
+\item Lütkepohl, H. y M. Krätzig (2004). \emph{Applied Time Series Econometrics}. Cambridge University Press.
+\item McElreath, R. (2016). \emph{Statistical Rethinking: A Bayesian Course with Examples in R and Stan}. CRC Press (carpeta de econometría).
+\item Neusser, K. (2016). \emph{Time Series Econometrics}. Springer.
+\item Pfaff, B. (2008). \emph{Analysis of Integrated and Cointegrated Time Series with R}, 2.ª ed. Springer.
+\item Shumway, R. H. y D. S. Stoffer (2017). \emph{Time Series Analysis and Its Applications: With R Examples}, 4.ª ed. Springer.
+\item Sosa Escudero, W. (2024). \emph{Machine learning para economistas: ideas básicas}. Notas de clase, UNLP (carpeta de econometría).
+\item Stock, J. H. y M. W. Watson (2012). \emph{Introducción a la econometría}, 3.ª ed. Pearson (carpeta de econometría).
+\item Tsay, R. S. (2010). \emph{Analysis of Financial Time Series}, 3.ª ed. Wiley.
+\item Tsay, R. S. (2013). \emph{Multivariate Time Series Analysis: With R and Financial Applications}. Wiley.
+\item White, H. (2001). \emph{Asymptotic Theory for Econometricians}, ed. revisada. Academic Press (carpeta de econometría).
+\end{itemize}
+}
+
+\subsection*{E.3 Referencias tomadas de los programas de la PUCP y del BCRP}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Acharya, V., L. Pedersen, T. Philippon y M. Richardson (2010). Measuring Systemic Risk. Documento de trabajo.
+\item Adrian, T. y M. K. Brunnermeier (2016). CoVaR. \emph{American Economic Review}, 106(7), 1705--1741.
+\item Adrian, T., N. Boyarchenko y D. Giannone (2019). Vulnerable Growth. \emph{American Economic Review}, 109(4), 1263--1289.
+\item Aguilar, J. y E. Lahura (2026). When Expectations Matter: The Role of Fiscal Foresight in Government Spending Shocks in Peru. \emph{Economic Analysis and Policy}, 89, 505--526.
+\item Bernanke, B. y I. Mihov (1998). Measuring Monetary Policy. \emph{Quarterly Journal of Economics}, 113(3), 869--902.
+\item Blanchard, O. J. y D. Quah (1989). The Dynamic Effects of Aggregate Demand and Supply Disturbances. \emph{American Economic Review}, 79(4), 655--673.
+\item Brownlees, C. y R. Engle (2012). Volatility, Correlation and Tails for Systemic Risk Measurement. Documento de trabajo.
+\item Carter, C. K. y R. Kohn (1994). On Gibbs Sampling for State Space Models. \emph{Biometrika}, 81, 541--553.
+\item Casella, G. y E. I. George (1992). Explaining the Gibbs Sampler. \emph{The American Statistician}, 46(3), 167--174.
+\item Castillo, T. y E. Lahura (2022). Los efectos de la política fiscal sobre la actividad económica en el Perú. \emph{Revista Estudios Económicos}, BCRP, 40, 9--34.
+\item Chib, S. (2001). Markov Chain Monte Carlo Methods: Computation and Inference. En J. J. Heckman y E. Leamer (eds.), \emph{Handbook of Econometrics}, vol.~5, cap.~57.
+\item Christiano, L. J. y T. J. Fitzgerald (2003). The Band Pass Filter. \emph{International Economic Review}, 44(2), 435--465.
+\item Christoffersen, P. F. (2009). Value-at-Risk Models.
+\item Cogley, T. y J. M. Nason (1995). Effects of the Hodrick--Prescott Filter on Trend and Difference Stationary Time Series. \emph{Journal of Economic Dynamics and Control}, 19(1--2), 253--278.
+\item Cogley, T. y T. J. Sargent (2005). Drifts and Volatilities: Monetary Policies and Outcomes in the Post WWII US. \emph{Review of Economic Dynamics}, 8, 262--302.
+\item Durbin, J. y S. J. Koopman (2002). A Simple and Efficient Simulation Smoother for State Space Time Series Analysis. \emph{Biometrika}, 89(3), 603--615.
+\item Elliott, G., T. J. Rothenberg y J. H. Stock (1996). Efficient Tests for an Autoregressive Unit Root. \emph{Econometrica}, 64(4), 813--836.
+\item Engle, R. F. (2002). Dynamic Conditional Correlation: A Simple Class of Multivariate GARCH Models. \emph{Journal of Business \& Economic Statistics}, 20(3), 339--350.
+\item Fernández-Villaverde, J. y J. Rubio-Ramírez (2007). Estimating Macroeconomic Models: A Likelihood Approach. \emph{Review of Economic Studies}, 74, 1059--1087.
+\item Gelman, A., J. Carlin, H. Stern, D. Dunson, A. Vehtari y D. Rubin (2013). \emph{Bayesian Data Analysis}, 3.ª ed. CRC Press.
+\item Harvey, A. C. (1990). \emph{Forecasting, Structural Time Series Models and the Kalman Filter}. Cambridge University Press.
+\item Herbst, E. y F. Schorfheide (2016). \emph{Bayesian Estimation of DSGE Models}. Princeton University Press.
+\item Jordà, Ò. (2005). Estimation and Inference of Impulse Responses by Local Projections. \emph{American Economic Review}, 95(1), 161--182.
+\item Kim, C.-J. y C. R. Nelson (1999). \emph{State-Space Models with Regime Switching}. MIT Press.
+\item Kim, S., N. Shephard y S. Chib (1998). Stochastic Volatility: Likelihood Inference and Comparison with ARCH Models. \emph{Review of Economic Studies}, 65(3), 361--393.
+\item Koop, G. (2003). \emph{Bayesian Econometrics}. Wiley.
+\item Koop, G. y D. Korobilis (2010). Bayesian Multivariate Time Series Methods for Empirical Macroeconomics. \emph{Foundations and Trends in Econometrics}, 3(4), 267--358.
+\item Lahura, E. (2017). El efecto traspaso de la tasa de interés de política monetaria. \emph{Revista Estudios Económicos}, BCRP, 33, 9--27.
+\item Litterman, R. (1986). Forecasting with Bayesian Vector Autoregressions: Five Years of Experience. \emph{Journal of Business \& Economic Statistics}, 4(1), 25--38.
+\item Sims, C. A. (1980). Macroeconomics and Reality. \emph{Econometrica}, 48(1), 1--48.
+\item Stock, J. H. y M. W. Watson (2001). Vector Autoregressions. \emph{Journal of Economic Perspectives}, 15(4), 101--115.
+\item Stock, J. H. y M. W. Watson (2002). Forecasting Using Principal Components from a Large Number of Predictors. \emph{Journal of the American Statistical Association}, 97, 1167--1179.
+\item Uhlig, H. (2005). What Are the Effects of Monetary Policy on Output? Results from an Agnostic Identification Procedure. \emph{Journal of Monetary Economics}, 52, 381--419.
+\end{itemize}
+}
+
+\subsection*{E.4 Referencias del Bloque 15 (pronóstico)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Atkeson, A. y L. E. Ohanian (2001). Are Phillips Curves Useful for Forecasting Inflation? \emph{Federal Reserve Bank of Minneapolis Quarterly Review}, 25(1), 2--11.
+\item Baffigi, A., R. Golinelli y G. Parigi (2004). Bridge Models to Forecast the Euro Area GDP. \emph{International Journal of Forecasting}, 20(3), 447--460.
+\item Bańbura, M., D. Giannone, M. Modugno y L. Reichlin (2013). Now-Casting and the Real-Time Data Flow. En G. Elliott y A. Timmermann (eds.), \emph{Handbook of Economic Forecasting}, vol.~2A, cap.~4. Elsevier.
+\item Bańbura, M., D. Giannone y L. Reichlin (2010). Large Bayesian Vector Auto Regressions. \emph{Journal of Applied Econometrics}, 25(1), 71--92.
+\item Bates, J. M. y C. W. J. Granger (1969). The Combination of Forecasts. \emph{Operational Research Quarterly}, 20(4), 451--468.
+\item Britton, E., P. Fisher y J. Whitley (1998). The Inflation Report Projections: Understanding the Fan Chart. \emph{Bank of England Quarterly Bulletin}, 38(1), 30--37.
+\item Clark, T. E. y K. D. West (2007). Approximately Normal Tests for Equal Predictive Accuracy in Nested Models. \emph{Journal of Econometrics}, 138(1), 291--311.
+\item Clements, M. P. y D. F. Hendry (1998). \emph{Forecasting Economic Time Series}. Cambridge University Press.
+\item Croushore, D. y T. Stark (2001). A Real-Time Data Set for Macroeconomists. \emph{Journal of Econometrics}, 105(1), 111--130.
+\item Del Negro, M. y F. Schorfheide (2013). DSGE Model-Based Forecasting. En G. Elliott y A. Timmermann (eds.), \emph{Handbook of Economic Forecasting}, vol.~2A, cap.~2. Elsevier.
+\item Diebold, F. X. (2015). Comparing Predictive Accuracy, Twenty Years Later: A Personal Perspective on the Use and Abuse of Diebold--Mariano Tests. \emph{Journal of Business \& Economic Statistics}, 33(1), 1--9.
+\item Diebold, F. X., T. A. Gunther y A. S. Tay (1998). Evaluating Density Forecasts with Applications to Financial Risk Management. \emph{International Economic Review}, 39(4), 863--883.
+\item Diebold, F. X. y R. S. Mariano (1995). Comparing Predictive Accuracy. \emph{Journal of Business \& Economic Statistics}, 13(3), 253--263.
+\item Ghysels, E., A. Sinko y R. Valkanov (2007). MIDAS Regressions: Further Results and New Directions. \emph{Econometric Reviews}, 26(1), 53--90.
+\item Giacomini, R. y H. White (2006). Tests of Conditional Predictive Ability. \emph{Econometrica}, 74(6), 1545--1578.
+\item Giannone, D., L. Reichlin y D. Small (2008). Nowcasting: The Real-Time Informational Content of Macroeconomic Data. \emph{Journal of Monetary Economics}, 55(4), 665--676.
+\item Gneiting, T. y A. E. Raftery (2007). Strictly Proper Scoring Rules, Prediction, and Estimation. \emph{Journal of the American Statistical Association}, 102(477), 359--378.
+\item Hansen, P. R., A. Lunde y J. M. Nason (2011). The Model Confidence Set. \emph{Econometrica}, 79(2), 453--497.
+\item Marcellino, M., J. H. Stock y M. W. Watson (2006). A Comparison of Direct and Iterated Multistep AR Methods for Forecasting Macroeconomic Time Series. \emph{Journal of Econometrics}, 135(1--2), 499--526.
+\item Medeiros, M. C., G. F. R. Vasconcelos, Á. Veiga y E. Zilberman (2021). Forecasting Inflation in a Data-Rich Environment: The Benefits of Machine Learning Methods. \emph{Journal of Business \& Economic Statistics}, 39(1), 98--119.
+\item Mincer, J. y V. Zarnowitz (1969). The Evaluation of Economic Forecasts. En J. Mincer (ed.), \emph{Economic Forecasts and Expectations}. NBER.
+\item Rossi, B. (2013). Advances in Forecasting under Instability. En G. Elliott y A. Timmermann (eds.), \emph{Handbook of Economic Forecasting}, vol.~2B, cap.~21. Elsevier.
+\item Stock, J. H. y M. W. Watson (2004). Combination Forecasts of Output Growth in a Seven-Country Data Set. \emph{Journal of Forecasting}, 23(6), 405--430.
+\item Stock, J. H. y M. W. Watson (2007). Why Has U.S. Inflation Become Harder to Forecast? \emph{Journal of Money, Credit and Banking}, 39(s1), 3--33.
+\item Timmermann, A. (2006). Forecast Combinations. En G. Elliott, C. W. J. Granger y A. Timmermann (eds.), \emph{Handbook of Economic Forecasting}, vol.~1, cap.~4. Elsevier.
+\item West, K. D. (1996). Asymptotic Inference about Predictive Ability. \emph{Econometrica}, 64(5), 1067--1084.
+\end{itemize}
+}
+
+\noindent\small Los artículos de esta sección no están en la carpeta; los
+\emph{Handbooks} y las revistas suelen estar disponibles por la biblioteca
+universitaria o en versiones de documento de trabajo de sus autores.
+\normalsize
+
+\vspace{1.2cm}
+\franjas[2pt]
+\begin{center}\small\color{tonoPizarra}
+Plan de lectura de elaboración propia. Los títulos de los capítulos
+corresponden a las obras citadas y se reproducen únicamente con fines de
+referencia bibliográfica. La asignación de capítulos y secciones se basa en
+los índices de los libros de la carpeta; los temas de la PUCP proceden de los
+programas citados en el Anexo C.
+\end{center}
+
+\end{document}

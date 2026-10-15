@@ -1,0 +1,1302 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE ECONOMETRÍA — Plan de estudio integrado
+%
+%  Texto base:
+%    DM  — Davidson y MacKinnon, Econometric Theory and Methods
+%          (OUP, 2004; edición de los autores, 2021)
+%  Textos de apoyo:
+%    Wo  — Wooldridge, Introductory Econometrics (5.ª ed., 2012)
+%          [trad.: Introducción a la econometría, 4.ª ed., 2009]
+%    Hn  — Hansen, Econometrics (manuscrito, revisión de marzo de 2021)
+%    Hy  — Hayashi, Econometrics (Princeton, 2000)
+%    Gr  — Greene, Econometric Analysis (7.ª ed., 2012)
+%  Consulta (sin horas): Davidson y MacKinnon (1993), Hansen (2022),
+%    White (2001), Cameron y Trivedi (2005), Wooldridge (2002),
+%    Angrist y Pischke (2009), Huber, Hastie, Tibshirani y Friedman,
+%    Kleiber y Zeileis, Campbell, Lo y MacKinlay.
+%  Programas PUCP integrados: 2ECO01 (2026-1) y ECO387 (2025-0).
+%  Programas PUCP como material opcional: ECO387 (2022-2), ECO386,
+%    ECO224, FIN214, FIN222, EST225.
+%
+%  Compilar con:  pdflatex Econometria.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de verdes
+\definecolor{tonoOscuro}{RGB}{4,82,43}              % oscuro
+\definecolor{tonoProfundo}{RGB}{6,121,64}           % profundo
+\definecolor{tonoPrincipal}{RGB}{8,160,84}          % principal
+\definecolor{tonoA}{RGB}{25,179,133}                % variante cálida
+\definecolor{tonoB}{RGB}{15,179,69}                 % variante fría
+\definecolor{tonoC}{RGB}{21,193,50}                 % variante viva
+\definecolor{tonoClaro}{RGB}{95,221,158}            % claro
+\definecolor{tonoAcero}{RGB}{63,131,97}             % acero
+\definecolor{tonoPizarra}{RGB}{86,134,110}          % pizarra
+\definecolor{tonoGrafito}{RGB}{39,73,56}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{207,247,227}           % hielo
+\definecolor{tonoPalido}{RGB}{233,251,242}          % pálido
+\definecolor{tonoBruma}{RGB}{246,254,250}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorDM}{RGB}{15,138,32}
+\definecolor{colorWo}{RGB}{20,184,72}
+\definecolor{colorHn}{RGB}{18,161,89}
+\definecolor{colorHy}{RGB}{15,138,99}
+\definecolor{colorGr}{RGB}{20,184,162}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Econometría}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}Davidson--MacKinnon $\cdot$ Wooldridge $\cdot$ Hansen $\cdot$ Hayashi $\cdot$ Greene}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\DM}[1]{\etiqueta{colorDM}{DM}\nobreak\hspace{0.25em}\textcolor{colorDM}{#1}}
+\newcommand{\WO}[1]{\etiqueta{colorWo}{Wo}\nobreak\hspace{0.25em}\textcolor{colorWo}{#1}}
+\newcommand{\HN}[1]{\etiqueta{colorHn}{Hn}\nobreak\hspace{0.25em}\textcolor{colorHn}{#1}}
+\newcommand{\HY}[1]{\etiqueta{colorHy}{Hy}\nobreak\hspace{0.25em}\textcolor{colorHy}{#1}}
+\newcommand{\GR}[1]{\etiqueta{colorGr}{Gr}\nobreak\hspace{0.25em}\textcolor{colorGr}{#1}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Econometría\par}
+\vspace{0.4cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Texto base\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorDM}{DM} \quad {\color{tonoOscuro}Russell Davidson y James G. MacKinnon}\par}
+{\normalsize \emph{\color{colorDM}Econometric Theory and Methods}\par}
+{\small\color{tonoPizarra} Oxford University Press, 2004; edición de los autores, 2021 --- 15 capítulos\par}
+\vspace{0.7cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos de apoyo\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorWo}{Wo} \quad {\color{tonoOscuro}Jeffrey M. Wooldridge}\par}
+{\normalsize \emph{\color{colorWo}Introductory Econometrics: A Modern Approach}\par}
+{\small\color{tonoPizarra} Cengage, 5.ª edición, 2012 --- 19 capítulos y 7 apéndices\par}
+{\small\color{tonoPizarra} (traducción: \emph{Introducción a la econometría. Un enfoque moderno}, 4.ª ed., 2009)\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorHn}{Hn} \quad {\color{tonoOscuro}Bruce E. Hansen}\par}
+{\normalsize \emph{\color{colorHn}Econometrics}\par}
+{\small\color{tonoPizarra} Manuscrito, revisión de marzo de 2021 (Princeton University Press, 2022) --- 29 capítulos\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorHy}{Hy} \quad {\color{tonoOscuro}Fumio Hayashi}\par}
+{\normalsize \emph{\color{colorHy}Econometrics}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2000 --- 10 capítulos\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorGr}{Gr} \quad {\color{tonoOscuro}William H. Greene}\par}
+{\normalsize \emph{\color{colorGr}Econometric Analysis}\par}
+{\small\color{tonoPizarra} Pearson, 7.ª edición, 2012 --- 21 capítulos y 6 apéndices\par}
+\vspace{0.7cm}
+{\normalsize\color{colorPUCP} Con los temas de dos programas de la PUCP:\par}
+{\normalsize\color{colorPUCP} Econometría Intermedia (2ECO01, maestría) y Tópicos de Econometría (ECO387)\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Trece bloques temáticos y un pretramo --- 8 meses}\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{trece bloques temáticos} y un pretramo, y
+sigue el orden de \textcolor{colorDM}{\textbf{Davidson y MacKinnon}}: primero el
+modelo de regresión lineal y su geometría, luego la teoría asintótica y la
+simulación, después los estimadores para modelos más generales (mínimos
+cuadrados no lineales, generalizados, variables instrumentales, método
+generalizado de momentos y máxima verosimilitud) y, al final, los sistemas de
+ecuaciones, las variables dependientes limitadas y la especificación. Conviene
+cerrar cada bloque antes de abrir el siguiente.
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorWo}{\textbf{Wooldridge}} aporta la intuición y los
+        ejemplos empíricos. Se lee \emph{primero}, cuando el tema lo tiene,
+        para entender qué problema se resuelve. No cubre GMM, máxima
+        verosimilitud general, simulación ni métodos no paramétricos.
+  \item \textcolor{colorDM}{\textbf{Davidson y MacKinnon}} es el texto base y
+        el que fija el orden. Se lee \emph{completo} en cada tema que lo cita:
+        su enfoque geométrico y sus regresiones artificiales unifican todo el
+        plan.
+  \item \textcolor{colorHn}{\textbf{Hansen}} es la referencia moderna y la
+        lectura principal donde Davidson y MacKinnon son breves o no llegan:
+        esperanza condicional y proyección, teoría asintótica, bootstrap,
+        errores agrupados, instrumentos débiles, regresión no paramétrica y
+        aprendizaje automático. Cubre los temas del curso ECO387, que sigue el
+        primer año del doctorado de Chicago.
+  \item \textcolor{colorHy}{\textbf{Hayashi}} es la lectura principal de GMM
+        (Bloque 9) y de los estimadores extremos (tema 6.4), y una alternativa
+        rigurosa en MCO, asintótica y máxima verosimilitud.
+  \item \textcolor{colorGr}{\textbf{Greene}} es la referencia enciclopédica:
+        aplicaciones, variantes de cada modelo y apéndices de matemáticas y
+        estadística. Se lee \emph{después}, o se consulta, según el tema.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Qué entra en las horas.} Las líneas \emph{Lecturas} y
+\emph{Profundización} entran en el cómputo de horas. \emph{Profundización}
+señala la lectura de mayor rigor (casi siempre Hansen o Hayashi): se aborda
+cuando el tema ya se entendió con los textos anteriores. Las líneas
+\emph{Consulta} y \emph{Consulta (PUCP)} remiten a libros de la carpeta y a
+referencias de los programas que no entran en el cómputo de horas (Anexo E).
+
+\medskip
+\noindent\destacado{Material excluido.} Quedan fuera las series de tiempo
+(\DM{13--14}, \HY{6}, \HY{9--10}, \HN{14--16}, \GR{21}, \WO{10--11},
+\WO{18}) y los datos de panel (\DM{7.10}, \HY{5}, \HN{17--18}, \GR{11},
+\WO{13--14}), que tienen sus propios materiales en la carpeta. La correlación
+serial se estudia solo como violación de un supuesto del modelo de regresión
+(tema 7.3). También quedan fuera los métodos bayesianos y los modelos de
+duración. El detalle está en el Anexo B.
+
+\medskip
+\noindent\destacado{Los vacíos de los programas.} Ninguno de los dos programas de
+la PUCP trata a fondo el método generalizado de momentos, el bootstrap, los
+errores agrupados ni la estimación no paramétrica. El plan los incorpora con
+los libros de la carpeta: el Bloque 5 (simulación y bootstrap), el tema 7.4
+(errores agrupados), el Bloque 9 (GMM) y el Bloque 13 (especificación,
+métodos no paramétricos y aprendizaje automático).
+
+\medskip
+\noindent\destacado{Sobre las matemáticas.} El pretramo repasa álgebra
+matricial, probabilidad e inferencia estadística, que se usan desde el
+Bloque 1. Para la teoría asintótica del Bloque 4 conviene tener a mano
+\GR{Apéndice D} y el capítulo 4 de Davidson y MacKinnon (1993).
+
+\medskip
+\noindent\destacado{Sobre los ejercicios y el software.} La econometría se
+aprende derivando resultados y estimando modelos con datos. Davidson y
+MacKinnon incluyen ejercicios con datos al final de cada capítulo; Hansen,
+ejercicios empíricos y secciones de programación; Wooldridge, ejercicios de
+computadora con sus bases de datos. Conviene hacer cada semana al menos un
+ejercicio teórico y uno con datos, en R, Python o Stata.
+
+\medskip
+\noindent\destacado{Notación.} \DM{n} remite al capítulo $n$ de Davidson y
+MacKinnon, y \WO{n}, \HN{n}, \HY{n} y \GR{n}, al capítulo de los demás
+textos. Si solo entra parte de un capítulo se indican secciones: \DM{8.3} es
+la sección 3 del capítulo 8. La numeración de Wooldridge es la de la 5.ª
+edición en inglés; la traducción de la carpeta (4.ª edición) conserva los
+mismos capítulos, aunque alguna sección puede variar. La de Hansen es la del
+manuscrito de 2021 que está en la carpeta.
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan: 340 horas distribuidas en \textbf{34 semanas de
+contenido}, que equivalen a \textbf{unos 8 meses de calendario}, a un ritmo de
+diez horas semanales.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón.
+La columna de horas es la que gobierna el reparto. Si hay semanas perdidas por
+feriados, viajes o imprevistos, el ajuste correcto es alargar el calendario,
+no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+1--2 & Pretramo --- Álgebra matricial, probabilidad e inferencia & 2 & 20 \\
+3--4 & Bloque 1 --- Esperanza condicional, proyección y el modelo de regresión & 2 & 20 \\
+5--6 & Bloque 2 --- Mínimos cuadrados: álgebra y geometría & 2 & 20 \\
+7--8 & Bloque 3 --- MCO en muestras finitas e inferencia exacta & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{9--11} & \textbf{Bloque 4 --- Teoría asintótica e inferencia en muestras grandes} & \textbf{3} & \textbf{30} \\
+12--13 & Bloque 5 --- Simulación, Monte Carlo y bootstrap & 2 & 20 \\
+14--15 & Bloque 6 --- Regresión no lineal y estimadores extremos & 2 & 20 \\
+16--17 & Bloque 7 --- Mínimos cuadrados generalizados y errores no esféricos & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{18--20} & \textbf{Bloque 8 --- Variables instrumentales} & \textbf{3} & \textbf{30} \\
+\rowcolor{tonoHielo}\textbf{21--23} & \textbf{Bloque 9 --- Método generalizado de momentos} & \textbf{3} & \textbf{30} \\
+\rowcolor{tonoHielo}\textbf{24--26} & \textbf{Bloque 10 --- Máxima verosimilitud} & \textbf{3} & \textbf{30} \\
+27--28 & Bloque 11 --- Sistemas de ecuaciones y ecuaciones simultáneas & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{29--31} & \textbf{Bloque 12 --- Variables dependientes discretas y limitadas} & \textbf{3} & \textbf{30} \\
+\rowcolor{tonoHielo}\textbf{32--34} & \textbf{Bloque 13 --- Especificación, selección de modelos y métodos no paramétricos} & \textbf{3} & \textbf{30} \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{34} & \textbf{340} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana para la teoría y
+una sesión de dos horas el sábado para ejercicios con datos.
+
+\medskip
+\noindent\destacado{Los tramos largos.} El Bloque 4 es el más importante: la
+teoría asintótica sostiene todo lo que viene después. Los Bloques 8 a 10
+(semanas 18--26) forman un recorrido continuo por los tres grandes principios
+de estimación ---variables instrumentales, momentos y verosimilitud--- y son
+el punto donde el avance suele atascarse.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 11, 20, 26 y 31. Si en alguno de esos cortes se acumula más de una
+semana de retraso, se alarga el calendario y no se comprime el bloque
+siguiente.
+
+\subsection*{Detalle semana a semana}
+
+{\small\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & Pretramo & P.1 Álgebra matricial; P.2 Probabilidad y distribuciones & 10 \\
+2  & Pretramo & P.3 Inferencia estadística & 10 \\
+\midrule
+3  & 1 & 1.1 Econometría, datos y causalidad; 1.2 Esperanza condicional & 10 \\
+4  & 1 & 1.3 Mejor predictor lineal; 1.4 Interpretaciones del modelo de regresión & 10 \\
+\midrule
+5  & 2 & 2.1 Método de momentos y MCO; 2.2 Geometría de MCO & 10 \\
+6  & 2 & 2.3 Teorema FWL; 2.4 Observaciones influyentes; 2.5 Forma funcional y ajuste & 10 \\
+\midrule
+7  & 3 & 3.1 Insesgadez, varianza y Gauss--Markov; 3.2 Mala especificación & 10 \\
+8  & 3 & 3.3 Inferencia exacta en el modelo normal; 3.4 Estabilidad de parámetros & 10 \\
+\midrule
+9  & 4 & 4.1 Convergencia, ley de los grandes números y teorema central del límite & 10 \\
+10 & 4 & 4.2 Asintótica de MCO; 4.3 Covarianzas robustas y método delta & 10 \\
+11 & 4 & 4.4 Pruebas e intervalos asintóticos; 4.5 Estimación restringida; 4.6 Potencia & 10 \\
+\midrule
+12 & 5 & 5.1 Experimentos de Monte Carlo; 5.2 El bootstrap & 10 \\
+13 & 5 & 5.3 Intervalos y pruebas bootstrap; 5.4 Jackknife, bootstrap salvaje y por conglomerados & 10 \\
+\midrule
+14 & 6 & 6.1 Mínimos cuadrados no lineales; 6.2 Cómputo y optimización numérica & 10 \\
+15 & 6 & 6.3 Regresión de Gauss--Newton; 6.4 Estimadores extremos & 10 \\
+\midrule
+16 & 7 & 7.1 MCG y MCGF; 7.2 Heteroscedasticidad & 10 \\
+17 & 7 & 7.3 Correlación serial en el modelo lineal; 7.4 Errores agrupados & 10 \\
+\midrule
+18 & 8 & 8.1 Endogeneidad; 8.2 Variables instrumentales y MC2E & 10 \\
+19 & 8 & 8.3 Propiedades de los estimadores VI; 8.4 Contrastes de endogeneidad y sobreidentificación & 10 \\
+20 & 8 & 8.5 Instrumentos débiles y LIML; 8.6 LATE y experimentos naturales & 10 \\
+\midrule
+21 & 9 & 9.1 GMM lineal; 9.2 GMM eficiente y matrices HAC & 10 \\
+22 & 9 & 9.3 Contrastes en GMM; 9.4 GMM con varias ecuaciones & 10 \\
+23 & 9 & 9.5 GMM no lineal, distancia mínima y momentos simulados & 10 \\
+\midrule
+24 & 10 & 10.1 Conceptos e identificación; 10.2 Propiedades asintóticas & 10 \\
+25 & 10 & 10.3 Matriz de información; 10.4 Las tres pruebas clásicas & 10 \\
+26 & 10 & 10.5 Cuasi-verosimilitud y estimación en dos etapas; 10.6 Transformaciones & 10 \\
+\midrule
+27 & 11 & 11.1 Regresión multivariada y SUR; 11.2 Identificación en ecuaciones simultáneas & 10 \\
+28 & 11 & 11.3 MC3E, FIML y LIML & 10 \\
+\midrule
+29 & 12 & 12.1 Respuesta binaria & 10 \\
+30 & 12 & 12.2 Respuestas múltiples; 12.3 Datos de conteo & 10 \\
+31 & 12 & 12.4 Truncamiento y censura; 12.5 Selección muestral & 10 \\
+\midrule
+32 & 13 & 13.1 Pruebas de especificación; 13.2 Hipótesis no anidadas y criterios de información & 10 \\
+33 & 13 & 13.3 Regresión no paramétrica; 13.4 Regresión por series; 13.5 Regresión cuantílica & 10 \\
+34 & 13 & 13.6 Contracción, \emph{lasso} y aprendizaje automático & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\bloque{Pretramo --- Álgebra matricial, probabilidad e inferencia --- 2 semanas}
+{No es un bloque de contenido econométrico sino la puesta a punto de las
+herramientas que el plan da por supuestas desde el Bloque 1. El curso ECO387
+supone el nivel de Casella y Berger; aquí se alcanza con los apéndices de
+Greene y Wooldridge y, si hace falta, con Hansen (2022).}
+
+\tema{P.1 Álgebra matricial}
+\lecturas{\WO{Apéndice D} \quad \DM{1.4} \quad \GR{Apéndice A}}
+\consultalib{Davidson y MacKinnon (1993), apéndice A}
+\nota{Rango, inversa, matrices particionadas, formas cuadráticas, matrices
+definidas positivas, matrices idempotentes y valores propios. Las matrices de
+proyección del Bloque 2 se apoyan en todo esto.}
+
+\tema{P.2 Probabilidad, momentos y distribuciones}
+\lecturas{\WO{Apéndice B} \quad \DM{1.2} \quad \GR{Apéndice B}}
+\consultalib{Hansen (2022), caps.~1--5 \quad Davidson y MacKinnon (1993), apéndice B}
+\nota{Distribuciones conjuntas, marginales y condicionales; esperanza y
+varianza condicionales; normal multivariada y sus distribuciones derivadas
+($\chi^2$, $t$, $F$).}
+
+\tema{P.3 Inferencia estadística: estimación, pruebas e intervalos}
+\lecturas{\WO{Apéndice C} \quad \GR{Apéndice C}}
+\consultalib{Hansen (2022), caps.~6, 10, 11, 13 y 14}
+\consulta{Casella y Berger (2021) \quad Lehmann y Romano (2005)}
+\nota{Estimadores y sus propiedades (sesgo, eficiencia, consistencia),
+método de momentos y máxima verosimilitud en su versión elemental, pruebas de
+hipótesis e intervalos de confianza. Los libros de Casella y Berger y de
+Lehmann y Romano, que recomienda ECO387, no están en la carpeta.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 1 --- Esperanza condicional, proyección y el modelo de regresión --- 2 semanas}
+{El punto de partida de ECO387: antes de estimar, definir qué parámetro se
+quiere conocer. La regresión aparece primero como esperanza condicional o
+como proyección lineal (uso descriptivo) y solo después, bajo supuestos
+adicionales, como relación causal o estructural.}
+
+\tema{1.1 Econometría, datos y causalidad}
+\lecturas{\WO{1} \quad \DM{1.1} \quad \GR{1}}
+\apoyo{\HN{1}}
+\consultalib{Angrist y Pischke (2009), caps.~1--2 \quad Cameron y Trivedi (2005), cap.~2}
+\nota{Estructura de los datos económicos, el ideal experimental y la noción de
+\emph{ceteris paribus}.}
+
+\tema{1.2 La esperanza condicional y su error}
+\lecturas{\HN{2.1--2.17} \quad \DM{1.3}}
+\nota{Ley de esperanzas iteradas, error de la esperanza condicional, mejor
+predictor, varianza condicional, homoscedasticidad y heteroscedasticidad,
+derivada de la regresión. Hansen es aquí la lectura principal: es el tema 2
+de ECO387.}
+
+\tema{1.3 Mejor predictor lineal y proyección}
+\lecturas{\HN{2.18--2.29}}
+\nota{La proyección lineal existe siempre, aunque la esperanza condicional no
+sea lineal. Sesgo de variable omitida en la proyección, regresión hacia la
+media y límites de la proyección lineal.}
+
+\tema{1.4 Interpretaciones del modelo de regresión: descriptiva, causal y estructural}
+\lecturas{\WO{2.1} \quad \WO{3.1} \quad \GR{2}}
+\apoyo{\HN{2.30}}
+\consultalib{Angrist y Pischke (2009), cap.~3}
+\nota{Los supuestos del modelo lineal clásico (\GR{2.3}) y lo que se gana con
+cada uno. Es el tema 3 de ECO387 y el tema 1 de la Unidad 1 de 2ECO01.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Mínimos cuadrados: álgebra y geometría --- 2 semanas}
+{MCO como cálculo antes que como estimador. La geometría de Davidson y
+MacKinnon (proyecciones ortogonales, teorema de Frisch--Waugh--Lovell) es la
+herramienta que se reutiliza en todo el plan: en MCG, en VI, en las
+regresiones artificiales y en las pruebas de especificación.}
+
+\tema{2.1 Método de momentos y estimador MCO}
+\lecturas{\WO{2.2--2.3} \quad \WO{3.2} \quad \WO{Apéndice E} \quad \DM{1.5} \quad \GR{3.1--3.2}}
+\apoyo{\HN{3.1--3.9}}
+
+\tema{2.2 La geometría de MCO}
+\lecturas{\DM{2.1--2.3}}
+\apoyo{\HN{3.10--3.16} \quad \HY{1.2}}
+\consultalib{Davidson y MacKinnon (1993), cap.~1}
+\nota{Espacios vectoriales, matrices de proyección $P_X$ y aniquiladora $M_X$,
+residuos como proyección ortogonal.}
+
+\tema{2.3 El teorema de Frisch--Waugh--Lovell y sus aplicaciones}
+\lecturas{\DM{2.4--2.5} \quad \GR{3.3--3.4}}
+\apoyo{\HN{3.17--3.18}}
+\nota{Regresión particionada, variables centradas, tendencias y variables
+binarias estacionales.}
+
+\tema{2.4 Observaciones influyentes y \emph{leverage}}
+\lecturas{\DM{2.6}}
+\apoyo{\HN{3.19--3.21} \quad \HN{3.24}}
+\nota{Valores de \emph{leverage}, regresión dejando una observación fuera y
+colinealidad numérica.}
+
+\tema{2.5 Bondad de ajuste, forma funcional y variables binarias}
+\lecturas{\WO{6} \quad \WO{7.1--7.4} \quad \DM{3.8} \quad \GR{3.5} \quad \GR{6.2--6.3}}
+\nota{Escalamiento de datos, logaritmos, términos cuadráticos e
+interacciones, $R^2$ y $\bar{R}^2$. Es la parte de «variables cualitativas»
+de la Unidad 1 de 2ECO01.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- MCO en muestras finitas e inferencia exacta --- 2 semanas}
+{Las propiedades de MCO cuando el modelo es correcto y lo que ocurre cuando no
+lo es. Cubre los temas 1 a 3 de la Unidad 1 de 2ECO01.}
+
+\tema{3.1 Insesgadez, matriz de covarianzas y teorema de Gauss--Markov}
+\lecturas{\WO{3.3--3.5} \quad \DM{3.1--3.5} \quad \GR{4.1--4.3}}
+\apoyo{\HY{1.1} \quad \HY{1.3} \quad \HN{4.1--4.9} \quad \HN{4.12--4.15}}
+\nota{Hansen incluye la versión moderna del teorema de Gauss--Markov
+(\HN{4.9}), que elimina la restricción a estimadores lineales.}
+
+\tema{3.2 Residuos, mala especificación, variables omitidas y multicolinealidad}
+\lecturas{\DM{3.6--3.7} \quad \WO{9.2} \quad \GR{4.7}}
+\apoyo{\HN{4.22}}
+\nota{Sesgo de variable omitida e inclusión de variables irrelevantes;
+multicolinealidad imperfecta y sus síntomas. Es el tema 3 de la Unidad 1 de
+2ECO01.}
+
+\tema{3.3 Inferencia exacta en el modelo lineal normal}
+\lecturas{\WO{4} \quad \DM{4.1--4.4} \quad \GR{5.1--5.5}}
+\apoyo{\HY{1.4--1.5} \quad \HN{5}}
+\nota{Distribuciones $\chi^2$, $t$ y $F$; pruebas $t$ y $F$; restricciones
+lineales; relación con máxima verosimilitud bajo normalidad.}
+
+\tema{3.4 Estabilidad de parámetros y pruebas de especificación sencillas}
+\lecturas{\WO{7.4} \quad \WO{9.1} \quad \GR{6.4} \quad \GR{5.9}}
+\consulta{García (2022), \emph{Econometría 1}}
+\nota{Prueba de Chow, estimación recursiva y CUSUM (pedidos por 2ECO01) y
+prueba RESET de Ramsey.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Teoría asintótica e inferencia en muestras grandes --- 3 semanas}
+{El bloque más importante del plan y el tema 1 de ECO387. Sin normalidad de
+los errores, toda la inferencia descansa en resultados de muestras grandes:
+consistencia, normalidad asintótica y estimación robusta de covarianzas.
+Todo lo que sigue (VI, GMM, verosimilitud) reutiliza estas herramientas.}
+
+\tema{4.1 Modos de convergencia, ley de los grandes números y teorema central del límite}
+\lecturas{\HN{6} \quad \GR{Apéndice D}}
+\apoyo{\HY{2.1}}
+\consultalib{Davidson y MacKinnon (1993), cap.~4 \quad White (2001), caps.~2--5 \quad Hansen (2022), caps.~7--9}
+\consulta{van der Vaart (2000)}
+\nota{Convergencia en probabilidad y en distribución, teorema de la aplicación
+continua, método delta, notación $O_p$ y $o_p$. Davidson y MacKinnon (1993)
+dedica un capítulo completo a estos resultados, que el texto base resume.}
+
+\tema{4.2 Consistencia y normalidad asintótica de MCO}
+\lecturas{\WO{5} \quad \DM{3.3} \quad \GR{4.4}}
+\apoyo{\HN{7.1--7.5} \quad \HY{2.3}}
+
+\tema{4.3 Covarianzas robustas a heteroscedasticidad y método delta}
+\lecturas{\WO{8.1--8.2} \quad \DM{5.5--5.6}}
+\apoyo{\HN{7.6--7.11} \quad \HY{2.5--2.6}}
+\consultalib{White (2001), cap.~6}
+\nota{Estimadores HC0 a HC3, errores estándar de funciones no lineales de los
+parámetros.}
+
+\tema{4.4 Pruebas e intervalos asintóticos}
+\lecturas{\DM{4.5} \quad \DM{5.1--5.2} \quad \DM{5.4} \quad \GR{5.6--5.7}}
+\apoyo{\HN{7.12--7.18} \quad \HN{9.1--9.16} \quad \HY{2.4}}
+\nota{Pruebas de Wald, $t$ asintóticas, regiones de confianza y restricciones
+no lineales.}
+
+\tema{4.5 Estimación restringida y distancia mínima}
+\lecturas{\HN{8}}
+\nota{MCO restringido, estimador de distancia mínima eficiente y restricciones
+de desigualdad. Prepara el terreno para el GMM del Bloque 9.}
+
+\tema{4.6 Potencia, valores $p$ y uso de las pruebas}
+\lecturas{\DM{4.7}}
+\apoyo{\HN{9.17--9.23}}
+\nota{Errores de tipo I y II, potencia asintótica local, pruebas múltiples y
+corrección de Bonferroni.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Simulación, Monte Carlo y bootstrap --- 2 semanas}
+{\textbf{Bloque nuevo respecto de los programas de la PUCP.} 2ECO01 usa un
+experimento de Monte Carlo para ilustrar la consistencia, pero ninguno de los
+dos programas estudia el bootstrap. Es la herramienta estándar para hacer
+inferencia cuando la teoría asintótica es poco fiable.}
+
+\tema{5.1 Experimentos de Monte Carlo}
+\lecturas{\DM{4.6} \quad \GR{15.1--15.2} \quad \GR{15.5}}
+\apoyo{\HN{9.18}}
+\consultalib{Davidson y MacKinnon (1993), caps.~21.1--21.7 \quad Cameron y Trivedi (2005), cap.~12}
+\nota{Generación de números pseudoaleatorios, diseño de experimentos y
+técnicas de reducción de varianza.}
+
+\tema{5.2 El bootstrap: principio, varianzas y errores estándar}
+\lecturas{\HN{10.1--10.15} \quad \GR{15.4}}
+\consultalib{Cameron y Trivedi (2005), cap.~11}
+
+\tema{5.3 Intervalos y pruebas bootstrap}
+\lecturas{\DM{5.3}}
+\apoyo{\HN{10.16--10.28}}
+\consultalib{Davidson y MacKinnon (1993), cap.~21.8}
+\nota{Intervalos percentil, BC, BCa y percentil-$t$; refinamientos
+asintóticos; pruebas bootstrap y bootstrap paramétrico.}
+
+\tema{5.4 Jackknife, bootstrap salvaje y bootstrap por conglomerados}
+\lecturas{\HN{10.3--10.5} \quad \HN{10.29--10.30}}
+\nota{El bootstrap salvaje es la versión válida con heteroscedasticidad; el
+bootstrap por conglomerados enlaza con el tema 7.4.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Regresión no lineal y estimadores extremos --- 2 semanas}
+{La extensión de MCO a modelos no lineales y el marco general de los
+estimadores definidos como solución de un problema de optimización. Es el
+puente teórico hacia GMM (Bloque 9) y máxima verosimilitud (Bloque 10).}
+
+\tema{6.1 Estimadores de momentos no lineales y mínimos cuadrados no lineales}
+\lecturas{\DM{6.1--6.3} \quad \GR{7.1--7.2}}
+\apoyo{\HN{23.1--23.5}}
+\consultalib{Davidson y MacKinnon (1993), caps.~2 y 5}
+
+\tema{6.2 Cómputo y optimización numérica}
+\lecturas{\DM{6.4} \quad \GR{Apéndice E}}
+\apoyo{\HY{7.5} \quad \HN{23.9}}
+\nota{Métodos de Newton y cuasi-Newton, criterios de convergencia y
+problemas prácticos.}
+
+\tema{6.3 La regresión de Gauss--Newton y las pruebas en modelos no lineales}
+\lecturas{\DM{6.5--6.8}}
+\consultalib{Davidson y MacKinnon (1993), cap.~6}
+\nota{Las regresiones artificiales son el sello de Davidson y MacKinnon:
+reaparecen en las pruebas de especificación del Bloque 13.}
+
+\tema{6.4 Estimadores extremos: consistencia y normalidad asintótica}
+\lecturas{\HY{7.1--7.4}}
+\apoyo{\HN{22} \quad \GR{12}}
+\consultalib{Wooldridge (2002), cap.~12}
+\nota{Identificación, ley uniforme de los grandes números y normalidad
+asintótica de un estimador M. Hayashi es aquí la lectura principal.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Mínimos cuadrados generalizados y errores no esféricos --- 2 semanas}
+{Las violaciones de los supuestos sobre la matriz de covarianzas de los
+errores: heteroscedasticidad, correlación serial y dependencia dentro de
+grupos. Cubre los temas 1 y 2 de la Unidad 2 de 2ECO01.}
+
+\tema{7.1 Mínimos cuadrados generalizados y factibles}
+\lecturas{\DM{7.1--7.4} \quad \GR{9.1--9.3}}
+\apoyo{\HY{1.6} \quad \HN{4.10--4.11}}
+
+\tema{7.2 Heteroscedasticidad: pruebas y mínimos cuadrados ponderados}
+\lecturas{\WO{8.3--8.5} \quad \DM{7.5} \quad \GR{9.4--9.7}}
+\apoyo{\HY{2.7--2.8}}
+\nota{Pruebas de Goldfeld--Quandt, Breusch--Pagan y White; MCP y el modelo de
+probabilidad lineal.}
+
+\tema{7.3 Correlación serial en el modelo de regresión}
+\lecturas{\WO{12.1--12.5} \quad \DM{7.6--7.9} \quad \GR{20.5} \quad \GR{20.7--20.9}}
+\apoyo{\HY{2.10}}
+\nota{Solo como violación de un supuesto del modelo lineal: pruebas de
+Durbin--Watson y Breusch--Godfrey, Cochrane--Orcutt y Prais--Winsten. Los
+procesos ARMA y la teoría de series de tiempo quedan fuera del plan.}
+
+\tema{7.4 Errores agrupados (\emph{clustered})}
+\lecturas{\HN{4.23--4.25}}
+\consultalib{Angrist y Pischke (2009), cap.~8 \quad Cameron y Trivedi (2005), cap.~24}
+\consulta{Cameron y Miller (2015) \quad Abadie, Athey, Imbens y Wooldridge (2017)}
+\nota{\textbf{Tema nuevo respecto de los programas.} Inferencia con muestras
+agrupadas y a qué nivel agrupar. Es la práctica habitual con encuestas como la
+ENAHO (Anexo D.2).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Variables instrumentales --- 3 semanas}
+{El tema 3 de la Unidad 2 de 2ECO01 y el tema 5 de ECO387. Hansen amplía el
+tratamiento con los problemas que dominan la práctica actual: instrumentos
+débiles, muchos instrumentos y la interpretación LATE.}
+
+\tema{8.1 Endogeneidad: variables omitidas, error de medida y simultaneidad}
+\lecturas{\WO{15.1} \quad \WO{15.4} \quad \WO{9.4} \quad \DM{8.1--8.2} \quad \GR{8.1--8.2} \quad \GR{8.5}}
+\apoyo{\HN{12.1--12.6} \quad \HY{3.1--3.2}}
+
+\tema{8.2 El estimador de variables instrumentales y MC2E}
+\lecturas{\WO{15.2--15.3} \quad \DM{8.3} \quad \GR{8.3}}
+\apoyo{\HN{12.7--12.12}}
+\nota{Forma reducida, condiciones de identificación (orden y rango),
+estimador de Wald y mínimos cuadrados en dos etapas.}
+
+\tema{8.3 Propiedades de los estimadores VI en muestras grandes y finitas}
+\lecturas{\DM{8.4}}
+\apoyo{\HN{12.15--12.22} \quad \HN{12.26}}
+\consultalib{White (2001), cap.~1}
+\nota{Consistencia y normalidad asintótica de MC2E, estimación de su
+covarianza, sesgo en muestras finitas y regresores generados.}
+
+\tema{8.4 Contrastes de endogeneidad y de restricciones de sobreidentificación}
+\lecturas{\WO{15.5--15.6} \quad \DM{8.5--8.8} \quad \GR{8.4}}
+\apoyo{\HN{12.28--12.33}}
+\nota{Pruebas de Durbin--Wu--Hausman, función de control, prueba de Sargan y
+pruebas bootstrap (\DM{8.8}).}
+
+\tema{8.5 Instrumentos débiles, muchos instrumentos y LIML}
+\lecturas{\HN{12.35--12.39} \quad \GR{8.7}}
+\apoyo{\HN{12.13--12.14} \quad \HN{12.19}}
+\nota{\textbf{Tema nuevo respecto de los programas.} Identificación débil,
+prueba de Stock y Yogo, el estimador LIML y el JIVE.}
+
+\tema{8.6 Efectos de tratamiento locales y experimentos naturales}
+\lecturas{\HN{12.34} \quad \HN{12.40--12.41} \quad \GR{8.8}}
+\consultalib{Angrist y Pischke (2009), cap.~4 \quad Huber, cap.~6}
+\nota{LATE y las dos aplicaciones clásicas que replica Hansen: Acemoglu,
+Johnson y Robinson (2001), que también es lectura de ECO386, y Angrist y
+Krueger (1991).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Método generalizado de momentos --- 3 semanas}
+{\textbf{Bloque nuevo respecto de los programas de la PUCP}: ninguno lo trata a
+fondo. GMM unifica MCO, VI, MC2E, SUR y MC3E como casos particulares y es el
+método de estimación de buena parte de la macroeconomía empírica. Hayashi es
+la lectura principal.}
+
+\tema{9.1 El método de momentos y GMM en modelos lineales}
+\lecturas{\DM{9.1--9.2} \quad \HY{3.3--3.5} \quad \GR{13.1--13.2} \quad \GR{13.4}}
+\apoyo{\HN{13.1--13.9}}
+
+\tema{9.2 GMM eficiente, matriz de ponderación y covarianzas HAC}
+\lecturas{\DM{9.3} \quad \HY{3.5} \quad \HY{3.8}}
+\apoyo{\HN{13.10--13.13} \quad \HN{13.20}}
+\nota{GMM en dos etapas, iterado y de actualización continua (CUE); GMM bajo
+homoscedasticidad condicional como MC2E.}
+
+\tema{9.3 Contrastes en GMM}
+\lecturas{\DM{9.4} \quad \HY{3.6--3.7} \quad \GR{13.5}}
+\apoyo{\HN{13.14--13.24}}
+\nota{Prueba $J$ de Hansen, pruebas de distancia, pruebas de subconjuntos de
+condiciones y de endogeneidad en el marco de GMM.}
+
+\tema{9.4 GMM con varias ecuaciones}
+\lecturas{\HY{4.1--4.6}}
+\nota{FIVE, MC3E y SUR como casos especiales de GMM multiecuacional;
+prepara el Bloque 11.}
+
+\tema{9.5 GMM no lineal, distancia mínima y método de momentos simulados}
+\lecturas{\DM{9.5--9.6} \quad \GR{13.3} \quad \GR{13.6}}
+\apoyo{\HN{13.25--13.27}}
+\consultalib{Wooldridge (2002), cap.~14 \quad Cameron y Trivedi (2005), cap.~6}
+\nota{Modelos de momentos condicionales y la estimación de modelos con
+expectativas racionales.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 10 --- Máxima verosimilitud --- 3 semanas}
+{El tercer gran principio de estimación y el tema 6 de ECO387. Se estudia como
+caso particular de los estimadores extremos del tema 6.4, lo que permite
+reutilizar los resultados de consistencia y normalidad asintótica.}
+
+\tema{10.1 Conceptos básicos e identificación}
+\lecturas{\DM{10.1--10.2} \quad \GR{14.1--14.3}}
+\consultalib{Davidson y MacKinnon (1993), cap.~8 \quad Hansen (2022), cap.~10}
+
+\tema{10.2 Propiedades asintóticas del estimador de máxima verosimilitud}
+\lecturas{\DM{10.3} \quad \GR{14.4}}
+\apoyo{\HY{7.2--7.3}}
+\nota{Consistencia, normalidad asintótica y eficiencia: la cota de
+Cramér--Rao.}
+
+\tema{10.3 La matriz de información y la covarianza del estimador}
+\lecturas{\DM{10.4}}
+\nota{Igualdad de la matriz de información; estimadores por hessiana,
+producto externo del gradiente (OPG) y sándwich.}
+
+\tema{10.4 Las tres pruebas clásicas: razón de verosimilitud, Wald y multiplicador de Lagrange}
+\lecturas{\DM{10.5--10.6} \quad \GR{14.6}}
+\apoyo{\HY{7.4}}
+\consultalib{Davidson y MacKinnon (1993), cap.~13}
+\nota{Su equivalencia asintótica (tema 4 de la Unidad 1 de 2ECO01) y su
+cálculo mediante regresiones artificiales.}
+
+\tema{10.5 Cuasi-verosimilitud, estimación en dos etapas y relación con GMM}
+\lecturas{\GR{14.5} \quad \GR{14.7--14.8}}
+\consultalib{Wooldridge (2002), cap.~13}
+\nota{Qué estima un estimador de máxima verosimilitud cuando el modelo está mal
+especificado, y covarianzas robustas.}
+
+\tema{10.6 Transformaciones de la variable dependiente}
+\lecturas{\DM{10.8}}
+\consultalib{Davidson y MacKinnon (1993), cap.~14}
+\nota{El jacobiano en la verosimilitud y la transformación de Box--Cox.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 11 --- Sistemas de ecuaciones y ecuaciones simultáneas --- 2 semanas}
+{Los modelos multiecuacionales de la sumilla de 2ECO01 (recursivos, SUR y
+ecuaciones simultáneas) y el tema 4 de su Unidad 2. Se ubica después de GMM
+y de máxima verosimilitud porque los estimadores de información completa se
+apoyan en ambos.}
+
+\tema{11.1 Regresión multivariada y regresiones aparentemente no relacionadas (SUR)}
+\lecturas{\DM{12.1--12.3} \quad \GR{10.1--10.5}}
+\apoyo{\HN{11.1--11.10}}
+
+\tema{11.2 Ecuaciones simultáneas: forma estructural, forma reducida e identificación}
+\lecturas{\WO{16.1--16.4} \quad \DM{12.4} \quad \GR{10.6}}
+\nota{Sesgo de simultaneidad, condiciones de orden y rango, modelos
+recursivos.}
+
+\tema{11.3 Estimación de información limitada y completa: MC3E, FIML y LIML}
+\lecturas{\DM{12.5--12.6} \quad \DM{12.8} \quad \HY{8.5--8.6}}
+\apoyo{\HY{4.5}}
+\consultalib{Wooldridge (2002), caps.~7--9}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 12 --- Variables dependientes discretas y limitadas --- 3 semanas}
+{La Unidad 3 de 2ECO01. Es la aplicación más importante de máxima
+verosimilitud en microeconometría. Los modelos de duración quedan fuera.}
+
+\tema{12.1 Modelos de respuesta binaria: MPL, logit y probit}
+\lecturas{\WO{7.5} \quad \WO{17.1} \quad \DM{11.1--11.3} \quad \GR{17.1--17.3}}
+\apoyo{\HN{25.1--25.10} \quad \HY{8.1}}
+\consultalib{Wooldridge (2002), cap.~15 \quad Cameron y Trivedi (2005), cap.~14}
+\nota{Variable latente, efectos marginales, bondad de ajuste y pruebas
+mediante la regresión binaria artificial (\DM{11.3}).}
+
+\tema{12.2 Respuestas múltiples: probit bivariado, logit multinomial, ordenado y anidado}
+\lecturas{\DM{11.4} \quad \GR{17.5} \quad \GR{18.2--18.3}}
+\apoyo{\HN{26}}
+\consultalib{Cameron y Trivedi (2005), cap.~15}
+
+\tema{12.3 Modelos para datos de conteo}
+\lecturas{\WO{17.3} \quad \DM{11.5} \quad \GR{18.4}}
+\consultalib{Wooldridge (2002), cap.~19 \quad Cameron y Trivedi (2005), cap.~20}
+
+\tema{12.4 Truncamiento, censura y el modelo tobit}
+\lecturas{\WO{17.2} \quad \WO{17.4} \quad \DM{11.6} \quad \GR{19.1--19.3}}
+\apoyo{\HN{27.1--27.8} \quad \HY{8.2--8.3}}
+\consultalib{Wooldridge (2002), cap.~16 \quad Cameron y Trivedi (2005), cap.~16}
+\consulta{Amemiya (1985), cap.~10}
+
+\tema{12.5 Selección muestral: el modelo de Heckman}
+\lecturas{\WO{17.5} \quad \DM{11.7} \quad \GR{19.5}}
+\apoyo{\HN{27.9--27.11}}
+\consultalib{Wooldridge (2002), cap.~17}
+\nota{Estimación en dos etapas con la inversa de la razón de Mills y por
+máxima verosimilitud con información completa.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 13 --- Especificación, selección de modelos y métodos no paramétricos --- 3 semanas}
+{Cierra el plan con dos vacíos de los programas: cómo evaluar un modelo y qué
+hacer cuando no se quiere imponer una forma funcional. El último tema abre la
+puerta al aprendizaje automático, que el curso ECO386 conecta con la
+inferencia causal (Anexo D.1).}
+
+\tema{13.1 Pruebas de especificación con regresiones artificiales}
+\lecturas{\DM{15.1--15.2} \quad \DM{15.7} \quad \GR{5.9}}
+\consultalib{Davidson y MacKinnon (1993), caps.~11--12}
+\nota{Pruebas de momentos condicionales, de la matriz de información y de
+normalidad de los errores.}
+
+\tema{13.2 Hipótesis no anidadas y criterios de información}
+\lecturas{\WO{6.3} \quad \DM{15.3--15.4} \quad \GR{5.8} \quad \GR{5.10}}
+\apoyo{\HN{28.1--28.14}}
+\nota{Pruebas $J$ y $P$, criterios de Akaike y de Schwarz, validación
+cruzada y estrategia de lo general a lo particular.}
+
+\tema{13.3 Regresión no paramétrica}
+\lecturas{\DM{15.5} \quad \HN{19}}
+\apoyo{\GR{7.5} \quad \GR{12.4}}
+\nota{Estimadores de núcleo y polinomios locales, elección del ancho de
+banda, maldición de la dimensionalidad.}
+
+\tema{13.4 Regresión por series y modelos parcialmente lineales}
+\lecturas{\HN{20} \quad \HN{19.24} \quad \GR{7.4}}
+\apoyo{\GR{12.3}}
+\consultalib{Cameron y Trivedi (2005), cap.~9}
+
+\tema{13.5 Regresión cuantílica}
+\lecturas{\WO{9.6} \quad \GR{7.3}}
+\apoyo{\HN{24}}
+\consultalib{Angrist y Pischke (2009), cap.~7}
+\nota{Desviaciones absolutas mínimas y cuantiles condicionales.}
+
+\tema{13.6 Selección de modelos, contracción, \emph{lasso} y aprendizaje automático}
+\lecturas{\HN{28.15--28.31} \quad \HN{29}}
+\consultalib{Hastie, Tibshirani y Friedman (2009) \quad Huber, cap.~5}
+\nota{Inferencia después de seleccionar un modelo, estimadores de
+James--Stein, promedios de modelos, \emph{ridge}, \emph{lasso}, árboles y
+bosques aleatorios, \emph{lasso} doble y aprendizaje automático
+doble/insesgado (DML). Es la base para el Anexo D.1 y para el trabajo empírico
+sobre los efectos de la IA.}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+Capítulos de cada libro que entran en el plan y temas donde se leen. Las
+secciones excluidas se detallan en el Anexo B.
+
+\newcommand{\mapa}[3]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.1cm}X>{\raggedright\arraybackslash}p{4.0cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Temas} \\
+\midrule
+#3
+\bottomrule
+\end{tabularx}
+}}
+
+\mapa{A.1 Davidson y MacKinnon, \emph{Econometric Theory and Methods} (texto base)}{}{%
+1 & Regression Models & P.1, P.2, 1.1, 1.2, 2.1 \\
+2 & The Geometry of Linear Regression & 2.2, 2.3, 2.4 \\
+3 & The Statistical Properties of Ordinary Least Squares & 2.5, 3.1, 3.2, 4.2 \\
+4 & Hypothesis Testing in Linear Regression Models & 3.3, 4.4, 4.6, 5.1 \\
+5 & Confidence Intervals & 4.3, 4.4, 5.3 \\
+6 & Nonlinear Regression & 6.1, 6.2, 6.3 \\
+7 & Generalized Least Squares and Related Topics (sin 7.10) & 7.1, 7.2, 7.3 \\
+8 & Instrumental Variables Estimation & 8.1--8.4 \\
+9 & The Generalized Method of Moments & 9.1, 9.2, 9.3, 9.5 \\
+10 & The Method of Maximum Likelihood (sin 10.7) & 10.1--10.4, 10.6 \\
+11 & Discrete and Limited Dependent Variables (sin 11.8) & 12.1--12.5 \\
+12 & Multivariate Models & 11.1, 11.2, 11.3 \\
+15 & Testing the Specification of Econometric Models & 13.1, 13.2, 13.3 \\
+}
+
+\mapa{A.2 Wooldridge, \emph{Introductory Econometrics}}{}{%
+1 & The Nature of Econometrics and Economic Data & 1.1 \\
+2 & The Simple Regression Model & 1.4, 2.1 \\
+3 & Multiple Regression Analysis: Estimation & 1.4, 2.1, 3.1 \\
+4 & Multiple Regression Analysis: Inference & 3.3 \\
+5 & Multiple Regression Analysis: OLS Asymptotics & 4.2 \\
+6 & Multiple Regression Analysis: Further Issues & 2.5, 13.2 \\
+7 & Multiple Regression Analysis with Qualitative Information & 2.5, 3.4, 12.1 \\
+8 & Heteroskedasticity & 4.3, 7.2 \\
+9 & More on Specification and Data Issues & 3.2, 3.4, 8.1, 13.5 \\
+12 & Serial Correlation and Heteroskedasticity (12.1--12.5) & 7.3 \\
+15 & Instrumental Variables Estimation and Two Stage Least Squares (15.1--15.6) & 8.1, 8.2, 8.4 \\
+16 & Simultaneous Equations Models (16.1--16.4) & 11.2 \\
+17 & Limited Dependent Variable Models and Sample Selection Corrections & 12.1, 12.3, 12.4, 12.5 \\
+Ap. B--E & Probabilidad, estadística, álgebra matricial y el modelo en forma matricial & P.1--P.3, 2.1 \\
+}
+
+\mapa{A.3 Hansen, \emph{Econometrics}}{}{%
+1 & Introduction & 1.1 \\
+2 & Conditional Expectation and Projection & 1.2, 1.3, 1.4 \\
+3 & The Algebra of Least Squares & 2.1--2.4 \\
+4 & Least Squares Regression & 3.1, 3.2, 7.1, 7.4 \\
+5 & Normal Regression & 3.3 \\
+6 & A Review of Large Sample Asymptotics & 4.1 \\
+7 & Asymptotic Theory for Least Squares & 4.2, 4.3, 4.4 \\
+8 & Restricted Estimation & 4.5 \\
+9 & Hypothesis Testing & 4.4, 4.6, 5.1 \\
+10 & Resampling Methods & 5.2, 5.3, 5.4 \\
+11 & Multivariate Regression (11.1--11.10) & 11.1 \\
+12 & Instrumental Variables & 8.1--8.6 \\
+13 & Generalized Method of Moments & 9.1, 9.2, 9.3, 9.5 \\
+19 & Nonparametric Regression & 13.3, 13.4 \\
+20 & Series Regression & 13.4 \\
+22 & M-Estimators & 6.4 \\
+23 & Nonlinear Least Squares (23.1--23.5 y 23.9) & 6.1, 6.2 \\
+24 & Quantile Regression & 13.5 \\
+25 & Binary Choice (25.1--25.10) & 12.1 \\
+26 & Multiple Choice & 12.2 \\
+27 & Censoring and Selection (27.1--27.11) & 12.4, 12.5 \\
+28 & Model Selection, Stein Shrinkage, and Model Averaging & 13.2, 13.6 \\
+29 & Machine Learning & 13.6 \\
+}
+
+\mapa{A.4 Hayashi, \emph{Econometrics}}{}{%
+1 & Finite-Sample Properties of OLS & 2.2, 3.1, 3.3, 7.1 \\
+2 & Large-Sample Theory (2.1, 2.3--2.8, 2.10) & 4.1--4.4, 7.2, 7.3 \\
+3 & Single-Equation GMM & 8.1, 9.1, 9.2, 9.3 \\
+4 & Multiple-Equation GMM (4.1--4.6) & 9.4, 11.3 \\
+7 & Extremum Estimators & 6.2, 6.4, 10.2, 10.4 \\
+8 & Examples of Maximum Likelihood (8.1--8.3, 8.5--8.6) & 11.3, 12.1, 12.4 \\
+}
+
+\mapa{A.5 Greene, \emph{Econometric Analysis}}{}{%
+1 & Econometrics & 1.1 \\
+2 & The Linear Regression Model & 1.4 \\
+3 & Least Squares & 2.1, 2.3, 2.5 \\
+4 & The Least Squares Estimator & 3.1, 3.2, 4.2 \\
+5 & Hypothesis Tests and Model Selection & 3.3, 3.4, 4.4, 13.1, 13.2 \\
+6 & Functional Form and Structural Change & 2.5, 3.4 \\
+7 & Nonlinear, Semiparametric, and Nonparametric Regression Models & 6.1, 13.3, 13.4, 13.5 \\
+8 & Endogeneity and Instrumental Variable Estimation & 8.1--8.6 \\
+9 & The Generalized Regression Model and Heteroscedasticity & 7.1, 7.2 \\
+10 & Systems of Equations & 11.1, 11.2 \\
+12 & Estimation Frameworks in Econometrics & 6.4, 13.3, 13.4 \\
+13 & Minimum Distance Estimation and the GMM Estimator & 9.1, 9.2, 9.3, 9.5 \\
+14 & Maximum Likelihood Estimation (14.1--14.8) & 10.1, 10.2, 10.4, 10.5 \\
+15 & Simulation-Based Estimation and Inference (15.1--15.2, 15.4--15.5) & 5.1, 5.2 \\
+17 & Discrete Choice (17.1--17.3, 17.5) & 12.1, 12.2 \\
+18 & Discrete Choices and Event Counts & 12.2, 12.3 \\
+19 & Limited Dependent Variables (19.1--19.3, 19.5) & 12.4, 12.5 \\
+20 & Serial Correlation (20.5, 20.7--20.9) & 7.3 \\
+Ap. A--E & Álgebra, probabilidad, inferencia, asintótica y optimización & P.1--P.3, 4.1, 6.2 \\
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo B. Capítulos y secciones que no entran en el plan}
+\addcontentsline{toc}{section}{Anexo B. Capítulos y secciones que no entran en el plan}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.3cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Materia} & \cab{Capítulos y secciones} \\
+\midrule
+Series de tiempo (carpeta propia) & \DM{13--14}, \DM{10.7}; \WO{10--11}, \WO{12.6}, \WO{15.7}, \WO{16.5}, \WO{18}; \HN{14--16}; \HY{2.11--2.12}, \HY{6}, \HY{8.7}, \HY{9--10}; \GR{20} (salvo 20.5 y 20.7--20.9), \GR{21} \\
+Datos de panel (carpeta propia) & \DM{7.10}; \WO{13--14}, \WO{15.8}, \WO{16.6}; \HN{17--18}, \HN{23.6}, \HN{25.13}, \HN{27.12}; \HY{5}; \GR{11}, \GR{17.4} \\
+Métodos bayesianos & \GR{16} \\
+Modelos de duración & \DM{11.8}; \GR{19.4} \\
+Diseños de evaluación de impacto & \HN{21} (regresión discontinua); \GR{19.6}. Se recomiendan en el Anexo D.1 \\
+Otras secciones & \HN{11.11--11.17} (rango reducido y modelos de factores); \HN{23.7--23.8} (modelos de umbral); \HN{25.11--25.12}; \HY{2.9}, \HY{4.7}, \HY{8.4}; \GR{14.9--14.10}, \GR{15.3}, \GR{15.6} en adelante \\
+Proyecto empírico & \WO{19}: no entra en las horas; se usa en el Anexo D.6 \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent Davidson y MacKinnon (1993), \emph{Estimation and Inference in
+Econometrics}, queda como libro de consulta: cubre los mismos temas que el
+texto base con más detalle técnico, y sus capítulos se citan en las líneas
+«Consulta».
+
+%------------------------------------------------------------------------------
+\section*{Anexo C. Programas de la PUCP utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas de la PUCP utilizados}
+
+El plan se construye sobre dos programas de la carpeta. Los programas de
+microeconometría (1ECO25, 1ECO77, ECO315) y de macroeconometría (1ECO24,
+1ECO78) no se usaron.
+
+\subsection*{C.1 Econometría Intermedia (2ECO01, Maestría en Economía, 2026-1)}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{5.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Unidad y tema del programa} & \cab{Temas del plan} \\
+\midrule
+U1. Modelo clásico de regresión lineal y MCO & 1.4, 2.1, 2.2, 3.1 \\
+U1. Evaluación de MCO, variables cualitativas y cambio estructural & 2.5, 3.3, 3.4 \\
+U1. Multicolinealidad y variables omitidas & 3.2, 3.4 \\
+U1. Muestras grandes, Monte Carlo y máxima verosimilitud & 4.2, 5.1, Bloque 10 \\
+U2. Perturbaciones no esféricas y heteroscedasticidad & 7.1, 7.2 \\
+U2. Autocorrelación & 7.3 \\
+U2. Endogeneidad, VI y MC2E & 8.1--8.4 \\
+U2. Ecuaciones simultáneas & Bloque 11 \\
+U3. Respuesta binaria y probit bivariado & 12.1, 12.2 \\
+U3. Extensiones multinomiales & 12.2 \\
+U3. Truncamiento, censura y tobit & 12.4 \\
+U3. Selección muestral & 12.5 \\
+U4. Series de tiempo y predicción & Fuera del plan (carpeta Time Series) \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{C.2 Tópicos de Econometría (ECO387, 2025-0, R.~Quineche)}
+Basado en el primer año del doctorado de la Universidad de Chicago.
+
+\medskip
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{5.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Tema del programa} & \cab{Temas del plan} \\
+\midrule
+1. Teoría de muestras grandes & Bloque 4 \\
+2. Esperanza condicional & 1.2, 1.3 \\
+3. Interpretaciones del modelo de regresión lineal & 1.4 \\
+4. Mínimos cuadrados ordinarios & Bloques 2 a 4 \\
+5. Variables instrumentales & Bloque 8 \\
+6. Estimadores de máxima verosimilitud & Bloques 6 y 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{C.3 Vacíos cubiertos con los libros de la carpeta}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{5.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Vacío} & \cab{Dónde se cubre} \\
+\midrule
+Método generalizado de momentos & Bloque 9 (Hayashi, Davidson y MacKinnon, Hansen) \\
+Simulación y bootstrap & Bloque 5 (Hansen, Davidson y MacKinnon, Greene) \\
+Errores agrupados & Tema 7.4 (Hansen) \\
+Instrumentos débiles y LATE & Temas 8.5 y 8.6 (Hansen) \\
+Mínimos cuadrados no lineales y estimadores extremos & Bloque 6 (Davidson y MacKinnon, Hayashi) \\
+Especificación y métodos no paramétricos & Bloque 13 (Davidson y MacKinnon, Hansen, Greene) \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo D. Material opcional}
+\addcontentsline{toc}{section}{Anexo D. Material opcional}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica
+el cronograma. Sigue los demás programas de econometría de la carpeta y sirve
+para ampliar el plan cuando el ritmo lo permita.
+
+\subsection*{D.1 Inferencia causal y aprendizaje automático}
+Sigue el programa ECO386 (Tópicos de Economía Matemática y Computacional,
+2024-2, A.~Quispe), que une los métodos de identificación causal con el
+aprendizaje automático. Momento sugerido: después del Bloque 13. Es el módulo
+más cercano al trabajo empírico sobre los efectos de la IA en la economía.
+
+\medskip
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.4cm}X>{\raggedright\arraybackslash}p{2.6cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Tema} & \cab{Lecturas} & \cab{Relación con el plan} \\
+\midrule
+Experimentos aleatorios y efectos de tratamiento & Huber, caps.~2--3; Imbens y Rubin (2015) & 1.1, 1.4 \\
+Selección en observables, \emph{matching} y ponderación & Huber, cap.~4; Angrist y Pischke (2009), cap.~3; \GR{19.6} & 1.4, 12.5 \\
+Regresión en alta dimensión y \emph{lasso} doble & \HN{29.19--29.21}; Chernozhukov, Hansen y Spindler (2015) & 13.6 \\
+DAG y modelos de ecuaciones estructurales & Heckman y Pinto (2015) & 11.2 \\
+Aprendizaje automático doble/insesgado (DML) & \HN{29.22}; Chernozhukov et al. (2018a); Huber, cap.~5 & 13.6 \\
+Efectos heterogéneos en experimentos & Chernozhukov, Demirer, Duflo y Fernández-Val (2018b) & 13.6 \\
+DML con variables instrumentales y LATE & Huber, cap.~6 & 8.6 \\
+Regresión discontinua y diferencias en diferencias & \HN{21}; Angrist y Pischke (2009), caps.~5--6; Huber, caps.~7 y 9 & 8.6 \\
+Aprendizaje automático para economistas & Athey e Imbens (2019); Hastie, Tibshirani y Friedman (2009) & 13.6 \\
+\emph{Embeddings} y precios hedónicos & Bajari et al. (2021) & 13.6 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{D.2 Muestras complejas y errores agrupados}
+Sigue el programa ECO387 (2022-2, A.~Cozzubo y J.~M.~Del Pozo). Las encuestas
+del INEI (ENAHO, ENDES) tienen diseños con estratos, conglomerados y factores
+de expansión; ignorarlos sesga los estimadores y subestima los errores
+estándar. Momento sugerido: después del Bloque 7.
+
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item Muestreo aleatorio simple, estratificado, por conglomerados y diseños
+        complejos: Lumley (2010); Groves et al. (2011).
+  \item Pesos muestrales en la regresión: Solon, Haider y Wooldridge (2015);
+        Cameron y Trivedi (2005), cap.~24.
+  \item Errores agrupados y bootstrap salvaje: Cameron y Miller (2015); Abadie,
+        Athey, Imbens y Wooldridge (2017); \HN{4.23--4.25}; \HN{10.29--10.30}.
+  \item Efectos de tratamiento con selección en observables (\emph{matching},
+        IPW): ver D.1.
+\end{itemize}
+
+\subsection*{D.3 Econometría espacial}
+Sigue el programa ECO224 (Estadística Aplicada: Análisis Espacial y
+Econometría Espacial, 2020-2). Momento sugerido: después del Bloque 10, porque
+los modelos espaciales se estiman por máxima verosimilitud.
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item Matrices de pesos espaciales, I de Moran y LISA.
+  \item Modelos SAR, SEM y SDM; efectos directos, indirectos y totales.
+  \item Estimación por máxima verosimilitud.
+  \item Lecturas: Anselin (2013); LeSage y Pace (2009); Elhorst (2014); Arbia (2014).
+\end{itemize}
+
+\subsection*{D.4 Econometría financiera}
+Sigue los programas FIN214 (Econometría Financiera, 2025-2) y FIN222
+(Tópicos de Econometría Financiera, 2023-2). La parte de series de tiempo
+(ARIMA, VAR, cointegración, ARCH) requiere la carpeta Time Series.
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item Elección discreta y modelos de clasificación para riesgo de crédito:
+        Anderson (2007); Bloque 12.
+  \item Aprendizaje automático en finanzas: Kelly y Xiu (2023); Athey e
+        Imbens (2019).
+  \item Econometría de los mercados financieros: Campbell, Lo y MacKinlay
+        (1997), que está en la carpeta; Tsay (2010).
+\end{itemize}
+
+\subsection*{D.5 La regresión vista desde la estadística}
+Sigue el programa EST225 (Análisis de Regresión, Facultad de Ciencias e
+Ingeniería, 2025-2). Puede leerse en paralelo a los Bloques 2 y 3: añade el
+diagnóstico de residuos, las medidas de influencia, la regresión polinómica,
+la selección de variables, el análisis de varianza y el de covarianza.
+Lecturas: Montgomery, Peck y Vining (2002); Fox (2008); Faraway (2014).
+
+\subsection*{D.6 Proyecto empírico opcional}
+Consolida los Bloques 8, 12 y 13 con datos peruanos. Momento sugerido:
+después del Bloque 12; no tiene horas asignadas.
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item \textbf{Pregunta y datos.} Retornos de la educación o participación
+        laboral femenina con la ENAHO (\WO{19.1--19.3}).
+  \item \textbf{Diseño muestral.} Declarar estratos, conglomerados y factores
+        de expansión (D.2).
+  \item \textbf{Estimación.} MCO, VI (temas 8.2--8.4), probit (tema 12.1) y
+        corrección de Heckman (tema 12.5).
+  \item \textbf{Inferencia.} Errores agrupados y bootstrap (temas 5.4 y 7.4).
+  \item \textbf{Redacción} del informe (\WO{19.4--19.5}).
+\end{enumerate}
+Software: Kleiber y Zeileis (2008) para R, que está en la carpeta, y las
+secciones de programación de Hansen.
+
+%------------------------------------------------------------------------------
+\section*{Anexo E. Referencias}
+\addcontentsline{toc}{section}{Anexo E. Referencias}
+
+\subsection*{E.1 Textos del plan}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Davidson, R. y J. G. MacKinnon (2004). \emph{Econometric Theory and Methods}. Oxford University Press. Edición de los autores, 2021.
+\item Greene, W. H. (2012). \emph{Econometric Analysis}, 7.ª ed. Pearson.
+\item Hansen, B. E. (2021). \emph{Econometrics}. Manuscrito, revisión del 11 de marzo de 2021, University of Wisconsin. Publicado por Princeton University Press, 2022.
+\item Hayashi, F. (2000). \emph{Econometrics}. Princeton University Press.
+\item Wooldridge, J. M. (2012). \emph{Introductory Econometrics: A Modern Approach}, 5.ª ed. Cengage. Traducción: \emph{Introducción a la econometría. Un enfoque moderno}, 4.ª ed., Cengage, 2009.
+\end{itemize}
+}
+
+\subsection*{E.2 Libros de consulta de la carpeta (sin horas)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Angrist, J. D. y J.-S. Pischke (2009). \emph{Mostly Harmless Econometrics: An Empiricist's Companion}. Princeton University Press.
+\item Cameron, A. C. y P. K. Trivedi (2005). \emph{Microeconometrics: Methods and Applications}. Cambridge University Press.
+\item Campbell, J. Y., A. W. Lo y A. C. MacKinlay (1997). \emph{The Econometrics of Financial Markets}. Princeton University Press.
+\item Davidson, R. y J. G. MacKinnon (1993). \emph{Estimation and Inference in Econometrics}. Oxford University Press.
+\item Hansen, B. E. (2022). \emph{Probability and Statistics for Economists}. Princeton University Press.
+\item Hastie, T., R. Tibshirani y J. Friedman (2009). \emph{The Elements of Statistical Learning}, 2.ª ed. Springer.
+\item Huber, M. \emph{Causal Analysis: Impact Evaluation and Causal Machine Learning}. Universidad de Friburgo (versión de la carpeta).
+\item Kleiber, C. y A. Zeileis (2008). \emph{Applied Econometrics with R}. Springer.
+\item White, H. (2001). \emph{Asymptotic Theory for Econometricians}, ed. revisada. Academic Press.
+\item Wooldridge, J. M. (2002). \emph{Econometric Analysis of Cross Section and Panel Data}. MIT Press.
+\end{itemize}
+}
+
+\subsection*{E.3 Referencias tomadas de los programas de la PUCP}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Abadie, A., S. Athey, G. Imbens y J. Wooldridge (2017). When Should You Adjust Standard Errors for Clustering? NBER Working Paper 24003.
+\item Amemiya, T. (1985). \emph{Advanced Econometrics}. Basil Blackwell.
+\item Anderson, R. (2007). \emph{The Credit Scoring Toolkit}. Oxford University Press.
+\item Anselin, L. (2013). \emph{Spatial Econometrics: Methods and Models}. Springer.
+\item Arbia, G. (2014). \emph{A Primer for Spatial Econometrics: With Applications in R}. Springer.
+\item Athey, S. y G. Imbens (2019). Machine Learning Methods That Economists Should Know About. \emph{Annual Review of Economics}, 11, 685--725.
+\item Bajari, P. et al. (2021). Hedonic Prices and Quality Adjusted Price Indices Powered by AI. Cemmap.
+\item Cameron, A. C. y D. L. Miller (2015). A Practitioner's Guide to Cluster-Robust Inference. \emph{Journal of Human Resources}, 50(2), 317--372.
+\item Casella, G. y R. L. Berger (2021). \emph{Statistical Inference}. Cengage.
+\item Chernozhukov, V., D. Chetverikov, M. Demirer, E. Duflo, C. Hansen, W. Newey y J. Robins (2018a). Double/Debiased Machine Learning for Treatment and Structural Parameters. \emph{The Econometrics Journal}, 21(1).
+\item Chernozhukov, V., M. Demirer, E. Duflo e I. Fernández-Val (2018b). Generic Machine Learning Inference on Heterogeneous Treatment Effects in Randomized Experiments. NBER Working Paper 24678.
+\item Chernozhukov, V., C. Hansen y M. Spindler (2015). Valid Post-Selection and Post-Regularization Inference: An Elementary, General Approach. \emph{Annual Review of Economics}, 7, 649--688.
+\item Elhorst, J. P. (2014). \emph{Spatial Econometrics: From Cross-Sectional Data to Spatial Panels}. Springer.
+\item Faraway, J. (2014). \emph{Linear Models with R}. Chapman \& Hall.
+\item Fox, J. (2008). \emph{Applied Regression Analysis and Generalized Linear Models}. Sage.
+\item García, L. (2022). \emph{Econometría 1}, 3.ª ed. Fondo Editorial PUCP.
+\item Groves, R. M. et al. (2011). \emph{Survey Methodology}. Wiley.
+\item Heckman, J. y R. Pinto (2015). Causal Analysis after Haavelmo. \emph{Econometric Theory}, 31(1), 115--151.
+\item Imbens, G. W. y D. B. Rubin (2015). \emph{Causal Inference for Statistics, Social, and Biomedical Sciences}. Cambridge University Press.
+\item Kelly, B. y D. Xiu (2023). Financial Machine Learning. NBER Working Paper 31502.
+\item Lehmann, E. L. y J. P. Romano (2005). \emph{Testing Statistical Hypotheses}, 3.ª ed. Springer.
+\item LeSage, J. y R. K. Pace (2009). \emph{Introduction to Spatial Econometrics}. CRC Press.
+\item Lumley, T. (2010). \emph{Complex Surveys: A Guide to Analysis Using R}. Wiley.
+\item Montgomery, D., E. Peck y G. Vining (2002). \emph{Introducción al análisis de regresión lineal}. Compañía Editorial Continental.
+\item Solon, G., S. J. Haider y J. M. Wooldridge (2015). What Are We Weighting For? \emph{Journal of Human Resources}, 50(2), 301--316.
+\item Tsay, R. S. (2010). \emph{Analysis of Financial Time Series}, 3.ª ed. Wiley.
+\item van der Vaart, A. W. (2000). \emph{Asymptotic Statistics}. Cambridge University Press.
+\end{itemize}
+}
+
+\vspace{1.2cm}
+\franjas[2pt]
+\begin{center}\small\color{tonoPizarra}
+Plan de lectura de elaboración propia. Los títulos de los capítulos
+corresponden a las obras citadas y se reproducen únicamente con fines de
+referencia bibliográfica. La asignación de capítulos y secciones se basa en
+los índices de los libros de la carpeta; los temas de la PUCP proceden de los
+programas citados en los Anexos C y D.
+\end{center}
+
+\end{document}
