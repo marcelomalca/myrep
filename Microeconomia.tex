@@ -1,0 +1,1472 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE MICROECONOMÍA — Plan de estudio integrado
+%
+%  Textos base:
+%    V   — Hal R. Varian, Análisis microeconómico (Antoni Bosch, 3.ª ed., 1992)
+%    JR  — Jehle y Reny, Advanced Microeconomic Theory (Pearson, 3.ª ed., 2011)
+%    MWG — Mas-Colell, Whinston y Green, Microeconomic Theory (OUP, 1995)
+%    Ru  — Ariel Rubinstein, Lecture Notes in Microeconomic Theory
+%          (Princeton, 2.ª ed., revisión 2026)
+%  Teoría de juegos:
+%    O   — Martin J. Osborne, An Introduction to Game Theory (OUP, 2003)
+%    Gi  — Robert Gibbons, Un primer curso de teoría de juegos (Antoni Bosch)
+%    OR  — Osborne y Rubinstein, A Course in Game Theory (MIT Press, 1994)
+%  Suplemento:
+%    K   — David M. Kreps, A Course in Microeconomic Theory (Princeton, 1990)
+%    MMT — Osborne y Rubinstein, Models in Microeconomic Theory (OBP, 2020)
+%  Textos PUCP y de programas:
+%    GA  — José Gallardo, Notas en teoría de la incertidumbre (PUCP, 2018)
+%    RR  — Richter y Rubinstein, No Prices No Games! (OBP, 2024)
+%  Consulta (sin horas): Martínez-Giralt, Myerson, Bonanno, Kreps (1990b),
+%    Birchler y Bütler, Bowles, Bowles y Chen, Debreu, Kartik, Tamuz.
+%  Programas PUCP integrados: 1ECO73, 2ECO02, 1ECO43, ECO315, MAT657, MAT659,
+%  1ECO42; además, el programa del Curso de Extensión del BCRP (2005).
+%
+%  Compilar con:  pdflatex Microeconomia.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de dorados y ocres
+\definecolor{tonoOscuro}{RGB}{53,36,3}              % oscuro
+\definecolor{tonoProfundo}{RGB}{92,63,5}            % profundo
+\definecolor{tonoPrincipal}{RGB}{131,90,7}          % principal
+\definecolor{tonoA}{RGB}{152,134,22}                % variante cálida
+\definecolor{tonoB}{RGB}{151,82,12}                 % variante fría
+\definecolor{tonoC}{RGB}{165,67,18}                 % variante viva
+\definecolor{tonoClaro}{RGB}{221,179,95}            % claro
+\definecolor{tonoAcero}{RGB}{110,91,53}             % acero
+\definecolor{tonoPizarra}{RGB}{115,101,74}          % pizarra
+\definecolor{tonoGrafito}{RGB}{53,45,29}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{247,233,207}           % hielo
+\definecolor{tonoPalido}{RGB}{251,245,233}          % pálido
+\definecolor{tonoBruma}{RGB}{254,251,246}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorV}{RGB}{110,42,12}
+\definecolor{colorJR}{RGB}{156,69,17}
+\definecolor{colorMWG}{RGB}{133,68,15}
+\definecolor{colorRu}{RGB}{110,63,12}
+\definecolor{colorK}{RGB}{156,100,17}
+\definecolor{colorO}{RGB}{133,94,15}
+\definecolor{colorGi}{RGB}{110,85,12}
+\definecolor{colorOR}{RGB}{156,130,17}
+\definecolor{colorMMT}{RGB}{133,120,15}
+\definecolor{colorGA}{RGB}{110,106,12}
+\definecolor{colorRR}{RGB}{151,156,17}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}\raggedright}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Microeconomía}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}Varian $\cdot$ Jehle--Reny $\cdot$ Mas-Colell $\cdot$ Rubinstein $\cdot$ Kreps $\cdot$ Osborne $\cdot$ Gibbons}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\VA}[1]{\etiqueta{colorV}{V}\nobreak\hspace{0.25em}\textcolor{colorV}{#1}}
+\newcommand{\JR}[1]{\etiqueta{colorJR}{JR}\nobreak\hspace{0.25em}\textcolor{colorJR}{#1}}
+\newcommand{\MWG}[1]{\etiqueta{colorMWG}{MWG}\nobreak\hspace{0.25em}\textcolor{colorMWG}{#1}}
+\newcommand{\RU}[1]{\etiqueta{colorRu}{Ru}\nobreak\hspace{0.25em}\textcolor{colorRu}{#1}}
+\newcommand{\KR}[1]{\etiqueta{colorK}{K}\nobreak\hspace{0.25em}\textcolor{colorK}{#1}}
+\newcommand{\OS}[1]{\etiqueta{colorO}{O}\nobreak\hspace{0.25em}\textcolor{colorO}{#1}}
+\newcommand{\GI}[1]{\etiqueta{colorGi}{Gi}\nobreak\hspace{0.25em}\textcolor{colorGi}{#1}}
+\newcommand{\ORU}[1]{\etiqueta{colorOR}{OR}\nobreak\hspace{0.25em}\textcolor{colorOR}{#1}}
+\newcommand{\MMT}[1]{\etiqueta{colorMMT}{MMT}\nobreak\hspace{0.25em}\textcolor{colorMMT}{#1}}
+\newcommand{\GA}[1]{\etiqueta{colorGA}{GA}\nobreak\hspace{0.25em}\textcolor{colorGA}{#1}}
+\newcommand{\RR}[1]{\etiqueta{colorRR}{RR}\nobreak\hspace{0.25em}\textcolor{colorRR}{#1}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large\raggedright
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newcommand{\juegos}[1]{\linealectura{tonoB}{Teoría de juegos:}{#1}}
+\newcommand{\supl}[1]{\linealectura{tonoC}{Suplemento:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+% Artículos que no proceden de los programas PUCP (entran en las horas)
+\newcommand{\articulosB}[1]{\linealectura{tonoB}{Artículos:}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Microeconomía\par}
+\vspace{0.4cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos base\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorV}{V} \quad {\color{tonoOscuro}Hal R. Varian}\par}
+{\normalsize \emph{\color{colorV}Análisis microeconómico}\par}
+{\small\color{tonoPizarra} Antoni Bosch, 3.ª edición, 1992 --- 27 capítulos\par}
+\vspace{0.25cm}
+{\large\etiqueta{colorJR}{JR} \quad {\color{tonoOscuro}Geoffrey A. Jehle y Philip J. Reny}\par}
+{\normalsize \emph{\color{colorJR}Advanced Microeconomic Theory}\par}
+{\small\color{tonoPizarra} Pearson, 3.ª edición, 2011 --- 9 capítulos y 2 apéndices matemáticos\par}
+\vspace{0.25cm}
+{\large\etiqueta{colorMWG}{MWG} \quad {\color{tonoOscuro}Andreu Mas-Colell, Michael D. Whinston y Jerry R. Green}\par}
+{\normalsize \emph{\color{colorMWG}Microeconomic Theory}\par}
+{\small\color{tonoPizarra} Oxford University Press, 1995 --- 23 capítulos y apéndice matemático\par}
+\vspace{0.25cm}
+{\large\etiqueta{colorRu}{Ru} \quad {\color{tonoOscuro}Ariel Rubinstein}\par}
+{\normalsize \emph{\color{colorRu}Lecture Notes in Microeconomic Theory: The Economic Agent}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2.ª edición, revisión de 2026 --- 9 lecciones\par}
+\vspace{0.5cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Teoría de juegos\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorO}{O} \quad {\color{tonoOscuro}Martin J. Osborne}\par}
+{\normalsize \emph{\color{colorO}An Introduction to Game Theory}\par}
+{\small\color{tonoPizarra} Oxford University Press, 2003 --- 17 capítulos\par}
+\vspace{0.25cm}
+{\large\etiqueta{colorGi}{Gi} \quad {\color{tonoOscuro}Robert Gibbons}\par}
+{\normalsize \emph{\color{colorGi}Un primer curso de teoría de juegos}\par}
+{\small\color{tonoPizarra} Antoni Bosch (ed. original, 1992) --- 4 capítulos\par}
+\vspace{0.25cm}
+{\large\etiqueta{colorOR}{OR} \quad {\color{tonoOscuro}Martin J. Osborne y Ariel Rubinstein}\par}
+{\normalsize \emph{\color{colorOR}A Course in Game Theory}\par}
+{\small\color{tonoPizarra} MIT Press, 1994 --- 15 capítulos\par}
+\vspace{0.5cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Suplemento\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorK}{K} \quad {\color{tonoOscuro}David M. Kreps}\par}
+{\normalsize \emph{\color{colorK}A Course in Microeconomic Theory}\par}
+{\small\color{tonoPizarra} Princeton University Press, 1990 --- 20 capítulos y 2 apéndices\par}
+\vspace{0.25cm}
+{\large\etiqueta{colorMMT}{MMT} \quad {\color{tonoOscuro}Martin J. Osborne y Ariel Rubinstein}\par}
+{\normalsize \emph{\color{colorMMT}Models in Microeconomic Theory}\par}
+{\small\color{tonoPizarra} Open Book Publishers, 2020 --- 20 capítulos\par}
+\vspace{0.35cm}
+{\small\etiqueta{colorGA}{GA} \quad Gallardo, \emph{Notas en teoría de la incertidumbre} (PUCP, 2018)
+\quad $\cdot$ \quad \etiqueta{colorRR}{RR} \quad Richter y Rubinstein, \emph{No Prices No Games!} (2024)\par}
+\vspace{0.35cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de siete programas de la PUCP y uno del BCRP\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Trece bloques temáticos --- 10 meses}\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{trece bloques temáticos}, no por capítulos
+de un libro u otro. El orden sigue la lógica de
+los cursos de posgrado: primero el agente individual (consumidor, empresa,
+decisión bajo incertidumbre), luego la interacción estratégica, después los
+mercados y su eficiencia y, al final, la información asimétrica y el diseño de
+mecanismos. Conviene cerrar cada bloque antes de abrir el siguiente.
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorV}{\textbf{Varian}} aporta la intuición, los ejemplos
+        resueltos y el puente con la microeconomía intermedia. Se lee
+        \emph{primero}, para entender cuál es el problema.
+  \item \textcolor{colorJR}{\textbf{Jehle y Reny}} es el texto formal principal:
+        definiciones, teoremas y demostraciones con un nivel de precisión
+        constante. Se lee \emph{después}, para resolver el problema con rigor.
+  \item \textcolor{colorMWG}{\textbf{Mas-Colell, Whinston y Green}} es la
+        referencia de posgrado y la lectura principal allí donde Jehle y Reny
+        son breves o no llegan: agregación, juegos dinámicos, poder de mercado,
+        externalidades, información asimétrica, equilibrio general avanzado y
+        diseño de mecanismos. Solo se asignan las secciones que entran en el
+        plan (Anexo B).
+  \item \textcolor{colorRu}{\textbf{Rubinstein}} cubre los fundamentos de la
+        elección con un énfasis en la interpretación que los otros textos no
+        tienen. Es lectura obligada en los Bloques 1 a 4 y en el 11.
+  \item \textcolor{colorO}{\textbf{Osborne}}, \textcolor{colorGi}{\textbf{Gibbons}}
+        y \textcolor{colorOR}{\textbf{Osborne y Rubinstein}} sostienen los
+        Bloques 6 y 7: Osborne y Gibbons, para los conceptos y las aplicaciones;
+        Osborne y Rubinstein, para la versión de posgrado.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Sobre el suplemento.} \textcolor{colorK}{\textbf{Kreps}} se lee
+\emph{después} de los textos base y entra en el cómputo de horas. Aporta la
+discusión crítica de cada modelo (por qué creer, o no, en el equilibrio
+walrasiano; los problemas de la utilidad esperada) y es la lectura principal en
+elección dinámica (tema 4.7) y en teoría de la empresa (tema 12.8).
+\textcolor{colorMMT}{\textbf{MMT}} presenta modelos breves y autocontenidos
+con el estilo de Rubinstein; es el texto que citan los programas 1ECO73 y
+ECO315.
+
+\medskip
+\noindent\destacado{Material excluido.} Quedan fuera la econometría de la
+demanda y la producción (\VA{12}), los mercados de activos y la valoración
+(\VA{20}, \MWG{19.E}) y los mercados financieros incompletos, en coherencia con
+la exclusión de finanzas en el sílabo de macroeconomía. Las secciones de
+\MWG{20} sobre sendas estacionarias, regla dorada y dinámica se omiten porque
+ya están cubiertas en ese sílabo. El detalle está en el Anexo B.
+
+\medskip
+\noindent\destacado{Sobre las matemáticas.} El plan supone el sílabo de economía
+matemática, en particular su Parte I, y por eso no tiene pretramo. Conviene
+haber cerrado antes del Bloque 1 la convexidad y la cuasiconcavidad (Bloque 6
+de ese plan), la optimización con restricciones y las condiciones de
+Kuhn--Tucker (Bloque 7) y el teorema de la envolvente (tema 8.1). Lo demás se
+usa más adelante: la topología de $\mathbf{R}^n$ (Bloque 3) en la existencia de
+la demanda (tema 2.1); las correspondencias y los teoremas de punto fijo
+(Bloque 4) en los temas 6.4 y 9.3; los hiperplanos separadores (tema 6.2) en el
+segundo teorema del bienestar (tema 9.2); la estática comparativa monótona
+(temas 4.4 y 8.1) en los Bloques 2, 3 y 8, y la programación dinámica
+(Bloque 13) en el tema 4.7. Los apéndices matemáticos de Jehle y Reny,
+Mas-Colell, Varian y Kreps quedan como consulta.
+
+\medskip
+\noindent\destacado{Sobre los ejercicios.} La teoría microeconómica se aprende
+demostrando y resolviendo, no leyendo. Varian incluye respuestas de los
+ejercicios impares y Jehle y Reny, pistas y respuestas; Rubinstein trae 76
+problemas de repaso. Para Mas-Colell hay dos manuales de soluciones en la
+carpeta (Anexo E). Conviene resolver ejercicios cada semana y no dejarlos para
+el final del bloque.
+
+\medskip
+\noindent\destacado{Sobre los programas de la PUCP.} Se incorporan los temas y
+lecturas de siete programas de la PUCP y del curso de extensión del BCRP
+(Anexo C), salvo los contenidos de finanzas y de economía experimental
+aplicada. Las líneas \emph{Artículos (PUCP)} y \emph{Artículos} (lecturas que
+no proceden de los programas) entran en el cómputo de horas; \emph{Consulta} y
+\emph{Consulta (PUCP)}, no. Referencias completas en el Anexo D.
+
+\medskip
+\noindent\destacado{Notación.} \VA{n} remite al capítulo $n$ de Varian, y
+\JR{n}, \MWG{n}, \RU{n}, \OS{n}, \GI{n}, \ORU{n}, \KR{n}, \MMT{n}, \GA{n} y
+\RR{n}, al capítulo (o lección) de los demás textos. Si solo entra parte de un
+capítulo se indican secciones: \MWG{3.D} es la sección D del capítulo 3 de
+Mas-Colell; \JR{1.4.2}, la subsección 1.4.2 de Jehle y Reny. Varian no numera
+sus secciones, así que se cita por capítulo. \emph{Consulta} remite a libros de
+la carpeta que no entran en el cómputo de horas (Anexo E).
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan con \textbf{suplemento integrado}: 430 horas distribuidas
+en \textbf{43 semanas de contenido}, que equivalen a \textbf{10 meses de
+calendario}, a un ritmo de diez horas semanales.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón:
+los 10 meses se ocupan por completo. La columna de horas es la que gobierna el
+reparto. Si hay semanas perdidas por feriados, viajes o imprevistos, el ajuste
+correcto es alargar el calendario, no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+1--2 & Bloque 1 --- Preferencias, utilidad y elección & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{3--7} & \textbf{Bloque 2 --- Teoría del consumidor y dualidad} & \textbf{5} & \textbf{50} \\
+8--10 & Bloque 3 --- Producción y teoría de la empresa & 3 & 30 \\
+\rowcolor{tonoHielo}\textbf{11--14} & \textbf{Bloque 4 --- Decisión bajo incertidumbre} & \textbf{4} & \textbf{40} \\
+15--16 & Bloque 5 --- Equilibrio parcial competitivo & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{17--20} & \textbf{Bloque 6 --- Teoría de juegos I: juegos estáticos} & \textbf{4} & \textbf{40} \\
+\rowcolor{tonoHielo}\textbf{21--24} & \textbf{Bloque 7 --- Teoría de juegos II: juegos dinámicos} & \textbf{4} & \textbf{40} \\
+25--27 & Bloque 8 --- Poder de mercado y competencia imperfecta & 3 & 30 \\
+\rowcolor{tonoHielo}\textbf{28--31} & \textbf{Bloque 9 --- Equilibrio general} & \textbf{4} & \textbf{40} \\
+32 & Bloque 10 --- Equilibrio general con incertidumbre y tiempo & 1 & 10 \\
+33--35 & Bloque 11 --- Externalidades, bienes públicos y bienestar social & 3 & 30 \\
+\rowcolor{tonoHielo}\textbf{36--39} & \textbf{Bloque 12 --- Información asimétrica y contratos} & \textbf{4} & \textbf{40} \\
+\rowcolor{tonoHielo}\textbf{40--43} & \textbf{Bloque 13 --- Subastas, diseño de mecanismos y diseño de mercados} & \textbf{4} & \textbf{40} \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{43} & \textbf{430} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana y una sesión de
+dos horas el sábado dedicada a ejercicios.
+
+\medskip
+\noindent\destacado{Los tramos largos.} El Bloque 2 es el más largo y el más
+importante: la dualidad del consumidor reaparece en la empresa, en el
+bienestar y en el equilibrio general. Los Bloques 6 y 7 (semanas 17--24)
+forman un recorrido continuo de teoría de juegos, y los Bloques 12 y 13
+(semanas 36--43) cierran el plan con la parte más exigente. Son los puntos
+donde el avance suele atascarse.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 10, 20, 31 y 39. Si en alguno de esos cortes se acumula más de una
+semana de retraso, se alarga el calendario y no se comprime el bloque
+siguiente.
+
+\subsection*{Detalle semana a semana}
+
+{\small\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & 1 & 1.1 Preferencias; 1.2 Utilidad & 10 \\
+2  & 1 & 1.3 Elección y preferencia revelada & 10 \\
+\midrule
+3  & 2 & 2.1 Demanda walrasiana; 2.2 Axioma débil y ley de la demanda & 10 \\
+4  & 2 & 2.3 Maximización de la utilidad; 2.4 Minimización del gasto & 10 \\
+5  & 2 & 2.5 Dualidad: Roy, Shephard y Slutsky & 10 \\
+6  & 2 & 2.6 Integrabilidad y preferencia revelada; 2.7 Medidas de bienestar & 10 \\
+7  & 2 & 2.8 Extensiones del modelo básico; 2.9 Demanda agregada & 10 \\
+\midrule
+8  & 3 & 3.1 Tecnología & 10 \\
+9  & 3 & 3.2 Maximización del beneficio; 3.3 Minimización del costo & 10 \\
+10 & 3 & 3.4 Dualidad en la producción; 3.5 Agregación y objetivos de la empresa & 10 \\
+\midrule
+11 & 4 & 4.1 Utilidad esperada & 10 \\
+12 & 4 & 4.2 Aversión al riesgo; 4.3 Manejo de riesgos & 10 \\
+13 & 4 & 4.4 Dominancia estocástica; 4.5 Utilidad dependiente del estado & 10 \\
+14 & 4 & 4.6 Límites de la utilidad esperada; 4.7 Elección dinámica & 10 \\
+\midrule
+15 & 5 & 5.1 Equilibrio de corto plazo; 5.2 Entrada libre y largo plazo & 10 \\
+16 & 5 & 5.3 Bienestar en equilibrio parcial; 5.4 Límites del equilibrio parcial & 10 \\
+\midrule
+17 & 6 & 6.1 Representación de juegos; 6.2 Dominancia y racionalizabilidad & 10 \\
+18 & 6 & 6.3 Equilibrio de Nash; 6.4 Estrategias mixtas y existencia & 10 \\
+19 & 6 & 6.5 Aplicaciones; 6.6 Juegos bayesianos & 10 \\
+20 & 6 & 6.7 Refinamientos y equilibrio correlacionado; 6.8 Conocimiento y evolución & 10 \\
+\midrule
+21 & 7 & 7.1 Inducción hacia atrás y perfección en subjuegos & 10 \\
+22 & 7 & 7.2 Juegos repetidos; 7.3 Negociación & 10 \\
+23 & 7 & 7.4 Equilibrio bayesiano perfecto y secuencial & 10 \\
+24 & 7 & 7.5 Señalización y refinamientos; 7.6 Reputación & 10 \\
+\midrule
+25 & 8 & 8.1 Monopolio y discriminación de precios & 10 \\
+26 & 8 & 8.2 Oligopolio estático; 8.3 Colusión tácita & 10 \\
+27 & 8 & 8.4 Entrada y compromisos estratégicos; 8.5 Límite competitivo & 10 \\
+\midrule
+28 & 9 & 9.1 Ejemplos de equilibrio general; 9.2 Intercambio y bienestar & 10 \\
+29 & 9 & 9.3 Existencia; 9.4 Producción & 10 \\
+30 & 9 & 9.5 Unicidad, estabilidad y SMD; 9.6 Núcleo & 10 \\
+31 & 9 & 9.7 Redistribución y productividad marginal; 9.8 La jungla & 10 \\
+\midrule
+32 & 10 & 10.1 Mercancías contingentes; 10.2 Equilibrio y tiempo & 10 \\
+\midrule
+33 & 11 & 11.1 Externalidades; 11.2 Bienes públicos; 11.3 Segundo mejor & 10 \\
+34 & 11 & 11.4 Teorema de Arrow; 11.5 Funciones de bienestar social & 10 \\
+35 & 11 & 11.6 Negociación axiomática y juegos cooperativos & 10 \\
+\midrule
+36 & 12 & 12.1 Selección adversa; 12.2 Señalización & 10 \\
+37 & 12 & 12.3 Filtrado; 12.4 Riesgo moral & 10 \\
+38 & 12 & 12.5 Información oculta; 12.6 Equipos y relaciones largas & 10 \\
+39 & 12 & 12.7 Regulación; 12.8 Teorías de la empresa & 10 \\
+\midrule
+40 & 13 & 13.1 Subastas; 13.2 Equivalencia de ingresos & 10 \\
+41 & 13 & 13.3 Principio de revelación; 13.4 Estrategias dominantes y VCG & 10 \\
+42 & 13 & 13.5 Implementación bayesiana; 13.6 Mecanismos óptimos & 10 \\
+43 & 13 & 13.7 Emparejamiento y diseño de mercados; 13.8 Diseño de información y persuasión bayesiana & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\bloque{Bloque 1 --- Preferencias, utilidad y elección --- 2 semanas}
+{Los dos puntos de partida de la teoría del agente individual: las
+preferencias como primitiva y la elección observada como primitiva. Es la
+Unidad 1 del programa 1ECO73 («enfoque de la elección» y «enfoque de las
+preferencias»).}
+
+\tema{1.1 Relaciones de preferencia y racionalidad}
+\lecturas{\RU{1} \quad \MWG{1.A--1.B} \quad \JR{1.1} \quad \JR{1.2.1}}
+\supl{\KR{2.1} \quad \MMT{1}}
+\consulta{Deaton y Muellbauer (1980), cap.~1}
+
+\tema{1.2 Representación mediante funciones de utilidad}
+\lecturas{\RU{2} \quad \MWG{3.B--3.C} \quad \JR{1.2.2} \quad \VA{7}}
+\supl{\MMT{1}}
+\nota{Teorema de existencia de una función de utilidad continua y su
+unicidad hasta transformaciones monótonas. \VA{7} solo en la parte de las
+preferencias del consumidor; el resto del capítulo va con el tema 2.3.}
+
+\tema{1.3 Reglas de elección y preferencia revelada}
+\lecturas{\RU{3} \quad \MWG{1.C--1.D}}
+\supl{\KR{2.1} \quad \MMT{2}}
+\nota{Axioma débil de la preferencia revelada y racionalización de una regla de
+elección. Rubinstein discute además procedimientos de elección que no
+proceden de maximizar preferencias, el punto de contacto con la economía
+del comportamiento (programa 1ECO42).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Teoría del consumidor y dualidad --- 5 semanas}
+{Núcleo del plan. La dualidad entre maximización de la utilidad y
+minimización del gasto organiza todo lo que sigue: reaparece en la empresa
+(Bloque 3), en el análisis de bienestar (Bloques 5 y 11) y en el equilibrio
+general (Bloque 9).}
+
+\tema{2.1 Conjunto de consumo, presupuesto walrasiano y funciones de demanda}
+\lecturas{\VA{7} \quad \MWG{2.A--2.E} \quad \JR{1.3} \quad \RU{4} \quad \RU{5}}
+\supl{\KR{2.2} \quad \MMT{4}}
+\consultalib{Martínez-Giralt (2008), caps.~2.1--2.4}
+
+\tema{2.2 El axioma débil y la ley de la demanda}
+\lecturas{\MWG{2.F}}
+\supl{\KR{2.2}}
+\nota{Teoría de la demanda sin preferencias: la matriz de Slutsky aparece aquí
+por primera vez, como consecuencia del axioma débil.}
+
+\tema{2.3 Maximización de la utilidad y función de utilidad indirecta}
+\lecturas{\VA{7} \quad \MWG{3.D} \quad \JR{1.4.1}}
+\supl{\KR{2.3}}
+
+\tema{2.4 Minimización del gasto y función de gasto}
+\lecturas{\VA{7} \quad \MWG{3.E} \quad \JR{1.4.2}}
+\nota{Varian introduce aquí la función de utilidad métrica monetaria, que se usa
+de nuevo en el tema 2.7.}
+
+\tema{2.5 Dualidad: identidad de Roy, lema de Shephard y ecuación de Slutsky}
+\lecturas{\VA{8} \quad \MWG{3.F--3.G} \quad \JR{1.4.3} \quad \JR{1.5}}
+\supl{\KR{2.3}}
+\consultalib{Martínez-Giralt (2008), caps.~2.5--2.7}
+\nota{Efectos ingreso y sustitución, propiedades de la matriz de Slutsky y
+relaciones de elasticidad.}
+
+\tema{2.6 Integrabilidad, dualidad a fondo y axioma fuerte}
+\lecturas{\VA{8} \quad \MWG{3.H} \quad \MWG{3.J} \quad \JR{2.1--2.3}}
+\nota{Cómo recuperar las preferencias a partir de la demanda o de la función
+de gasto. Jehle y Reny hacen aquí su tratamiento más completo de la dualidad.}
+
+\tema{2.7 Medidas de bienestar: variaciones compensatoria y equivalente, excedente}
+\lecturas{\VA{10} \quad \MWG{3.I}}
+\consultalib{Martínez-Giralt (2008), cap.~2.9}
+\nota{La utilidad cuasilineal y el excedente del consumidor como aproximación;
+se usa en el tema 5.3.}
+
+\tema{2.8 Extensiones: dotaciones, oferta de trabajo, homotecia y separabilidad}
+\lecturas{\VA{9}}
+\supl{\MMT{5}}
+\nota{Es el tema 4 de la Unidad 1 del programa 1ECO73 («extensiones del modelo
+básico»).}
+
+\tema{2.9 Demanda agregada y consumidor representativo}
+\lecturas{\MWG{4.A--4.D} \quad \VA{9}}
+\supl{\KR{2.4}}
+\consulta{Deaton y Muellbauer (1980), caps.~2--4}
+\nota{Forma polar de Gorman, agregación y axioma débil, consumidor representativo
+positivo y normativo. Es el tema 3 de la Unidad 1 del programa 1ECO73.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Producción y teoría de la empresa --- 3 semanas}
+{La empresa neoclásica es el consumidor con otra interpretación: las mismas
+herramientas de dualidad, sin la restricción de presupuesto. Varian es aquí
+especialmente completo y es la primera lectura de cada tema. Corresponde a la
+Unidad 3 del programa 1ECO73.}
+
+\tema{3.1 Tecnología: conjuntos de producción, sustitución y rendimientos de escala}
+\lecturas{\VA{1} \quad \MWG{5.A--5.B} \quad \JR{3.1--3.2}}
+\supl{\KR{7.1}}
+\consultalib{Martínez-Giralt (2008), cap.~3.1}
+
+\tema{3.2 Maximización del beneficio y función de beneficios}
+\lecturas{\VA{2} \quad \VA{3} \quad \MWG{5.C} \quad \JR{3.5}}
+\supl{\KR{7.2}}
+\nota{Lema de Hotelling, estática comparativa y principio de Le Chatelier.}
+
+\tema{3.3 Minimización del costo y funciones de costos}
+\lecturas{\VA{4} \quad \VA{5} \quad \MWG{5.C--5.D} \quad \JR{3.3}}
+\supl{\KR{7.3} \quad \KR{7.5}}
+\nota{Costos de corto y largo plazo; geometría del costo y la oferta con un
+solo producto.}
+
+\tema{3.4 Dualidad en la producción}
+\lecturas{\VA{6} \quad \JR{3.4}}
+\supl{\KR{7.4}}
+\consultalib{Martínez-Giralt (2008), cap.~3.5}
+
+\tema{3.5 Agregación, producción eficiente y objetivos de la empresa}
+\lecturas{\MWG{5.E--5.G} \quad \RU{6}}
+\supl{\MMT{6}}
+\nota{Por qué la oferta agregada se comporta como la de una sola empresa, y qué
+ocurre con el objetivo de maximizar beneficios cuando los propietarios son
+también consumidores. Las teorías alternativas de la empresa se estudian en
+el tema 12.8.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Decisión bajo incertidumbre --- 4 semanas}
+{Unidad 2 del programa 1ECO73 y primer tema del programa de Teoría de Juegos
+(1ECO43). Las notas de Gallardo, del Fondo Editorial PUCP, son el texto del
+programa y la lectura de apoyo en cada tema.}
+
+\tema{4.1 Loterías y teorema de la utilidad esperada}
+\lecturas{\VA{11} \quad \MWG{6.A--6.B} \quad \JR{2.4.1--2.4.2} \quad \RU{7} \quad \GA{1--2}}
+\supl{\KR{3.1} \quad \MMT{3}}
+
+\tema{4.2 Aversión al riesgo: coeficientes de Arrow--Pratt y equivalente cierto}
+\lecturas{\VA{11} \quad \MWG{6.C} \quad \JR{2.4.3} \quad \RU{8} \quad \GA{3}}
+\supl{\KR{3.2}}
+
+\tema{4.3 Manejo de riesgos: seguros y elección de cartera}
+\lecturas{\VA{11} \quad \GA{4} \quad \GA{7}}
+\supl{\KR{3.3}}
+\consulta{Bikhchandani, Hirshleifer y Riley (2013), caps.~1--3}
+\nota{Demanda de seguro y cartera con un activo riesgoso; \GA{7} reúne otras
+aplicaciones. Es el tema
+«aversión y manejo de riesgos» de 1ECO73.}
+
+\tema{4.4 Dominancia estocástica y enfoque media--varianza}
+\lecturas{\MWG{6.D} \quad \GA{5} \quad \GA{6.1--6.3}}
+\nota{De \GA{6} se omite la sección 6.4 (CAPM), que es valoración de activos.}
+
+\tema{4.5 Utilidad dependiente del estado y probabilidad subjetiva}
+\lecturas{\VA{11} \quad \MWG{6.E--6.F}}
+\supl{\KR{3.4}}
+
+\tema{4.6 Los límites de la utilidad esperada: Allais, Ellsberg y teoría prospectiva}
+\lecturas{\VA{11}}
+\supl{\KR{3.5--3.6}}
+\articulos{Kahneman y Tversky (1979)}
+\articulosB{Kőszegi y Rabin (2006)}
+\consulta{Tversky y Kahneman (1992)}
+\nota{Paradojas de Allais y Ellsberg, puntos de referencia, aversión a las
+pérdidas y ponderación de probabilidades (programa 1ECO42, sesión~8). Kőszegi y
+Rabin hacen endógeno el punto de referencia: las expectativas del propio
+agente.}
+
+\tema{4.7 Elección dinámica}
+\supl{\KR{4}}
+\articulosB{Laibson (1997) \quad O'Donoghue y Rabin (1999)}
+\nota{Estrategias dinámicas óptimas y preferencias sobre menús. Kreps es la
+lectura principal; Laibson y O'Donoghue y Rabin añaden el sesgo presente
+(descuento cuasihiperbólico), la inconsistencia temporal y la diferencia entre
+agentes ingenuos y sofisticados. El apéndice de programación dinámica
+(\KR{Apéndice 2}) se consulta aquí.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Equilibrio parcial competitivo --- 2 semanas}
+{Primer encuentro entre agentes: el mercado competitivo de un solo bien. Es
+breve porque reutiliza los Bloques 2 y 3; el análisis de bienestar que se
+hace aquí se generaliza en el Bloque 9.}
+
+\tema{5.1 Mercado competitivo, oferta de la industria y equilibrio de corto plazo}
+\lecturas{\VA{13} \quad \MWG{10.A--10.C} \quad \JR{4.1}}
+\supl{\KR{8.1} \quad \MMT{9}}
+
+\tema{5.2 Entrada libre y equilibrio de largo plazo}
+\lecturas{\VA{13} \quad \MWG{10.F}}
+\supl{\KR{8.2}}
+
+\tema{5.3 Los teoremas del bienestar en equilibrio parcial; impuestos y subsidios}
+\lecturas{\VA{13} \quad \MWG{10.D--10.E} \quad \JR{4.3}}
+\nota{Excedente total, pérdida de eficiencia de un impuesto e incidencia
+(curso del BCRP, tema 1.3).}
+
+\tema{5.4 Los límites del equilibrio parcial}
+\lecturas{\MWG{10.G}}
+\supl{\KR{8.3}}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Teoría de juegos I: juegos estáticos --- 4 semanas}
+{Integra los programas de Teoría de Juegos 1ECO43 (pregrado) y MAT657
+(posgrado). Osborne y Gibbons dan los conceptos y las aplicaciones; Mas-Colell
+y Jehle y Reny, la versión formal; Osborne y Rubinstein, el tratamiento de
+posgrado. Gibbons se lee por secciones, en el orden que indica cada tema.}
+
+\tema{6.1 Representación de un juego: formas extensiva y normal; estrategias mixtas y de comportamiento}
+\lecturas{\MWG{7} \quad \JR{7.1} \quad \OS{1} \quad \OS{2.1--2.5} \quad \GI{1.1.A}}
+\supl{\KR{11}}
+
+\tema{6.2 Dominancia, eliminación iterada y racionalizabilidad}
+\lecturas{\MWG{8.B--8.C} \quad \JR{7.2.1} \quad \OS{2.9} \quad \OS{12} \quad \GI{1.1.B} \quad \ORU{4}}
+\supl{\KR{12.1--12.2}}
+
+\tema{6.3 Equilibrio de Nash en estrategias puras}
+\lecturas{\MWG{8.D} \quad \JR{7.2.2} \quad \OS{2.6--2.10} \quad \GI{1.1.C} \quad \ORU{2.1--2.4}}
+\supl{\KR{12.4} \quad \KR{12.6} \quad \MMT{15}}
+\consultalib{Kartik, notas, cap.~3}
+
+\tema{6.4 Estrategias mixtas, existencia del equilibrio y juegos estrictamente competitivos}
+\lecturas{\MWG{8} (apéndice A) \quad \OS{4} \quad \OS{11} \quad \GI{1.3} \quad \ORU{2.5} \quad \ORU{3.1--3.2}}
+\supl{\KR{12.5}}
+\nota{Existencia vía teorema de punto fijo de Kakutani (\MWG{M.H--M.I}) e
+interpretación de las estrategias mixtas.}
+
+\tema{6.5 Aplicaciones: Cournot, Bertrand, competencia electoral y guerra de desgaste}
+\lecturas{\OS{3} \quad \GI{1.2} \quad \VA{15}}
+\nota{Temas 4 y 5 del programa 1ECO43. Las subastas de \OS{3.5} se dejan para
+el tema 13.1.}
+
+\tema{6.6 Juegos bayesianos y equilibrio bayesiano de Nash}
+\lecturas{\MWG{8.E} \quad \JR{7.2.3} \quad \OS{9.1--9.6} \quad \GI{3.1} \quad \GI{3.2.A} \quad \ORU{2.6}}
+\supl{\KR{13.1}}
+\nota{Purificación de las estrategias mixtas (Harsanyi) en \GI{3.2.A}. Es el
+tema 6 de 1ECO43 y la sesión 3.2 de 2ECO02.}
+
+\tema{6.7 Mano temblorosa y equilibrio correlacionado}
+\lecturas{\MWG{8.F} \quad \ORU{3.3} \quad \ORU{12.5}}
+\supl{\KR{12.7.1} \quad \KR{12.7.5--12.7.6}}
+
+\tema{6.8 Conocimiento común y juegos evolutivos}
+\lecturas{\ORU{5} \quad \ORU{3.4} \quad \OS{13}}
+\consulta{Fudenberg y Levine (1998) \quad Vega-Redondo (2003)}
+\consultalib{Bonanno (2024), caps.~8--10}
+\nota{Modelos de conocimiento, el juego del correo electrónico y estrategias
+evolutivamente estables (programa MAT657, módulo IV). El replicador dinámico y
+el juego ficticio quedan como consulta.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Teoría de juegos II: juegos dinámicos --- 4 semanas}
+{La racionalidad secuencial y las creencias fuera del equilibrio. Este bloque
+es requisito de la competencia dinámica (Bloque 8), de la señalización
+(tema 12.2) y de la negociación cooperativa (tema 11.6).}
+
+\tema{7.1 Información perfecta: inducción hacia atrás y equilibrio perfecto en subjuegos}
+\lecturas{\MWG{9.A--9.B} \quad \JR{7.3.1--7.3.6} \quad \OS{5--7} \quad \GI{2.1--2.2} \quad \GI{2.4} \quad \ORU{6}}
+\supl{\KR{12.3} \quad \KR{12.7.2} \quad \MMT{16}}
+\nota{Stackelberg (\OS{6.3}, \GI{2.1.B}); juegos en dos etapas con
+información imperfecta; el juego del ultimátum y el problema de
+retención (\emph{hold-up}).}
+
+\tema{7.2 Juegos repetidos y teoremas \emph{folk}}
+\lecturas{\MWG{12} (apéndice A) \quad \OS{14--15} \quad \GI{2.3} \quad \ORU{8}}
+\supl{\KR{14.1--14.3}}
+\nota{Tema 11 de 1ECO43. La colusión entre duopolistas de Cournot (\GI{2.3.C})
+se retoma en el tema 8.3.}
+
+\tema{7.3 Negociación bilateral: ofertas alternadas}
+\lecturas{\MWG{9} (apéndice A) \quad \ORU{7}}
+\supl{\KR{15}}
+\nota{Modelo de Rubinstein. Tema 10 de 1ECO43. La solución axiomática de Nash se
+ve en el tema 11.6. El capítulo de negociación de Osborne (\OS{16}) no está
+escrito en la versión de la carpeta.}
+
+\tema{7.4 Información imperfecta: creencias, equilibrio bayesiano perfecto y secuencial}
+\lecturas{\MWG{9.C} \quad \JR{7.3.7} \quad \GI{4.1} \quad \ORU{11} \quad \ORU{12.1--12.3}}
+\supl{\KR{12.7.3}}
+\consultalib{Bonanno (2024), caps.~11--13 \quad Myerson (1991), cap.~4}
+\nota{Tema 13 de 1ECO43 y sesión 2.1 de MAT657. El capítulo de Osborne sobre
+juegos con información imperfecta (\OS{10}) tampoco está escrito en esa versión.}
+
+\tema{7.5 Juegos de señalización y refinamientos}
+\lecturas{\MWG{9.D} \quad \MWG{13} (apéndice A) \quad \GI{4.2.A} \quad \GI{4.3.A} \quad \GI{4.4} \quad \ORU{12.4}}
+\supl{\KR{12.7.4} \quad \KR{13.4}}
+\nota{Inducción hacia adelante y criterio intuitivo; \emph{cheap talk}. Las
+aplicaciones de señalización al mercado laboral van en el tema 12.2.}
+
+\tema{7.6 Reputación}
+\lecturas{\GI{4.3.C}}
+\supl{\KR{13.2--13.3} \quad \KR{14.5--14.6}}
+\nota{Irracionalidad modelada como información incompleta; el dilema del
+prisionero repetido finitamente. Tema 12 de 1ECO43; módulo II de MAT657.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Poder de mercado y competencia imperfecta --- 3 semanas}
+{Aplicación directa de los Bloques 6 y 7. Corresponde a la Unidad 4 del
+programa 1ECO73 y a la sesión 3.4 de 2ECO02. Los textos de organización
+industrial que citan esos programas quedan como consulta.}
+
+\tema{8.1 Monopolio, discriminación de precios y precios no lineales}
+\lecturas{\VA{14} \quad \MWG{12.A--12.B} \quad \JR{4.2}}
+\supl{\KR{9.1} \quad \KR{9.3--9.4} \quad \MMT{7}}
+\consulta{Tirole (1988) \quad Shy (1996) \quad Cabral (2017)}
+\nota{Discriminación de primer, segundo y tercer grado; elección de la calidad.
+El monopsonio y la competencia imperfecta en mercados de factores (1ECO73,
+tema 4.4) se estudian con la consulta de Pepall, Richards y Norman.}
+
+\tema{8.2 Oligopolio estático: Cournot, Bertrand y diferenciación de productos}
+\lecturas{\VA{16} \quad \MWG{12.C} \quad \JR{4.2.1--4.2.2}}
+\supl{\KR{10.1} \quad \KR{12.8}}
+\consulta{Pepall, Richards y Norman, caps.~2--6}
+\nota{Diferenciación horizontal y vertical (sesión 3.4 de 2ECO02).}
+
+\tema{8.3 Interacción repetida y colusión tácita}
+\lecturas{\VA{16} \quad \MWG{12.D}}
+\supl{\KR{14.4}}
+\nota{Modelos dinámicos de oligopolio (1ECO73, tema 4.2).}
+
+\tema{8.4 Entrada, disuasión y compromisos estratégicos}
+\lecturas{\VA{16} \quad \MWG{12.E} \quad \MWG{12.G} \quad \MWG{12} (apéndice B)}
+\supl{\KR{9.2}}
+\nota{Precio límite, disuasión y acomodo de la entrada. La disuasión con
+información incompleta ya se vio en el tema 7.6.}
+
+\tema{8.5 El límite competitivo y la competencia monopolística}
+\lecturas{\MWG{12.F} \quad \JR{4.2.3}}
+\supl{\KR{9.5} \quad \KR{10.2}}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Equilibrio general --- 4 semanas}
+{Módulo 1 del programa 2ECO02, que sigue \MWG{15--18}. Jehle y Reny dan la
+prueba de existencia más accesible; Varian, la intuición gráfica.}
+
+\tema{9.1 Ejemplos: caja de Edgeworth, economía de Robinson Crusoe y modelo 2$\times$2}
+\lecturas{\VA{17} \quad \MWG{15} \quad \JR{5.1}}
+\consultalib{Martínez-Giralt (2008), caps.~4.2.1 y 4.3}
+\consulta{Lugon (2015) \quad Tello (2017)}
+
+\tema{9.2 Economía de intercambio: equilibrio walrasiano y teoremas del bienestar}
+\lecturas{\VA{17} \quad \MWG{16} \quad \JR{5.2.2}}
+\supl{\KR{6.1} \quad \KR{6.3} \quad \MMT{10}}
+\consulta{Lugon (2022)}
+\nota{El segundo teorema requiere el teorema del hiperplano separador
+(\MWG{M.G}, \JR{A2.5}).}
+
+\tema{9.3 Existencia del equilibrio walrasiano}
+\lecturas{\MWG{17.A--17.C} \quad \MWG{17} (apéndice B) \quad \JR{5.2.1}}
+\supl{\KR{6.4}}
+\consultalib{Debreu (1959)}
+
+\tema{9.4 Equilibrio general con producción}
+\lecturas{\VA{18} \quad \JR{5.3}}
+\supl{\KR{8.4} \quad \MMT{12}}
+\nota{Teorema de no sustitución y estructura de la industria en equilibrio
+general.}
+
+\tema{9.5 Unicidad, estática comparativa, estabilidad y teorema SMD}
+\lecturas{\VA{21} \quad \MWG{17.E--17.H}}
+\supl{\KR{6.2}}
+\nota{Teorema de Sonnenschein--Mantel--Debreu, o «todo vale»: por qué el equilibrio general no impone restricciones a la
+demanda agregada. Sustitutos brutos y estabilidad del tanteo.}
+
+\tema{9.6 Núcleo y equilibrio; fundamentos no cooperativos del equilibrio walrasiano}
+\lecturas{\VA{21} \quad \MWG{18.A--18.C} \quad \JR{5.5}}
+\consultalib{Martínez-Giralt (2008), cap.~4.2.5}
+\nota{Economías réplica y convergencia del núcleo (sesión 1.4 de 2ECO02).}
+
+\tema{9.7 Los límites a la redistribución y el principio de productividad marginal}
+\lecturas{\MWG{18.D--18.E}}
+
+\tema{9.8 Asignación sin precios: el equilibrio de la jungla}
+\lecturas{\MMT{8} \quad \RR{0--1}}
+\consultalib{\RR{2--5}}
+\nota{Asignación por poder en lugar de precios, con los mismos teoremas de
+existencia y eficiencia (programa ECO315). El resto del libro de Richter y
+Rubinstein queda como consulta.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 10 --- Equilibrio general con incertidumbre y tiempo --- 1 semana}
+{Bloque breve: extiende el modelo de Arrow--Debreu a estados de la naturaleza y
+a fechas. Las aplicaciones financieras y la dinámica agregada quedan fuera
+(Anexo B).}
+
+\tema{10.1 Mercancías contingentes, equilibrio de Arrow--Debreu y comercio secuencial}
+\lecturas{\MWG{19.A--19.D} \quad \JR{5.4} \quad \VA{19}}
+\supl{\KR{6.5} \quad \MMT{13}}
+\nota{Equilibrio de Radner. Es la revisión de Arrow--Debreu con que empieza el
+programa MAT659.}
+
+\tema{10.2 Equilibrio y tiempo: utilidad intertemporal y generaciones solapadas}
+\lecturas{\VA{19} \quad \MWG{20.A--20.D} \quad \MWG{20.H}}
+\nota{Enlace con los Bloques 4 y 7 del sílabo de macroeconomía.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 11 --- Externalidades, bienes públicos y bienestar social --- 3 semanas}
+{Las fallas de mercado y la agregación de preferencias. Cierra con los juegos
+cooperativos, que retoman el núcleo del tema 9.6.}
+
+\tema{11.1 Externalidades: Pigou, Coase y mercados ausentes}
+\lecturas{\VA{24} \quad \MWG{11.A--11.B} \quad \MWG{11.D}}
+\consulta{Coase (1990)}
+\consultalib{Bowles y Chen (2025), caps.~5--6}
+\nota{Curso del BCRP, tema 8.1.}
+
+\tema{11.2 Bienes públicos: condición de Samuelson, provisión privada y Lindahl}
+\lecturas{\VA{23} \quad \MWG{11.C}}
+\consultalib{Bowles y Chen (2025), cap.~4}
+
+\tema{11.3 Información privada y soluciones de segundo mejor}
+\lecturas{\MWG{11.E} \quad \VA{23}}
+\nota{Mecanismos de revelación de la demanda: anticipo del tema 13.4.}
+
+\tema{11.4 Elección social y teorema de Arrow}
+\lecturas{\RU{9} \quad \MWG{21.A--21.D} \quad \JR{6.1--6.2}}
+\supl{\KR{5.5} \quad \MMT{20}}
+
+\tema{11.5 Funciones de bienestar social, comparabilidad y justicia}
+\lecturas{\VA{22} \quad \MWG{22.A--22.D} \quad \JR{6.3--6.4}}
+\supl{\KR{5.1--5.4}}
+\nota{Formas rawlsiana y utilitarista; criterio de compensación e impuestos
+óptimos en \VA{22}.}
+
+\tema{11.6 Negociación axiomática y juegos cooperativos: solución de Nash, núcleo y valor de Shapley}
+\lecturas{\MWG{22.E--22.F} \quad \MWG{18} (apéndice A) \quad \OS{8} \quad \ORU{13--15}}
+\supl{\MMT{18}}
+\nota{Programa MAT657, módulo III. \OS{8.7} y \MMT{18} introducen el
+emparejamiento (\emph{matching}).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 12 --- Información asimétrica y contratos --- 4 semanas}
+{Unidad 2 de 1ECO73, módulos 2 y 4 de 2ECO02 y segunda parte de MAT659. Es el
+bloque con más artículos de los programas; la consulta de Laffont y Martimort
+(2002) acompaña todo el bloque.}
+
+\tema{12.1 Selección adversa: el mercado de los «cacharros»}
+\lecturas{\VA{25} \quad \MWG{13.A--13.B} \quad \JR{8.1.1} \quad \JR{8.3}}
+\supl{\KR{17.1} \quad \MMT{14}}
+\consultalib{Birchler y Bütler (2007), caps.~12--13}
+
+\tema{12.2 Señalización}
+\lecturas{\VA{25} \quad \MWG{13.C} \quad \JR{8.1.2} \quad \GI{4.2.B}}
+\supl{\KR{17.2--17.3}}
+\articulos{Spence (1973)}
+\consulta{Swinkels (1999)}
+
+\tema{12.3 Filtrado (\emph{screening})}
+\lecturas{\MWG{13.D} \quad \JR{8.1.3}}
+
+\tema{12.4 Riesgo moral: el problema del agente principal con acción oculta}
+\lecturas{\VA{25} \quad \MWG{14.A--14.B} \quad \MWG{14} (apéndice A) \quad \JR{8.2}}
+\supl{\KR{16.1--16.4}}
+\articulos{Holmström (1979) \quad Grossman y Hart (1983)}
+\consulta{Rogerson (1985) \quad Laffont y Martimort (2002), caps.~4--5 \quad Salanié (1997), caps.~4--5 \quad Macho-Stadler y Pérez-Castrillo (2001)}
+\nota{Enfoque de primer orden y sus límites.}
+
+\tema{12.5 Información oculta: discriminación monopolística y Spence--Mirrlees}
+\lecturas{\VA{25} \quad \MWG{14.C} \quad \MWG{14} (apéndice B)}
+\supl{\KR{18.1}}
+\articulos{Mussa y Rosen (1978) \quad Maskin y Riley (1984)}
+\consulta{Laffont y Martimort (2002), caps.~2--3 \quad Mirrlees (1971)}
+\nota{Tipos discretos y continuos, exclusión óptima y modelos multidimensionales
+(programa MAT659).}
+
+\tema{12.6 Modelos híbridos, equipos y relaciones de largo plazo}
+\lecturas{\MWG{14.D}}
+\supl{\KR{16.5}}
+\articulos{Holmström (1982) \quad Holmström y Milgrom (1987)}
+\consulta{Fudenberg, Holmström y Milgrom (1990) \quad Bisetti, Tengelsen y Zetlin-Jones (2022)}
+
+\tema{12.7 Regulación con información asimétrica}
+\articulos{Baron y Myerson (1982) \quad Loeb y Magat (1979)}
+\consulta{Laffont y Tirole (1993) \quad Demsetz (1968) \quad Lewis y Sappington (1988) \quad Pérez Arata (1993)}
+\nota{Regulación de un monopolio con costos desconocidos, ajuste de subsidios y
+\emph{price caps} (2ECO02, sesión 2.3). Tema solo con artículos.}
+
+\tema{12.8 Teorías de la empresa y economía de los costos de transacción}
+\supl{\KR{19--20}}
+\articulosB{Grossman y Hart (1986) \quad Hart y Moore (1990) \quad Holmström y Milgrom (1991)}
+\consulta{Hart (1991) \quad Williamson (1975)}
+\nota{Contratos incompletos y la empresa como estructura de gobierno (2ECO02,
+módulo 2). Grossman, Hart y Moore explican la integración por los derechos de
+propiedad cuando los contratos son incompletos; Holmström y Milgrom, el diseño
+de incentivos cuando el agente realiza varias tareas.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 13 --- Subastas, diseño de mecanismos y diseño de mercados --- 4 semanas}
+{Módulo 3 y sesión 4.1 de 2ECO02, y temas 7 y 8 de 1ECO43. Jehle y Reny llevan
+el hilo en subastas; Mas-Colell, en el diseño de mecanismos general. Cierra con
+el emparejamiento y el diseño de información, dos temas que hoy forman parte del
+núcleo de muchos programas de doctorado.}
+
+\tema{13.1 Subastas: los cuatro formatos y el modelo de valores privados independientes}
+\lecturas{\JR{9.1--9.2} \quad \OS{3.5} \quad \OS{9.7} \quad \GI{3.2.B--3.2.C}}
+\consulta{Krishna (2010)}
+
+\tema{13.2 El teorema de equivalencia de ingresos}
+\lecturas{\JR{9.3}}
+\consulta{Krishna (2010)}
+
+\tema{13.3 El problema de diseño de mecanismos y el principio de revelación}
+\lecturas{\MWG{23.A--23.B} \quad \JR{9.4.1} \quad \GI{3.3}}
+\supl{\KR{18.2} \quad \MMT{17}}
+\consulta{Börgers (2015)}
+
+\tema{13.4 Implementación en estrategias dominantes: Gibbard--Satterthwaite y Vickrey--Clarke--Groves}
+\lecturas{\MWG{21.E} \quad \MWG{23.C} \quad \JR{6.5} \quad \JR{9.5.1--9.5.4}}
+\supl{\KR{18.3--18.4}}
+\consultalib{\ORU{10}}
+
+\tema{13.5 Implementación bayesiana, restricciones de participación y presupuesto equilibrado}
+\lecturas{\MWG{23.D--23.E} \quad \JR{9.5.5--9.5.8}}
+\articulos{Myerson y Satterthwaite (1983)}
+
+\tema{13.6 Mecanismos bayesianos óptimos: la subasta que maximiza el ingreso}
+\lecturas{\MWG{23.F} \quad \JR{9.4.2--9.4.5}}
+\articulosB{Myerson (1981)}
+\consulta{Dewatripont y Maskin (1990)}
+\consultalib{Myerson (1991), caps.~6 y 10}
+\nota{Mecanismos dinámicos y renegociación (2ECO02, sesión 4.1) quedan como
+consulta.}
+
+\tema{13.7 Emparejamiento bilateral y diseño de mercados}
+\articulosB{Gale y Shapley (1962) \quad Abdulkadiroğlu y Sönmez (2003)}
+\consultalib{Roth y Sotomayor (1990) \quad \OS{8.7} \quad \MMT{18}}
+\nota{Estabilidad, algoritmo de aceptación diferida y su optimalidad para el lado
+que propone; incentivos a revelar la verdad. Admisión escolar: el mecanismo de
+Boston frente a la aceptación diferida y los ciclos de intercambio máximo (\emph{top
+trading cycles}). Retoma el núcleo del tema 11.6 y la implementación en
+estrategias dominantes del 13.4.}
+
+\tema{13.8 Diseño de información y persuasión bayesiana}
+\articulosB{Kamenica y Gentzkow (2011)}
+\consultalib{Bergemann y Morris (2019)}
+\nota{Un emisor que se compromete con una estructura de información para influir
+en las decisiones de un receptor: la concavificación y el valor de la
+persuasión. Contrasta con la señalización (tema 7.5) y el \emph{cheap talk}, en
+que el emisor no se compromete. Aplicaciones: calificaciones de riesgo,
+pruebas de estrés bancarias y comunicación de los bancos centrales.}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los temas}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los temas}
+
+Asignación hecha a partir de los índices de cada libro. La última columna
+indica el tema (o temas) donde se lee cada capítulo.
+
+\subsection*{Varian, \emph{Análisis microeconómico} (3.ª ed.)}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{cXc@{\hspace{1.2em}}cXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Tema} & \cab{Cap.} & \cab{Título} & \cab{Tema} \\
+\midrule
+1 & La tecnología & 3.1 & 15 & La teoría de los juegos & 6.5 \\
+2 & La maximización del beneficio & 3.2 & 16 & El oligopolio & 8.2--8.4 \\
+3 & La función de beneficios & 3.2 & 17 & El intercambio & 9.1--9.2 \\
+4 & La minimización de los costes & 3.3 & 18 & La producción & 9.4 \\
+5 & La función de costes & 3.3 & 19 & El tiempo & 10.1--10.2 \\
+6 & La dualidad & 3.4 & 20 & Los mercados de activos & --- \\
+7 & La maximización de la utilidad & 1.2, 2.1--2.4 & 21 & Análisis del equilibrio & 9.5--9.6 \\
+8 & La elección & 2.5--2.6 & 22 & El bienestar & 11.5 \\
+9 & La demanda & 2.8--2.9 & 23 & Los bienes públicos & 11.2--11.3 \\
+10 & El excedente de los consumidores & 2.7 & 24 & Las externalidades & 11.1 \\
+11 & La incertidumbre & 4.1--4.6 & 25 & La información & 12.1--12.5 \\
+12 & Econometría & --- & 26 & Matemáticas & Consulta \\
+13 & Los mercados competitivos & 5.1--5.3 & 27 & La optimización & Consulta \\
+14 & El monopolio & 8.1 & & & \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{Jehle y Reny, \emph{Advanced Microeconomic Theory} (3.ª ed.)}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXl}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap. / secc.} & \cab{Título} & \cab{Tema} \\
+\midrule
+1.1--1.2 & Primitive notions; preferences and utility & 1.1--1.2 \\
+1.3--1.5 & The consumer's problem; indirect utility and expenditure; properties of demand & 2.1, 2.3--2.5 \\
+2.1--2.3 & Duality: a closer look; integrability; revealed preference & 2.6 \\
+2.4 & Uncertainty & 4.1--4.2 \\
+3 & Theory of the firm & 3.1--3.4 \\
+4.1, 4.3 & Perfect competition; equilibrium and welfare & 5.1, 5.3 \\
+4.2 & Imperfect competition & 8.1--8.2, 8.5 \\
+5.1--5.3 & Equilibrium in exchange; in competitive market systems; in production & 9.1--9.4 \\
+5.4 & Contingent plans & 10.1 \\
+5.5 & Core and equilibria & 9.6 \\
+6.1--6.4 & Social choice and welfare & 11.4--11.5 \\
+6.5 & Social choice and the Gibbard--Satterthwaite theorem & 13.4 \\
+7 & Game theory & 6.1--6.3, 6.6, 7.1, 7.4 \\
+8 & Information economics & 12.1--12.4 \\
+9 & Auctions and mechanism design & 13.1--13.6 \\
+A1, A2 & Mathematical appendices & Consulta \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{Mas-Colell, Whinston y Green, \emph{Microeconomic Theory}}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{clXl}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Secciones} & \cab{Título} & \cab{Tema} \\
+\midrule
+1 & A--D & Preference and choice & 1.1, 1.3 \\
+2 & A--F & Consumer choice & 2.1--2.2 \\
+3 & B--J & Classical demand theory & 1.2, 2.3--2.7 \\
+4 & A--D & Aggregate demand & 2.9 \\
+5 & A--G & Production & 3.1--3.3, 3.5 \\
+6 & A--F & Choice under uncertainty & 4.1--4.5 \\
+7 & A--E & Basic elements of noncooperative games & 6.1 \\
+8 & A--F, ap.~A & Simultaneous-move games & 6.2--6.4, 6.6--6.7 \\
+9 & A--D, ap.~A & Dynamic games & 7.1, 7.3--7.5 \\
+10 & A--G & Competitive markets & 5.1--5.4 \\
+11 & A--E & Externalities and public goods & 11.1--11.3 \\
+12 & A--G, ap.~A--B & Market power & 7.2, 8.1--8.5 \\
+13 & A--D, ap.~A & Adverse selection, signaling, and screening & 7.5, 12.1--12.3 \\
+14 & A--D, ap.~A--B & The principal--agent problem & 12.4--12.6 \\
+15 & A--E & General equilibrium theory: some examples & 9.1 \\
+16 & A--G & Equilibrium and its basic welfare properties & 9.2 \\
+17 & A--C, E--H, ap.~B & The positive theory of equilibrium & 9.3, 9.5 \\
+18 & A--E, ap.~A & Some foundations for competitive equilibria & 9.6--9.7, 11.6 \\
+19 & A--D & General equilibrium under uncertainty & 10.1 \\
+20 & A--D, H & Equilibrium and time & 10.2 \\
+21 & A--E & Social choice theory & 11.4, 13.4 \\
+22 & A--F & Elements of welfare economics and axiomatic bargaining & 11.5--11.6 \\
+23 & A--F & Incentives and mechanism design & 13.3--13.6 \\
+M & C--L, N & Mathematical appendix & Consulta \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{Rubinstein, \emph{Lecture Notes in Microeconomic Theory} (revisión 2026)}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{cXc@{\hspace{1.2em}}cXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Lecc.} & \cab{Título} & \cab{Tema} & \cab{Lecc.} & \cab{Título} & \cab{Tema} \\
+\midrule
+1 & Preferences & 1.1 & 6 & More economic agents & 3.5 \\
+2 & Utility & 1.2 & 7 & Expected utility & 4.1 \\
+3 & Choice & 1.3 & 8 & Risk aversion & 4.2 \\
+4 & Consumer preferences & 2.1 & 9 & Social choice & 11.4 \\
+5 & Demand: consumer choice & 2.1 & & 76 review problems & práctica \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{Kreps, \emph{A Course in Microeconomic Theory} (suplemento)}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{cXl}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Tema} \\
+\midrule
+2 & The theory of consumer choice and demand & 1.1, 1.3, 2.1--2.5, 2.9 \\
+3 & Choice under uncertainty & 4.1--4.6 \\
+4 & Dynamic choice & 4.7 \\
+5 & Social choice and efficiency & 11.4--11.5 \\
+6 & Pure exchange and general equilibrium & 9.2--9.5, 10.1 \\
+7 & The neoclassical firm & 3.1--3.4 \\
+8 & The competitive firm and perfect competition & 5.1--5.4, 9.4 \\
+9 & Monopoly & 8.1, 8.4--8.5 \\
+10 & Imperfect competition & 8.2, 8.5 \\
+11 & Modeling competitive situations & 6.1 \\
+12 & Solution concepts for noncooperative games & 6.2--6.4, 6.7, 7.1, 7.4--7.5, 8.2 \\
+13 & Incomplete information and irrationality & 6.6, 7.5--7.6 \\
+14 & Repeated play: cooperation and reputation & 7.2, 7.6, 8.3 \\
+15 & Bilateral bargaining & 7.3 \\
+16 & Moral hazard and incentives & 12.4, 12.6 \\
+17 & Adverse selection and market signaling & 12.1--12.2 \\
+18 & The revelation principle and mechanism design & 12.5, 13.3--13.4 \\
+19--20 & Theories of the firm; transaction cost economics & 12.8 \\
+Ap.~1--2 & Constrained optimization; dynamic programming & Consulta (4.7) \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{Textos de teoría de juegos}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXl}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Tema} \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorO}{\textbf{Osborne, \emph{An Introduction to Game Theory}}}} \\
+1--2 & Introduction; Nash equilibrium: theory & 6.1--6.3 \\
+3 & Nash equilibrium: illustrations & 6.5, 13.1 \\
+4 & Mixed strategy equilibrium & 6.4 \\
+5--7 & Extensive games with perfect information & 7.1 \\
+8 & Coalitional games and the core & 11.6 \\
+9 & Bayesian games & 6.6, 13.1 \\
+11--12 & Strictly competitive games; rationalizability & 6.2, 6.4 \\
+13 & Evolutionary equilibrium & 6.8 \\
+14--15 & Repeated games & 7.2 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorGi}{\textbf{Gibbons, \emph{Un primer curso de teoría de juegos}}}} \\
+1 & Juegos estáticos con información completa & 6.1--6.5 \\
+2 & Juegos dinámicos con información completa & 7.1--7.2 \\
+3 & Juegos estáticos con información incompleta & 6.6, 13.1, 13.3 \\
+4 & Juegos dinámicos con información incompleta & 7.4--7.6, 12.2 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorOR}{\textbf{Osborne y Rubinstein, \emph{A Course in Game Theory}}}} \\
+2--4 & Nash equilibrium; mixed, correlated and evolutionary equilibrium; rationalizability & 6.2--6.4, 6.6--6.8 \\
+5 & Knowledge and equilibrium & 6.8 \\
+6--8 & Extensive games with perfect information; bargaining; repeated games & 7.1--7.3 \\
+10 & Implementation theory & 13.4 (consulta) \\
+11--12 & Extensive games with imperfect information; sequential equilibrium & 6.7, 7.4--7.5 \\
+13--15 & The core; stable sets and the Shapley value; the Nash solution & 11.6 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{Otros textos con horas}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXl}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Tema} \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorMMT}{\textbf{Osborne y Rubinstein, \emph{Models in Microeconomic Theory}}}} \\
+1--7 & Preferences and utility; choice; uncertainty; consumer; producer; monopoly & 1.1--1.3, 2.1, 2.8, 3.5, 4.1, 8.1 \\
+8--10, 12--14 & A jungle; a market; an exchange economy; consumers and producers; prices and expectations; asymmetric information & 5.1, 9.2, 9.4, 9.8, 10.1, 12.1 \\
+15--18, 20 & Strategic and extensive games; mechanism design; matching; aggregating preferences & 6.3, 7.1, 11.4, 11.6, 13.3 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorGA}{\textbf{Gallardo, \emph{Notas en teoría de la incertidumbre}}}} \\
+1--3 & Elementos; utilidad esperada; aversión al riesgo & 4.1--4.2 \\
+4, 7 & Manejo de riesgos; otras aplicaciones & 4.3 \\
+5--6 & Dominancia estocástica; media--varianza (sin 6.4) & 4.4 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorRR}{\textbf{Richter y Rubinstein, \emph{No Prices No Games!}}}} \\
+0--1 & Introduction; equilibrium in the jungle & 9.8 \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo B. Capítulos y secciones que no entran en el plan}
+\addcontentsline{toc}{section}{Anexo B. Capítulos y secciones excluidos}
+
+Siguen fuera, en coherencia con el sílabo de macroeconomía, los contenidos de
+finanzas (valoración de activos y mercados financieros) y los temas de
+dinámica agregada que ese sílabo ya cubre.
+
+\medskip
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap. / secc.} & \cab{Contenido} & \cab{Motivo de la exclusión} \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorV}{\textbf{Varian}}} \\
+12 & Econometría & Estimación de demandas y tecnologías; corresponde a un curso de econometría aplicada. \\
+20 & Los mercados de activos (CAPM, APT) & Finanzas. \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorMWG}{\textbf{Mas-Colell, Whinston y Green}}} \\
+3, 4, 5 (ap.~A) & Continuidad de la demanda; efectos regularizadores de la agregación; modelo lineal de actividades & Técnicos; se consultan si hace falta. \\
+17.D, 17.I, 17 (ap.~A) & Unicidad local y teorema del índice; economías grandes y no convexidades; ecuaciones de bienestar & Topología diferencial, fuera del alcance de un plan de 10 meses. \\
+19.E--19.F & Asset markets; incomplete markets & Finanzas. \\
+19.G--19.H & Firm behavior under uncertainty; imperfect information & Profundizaciones de investigación; consulta. \\
+20.E--20.G, 20.I & Stationary paths and golden rules; dynamics; several consumers; tâtonnement and learning & Cubiertos en el sílabo de macroeconomía (crecimiento y generaciones solapadas). \\
+23 (ap.~A--B) & Implementation and multiple equilibria; complete information & Teoría de la implementación; consulta junto con \ORU{10}. \\
+M.A--M.B, M.M & Notación matricial; funciones homogéneas; programación lineal & Consulta. \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorK}{\textbf{Kreps}}} \\
+1, postscript & An overview; postscript & Material introductorio y de cierre. \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorO}{\textbf{Osborne}}} \\
+10, 16 & Extensive games with imperfect information; bargaining & El archivo es una versión preliminar del libro en que estos capítulos figuran como «to be written». \\
+17 & Mathematical appendix & Consulta. \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorOR}{\textbf{Osborne y Rubinstein, \emph{A Course in Game Theory}}}} \\
+1 & Introduction & Material introductorio. \\
+9 & Complexity considerations in repeated games & Tema de investigación (autómatas). \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorMMT}{\textbf{Osborne y Rubinstein, \emph{Models in Microeconomic Theory}}}} \\
+11, 19 & Variants of an exchange economy; socialism & Variantes no requeridas por los programas; consulta. \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorGA}{\textbf{Gallardo}}} \\
+6.4 & El \emph{Capital Asset Pricing Model} & Finanzas. \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorRR}{\textbf{Richter y Rubinstein}}} \\
+2--5 & Lo permitido y lo prohibido; estatus; preferencias sesgadas; comparación con juegos & Consulta: es el contenido completo del curso ECO315. \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo C. Programas de la PUCP utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas de la PUCP utilizados}
+
+Se usó la versión más reciente de cada programa. Los números entre paréntesis
+remiten a los temas de este sílabo.
+
+\medskip
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Programa} & \cab{Incorporado} & \cab{No incorporado} \\
+\midrule
+\textbf{1ECO73} (2026-1)\newline Microeconomía Intermedia\newline\emph{Maestría en Economía}
+ & Unidad 1, teoría del consumidor; unidad 2, incertidumbre e información asimétrica; unidad 3, empresa competitiva y monopolio; unidad 4, oligopolio y diferenciación (1.1--1.3, 2.1--2.9, 3.1--3.5, 4.1--4.4, 5.1--5.3, 8.1--8.3, 12.1--12.5).
+ & Competencia imperfecta en mercados de factores: sin lectura en los textos base, queda como consulta (Pepall et al.). Los textos de organización industrial (Tirole, Shy, Cabral, Pepall et al.) quedan como consulta. \\[3pt]
+\textbf{2ECO02} (2025-2)\newline Microeconomía Avanzada\newline\emph{Maestría en Economía}
+ & Módulo 1, equilibrio general (9.1--9.7); módulo 2, contratos I (12.2, 12.4--12.8); módulo 3, incertidumbre, juegos bayesianos, subastas y discriminación de precios (4.1--4.2, 6.6, 8.1--8.2, 13.1--13.2); módulo 4, mecanismos y contratos II (12.4--12.6, 13.3--13.6).
+ & Ruiz (2018) y Spiller, Stolorz y Moszoro (2015), sobre contratos públicos de largo plazo: aplicaciones a la regulación peruana. \\[3pt]
+\textbf{1ECO43} (2026-1, horario 721)\newline Teoría de Juegos\newline\emph{Pregrado}
+ & Los trece temas del programa (4.1, 6.1--6.6, 7.1--7.6, 8.2, 12.2, 13.1--13.3). De la versión 2025-1 se tomó además la bibliografía (Osborne, 2003) y el tema 14, señalización.
+ & Nada. \\[3pt]
+\textbf{ECO315} (2025-1)\newline Tópicos de Microeconomía Avanzada\newline\emph{Pregrado}
+ & Introducción y equilibrio en la jungla (9.8).
+ & Capítulos 2 a 5 de Richter y Rubinstein (2024): consulta. \emph{Economic Fables} (Rubinstein, 2012), no está en la carpeta. \\[3pt]
+\textbf{MAT657} (2011-1)\newline Teoría de Juegos\newline\emph{Maestrías en Matemáticas Aplicadas y en Economía}
+ & Módulo I, juegos no cooperativos (6.1--6.4, 6.6, 7.5); módulo II, refinamientos y repetición (6.7, 7.2, 7.4, 7.6); módulo III, juegos cooperativos (11.6); módulo IV, conocimiento y juegos evolutivos (6.8).
+ & Replicador dinámico y juego ficticio (consulta: Fudenberg y Levine, 1998; Webb, 2007). Equilibrios fuertes y a prueba de coaliciones. \\[3pt]
+\textbf{MAT659} (2019-2)\newline Temas Avanzados en Economía Matemática\newline\emph{Maestría en Matemáticas Aplicadas}
+ & Revisión de Arrow--Debreu (10.1); teoría de contratos: modelo base, riesgo moral, selección adversa, Spence--Mirrlees, exclusión y modelos multidimensionales (12.4--12.5).
+ & Primera parte: mercados financieros, activos reales, numerarios y nominales, economía de Radner con activos, contraejemplo de Hart, \emph{default} y colateral (Magill y Quinzii; Magill y Shafer). Finanzas. \\[3pt]
+\textbf{1ECO42} (2026-2)\newline Economía del Comportamiento y Experimental\newline\emph{Pregrado}
+ & Elección racional y racionalidad acotada (1.3); decisiones bajo riesgo y teoría prospectiva (4.6).
+ & Método experimental, diseño e identificación causal, heurísticas, creencias, atención, preferencias sociales e intertemporales, programación en oTree; es un curso aplicado. Huamán-Aguilar (2023) queda como consulta. \\[3pt]
+\textbf{BCRP} (2005)\newline Curso de Extensión Universitaria\newline Microeconomía
+ & Competencia perfecta, impuestos, monopolio y discriminación de precios, oligopolio, juegos, equilibrio general, externalidades, bienes públicos e información asimétrica (5.1--5.3, 6.5, 7.1--7.2, 8.1--8.3, 9.1--9.2, 11.1--11.2, 12.1, 12.4).
+ & Mercados de factores (trabajo, capital), monopolio natural y su tarificación: nivel intermedio, sin lectura en los textos base. \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Sobre las ediciones.} 1ECO73 cita Jehle y Reny (2011), 3.ª
+edición, la que usa el plan, y Varian (1992) en inglés; aquí se usa la
+traducción de Antoni Bosch de la misma edición. 1ECO73 cita \emph{Models in
+Microeconomic Theory} en su edición de 2023; la carpeta tiene la de 2020.
+El programa 2ECO02 fecha el artículo de Myerson y Satterthwaite en 1989; la
+referencia correcta es de 1983.
+
+%------------------------------------------------------------------------------
+\bigskip
+\section*{Anexo D. Referencias tomadas de los programas de la PUCP}
+\addcontentsline{toc}{section}{Anexo D. Referencias de los programas de la PUCP}
+
+Datos bibliográficos según los programas; entre corchetes, el tema donde se
+usan. Las marcadas con $\ast$ son \emph{Artículos (PUCP)} y entran en el
+cómputo de horas; las demás son de consulta.
+
+\medskip
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item $\ast$ Baron, D. y R. Myerson (1982). Regulating a Monopolist with Unknown Costs. \emph{Econometrica}, 50(4), 911--930. [12.7]
+\item Bikhchandani, S., J. Hirshleifer y J. Riley (2013). \emph{The Analytics of Uncertainty and Information}, 2.ª ed. Cambridge University Press. [4.3]
+\item Bisetti, E., B. Tengelsen y A. Zetlin-Jones (2022). Moral Hazard in Remote Teams. \emph{International Economic Review}, 63(4), 1595--1623. [12.6]
+\item Börgers, T. (2015). \emph{An Introduction to the Theory of Mechanism Design}. Oxford University Press. [13.3]
+\item Cabral, L. (2017). \emph{Introduction to Industrial Organization}, 2.ª ed. MIT Press. [8.1]
+\item Coase, R. H. (1990). \emph{The Firm, the Market and the Law}. University of Chicago Press. [11.1]
+\item Deaton, A. y J. Muellbauer (1980). \emph{Economics and Consumer Behavior}. Cambridge University Press. [1.1, 2.9]
+\item Demsetz, H. (1968). Why Regulate Utilities? \emph{Journal of Law and Economics}, 11(1), 55--65. [12.7]
+\item Dewatripont, M. y E. Maskin (1990). Contract Renegotiation in Models of Asymmetric Information. \emph{European Economic Review}, 34. [13.6]
+\item Fudenberg, D., B. Holmström y P. Milgrom (1990). Short-Term Contracts and Long-Term Agency Relationships. \emph{Journal of Economic Theory}, 51. [12.6]
+\item Fudenberg, D. y D. Levine (1998). \emph{The Theory of Learning in Games}. MIT Press. [6.8]
+\item Fudenberg, D. y J. Tirole (1991). \emph{Game Theory}. MIT Press. [Bloques 6, 7 y 13]
+\item $\ast$ Grossman, S. y O. Hart (1983). An Analysis of the Principal--Agent Problem. \emph{Econometrica}, 51. [12.4]
+\item Hart, O. (1991). Los contratos incompletos y la teoría de la empresa. En O. Williamson y S. Winter (comps.), \emph{La naturaleza de la empresa}. Fondo de Cultura Económica, 1996. [12.8]
+\item $\ast$ Holmström, B. (1979). Moral Hazard and Observability. \emph{Bell Journal of Economics}, 10. [12.4]
+\item $\ast$ Holmström, B. (1982). Moral Hazard in Teams. \emph{Bell Journal of Economics}, 13(2), 324--340. [12.6]
+\item $\ast$ Holmström, B. y P. Milgrom (1987). Aggregation and Linearity in the Provision of Intertemporal Incentives. \emph{Econometrica}, 55. [12.6]
+\item Huamán-Aguilar, R. (2023). \emph{Experimentos con oTree}. Material de Enseñanza 8, Departamento de Economía PUCP. [4.6]
+\item $\ast$ Kahneman, D. y A. Tversky (1979). Prospect Theory: An Analysis of Decision under Risk. \emph{Econometrica}, 47(2), 263--291. [4.6]
+\item Krishna, V. (2010). \emph{Auction Theory}, 2.ª ed. Academic Press. [13.1--13.2]
+\item Laffont, J.-J. y D. Martimort (2002). \emph{The Theory of Incentives: The Principal--Agent Model}. Princeton University Press. [Bloque 12]
+\item Laffont, J.-J. y J. Tirole (1993). \emph{A Theory of Incentives in Procurement and Regulation}. MIT Press. [12.7]
+\item Lewis, T. y D. Sappington (1988). Regulating a Monopolist with Unknown Demand and Cost Functions. \emph{RAND Journal of Economics}. [12.7]
+\item $\ast$ Loeb, M. y W. Magat (1979). A Decentralized Method for Utility Regulation. \emph{Journal of Law and Economics}, 22(2), 399--404. [12.7]
+\item Lugon, A. (2015). \emph{Introducción a la teoría del equilibrio general}. Material de Enseñanza 1, Departamento de Economía PUCP. [9.1]
+\item Lugon, A. (2022). \emph{Equilibrio, eficiencia e imperfecciones del mercado}. Fondo Editorial PUCP. [9.2]
+\item Macho-Stadler, I. y D. Pérez-Castrillo (2001). \emph{An Introduction to the Economics of Information}, 2.ª ed. Oxford University Press. [12.4]
+\item $\ast$ Maskin, E. y J. Riley (1984). Monopoly with Incomplete Information. \emph{RAND Journal of Economics}, 15(2). [12.5]
+\item Mirrlees, J. (1971). An Exploration in the Theory of Optimum Income Taxation. \emph{Review of Economic Studies}, 38. [12.5]
+\item $\ast$ Mussa, M. y S. Rosen (1978). Monopoly and Product Quality. \emph{Journal of Economic Theory}, 18. [12.5]
+\item $\ast$ Myerson, R. y M. Satterthwaite (1983). Efficient Mechanisms for Bilateral Trading. \emph{Journal of Economic Theory}, 29. [13.5]
+\item Pepall, L., D. Richards y G. Norman. \emph{Organización industrial: teoría y práctica contemporáneas}, 3.ª ed. [8.1--8.2]
+\item Pérez Arata, M. (1993). \emph{Teoría de incentivos y sus aplicaciones: regulación de empresas y subastas}. Fondo de Cultura Económica. [12.7]
+\item Rogerson, W. (1985). The First-Order Approach to Principal--Agent Problems. \emph{Econometrica}, 53. [12.4]
+\item Salanié, B. (1997). \emph{The Economics of Contracts}. MIT Press. [12.4]
+\item Shy, O. (1996). \emph{Industrial Organization: Theory and Applications}. MIT Press. [8.1]
+\item $\ast$ Spence, M. (1973). Job Market Signaling. \emph{Quarterly Journal of Economics}, 87(3), 355--374. [12.2]
+\item Swinkels, J. (1999). Education Signalling with Preemptive Offers. \emph{Review of Economic Studies}, 66(4), 949--970. [12.2]
+\item Tello, M. D. (2017). \emph{Análisis de equilibrio general: modelos y aplicaciones para países en desarrollo}. Fondo Editorial PUCP. [9.1]
+\item Tirole, J. (1988). \emph{The Theory of Industrial Organization}. MIT Press, caps.~1, 3, 5 y 6. [8.1]
+\item Tversky, A. y D. Kahneman (1992). Advances in Prospect Theory. \emph{Journal of Risk and Uncertainty}, 5(4), 297--323. [4.6]
+\item Vega-Redondo, F. (2003). \emph{Economics and the Theory of Games}. Cambridge University Press. [6.8]
+\item Webb, J. (2007). \emph{Game Theory: Decisions, Interaction and Evolution}. Springer. [6.8]
+\item Williamson, O. (1975). \emph{Mercados y jerarquías}. Fondo de Cultura Económica. [12.8]
+\end{itemize}
+}
+
+\subsection*{Otras referencias}
+Lecturas que no proceden de los programas de la PUCP. Entre corchetes, el tema
+donde se usan; las marcadas como consulta no entran en el cómputo de horas.
+
+\medskip
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Abdulkadiroğlu, A. y T. Sönmez (2003). School Choice: A Mechanism Design Approach. \emph{American Economic Review}, 93(3), 729--747. [13.7]
+\item Bergemann, D. y S. Morris (2019). Information Design: A Unified Perspective. \emph{Journal of Economic Literature}, 57(1), 44--95. [13.8, consulta]
+\item Gale, D. y L. S. Shapley (1962). College Admissions and the Stability of Marriage. \emph{American Mathematical Monthly}, 69(1), 9--15. [13.7]
+\item Grossman, S. J. y O. D. Hart (1986). The Costs and Benefits of Ownership: A Theory of Vertical and Lateral Integration. \emph{Journal of Political Economy}, 94(4), 691--719. [12.8]
+\item Hart, O. y J. Moore (1990). Property Rights and the Nature of the Firm. \emph{Journal of Political Economy}, 98(6), 1119--1158. [12.8]
+\item Holmström, B. y P. Milgrom (1991). Multitask Principal--Agent Analyses: Incentive Contracts, Asset Ownership, and Job Design. \emph{Journal of Law, Economics, and Organization}, 7, 24--52. [12.8]
+\item Kamenica, E. y M. Gentzkow (2011). Bayesian Persuasion. \emph{American Economic Review}, 101(6), 2590--2615. [13.8]
+\item Kőszegi, B. y M. Rabin (2006). A Model of Reference-Dependent Preferences. \emph{Quarterly Journal of Economics}, 121(4), 1133--1165. [4.6]
+\item Laibson, D. (1997). Golden Eggs and Hyperbolic Discounting. \emph{Quarterly Journal of Economics}, 112(2), 443--477. [4.7]
+\item Myerson, R. B. (1981). Optimal Auction Design. \emph{Mathematics of Operations Research}, 6(1), 58--73. [13.6]
+\item O'Donoghue, T. y M. Rabin (1999). Doing It Now or Later. \emph{American Economic Review}, 89(1), 103--124. [4.7]
+\item Roth, A. E. y M. Sotomayor (1990). \emph{Two-Sided Matching: A Study in Game-Theoretic Modeling and Analysis}. Cambridge University Press. [13.7, consulta]
+\end{itemize}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo E. Material de consulta y práctica}
+\addcontentsline{toc}{section}{Anexo E. Material de consulta y práctica}
+
+Libros de la carpeta de microeconomía que no entran en el cómputo de horas ni
+modifican el cronograma. Se citan en los temas como \emph{Consulta}.
+
+\subsection*{E.1 Consulta por bloques}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textbf{Martínez-Giralt, X. (2008).} \emph{Microeconomía avanzada}.
+        CODE, Universitat Autònoma de Barcelona. En castellano, con problemas
+        resueltos: consumidor, empresa y equilibrio general (Bloques 2, 3 y 9).
+  \item \textbf{Myerson, R. (1991).} \emph{Game Theory: Analysis of Conflict}.
+        Harvard University Press. Referencia de posgrado para refinamientos,
+        comunicación y cooperación (Bloques 6, 7, 11 y 13).
+  \item \textbf{Bonanno, G. (2024).} \emph{Game Theory}, 3.ª ed. Texto abierto;
+        su parte III (epistemología interactiva) y la IV (refinamientos)
+        complementan los temas 6.8 y 7.4.
+  \item \textbf{Kreps, D. (1990).} \emph{Game Theory and Economic Modelling}.
+        Clarendon Lectures, Oxford University Press. Reflexión sobre el uso de
+        la teoría de juegos en economía; lectura libre tras el Bloque 7.
+  \item \textbf{Kartik, N.} \emph{Lecture Notes for 1st Year Ph.D. Game
+        Theory}; y \textbf{Tamuz, O. (2018).} \emph{Undergraduate Game Theory
+        Lecture Notes}. Notas breves para repasar los Bloques 6 y 7.
+  \item \textbf{Birchler, U. y M. Bütler (2007).} \emph{Information
+        Economics}. Routledge. Información como bien económico, agregación de
+        información y asimetrías (Bloque 12).
+  \item \textbf{Bowles, S. (2004).} \emph{Microeconomics: Behavior,
+        Institutions, and Evolution}; y \textbf{Bowles, S. y W. Chen (2025).}
+        \emph{Allocation, Distribution, and Policy}. Open Book Publishers.
+        Microeconomía «post-walrasiana»: coordinación, normas y conflicto
+        distributivo (Bloques 11 y 12).
+  \item \textbf{Debreu, G. (1959).} \emph{Theory of Value}. El tratamiento
+        axiomático original del equilibrio general (tema 9.3).
+\end{itemize}
+}
+
+\subsection*{E.2 Práctica y ejercicios resueltos}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item Dos manuales de soluciones de Mas-Colell, Whinston y Green.
+  \item Carrasco, A. et al. (2003). \emph{Microeconomía intermedia: problemas y
+        cuestiones}. McGraw-Hill.
+  \item Galarza, E., F. Galarza y J. L. Ruiz (2015). \emph{Ejercicios de
+        microeconomía intermedia}. Apuntes de Estudio 82, Universidad del
+        Pacífico.
+  \item \emph{Microeconomía avanzada: cuestiones y ejercicios} (archivo de la
+        carpeta).
+\end{itemize}
+}
+
+\subsection*{E.3 Repaso de nivel intermedio}
+{\small
+Si algún tema de los Bloques 2, 3, 5 u 8 resulta pesado, conviene repasar el
+capítulo equivalente de un texto intermedio antes de volver a Varian:
+Varian, \emph{Microeconomía intermedia}; Nicholson, \emph{Teoría
+microeconómica}; Pindyck y Rubinfeld; Frank; Nechyba; Garavito; o
+Fernández-Baca, tomo~II. Todos están en la carpeta.
+}
+
+\end{document}

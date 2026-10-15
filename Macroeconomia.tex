@@ -1,0 +1,2100 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE MACROECONOMÍA — Plan de estudio integrado
+%
+%  Textos base:
+%    DG — José De Gregorio, Macroeconomía: Teoría y Políticas (Pearson, 2007)
+%    H  — Ben J. Heijdra, Foundations of Modern Macroeconomics (OUP, 3.ª ed., 2017)
+%    R  — David Romer, Advanced Macroeconomics (McGraw-Hill, 5.ª ed., 2019)
+%    CSV — Campante, Sturzenegger y Velasco, Advanced Macroeconomics:
+%          An Easy Guide (LSE Press, 2021)
+%    A  — Daron Acemoglu, Introduction to Modern Economic Growth (Princeton, 2009)
+%    W  — Carl E. Walsh, Monetary Theory and Policy (MIT Press, 3.ª ed., 2010)
+%    G  — Jordi Galí, Monetary Policy, Inflation, and the Business Cycle
+%          (Princeton, 2008)
+%  Consulta:
+%    GM — Galindo y Montecinos, Macrodinámica, Tomo I: Modelos de Ciclos
+%          Económicos Reales (2017)
+%  Suplemento:
+%    K  — Azzimonti, Krusell, McKay y Mukoyama, Macroeconomics (OUP, 2026)
+%  Programas PUCP integrados: 1ECO74, 2ECO03, 1ECO90, 1ECO14, ECO324, ECO338,
+%  MAT616
+%
+%  Compilar con:  pdflatex Macroeconomia.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de fucsias y magentas
+\definecolor{tonoOscuro}{RGB}{82,4,54}              % oscuro
+\definecolor{tonoProfundo}{RGB}{121,6,79}           % profundo
+\definecolor{tonoPrincipal}{RGB}{160,8,104}         % principal
+\definecolor{tonoA}{RGB}{179,25,92}                 % variante cálida
+\definecolor{tonoB}{RGB}{179,15,146}                % variante fría
+\definecolor{tonoC}{RGB}{193,21,187}                % variante viva
+\definecolor{tonoClaro}{RGB}{221,95,175}            % claro
+\definecolor{tonoAcero}{RGB}{131,63,106}            % acero
+\definecolor{tonoPizarra}{RGB}{134,86,116}          % pizarra
+\definecolor{tonoGrafito}{RGB}{73,39,61}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{247,207,232}           % hielo
+\definecolor{tonoPalido}{RGB}{251,233,245}          % pálido
+\definecolor{tonoBruma}{RGB}{254,246,251}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorDG}{RGB}{138,15,138}
+\definecolor{colorH}{RGB}{184,20,169}
+\definecolor{colorK}{RGB}{161,18,134}
+\definecolor{colorR}{RGB}{138,15,104}
+\definecolor{colorCSV}{RGB}{184,20,124}
+\definecolor{colorGM}{RGB}{161,18,95}
+\definecolor{colorA}{RGB}{138,15,70}
+\definecolor{colorW}{RGB}{184,20,79}
+\definecolor{colorG}{RGB}{161,18,56}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}\raggedright}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Macroeconomía}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}De Gregorio $\cdot$ Heijdra $\cdot$ Romer $\cdot$ Campante $\cdot$ Acemoglu $\cdot$ Walsh $\cdot$ Galí $\cdot$ Krusell}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\DG}[1]{\etiqueta{colorDG}{DG}\nobreak\hspace{0.25em}\textcolor{colorDG}{#1}}
+\newcommand{\HJ}[1]{\etiqueta{colorH}{H}\nobreak\hspace{0.25em}\textcolor{colorH}{#1}}
+\newcommand{\KR}[1]{\etiqueta{colorK}{K}\nobreak\hspace{0.25em}\textcolor{colorK}{#1}}
+\newcommand{\RO}[1]{\etiqueta{colorR}{R}\nobreak\hspace{0.25em}\textcolor{colorR}{#1}}
+\newcommand{\CSV}[1]{\etiqueta{colorCSV}{CSV}\nobreak\hspace{0.25em}\textcolor{colorCSV}{#1}}
+\newcommand{\AC}[1]{\etiqueta{colorA}{A}\nobreak\hspace{0.25em}\textcolor{colorA}{#1}}
+\newcommand{\WA}[1]{\etiqueta{colorW}{W}\nobreak\hspace{0.25em}\textcolor{colorW}{#1}}
+\newcommand{\GA}[1]{\etiqueta{colorG}{G}\nobreak\hspace{0.25em}\textcolor{colorG}{#1}}
+\newcommand{\GM}[1]{\etiqueta{colorGM}{GM}\nobreak\hspace{0.25em}\textcolor{colorGM}{#1}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large\raggedright
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newcommand{\juegos}[1]{\linealectura{tonoB}{Teoría de juegos:}{#1}}
+\newcommand{\supl}[1]{\linealectura{tonoC}{Suplemento:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+% Artículos que no proceden de los programas PUCP (entran en las horas)
+\newcommand{\articulosB}[1]{\linealectura{tonoB}{Artículos:}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Macroeconomía\par}
+\vspace{0.5cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos base\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.35cm}
+{\large\etiqueta{colorDG}{DG} \quad {\color{tonoOscuro}José De Gregorio}\par}
+{\normalsize \emph{\color{colorDG}Macroeconomía: Teoría y Políticas}\par}
+{\small\color{tonoPizarra} Pearson Educación, México, 2007 --- 25 capítulos\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorH}{H} \quad {\color{tonoOscuro}Ben J. Heijdra}\par}
+{\normalsize \emph{\color{colorH}Foundations of Modern Macroeconomics}\par}
+{\small\color{tonoPizarra} Oxford University Press, 3.ª edición, 2017 --- 19 capítulos\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorR}{R} \quad {\color{tonoOscuro}David Romer}\par}
+{\normalsize \emph{\color{colorR}Advanced Macroeconomics}\par}
+{\small\color{tonoPizarra} McGraw-Hill Education, 5.ª edición, 2019 --- 13 capítulos\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorCSV}{CSV} \quad {\color{tonoOscuro}Campante, Sturzenegger y Velasco}\par}
+{\normalsize \emph{\color{colorCSV}Advanced Macroeconomics: An Easy Guide}\par}
+{\small\color{tonoPizarra} LSE Press, 2021 --- 22 capítulos\par}
+\vspace{0.6cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos de referencia de posgrado\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.35cm}
+{\large\etiqueta{colorA}{A} \quad {\color{tonoOscuro}Daron Acemoglu}\par}
+{\normalsize \emph{\color{colorA}Introduction to Modern Economic Growth}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2009 --- 24 capítulos y 3 apéndices\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorW}{W} \quad {\color{tonoOscuro}Carl E. Walsh}\par}
+{\normalsize \emph{\color{colorW}Monetary Theory and Policy}\par}
+{\small\color{tonoPizarra} MIT Press, 3.ª edición, 2010 --- 11 capítulos\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorG}{G} \quad {\color{tonoOscuro}Jordi Galí}\par}
+{\normalsize \emph{\color{colorG}Monetary Policy, Inflation, and the Business Cycle}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2008 --- 8 capítulos\par}
+\vspace{0.6cm}
+{\large\etiqueta{colorK}{K} \quad {\color{tonoOscuro}Azzimonti, Krusell, McKay y Mukoyama}\par}
+{\normalsize \emph{\color{colorK}Macroeconomics}\par}
+{\small\color{tonoPizarra} Oxford University Press, 2026 --- \textbf{texto suplementario}\par}
+\vspace{0.35cm}
+{\small\etiqueta{colorGM}{GM} \quad Galindo y Montecinos, \emph{Macrodinámica, Tomo I} (2017) --- \textbf{consulta}\par}
+\vspace{0.4cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de siete programas de la PUCP\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Quince bloques temáticos --- unos 22 meses}\par}
+\vspace{0.4cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{quince bloques temáticos}, no por capítulos de
+un libro u otro. La numeración de los textos no se corresponde, de modo que
+intentar leerlos en paralelo página a página resulta contraproducente. La
+recomendación es cerrar cada bloque antes de abrir el siguiente, en el orden que
+fija el cronograma: los Bloques 1 a 11 van en orden; luego se estudian los
+métodos recursivos del Bloque 14 (temas 14.1 a 14.7), después el Bloque 12, que
+intercala el tema 14.8, y al final los Bloques 13 y 15. La numeración de los
+bloques se mantiene porque otros sílabos de la carpeta remiten a ella.
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorDG}{\textbf{De Gregorio}} aporta la intuición económica,
+        la evidencia empírica y el tratamiento de la economía abierta pequeña.
+        Se lee \emph{primero}, para entender cuál es el problema.
+  \item \textcolor{colorCSV}{\textbf{Campante, Sturzenegger y Velasco}} presentan
+        cada modelo completo en pocas páginas, con mirada de economía emergente:
+        son el puente hacia la formalización.
+  \item \textcolor{colorH}{\textbf{Heijdra}} aporta la formalización, la dinámica
+        y el puente hacia la literatura de investigación. Se lee \emph{después},
+        para resolver el problema con rigor.
+  \item \textcolor{colorR}{\textbf{Romer}}, texto de referencia de los programas
+        de posgrado, es el segundo tratamiento formal: se lee con horas en los
+        temas que Heijdra no cubre (evidencia empírica, contratos, economía
+        política de los déficits, fricciones financieras) y como consulta en los
+        que Heijdra ya resuelve.
+  \item \textcolor{colorA}{\textbf{Acemoglu}}, \textcolor{colorW}{\textbf{Walsh}} y
+        \textcolor{colorG}{\textbf{Galí}}, referencias de posgrado en crecimiento y
+        en teoría y política monetaria, cierran los temas de su área y son la
+        lectura principal de los nuevos: Acemoglu en los Bloques 4 a 6, Walsh en
+        el 8 y el 9, y Galí en el 12 y el 13.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Un texto por nivel.} En los bloques de crecimiento (4 a 6) y en
+el Bloque 1 cada tema se lee en un texto de intuición (De Gregorio o Campante et
+al.), uno formal (Heijdra o, donde Heijdra no llega, Romer) y uno de
+profundidad (Acemoglu). Los demás tratamientos del mismo modelo, incluido el
+suplemento, quedan como consulta y no suman horas.
+
+\medskip
+\noindent\destacado{Material excluido.} Este plan arranca directamente en el
+Bloque 1. Queda fuera el material introductorio de De Gregorio y Heijdra —panorama de
+escuelas de pensamiento, cuentas nacionales y convenciones de medición
+(\DG{1}, \DG{2}, \HJ{1})— que se da por conocido. Si en algún momento surge una
+duda sobre definiciones contables, deflactores o balanza de pagos, \DG{2} es la
+referencia a la que volver. Por la misma razón se omiten la introducción de
+\textcolor{colorR}{\textbf{R}} y el capítulo 1 de \textcolor{colorCSV}{\textbf{CSV}}.
+
+\medskip
+\noindent\destacado{Sobre las matemáticas.} El plan supone el sílabo de economía
+matemática, en particular su Parte II: ecuaciones diferenciales y en
+diferencias, sistemas dinámicos y diagramas de fase (Bloques 9 y 10), control
+óptimo (Bloque 12) y programación dinámica (Bloque 13). Conviene haber cerrado
+los Bloques 9 y 10 de ese plan antes del tema 1.6, el Bloque 12 antes del
+Bloque 4 y el Bloque 13 antes del Bloque 14 de este. Por eso este sílabo no
+tiene pretramo matemático, y los apéndices matemáticos de Heijdra, Acemoglu y
+Campante et al. quedan solo como consulta. La programación dinámica a nivel de
+posgrado, la solución de modelos con expectativas racionales y el cómputo en
+Python ocupan el Bloque 14, que se estudia antes del 12.
+
+\medskip
+\noindent\destacado{Sobre los ejercicios.} El \emph{Exercise and Solutions Manual}
+de Heijdra es prácticamente obligatorio. Estos modelos no se aprenden leyendo,
+se aprenden derivándolos con lápiz y papel. Los problemas de fin de capítulo de
+Romer, Acemoglu y Walsh cumplen la misma función; el Anexo G reúne
+material opcional de práctica, de consulta y de macroeconomía e inteligencia artificial.
+
+\medskip
+\noindent\destacado{Sobre los programas de la PUCP.} Se incorporan los temas y
+lecturas de siete programas de la PUCP (Anexo E), salvo los de macroeconomía
+internacional, finanzas y banca, y política macroeconómica peruana. Las líneas
+\emph{Artículos (PUCP)} y \emph{Artículos} (lecturas que no proceden de los
+programas) entran en el cómputo de horas; \emph{Consulta} y \emph{Consulta
+(PUCP)}, no. Referencias completas en el Anexo F.
+
+\medskip
+\noindent\destacado{Sobre el texto suplementario.} \textcolor{colorK}{\textbf{K}}
+(Azzimonti, Krusell, McKay y Mukoyama) es un manual de nivel doctoral y no forma
+parte del recorrido obligatorio. Aparece únicamente donde profundiza un tema que
+\emph{ya} está en el plan, y siempre como lectura posterior a la de los textos
+base: primero se cierra el tema con De Gregorio y Heijdra, y solo entonces se
+abre el suplemento. Se han omitido deliberadamente los capítulos de \textcolor{colorK}{\textbf{K}}
+que introducen materia nueva respecto de este sílabo; véase el Anexo C.
+
+\medskip
+\noindent\destacado{Notación.} \DG{n} remite al capítulo $n$ de De Gregorio, y
+\HJ{n}, \RO{n}, \CSV{n}, \AC{n}, \WA{n}, \GA{n} y \KR{n}, al de Heijdra, Romer,
+Campante et al., Acemoglu, Walsh, Galí y el suplemento; \GM{n}, al libro de
+consulta de Galindo y Montecinos (sin horas). Si solo entra parte de un capítulo
+se indican secciones: \RO{8.6} es la sección 8.6.
+
+
+
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan con \textbf{suplemento integrado}, excluido el material
+introductorio: 1443 horas distribuidas en \textbf{85 semanas de contenido}, que
+equivalen a unos \textbf{22 meses de calendario} una vez descontadas las semanas
+perdidas por feriados, viajes e imprevistos. Las horas de los bloques revisados
+(1, 4, 5, 6 y 12 a 15) se reestimaron en proporción a las lecturas con horas que
+conservan o suman.
+
+\medskip
+\noindent Todas las semanas son de materia nueva: no hay semanas de repaso ni
+colchones intermedios. La columna de horas es la que gobierna el reparto; el
+número de semanas es su traducción aproximada a un ritmo de diecisiete horas
+semanales, de modo que algunos bloques corren ligeramente por encima o por
+debajo de esa cifra.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+1--3 & Bloque 1 --- El corto plazo tradicional & 3 & 55 \\
+4--10 & Bloque 2 --- Microfundamentos & 7 & 111 \\
+11--13 & Bloque 3 --- Equilibrio real y economía abierta & 3 & 54 \\
+\rowcolor{tonoHielo}\textbf{14--20} & \textbf{Bloque 4 --- Crecimiento exógeno y ahorro óptimo} & \textbf{7} & \textbf{122} \\
+21--24 & Bloque 5 --- Crecimiento endógeno y cambio tecnológico & 4 & 71 \\
+25--28 & Bloque 6 --- Desarrollo, instituciones y economía política & 4 & 66 \\
+29--32 & Bloque 7 --- Generaciones solapadas & 4 & 71 \\
+\rowcolor{tonoHielo}\textbf{33--41} & \textbf{Bloque 8 --- Dinero, inflación y política monetaria} & \textbf{9} & \textbf{160} \\
+42--46 & Bloque 9 --- Expectativas racionales y credibilidad & 5 & 86 \\
+47--51 & Bloque 10 --- El mercado del trabajo & 5 & 78 \\
+52--55 & Bloque 11 --- Rigideces nominales & 4 & 71 \\
+56--60 & Bloque 14 --- Métodos recursivos y cuantitativos (temas 14.1 a 14.7) & 5 & 81 \\
+\rowcolor{tonoHielo}\textbf{61--74} & \textbf{Bloque 12 --- Equilibrio general dinámico y estocástico (con el tema 14.8)} & \textbf{14} & \textbf{241} \\
+75--79 & Bloque 13 --- Política monetaria neokeynesiana & 5 & 77 \\
+80--85 & Bloque 15 --- Fricciones y heterogeneidad en el ciclo & 6 & 99 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{85} & \textbf{1443} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Unas diecisiete horas por semana, todas de
+contenido nuevo: por ejemplo, seis sesiones de dos horas de lunes a sábado y una
+sesión larga de cinco horas.
+
+\medskip
+\noindent\destacado{El orden de lectura.} El Bloque 14 se estudia antes que el 12:
+primero las herramientas (programación dinámica, equilibrio recursivo,
+soluciones locales y cómputo) y después los modelos DSGE, que así se pueden
+resolver y simular mientras se estudian. El tema 14.8 va dentro del Bloque 12,
+después del 12.7.
+
+\medskip
+\noindent\destacado{Los tramos largos.} Los Bloques 12, 8 y 4 son los más largos:
+suman 30 de las 85 semanas. Además, el crecimiento (Bloques 4 a 6, semanas
+14--28) y el tramo final (Bloque 14 y Bloques 12, 13 y 15, semanas 56--85)
+forman dos recorridos seguidos de alta exigencia. Son los puntos donde el avance suele atascarse, y al no haber
+colchón posterior cualquier retraso acumulado se arrastra hasta el final del
+plan.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 13, 28, 55 y 74. Si en alguno de esos cortes se acumula más de una
+semana de retraso, el ajuste correcto es alargar el calendario y no comprimir el
+bloque siguiente.
+
+\medskip
+\noindent\destacado{Consolidación.} Sin sesiones dedicadas al repaso, el
+mantenimiento de lo ya estudiado pasa a depender de los ejercicios del manual de
+Heijdra, que retoman material de capítulos anteriores. Conviene resolverlos a
+medida que avanza cada bloque y no dejarlos para el final.
+
+%------------------------------------------------------------------------------
+\newpage
+\bloque{Bloque 1 --- El corto plazo tradicional --- 4 semanas}
+{De Gregorio y Heijdra tratan este material como conocido, así que se despacha
+rápido: fija el lenguaje común y, sobre todo, aplica las herramientas dinámicas
+—diagramas de fase, sendero de silla— que se usarán en todos los bloques
+posteriores. Su matemática está en los Bloques 9 y 10 del sílabo de economía
+matemática.}
+
+\tema{1.1 El modelo IS-LM de economía cerrada}
+\lecturas{\DG{19} \quad \HJ{1}}
+\consultalib{\CSV{15.1} \quad Jiménez (2007), caps.~4 y 7}
+
+\tema{1.2 Economía abierta de corto plazo: el modelo de Mundell--Fleming}
+\lecturas{\DG{20} \quad \HJ{2}}
+\nota{Regímenes de tipo de cambio fijo y flexible; grado de movilidad de capitales.}
+
+\tema{1.3 Sobrerreacción del tipo de cambio: el modelo de Dornbusch}
+\lecturas{\HJ{2}}
+
+\tema{1.4 Oferta agregada, curva de Phillips y tasa natural de desempleo}
+\lecturas{\DG{21} \quad \HJ{3} \quad \RO{6.1--6.3}}
+\nota{Romer añade la pregunta clave del bloque: si la rigidez está en precios o
+en salarios, y qué implica para el comportamiento cíclico del salario real.}
+
+\tema{1.5 Equilibrio AD-AS y políticas macroeconómicas}
+\lecturas{\DG{22} \quad \HJ{3}}
+\consultalib{\CSV{15.1} \quad \RO{6.4} \quad Jiménez (2007), cap.~10}
+
+\tema{1.6 Previsión perfecta, diagramas de fase y sendero de silla}
+\lecturas{\HJ{4}}
+\nota{Punto de inflexión técnico del curso. Política anunciada frente a política
+no anticipada; efectos de anuncio. Los diagramas de fase y la linealización se
+estudian en los temas 10.2 y 10.4 del sílabo de economía matemática.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Microfundamentos: consumo, inversión y gobierno --- 7 semanas}
+{Se abandonan las funciones de comportamiento \emph{ad hoc} y se derivan las
+decisiones a partir de la optimización de hogares y empresas.}
+
+\tema{2.1 Consumo intertemporal: ciclo de vida e ingreso permanente}
+\lecturas{\DG{3} \quad \CSV{11} \quad \RO{8.1} \quad \RO{8.4}}
+\supl{\KR{11}}
+\consultalib{Jiménez (2007), cap.~3 \quad Prácticas UP (2024), secc.~2}
+\nota{Restricciones de liquidez y evidencia empírica. La versión estocástica
+—paseo aleatorio de Hall— se ve en el Bloque 12 con \HJ{17}.}
+
+\tema{2.2 Inversión, costo de uso del capital y costos de ajuste}
+\lecturas{\DG{4} \quad \CSV{13.1} \quad \HJ{4} \quad \RO{9.1} \quad \RO{9.7--9.8}}
+\consultalib{Prácticas UP (2024), secc.~2}
+\nota{Romer y Campante et al. añaden la inversión bajo incertidumbre: el valor de
+opción de esperar (crítica de Pindyck) y los costos de ajuste fijos o con quiebre.}
+
+\tema{2.3 La \emph{q} de Tobin y la dinámica de la inversión}
+\lecturas{\HJ{4} \quad \DG{4} \quad \CSV{13.2} \quad \RO{9.2--9.6} \quad \AC{7.8}}
+\articulos{Hayashi (1982)}
+\nota{Salto de dificultad notable respecto de \DG{4}: es el primer modelo
+dinámico plenamente resuelto del curso.}
+
+\tema{2.4 El gobierno: restricción presupuestaria intertemporal}
+\lecturas{\DG{5} \quad \CSV{17.1} \quad \HJ{6} \quad \RO{13.1}}
+\supl{\KR{15}}
+
+\tema{2.5 Equivalencia ricardiana y sus límites}
+\lecturas{\HJ{6} \quad \DG{5} \quad \CSV{17.2} \quad \RO{13.2}}
+\consultalib{Prácticas UP (2024), secc.~2 \quad Ljungqvist y Sargent (2018), cap.~10}
+\nota{La razón más importante por la que falla —horizontes finitos— se entiende
+recién en el Bloque 7, con \HJ{15}.}
+
+\tema{2.6 Sostenibilidad de la deuda pública y señoreaje}
+\lecturas{\HJ{6} \quad \DG{5} \quad \DG{16} \quad \CSV{17.7--17.8} \quad \RO{13.8}}
+\supl{\KR{15}}
+\nota{Campante et al. tratan los problemas de medición del déficit: inflación,
+venta de activos, pasivos contingentes y enfoque de balance.}
+
+\tema{2.7 Suavizamiento de impuestos}
+\lecturas{\CSV{18.1} \quad \RO{13.3}}
+\consultalib{Prácticas UP (2024), secc.~4}
+\nota{El modelo de Barro: por qué conviene financiar con deuda los gastos
+transitorios. La imposición óptima del capital en el modelo neoclásico
+(\CSV{18.3}) se estudia en el tema 4.8.}
+
+\tema{2.8 Economía política de los déficits y reglas fiscales}
+\lecturas{\CSV{18.2} \quad \RO{13.4--13.7}}
+\nota{Acumulación estratégica de deuda, estabilización demorada y evidencia sobre
+política y déficits en países industrializados; reglas e instituciones
+fiscales.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Equilibrio real y economía abierta intertemporal --- 3 semanas}
+{Bloque casi exclusivo de De Gregorio y su mayor aporte diferencial. Heijdra no
+desarrolla el tipo de cambio real con esta profundidad.}
+
+\tema{3.1 La economía cerrada de pleno empleo}
+\lecturas{\DG{6}}
+
+\tema{3.2 La cuenta corriente como fenómeno intertemporal}
+\lecturas{\DG{7}}
+\supl{\KR{23}}
+
+\tema{3.3 El tipo de cambio real: PPP, bienes transables y no transables}
+\lecturas{\DG{8}}
+
+\tema{3.4 Determinantes del tipo de cambio real y de la cuenta corriente}
+\lecturas{\DG{9}}
+\supl{\KR{23}}
+\nota{Efecto Balassa--Samuelson, términos de intercambio, cuenta corriente de
+equilibrio.}
+
+\tema{3.5 Complemento formal: economía abierta pequeña con ahorro óptimo}
+\lecturas{\HJ{13} (secciones de economía abierta)}
+\nota{Se aprovecha mejor una vez estudiado el Bloque 4.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Crecimiento exógeno y ahorro óptimo --- 11 semanas}
+{Núcleo del curso. Contiene el paso decisivo hacia la macroeconomía moderna: el
+hogar que optimiza y la ecuación de Euler.
+El crecimiento endógeno, el desarrollo y la economía política del crecimiento
+continúan en los Bloques 5 y 6, con Acemoglu como texto principal.}
+
+\tema{4.1 Hechos estilizados y contabilidad del crecimiento}
+\lecturas{\DG{10} \quad \RO{1.1} \quad \AC{1} \quad \AC{3.1}}
+\consultalib{\CSV{2.1--2.2}}
+\articulos{Jones (2016)}
+\consulta{Williamson (2010), caps.~7--8 \quad Duncan (2022)}
+\nota{Hechos de Kaldor y diferencias de ingreso entre países; medición, debates y
+mitos sobre el crecimiento (programa 1ECO74).}
+
+\tema{4.2 El modelo de Solow--Swan: estado estacionario y regla dorada}
+\lecturas{\DG{11} \quad \HJ{12} \quad \AC{2.1--2.4} \quad \AC{2.6--2.7}}
+\consultalib{\CSV{2.3} \quad \CSV{2.5} \quad \RO{1.2--1.4} \quad \KR{3}}
+\articulos{Solow (1956)}
+\consulta{Barro y Sala-i-Martin (2003)}
+\nota{Acemoglu lo desarrolla en tiempo discreto y continuo, con progreso técnico y
+estática comparativa.}
+
+\tema{4.3 Dinámica de transición, convergencia y velocidad de ajuste}
+\lecturas{\DG{12} \quad \HJ{12} \quad \AC{2.5}}
+\consultalib{\RO{1.5--1.6} \quad \KR{3}}
+\consulta{Duncan y Fuentes (2006)}
+
+\tema{4.4 Capital humano: la ampliación de Mankiw--Romer--Weil}
+\lecturas{\DG{12} \quad \HJ{12} \quad \AC{3.3}}
+\consultalib{\CSV{2.4} \quad \RO{4.1}}
+
+\tema{4.5 Evidencia empírica sobre el crecimiento}
+\lecturas{\DG{13} \quad \RO{1.7} \quad \RO{4.2} \quad \AC{3.2} \quad \AC{3.4--3.6}}
+\consultalib{\CSV{7.1} \quad \KR{13} \quad \KR{8}}
+\nota{Sin contraparte en Heijdra. Regresiones de convergencia y determinantes
+del crecimiento.}
+\nota{Acemoglu añade la calibración y la estimación de las diferencias de
+productividad entre países.}
+
+\tema{4.6 Fundamentos del crecimiento neoclásico: hogar representativo y teoremas del bienestar}
+\lecturas{\AC{5}}
+\nota{Horizonte infinito, empresa representativa, teoremas del bienestar y comercio
+secuencial: la base del problema del planificador del tema 4.7.}
+
+\tema{4.7 Ahorro óptimo: el modelo de Ramsey--Cass--Koopmans}
+\lecturas{\DG{14} \quad \HJ{13} \quad \AC{8.1--8.7} \quad \AC{8.9--8.10}}
+\consultalib{\CSV{3} \quad \RO{2.1--2.6} \quad \KR{4} \quad \KR{5} \quad Stokey, Lucas y Prescott (1989), secc.~5.4}
+\nota{Ecuación de Euler, elasticidad de sustitución intertemporal, condición de
+transversalidad. Supone el control óptimo del Bloque 12 del sílabo de economía
+matemática: sin él, la ecuación de Euler se convierte en una fórmula
+memorizada. \textbf{No avanzar sin dominar este tema.}}
+
+\tema{4.8 Eficiencia dinámica y política fiscal en el modelo de Ramsey}
+\lecturas{\HJ{13} \quad \CSV{18.3} \quad \AC{8.8}}
+\consultalib{\RO{2.7} \quad \KR{6} \quad Ljungqvist y Sargent (2018), cap.~11 (secc.~11.1--11.6) y cap.~16 (secc.~16.1--16.7)}
+\consulta{Mankiw y Weinzierl (2006)}
+\nota{Efectos del gasto público e imposición óptima del capital en el modelo
+neoclásico. Ljungqvist y Sargent resuelven el modelo con impuestos
+distorsionantes (cap.~11) y el problema de Ramsey con el impuesto cero al
+capital de Chamley y Judd (cap.~16), que enlaza con el Bloque 9 del sílabo de
+economía pública.}
+
+\tema{4.9 Crecimiento, recursos naturales y medio ambiente}
+\lecturas{\RO{1.8}}
+\supl{\KR{25}}
+\consulta{NobelPrize.org (2018)}
+\nota{Límites ambientales al crecimiento y vínculos entre crecimiento, cambio
+tecnológico y clima.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Crecimiento endógeno y cambio tecnológico --- 5 semanas}
+{Lleva el crecimiento endógeno más allá del modelo AK: capital humano, innovación,
+variedades, calidad y sesgo del cambio técnico. Arranca con un panorama del
+crecimiento endógeno (tema 5.1); en el resto, Acemoglu es la lectura
+principal. Requiere el Bloque 4.}
+
+\tema{5.1 Crecimiento endógeno: modelos AK, externalidades e I+D}
+\lecturas{\DG{12} \quad \HJ{14} \quad \AC{11}}
+\consultalib{\CSV{5.1--5.4} \quad \RO{3.1--3.3} \quad \KR{13} \quad Stokey, Lucas y Prescott (1989), secc.~5.6--5.8}
+\nota{Romer, Lucas, variedad de productos; política pública y crecimiento.}
+\nota{Es el panorama del bloque; los temas 5.3 a 5.6 desarrollan cada mecanismo.}
+
+\tema{5.2 Capital humano y crecimiento}
+\lecturas{\AC{10}}
+\nota{Teorema de separación, inversión en escolaridad, modelo de Ben-Porath,
+complementariedad entre capital y calificación, externalidades de capital humano
+y el modelo de Nelson--Phelps.}
+
+\tema{5.3 El modelado del cambio tecnológico}
+\lecturas{\RO{3.4} \quad \AC{12}}
+\nota{Concepciones de la tecnología, valor de la innovación y el agregador de
+Dixit--Stiglitz aplicado a la innovación.}
+
+\tema{5.4 Variedades crecientes: el modelo de Romer}
+\lecturas{\CSV{6.1} \quad \RO{3.5} \quad \AC{13}}
+\nota{Insumos de variedad creciente, derrames de conocimiento y crecimiento sin efectos
+de escala.}
+
+\tema{5.5 Crecimiento schumpeteriano y destrucción creativa}
+\lecturas{\CSV{6.2--6.3} \quad \AC{14}}
+\consultalib{\KR{22}}
+\nota{Escaleras de calidad, innovación de incumbentes y entrantes, distancia a la
+frontera tecnológica y competencia.}
+
+\tema{5.6 Cambio tecnológico dirigido}
+\lecturas{\AC{15}}
+\nota{Por qué el cambio técnico favorece a ciertos factores; cambio técnico aumentador
+de trabajo.}
+
+\tema{5.7 Efectos de escala, población y el futuro del crecimiento}
+\lecturas{\CSV{6.4} \quad \RO{3.6--3.8}}
+\nota{Pruebas de series de tiempo del crecimiento endógeno; población y cambio
+tecnológico en el muy largo plazo.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Desarrollo, instituciones y economía política del crecimiento --- 5 semanas}
+{Pasa de los mecanismos del crecimiento a sus causas fundamentales: difusión de
+tecnología, cambio estructural, trampas de pobreza e instituciones. Recorre las
+partes de Acemoglu sobre desarrollo y economía política. Requiere el Bloque 5.
+Los temas 6.6 y 6.7, de instituciones y economía política, son opcionales: no
+entran en el cómputo de horas y pueden leerse junto con el sílabo de economía
+pública.}
+
+\tema{6.1 Causas próximas y fundamentales del crecimiento}
+\lecturas{\CSV{7.2} \quad \RO{4.3--4.5} \quad \AC{4}}
+\consulta{Ogilvie y Carus (2014) \quad Bloom, Kuhn y Prettner (2022)}
+\nota{Suerte, geografía, cultura e instituciones; enfermedad y desarrollo.}
+
+\tema{6.2 Difusión de tecnología y diferencias de productividad}
+\lecturas{\RO{4.6} \quad \AC{18}}
+\articulos{Syverson (2011)}
+\consultalib{\AC{19.1--19.7}}
+\nota{Tecnologías apropiadas e inapropiadas, e instituciones de contratación en la
+adopción tecnológica.}
+\nota{\AC{19} extiende el tema a la economía abierta: por qué el capital no
+fluye de los países ricos a los pobres, comercio y especialización, ciclo del
+producto y aprendizaje en la práctica. Es consulta, sin horas; el comercio se
+estudia con horas en el sílabo de economía internacional.}
+
+\tema{6.3 Cambio estructural y crecimiento no balanceado}
+\lecturas{\AC{20}}
+\nota{Fuentes de demanda y de oferta del crecimiento no balanceado; productividad
+agrícola e industrialización.}
+
+\tema{6.4 Transformaciones estructurales, trampas de pobreza y fallas de mercado}
+\lecturas{\CSV{5.5} \quad \AC{17.6} \quad \AC{21.1--21.6}}
+\articulos{Balboni et al. (2021)}
+\nota{Desarrollo financiero, transición demográfica, economía dual, gran empuje y
+desigualdad con mercados de crédito imperfectos.}
+
+\tema{6.5 Teoría unificada: de Malthus al crecimiento moderno}
+\lecturas{\CSV{10} \quad \AC{21.7} \quad \AC{24.2}}
+\consulta{P. Romer (1996)}
+\nota{Régimen malthusiano, transición demográfica y despegue del crecimiento
+sostenido.}
+
+\tema{6.6 Instituciones, conflicto distributivo y crecimiento (opcional)}
+\consultalib{\AC{22}}
+\nota{Conflicto distributivo, instituciones económicas ineficientes, votante mediano y
+provisión de bienes públicos con Estados débiles o fuertes.}
+
+\tema{6.7 Instituciones políticas y crecimiento (opcional)}
+\consultalib{\AC{23} \quad \AC{24.1} \quad \AC{24.3} \quad \AC{Apéndice C}}
+\nota{Regímenes políticos, cambio político endógeno y dinámica de las instituciones.
+El apéndice C repasa los juegos dinámicos que usa el capítulo.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Generaciones solapadas --- 4 semanas}
+{Sin equivalente en De Gregorio. Heijdra lleva el peso formal; Campante et al.
+y Romer ofrecen versiones compactas del modelo de Diamond y de las reformas de
+pensiones, y Acemoglu (cap.~9), el tratamiento más completo.}
+
+\tema{7.1 El modelo de Diamond en tiempo discreto}
+\lecturas{\CSV{8.1} \quad \HJ{16} \quad \RO{2.8--2.10} \quad \AC{9.1--9.3}}
+
+\tema{7.2 Ineficiencia dinámica y sobreacumulación de capital}
+\lecturas{\CSV{8.2} \quad \HJ{16} \quad \RO{2.11} \quad \AC{9.4}}
+\supl{\KR{6}}
+
+\tema{7.3 Seguridad social: reparto frente a capitalización}
+\lecturas{\CSV{9.1} \quad \HJ{16} \quad \AC{9.5}}
+
+\tema{7.4 El modelo de Blanchard--Yaari en tiempo continuo}
+\lecturas{\CSV{8.3} \quad \HJ{15} \quad \AC{9.6--9.8}}
+\nota{Probabilidad de muerte constante, agregación, y el motivo por el cual falla
+la equivalencia ricardiana.}
+\nota{Acemoglu añade el altruismo imperfecto como motivo de herencia.}
+
+\tema{7.5 Envejecimiento poblacional, pensiones y deuda pública}
+\lecturas{\CSV{9.2} \quad \HJ{15} \quad \HJ{16} \quad \RO{2.12}}
+\nota{Campante et al. analizan cómo financiar la transición desde un sistema de
+reparto: impuestos a los jóvenes o emisión de deuda.}
+
+\tema{7.6 Burbujas racionales y la deuda pública como burbuja}
+\lecturas{\CSV{22.3}}
+\nota{Solo hay burbujas sostenibles si la economía es dinámicamente ineficiente
+(tema 7.2). Implicaciones para la política fiscal y financiera.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Dinero, inflación y política monetaria --- 9 semanas}
+{De Gregorio cubre la política monetaria aplicada, y Heijdra, la integración del
+dinero en el equilibrio general.
+Walsh es la referencia formal de todo el bloque; Galí aporta el modelo
+monetario clásico, y Campante et al. y Romer, versiones compactas.}
+
+\tema{8.1 La naturaleza del dinero y las nuevas formas monetarias}
+\lecturas{\WA{3.4}}
+\articulos{Kiyotaki y Wright (1989) \quad Benigno (2025), cap.~3}
+\consultalib{Ljungqvist y Sargent (2018), secc.~29.8}
+\consulta{Lewis y Mizen (2000), caps.~1--3 \quad Mishkin (2021), cap.~3 \quad Kiyotaki y Moore (2002) \quad McCallum (2015) \quad Böhme et al. (2015) \quad Velde (2013) \quad BIS (2018) \quad BIS (2025)}
+\nota{Funciones del dinero, dinero fiduciario y crediticio y origen de la banca
+central; dinero electrónico, criptomonedas y monedas digitales de banco central.
+El modelo de búsqueda de Kiyotaki y Wright explica por qué surge un medio de
+cambio.}
+
+\tema{8.2 Dinero, precios y producto: la evidencia}
+\lecturas{\RO{5.9} \quad \WA{1}}
+\consultalib{Sørensen (1996) \quad Stock y Watson (2001)}
+\nota{Correlaciones de largo y corto plazo, evidencia de Friedman y Schwartz,
+causalidad de Granger y vectores autorregresivos.}
+
+\tema{8.3 Teoría cuantitativa, neutralidad y demanda por dinero}
+\lecturas{\DG{15} \quad \HJ{10} \quad \WA{3.1--3.2}}
+\supl{\KR{17}}
+\articulos{Baumol (1952) \quad Tobin (1956)}
+\consulta{Tobin (1958) \quad Mishkin (2021), cap.~19 \quad Quispe (1998) \quad León (1999)}
+\consultalib{Jiménez (2007), cap.~5}
+\nota{Demanda por transacciones de Baumol--Tobin, modelos de tiempo de compra y
+estabilidad empírica de la demanda de dinero.}
+
+\tema{8.4 Oferta de dinero, señoreaje, inflación e hiperinflaciones}
+\lecturas{\DG{16} \quad \CSV{19.3} \quad \HJ{10} \quad \RO{12.10} \quad \WA{4.1--4.4}}
+\articulos{Dornbusch (1992)}
+\consultalib{Ljungqvist y Sargent (2018), cap.~27, secc.~27.1--27.3, que sirve también para los temas 8.6 y 8.7}
+\consulta{Lewis y Mizen (2000), cap.~7 \quad Woodford (2003), cap.~6}
+\consultalib{Jiménez (2007), cap.~6}
+\nota{Restricción presupuestaria consolidada, señoreaje de equilibrio, modelo de
+Cagan, hiperinflación racional y aritmética monetarista desagradable.}
+
+\tema{8.5 El dinero en equilibrio general: MIU, \emph{cash-in-advance} y regla de Friedman}
+\lecturas{\CSV{19.1--19.2} \quad \HJ{10} \quad \WA{2.1--2.2} \quad \WA{2.4--2.8} \quad \WA{3.3} \quad \WA{3.5--3.7} \quad \GA{2}}
+\supl{\KR{17}}
+\articulos{Benigno (2025), cap.~6}
+\consultalib{Ljungqvist y Sargent (2018), cap.~9, secc.~9.1--9.5}
+\consulta{McCallum y Nelson (2010) \quad Lucas (2013) \quad Woodford (2003), caps.~2--3}
+\nota{Incluye generaciones solapadas con dinero; conviene haber cursado el Bloque 7.}
+\nota{Walsh resuelve y calibra el modelo MIU; Galí presenta el modelo monetario
+clásico que sirve de base al neokeynesiano del Bloque 12.}
+
+\tema{8.6 Costos de la inflación y cantidad óptima de dinero}
+\lecturas{\CSV{19.4} \quad \WA{2.3} \quad \WA{4.6--4.8}}
+\articulos{Lucas (1994)}
+\consulta{Lucas (1996)}
+\nota{Costo de bienestar de la inflación, señoreaje óptimo y la regla de Friedman
+revisitada; inflación y competencia (modelo de Tommasi).}
+
+\tema{8.7 La teoría fiscal del nivel de precios}
+\lecturas{\CSV{22.2} \quad \WA{4.5}}
+\nota{Políticas fiscales ricardianas y no ricardianas: cuándo la restricción
+presupuestaria del gobierno determina el nivel de precios.}
+
+\tema{8.8 Política monetaria, tasas de interés y mercados financieros}
+\lecturas{\DG{17} \quad \RO{12.1--12.2} \quad \WA{10.1} \quad \WA{10.3} \quad \WA{10.6--10.8}}
+\articulos{Bernanke y Gertler (1995)}
+\consulta{Mishkin (1995) \quad Benigno (2025), cap.~8 \quad Mishkin (2021), caps.~4--7}
+\consultalib{Jiménez (2007), cap.~7}
+\nota{Sin contraparte en Heijdra. Mecanismos de transmisión y estructura temporal
+de tasas.}
+\nota{Hipótesis de expectativas de la estructura temporal y canal del crédito
+(préstamos bancarios y hoja de balance).}
+
+\tema{8.9 Procedimientos operativos de la política monetaria}
+\lecturas{\WA{11}}
+\articulos{Poole (1970)}
+\consulta{Goodhart (1994) \quad Bindseil (2014), caps.~1--3 \quad Lewis y Mizen (2000), cap.~16 \quad Mishkin (2021), caps.~14--15}
+\consultalib{Poole (1968)}
+\nota{Elección de instrumento según Poole, metas intermedias, mercado de reservas y
+sistema de corredor.}
+\nota{Son dos trabajos distintos de Poole: el de 1970 trata la elección del
+instrumento; el de 1968, la demanda de reservas de un banco bajo incertidumbre,
+que es el modelo del mercado interbancario y del corredor de tasas que usa el
+curso de Política Monetaria del BCRP.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Expectativas racionales y credibilidad --- 5 semanas}
+{Los tres capítulos base de este bloque (\HJ{5}, \HJ{9} y \DG{25}) se leen muy
+bien de forma consecutiva. Walsh aporta el tratamiento formal de las rigideces
+informativas y del sesgo inflacionario.}
+
+\tema{9.1 Expectativas racionales y métodos de solución}
+\lecturas{\HJ{5}}
+
+\tema{9.2 Proposición de inefectividad de la política y crítica de Lucas}
+\lecturas{\HJ{5} \quad \CSV{15.2} \quad \RO{6.9}}
+\articulos{Lucas (1976)}
+\consultalib{Jiménez (2007), cap.~8}
+\nota{El modelo de información imperfecta de Lucas (las «islas») da la curva de
+oferta sobre la que descansa la proposición de inefectividad.}
+
+\tema{9.3 Rigideces informativas y de cartera}
+\lecturas{\WA{5} \quad \WA{6.3.3}}
+\articulos{Mankiw y Reis (2010)}
+\consulta{Sims (2010)}
+\nota{Información imperfecta e información rígida, aprendizaje, y participación
+limitada con efectos de liquidez.}
+
+\tema{9.4 Inconsistencia intertemporal y sesgo inflacionario}
+\lecturas{\DG{25} \quad \CSV{20.1} \quad \HJ{9} \quad \RO{12.8} \quad \WA{7.1--7.2}}
+\articulos{Barro y Gordon (1983)}
+\consultalib{Kydland y Prescott (1977)}
+\nota{Kydland y Prescott (1977) plantean el problema general: el plan óptimo
+anunciado deja de ser óptimo una vez que el público fijó sus expectativas.
+Barro y Gordon (1983) lo aplican a la política monetaria.}
+
+\tema{9.5 Reputación, delegación e independencia del banco central}
+\lecturas{\HJ{9} \quad \DG{25} \quad \CSV{20.2} \quad \RO{12.9} \quad \WA{7.3--7.6}}
+\articulos{Rogoff (1985) \quad Walsh (1995) \quad Bernanke y Mishkin (1997)}
+\consultalib{Ljungqvist y Sargent (2018), cap.~24, secc.~24.1--24.7}
+\consulta{Reis (2013) \quad Mishkin (2000) \quad King (1999) \quad Mishkin (2021), caps.~16 y 23 \quad Lewis y Mizen (2000), caps.~10 y 15}
+\nota{Banquero central conservador, contratos óptimos, metas de inflación.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 10 --- El mercado del trabajo --- 5 semanas}
+{El peso analítico recae en Heijdra y Romer. La extensión de estos modelos al
+ciclo económico se estudia en el Bloque 15.}
+
+\tema{10.1 El mercado del trabajo y el mercado del crédito en el ciclo}
+\lecturas{\DG{24} \quad \CSV{16.1}}
+\supl{\KR{19}}
+
+\tema{10.2 Salarios de eficiencia}
+\lecturas{\CSV{16.4} \quad \HJ{7} \quad \RO{11.1--11.2}}
+\nota{Romer desarrolla el modelo de Shapiro--Stiglitz completo.}
+
+\tema{10.3 Sindicatos, negociación colectiva y modelos \emph{insider--outsider}}
+\lecturas{\CSV{16.5} \quad \HJ{7}}
+\nota{Campante et al. incluyen la migración rural-urbana como fuente de desempleo.}
+
+\tema{10.4 Búsqueda y emparejamiento: el modelo Diamond--Mortensen--Pissarides}
+\lecturas{\CSV{16.2--16.3} \quad \HJ{8} \quad \RO{11.4--11.6}}
+\supl{\KR{20}}
+\articulos{Mortensen y Pissarides (1994)}
+\consultalib{Ljungqvist y Sargent (2018), cap.~6, secc.~6.1--6.4 (modelo de McCall y \emph{lake model}) \quad Stokey, Lucas y Prescott (1989), secc.~10.7--10.8}
+\consulta{Pissarides (2000) \quad Davis y Haltiwanger (1992)}
+\nota{Función de emparejamiento, curva de Beveridge, negociación de Nash del
+salario, creación y destrucción de empleos.}
+
+\tema{10.5 Contratos implícitos y rigidez salarial}
+\lecturas{\RO{11.3}}
+\nota{Contratos entre empresas y trabajadores adversos al riesgo: por qué el
+salario puede no responder al ciclo aunque el mercado no tenga fricciones de
+búsqueda.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 11 --- Rigideces nominales con microfundamentos --- 4 semanas}
+{Heijdra y Romer llevan el peso del bloque, que es prerrequisito conceptual del
+Bloque 12: sin competencia monopolística el modelo neokeynesiano no es
+interpretable.}
+
+\tema{11.1 Competencia monopolística: el agregador de Dixit--Stiglitz}
+\lecturas{\CSV{15.3} \quad \HJ{11} \quad \RO{6.5} \quad \WA{6.2.3}}
+\articulos{Blanchard y Kiyotaki (1987)}
+
+\tema{11.2 Costos de menú y rigidez nominal de precios}
+\lecturas{\HJ{11} \quad \RO{6.6} \quad \WA{6.2.5}}
+\supl{\KR{18}}
+
+\tema{11.3 Rigideces reales frente a rigideces nominales}
+\lecturas{\CSV{15.3} \quad \HJ{11} \quad \RO{6.7} \quad \WA{6.1} \quad \WA{6.2.1}}
+
+\tema{11.4 Fallas de coordinación y equilibrios múltiples}
+\lecturas{\RO{6.8}}
+\nota{Complementariedades estratégicas y teorías reales no walrasianas de las
+fluctuaciones.}
+
+\tema{11.5 Evidencia microeconómica sobre la fijación de precios}
+\lecturas{\RO{7.5--7.6} \quad \WA{6.2.6} \quad \WA{6.3.1}}
+\articulos{Nakamura y Steinsson (2008) \quad Klenow y Malin (2010)}
+\consulta{Nakamura y Steinsson (2013) \quad Midrigan (2011) \quad Gorodnichenko y
+Talavera (2017) \quad Cavallo (2018) \quad Cavallo, Lippi y Miyahara (2024)
+\quad Bueno (2024)}
+\nota{Frecuencia y tamaño de los cambios de precios; fijación dependiente del
+estado frente a dependiente del tiempo. Bueno (2024) usa precios de
+supermercados del Perú.}
+
+\tema{11.6 Multiplicadores del gasto público en equilibrio general}
+\lecturas{\HJ{11} \quad \CSV{17.3--17.4}}
+\consulta{Galí, López-Salido y Vallés (2007)}
+\nota{La referencia neoclásica —el gasto público en el modelo de Ramsey— está en el
+tema 4.8. Galí et al. (2007) se aprovecha mejor después del tema 12.10.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 12 --- Equilibrio general dinámico y estocástico (DSGE) --- 13 semanas}
+{Núcleo cuantitativo del recorrido. Requiere haber cerrado los Bloques 4, 9 y 11
+y los temas 14.1 a 14.7, que se estudian antes; el tema 14.8 (calibración y
+simulación) se intercala en este bloque, después del 12.7. Los Bloques 13 y 15
+lo prolongan. Es el bloque donde más pesan los programas de la PUCP, que lo
+tratan como el contenido central de un primer año de doctorado.}
+
+\tema{12.1 Hechos estilizados del ciclo económico}
+\lecturas{\DG{18} \quad \RO{5.1}}
+\articulos{Cooley y Prescott (1995)}
+\consulta{Mitchell (1913)}
+\consultalib{\GM{1.2}}
+\nota{Comovimiento de producto, consumo, inversión y horas; medición y filtrado
+del componente cíclico.}
+
+\tema{12.2 Decisiones bajo incertidumbre: programación dinámica y ecuación de Bellman}
+\lecturas{\HJ{17}}
+\supl{\KR{7}}
+\nota{Capítulo técnico y árido, pero sin él los dos últimos capítulos resultan
+ilegibles.}
+\nota{La teoría formal de la programación dinámica ya se estudió en los temas
+14.1 y 14.2; aquí se aplica a las decisiones de los hogares.}
+
+\tema{12.3 Consumo bajo incertidumbre y reparto competitivo de riesgos}
+\lecturas{\CSV{12.1} \quad \HJ{17} \quad \RO{8.2--8.3}}
+\supl{\KR{7} \quad \KR{11}}
+\nota{Paseo aleatorio de Hall; cierra el tema abierto en 2.1.}
+
+\tema{12.4 Más allá del ingreso permanente: ahorro precautorio y liquidez}
+\lecturas{\CSV{12.2} \quad \RO{8.6--8.7}}
+\articulos{Carroll (1997)}
+\nota{\RO{8.7} resuelve el ahorro precautorio con programación dinámica: primera
+aplicación directa del tema 12.2. Ahorro de amortiguación (\emph{buffer stock}) y
+sesgo presente.}
+
+\tema{12.5 El modelo de ciclo económico real (RBC)}
+\lecturas{\DG{23} \quad \CSV{14.1} \quad \HJ{18} \quad \RO{5.2--5.7} \quad \AC{17.1--17.3}}
+\supl{\KR{14} \quad \KR{12}}
+\articulos{King, Plosser y Rebelo (1988)}
+\consultalib{Stokey, Lucas y Prescott (1989), secc.~10.1}
+\consulta{Kydland y Prescott (1982) \quad Long y Plosser (1983) \quad King y
+Rebelo (1999) \quad Urrutia (1996)}
+\consultalib{\GM{1.3--1.4} \quad \GM{5}}
+\nota{De Gregorio da la intuición; Heijdra da la resolución completa, la
+calibración y las funciones impulso-respuesta.}
+\nota{Contexto histórico: de la crítica de Lucas (tema 9.2) a Kydland y Prescott
+(1982). Senda de crecimiento balanceado y dinámica de transición.}
+\nota{Acemoglu presenta el modelo de Brock--Mirman, la base estocástica del RBC.}
+
+\tema{12.6 Extensiones del RBC: oferta de trabajo, costos de ajuste y utilización}
+\lecturas{\CSV{14.1}}
+\articulos{Hansen (1985)}
+\consultalib{Ljungqvist y Sargent (2018), secc.~29.5--29.6 (loterías de empleo)}
+\consulta{Rogerson (1988) \quad Greenwood, Hercowitz y Huffman (1988) \quad
+Benhabib, Rogerson y Wright (1991)}
+\consultalib{\GM{6} \quad Kim y Loungani (1992) \quad Rotemberg y Woodford (1996)
+\quad Finn (2000) \quad Kilian (2008)}
+\nota{Trabajo indivisible y loterías; hábitos en el consumo; costos de ajuste a la
+inversión; utilización variable del capital; producción doméstica.}
+\nota{RBC con energía: la energía entra como insumo de la producción y su precio,
+como un choque de oferta persistente. Kim y Loungani (1992) lo incorporan al
+RBC estándar y muestran que su efecto sobre el producto es modesto; Rotemberg y
+Woodford (1996) lo amplifican con competencia imperfecta y Finn (2000) con
+utilización variable del capital, sin abandonar la competencia perfecta. Kilian
+(2008) resume la evidencia. Es el modelo que resuelve el Tema 3 del curso de
+Macroeconomía del BCRP (estado estacionario, log-linealización y comparación con
+un choque de productividad).}
+
+\tema{12.7 Evaluación empírica de los modelos de ciclo real}
+\lecturas{\HJ{18} \quad \DG{23} \quad \CSV{14.2--14.3} \quad \RO{5.8} \quad \RO{5.10}}
+\supl{\KR{8} \quad \KR{14}}
+\articulos{Prescott (1986)}
+\consulta{Galí (1999) \quad Prescott (2016)}
+\nota{Galí (1999) usa la respuesta de las horas a los choques tecnológicos como
+prueba del modelo. Al cerrar este tema se estudia el 14.8: calibración y
+simulación del RBC en la computadora.}
+
+\tema{12.8 Contabilidad del ciclo económico: las cuñas}
+\articulos{Chari, Kehoe y McGrattan (2007)}
+\nota{Cuñas de eficiencia, de trabajo, de inversión y de gasto como diagnóstico
+de qué fricción le falta al modelo. Se retoma en 15.5 con la cuña laboral.}
+
+\tema{12.9 Ajuste escalonado de precios: Fischer, Taylor e inercia inflacionaria}
+\lecturas{\RO{7.1--7.3} \quad \RO{7.7} \quad \WA{6.2.2} \quad \WA{6.2.4}}
+\articulos{Fischer (1977)}
+\nota{Precios predeterminados (Fischer) frente a precios fijos (Taylor); modelos
+que generan la inercia que la curva de Phillips neokeynesiana pura no produce.}
+
+\tema{12.10 El modelo DSGE neokeynesiano}
+\lecturas{\CSV{15.4} \quad \HJ{19} \quad \RO{7.4} \quad \RO{7.8} \quad \WA{6.3.2} \quad \WA{8.1--8.3} \quad \GA{1} \quad \GA{3}}
+\supl{\KR{18}}
+\articulos{Calvo (1983)}
+\consulta{Goodfriend y King (1997)}
+\nota{Fijación de precios a la Calvo, curva de Phillips neokeynesiana, regla de
+Taylor, modelo canónico de tres ecuaciones y política monetaria óptima.}
+\nota{La política monetaria óptima en este modelo es el tema del Bloque 13. Su
+simulación completa el tema 14.8.}
+
+\tema{12.11 Modelos DSGE de mediana escala y su estimación}
+\lecturas{\RO{7.10}}
+\articulos{Smets y Wouters (2007)}
+\nota{Hábitos, indexación, rigidez de salarios y costos de ajuste; estimación
+bayesiana e identificación de choques.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 13 --- Política monetaria en el modelo neokeynesiano --- 4 semanas}
+{Desarrolla la política monetaria óptima en el modelo
+neokeynesiano del tema 12.10. Es el núcleo de Galí y de los capítulos de
+política de Walsh y Romer. Requiere los Bloques 8, 9 y 12.}
+
+\tema{13.1 Diseño de la política monetaria en el modelo neokeynesiano básico}
+\lecturas{\RO{12.3--12.5} \quad \WA{8.4.1--8.4.2} \quad \WA{8.5--8.7} \quad \GA{4}}
+\articulos{Clarida, Galí y Gertler (1999)}
+\consulta{Walsh (2002) \quad Woodford (2003)}
+\consultalib{\GA{7} \quad \WA{9.1--9.5}}
+\nota{La asignación eficiente como referencia, la función de pérdida derivada del
+bienestar y las disyuntivas entre inflación y brecha del producto.}
+\nota{\GA{7} y \WA{9} llevan el modelo a la economía abierta: la economía
+pequeña de Galí--Monacelli, el modelo de dos países de Obstfeld--Rogoff y la
+coordinación de políticas. Son consulta, sin horas; \GA{7} se lee con horas
+en el tema 8.4 del sílabo de economía internacional.}
+
+\tema{13.2 Reglas de tasa de interés, determinación del nivel de precios y principio de Taylor}
+\lecturas{\RO{12.6} \quad \WA{10.2.1--10.2.2}}
+\articulos{Taylor (1993) \quad Castillo-Martinez y Reis (2026)}
+\consulta{Fernández-Villaverde y Sanches (2024)}
+\nota{Reglas exógenas y de retroalimentación, unicidad del equilibrio, cláusulas de
+escape y anclas; control de la inflación con tasas, con dinero y bajo dominancia
+fiscal (programa 1ECO90).}
+
+\tema{13.3 Discreción frente a compromiso}
+\lecturas{\WA{8.4.3--8.4.7} \quad \GA{5}}
+\nota{Ganancias del compromiso, persistencia endógena, regímenes de metas frente a
+reglas de instrumento e incertidumbre de modelo.}
+
+\tema{13.4 Salarios y precios rígidos}
+\lecturas{\GA{6}}
+\nota{Con dos fricciones nominales ya no basta con estabilizar la inflación de
+precios.}
+
+\tema{13.5 La cota inferior cero, la trampa de liquidez y el estancamiento secular}
+\lecturas{\CSV{21.1} \quad \CSV{22.1} \quad \RO{12.7} \quad \WA{10.2.3}}
+\articulos{Eggertsson y Woodford (2004)}
+\consulta{Werning (2011) \quad Correia et al. (2013)}
+\nota{Política monetaria y fiscal óptima cuando la tasa nominal no puede bajar más.}
+
+\tema{13.6 \emph{Forward guidance} y política monetaria no convencional}
+\lecturas{\CSV{21.2--21.4} \quad \RO{7.9} \quad \GA{8}}
+\articulos{McKay, Nakamura y Steinsson (2016)}
+\nota{El puzzle de \emph{forward guidance}, la hoja de balance del banco central y la
+flexibilización cuantitativa y crediticia. Galí cierra con un balance del enfoque
+neokeynesiano.}
+
+\tema{13.7 Metas de inflación en una economía parcialmente dolarizada}
+\articulosB{Céspedes, Chang y Velasco (2004) \quad Levy Yeyati (2006)}
+\consultalib{Armas, Ize y Levy Yeyati (2006)}
+\nota{La dolarización financiera como restricción de la política monetaria:
+descalce de monedas, efectos de hoja de balance de una depreciación y por qué el
+banco central interviene en el mercado cambiario y acumula reservas como segundo
+instrumento junto a la tasa de referencia, que es la situación del BCRP.
+Céspedes et al. muestran cuándo conviene el tipo de cambio flexible aun con
+hojas de balance dolarizadas. El estudio con horas de la dolarización y las
+crisis está en el tema 9.6 del sílabo de economía internacional; aquí se ve
+desde la política monetaria.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 14 --- Métodos recursivos y macroeconomía cuantitativa --- 7 semanas}
+{Formaliza las herramientas de la macroeconomía dinámica y las lleva a la
+computadora \emph{antes} de los modelos DSGE: los temas 14.1 a 14.7 se estudian
+después del Bloque 11 y antes del 12, y el 14.8, dentro del Bloque 12, después
+del tema 12.7. Es el núcleo común de los cursos avanzados de macroeconomía
+dinámica de la PUCP (MAT616, 1ECO90 y ECO324). Requiere los Bloques 4 y 9 y,
+del sílabo de economía matemática, el Bloque 13 (programación dinámica). El
+peso recae en Stokey, Lucas y Prescott y en Ljungqvist y Sargent.}
+
+\tema{14.1 Programación dinámica determinística: problema secuencial y ecuación funcional}
+\articulos{Stokey, Lucas y Prescott (1989), caps.~1, 2, 4 y 5}
+\consultalib{Stokey, Lucas y Prescott (1989), cap.~6, secc.~6.1--6.4}
+\nota{Principio de optimalidad, operador de Bellman y teorema de la aplicación
+contractiva, a nivel de posgrado. La versión básica de estas herramientas y el
+análisis real del cap.~3 de Stokey et al. están en los Bloques 3, 4 y 13 del
+sílabo de economía matemática, que se dan por conocidos. El cap.~6 de Stokey et
+al., de consulta, prueba la estabilidad de la senda óptima.}
+
+\tema{14.2 Programación dinámica estocástica y lineal-cuadrática}
+\lecturas{\AC{16}}
+\articulos{Ljungqvist y Sargent (2018), caps.~3 y 5}
+\consultalib{Heer y Maußner (2005), secc.~2.1--2.2 \quad Stokey, Lucas y Prescott (1989), cap.~9 (secc.~9.1, 9.2, 9.5 y 9.6) y secc.~10.1 \quad Ljungqvist y Sargent (2018), cap.~2, secc.~2.1--2.4}
+\nota{Choques markovianos en la ecuación de Bellman; el regulador
+lineal-cuadrático y la ecuación de Riccati. Las cadenas de Markov del cap.~2 de
+Ljungqvist y Sargent (y del tema 13.5 de economía matemática) son la base para
+discretizar los choques en el tema 14.7.}
+
+\tema{14.3 Equilibrio competitivo, óptimo de Pareto y mercados completos}
+\articulos{Ljungqvist y Sargent (2018), cap.~8}
+\consultalib{Prácticas UP (2024), secc.~1 \quad Stokey, Lucas y Prescott (1989), caps.~15--16}
+\nota{El programa MAT616 remite a los caps.~5 y 13, que en la 4.ª edición son la
+programación lineal-cuadrática (ya leída en el tema 14.2) y la valoración de
+activos (Bloques 4 y 5 del sílabo de economía financiera). El equilibrio con
+mercados completos es el cap.~8, que incluye el problema del planificador con
+ponderaciones de Pareto: el método de Negishi.}
+\nota{Teoremas del bienestar en economías estáticas y de horizonte infinito;
+mercados de Arrow--Debreu frente a mercados secuenciales; economías con
+producción. El programa MAT616 lo desarrolla con notas de clase.}
+\nota{El capítulo 5 de Acemoglu (tema 4.6) es la versión de este tema para el
+crecimiento.}
+
+\tema{14.4 Equilibrio competitivo recursivo}
+\articulos{Ljungqvist y Sargent (2018), caps.~7 y 12 \quad Prescott y Mehra (1980)}
+\consulta{Mehra (1984)}
+\consultalib{Stokey, Lucas y Prescott (1989), caps.~17--18}
+\nota{Ley de movimiento agregada y condición de consistencia: el lenguaje de la
+macroeconomía cuantitativa moderna.}
+
+\tema{14.5 Soluciones locales: log-linealización y ecuaciones en diferencias}
+\articulos{Uhlig (2001)}
+\consultalib{\GM{3.5--3.8} \quad Heer y Maußner (2005), secc.~2.3 \quad Sánchez y Maraví (2009)}
+\nota{Aproximación alrededor del estado estacionario y cálculo de funciones
+impulso-respuesta.}
+
+\tema{14.6 Modelos lineales con expectativas racionales: Blanchard--Kahn, Klein y McCallum}
+\articulos{Blanchard y Kahn (1980) \quad Klein (2000)}
+\consulta{McCallum (1998) \quad Hamilton (1994), cap.~4}
+\nota{Generaliza los métodos del tema 9.1. Usa la diagonalización (tema 2.4 del
+sílabo de economía matemática), la factorización de Cholesky (tema 2.1 del de
+métodos numéricos) y la descomposición de Schur generalizada (tema 9.1 de ese
+mismo sílabo).}
+\nota{El apéndice 2.7 de Walsh (tema 8.5) resuelve paso a paso un modelo monetario
+con este enfoque.}
+
+\tema{14.7 Métodos numéricos: iteración de la función de valor en Python}
+\supl{\KR{10}}
+\articulos{Kiusalaas (2013), cap.~1}
+\consultalib{Heer y Maußner (2005), caps.~1, 3, 4 y 8 \quad Sánchez y Maraví (2009) \quad Ljungqvist y Sargent (2018), cap.~4}
+\nota{Implementación numérica del modelo neoclásico como problema de
+programación dinámica (programa 1ECO90). El modelo se usa solo como banco de
+pruebas del método: no reabre el Bloque 4.}
+
+\tema{14.8 Calibración y simulación de modelos RBC y DSGE}
+\lecturas{\CSV{Apéndices B y C}}
+\supl{\KR{10}}
+\consultalib{\GM{2.2--2.4}}
+\nota{Se estudia dentro del Bloque 12, después del tema 12.7: se calibra y simula
+el RBC del tema 12.5 y, al llegar al 12.10, el modelo neokeynesiano. Retoma la
+metodología de calibración de Cooley y Prescott (1995).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 15 --- Fricciones y heterogeneidad en el ciclo económico --- 5 semanas}
+{Extensiones del modelo de ciclo que los programas avanzados de la PUCP tratan
+como frontera: el mercado laboral con búsqueda, las fricciones financieras y los
+mercados incompletos con agentes heterogéneos, con su aplicación a la política
+monetaria. Requiere los Bloques 10, 12 y 14; el último tema, también el 13. Es
+el destino final del recorrido. Las crisis bancarias (Diamond--Dybvig), las
+paradas súbitas y el default soberano se estudian en los sílabos de economía
+financiera y de economía internacional.}
+
+\tema{15.1 Búsqueda y emparejamiento en el modelo de ciclo económico real}
+\supl{\KR{20}}
+\articulos{Merz (1995) \quad Rogerson, Shimer y Wright (2005)}
+\consultalib{Ljungqvist y Sargent (2018), secc.~29.2--29.3}
+\consulta{Andolfatto (1996) \quad Pissarides (2000)}
+\nota{Une el modelo DMP del tema 10.4 con el RBC del 12.5. Eficiencia del
+equilibrio y condición de Hosios.}
+
+\tema{15.2 Desempleo y vacantes en el ciclo: el puzzle de Shimer}
+\articulos{Shimer (2005)}
+\consultalib{Ljungqvist y Sargent (2018), cap.~30}
+\nota{El modelo DMP calibrado no genera la volatilidad observada de la razón
+vacantes/desempleo.}
+
+\tema{15.3 Informalidad laboral y ciclo económico}
+\articulos{Leyva y Urrutia (2020)}
+\consulta{Fernández y Meza (2015) \quad Finkelstein Shapiro (2014) \quad Leyva y
+Urrutia (2023) \quad Céspedes y Ramírez-Rondán (2021) \quad Jaramillo y Campos
+(2021)}
+\nota{Regulación laboral, informalidad y fluctuaciones; el mercado laboral en la
+pandemia. Incluye evidencia para el Perú.}
+
+\tema{15.4 Fricciones financieras y el acelerador financiero}
+\lecturas{\RO{10.1--10.3} \quad \WA{10.5}}
+\supl{\KR{19}}
+\articulos{Bernanke, Gertler y Gilchrist (1999)}
+\consulta{Bernanke y Gertler (1989) \quad Carlstrom y Fuerst (1997)}
+\nota{Costos de agencia y patrimonio neto como amplificadores de los choques.}
+
+\tema{15.5 Restricciones de colateral y choques financieros}
+\articulos{Kiyotaki y Moore (1997) \quad Quadrini (2011)}
+\consulta{Jermann y Quadrini (2012) \quad Kehoe, Midrigan y Pastorino (2018)}
+\nota{Ciclos de crédito con colateral; la cuña laboral como síntoma de
+fricciones financieras (enlaza con el tema 12.8).}
+
+\tema{15.6 Riesgo idiosincrático, autoseguro y mercados incompletos}
+\lecturas{\AC{17.4--17.5}}
+\supl{\KR{21}}
+\articulos{Aiyagari (1994) \quad Ljungqvist y Sargent (2018), caps.~17 y 18}
+\articulosB{Huggett (1993)}
+\consultalib{Heer y Maußner (2005), caps.~5--7 \quad Stokey, Lucas y Prescott (1989), caps.~12--13}
+\nota{Primer modelo de agentes heterogéneos del plan. Generaliza el ahorro
+precautorio del tema 12.4 al equilibrio general: Huggett (1993) lo hace en una
+economía de dotaciones con un solo activo, y Aiyagari (1994), con producción y
+capital. Los caps.~12 y 13 de Stokey et al., de consulta, garantizan que exista
+la distribución estacionaria.}
+\nota{Acemoglu presenta el modelo de Bewley y las generaciones solapadas con
+incertidumbre.}
+
+\tema{15.7 Agentes heterogéneos con riesgo agregado: Krusell y Smith}
+\articulosB{Krusell y Smith (1998)}
+\nota{Con riesgo agregado, la distribución de la riqueza entra en el estado del
+problema. La agregación aproximada la resume con unos pocos momentos y explica
+por qué, en este modelo, los agregados se parecen a los del agente
+representativo.}
+
+\tema{15.8 Métodos de solución en el espacio de secuencias}
+\articulosB{Auclert, Bardóczy, Rognlie y Straub (2021)}
+\nota{Funciones impulso-respuesta de modelos con agentes heterogéneos a partir
+de los jacobianos de secuencia: el método estándar para resolver y estimar
+modelos HANK, con el paquete \texttt{sequence-jacobian} de Python. Prepara el
+tema 15.9.}
+
+\tema{15.9 Política monetaria con agentes heterogéneos}
+\articulos{Kaplan, Moll y Violante (2018) \quad Auclert (2019)}
+\consulta{Kekre y Lenel (2022) \quad Werning (2015)}
+\consultalib{Kaplan y Violante (2018)}
+\nota{Canales directos e indirectos de la política monetaria y su efecto
+redistributivo. Requiere los temas 13.1, 15.6 y 15.8.}
+
+%------------------------------------------------------------------------------
+\bigskip
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+\subsection*{De Gregorio, \emph{Macroeconomía: Teoría y Políticas}}
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{cXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Bloque} \\
+\midrule
+3  & Consumo & 2 \\
+4  & Inversión & 2 \\
+5  & El gobierno y la política fiscal & 2 \\
+6  & La economía cerrada & 3 \\
+7  & Economía abierta: la cuenta corriente & 3 \\
+8  & Economía abierta: el tipo de cambio real & 3 \\
+9  & Más sobre tipo de cambio real y cuenta corriente & 3 \\
+10 & Introducción al crecimiento económico & 4 \\
+11 & El modelo neoclásico de crecimiento & 4 \\
+12 & Modelos de crecimiento: extensiones & 4--5 \\
+13 & Evidencia empírica & 4 \\
+14 & Crecimiento económico con ahorro óptimo & 4 \\
+15 & Teoría cuantitativa, neutralidad y demanda por dinero & 8 \\
+16 & Oferta de dinero, política monetaria e inflación & 8 \\
+17 & Política monetaria y mercados financieros & 8 \\
+18 & Introducción a las fluctuaciones de corto plazo & 12 \\
+19 & El modelo keynesiano de economía cerrada: IS-LM & 1 \\
+20 & El modelo de Mundell--Fleming & 1 \\
+21 & La oferta agregada y la curva de Phillips & 1 \\
+22 & Oferta, demanda agregada y políticas macroeconómicas & 1 \\
+23 & Fluctuaciones en modelos del ciclo económico real & 12 \\
+24 & Los mercados del trabajo y del crédito en el ciclo & 10 \\
+25 & Inconsistencia intertemporal y política monetaria & 9 \\
+\bottomrule
+\end{tabularx}
+}
+
+
+\bigskip
+\subsection*{Heijdra, \emph{Foundations of Modern Macroeconomics} (3.ª ed.)}
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{cXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Bloque} \\
+\midrule
+1  & Review of the AD-AS model & 1.1 \\
+2  & The open economy & 1 \\
+3  & Dynamics in aggregate demand and supply & 1 \\
+4  & Perfect foresight and economic policy & 1--2 \\
+5  & Rational expectations and economic policy & 9 \\
+6  & The government budget deficit & 2 \\
+7  & A closer look at the labour market & 10 \\
+8  & Search in the labour market & 10 \\
+9  & Dynamic inconsistency in public and private decision making & 9 \\
+10 & Money & 8 \\
+11 & New Keynesian economics & 11 \\
+12 & Exogenous economic growth --- Solow-Swan & 4 \\
+13 & Exogenous economic growth --- Ramsey-Cass-Koopmans & 4 \\
+14 & Endogenous economic growth & 5 \\
+15 & Overlapping generations in continuous time & 7 \\
+16 & Overlapping generations in discrete time & 7 \\
+17 & Decision making in a stochastic environment & 12 \\
+18 & DSGE --- New classical models & 12 \\
+19 & DSGE --- New Keynesian models & 12 \\
+\bottomrule
+\end{tabularx}
+}
+
+
+\bigskip
+\subsection*{Romer, \emph{Advanced Macroeconomics} (5.ª ed.)}
+\noindent Solo se listan los capítulos utilizados; las secciones excluidas están
+en el Anexo D.
+\medskip
+
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Secciones} & \cab{Tema} \\
+\midrule
+1 & The Solow Growth Model & 1.1, 1.7--1.8 (1.2--1.6, consulta) & 4.1, 4.5, 4.9 \\
+2 & Infinite-Horizon and Overlapping-Generations Models & 2.8--2.12 (2.1--2.7, consulta) & 7.1, 7.2, 7.5 \\
+3 & Endogenous Growth & 3.4--3.8 (3.1--3.3, consulta) & 5.3, 5.4, 5.7 \\
+4 & Cross-Country Income Differences & 4.2--4.6 (4.1, consulta) & 4.5, 6.1, 6.2 \\
+5 & Real-Business-Cycle Theory & completo & 8.2, 12.1, 12.5, 12.7 \\
+6 & Nominal Rigidity & 6.1--6.3, 6.5--6.9 (6.4, consulta) & 1.4, 9.2, 11.1--11.4 \\
+7 & DSGE Models of Fluctuations & completo & 11.5, 12.9--12.11, 13.6 \\
+8 & Consumption & 8.1--8.4, 8.6--8.7 & 2.1, 12.3, 12.4 \\
+9 & Investment & completo & 2.2, 2.3 \\
+10 & Financial Markets and Financial Crises & 10.1--10.3 & 15.4 \\
+11 & Unemployment & completo & 10.2, 10.4, 10.5 \\
+12 & Monetary Policy & completo & 8.4, 8.8, 9.4, 9.5, 13.1, 13.2, 13.5 \\
+13 & Budget Deficits and Fiscal Policy & 13.1--13.8 & 2.4--2.8 \\
+\bottomrule
+\end{tabularx}
+}
+
+\bigskip
+\subsection*{Campante, Sturzenegger y Velasco, \emph{Advanced Macroeconomics: An Easy Guide}}
+\noindent Solo se listan los capítulos utilizados; los excluidos están en el
+Anexo D. En el capítulo 8 queda fuera la subsección sobre la cuenta corriente en
+la economía abierta.
+\medskip
+
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Secciones} & \cab{Tema} \\
+\midrule
+2 & Growth theory preliminaries & consulta & 4.1, 4.2, 4.4 \\
+3 & The neoclassical growth model & consulta & 4.7 \\
+5 & Endogenous growth models I: Escaping diminishing returns & 5.5 (5.1--5.4, consulta) & 5.1, 6.4 \\
+6 & Endogenous growth models II: Technological change & 6.1--6.4 & 5.4, 5.5, 5.7 \\
+7 & Proximate and fundamental causes of growth & 7.2 (7.1, consulta) & 4.5, 6.1 \\
+8 & Overlapping generations models & 8.1--8.3 & 7.1, 7.2, 7.4 \\
+9 & Pension systems and transitions & 9.1--9.2 & 7.3, 7.5 \\
+10 & Unified growth theory & completo & 6.5 \\
+11 & Consumption & completo & 2.1 \\
+12 & Consumption under uncertainty and macro finance & 12.1--12.2 & 12.3, 12.4 \\
+13 & Investment & 13.1--13.2 & 2.2, 2.3 \\
+14 & Real business cycles & 14.1--14.3 & 12.5--12.7 \\
+15 & (New) Keynesian theories of fluctuations & 15.2--15.4 (15.1, consulta) & 1.1, 1.5, 9.2, 11.1, 11.3, 12.10 \\
+16 & Unemployment & 16.1--16.5 & 10.1--10.4 \\
+17 & Fiscal policy I: Public debt and the effectiveness of fiscal policy & 17.1--17.4, 17.7--17.8 & 2.4--2.6, 11.6 \\
+18 & Fiscal policy II: The long-run determinants of fiscal policy & 18.1--18.3 & 2.7, 2.8, 4.8 \\
+19 & Monetary policy: An introduction & completo & 8.4--8.6 \\
+20 & Rules vs Discretion & completo & 9.4, 9.5 \\
+21 & Recent debates in monetary policy & completo & 13.5, 13.6 \\
+22 & New developments in monetary and fiscal policy & 22.1--22.3 & 7.6, 8.7, 13.5 \\
+Ap.~B, C & Simulating an RBC model; Simulating a DSGE model & completo & 14.8 \\
+\bottomrule
+\end{tabularx}
+}
+
+\bigskip
+\subsection*{Acemoglu, \emph{Introduction to Modern Economic Growth}}
+\noindent Queda fuera el capítulo 19 (Anexo D). El capítulo 6, las secciones
+7.1--7.7 y los apéndices A y B son herramientas matemáticas que se estudian en
+el sílabo de economía matemática; los capítulos 22 y 23 son opcionales.
+\medskip
+
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Secciones} & \cab{Tema} \\
+\midrule
+1 & Economic Growth and Economic Development: The Questions & completo & 4.1 \\
+2 & The Solow Growth Model & 2.1--2.7 & 4.2, 4.3 \\
+3 & The Solow Model and the Data & 3.1--3.6 & 4.1, 4.4, 4.5 \\
+4 & Fundamental Determinants of Differences in Economic Performance & completo & 6.1 \\
+5 & Foundations of Neoclassical Growth & completo & 4.6 \\
+7 & Review of the Theory of Optimal Control & 7.8 & 2.3 \\
+8 & The Neoclassical Growth Model & 8.1--8.10 & 4.7, 4.8 \\
+9 & Growth with Overlapping Generations & 9.1--9.8 & 7.1--7.4 \\
+10 & Human Capital and Economic Growth & completo & 5.2 \\
+11 & First-Generation Models of Endogenous Growth & completo & 5.1 \\
+12 & Modeling Technological Change & completo & 5.3 \\
+13 & Expanding Variety Models & completo & 5.4 \\
+14 & Models of Schumpeterian Growth & completo & 5.5 \\
+15 & Directed Technological Change & completo & 5.6 \\
+16 & Stochastic Dynamic Programming & completo & 14.2 \\
+17 & Stochastic Growth Models & 17.1--17.6 & 6.4, 12.5, 15.6 \\
+18 & Diffusion of Technology & completo & 6.2 \\
+20 & Structural Change and Economic Growth & completo & 6.3 \\
+21 & Structural Transformations and Market Failures in Development & 21.1--21.7 & 6.4, 6.5 \\
+22 & Institutions, Political Economy and Growth & opcional & 6.6 \\
+23 & Political Institutions and Economic Growth & opcional & 6.7 \\
+24 & Epilogue: Mechanics and Causes of Economic Growth & 24.2 (24.1 y 24.3, opcionales) & 6.5, 6.7 \\
+Ap.~C & Brief Review of Dynamic Games & opcional & 6.7 \\
+\bottomrule
+\end{tabularx}
+}
+
+\bigskip
+\subsection*{Walsh, \emph{Monetary Theory and Policy} (3.ª ed.)}
+\noindent Quedan fuera el capítulo 9 y la sección 10.4 (Anexo D).
+\medskip
+
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Secciones} & \cab{Tema} \\
+\midrule
+1 & Empirical Evidence on Money, Prices, and Output & completo & 8.2 \\
+2 & Money-in-the-Utility Function & completo & 8.5, 8.6 \\
+3 & Money and Transactions & completo & 8.1, 8.3, 8.5 \\
+4 & Money and Public Finance & completo & 8.4, 8.6, 8.7 \\
+5 & Money in the Short Run: Informational and Portfolio Rigidities & completo & 9.3 \\
+6 & Money in the Short Run: Nominal Price and Wage Rigidities & 6.1--6.3 & 9.3, 11.1--11.3, 11.5, 12.9, 12.10 \\
+7 & Discretionary Policy and Time Inconsistency & completo & 9.4, 9.5 \\
+8 & New Keynesian Monetary Economics & completo & 12.10, 13.1, 13.3 \\
+10 & Financial Markets and Monetary Policy & 10.1--10.3, 10.5--10.8 & 8.8, 13.2, 13.5, 15.4 \\
+11 & Monetary Policy Operating Procedures & completo & 8.9 \\
+\bottomrule
+\end{tabularx}
+}
+
+\bigskip
+\subsection*{Galí, \emph{Monetary Policy, Inflation, and the Business Cycle} (1.ª ed.)}
+\noindent Queda fuera el capítulo 7 (Anexo D).
+\medskip
+
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Secciones} & \cab{Tema} \\
+\midrule
+1 & Introduction & completo & 12.10 \\
+2 & A Classical Monetary Model & completo & 8.5 \\
+3 & The Basic New Keynesian Model & completo & 12.10 \\
+4 & Monetary Policy Design in the Basic New Keynesian Model & completo & 13.1 \\
+5 & Monetary Policy Tradeoffs: Discretion versus Commitment & completo & 13.3 \\
+6 & A Model with Sticky Wages and Prices & completo & 13.4 \\
+8 & Main Lessons and Some Extensions & completo & 13.6 \\
+\bottomrule
+\end{tabularx}
+}
+
+\bigskip
+\subsection*{Galindo y Montecinos, \emph{Macrodinámica, Tomo I} (consulta)}
+\noindent Libro de consulta: no entra en el cómputo de horas. Solo se listan las
+partes seleccionadas; quedan fuera el capítulo 4 (versión intermedia del modelo
+con trabajo constante) y las secciones de códigos.
+\medskip
+
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Secciones} & \cab{Tema} \\
+\midrule
+1 & Panorama de los modelos RBC & 1.2--1.4 & 12.1, 12.5 \\
+2 & Fundamentos de Dynare & 2.2--2.4 & 14.8 \\
+3 & Modelo RBC con solución analítica & 3.5--3.8 & 14.5 \\
+5 & Modelo RBC con trabajo variable & completo & 12.5 \\
+6 & Modelo RBC con choque a la inversión y utilización variable del capital & completo & 12.6 \\
+\bottomrule
+\end{tabularx}
+}
+
+\bigskip
+\subsection*{Azzimonti, Krusell, McKay y Mukoyama, \emph{Macroeconomics} (suplemento)}
+\noindent Solo se listan los capítulos que entran en las horas. Los capítulos 3,
+4, 5, 13 y 22 quedan como consulta en los Bloques 4 y 5, y el capítulo 9
+(técnicas en tiempo continuo) corresponde al sílabo de economía matemática.
+\medskip
+
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{cXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Tema} \\
+\midrule
+6 & Welfare & 7.2 \\
+7 & Uncertainty & 12.2, 12.3 \\
+8 & Empirical Strategies and Quantitative Macroeconomics & 12.7 \\
+10 & Computational Tools & 14.7, 14.8 \\
+11 & Consumption & 2.1, 12.3 \\
+12 & Labor Supply & 12.5 \\
+14 & Real Business Cycles & 12.5, 12.7 \\
+15 & Government and Public Policies & 2.4, 2.6 \\
+17 & Money & 8.3, 8.5 \\
+18 & Nominal Frictions and Business Cycles & 11.2, 12.10 \\
+19 & Credit Market Frictions & 10.1, 15.4 \\
+20 & Frictional Labor Markets & 10.4, 15.1 \\
+21 & Inequality & 15.6 \\
+23 & International Macroeconomics & 3.2, 3.4 \\
+25 & Sustainability & 4.9 \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo B. Temas cubiertos por un solo texto}
+\addcontentsline{toc}{section}{Anexo B. Temas cubiertos por un solo texto}
+
+Conviene tener presente dónde \emph{no} hay redundancia entre De Gregorio y
+Heijdra, para no saltarse material que carece de sustituto.
+
+\medskip
+\noindent\destacado{Solo en De Gregorio:}
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item Cuenta corriente intertemporal y tipo de cambio real (\DG{7}, \DG{8}, \DG{9}).
+  \item Evidencia empírica del crecimiento (\DG{13}).
+  \item Política monetaria y mercados financieros (\DG{17}).
+  \item Evidencia y contexto de economías emergentes y de América Latina
+        (transversal a todo el libro).
+\end{itemize}
+
+\medskip
+\noindent\destacado{Solo en Heijdra:}
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item Previsión perfecta y análisis de sendero de silla (\HJ{4}).
+  \item Métodos de solución con expectativas racionales (\HJ{5}).
+  \item Búsqueda y emparejamiento en el mercado laboral (\HJ{8}).
+  \item Fundamentos microeconómicos de la nueva economía keynesiana (\HJ{11}).
+  \item Generaciones solapadas en tiempo continuo y discreto (\HJ{15}, \HJ{16}).
+  \item Programación dinámica y decisiones estocásticas (\HJ{17}).
+  \item Modelos DSGE resueltos, clásicos y neokeynesianos (\HJ{18}, \HJ{19}).
+\end{itemize}
+
+
+%------------------------------------------------------------------------------
+\bigskip
+\section*{Anexo C. Capítulos del suplemento excluidos del plan}
+\addcontentsline{toc}{section}{Anexo C. Capítulos del suplemento excluidos}
+
+Los siguientes capítulos de \textcolor{colorK}{\textbf{K}} \emph{no} se han
+incorporado, porque abren materia que este sílabo no contempla. No son un olvido:
+quedan disponibles como continuación natural una vez cerrado el Bloque 15.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{cXX}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Motivo de la exclusión} \\
+\midrule
+16 & Asset Prices & Valoración de activos; se estudia en el sílabo de economía financiera. \\
+24 & Sovereign Debt and Default Risk & Adyacente al tema 2.6, pero es una literatura distinta de la sostenibilidad de la deuda. \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Una salvedad sobre el Bloque 9.} Expectativas racionales,
+crítica de Lucas e inconsistencia dinámica no reciben suplemento: ningún capítulo
+de \textcolor{colorK}{\textbf{K}} está dedicado a ese material. \HJ{5} y \HJ{9}
+siguen siendo la referencia principal; Walsh, Romer y Campante et al. los
+complementan.
+
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo D. Capítulos y secciones que no entran en el plan}
+\addcontentsline{toc}{section}{Anexo D. Capítulos y secciones excluidos}
+
+Quedan fuera los contenidos de macroeconomía internacional y de finanzas y
+banca, que tienen sílabos propios, y el material introductorio. La
+asignación se hizo a partir de los índices de cada libro.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap. / secc.} & \cab{Contenido} & \cab{Motivo de la exclusión} \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorR}{\textbf{Romer}}} \\
+Intro. & Introduction & Material introductorio. \\
+8.5 & Consumption and Risky Assets & Valoración de activos; coherente con la exclusión de \KR{16}. \\
+10.4--10.8 & Volatilidad excesiva, modelo de Diamond--Dybvig, contagio y crisis financieras & Economía financiera y bancaria. \\
+13.9 & A Model of Sovereign Debt Crises & Macroeconomía internacional; coherente con la exclusión de \KR{24}. \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorCSV}{\textbf{Campante, Sturzenegger y Velasco}}} \\
+1 & Introduction & Material introductorio. \\
+4 & An application: The small open economy & Macroeconomía internacional. \\
+8.3 (subsecc.) & Revisiting the current account in the open economy & Macroeconomía internacional. \\
+12.3 & Macroeconomics and finance (CAPM de consumo, prima por riesgo) & Economía financiera; coherente con la exclusión de \KR{16}. \\
+13.3 & Investment in the open economy & Macroeconomía internacional. \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{3}{l}{\textcolor{colorW}{\textbf{Walsh}}} \\
+10.4 & Macrofinance & Valoración de activos; coherente con la exclusión de \KR{16}. \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent Los capítulos de economía abierta de Acemoglu (\AC{19}), Walsh
+(\WA{9}) y Galí (\GA{7}) entran como consulta, sin horas, en los temas 6.2 y
+13.1. Su estudio con horas corresponde al sílabo de economía internacional
+(\GA{7}, en el tema 8.4 de ese plan).
+
+\medskip
+\noindent Las herramientas matemáticas tampoco entran: el apéndice matemático de
+Heijdra, el apéndice A de Campante et al., el capítulo 6, las secciones 7.1--7.7
+y los apéndices A y B de Acemoglu y el capítulo 9 del suplemento se estudian en
+el sílabo de economía matemática.
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo E. Programas de la PUCP utilizados}
+\addcontentsline{toc}{section}{Anexo E. Programas de la PUCP utilizados}
+
+Se usó la versión más reciente de cada programa. Los números entre paréntesis
+remiten a los temas de este sílabo.
+
+\medskip
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Programa} & \cab{Incorporado} & \cab{No incorporado} \\
+\midrule
+\textbf{1ECO74} (2026-1)\newline Macroeconomía Intermedia\newline\emph{Maestría en Economía}
+ & Consumo e inversión; crecimiento exógeno y endógeno; RBC en economía cerrada y sus extensiones; fundamentos de la teoría monetaria, crítica de Lucas, señoreaje e inflación; modelo neokeynesiano y diseño de la política monetaria (2.1, 2.3, 4.1--4.3, 4.7--4.9, 5.1, 6.1, 6.2, 6.4, 6.5, 7.1, 8.4, 8.5, 9.2, 12.1, 12.4--12.7, 12.10, 12.11, 13.1--13.3, 15.4).
+ & Revisión histórica de la economía peruana; RBC en economía abierta y términos de intercambio; dolarización y políticas macroprudenciales; Campbell (1999) y Mehra y Prescott (1985), de valoración de activos; Freixas y Rochet (2008), de banca. \\[3pt]
+\textbf{2ECO03} (2025-2)\newline Macroeconomía Avanzada\newline\emph{Maestría en Economía}
+ & Búsqueda y emparejamiento en el mercado laboral (módulo 4) y artículos clásicos del acelerador financiero en economía cerrada (módulo 1) (10.4, 15.1, 15.2, 15.4, 15.5).
+ & Módulo 1 (fricciones financieras y política macroprudencial en economías abiertas), módulo 2 (modelo neokeynesiano de economía abierta) y módulo 3 (dolarización financiera). Su sumilla describe, por error, un curso de microeconomía. \\[3pt]
+\textbf{1ECO90} (2026-1)\newline Temas de Macroeconomía Avanzada\newline\emph{Maestría en Economía}
+ & Métodos numéricos; mercado laboral y ciclo económico; formación de precios; determinantes de la inflación y su control (8.4, 8.7, 10.4, 11.5, 12.2, 12.5, 12.6, 13.2, 14.1, 14.7, 15.1--15.3).
+ & La versión 2025-1 no se usó. \\[3pt]
+\textbf{1ECO14} (2026-1, horario 722)\newline Economía Monetaria
+ & Naturaleza y demanda del dinero, dinero en equilibrio general, dinero y déficit público, rigideces nominales, mercados financieros y transmisión, inconsistencia dinámica, metas de inflación y procedimientos operativos (8.1--8.6, 8.8, 8.9, 9.3--9.5, 11.1, 12.9, 12.10, 13.1, 13.2).
+ & Transmisión en economía abierta, política macroprudencial y política monetaria del BCRP, con sus lecturas; Freixas y Rochet (2023), de banca; Christiano e Ikeda (2016) y Jeanne y Korinek (2010). Se usó el horario 722; el 721, del mismo semestre, es casi idéntico. \\[3pt]
+\textbf{ECO324} (2026-1)\newline Tópicos de Macroeconomía Avanzada\newline\emph{Pregrado}
+ & Modelo RBC canónico, calibración, log-linealización, funciones impulso-respuesta y contabilidad del ciclo; modelos neokeynesianos; lecturas sobre trampa de liquidez, \emph{forward guidance} y HANK (11.1, 11.6, 12.1, 12.5, 12.7, 12.8, 12.10, 13.1, 13.5, 13.6, 14.5, 15.9).
+ & Farhi y Werning (2016), de política macroprudencial. La versión 2025-1 no se usó. \\[3pt]
+\textbf{ECO338} (2026-2)\newline Tópicos de Macroeconomía Avanzada~2\newline\emph{Pregrado}
+ & RBC y extensiones, modelo neokeynesiano básico y fricciones de crédito (secciones 1 a 3) (9.2, 12.1, 12.2, 12.5--12.8, 12.10, 12.11, 13.1, 13.2, 15.4--15.6).
+ & Sección 4 (macroeconomía internacional). \\[3pt]
+\textbf{MAT616} (2023-2)\newline Macroeconomía Dinámica\newline\emph{Maestría en Matemáticas Aplicadas}
+ & Herramientas numéricas, modelo de Solow, programación dinámica, soluciones locales, bienestar y mercados completos, equilibrio competitivo recursivo, crecimiento endógeno de primera generación, calibración y mercados incompletos (4.1, 4.2, 5.1, 12.1, 14.1--14.8, 15.6).
+ & Nada; el problema del consumidor (tema 3 del programa) ya está cubierto por el tema 2.1. \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Programas no utilizados}, por corresponder a áreas que siguen
+fuera del plan: Finanzas Internacionales (1ECO93 y 1FIN27); Políticas
+Macroeconómicas en el Perú (1ECO46); Economía de las Instituciones Financieras
+(1ECO86); y Economía Financiera y Bancaria (1ECO87 y 1FIN30).
+
+\medskip
+\noindent\destacado{Sobre las ediciones de Galí.} 1ECO14 y 1ECO74 citan la
+1.ª edición (2008), que es la que usa el plan; ECO324, ECO338 y 2ECO03 citan la
+2.ª (2015).
+
+%------------------------------------------------------------------------------
+\bigskip
+\section*{Anexo F. Referencias tomadas de los programas de la PUCP}
+\addcontentsline{toc}{section}{Anexo F. Referencias de los programas de la PUCP}
+
+Datos bibliográficos según los programas; entre corchetes, el tema donde se
+usan. Las referencias de capítulo de Ljungqvist y Sargent, Stokey et al.,
+Woodford y Benigno son las que indican los programas, salvo en el tema 14.3,
+donde se corrigió la referencia de Ljungqvist y Sargent a la 4.ª edición.
+
+\medskip
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Aiyagari, S. R. (1994). Uninsured Idiosyncratic Risk and Aggregate Saving. \emph{Quarterly Journal of Economics}, 109(3), 659--684. [15.6]
+\item Andolfatto, D. (1996). Business Cycles and Labor-Market Search. \emph{American Economic Review}. [15.1]
+\item Auclert, A. (2019). Monetary Policy and the Redistribution Channel. \emph{American Economic Review}, 109(6), 2333--2367. [15.9]
+\item Balboni, C., O. Bandiera, R. Burgess, M. Ghatak y A. Heil (2021). Why Do People Stay Poor? \emph{Quarterly Journal of Economics}. [6.4]
+\item Barro, R. J. y D. B. Gordon (1983). A Positive Theory of Monetary Policy in a Natural Rate Model. \emph{Journal of Political Economy}, 91(4), 589--610. [9.4]
+\item Barro, R. J. y X. Sala-i-Martin (2003). \emph{Economic Growth}, 2.ª ed. MIT Press. [4.2]
+\item Baumol, W. (1952). The Transactions Demand for Cash: An Inventory Theoretic Approach. \emph{Quarterly Journal of Economics}, 66, 545--556. [8.3]
+\item Benhabib, J., R. Rogerson y R. Wright (1991). Homework in Macroeconomics: Household Production and Aggregate Fluctuations. \emph{Journal of Political Economy}. [12.6]
+\item Benigno, P. (2025). \emph{Monetary Economics and Policy: A Foundation for Modern Currency Systems}. Princeton University Press. [8.1, 8.5, 8.8]
+\item Bernanke, B. y F. Mishkin (1997). Inflation Targeting: A New Framework for Monetary Policy? \emph{Journal of Economic Perspectives}, 11(2), 97--116. [9.5]
+\item Bernanke, B. y M. Gertler (1989). Agency Costs, Net Worth, and Business Fluctuations. \emph{American Economic Review}, 79(1), 14--31. [15.4]
+\item Bernanke, B. y M. Gertler (1995). Inside the Black Box: The Credit Channel of Monetary Policy Transmission. \emph{Journal of Economic Perspectives}, 9(4), 27--48. [8.8]
+\item Bernanke, B., M. Gertler y S. Gilchrist (1999). The Financial Accelerator in a Quantitative Business Cycle Framework. En J. B. Taylor y M. Woodford (eds.), \emph{Handbook of Macroeconomics}, vol.~1, cap.~21, 1341--1393. [15.4]
+\item Bindseil, U. (2014). \emph{Monetary Policy Operations and the Financial System}, caps.~1--3. [8.9]
+\item BIS (2018). \emph{Central Bank Digital Currencies}. Committee on Payments and Market Infrastructures. [8.1]
+\item BIS (2025). The Next-Generation Monetary and Financial System. \emph{BIS Annual Economic Report 2025}, cap.~III, 77--113. [8.1]
+\item Blanchard, O. J. y C. M. Kahn (1980). The Solution of Linear Difference Models under Rational Expectations. \emph{Econometrica}, 48(5), 1305--1311. [14.6]
+\item Blanchard, O. J. y N. Kiyotaki (1987). Monopolistic Competition and the Effects of Aggregate Demand. \emph{American Economic Review}, 647--666. [11.1]
+\item Bloom, D. E., M. Kuhn y K. Prettner (2022). Modern Infectious Diseases: Macroeconomic Impacts and Policy Responses. \emph{Journal of Economic Literature}, 60(1), 85--131. [6.1]
+\item Böhme, R., N. Christin, B. Edelman y T. Moore (2015). Bitcoin: Economics, Technology, and Governance. \emph{Journal of Economic Perspectives}, 29(2), 213--238. [8.1]
+\item Bueno, G. (2024). Inflation and Price Dynamics Analysis using High-Frequency Data from Supermarkets: Evidence from Perú. Manuscrito. [11.5]
+\item Calvo, G. A. (1983). Staggered Prices in a Utility-Maximizing Framework. \emph{Journal of Monetary Economics}, 12, 383--398. [12.10]
+\item Carlstrom, C. y T. Fuerst (1997). Agency Costs, Net Worth, and Business Fluctuations: A Computable General Equilibrium Analysis. \emph{American Economic Review}, 87(5), 893--910. [15.4]
+\item Carroll, C. (1997). Buffer-Stock Saving and the Life Cycle/Permanent Income Hypothesis. \emph{Quarterly Journal of Economics}, 112(1), 1--55. [12.4]
+\item Castillo-Martinez, L. y R. Reis (2026). How Do Central Banks Control Inflation? A Guide for the Perplexed. \emph{Journal of Economic Literature}, 64(1), 195--245. [13.2]
+\item Cavallo, A. (2018). More Amazon Effects: Online Competition and Pricing Behaviors. NBER Working Paper 25138. [11.5]
+\item Cavallo, A., F. Lippi y K. Miyahara (2024). Large Shocks Travel Fast. \emph{American Economic Review: Insights}, 6(4), 558--574. [11.5]
+\item Céspedes, N. y N. Ramírez-Rondán (2021). Job Finding and Separation Rates in an Economy with High Labor Informality. \emph{Research in Labor Economics}. [15.3]
+\item Chari, V. V., P. J. Kehoe y E. R. McGrattan (2007). Business Cycle Accounting. \emph{Econometrica}, 75(3), 781--836. [12.8]
+\item Clarida, R., J. Galí y M. Gertler (1999). The Science of Monetary Policy: A New Keynesian Perspective. \emph{Journal of Economic Literature}, 37, 1661--1707. [13.1]
+\item Cooley, T. F. y E. C. Prescott (1995). Economic Growth and Business Cycles. En T. F. Cooley (ed.), \emph{Frontiers of Business Cycle Research}, Princeton University Press, cap.~1, 1--38. [12.1]
+\item Correia, I., E. Farhi, J. P. Nicolini y P. Teles (2013). Unconventional Fiscal Policy at the Zero Bound. \emph{American Economic Review}, 103(4), 1172--1211. [13.5]
+\item Davis, S. y J. Haltiwanger (1992). Gross Job Creation, Gross Job Destruction, and Employment Reallocation. \emph{Quarterly Journal of Economics}. [10.4]
+\item Dornbusch, R. (1992). Lessons from Experience with High Inflation. \emph{World Bank Economic Review}, 13--32. [8.4]
+\item Duncan, R. (2022). Lecture Notes on Economic Growth. Ohio University. [4.1]
+\item Duncan, R. y R. Fuentes (2006). Regional Convergence in Chile: New Tests, Old Results. \emph{Cuadernos de Economía}, 43(127), 81--112. [4.3]
+\item Eggertsson, G. B. y M. Woodford (2004). Optimal Monetary and Fiscal Policy in a Liquidity Trap. \emph{NBER International Seminar on Macroeconomics 2004}, 75--144. [13.5]
+\item Fernández, A. y F. Meza (2015). Informal Employment and Business Cycles in Emerging Economies: The Case of Mexico. \emph{Review of Economic Dynamics}. [15.3]
+\item Fernández-Villaverde, J. y D. Sanches (2024). Price-Level Determination under the Gold Standard. Documento de trabajo, SSRN 4744246. [13.2]
+\item Finkelstein Shapiro, A. (2014). Self-Employment and Business Cycle Persistence: Does the Composition of Employment Matter for Economic Recoveries? \emph{Journal of Economic Dynamics and Control}. [15.3]
+\item Fischer, S. (1977). Long-Term Contracts, Rational Expectations, and the Optimal Money Supply Rule. \emph{Journal of Political Economy}, 85, 191--205. [12.9]
+\item Galí, J. (1999). Technology, Employment, and the Business Cycle: Do Technology Shocks Explain Aggregate Fluctuations? \emph{American Economic Review}, 249--271. [12.7]
+\item Galí, J., J. D. López-Salido y J. Vallés (2007). Understanding the Effects of Government Spending on Consumption. \emph{Journal of the European Economic Association}, 5(1), 227--270. [11.6]
+\item Goodfriend, M. y R. G. King (1997). The New Neoclassical Synthesis and the Role of Monetary Policy. \emph{NBER Macroeconomics Annual}, 12, 231--283. [12.10]
+\item Goodhart, C. (1994). What Should Central Banks Do? What Should Be Their Macroeconomic Objectives and Operations? \emph{Economic Journal}. [8.9]
+\item Gorodnichenko, Y. y O. Talavera (2017). Price Setting in Online Markets: Basic Facts, International Comparisons, and Cross-Border Integration. \emph{American Economic Review}, 107(1), 249--282. [11.5]
+\item Greenwood, J., Z. Hercowitz y G. W. Huffman (1988). Investment, Capacity Utilization, and the Real Business Cycle. \emph{American Economic Review}, 78, 402--417. [12.6]
+\item Hamilton, J. D. (1994). \emph{Time Series Analysis}. Princeton University Press, cap.~4. [14.6]
+\item Hansen, G. D. (1985). Indivisible Labor and the Business Cycle. \emph{Journal of Monetary Economics}, 16, 309--327. [12.6]
+\item Hayashi, F. (1982). Tobin's Marginal q and Average q: A Neoclassical Interpretation. \emph{Econometrica}, 50, 213--224. [2.3]
+\item Jaramillo, M. y D. Campos (2021). \emph{La dinámica del mercado laboral peruano: creación y destrucción de empleos y flujos de trabajadores}. GRADE. [15.3]
+\item Jermann, U. y V. Quadrini (2012). Macroeconomic Effects of Financial Shocks. \emph{American Economic Review}, 102, 238--271. [15.5]
+\item Jones, C. I. (2016). The Facts of Economic Growth. En \emph{Handbook of Macroeconomics}, vol.~2, 3--69. [4.1]
+\item Kaplan, G., B. Moll y G. L. Violante (2018). Monetary Policy According to HANK. \emph{American Economic Review}, 108(3), 697--743. [15.9]
+\item Kehoe, P. J., V. Midrigan y E. Pastorino (2018). Evolution of Modern Business Cycle Models: Accounting for the Great Recession. \emph{Journal of Economic Perspectives}, 32, 141--166. [15.5]
+\item Kekre, R. y M. Lenel (2022). Monetary Policy, Redistribution, and Risk Premia. \emph{Econometrica}, 90(5), 2249--2282. [15.9]
+\item King, M. (1999). Challenges for Monetary Policy: New and Old. En \emph{New Challenges for Monetary Policy}, simposio de 1999. [9.5]
+\item King, R. G. y S. T. Rebelo (1999). Resuscitating Real Business Cycles. En J. B. Taylor y M. Woodford (eds.), \emph{Handbook of Macroeconomics}, vol.~1, 927--1007. [12.5]
+\item King, R. G., C. I. Plosser y S. T. Rebelo (1988). Production, Growth and Business Cycles: I. The Basic Neoclassical Model. \emph{Journal of Monetary Economics}, 21(2--3), 195--232. [12.5]
+\item Kiusalaas, J. (2013). \emph{Numerical Methods in Engineering with Python 3}, 3.ª ed. Cambridge University Press, cap.~1. [14.7]
+\item Kiyotaki, N. y J. Moore (1997). Credit Cycles. \emph{Journal of Political Economy}, 105(2), 211--248. [15.5]
+\item Kiyotaki, N. y J. Moore (2002). Evil Is the Root of All Money. \emph{American Economic Review}, 92(2), 62--66. [8.1]
+\item Kiyotaki, N. y R. Wright (1989). On Money as a Medium of Exchange. \emph{Journal of Political Economy}, 97(4). [8.1]
+\item Klein, P. (2000). Using the Generalized Schur Form to Solve a Multivariate Linear Rational Expectations Model. \emph{Journal of Economic Dynamics and Control}, 24(10), 1405--1423. [14.6]
+\item Klenow, P. J. y B. A. Malin (2010). Microeconomic Evidence on Price-Setting. En \emph{Handbook of Monetary Economics}, vol.~3, 231--284. [11.5]
+\item Kydland, F. E. y E. C. Prescott (1982). Time to Build and Aggregate Fluctuations. \emph{Econometrica}, 50, 1345--1370. [12.5]
+\item León, D. (1999). La información contenida en los agregados monetarios. \emph{Revista de Estudios Económicos}, 3, Banco Central de Reserva del Perú. [8.3]
+\item Lewis, M. y P. Mizen (2000). \emph{Monetary Economics}. Oxford University Press. [8.1, 8.4, 8.9, 9.5]
+\item Leyva, G. y C. Urrutia (2020). Informality, Labor Regulation, and the Business Cycle. \emph{Journal of International Economics}. [15.3]
+\item Leyva, G. y C. Urrutia (2023). Informal Labor Markets in Times of Pandemic. \emph{Review of Economic Dynamics}. [15.3]
+\item Ljungqvist, L. y T. J. Sargent (2018). \emph{Recursive Macroeconomic Theory}, 4.ª ed. MIT Press. [14.2--14.4, 15.6]
+\item Long, J. B. y C. I. Plosser (1983). Real Business Cycles. \emph{Journal of Political Economy}, 91, 39--69. [12.5]
+\item Lucas, R. E. (1976). Econometric Policy Evaluation: A Critique. \emph{Carnegie-Rochester Conference Series on Public Policy}, 1, 19--46. [9.2]
+\item Lucas, R. E. (1994). The Welfare Costs of Inflation. CEPR Publication No.~394, Stanford University. [8.6]
+\item Lucas, R. E. (1996). Nobel Lecture: Monetary Neutrality. \emph{Journal of Political Economy}, 104(4), 661--682. [8.6]
+\item Lucas, R. E. (2013). \emph{Collected Papers on Monetary Theory}. Harvard University Press. [8.5]
+\item Mankiw, N. G. y M. Weinzierl (2006). Dynamic Scoring: A Back-of-the-Envelope Guide. \emph{Journal of Public Economics}, 90(8--9), 1415--1433. [4.8]
+\item Mankiw, N. G. y R. Reis (2010). Imperfect Information and Aggregate Supply. En \emph{Handbook of Monetary Economics}, vol.~3, 183--229. [9.3]
+\item McCallum, B. T. (1998). Solutions to Linear Rational Expectations Models: A Compact Exposition. \emph{Economics Letters}, 61(2), 143--147. [14.6]
+\item McCallum, B. T. (2015). The Bitcoin Revolution. \emph{Cato Journal}, 35(2). [8.1]
+\item McCallum, B. T. y E. Nelson (2010). Money and Inflation: Some Critical Issues. En \emph{Handbook of Monetary Economics}, vol.~3, 97--153. [8.5]
+\item McKay, A., E. Nakamura y J. Steinsson (2016). The Power of Forward Guidance Revisited. \emph{American Economic Review}, 106(10), 3133--3158. [13.6]
+\item Mehra, R. (1984). Recursive Competitive Equilibrium: A Parametric Example. \emph{Economics Letters}, 16(3--4), 273--278. [14.4]
+\item Merz, M. (1995). Search in the Labor Market and the Real Business Cycle. \emph{Journal of Monetary Economics}. [15.1]
+\item Midrigan, V. (2011). Menu Costs, Multiproduct Firms, and Aggregate Fluctuations. \emph{Econometrica}, 79(4), 1139--1180. [11.5]
+\item Mishkin, F. (1995). Symposium on the Monetary Transmission Mechanism. \emph{Journal of Economic Perspectives}, 9(4), 3--10. [8.8]
+\item Mishkin, F. (2000). Inflation Targeting in Emerging-Market Countries. \emph{American Economic Review}, 90(2), 105--109. [9.5]
+\item Mishkin, F. (2021). \emph{The Economics of Money, Banking and Financial Markets}, 13.ª ed. [8.1, 8.3, 8.8, 8.9, 9.5]
+\item Mitchell, W. C. (1913). \emph{Business Cycles}, vol.~3. University of California Press. [12.1]
+\item Mortensen, D. y C. Pissarides (1994). Job Creation and Job Destruction in the Theory of Unemployment. \emph{Review of Economic Studies}. [10.4]
+\item Nakamura, E. y J. Steinsson (2008). Five Facts about Prices: A Reevaluation of Menu Cost Models. \emph{Quarterly Journal of Economics}, 123(4), 1415--1464. [11.5]
+\item Nakamura, E. y J. Steinsson (2013). Price Rigidity: Microeconomic Evidence and Macroeconomic Implications. \emph{Annual Review of Economics}, 5(1), 133--163. [11.5]
+\item NobelPrize.org (2018). Scientific Background: Economic Growth, Technological Change, and Climate Change. [4.9]
+\item Ogilvie, S. y A. W. Carus (2014). Institutions and Economic Growth in Historical Perspective. En \emph{Handbook of Economic Growth}, vol.~2A, cap.~8. [6.1]
+\item Pissarides, C. (2000). \emph{Equilibrium Unemployment Theory}, 2.ª ed. MIT Press. [10.4, 15.1]
+\item Poole, W. (1970). Optimal Choice of Monetary Policy Instruments in a Simple Stochastic Macro Model. \emph{Quarterly Journal of Economics}, 84(2), 197--216. [8.9]
+\item Prescott, E. C. (1986). Theory Ahead of Business Cycle Measurement. \emph{Federal Reserve Bank of Minneapolis Quarterly Review}, 10, 9--22. [12.7]
+\item Prescott, E. C. (2016). RBC Methodology and the Development of Aggregate Economic Theory. NBER Working Paper 22422. [12.7]
+\item Prescott, E. C. y R. Mehra (1980). Recursive Competitive Equilibrium: The Case of Homogeneous Households. \emph{Econometrica}, 48(6), 1365--1379. [14.4]
+\item Quadrini, V. (2011). Financial Frictions in Macroeconomic Fluctuations. \emph{Economic Quarterly}, Federal Reserve Bank of Richmond, 97, 209--254. [15.5]
+\item Quispe, Z. (1998). Una aproximación a la demanda de los principales agregados monetarios en el Perú: junio 1991--mayo 1997. \emph{Revista de Estudios Económicos}, 3, Banco Central de Reserva del Perú. [8.3]
+\item Reis, R. (2013). Central Bank Design. \emph{Journal of Economic Perspectives}, 27(4), 17--44. [9.5]
+\item Rogerson, R. (1988). Indivisible Labor, Lotteries and Equilibrium. \emph{Journal of Monetary Economics}, 21, 3--16. [12.6]
+\item Rogerson, R., R. Shimer y R. Wright (2005). Search-Theoretic Models of the Labor Market: A Survey. \emph{Journal of Economic Literature}, 43, 959--988. [15.1]
+\item Rogoff, K. (1985). The Optimal Degree of Commitment to an Intermediate Monetary Target. \emph{Quarterly Journal of Economics}, 100(4). [9.5]
+\item Romer, P. (1996). Why, Indeed, in America? Theory, History, and the Origins of Modern Economic Growth. \emph{American Economic Review}, 86(2), 202--206. [6.5]
+\item Shimer, R. (2005). The Cyclical Behavior of Equilibrium Unemployment and Vacancies. \emph{American Economic Review}, 95(1), 25--49. [15.2]
+\item Sims, C. A. (2010). Rational Inattention and Monetary Economics. En \emph{Handbook of Monetary Economics}, vol.~3, 155--181. [9.3]
+\item Smets, F. y R. Wouters (2007). Shocks and Frictions in US Business Cycles: A Bayesian DSGE Approach. \emph{American Economic Review}, 97, 586--606. [12.11]
+\item Solow, R. M. (1956). A Contribution to the Theory of Economic Growth. \emph{Quarterly Journal of Economics}, 70(1), 65--94. [4.2]
+\item Stokey, N. L. y R. E. Lucas, con E. C. Prescott (1989). \emph{Recursive Methods in Economic Dynamics}. Harvard University Press, caps.~1, 2, 4 y 5. [14.1]
+\item Syverson, C. (2011). What Determines Productivity? \emph{Journal of Economic Literature}, 49(2), 326--365. [6.2]
+\item Taylor, J. B. (1993). Discretion versus Policy Rules in Practice. \emph{Carnegie-Rochester Conference Series on Public Policy}, 39, 195--214. [13.2]
+\item Tobin, J. (1956). The Interest-Elasticity of Transactions Demand for Cash. \emph{Review of Economics and Statistics}, 38, 241--247. [8.3]
+\item Tobin, J. (1958). Liquidity Preference as Behavior Towards Risk. \emph{Review of Economic Studies}. [8.3]
+\item Uhlig, H. (2001). A Toolkit for Analysing Nonlinear Dynamic Stochastic Models Easily. En R. Marimon y A. Scott (eds.), \emph{Computational Methods for the Study of Dynamic Economies}, Oxford University Press, cap.~3, 30--61. [14.5]
+\item Urrutia, C. (1996). Notas sobre crecimiento y ciclos económicos. Documento de Docencia D-5, ILADES--Georgetown University. [12.5]
+\item Velde, F. R. (2013). Bitcoin: A Primer. \emph{Chicago Fed Letter}, 317, Federal Reserve Bank of Chicago. [8.1]
+\item Walsh, C. E. (1995). Optimal Contracts for Central Bankers. \emph{American Economic Review}, 85(1). [9.5]
+\item Walsh, C. E. (2002). Teaching Inflation Targeting: An Analysis for Intermediate Macro. \emph{Journal of Economic Education}, 33(4), 333--347. [13.1]
+\item Werning, I. (2011). Managing a Liquidity Trap: Monetary and Fiscal Policy. NBER Working Paper 17344. [13.5]
+\item Werning, I. (2015). Incomplete Markets and Aggregate Demand. NBER Working Paper 21448. [15.9]
+\item Williamson, S. (2010). \emph{Macroeconomics}, 5.ª ed. Addison Wesley. [4.1]
+\item Woodford, M. (2003). \emph{Interest and Prices: Foundations of a Theory of Monetary Policy}. Princeton University Press. [8.4, 8.5, 13.1]
+\end{itemize}
+}
+
+\subsection*{Otras referencias con horas}
+Lecturas que no proceden de los programas de la PUCP (líneas \emph{Artículos});
+entre corchetes, el tema donde se usan.
+
+\medskip
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Auclert, A., B. Bardóczy, M. Rognlie y L. Straub (2021). Using the Sequence-Space Jacobian to Solve and Estimate Heterogeneous-Agent Models. \emph{Econometrica}, 89(5), 2375--2408. [15.8]
+\item Céspedes, L. F., R. Chang y A. Velasco (2004). Balance Sheets and Exchange Rate Policy. \emph{American Economic Review}, 94(4), 1183--1193. [13.7]
+\item Huggett, M. (1993). The Risk-Free Rate in Heterogeneous-Agent Incomplete-Insurance Economies. \emph{Journal of Economic Dynamics and Control}, 17(5--6), 953--969. [15.6]
+\item Krusell, P. y A. A. Smith, Jr. (1998). Income and Wealth Heterogeneity in the Macroeconomy. \emph{Journal of Political Economy}, 106(5), 867--896. [15.7]
+\item Levy Yeyati, E. (2006). Financial Dollarization: Evaluating the Consequences. \emph{Economic Policy}, 21(45), 61--118. [13.7]
+\end{itemize}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo G. Material opcional de consulta}
+\addcontentsline{toc}{section}{Anexo G. Material opcional de consulta}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica el
+cronograma. Sirve para practicar, profundizar o ampliar el plan cuando el ritmo lo
+permita. Los materiales de G.1 y G.2 aparecen además en las líneas
+«Consulta:» de los temas indicados.
+
+\subsection*{G.1 Práctica y ejercicios resueltos}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Recurso} & \cab{Uso sugerido} & \cab{Temas} \\
+\midrule
+Romer, solucionario de \emph{Advanced Macroeconomics} & Problemas resueltos de una edición anterior (11 capítulos). Su numeración no coincide con la 5.ª edición: conviene buscar los problemas por tema y no por número. & Temas con lecturas de Romer \\[2pt]
+Irigoyen, Rossi-Hansberg y Wright (2002), solucionario de Stokey, Lucas y Prescott & Ejercicios resueltos de \emph{Recursive Methods in Economic Dynamics}. Conviene intentar al menos los de los caps.~2 a 5 y 9 antes de mirar la solución. & 14.1, 14.2 \\[2pt]
+Jiménez (2007), Tomo II: \emph{Ejercicios resueltos} & Ejercicios de nivel intermedio de los capítulos 3 a 8, 10 y 11. Quedan fuera los capítulos 1 y 2 (introducción y cuentas nacionales) y el 9 (balanza de pagos). & 1.1, 1.5, 2.1, 8.3, 8.4, 8.8, 9.2 y Bloque 12 (cap.~11) \\[2pt]
+Prácticas UP (2024): dirigidas de Macroeconomía I, Universidad del Pacífico & Problemas con microfundamentos: modelos estáticos (secc.~1), dinámicos de economía cerrada (secc.~2), de economía abierta (secc.~3) y elección óptima del gobierno (secc.~4). & 14.3 (secc.~1); 2.1, 2.2 y 2.5 (secc.~2); 2.7 (secc.~4); la secc.~3 acompaña al Bloque~3 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{G.2 Métodos computacionales}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Recurso} & \cab{Uso sugerido} & \cab{Temas} \\
+\midrule
+Heer y Maußner (2005), \emph{Dynamic General Equilibrium Modelling} & Caps.~1 a 4 (algoritmos básicos, métodos lineal-cuadráticos y log-lineales, expectativas parametrizadas, métodos de proyección); caps.~5 a 7 (agentes heterogéneos y generaciones solapadas); caps.~8 y 9 (herramientas numéricas, cadenas de Markov y filtro HP). & 12.1 (secc.~9.4), 14.2, 14.5, 14.7, 15.6 \\[2pt]
+Sánchez y Maraví (2009), notas de clase (UNMSM) & Solow, Ramsey, log-linealización y programación dinámica, con diagramas de flujo para programar. & 14.5, 14.7 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{G.3 Módulo opcional de macroeconometría}
+Sigue el temario del curso de extensión del BCRP de Eduardo Morón (2005), que
+está en tu carpeta, con las notas de Sørensen (1996) como apoyo de series de
+tiempo. Puede recorrerse en paralelo a los Bloques 8 y 12.
+
+\medskip
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Tema} & \cab{Lecturas} & \cab{Relación con el plan} \\
+\midrule
+Series de tiempo: raíces unitarias, cointegración, ARCH & Sørensen (1996) & 8.2, 12.1 \\
+VAR estructurales: identificación y estimación & Stock y Watson (2001); Blanchard y Quah (1989); Bernanke y Mihov (1998) & 8.2, 12.7 \\
+Método generalizado de momentos & Hansen y West (2002); Davidson y MacKinnon (1999), cap.~9 & 12.3, 12.7 \\
+Modelos de estado-espacio y filtro de Kalman & Elekdag (2001) & 12.11 \\
+Modelos no lineales: umbral y transición suave & Escribano y Jordá (1997); van Dijk, Teräsvirta y Franses (2001) & Sin equivalente en el plan \\
+Calibración de modelos & Material del tema 14.8 & 14.8 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{G.4 Proyecto aplicado opcional: un modelo calibrado para el Perú}
+Consolida los Bloques 12 a 14. Momento sugerido: después del Bloque 14 o en
+paralelo al Bloque 15; no tiene horas asignadas.
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item \textbf{Datos.} Series trimestrales de producto, consumo, inversión y horas del
+        BCRP (el complemento BCRPData de tu disco D facilita la descarga). Extraer el
+        componente cíclico y sus momentos (tema 12.1; \GM{1.2}; Heer y Maußner,
+        secc.~9.4).
+  \item \textbf{Modelo.} El RBC básico del tema 12.5, calibrado con datos peruanos
+        (\GM{3} y \GM{5}).
+  \item \textbf{Solución y simulación} en Dynare (temas 14.5 y 14.8; \GM{2.2--2.4};
+        \CSV{Apéndices B y C}).
+  \item \textbf{Evaluación.} Comparar los momentos simulados con los observados (tema
+        12.7) y, si se quiere, aplicar la contabilidad del ciclo (tema 12.8).
+  \item \textbf{Extensión.} Un modelo neokeynesiano pequeño con regla de Taylor
+        (temas 12.10, 13.1 y 13.2).
+\end{enumerate}
+
+\subsection*{G.5 Lecturas transversales y complementos}
+\noindent\destacado{Historia del pensamiento.} Snowdon y Vane (2005), \emph{Modern
+Macroeconomics}, se puede leer en paralelo como hilo histórico:
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item Caps.~1 a 3 (Keynes frente a los clásicos; escuela keynesiana ortodoxa): Bloque 1.
+  \item Cap.~4 (escuela monetarista): Bloque 8. Cap.~5 (nueva escuela clásica): Bloque 9.
+  \item Cap.~6 (ciclo económico real): Bloque 12. Cap.~7 (nuevos keynesianos): Bloques 11 a 13.
+  \item Cap.~10 (nueva macroeconomía política): temas 2.8, 9.4 y 9.5.
+        Cap.~11 (renacimiento de la investigación sobre crecimiento): Bloques 4 a 6.
+  \item Caps.~8, 9 y 12 (poskeynesianos, escuela austriaca y conclusiones): sin
+        equivalente directo en el plan.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Macroeconomía internacional.} Complementan el Bloque 3, que no se
+modifica:
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item Obstfeld y Rogoff (1996): caps.~1 y 2 (comercio intertemporal y dinámica de
+        la economía pequeña), tema 3.2; cap.~3 (ciclo de vida, política tributaria y
+        cuenta corriente), tema 3.2 y Bloque 7; cap.~4 (tipo de cambio real y
+        términos de intercambio), temas 3.3 y 3.4.
+  \item Végh (2013): cap.~1 (modelo intertemporal básico), tema 3.2; caps.~3 y 4
+        (precios intertemporales, bienes no transables y precios relativos), temas
+        3.3 y 3.4.
+  \item Uribe y Schmitt-Grohé (2015): caps.~1 a 5 (ciclos en economías abiertas y
+        emergentes), tema 3.2 y tema 12.5; cap.~7 (transables, no transables y
+        términos de intercambio), tema 3.4.
+\end{itemize}
+\noindent El sílabo de economía internacional desarrolla con horas todo este
+material, junto con el comercio internacional.
+
+\medskip
+\noindent\destacado{Programas PUCP de crecimiento no integrados.} No se usaron sus
+lecturas; sirven como guía para profundizar en los Bloques 4 a 6.
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item 1ECO19, Teoría del Crecimiento (2026-2): unidades 1 y 2 (Solow, Ramsey, AK),
+        temas 4.1 a 4.7 y 5.1; unidad 3 (Uzawa--Lucas, Romer, Aghion--Howitt), temas
+        5.2, 5.4 y 5.5; unidad 4 (capital público, salud, intangibles), temas 4.8 y
+        5.1; unidad 5 (Hsieh--Klenow, Hopenhayn), temas 5.5 y 6.2; unidad 6
+        (Nelson--Phelps, Parente--Prescott, cambio estructural, automatización), temas
+        5.2, 6.2 y 6.3; unidad 7 (innovación verde, clima, población), temas 4.9, 5.6
+        y 6.5; unidad 8 (debates), Bloque 6.
+  \item 1ECO85, Crecimiento y Desarrollo Económico (2025-1): el módulo 1 (Malthus,
+        revolución industrial, modelo neoclásico, crecimiento endógeno) acompaña a
+        los temas 4.2, 4.7, 5.1 y 6.5; los módulos 2 a 4 (economía política del
+        desarrollo, desarrollo humano y pobreza) quedan fuera del plan.
+\end{itemize}
+
+\subsection*{G.6 Módulo opcional: macroeconomía e inteligencia artificial}
+Reúne trabajos recientes que usan modelos de crecimiento y de macroeconomía para
+evaluar el efecto de la inteligencia artificial. No tiene horas ni semanas
+asignadas y no modifica el cronograma. Conviene abrirlo después del Bloque 5 (como
+mínimo, hasta el tema 5.3); el último subgrupo, después del Bloque 14. Muchos
+textos son documentos de trabajo, ensayos o notas docentes que aún no están en
+revistas, de modo que su versión puede cambiar: conviene revisar la vigente antes
+de citarlos. Se encontraron en publicaciones de economistas en X.
+
+\tema{G.6.1 Automatización por tareas y eslabones débiles}
+\lecturas{Steinsson y Hassanein (2026), notas docentes sobre automatización basada
+en tareas \quad Jones y Tonetti (2026), «Past Automation and Future AI: How Weak
+Links Tame the Growth Explosion»}
+\nota{Punto de partida del módulo. Las notas de Steinsson y Hassanein están pensadas
+para maestría o para un buen curso de crecimiento de grado: un continuo de tareas,
+capital y trabajo como sustitutos perfectos dentro de cada tarea, y una elasticidad
+$\sigma$ entre tareas. Con $\sigma<1$ el producto queda acotado por el trabajo
+(«eslabones débiles»), y la automatización reduce la participación laboral. Jones y
+Tonetti aplican la idea al crecimiento. Se apoya en los temas 4.1, 5.3, 5.6 y 6.3.}
+
+\tema{G.6.2 ¿Cuánto crecimiento puede traer la IA?}
+\lecturas{Moll y coautores (2026), «Will AI Soon Deliver Double-Digit Growth?»
+\quad Korinek, Jones, Sacher, Cotter y McCrory (2026), «Economic Scenarios for
+Transformative AI»}
+\nota{El primero es un ensayo publicado en el blog de Alex Imas; falta verificar la
+lista completa de autores. El segundo propone un marco para comparar escenarios a
+2030: el PIB queda entre 1,6\,\% y 32\,\% sobre la trayectoria sin IA, y la
+participación del trabajo baja de 60\,\% a entre 56\,\% y 45\,\%. Se apoya en los
+temas 4.1, 5.7 y 10.1.}
+
+\tema{G.6.3 Productividad, invención y ciencia}
+\lecturas{Imas y Manyika (2026), «Bending the Curve of Discovery» \quad Agrawal,
+Gans y Goldfarb, «Genius on Demand: The Value of Transformative Artificial
+Intelligence», cap.~1 de Agrawal, Brynjolfsson y Korinek (eds.), \emph{The Economics
+of Transformative AI}, con comentario de Garicano}
+\nota{La IA como «invención de un método de invención» y el valor de una
+inteligencia disponible a pedido. Se apoya en los temas 5.3 a 5.5. El volumen
+completo (NBER y University of Chicago Press) sirve de guía del campo.}
+
+\tema{G.6.4 Trabajo, salarios y distribución}
+\lecturas{Acemoglu, Autor y Johnson (2026), «Building Pro-Worker Artificial
+Intelligence», NBER w34854}
+\nota{Dirección del cambio técnico y bienestar de los trabajadores. Continúa el
+tema 5.6 y se relaciona con el Bloque 10.}
+
+\tema{G.6.5 Tasas de interés, mercados y financiamiento de la inversión}
+\lecturas{Chow, Halperin y Mazlish (2023), «Transformative AI, Existential Risk, and
+Real Interest Rates» \quad Van Nieuwerburgh (2026), «Financing the AI Buildout»,
+\emph{Brookings Papers on Economic Activity} y NBER w35865}
+\nota{Con la ecuación de Euler del modelo de Ramsey (tema 4.7), más crecimiento
+esperado implica tasas reales más altas. El primer texto usa esa relación para leer
+qué esperan los mercados de la IA. El segundo estima una inversión de 10,3 billones
+de dólares en 8 años y una facturación de 3,7 billones al año hacia 2032 para un
+retorno de 10\,\% (cerca de 9\,\% del PIB). Se apoya en los temas 4.7, 4.8 y 8.8.}
+
+\tema{G.6.6 La IA como herramienta de método}
+\lecturas{Kase, Melosi y Rottner, «Estimating Nonlinear Heterogeneous Agent Models
+with Neural Networks»}
+\nota{Redes neuronales para estimar modelos con agentes heterogéneos. Complementa
+los temas 14.7 y 15.9. No trata el efecto de la IA sobre la economía.}
+
+\subsection*{Referencias del material opcional y de consulta}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Acemoglu, D., D. Autor y S. Johnson (2026). Building Pro-Worker Artificial Intelligence. NBER Working Paper 34854.
+\item Agrawal, A., E. Brynjolfsson y A. Korinek (eds.) (2026). \emph{The Economics of Transformative AI}. NBER y University of Chicago Press. Incluye Agrawal, Gans y Goldfarb, «Genius on Demand: The Value of Transformative Artificial Intelligence» (cap.~1).
+\item Armas, A., A. Ize y E. Levy Yeyati (eds.) (2006). \emph{Financial Dollarization: The Policy Agenda}. Palgrave Macmillan y Fondo Monetario Internacional.
+\item Bernanke, B. y I. Mihov (1998). Measuring Monetary Policy. \emph{Quarterly Journal of Economics}, 113(3), 869--902.
+\item Blanchard, O. J. y D. Quah (1989). The Dynamic Effects of Aggregate Demand and Supply Disturbances. \emph{American Economic Review}, 79(4), 655--673.
+\item Chow, T., B. Halperin y J. Z. Mazlish (2023). Transformative AI, Existential Risk, and Real Interest Rates. Documento de trabajo.
+\item Davidson, R. y J. MacKinnon (1999). The Generalized Method of Moments. Cap.~9 de \emph{Estimation and Inference in Econometrics}.
+\item Elekdag, S. (2001). The Kalman Filter and Its Applications. Central Bank of Turkey.
+\item Escribano, A. y O. Jordá (1997). Improved Testing and Specification of Smooth Transition Regression Models. University of California, Davis.
+\item Finn, M. G. (2000). Perfect Competition and the Effects of Energy Price Increases on Economic Activity. \emph{Journal of Money, Credit and Banking}, 32(3), 400--416.
+\item Hansen, B. y K. West (2002). Generalized Method of Moments and Macroeconomics. \emph{Journal of Business and Economic Statistics}.
+\item Heer, B. y A. Maußner (2005). \emph{Dynamic General Equilibrium Modelling: Computational Methods and Applications}. Springer.
+\item Imas, A. y J. Manyika (2026). Bending the Curve of Discovery. Ensayo para el Google DeepMind Institute.
+\item Irigoyen, C., E. Rossi-Hansberg y M. L. J. Wright (2002). \emph{Solutions Manual for Recursive Methods in Economic Dynamics}. Harvard University Press.
+\item Jiménez, F. (2007). \emph{Macroeconomía: enfoques y modelos. Tomo II: Ejercicios resueltos}, 2.ª ed. Fondo Editorial de la PUCP.
+\item Jones, C. I. y C. Tonetti (2026). Past Automation and Future AI: How Weak Links Tame the Growth Explosion. Documento de trabajo, Stanford University.
+\item Kaplan, G. y G. L. Violante (2018). Microeconomic Heterogeneity and Macroeconomic Shocks. \emph{Journal of Economic Perspectives}, 32(3), 167--194.
+\item Kase, H., L. Melosi y M. Rottner. Estimating Nonlinear Heterogeneous Agent Models with Neural Networks. Documento de trabajo, Bank for International Settlements (WP 1241).
+\item Kilian, L. (2008). The Economic Effects of Energy Price Shocks. \emph{Journal of Economic Literature}, 46(4), 871--909.
+\item Kim, I.-M. y P. Loungani (1992). The Role of Energy in Real Business Cycle Models. \emph{Journal of Monetary Economics}, 29(2), 173--189.
+\item Korinek, A., C. I. Jones, S. Sacher, T. Cotter y P. McCrory (2026). Economic Scenarios for Transformative AI. Anthropic.
+\item Kydland, F. E. y E. C. Prescott (1977). Rules Rather than Discretion: The Inconsistency of Optimal Plans. \emph{Journal of Political Economy}, 85(3), 473--491.
+\item Moll, B. y coautores (2026). Will AI Soon Deliver Double-Digit Growth? Ensayo en el blog de Alex Imas.
+\item Morón, E. (2005). Macroeconometría. Programa del 52.º Curso de Extensión Universitaria, Banco Central de Reserva del Perú.
+\item Obstfeld, M. y K. Rogoff (1996). \emph{Foundations of International Macroeconomics}. MIT Press.
+\item Poole, W. (1968). Commercial Bank Reserve Management in a Stochastic Model: Implications for Monetary Policy. \emph{The Journal of Finance}, 23(5), 769--791.
+\item Romer, D. Solucionario de \emph{Advanced Macroeconomics} (edición anterior, 11 capítulos).
+\item Rotemberg, J. J. y M. Woodford (1996). Imperfect Competition and the Effects of Energy Price Increases on Economic Activity. \emph{Journal of Money, Credit and Banking}, 28(4), 550--577.
+\item Sánchez, E. y C. Maraví (2009). Notas de clase de macroeconomía avanzada con métodos computacionales. IDES, Universidad Nacional Mayor de San Marcos.
+\item Snowdon, B. y H. R. Vane (2005). \emph{Modern Macroeconomics: Its Origins, Development and Current State}. Edward Elgar.
+\item Sørensen, B. E. (1996). Class Notes for Macroeconometrics (EC266). Brown University.
+\item Steinsson, J. y A. Hassanein (2026). Notas docentes sobre automatización basada en tareas.
+\item Stock, J. H. y M. W. Watson (2001). Vector Autoregressions. \emph{Journal of Economic Perspectives}, 15(4), 101--115.
+\item Universidad del Pacífico (2024). Dirigidas para el curso de Macroeconomía I, semestre 2024-I (citadas como «Prácticas UP» en los temas).
+\item Uribe, M. y S. Schmitt-Grohé (2015). \emph{Open Economy Macroeconomics}. Borrador del 17 de marzo de 2015, Columbia University.
+\item van Dijk, D., T. Teräsvirta y P. H. Franses (2001). Smooth Transition Autoregressive Models: A Survey of Recent Developments. Econometric Institute Report 200, Erasmus University Rotterdam.
+\item Van Nieuwerburgh, S. (2026). Financing the AI Buildout. \emph{Brookings Papers on Economic Activity}; NBER Working Paper 35865.
+\item Végh, C. A. (2013). \emph{Open Economy Macroeconomics in Developing Countries}. MIT Press.
+\end{itemize}
+}
+
+\vspace{1.5cm}
+\franjas[2pt]
+\begin{center}\small\color{tonoPizarra}
+Plan de lectura de elaboración propia. Los títulos de los capítulos corresponden
+a las obras citadas y se reproducen únicamente con fines de referencia
+bibliográfica. La asignación de los capítulos del texto suplementario se basa en
+sus títulos y en la descripción editorial, no en el manuscrito; la de Romer,
+Campante et al., Acemoglu, Walsh, Galí y Galindo y Montecinos, en sus índices. Los temas y lecturas de la PUCP proceden de los
+programas citados en el Anexo E.
+\end{center}
+
+\end{document}

@@ -1,0 +1,1372 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE MICROECONOMETRÍA — Plan de estudio integrado
+%
+%  Textos base:
+%    CT  — Cameron y Trivedi, Microeconometrics: Methods and Applications
+%          (Cambridge, 2005)
+%    CI  — Cunningham, Causal Inference: The Remix (2.ª ed., en línea,
+%          https://mixtape.scunning.com)
+%  Textos de apoyo:
+%    MHE — Angrist y Pischke, Mostly Harmless Econometrics (Princeton, 2009)
+%    MM  — Angrist y Pischke, Mastering 'Metrics (Princeton, 2015)
+%    Wd  — Wooldridge, Econometric Analysis of Cross Section and Panel
+%          Data (MIT Press, 2002)
+%    Bt  — Baltagi, Econometric Analysis of Panel Data (Springer, 6.ª ed., 2021)
+%    Ar  — Arellano, Panel Data Econometrics (Oxford, 2003)
+%    Hu  — Huber, Causal Analysis (MIT Press, 2023)
+%  Programas PUCP integrados: 1ECO25 (2025-1, J. M. Rentería; 2025-2,
+%    L. García), 1ECO77 (2025-2, 2026-2), ECO315 (2022-0), ECO387 (2022-2),
+%    ECO386 (2024-2) y la Unidad 3 de 2ECO01.
+%
+%  Versión revisada (octubre de 2026): ver «Cambios respecto de la versión anterior».
+%  Compilar con:  pdflatex Microeconometria_revisado.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de verdes oliva
+\definecolor{tonoOscuro}{RGB}{29,41,5}              % oscuro
+\definecolor{tonoProfundo}{RGB}{54,77,10}           % profundo
+\definecolor{tonoPrincipal}{RGB}{80,113,15}         % principal
+\definecolor{tonoA}{RGB}{78,134,30}                 % variante cálida
+\definecolor{tonoB}{RGB}{113,132,21}                % variante fría
+\definecolor{tonoC}{RGB}{146,146,28}                % variante viva
+\definecolor{tonoClaro}{RGB}{176,212,105}           % claro
+\definecolor{tonoAcero}{RGB}{84,99,54}              % acero
+\definecolor{tonoPizarra}{RGB}{95,106,73}           % pizarra
+\definecolor{tonoGrafito}{RGB}{39,45,27}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{233,244,210}           % hielo
+\definecolor{tonoPalido}{RGB}{245,250,235}          % pálido
+\definecolor{tonoBruma}{RGB}{251,253,246}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorCT}{RGB}{94,92,18}
+\definecolor{colorCI}{RGB}{129,137,26}
+\definecolor{colorMHE}{RGB}{99,116,22}
+\definecolor{colorMM}{RGB}{73,94,18}
+\definecolor{colorWd}{RGB}{94,137,26}
+\definecolor{colorBt}{RGB}{70,116,22}
+\definecolor{colorAr}{RGB}{49,94,18}
+\definecolor{colorHu}{RGB}{59,137,26}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}\raggedright}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Microeconometría}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}Cameron--Trivedi $\cdot$ Cunningham $\cdot$ Angrist--Pischke $\cdot$ Wooldridge $\cdot$ Baltagi}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\CT}[1]{\etiqueta{colorCT}{CT}\nobreak\hspace{0.25em}\textcolor{colorCT}{#1}}
+\newcommand{\CI}[1]{\etiqueta{colorCI}{CI}\nobreak\hspace{0.25em}\textcolor{colorCI}{#1}}
+\newcommand{\MHE}[1]{\etiqueta{colorMHE}{MHE}\nobreak\hspace{0.25em}\textcolor{colorMHE}{#1}}
+\newcommand{\MM}[1]{\etiqueta{colorMM}{MM}\nobreak\hspace{0.25em}\textcolor{colorMM}{#1}}
+\newcommand{\WD}[1]{\etiqueta{colorWd}{Wd}\nobreak\hspace{0.25em}\textcolor{colorWd}{#1}}
+\newcommand{\BT}[1]{\etiqueta{colorBt}{Bt}\nobreak\hspace{0.25em}\textcolor{colorBt}{#1}}
+\newcommand{\AR}[1]{\etiqueta{colorAr}{Ar}\nobreak\hspace{0.25em}\textcolor{colorAr}{#1}}
+\newcommand{\HU}[1]{\etiqueta{colorHu}{Hu}\nobreak\hspace{0.25em}\textcolor{colorHu}{#1}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large\raggedright
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newcommand{\juegos}[1]{\linealectura{tonoB}{Teoría de juegos:}{#1}}
+\newcommand{\supl}[1]{\linealectura{tonoC}{Suplemento:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+% Artículos que no proceden de los programas PUCP (entran en las horas)
+\newcommand{\articulosB}[1]{\linealectura{tonoB}{Artículos:}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Microeconometría\par}
+\vspace{0.4cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos base\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorCT}{CT} \quad {\color{tonoOscuro}A. Colin Cameron y Pravin K. Trivedi}\par}
+{\normalsize \emph{\color{colorCT}Microeconometrics: Methods and Applications}\par}
+{\small\color{tonoPizarra} Cambridge University Press, 2005 --- 27 capítulos\par}
+\vspace{0.15cm}
+{\large\etiqueta{colorCI}{CI} \quad {\color{tonoOscuro}Scott Cunningham}\par}
+{\normalsize \emph{\color{colorCI}Causal Inference: The Remix}\par}
+{\small\color{tonoPizarra} 2.ª edición en línea, \url{https://mixtape.scunning.com} --- 11 capítulos\par}
+\vspace{0.45cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos de apoyo\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorMHE}{MHE} \quad {\color{tonoOscuro}Joshua D. Angrist y Jörn-Steffen Pischke}\par}
+{\normalsize \emph{\color{colorMHE}Mostly Harmless Econometrics: An Empiricist's Companion}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2009 --- 8 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorMM}{MM} \quad {\color{tonoOscuro}Joshua D. Angrist y Jörn-Steffen Pischke}\par}
+{\normalsize \emph{\color{colorMM}Mastering 'Metrics: The Path from Cause to Effect}\par}
+{\small\color{tonoPizarra} Princeton University Press, 2015 --- 6 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorWd}{Wd} \quad {\color{tonoOscuro}Jeffrey M. Wooldridge}\par}
+{\normalsize \emph{\color{colorWd}Econometric Analysis of Cross Section and Panel Data}\par}
+{\small\color{tonoPizarra} MIT Press, 2002 --- 20 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorBt}{Bt} \quad {\color{tonoOscuro}Badi H. Baltagi}\par}
+{\normalsize \emph{\color{colorBt}Econometric Analysis of Panel Data}\par}
+{\small\color{tonoPizarra} Springer, 6.ª edición, 2021 --- 13 capítulos\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorAr}{Ar} \quad {\color{tonoOscuro}Manuel Arellano}\par}
+{\normalsize \emph{\color{colorAr}Panel Data Econometrics}\par}
+{\small\color{tonoPizarra} Oxford University Press, 2003 --- 8 capítulos y 2 apéndices\par}
+\vspace{0.12cm}
+{\large\etiqueta{colorHu}{Hu} \quad {\color{tonoOscuro}Martin Huber}\par}
+{\normalsize \emph{\color{colorHu}Causal Analysis: Impact Evaluation and Causal Machine Learning}\par}
+{\small\color{tonoPizarra} MIT Press, 2023 --- 12 capítulos\par}
+\vspace{0.35cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de seis cursos de la PUCP\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Trece bloques temáticos y un pretramo --- 7 meses y medio}\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{trece bloques temáticos} y un pretramo, y
+sigue la estructura del curso 1ECO25 de J.~M.~Rentería: primero la inferencia
+causal y los diseños de investigación (experimentos, selección en observables,
+variables instrumentales y regresión discontinua), luego los datos de panel y
+los diseños causales de panel (diferencias en diferencias, estudios de eventos
+y control sintético), después los modelos de variable dependiente limitada y,
+al final, los problemas de los datos: muestras complejas, error de medida y
+datos faltantes. Conviene cerrar cada bloque antes de abrir el siguiente.
+
+\medskip
+\noindent\destacado{Requisito.} El plan supone el sílabo de econometría:
+mínimos cuadrados y asintótica (Bloques 2 a 4), variables instrumentales
+(Bloque 8), GMM (Bloque 9) y máxima verosimilitud (Bloque 10). Los modelos de
+variable dependiente limitada y las ecuaciones simultáneas que allí se ven
+(Bloques 11 y 12) se dan por sabidos: aquí solo se estudian sus extensiones y
+sus versiones con datos de panel.
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorMM}{\textbf{\emph{Mastering 'Metrics}}} y
+        \textcolor{colorCI}{\textbf{Cunningham}} aportan la intuición y los
+        ejemplos. Se leen \emph{primero} en los Bloques 1 a 9. \emph{The
+        Remix} es la lectura principal de la inferencia causal y de los
+        diseños de panel modernos (Bloques 8 y 9).
+  \item \textcolor{colorMHE}{\textbf{\emph{Mostly Harmless Econometrics}}}
+        da la versión formal de los mismos métodos.
+  \item \textcolor{colorCT}{\textbf{Cameron y Trivedi}} es el texto base del
+        plan: el marco general de la microeconometría, los modelos no lineales
+        y los capítulos de datos de panel, muestras complejas, error de medida
+        y datos faltantes.
+  \item \textcolor{colorWd}{\textbf{Wooldridge}} es la alternativa rigurosa
+        en datos de panel y en variable dependiente limitada.
+  \item \textcolor{colorBt}{\textbf{Baltagi}} y
+        \textcolor{colorAr}{\textbf{Arellano}} sostienen los Bloques 7 y 12
+        y son la consulta de referencia del Bloque 6: Baltagi para el
+        panorama completo y Arellano para la heterogeneidad no observada y
+        los paneles dinámicos.
+  \item \textcolor{colorHu}{\textbf{Huber}} cubre la evaluación de impacto y
+        el aprendizaje automático causal, con aplicaciones en R.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Qué entra en las horas.} Las líneas \emph{Lecturas},
+\emph{Profundización}, \emph{Artículos} y \emph{Artículos (PUCP)} entran en el
+cómputo de horas. Las líneas \emph{Artículos} remiten a trabajos que no
+figuran en los programas de la PUCP.
+Las líneas \emph{Consulta} y \emph{Consulta (PUCP)} remiten a libros de la
+carpeta y a referencias de los programas que no entran (Anexo E).
+
+\medskip
+\noindent\destacado{Material excluido.} Los capítulos de métodos generales de
+Cameron y Trivedi (máxima verosimilitud, GMM, pruebas, métodos
+semiparamétricos, bootstrap teórico y métodos bayesianos) ya están en el
+sílabo de econometría, y lo mismo ocurre con los modelos básicos de variable
+dependiente limitada (logit, probit, multinomial, ordenado, conteo, tobit y
+Heckman, Bloque 12 de ese sílabo): los Bloques 10 y 11 solo tratan sus
+extensiones. Los paneles no estacionarios y espaciales, los sistemas de
+ecuaciones con componentes de error, los errores PCSE y la estimación
+estructural pasan al material opcional. El detalle está en el Anexo B.
+
+\medskip
+\noindent\destacado{Sobre \emph{The Remix}.} Es la segunda edición, en línea,
+de \emph{Causal Inference: The Mixtape} (2021), el libro que cita 1ECO25. Su
+numeración cambia: los capítulos que Rentería asigna de la primera edición
+(3, 4 y 7) son, en la segunda, los capítulos 3, 4 y 7 (DAG, resultados
+potenciales y variables instrumentales), y la parte de diseños de panel se
+amplía a cuatro capítulos (8 a 11). Trae códigos en R, Stata y Python.
+
+\medskip
+\noindent\destacado{Sobre el software y la replicación.} La microeconometría
+aplicada se aprende replicando. Cameron y Trivedi tienen la versión en Stata
+que recomiendan 1ECO25 y 1ECO77, \emph{Microeconometrics Using Stata} (2.ª ed.,
+2022); Huber, Adams (2021) y Croissant y Millo (2019) trabajan en R. Los
+paquetes de cada método están en el Anexo D.6. Conviene replicar cada semana un resultado publicado, como pide
+el curso ECO315.
+
+\medskip
+\noindent\destacado{Notación.} \CT{n} remite al capítulo $n$ de Cameron y
+Trivedi, y \CI{n}, \MHE{n}, \MM{n}, \WD{n}, \BT{n}, \AR{n} y \HU{n}, al
+capítulo de los demás textos. Si solo entra parte de un capítulo se indican
+secciones: \CT{21.6} es la sección 6 del capítulo 21; \MHE{3.3.2}, la
+subsección 3.3.2. \emph{The Remix} se cita por capítulo.
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan: 320 horas distribuidas en \textbf{32 semanas de
+contenido}, que equivalen a \textbf{unos 7 meses y medio de calendario}, a un
+ritmo de diez horas semanales.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón.
+La columna de horas es la que gobierna el reparto. Si hay semanas perdidas por
+feriados, viajes o imprevistos, el ajuste correcto es alargar el calendario,
+no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+1 & Pretramo --- Datos microeconómicos y repaso & 1 & 10 \\
+2--3 & Bloque 1 --- Causalidad: resultados potenciales y grafos & 2 & 20 \\
+4--5 & Bloque 2 --- Experimentos aleatorios & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{6--9} & \textbf{Bloque 3 --- Selección en observables} & \textbf{4} & \textbf{40} \\
+\rowcolor{tonoHielo}\textbf{10--12} & \textbf{Bloque 4 --- Variables instrumentales y LATE} & \textbf{3} & \textbf{30} \\
+13--14 & Bloque 5 --- Regresión discontinua & 2 & 20 \\
+15--16 & Bloque 6 --- Datos de panel lineales & 2 & 20 \\
+17--18 & Bloque 7 --- Paneles dinámicos & 2 & 20 \\
+\rowcolor{tonoHielo}\textbf{19--22} & \textbf{Bloque 8 --- Diferencias en diferencias y estudios de eventos} & \textbf{4} & \textbf{40} \\
+23--24 & Bloque 9 --- Control sintético y cortes transversales repetidos & 2 & 20 \\
+25--26 & Bloque 10 --- Modelos de elección discreta & 2 & 20 \\
+27--28 & Bloque 11 --- Censura, selección, conteo y duración & 2 & 20 \\
+29--30 & Bloque 12 --- Modelos no lineales con datos de panel & 2 & 20 \\
+31--32 & Bloque 13 --- Muestras complejas, error de medida y datos faltantes & 2 & 20 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{32} & \textbf{320} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana para la teoría y
+una sesión de dos horas el sábado para replicar un resultado con datos.
+
+\medskip
+\noindent\destacado{Los tramos largos.} Los Bloques 1 a 5 (semanas 2--14) forman
+el recorrido por los diseños de identificación de corte transversal. Los
+Bloques 6 a 9 (semanas 15--24) forman un recorrido continuo por los datos de
+panel, de los estimadores clásicos a los diseños causales recientes, y son el
+punto donde el avance suele atascarse.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 9, 16, 24 y 28. Si en alguno de esos cortes se acumula más de una
+semana de retraso, se alarga el calendario y no se comprime el bloque
+siguiente.
+
+\medskip
+\noindent\destacado{Cambios respecto de la versión anterior.} Las semanas que se
+liberan al no repetir el Bloque 12 del sílabo de econometría (Bloques 10 y 11
+pasan de 3 a 2 semanas) y al recortar el panel clásico (Bloque 6 pasa de 3 a
+2) se reasignan a la selección en observables (Bloque 3, de 3 a 4), a las
+diferencias en diferencias (Bloque 8, de 3 a 4) y al control sintético
+(Bloque 9, de 1 a 2). El total se mantiene en 32 semanas. Entran además las
+pruebas múltiples y la inferencia por aleatorización (2.2), la sensibilidad
+de Oster y de Cinelli--Hazlett (3.3), las descomposiciones (3.4), los
+instrumentos débiles con las herramientas actuales (4.3), los instrumentos
+\emph{shift-share} (4.4), la guía de Roodman para paneles dinámicos (7.3), los
+estimadores robustos de diferencias en diferencias y las tendencias paralelas
+aproximadas (8.4--8.6), el DiD sintético (9.2) y una tabla de software por
+método (Anexo D.6).
+
+\newpage
+\subsection*{Detalle semana a semana}
+
+{\small\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & Pretramo & P.1 Datos microeconómicos; P.2 Repaso: MCO, variables instrumentales y máxima verosimilitud & 10 \\
+\midrule
+2  & 1 & 1.1 Modelos causales e identificación; 1.2 Resultados potenciales & 10 \\
+3  & 1 & 1.3 Grafos acíclicos dirigidos y malos controles; 1.4 Regresión y causalidad & 10 \\
+\midrule
+4  & 2 & 2.1 Asignación aleatoria y análisis de experimentos; 2.2 Inferencia por aleatorización y pruebas múltiples & 10 \\
+5  & 2 & 2.3 Experimentos en la práctica; 2.4 Experimentos naturales & 10 \\
+\midrule
+6  & 3 & 3.1 Independencia condicional, regresión y emparejamiento & 10 \\
+7  & 3 & 3.2 Puntaje de propensión: emparejamiento y ponderación & 10 \\
+8  & 3 & 3.3 Sensibilidad y cotas; 3.4 Descomposiciones: Oaxaca--Blinder, reponderación y RIF & 10 \\
+9  & 3 & 3.5 Aprendizaje automático causal & 10 \\
+\midrule
+10 & 4 & 4.1 Estimador de Wald y MC2E & 10 \\
+11 & 4 & 4.2 LATE y efectos heterogéneos & 10 \\
+12 & 4 & 4.3 Instrumentos débiles e inferencia robusta; 4.4 Instrumentos \emph{shift-share} & 10 \\
+\midrule
+13 & 5 & 5.1 Regresión discontinua aguda; 5.2 Regresión discontinua difusa & 10 \\
+14 & 5 & 5.3 Práctica de la regresión discontinua; 5.4 Diseños de quiebre y de aglomeración & 10 \\
+\midrule
+15 & 6 & 6.1 Datos de panel y heterogeneidad no observada; 6.2 Efectos fijos & 10 \\
+16 & 6 & 6.3 Efectos aleatorios, Mundlak y Hausman; 6.4 Efectos de dos vías, inferencia y paneles no balanceados & 10 \\
+\midrule
+17 & 7 & 7.1 Variables instrumentales y GMM en panel; 7.2 Sesgo de Nickell & 10 \\
+18 & 7 & 7.3 Arellano--Bond, Arellano--Bover y Blundell--Bond; 7.4 Variables predeterminadas & 10 \\
+\midrule
+19 & 8 & 8.1 Diseños causales de panel y DiD canónico; 8.2 DiD en regresión e inferencia & 10 \\
+20 & 8 & 8.3 Estudios de eventos y tendencias previas; 8.4 Tendencias paralelas aproximadas & 10 \\
+21 & 8 & 8.5 Adopción escalonada: por qué falla el estimador de dos vías & 10 \\
+22 & 8 & 8.6 Estimadores robustos a efectos heterogéneos; 8.7 DiD doblemente robusto y triples diferencias & 10 \\
+\midrule
+23 & 9 & 9.1 Control sintético: estimación, requisitos e inferencia & 10 \\
+24 & 9 & 9.2 Diferencias en diferencias sintéticas; 9.3 Pseudo paneles y cortes transversales repetidos & 10 \\
+\midrule
+25 & 10 & 10.1 Logit condicional y utilidad aleatoria; 10.2 Logit anidado, probit multinomial y logit mixto & 10 \\
+26 & 10 & 10.3 Estimación por simulación; 10.4 Funciones de control en modelos no lineales & 10 \\
+\midrule
+27 & 11 & 11.1 Soluciones de esquina y modelo de dos partes; 11.2 Selección muestral y modelo de Roy & 10 \\
+28 & 11 & 11.3 Extensiones de los modelos de conteo; 11.4 Modelos de duración & 10 \\
+\midrule
+29 & 12 & 12.1 Respuesta binaria con datos de panel & 10 \\
+30 & 12 & 12.2 Tobit, selección y atrición en panel; 12.3 Conteo y modelos dinámicos no lineales & 10 \\
+\midrule
+31 & 13 & 13.1 Muestras estratificadas, ponderación y conglomerados; 13.2 Error de medida & 10 \\
+32 & 13 & 13.3 Datos faltantes e imputación; 13.4 Bootstrap e inferencia en microeconometría & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\newpage
+\bloque{Pretramo --- Datos microeconómicos y repaso --- 1 semana}
+{Presenta las estructuras de datos de la microeconometría y repasa, en el
+lenguaje de Cameron y Trivedi, los estimadores del sílabo de econometría que
+se usan desde el Bloque 1.}
+
+\tema{P.1 Datos microeconómicos: observacionales, experimentales y naturales}
+\lecturas{\CT{1} \quad \CT{3.1--3.2} \quad \CT{3.5}}
+\consultalib{Gertler et al. (2017), cap.~16}
+
+\tema{P.2 Repaso: MCO, variables instrumentales y máxima verosimilitud}
+\lecturas{\CT{4.1--4.9}}
+\consultalib{Cameron y Trivedi (2005), caps.~5--6}
+\nota{Equivale a los Bloques 2 a 4, 8 y 10 del sílabo de econometría. Si ese
+plan ya se completó, la semana puede dedicarse a instalar el software y
+preparar las bases de datos de los libros.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 1 --- Causalidad: resultados potenciales y grafos --- 2 semanas}
+{Los temas 4 de 1ECO25 (Rentería) y 4.1--4.2 de 1ECO25 (García), y la sesión
+1.1 de 1ECO77: qué significa estimar un efecto causal y qué supuestos lo
+permiten. Los dos lenguajes ---resultados potenciales y grafos--- se usan en el
+resto del plan.}
+
+\tema{1.1 Modelos causales, modelos estructurales e identificación}
+\lecturas{\CI{1--2} \quad \CT{2.1--2.6} \quad \CT{2.8}}
+\apoyo{\HU{1--2}}
+\consulta{Imbens (2022) \quad Heckman y Pinto (2024)}
+
+\tema{1.2 Resultados potenciales y el problema de selección}
+\lecturas{\CI{4} \quad \MHE{2.1} \quad \CT{2.7} \quad \CT{25.1--25.3}}
+\apoyo{\WD{18.1--18.2}}
+\consultalib{Neal (2020), cap.~2}
+\consulta{Rubin (1974) \quad Holland (1986)}
+\nota{Efectos individuales, ATE, ATT y sesgo de selección.}
+
+\tema{1.3 Grafos acíclicos dirigidos, buenos y malos controles}
+\lecturas{\CI{3} \quad \MHE{3.2.3}}
+\consultalib{Neal (2020), caps.~3--4 y 6}
+\articulos{Cinelli, Forney y Pearl (2022)}
+\consulta{Imbens (2020)}
+\nota{Caminos por la puerta trasera, colisionadores y el criterio de ajuste.}
+
+\tema{1.4 Regresión y causalidad}
+\lecturas{\MM{2} \quad \MHE{3.1--3.2}}
+\nota{La regresión como aproximación a la esperanza condicional, la fórmula
+del sesgo de variable omitida y los modelos saturados.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Experimentos aleatorios --- 2 semanas}
+{El tema 5 de 1ECO25 (Rentería) y el tema 4.3 de 1ECO25 (García). El
+experimento es la referencia contra la que se juzgan los demás diseños.}
+
+\tema{2.1 Asignación aleatoria y análisis de experimentos}
+\lecturas{\MM{1} \quad \MHE{2.2--2.3} \quad \CT{3.3}}
+\apoyo{\HU{3}}
+\articulosB{Athey e Imbens (2017)}
+\consultalib{Gertler et al. (2017), cap.~4 \quad Bailey (2020), cap.~10}
+\nota{Athey e Imbens presentan el análisis de experimentos desde la propia
+aleatorización: el estimador de Neyman, la regresión con covariables y los
+diseños estratificados y por conglomerados.}
+
+\tema{2.2 Inferencia por aleatorización y pruebas múltiples}
+\articulosB{Young (2019) \quad Anderson (2008) \quad List, Shaikh y Xu (2019)}
+\nota{Pruebas exactas de Fisher y valores $p$ por permutación, y por qué
+cambian las conclusiones de muchos experimentos publicados (Young, 2019).
+Corrección por pruebas múltiples: control de la tasa de error por familia
+(Bonferroni, Holm, Romano--Wolf) y de la tasa de falsos descubrimientos, e
+índices resumen de resultados (Anderson, 2008).}
+
+\tema{2.3 Experimentos en la práctica: diseño, potencia, estratificación, cumplimiento y atrición}
+\lecturas{Gertler et al. (2017), caps.~9 y 15}
+\articulos{Duflo, Glennerster y Kremer (2006)}
+\articulosB{Bruhn y McKenzie (2009)}
+\consulta{Glennerster y Takavarasha (2013) \quad Bédécarrats, Guérin y Roubaud (2020)}
+\nota{Tamaño de muestra y cálculo de potencia, aleatorización por
+conglomerados, estratificación y emparejamiento por pares para mejorar el
+balance (Bruhn y McKenzie, 2009), cumplimiento imperfecto (que se retoma en el
+tema 4.2) y pérdida de muestra.}
+
+\tema{2.4 Experimentos naturales}
+\lecturas{\CT{3.4}}
+\articulos{Dammert, Galdo y Galdo (2014)}
+\nota{Un experimento de campo en el Perú sobre prevención del dengue con
+mensajes de texto (lectura de 1ECO77).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Selección en observables --- 4 semanas}
+{El tema 6 de 1ECO25 (Rentería), el tema 4.4 de 1ECO25 (García) y el módulo 1
+de 1ECO77: cuándo controlar por características observables basta para
+identificar un efecto causal y cómo hacerlo. Incluye las descomposiciones de
+brechas, que descansan en el mismo supuesto, y dedica una semana completa al
+aprendizaje automático causal.}
+
+\tema{3.1 Independencia condicional, regresión y emparejamiento}
+\lecturas{\CI{5} \quad \MHE{3.2.1} \quad \MHE{3.3.1}}
+\apoyo{\WD{18.3}}
+\consultalib{García Núñez (2010)}
+
+\tema{3.2 El puntaje de propensión: emparejamiento, estratificación y ponderación}
+\lecturas{\MHE{3.3.2--3.3.3} \quad \CT{25.4} \quad \HU{4}}
+\consultalib{Gertler et al. (2017), cap.~8}
+\articulos{Rosenbaum y Rubin (1983) \quad Dehejia y Wahba (2002)}
+\consulta{Caliendo y Kopeinig (2008) \quad Abadie e Imbens (2016) \quad LaLonde (1986) \quad Smith y Todd (2005)}
+\nota{Soporte común, balance de covariables, ponderación por la inversa de la
+probabilidad (IPW) y estimadores doblemente robustos.}
+
+\tema{3.3 Sensibilidad y cotas}
+\lecturas{\HU{10}}
+\articulosB{Oster (2019) \quad Cinelli y Hazlett (2020)}
+\consultalib{Neal (2020), cap.~8}
+\nota{Qué se puede concluir si el supuesto de independencia condicional
+falla: cotas de Manski y análisis de sensibilidad. Oster (2019) acota el
+sesgo por no observables a partir de cómo cambian el coeficiente y el $R^2$ al
+añadir controles; Cinelli y Hazlett (2020) lo expresan con la fórmula del sesgo
+de variable omitida y el valor de robustez (paquete \texttt{sensemakr}). Son
+los dos análisis de sensibilidad que más se piden hoy en los artículos
+aplicados.}
+
+\tema{3.4 Descomposiciones: Oaxaca--Blinder, reponderación y regresiones RIF}
+\articulosB{Fortin, Lemieux y Firpo (2011), secc.~1--3 \quad Firpo, Fortin y Lemieux (2009)}
+\consultalib{Oaxaca (1973) \quad Blinder (1973) \quad DiNardo, Fortin y Lemieux (1996) \quad Fortin, Lemieux y Firpo (2011), secc.~4--5}
+\nota{La descomposición de Oaxaca--Blinder de una brecha de medias en una parte
+explicada por las características y otra por los retornos, y su lectura como
+un efecto de tratamiento bajo independencia condicional; la reponderación de
+DiNardo, Fortin y Lemieux, que usa el puntaje de propensión del tema 3.2, y
+las regresiones de la función de influencia recentrada (RIF) para descomponer
+cuantiles, varianzas o índices de Gini. Aplicación natural con la ENAHO:
+brechas salariales por género, entre empleo formal e informal o entre Lima y
+el resto del país.}
+
+\tema{3.5 Aprendizaje automático causal}
+\lecturas{\HU{5}}
+\consultalib{Hansen (2021), caps.~29.20--29.22}
+\articulos{Chernozhukov et al. (2018)}
+\nota{Aprendizaje automático doble/insesgado y efectos heterogéneos. Retoma el
+tema 13.6 del sílabo de econometría y el curso ECO386 (Anexo D.3). Ocupa una
+semana completa porque el artículo de Chernozhukov et al. es denso y conviene
+implementarlo.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Variables instrumentales y LATE --- 3 semanas}
+{El tema 10 de 1ECO25 (Rentería), el tema 4.7 de 1ECO25 (García) y el módulo 2
+de 1ECO77. Supone el Bloque 8 del sílabo de econometría; aquí el énfasis está
+en la interpretación causal con efectos heterogéneos.}
+
+\tema{4.1 El estimador de Wald y MC2E}
+\lecturas{\MM{3} \quad \CI{7} \quad \MHE{4.1--4.3}}
+\consultalib{\MM{6} \quad Bailey (2020), cap.~9}
+
+\tema{4.2 Efecto promedio local del tratamiento y efectos heterogéneos}
+\lecturas{\MHE{4.4--4.5} \quad \CT{25.7} \quad \HU{6}}
+\apoyo{\WD{18.4}}
+\articulos{Angrist (2022)}
+\consulta{Mogstad y Torgovitsky (2024)}
+\nota{Cumplidores, siempre tomadores y nunca tomadores; variables
+instrumentales en experimentos con cumplimiento imperfecto.}
+
+\tema{4.3 Instrumentos débiles e inferencia robusta}
+\lecturas{\MHE{4.6.4} \quad \CT{4.9}}
+\articulosB{Andrews, Stock y Sun (2019) \quad Lee, McCrary, Moreira y Porter (2022)}
+\consultalib{Hansen (2021), caps.~12.35--12.39}
+\consulta{Anderson y Rubin (1949) \quad Stock y Yogo (2005) \quad Montiel Olea y Pflueger (2013)}
+\nota{El estadístico $F$ efectivo de Montiel Olea y Pflueger como diagnóstico
+con errores robustos o por conglomerados; la inferencia de Anderson--Rubin,
+robusta a instrumentos débiles, y la corrección del estadístico $t$ de Lee et
+al. (el procedimiento $tF$). Las pruebas de Cragg--Donald y de Stock--Yogo
+suponen errores homoscedásticos y quedan como referencia. Aplicación a
+Angrist y Krueger (1991).}
+
+\tema{4.4 Instrumentos de participación y desplazamiento (\emph{shift-share} o Bartik)}
+\articulosB{Goldsmith-Pinkham, Sorkin y Swift (2020) \quad Borusyak, Hull y Jaravel (2022)}
+\consultalib{Cai (2024), sección de instrumentos con exposición a choques}
+\nota{Instrumentos construidos como la exposición de cada unidad
+(participaciones iniciales) a choques comunes (desplazamientos). Hay dos
+formas de justificar la identificación: por la exogeneidad de las
+participaciones (Goldsmith-Pinkham et al.) o por la de los choques (Borusyak
+et al.), con inferencias distintas en cada caso. Aplicación natural en el
+Perú: la exposición regional a los precios de los minerales o a choques de
+comercio exterior. Las funciones de control y la endogeneidad en modelos no
+lineales se estudian en el tema 10.4, una vez vistos los modelos de elección
+discreta.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Regresión discontinua --- 2 semanas}
+{El tema 11 de 1ECO25 (Rentería) y el tema 4.6 de 1ECO25 (García): diseños
+aguda y difusa con las herramientas de inferencia actuales.}
+
+\tema{5.1 Regresión discontinua aguda}
+\lecturas{\MM{4} \quad \CI{6} \quad \MHE{6.1}}
+\apoyo{\CT{25.6}}
+
+\tema{5.2 Regresión discontinua difusa}
+\lecturas{\MHE{6.2}}
+\apoyo{\HU{9}}
+\nota{La regresión discontinua difusa como un caso de variables
+instrumentales.}
+
+\tema{5.3 Práctica de la regresión discontinua: ancho de banda, inferencia y validación}
+\articulos{Cattaneo, Idrobo y Titiunik (2020) \quad Cattaneo y Titiunik (2022)}
+\consultalib{Hansen (2021), cap.~21}
+\consulta{Imbens y Lemieux (2007)}
+\consultalib{Cattaneo, Idrobo y Titiunik (2024) \quad Gelman e Imbens (2019)}
+\nota{Polinomios locales, ancho de banda óptimo, inferencia robusta con
+corrección de sesgo, pruebas de manipulación y de balance.}
+\nota{El volumen de 2020 de Cattaneo et al. trabaja el marco basado en
+continuidad; el de 2024 añade el marco de aleatorización local, los diseños
+difusos y las variables de asignación discretas. Gelman e Imbens (2019) explican
+por qué no conviene usar polinomios globales de orden alto. Los dos marcos y los
+polinomios de orden alto son tema del curso de Econometría del BCRP.}
+
+\tema{5.4 Diseños de quiebre y de aglomeración}
+\lecturas{\HU{9}}
+\consultalib{Cai (2024), secciones de RD y \emph{bunching}}
+\nota{Los diseños de quiebre (\emph{kink}) y de aglomeración
+(\emph{bunching}) como extensiones de la regresión discontinua.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Datos de panel lineales --- 2 semanas}
+{El tema 7 y el tema 12 de 1ECO25 (Rentería), el tema 3 de 1ECO25 (García) y
+el módulo 3 de 1ECO77. Es el bloque nuevo respecto del sílabo de
+econometría, que dejó fuera los datos de panel. Se apoya en los libros de la
+carpeta Panel Data. Cada tema tiene una sola lectura principal; los demás
+textos quedan como consulta. Los sistemas de ecuaciones con componentes de
+error y los errores PCSE pasan al Anexo D.1, y las variables instrumentales en
+panel abren el Bloque 7.}
+
+\tema{6.1 Datos de panel y heterogeneidad no observada}
+\lecturas{\CT{21.1--21.5}}
+\apoyo{\AR{1} \quad \AR{2.1}}
+\consultalib{\WD{10.1--10.3} \quad \BT{1} \quad Hsiao (2003), cap.~1 \quad Biørn (2017), cap.~1}
+\nota{Ventajas y límites de los datos de panel; el modelo agrupado.}
+
+\tema{6.2 Efectos fijos: estimador intragrupos, variables ficticias y primeras diferencias}
+\lecturas{\CT{21.6} \quad \CI{8}}
+\apoyo{\AR{2.2}}
+\consultalib{\WD{10.5--10.6} \quad \MHE{5.1} \quad \BT{2.1--2.2} \quad Bailey (2020), cap.~8 \quad Wooldridge (2012), caps.~13--14}
+\consulta{Imai y Kim (2019)}
+\nota{Estimadores \emph{within}, LSDV, \emph{between} y en primeras
+diferencias; qué identifica cada uno. \CI{8} da la lectura causal de los
+efectos fijos que retoma el Bloque 8.}
+
+\tema{6.3 Efectos aleatorios, efectos aleatorios correlacionados y la prueba de Hausman}
+\lecturas{\CT{21.7}}
+\apoyo{\WD{11.4}}
+\consultalib{\WD{10.4} \quad \WD{10.7} \quad \BT{2.3--2.4} \quad \BT{4.2--4.3} \quad \BT{7.4} \quad \AR{3.1--3.4} \quad Beltrán y Castro (2010), cap.~2 \quad Hsiao (2003), cap.~3.9}
+\nota{El estimador de MCG de Balestra--Nerlove, la prueba de Breusch--Pagan y
+la prueba de Hausman; los enfoques de Mundlak y de Chamberlain para relajar el
+supuesto de efectos aleatorios. El estimador de Hausman--Taylor para variables
+constantes en el tiempo (\BT{7.4}) queda como consulta.}
+
+\tema{6.4 Efectos de dos vías, inferencia y paneles no balanceados}
+\lecturas{\CT{21.8}}
+\apoyo{\BT{3}}
+\consultalib{\BT{5} \quad \BT{9.1--9.2} \quad Croissant y Millo (2019)}
+\nota{Efectos fijos de individuo y de tiempo; heteroscedasticidad, correlación
+serial y errores agrupados por individuo; paneles no balanceados y por qué
+faltan observaciones. \BT{4.1} trata las pruebas de agrupabilidad.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Paneles dinámicos --- 2 semanas}
+{El tema 3.5 de 1ECO25 (García) y la sesión 4.1 de 1ECO77. Arellano es la
+lectura principal. Abre con las variables instrumentales y el GMM en paneles
+estáticos, la base de los estimadores de Arellano y Bond.}
+
+\tema{7.1 Variables instrumentales y GMM con datos de panel}
+\lecturas{\CT{22.1--22.4}}
+\apoyo{\WD{11.1--11.3}}
+\consultalib{\AR{4} \quad \BT{7.1--7.3}}
+\nota{Endogeneidad en paneles estáticos: variables instrumentales con efectos
+fijos, instrumentos internos y el estimador GMM de panel.}
+
+\tema{7.2 El sesgo de Nickell}
+\lecturas{\AR{6.1--6.3} \quad \BT{8.1}}
+\apoyo{\CT{22.5}}
+\consultalib{Hsiao (2003), cap.~4}
+
+\tema{7.3 Los estimadores de Arellano--Bond, Arellano--Bover y Blundell--Bond}
+\lecturas{\BT{8.2--8.5} \quad \AR{6.4--6.5}}
+\articulosB{Roodman (2009a) \quad Roodman (2009b)}
+\consultalib{Pesaran (2015), cap.~27 \quad Croissant y Millo (2019)}
+\nota{GMM en diferencias y en sistema, pruebas de Sargan--Hansen y de
+autocorrelación, y el problema de los instrumentos numerosos. Roodman (2009a)
+es la guía práctica de \texttt{xtabond2}; Roodman (2009b) muestra cómo el
+exceso de instrumentos sesga las estimaciones y debilita la prueba de Hansen,
+y cómo limitarlo (colapsar la matriz de instrumentos y acotar los rezagos).}
+
+\tema{7.4 Variables predeterminadas y efectos fijos frente a rezagos}
+\lecturas{\AR{8} \quad \MHE{5.3}}
+\consultalib{\AR{7} \quad \BT{8.8}}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Diferencias en diferencias y estudios de eventos --- 4 semanas}
+{Los temas 8 y 9 de 1ECO25 (Rentería), el tema 4.5 de 1ECO25 (García) y la
+sesión 1.2 de 1ECO77. \emph{The Remix} es la lectura principal: sus capítulos
+9 y 10 recogen la literatura reciente sobre efectos heterogéneos. Los
+artículos que proponen los estimadores robustos entran en las horas, porque
+son los que se usan en la práctica.}
+
+\tema{8.1 Diseños causales de panel y diferencias en diferencias canónico}
+\lecturas{\MM{5} \quad \CI{8--9} \quad \MHE{5.2}}
+\apoyo{\CT{22.6} \quad \CT{25.5} \quad \HU{7}}
+\consultalib{Gertler et al. (2017), cap.~7}
+\articulos{Card y Krueger (1994) \quad Galdo (2013)}
+\nota{Galdo (2013) estima con este diseño los efectos de largo plazo de la
+exposición temprana a la violencia de Sendero Luminoso.}
+
+\tema{8.2 Diferencias en diferencias en regresión e inferencia}
+\lecturas{\MHE{5.2.1} \quad \MHE{8.2}}
+\nota{Efectos fijos de dos vías, controles, correlación serial y pocos
+conglomerados.}
+
+\tema{8.3 Estudios de eventos y tendencias previas}
+\lecturas{\CI{10}}
+\articulos{Miller (2023) \quad Roth (2022)}
+\consulta{Freyaldenhoven, Hansen, Pérez y Shapiro (2024)}
+\nota{Especificación del estudio de eventos, normalización y ventanas; por qué
+no basta con no rechazar la prueba de tendencias previas (Roth, 2022).}
+
+\tema{8.4 Tendencias paralelas aproximadas e inferencia robusta}
+\articulosB{Rambachan y Roth (2023)}
+\nota{Cotas a la violación de las tendencias paralelas a partir de las
+tendencias previas (restricciones de magnitud relativa y de suavidad) e
+intervalos de confianza robustos con el paquete \texttt{HonestDiD}.}
+
+\tema{8.5 Adopción escalonada: por qué falla el estimador de efectos fijos de dos vías}
+\lecturas{\CI{10}}
+\articulos{Goodman-Bacon (2021) \quad de Chaisemartin y D'Haultfœuille (2020) \quad Roth, Sant'Anna, Bilinski y Poe (2023)}
+\nota{La descomposición de Goodman-Bacon, las comparaciones con unidades ya
+tratadas y los pesos negativos; la síntesis de Roth et al. como mapa de la
+literatura.}
+
+\tema{8.6 Estimadores robustos a efectos heterogéneos}
+\articulos{Callaway y Sant'Anna (2021) \quad Sun y Abraham (2021)}
+\articulosB{Borusyak, Jaravel y Spiess (2024)}
+\nota{Efectos promedio por grupo y período y su agregación
+(Callaway--Sant'Anna), estudios de eventos con interacciones por cohorte
+(Sun--Abraham) y el estimador por imputación (Borusyak et al.). Conviene
+estimar los tres con los mismos datos y comparar los resultados.}
+
+\tema{8.7 Diferencias en diferencias doblemente robusto, con emparejamiento y triples diferencias}
+\lecturas{\CI{10}}
+\articulos{Sant'Anna y Zhao (2020)}
+\consultalib{García Núñez (2010)}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Control sintético y cortes transversales repetidos --- 2 semanas}
+{El control sintético del curso ECO315, su combinación con las diferencias en
+diferencias y dos estructuras de datos frecuentes en el Perú, donde los
+paneles largos son escasos.}
+
+\tema{9.1 Control sintético: estimación, requisitos e inferencia}
+\lecturas{\CI{11} \quad \HU{8}}
+\articulosB{Abadie, Diamond y Hainmueller (2010) \quad Abadie (2021)}
+\consultalib{Adams (2021), cap.~11}
+\nota{Elección de los pesos y de los predictores, ajuste previo al
+tratamiento, cuándo el método es factible y qué datos exige (Abadie, 2021), e
+inferencia por placebos en el espacio y en el tiempo.}
+
+\tema{9.2 Diferencias en diferencias sintéticas}
+\articulosB{Arkhangelsky, Athey, Hirshberg, Imbens y Wager (2021)}
+\nota{Pesos por unidad y por período que combinan el control sintético con
+las diferencias en diferencias. Conviene comparar los tres estimadores con los
+mismos datos (paquete \texttt{synthdid}).}
+
+\tema{9.3 Pseudo paneles y cortes transversales repetidos}
+\lecturas{\CT{22.7} \quad \BT{10.3}}
+\consultalib{Wooldridge (2012), cap.~13}
+\nota{Útil con encuestas como la ENAHO, que combina cortes transversales con un
+componente de panel.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 10 --- Modelos de elección discreta --- 2 semanas}
+{El tema 3 de 1ECO25 (Rentería), el tema 2.1--2.2 de 1ECO25 (García) y la
+Unidad 3 de 2ECO01. Supone el Bloque 12 del sílabo de econometría (modelo de
+probabilidad lineal, logit, probit, logit multinomial, ordenado y anidado) y no
+lo repite: aquí entran los modelos de utilidad aleatoria de Train, la
+estimación por simulación y la endogeneidad en modelos no lineales. Los
+capítulos de Cameron y Trivedi y de Wooldridge sobre los modelos básicos
+quedan como consulta para repasar. El logit mixto y la simulación preparan la
+estimación de demanda del sílabo de organización industrial (tema 12.2).}
+
+\tema{10.1 Logit condicional y modelos de utilidad aleatoria}
+\lecturas{\CT{15.1--15.5}}
+\apoyo{Train (2009), caps.~2--3}
+\consultalib{\CT{14} \quad \WD{15.1--15.6} \quad \WD{15.9} \quad Beltrán y Castro (2010), caps.~3--4 \quad Bailey (2020), cap.~12}
+\nota{Del logit multinomial al condicional: atributos que varían por
+alternativa, el supuesto de independencia de alternativas irrelevantes y cómo
+probarlo. Las muestras basadas en la elección (\CT{14}) quedan como consulta.}
+
+\tema{10.2 Logit anidado, probit multinomial y logit mixto}
+\lecturas{\CT{15.6--15.8}}
+\consultalib{Train (2009), caps.~4--6 \quad \CT{15.9--15.10} \quad \WD{15.10}}
+\nota{Las respuestas ordenadas y multivariadas (\CT{15.9--15.10}) ya están en
+el Bloque 12 del sílabo de econometría y quedan como consulta.}
+
+\tema{10.3 Estimación por simulación}
+\lecturas{Train (2009), caps.~9--10}
+\consultalib{Train (2009), cap.~8 \quad Cameron y Trivedi (2005), cap.~12}
+\nota{Extracción de densidades y máxima verosimilitud simulada. El cap.~8 de
+Train (maximización numérica) repite el sílabo de econometría.}
+
+\tema{10.4 Funciones de control y endogeneidad en modelos no lineales}
+\lecturas{\MHE{4.6.3} \quad \WD{15.7} \quad \WD{19.5}}
+\consulta{Chay y Greenstone (2005) \quad Evans y Schwab (1995)}
+\nota{La función de control como alternativa a MC2E, el modelo de
+coeficientes aleatorios correlacionados y el probit con regresor endógeno
+(sesión 2.3 de 1ECO77). Retoma el Bloque 4.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 11 --- Censura, selección, conteo y duración --- 2 semanas}
+{El tema 13 de 1ECO25 (Rentería), los temas 2.3--2.4 de 1ECO25 (García) y los
+modelos de duración de su sumilla. Supone el Bloque 12 del sílabo de
+econometría (tobit, Heckman y modelos básicos de conteo) y se concentra en sus
+extensiones; los capítulos de Wooldridge quedan como consulta.}
+
+\tema{11.1 Soluciones de esquina, el modelo tobit y el modelo de dos partes}
+\lecturas{\CT{16.1--16.4}}
+\consultalib{\WD{16.1--16.7} \quad Beltrán y Castro (2010), cap.~5}
+\nota{Repaso breve del tobit; el énfasis está en el modelo de dos partes y en
+cuándo conviene frente al tobit.}
+
+\tema{11.2 Selección muestral y el modelo de Roy}
+\lecturas{\CT{16.5--16.9}}
+\consultalib{\WD{17.1--17.6}}
+\nota{El modelo de Heckman ya se vio en el sílabo de econometría; aquí entran
+el modelo de Roy, la estimación semiparamétrica y su relación con el LATE del
+tema 4.2.}
+
+\tema{11.3 Extensiones de los modelos de conteo}
+\lecturas{\CT{20}}
+\consultalib{\WD{19.1--19.5}}
+\nota{Sobredispersión y binomial negativa, modelos con exceso de ceros y de
+valla (\emph{hurdle}), y el Poisson como estimador de cuasi-máxima
+verosimilitud robusto.}
+
+\tema{11.4 Modelos de duración}
+\lecturas{\CT{17}}
+\consultalib{Wooldridge (2002), cap.~20}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 12 --- Modelos no lineales con datos de panel --- 2 semanas}
+{La sesión 4.2 de 1ECO77. Une los Bloques 6 y 7 con los Bloques 10 y 11.}
+
+\tema{12.1 Respuesta binaria con datos de panel}
+\lecturas{\CT{23.1--23.4} \quad \WD{15.8}}
+\apoyo{\BT{11.1--11.2}}
+\nota{Logit condicional de efectos fijos, probit de efectos aleatorios y
+efectos aleatorios correlacionados.}
+
+\tema{12.2 Tobit, selección y atrición con datos de panel}
+\lecturas{\CT{23.5} \quad \WD{16.8} \quad \WD{17.7}}
+\apoyo{\BT{11.4--11.5}}
+
+\tema{12.3 Conteo y modelos dinámicos no lineales con datos de panel}
+\lecturas{\CT{23.6--23.7} \quad \WD{19.6}}
+\apoyo{\BT{10.6} \quad \BT{11.3}}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 13 --- Muestras complejas, error de medida y datos faltantes --- 2 semanas}
+{Los problemas de los datos reales. Sigue el curso ECO387 (2022-2) en lo
+relativo a encuestas como la ENAHO.}
+
+\tema{13.1 Muestras estratificadas, ponderación y conglomerados}
+\lecturas{\CT{24} \quad \WD{17.8}}
+\articulos{Cameron y Miller (2015) \quad Solon, Haider y Wooldridge (2015)}
+\consulta{Abadie, Athey, Imbens y Wooldridge (2017)}
+
+\tema{13.2 Error de medida}
+\lecturas{\CT{26} \quad \AR{4.1--4.2}}
+\apoyo{\BT{10.1}}
+
+\tema{13.3 Datos faltantes e imputación}
+\lecturas{\CT{27}}
+
+\tema{13.4 Bootstrap e inferencia en microeconometría}
+\lecturas{\CT{11} \quad \MHE{8.1}}
+\nota{Errores estándar robustos en muestras pequeñas y bootstrap en las
+aplicaciones de este plan. La teoría está en el Bloque 5 del sílabo de
+econometría.}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+Capítulos de cada libro que entran en el plan y temas donde se leen. Las
+secciones excluidas se detallan en el Anexo B.
+
+\newcommand{\mapa}[2]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.1cm}X>{\raggedright\arraybackslash}p{3.8cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Temas} \\
+\midrule
+#2
+\bottomrule
+\end{tabularx}
+}}
+
+\mapa{A.1 Cameron y Trivedi, \emph{Microeconometrics: Methods and Applications} (texto base)}{%
+1 & Overview & P.1 \\
+2 & Causal and Noncausal Models & 1.1, 1.2 \\
+3 & Microeconomic Data Structures & P.1, 2.1, 2.4 \\
+4 & Linear Models (4.1--4.9) & P.2, 4.3 \\
+11 & Bootstrap Methods & 13.4 \\
+14 & Binary Outcome Models (consulta) & 10.1 \\
+15 & Multinomial Models (15.1--15.8; 15.9--15.10 consulta) & 10.1, 10.2 \\
+16 & Tobit and Selection Models (16.1--16.9) & 11.1, 11.2 \\
+17 & Transition Data: Survival Analysis & 11.4 \\
+20 & Models of Count Data & 11.3 \\
+21 & Linear Panel Models: Basics & 6.1, 6.2, 6.3, 6.4 \\
+22 & Linear Panel Models: Extensions (22.1--22.7) & 7.1, 7.2, 8.1, 9.3 \\
+23 & Nonlinear Panel Models (23.1--23.7) & 12.1, 12.2, 12.3 \\
+24 & Stratified and Clustered Samples & 13.1 \\
+25 & Treatment Evaluation & 1.2, 3.2, 4.2, 5.1, 8.1 \\
+26 & Measurement Error Models & 13.2 \\
+27 & Missing Data and Imputation & 13.3 \\
+}
+
+\mapa{A.2 Cunningham, \emph{Causal Inference: The Remix} (texto base)}{%
+1 & Foundational Ideas in Causal Inference & 1.1 \\
+2 & Which Causal Inference? & 1.1 \\
+3 & Directed Acyclic Graphs & 1.3 \\
+4 & Potential Outcomes and Randomization & 1.2 \\
+5 & Unconfoundedness & 3.1 \\
+6 & Regression Discontinuity & 5.1 \\
+7 & Instrumental Variables & 4.1 \\
+8 & Causal Panel Designs & 6.2, 8.1 \\
+9 & Difference-in-Differences Fundamentals & 8.1 \\
+10 & Complex Diff-in-Diff Designs & 8.3, 8.5, 8.7 \\
+11 & Synthetic Control & 9.1 \\
+}
+
+\mapa{A.3 Angrist y Pischke, \emph{Mostly Harmless Econometrics}}{%
+2 & The Experimental Ideal & 1.2, 2.1 \\
+3 & Making Regression Make Sense (3.1--3.3) & 1.3, 1.4, 3.1, 3.2 \\
+4 & Instrumental Variables in Action & 4.1, 4.2, 4.3, 10.4 \\
+5 & Parallel Worlds: Fixed Effects, DiD, and Panel Data & 6.2 (consulta), 7.4, 8.1, 8.2 \\
+6 & Getting a Little Jumpy: Regression Discontinuity & 5.1, 5.2 \\
+8 & Nonstandard Standard Error Issues & 8.2, 13.4 \\
+}
+
+\mapa{A.4 Angrist y Pischke, \emph{Mastering 'Metrics}}{%
+1 & Randomized Trials & 2.1 \\
+2 & Regression & 1.4 \\
+3 & Instrumental Variables & 4.1 \\
+4 & Regression Discontinuity Designs & 5.1 \\
+5 & Differences-in-Differences & 8.1 \\
+}
+
+\mapa{A.5 Wooldridge, \emph{Econometric Analysis of Cross Section and Panel Data}}{%
+10 & Basic Linear Unobserved Effects Panel Data Models (consulta) & 6.1, 6.2, 6.3 \\
+11 & More Topics in Linear Unobserved Effects Models (11.1--11.4) & 6.3, 7.1 \\
+15 & Discrete Response Models (15.7--15.8; el resto, consulta) & 10.4, 12.1; consulta en 10.1, 10.2 \\
+16 & Corner Solution Outcomes and Censored Regression (16.8; 16.1--16.7 consulta) & 12.2; consulta en 11.1 \\
+17 & Sample Selection, Attrition, and Stratified Sampling (17.7--17.8; 17.1--17.6 consulta) & 12.2, 13.1; consulta en 11.2 \\
+18 & Estimating Average Treatment Effects (18.1--18.4) & 1.2, 3.1, 4.2 \\
+19 & Count Data and Related Models (19.5--19.6; 19.1--19.4 consulta) & 10.4, 12.3; consulta en 11.3 \\
+}
+
+\mapa{A.6 Baltagi, \emph{Econometric Analysis of Panel Data}}{%
+1 & Introduction (consulta) & 6.1 \\
+2 & The One-Way Error Component Regression Model (2.1--2.4, consulta) & 6.2, 6.3 \\
+3 & The Two-Way Error Component Regression Model & 6.4 \\
+4 & Test of Hypotheses with Panel Data (4.1--4.3, consulta) & 6.3, 6.4 \\
+5 & Heteroskedasticity and Serial Correlation (consulta) & 6.4 \\
+7 & Simultaneous Equations with Error Components (7.1--7.4, consulta) & 6.3, 7.1 \\
+8 & Dynamic Panel Data Models (8.1--8.5; 8.8 consulta) & 7.2, 7.3, 7.4 \\
+9 & Unbalanced Panel Data Models (9.1--9.2, consulta) & 6.4 \\
+10 & Special Topics (10.1, 10.3, 10.6) & 9.3, 12.3, 13.2 \\
+11 & Limited Dependent Variables and Panel Data (11.1--11.5) & 12.1, 12.2, 12.3 \\
+}
+
+\mapa{A.7 Arellano, \emph{Panel Data Econometrics}}{%
+1 & Introduction & 6.1 \\
+2 & Unobserved Heterogeneity (2.1--2.2) & 6.1, 6.2 \\
+3 & Error Components (3.1--3.4, consulta) & 6.3 \\
+4 & Error in Variables & 13.2; consulta en 7.1 \\
+6 & Autoregressive Models with Individual Effects (6.1--6.5) & 7.2, 7.3 \\
+7 & Models with both Strictly Exogenous and Lagged Dependent Variables (consulta) & 7.4 \\
+8 & Predetermined Variables & 7.4 \\
+}
+
+\mapa{A.8 Huber, \emph{Causal Analysis}}{%
+1--2 & Introduction; Causality and no causality & 1.1 \\
+3 & Social experiments and linear regression & 2.1 \\
+4 & Selection on observables & 3.2 \\
+5 & Causal machine learning & 3.5 \\
+6 & Instrumental variables & 4.2 \\
+7 & Difference-in-Differences & 8.1 \\
+8 & Synthetic controls & 9.1 \\
+9 & Regression discontinuity, kink, and bunching designs & 5.2, 5.4 \\
+10 & Partial identification and sensitivity analysis & 3.3 \\
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo B. Capítulos y secciones que no entran en el plan}
+\addcontentsline{toc}{section}{Anexo B. Capítulos y secciones que no entran en el plan}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Materia} & \cab{Capítulos y secciones} \\
+\midrule
+Ya cubierto en el sílabo de econometría & \CT{5--10} (máxima verosimilitud, GMM, pruebas, especificación, métodos semiparamétricos y optimización numérica), \CT{4.6} (regresión cuantílica); \WD{1--9} y \WD{12--14}; ecuaciones simultáneas y SUR (Bloque 11 de ese sílabo) \\
+Variable dependiente limitada básica (consulta, sin horas) & \CT{14}, \CT{15.9--15.10}; \WD{15.1--15.6}, \WD{15.9--15.10}, \WD{16.1--16.7}, \WD{17.1--17.6}, \WD{19.1--19.4}; Train (2009), cap.~8. Ya están en el Bloque 12 del sílabo de econometría \\
+Métodos bayesianos y de simulación & \CT{12--13} (consulta en el tema 10.3) \\
+Sistemas con componentes de error y PCSE & \BT{6}; Beck y Katz (1995). Ver Anexo D.1 \\
+Otros modelos & \CT{18--19} (mezclas y riesgos múltiples); \CT{22.8} (modelos lineales mixtos); \CT{23.8}; \WD{18.5}; \WD{20} (consulta en el tema 11.4) \\
+Paneles no estacionarios y espaciales & \BT{12--13}; sesiones 4.3 y 4.4 de 1ECO77. Ver Anexo D.1 \\
+Otras secciones de panel & \BT{10.2}, \BT{10.4--10.5}; \AR{5} (estructuras de covarianza dinámicas) y apéndices A y B (GMM y extremos, ya en el sílabo de econometría) \\
+Regresión cuantílica y efectos por cuantiles & \MHE{7}. Ver Anexo D.4 \\
+Ejemplo extendido & \MM{6} (consulta en el tema 4.1) \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent Dos archivos de la carpeta no se usaron porque son imágenes sin
+texto: el libro de Maddala (\emph{Limited-Dependent and Qualitative Variables
+in Econometrics}, carpeta Panel Data) y \texttt{Sílabo 2026-1.pdf}.
+
+%------------------------------------------------------------------------------
+\section*{Anexo C. Programas de la PUCP utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas de la PUCP utilizados}
+
+\subsection*{C.1 Econometría Intermedia: Micro (1ECO25, 2025-1, J.~M.~Rentería)}
+Es el programa que guía el plan.
+
+\medskip
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{6.2cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Tema del programa} & \cab{Temas del plan} \\
+\midrule
+1--2. Modelo de regresión lineal clásico & P.2 y sílabo de econometría \\
+3. Modelos binarios y de elección múltiple & Bloque 12 del sílabo de econometría y Bloque 10 \\
+4. Inferencia causal en economía & Bloque 1 \\
+5. Experimentos aleatorios & Bloque 2 \\
+6. Emparejamiento & Bloque 3 \\
+7. Efectos fijos & 6.2 \\
+8. Estudios de eventos & 8.3 \\
+9. Dobles diferencias & Bloque 8 \\
+10. Variables instrumentales & Bloque 4 \\
+11. Regresión discontinua & Bloque 5 \\
+12. Otros modelos para datos de panel & 6.3, 6.4, Bloque 7 \\
+13. Variable truncada y censurada & 11.1, 11.2 \\
+14. Ecuaciones simultáneas y SUR & Bloque 11 del sílabo de econometría; con componentes de error, Anexo D.1 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection*{C.2 Otros programas}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{6.2cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Programa} & \cab{Temas del plan} \\
+\midrule
+1ECO25 (2025-2, L.~García): ecuaciones simultáneas, variables dependientes limitadas, datos de panel y evaluación de impacto & Bloques 1 a 7, 10 y 11 \\
+1ECO77, Corte Transversal y Panel (maestría, 2025-2 y 2026-2) & M1: Bloques 1, 3, 5 y 8; M2: Bloque 4; M3: Bloque 6 y tema 7.1; M4: Bloques 7 y 12; paneles no estacionarios y espaciales: Anexo D.1 \\
+ECO315, Tópicos de Microeconomía Avanzada (2022-0, C.~Huaroto) & Bloques 2 a 5, 8 y 9; método de replicación: Anexo D.5 \\
+ECO387, Muestras complejas e inferencia causal (2022-2) & 3.2, 13.1 \\
+ECO386, Inferencia causal y aprendizaje automático (2024-2) & 1.3, 3.5; Anexo D.3 \\
+2ECO01, Unidad 3 (maestría, 2026-1) & Bloques 10 y 11 \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo D. Material opcional}
+\addcontentsline{toc}{section}{Anexo D. Material opcional}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica
+el cronograma.
+
+\subsection*{D.1 Paneles no estacionarios, heterogéneos y espaciales, y sistemas con componentes de error}
+Sigue las sesiones 4.3 y 4.4 de 1ECO77. Momento sugerido: después del Bloque 7
+y, para la parte no estacionaria, después del Bloque 4 del sílabo de
+macroeconometría.
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+  \item Raíces unitarias y cointegración en paneles: \BT{12}; Pesaran (2015),
+        cap.~31.
+  \item Paneles heterogéneos grandes y dependencia transversal: Pesaran (2015),
+        caps.~28--29.
+  \item Paneles espaciales: \BT{13}; Pesaran (2015), cap.~30; Croissant y
+        Millo (2019). Enlaza con la econometría espacial del sílabo de
+        econometría (Anexo D.3).
+  \item Sistemas de ecuaciones con componentes de error (SUR y ecuaciones
+        simultáneas): \BT{6}; \BT{7.1--7.3}. Salieron del Bloque 6.
+  \item Datos de corte transversal de series de tiempo (pocas unidades
+        observadas durante muchos períodos): Beck y Katz (1995) y los errores
+        estándar corregidos para panel (PCSE), la alternativa al MCG factible
+        cuando $T$ es grande.
+\end{itemize}
+
+\subsection*{D.2 Estimación estructural}
+Adams (2021), parte II: demanda, selección, demanda con variables
+instrumentales, juegos y subastas; \CT{16.7--16.8} (modelo de Roy y modelos
+estructurales); Train (2009), caps.~11--14.
+
+\subsection*{D.3 Aprendizaje automático causal}
+Sigue el curso ECO386. Ver el Anexo D.1 del sílabo de econometría, que
+desarrolla este módulo con Huber, Hansen y los artículos del programa.
+
+\subsection*{D.4 Regresión cuantílica y efectos de tratamiento por cuantiles}
+\MHE{7}; \CT{4.6}; tema 13.5 del sílabo de econometría. Complementa las regresiones RIF del tema 3.4.
+
+\subsection*{D.5 Taller de replicación}
+Sigue el método del curso ECO315: un artículo por diseño, con los datos de los
+autores.
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item \textbf{Experimento}: Dammert, Galdo y Galdo (2014).
+  \item \textbf{Variables instrumentales}: Angrist y Krueger (1991), con los
+        datos de \emph{Mostly Harmless Econometrics}.
+  \item \textbf{Regresión discontinua}: los ejemplos de Cattaneo, Idrobo y
+        Titiunik (2020).
+  \item \textbf{Diferencias en diferencias}: Card y Krueger (1994) y Galdo (2013).
+  \item \textbf{Datos de panel}: los ejemplos de Croissant y Millo (2019).
+\end{enumerate}
+Herramientas: los códigos de \emph{The Remix} (R, Stata y Python), Huber (R),
+Adams (2021) (R) y la guía de lecturas de Cai (2024), que reúne la literatura
+reciente sobre cada método (variables instrumentales con exposición a
+choques, aglomeración, estadísticos suficientes y descomposiciones).
+
+\subsection*{D.6 Software por método}
+Paquetes de uso extendido para cada diseño. En Stata se instalan con
+\texttt{ssc install} o desde el sitio de sus autores; en R, desde CRAN o
+GitHub. La referencia en Stata es Cameron y Trivedi (2022); en Python,
+\texttt{pyfixest}, \texttt{DoubleML} y \texttt{EconML} cubren buena parte de
+la tabla.
+
+\medskip
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Método (temas)} & \cab{Stata} & \cab{R} \\
+\midrule
+Efectos fijos de alta dimensión (todo el plan) & \texttt{reghdfe} & \texttt{fixest} \\
+Inferencia por aleatorización y pruebas múltiples (2.2) & \texttt{ritest}, \texttt{rwolf}, \texttt{wyoung} & \texttt{ri2}, \texttt{p.adjust} \\
+Sensibilidad (3.3) & \texttt{psacalc}, \texttt{sensemakr} & \texttt{sensemakr} \\
+Descomposiciones (3.4) & \texttt{oaxaca}, \texttt{rifhdreg} & \texttt{oaxaca} \\
+Aprendizaje automático causal (3.5) & \texttt{ddml} & \texttt{DoubleML}, \texttt{grf} \\
+Variables instrumentales (4.3) & \texttt{ivreg2}, \texttt{weakivtest}, \texttt{weakiv} & \texttt{fixest}, \texttt{ivmodel} \\
+\emph{Shift-share} (4.4) & \texttt{ssaggregate}, \texttt{bartik\_weight} & \texttt{ShiftShareSE}, \texttt{bartik.weight} \\
+Regresión discontinua (Bloque 5) & \texttt{rdrobust}, \texttt{rddensity}, \texttt{rdlocrand} & \texttt{rdrobust}, \texttt{rddensity}, \texttt{rdlocrand} \\
+Paneles dinámicos (Bloque 7) & \texttt{xtabond2} & \texttt{plm} (\texttt{pgmm}) \\
+Diferencias en diferencias (Bloque 8) & \texttt{csdid}, \texttt{did\_imputation}, \texttt{eventstudyinteract}, \texttt{did\_multiplegt}, \texttt{drdid}, \texttt{honestdid} & \texttt{did}, \texttt{didimputation}, \texttt{fixest} (\texttt{sunab}), \texttt{DIDmultiplegt}, \texttt{DRDID}, \texttt{HonestDiD} \\
+Control sintético (Bloque 9) & \texttt{synth}, \texttt{sdid} & \texttt{Synth}, \texttt{synthdid} \\
+Inferencia con pocos conglomerados (8.2, 13.1) & \texttt{boottest} & \texttt{fwildclusterboot} \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo E. Referencias}
+\addcontentsline{toc}{section}{Anexo E. Referencias}
+
+\subsection*{E.1 Textos del plan}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Angrist, J. D. y J.-S. Pischke (2009). \emph{Mostly Harmless Econometrics: An Empiricist's Companion}. Princeton University Press.
+\item Angrist, J. D. y J.-S. Pischke (2015). \emph{Mastering 'Metrics: The Path from Cause to Effect}. Princeton University Press.
+\item Arellano, M. (2003). \emph{Panel Data Econometrics}. Oxford University Press.
+\item Baltagi, B. H. (2021). \emph{Econometric Analysis of Panel Data}, 6.ª ed. Springer.
+\item Cameron, A. C. y P. K. Trivedi (2005). \emph{Microeconometrics: Methods and Applications}. Cambridge University Press.
+\item Cunningham, S. \emph{Causal Inference: The Remix}, 2.ª ed., en línea: \url{https://mixtape.scunning.com}. Primera edición: \emph{Causal Inference: The Mixtape}, Yale University Press, 2021.
+\item Huber, M. (2023). \emph{Causal Analysis: Impact Evaluation and Causal Machine Learning with Applications in R}. MIT Press.
+\item Wooldridge, J. M. (2002). \emph{Econometric Analysis of Cross Section and Panel Data}. MIT Press.
+\end{itemize}
+}
+
+\subsection*{E.2 Libros y textos de consulta de la carpeta (sin horas, salvo donde se indica)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Adams, C. P. (2021). \emph{Learning Microeconometrics with R}. CRC Press.
+\item Bailey, M. A. (2020). \emph{Real Econometrics: The Right Tools to Answer Important Questions}, 2.ª ed. Oxford University Press.
+\item Beltrán, A. y J. F. Castro (2010). \emph{Modelos de datos de panel y variables dependientes limitadas: teoría y práctica}. Universidad del Pacífico.
+\item Biørn, E. (2017). \emph{Econometrics of Panel Data: Methods and Applications}. Oxford University Press.
+\item Cai, C. (2024). Literature on Recent Advances in Applied Micro Methods. Guía de lecturas, versión del 9 de junio de 2024.
+\item Croissant, Y. y G. Millo (2019). \emph{Panel Data Econometrics with R}. Wiley.
+\item García Núñez, L. (2010). Econometría de evaluación de impacto. Documento de Trabajo 283, Departamento de Economía, PUCP.
+\item Gertler, P., S. Martínez, P. Premand, L. Rawlings y C. Vermeersch (2017). \emph{La evaluación de impacto en la práctica}, 2.ª ed. Banco Mundial y BID. Entra en las horas en el tema 2.3.
+\item Hansen, B. E. (2021). \emph{Econometrics}. Manuscrito, University of Wisconsin (carpeta de econometría).
+\item Hsiao, C. (2003). \emph{Analysis of Panel Data}, 2.ª ed. Cambridge University Press.
+\item Neal, B. (2020). \emph{Introduction to Causal Inference from a Machine Learning Perspective}. Notas de curso.
+\item Pesaran, M. H. (2015). \emph{Time Series and Panel Data Econometrics}. Oxford University Press.
+\item Train, K. E. (2009). \emph{Discrete Choice Methods with Simulation}, 2.ª ed. Cambridge University Press. Entra en las horas en los temas 10.1 y 10.3.
+\item Wooldridge, J. M. (2012). \emph{Introductory Econometrics: A Modern Approach}, 5.ª ed. Cengage (carpeta de econometría).
+\end{itemize}
+}
+
+\subsection*{E.3 Referencias tomadas de los programas de la PUCP}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Abadie, A., S. Athey, G. Imbens y J. Wooldridge (2017). When Should You Adjust Standard Errors for Clustering? NBER Working Paper 24003.
+\item Abadie, A. y G. Imbens (2016). Matching on the Estimated Propensity Score. \emph{Econometrica}, 84(2), 781--807.
+\item Anderson, T. W. y H. Rubin (1949). Estimation of the Parameters of a Single Equation in a Complete System of Stochastic Equations. \emph{Annals of Mathematical Statistics}, 20(1), 46--63.
+\item Angrist, J. D. (2022). Empirical Strategies in Economics: Illuminating the Path from Cause to Effect. \emph{Econometrica}, 90(6), 2509--2539.
+\item Angrist, J. D. y A. B. Krueger (1991). Does Compulsory School Attendance Affect Schooling and Earnings? \emph{Quarterly Journal of Economics}, 106(4), 979--1014.
+\item Bédécarrats, F., I. Guérin y F. Roubaud (eds.) (2020). \emph{Randomized Control Trials in the Field of Development: A Critical Perspective}. Oxford University Press.
+\item Caliendo, M. y S. Kopeinig (2008). Some Practical Guidance for the Implementation of Propensity Score Matching. \emph{Journal of Economic Surveys}, 22, 31--72.
+\item Callaway, B. y P. H. C. Sant'Anna (2021). Difference-in-Differences with Multiple Time Periods. \emph{Journal of Econometrics}, 225(2), 200--230.
+\item Cameron, A. C. y D. L. Miller (2015). A Practitioner's Guide to Cluster-Robust Inference. \emph{Journal of Human Resources}, 50(2), 317--372.
+\item Card, D. y A. B. Krueger (1994). Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania. \emph{American Economic Review}, 84(4), 772--793.
+\item Cattaneo, M. D., N. Idrobo y R. Titiunik (2020). \emph{A Practical Introduction to Regression Discontinuity Designs: Foundations}. Cambridge University Press.
+\item Cattaneo, M. D. y R. Titiunik (2022). Regression Discontinuity Designs. \emph{Annual Review of Economics}, 14, 821--851.
+\item Chay, K. Y. y M. Greenstone (2005). Does Air Quality Matter? Evidence from the Housing Market. \emph{Journal of Political Economy}, 113(2), 376--424.
+\item Chernozhukov, V., D. Chetverikov, M. Demirer, E. Duflo, C. Hansen, W. Newey y J. Robins (2018). Double/Debiased Machine Learning for Treatment and Structural Parameters. \emph{The Econometrics Journal}, 21(1).
+\item Cinelli, C., A. Forney y J. Pearl (2022). A Crash Course in Good and Bad Controls. \emph{Sociological Methods \& Research}.
+\item Dammert, A., J. Galdo y V. Galdo (2014). Preventing Dengue through Mobile Phones: Evidence from a Field Experiment in Peru. \emph{Journal of Health Economics}, 35, 147--161.
+\item de Chaisemartin, C. y X. D'Haultfœuille (2020). Two-Way Fixed Effects Estimators with Heterogeneous Treatment Effects. \emph{American Economic Review}, 110(9), 2964--2996.
+\item Dehejia, R. y S. Wahba (2002). Propensity Score-Matching Methods for Nonexperimental Causal Studies. \emph{Review of Economics and Statistics}, 84(1), 151--161.
+\item Duflo, E., R. Glennerster y M. Kremer (2006). Using Randomization in Development Economics Research: A Toolkit. MIT Department of Economics Working Paper 06-36.
+\item Evans, W. N. y R. M. Schwab (1995). Finishing High School and Starting College: Do Catholic Schools Make a Difference? \emph{Quarterly Journal of Economics}, 110(4), 941--974.
+\item Freyaldenhoven, S., C. Hansen, J. Pérez y J. Shapiro (2024). Visualization, Identification, and Estimation in the Linear Panel Event-Study Design. NBER Working Paper 29170.
+\item Galdo, J. (2013). Long-Run Labor-Market Impacts of Early-Life Exposure to Civil War: Evidence from Shining Path in Peru. \emph{Economic Development and Cultural Change}, 61(4), 789--823.
+\item Glennerster, R. y K. Takavarasha (2013). \emph{Running Randomized Evaluations: A Practical Guide}. Princeton University Press.
+\item Goodman-Bacon, A. (2021). Difference-in-Differences with Variation in Treatment Timing. \emph{Journal of Econometrics}, 225(2), 254--277.
+\item Heckman, J. y R. Pinto (2024). Econometric Causality: The Central Role of Thought Experiments. \emph{Journal of Econometrics}, 243(1--2), 105719.
+\item Holland, P. W. (1986). Statistics and Causal Inference. \emph{Journal of the American Statistical Association}, 81(396), 945--960.
+\item Imai, K. e I. S. Kim (2019). When Should We Use Unit Fixed Effects Regression Models for Causal Inference with Longitudinal Data? \emph{American Journal of Political Science}, 63(2), 467--490.
+\item Imbens, G. (2020). Potential Outcome and Directed Acyclic Graph Approaches to Causality. \emph{Journal of Economic Literature}, 58(4), 1129--1179.
+\item Imbens, G. (2022). Causality in Econometrics: Choice vs Chance. \emph{Econometrica}, 90(6), 2541--2566.
+\item Imbens, G. y T. Lemieux (2007). Regression Discontinuity Designs: A Guide to Practice. NBER Working Paper 13039.
+\item LaLonde, R. J. (1986). Evaluating the Econometric Evaluations of Training Programs with Experimental Data. \emph{American Economic Review}, 76(4), 604--620.
+\item Miller, D. (2023). An Introductory Guide to Event Study Models. \emph{Journal of Economic Perspectives}, 37(2), 203--230.
+\item Mogstad, M. y A. Torgovitsky (2024). Instrumental Variables with Unobserved Heterogeneity in Treatment Effects. En C. Dustmann y T. Lemieux (eds.), \emph{Handbook of Labor Economics}, vol.~5, cap.~1.
+\item Rosenbaum, P. R. y D. B. Rubin (1983). The Central Role of the Propensity Score in Observational Studies for Causal Effects. \emph{Biometrika}, 70(1), 41--55.
+\item Roth, J. (2022). Pretest with Caution: Event-Study Estimates after Testing for Parallel Trends. \emph{American Economic Review: Insights}, 4(3), 305--322.
+\item Roth, J., P. H. C. Sant'Anna, A. Bilinski y J. Poe (2023). What's Trending in Difference-in-Differences? A Synthesis of the Recent Econometrics Literature. \emph{Journal of Econometrics}, 235(2), 2218--2244.
+\item Rubin, D. B. (1974). Estimating Causal Effects of Treatments in Randomized and Nonrandomized Studies. \emph{Journal of Educational Psychology}, 66(5), 688--701.
+\item Sant'Anna, P. H. C. y J. Zhao (2020). Doubly Robust Difference-in-Differences Estimators. \emph{Journal of Econometrics}, 219(1), 101--122.
+\item Smith, J. y P. Todd (2005). Does Matching Overcome LaLonde's Critique of Nonexperimental Estimators? \emph{Journal of Econometrics}, 125(1--2), 305--353.
+\item Solon, G., S. J. Haider y J. M. Wooldridge (2015). What Are We Weighting For? \emph{Journal of Human Resources}, 50(2), 301--316.
+\item Stock, J. H. y M. Yogo (2005). Testing for Weak Instruments in Linear IV Regression. En D. W. K. Andrews y J. H. Stock (eds.), \emph{Identification and Inference for Econometric Models}. Cambridge University Press.
+\item Sun, L. y S. Abraham (2021). Estimating Dynamic Treatment Effects in Event Studies with Heterogeneous Treatment Effects. \emph{Journal of Econometrics}, 225(2), 175--199.
+\end{itemize}
+}
+
+\subsection*{E.4 Otras referencias (incluye las añadidas en la revisión)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Abadie, A. (2021). Using Synthetic Controls: Feasibility, Data Requirements, and Methodological Aspects. \emph{Journal of Economic Literature}, 59(2), 391--425.
+\item Abadie, A., A. Diamond y J. Hainmueller (2010). Synthetic Control Methods for Comparative Case Studies: Estimating the Effect of California's Tobacco Control Program. \emph{Journal of the American Statistical Association}, 105(490), 493--505.
+\item Anderson, M. L. (2008). Multiple Inference and Gender Differences in the Effects of Early Intervention: A Reevaluation of the Abecedarian, Perry Preschool, and Early Training Projects. \emph{Journal of the American Statistical Association}, 103(484), 1481--1495.
+\item Andrews, I., J. H. Stock y L. Sun (2019). Weak Instruments in Instrumental Variables Regression: Theory and Practice. \emph{Annual Review of Economics}, 11, 727--753.
+\item Arkhangelsky, D., S. Athey, D. A. Hirshberg, G. W. Imbens y S. Wager (2021). Synthetic Difference-in-Differences. \emph{American Economic Review}, 111(12), 4088--4118.
+\item Athey, S. y G. W. Imbens (2017). The Econometrics of Randomized Experiments. En A. V. Banerjee y E. Duflo (eds.), \emph{Handbook of Economic Field Experiments}, vol.~1, 73--140. Elsevier.
+\item Beck, N. y J. N. Katz (1995). What to Do (and Not to Do) with Time-Series Cross-Section Data. \emph{American Political Science Review}, 89(3), 634--647.
+\item Blinder, A. S. (1973). Wage Discrimination: Reduced Form and Structural Estimates. \emph{Journal of Human Resources}, 8(4), 436--455.
+\item Borusyak, K., P. Hull y X. Jaravel (2022). Quasi-Experimental Shift-Share Research Designs. \emph{Review of Economic Studies}, 89(1), 181--213.
+\item Borusyak, K., X. Jaravel y J. Spiess (2024). Revisiting Event-Study Designs: Robust and Efficient Estimation. \emph{Review of Economic Studies}, 91(6), 3253--3285.
+\item Bruhn, M. y D. McKenzie (2009). In Pursuit of Balance: Randomization in Practice in Development Field Experiments. \emph{American Economic Journal: Applied Economics}, 1(4), 200--232.
+\item Cameron, A. C. y P. K. Trivedi (2022). \emph{Microeconometrics Using Stata}, 2.ª ed., 2 vols. Stata Press.
+\item Cattaneo, M. D., N. Idrobo y R. Titiunik (2024). \emph{A Practical Introduction to Regression Discontinuity Designs: Extensions}. Cambridge University Press.
+\item Cinelli, C. y C. Hazlett (2020). Making Sense of Sensitivity: Extending Omitted Variable Bias. \emph{Journal of the Royal Statistical Society, Series B}, 82(1), 39--67.
+\item DiNardo, J., N. M. Fortin y T. Lemieux (1996). Labor Market Institutions and the Distribution of Wages, 1973--1992: A Semiparametric Approach. \emph{Econometrica}, 64(5), 1001--1044.
+\item Firpo, S., N. M. Fortin y T. Lemieux (2009). Unconditional Quantile Regressions. \emph{Econometrica}, 77(3), 953--973.
+\item Fortin, N., T. Lemieux y S. Firpo (2011). Decomposition Methods in Economics. En O. Ashenfelter y D. Card (eds.), \emph{Handbook of Labor Economics}, vol.~4A, cap.~1, 1--102. Elsevier.
+\item Gelman, A. y G. Imbens (2019). Why High-Order Polynomials Should Not Be Used in Regression Discontinuity Designs. \emph{Journal of Business \& Economic Statistics}, 37(3), 447--456.
+\item Goldsmith-Pinkham, P., I. Sorkin y H. Swift (2020). Bartik Instruments: What, When, Why, and How. \emph{American Economic Review}, 110(8), 2586--2624.
+\item Lee, D. S., J. McCrary, M. J. Moreira y J. Porter (2022). Valid $t$-Ratio Inference for IV. \emph{American Economic Review}, 112(10), 3260--3290.
+\item List, J. A., A. M. Shaikh e Y. Xu (2019). Multiple Hypothesis Testing in Experimental Economics. \emph{Experimental Economics}, 22, 773--793.
+\item Montiel Olea, J. L. y C. Pflueger (2013). A Robust Test for Weak Instruments. \emph{Journal of Business \& Economic Statistics}, 31(3), 358--369.
+\item Oaxaca, R. (1973). Male-Female Wage Differentials in Urban Labor Markets. \emph{International Economic Review}, 14(3), 693--709.
+\item Oster, E. (2019). Unobservable Selection and Coefficient Stability: Theory and Evidence. \emph{Journal of Business \& Economic Statistics}, 37(2), 187--204.
+\item Rambachan, A. y J. Roth (2023). A More Credible Approach to Parallel Trends. \emph{Review of Economic Studies}, 90(5), 2555--2591.
+\item Roodman, D. (2009a). How to Do xtabond2: An Introduction to Difference and System GMM in Stata. \emph{The Stata Journal}, 9(1), 86--136.
+\item Roodman, D. (2009b). A Note on the Theme of Too Many Instruments. \emph{Oxford Bulletin of Economics and Statistics}, 71(1), 135--158.
+\item Young, A. (2019). Channeling Fisher: Randomization Tests and the Statistical Insignificance of Seemingly Significant Experimental Results. \emph{Quarterly Journal of Economics}, 134(2), 557--598.
+\end{itemize}
+}
+
+\vspace{1.2cm}
+\franjas[2pt]
+\begin{center}\small\color{tonoPizarra}
+Plan de lectura de elaboración propia. Los títulos de los capítulos
+corresponden a las obras citadas y se reproducen únicamente con fines de
+referencia bibliográfica. La asignación de capítulos y secciones se basa en
+los índices de los libros de la carpeta y, para \emph{The Remix}, en el índice
+de su sitio web; los temas de la PUCP proceden de los programas citados en el
+Anexo C.
+\end{center}
+
+\end{document}

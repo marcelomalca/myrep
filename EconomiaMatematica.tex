@@ -83,7 +83,7 @@
 
 %------------------------------------------------------------------ estilos ---
 \titleformat{\section}[block]
-  {\sffamily\LARGE\bfseries\color{tonoOscuro}}{\thesection.}{0.6em}
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}\raggedright}{\thesection.}{0.6em}
   {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
   [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
 \titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
@@ -152,7 +152,7 @@
 \newcommand{\tema}[1]{\temaaux#1\relax}
 \def\temaaux#1 #2\relax{%
   \par\addvspace{1.1em}\noindent
-  {\sffamily\bfseries\large
+  {\sffamily\bfseries\large\raggedright
    \hangindent=2.9em\hangafter=1
    \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
    {\color{tonoOscuro}#2}\par}%
@@ -167,6 +167,8 @@
   \end{minipage}\par\vspace{0.3em}}
 \newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
 \newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newcommand{\juegos}[1]{\linealectura{tonoB}{Teoría de juegos:}{#1}}
+\newcommand{\supl}[1]{\linealectura{tonoC}{Suplemento:}{#1}}
 \newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
   colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
   left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,

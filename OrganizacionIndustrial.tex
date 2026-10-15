@@ -1,0 +1,1121 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SÍLABO DE ORGANIZACIÓN INDUSTRIAL — Plan de estudio integrado
+%
+%  Textos base:
+%    FB  — Fernández-Baca, Organización industrial, vol. 1 (Fondo Editorial
+%          de la Universidad del Pacífico, 2006) — no está en la carpeta; se
+%          cita por capítulos según el índice de RePEc
+%    TI  — Tirole, The Theory of Industrial Organization (MIT Press, 1988);
+%          se usa la copia con capa de texto
+%  Política de competencia y regulación:
+%    VHS — Viscusi, Harrington y Sappington, Economics of Regulation and
+%          Antitrust (MIT Press, 5.ª ed., 2018)
+%    AS  — Armstrong y Sappington, Recent Developments in the Theory of
+%          Regulation (Handbook of IO, vol. III; versión de 2005)
+%    BA  — Barrantes, Teoría de la regulación (Material de Enseñanza 4,
+%          PUCP, 2019)
+%    LA  — Laffont, Regulation and Development (CUP, 2005)
+%    ACV — Armstrong, Cowan y Vickers, Regulatory Reform (MIT Press, 1994)
+%    FR  — Fernández-Baca (ed.), Experiencias de regulación en el Perú (UP, 2004)
+%  Teoría de la empresa y OI empírica:
+%    KP  — Kroszner y Putterman (eds.), The Economic Nature of the Firm
+%          (CUP, 3.ª ed., 2009)
+%    HIO — Schmalensee y Willig (eds.), Handbook of Industrial
+%          Organization, vol. II (North-Holland, 1989)
+%    AB  — Ackerberg, Benkard, Berry y Pakes, Econometric Tools for
+%          Analyzing Market Outcomes (2006)
+%  Programas integrados: 1ECO15 y 1ECO80 (Organización Industrial, pregrado
+%    y maestría), ECO381 y 1ECO82 (Teoría de la Regulación, pregrado y
+%    maestría) de la PUCP; Teoría de la Regulación Económica de la
+%    Universidad del Pacífico (2018).
+%
+%  Compilar con:  pdflatex OrganizacionIndustrial.tex   (dos veces, por el índice)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[scaled=0.92]{helvet}        % títulos en sans serif, al estilo McGraw-Hill
+\usepackage[margin=2.4cm,headheight=15pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{needspace}
+
+%------------------------------------------------------------------ colores ---
+% Gama de grises grafito y pizarra
+\definecolor{tonoOscuro}{RGB}{31,41,56}             % oscuro
+\definecolor{tonoProfundo}{RGB}{45,61,82}           % profundo
+\definecolor{tonoPrincipal}{RGB}{60,80,108}         % principal
+\definecolor{tonoA}{RGB}{78,88,126}                 % variante cálida
+\definecolor{tonoB}{RGB}{71,101,123}                % variante fría
+\definecolor{tonoC}{RGB}{80,121,135}                % variante viva
+\definecolor{tonoClaro}{RGB}{138,155,178}           % claro
+\definecolor{tonoAcero}{RGB}{86,95,108}             % acero
+\definecolor{tonoPizarra}{RGB}{102,108,117}         % pizarra
+\definecolor{tonoGrafito}{RGB}{51,55,61}            % grafito (texto secundario)
+\definecolor{tonoHielo}{RGB}{221,226,233}           % hielo
+\definecolor{tonoPalido}{RGB}{239,242,245}          % pálido
+\definecolor{tonoBruma}{RGB}{249,250,251}           % bruma
+
+\colorlet{azulosc}{tonoOscuro}
+\colorlet{grisclaro}{tonoPalido}
+% Un tono distinto de la gama para cada libro
+\definecolor{colorFB}{RGB}{57,88,96}
+\definecolor{colorTI}{RGB}{76,113,128}
+\definecolor{colorVHS}{RGB}{66,95,112}
+\definecolor{colorAS}{RGB}{57,79,96}
+\definecolor{colorBA}{RGB}{76,101,128}
+\definecolor{colorLA}{RGB}{66,85,112}
+\definecolor{colorACV}{RGB}{57,70,96}
+\definecolor{colorFR}{RGB}{76,90,128}
+\definecolor{colorKP}{RGB}{66,75,112}
+\definecolor{colorHIO}{RGB}{57,62,96}
+\definecolor{colorAB}{RGB}{76,78,128}
+\colorlet{colorPUCP}{tonoPizarra}
+
+\usepackage[colorlinks=true,linkcolor=tonoOscuro,urlcolor=tonoPrincipal]{hyperref}
+
+%------------------------------------------------------------------ estilos ---
+\titleformat{\section}[block]
+  {\sffamily\LARGE\bfseries\color{tonoOscuro}\raggedright}{\thesection.}{0.6em}
+  {\textcolor{tonoPrincipal}{\rule[-0.1ex]{0.55em}{0.85em}}\hspace{0.45em}}
+  [\vspace{-0.4ex}{\color{tonoPrincipal}\titlerule[1.6pt]}\vspace{1.2pt}{\color{tonoClaro}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{tonoPrincipal}}{\thesubsection}{0.6em}
+  {\textcolor{tonoClaro}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}}
+\titlespacing*{\subsection}{0pt}{2.2ex plus .8ex minus .2ex}{1ex plus .2ex}
+
+% Índice
+\titlecontents{section}[0pt]
+  {\addvspace{3pt}\sffamily\bfseries\color{tonoOscuro}}
+  {}{\textcolor{tonoB}{\rule[0.15ex]{0.4em}{0.4em}}\hspace{0.6em}}
+  {{\color{tonoClaro}\titlerule*[0.7em]{.}}\textcolor{tonoPrincipal}{\contentspage}}
+
+% Cabecera y pie
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily\bfseries\color{tonoOscuro}Sílabo de Organización Industrial}
+\rhead{\footnotesize\sffamily\color{tonoPrincipal}Fernández-Baca $\cdot$ Tirole $\cdot$ Viscusi--Harrington--Sappington}
+\cfoot{{\setlength{\fboxsep}{3pt}\colorbox{tonoPrincipal}{\makebox[1.8em]{\small\sffamily\bfseries\color{white}\thepage}}}}
+\renewcommand{\headrule}{%
+  {\color{tonoPrincipal}\hrule height 1.1pt width\headwidth}\vskip 1.2pt
+  {\color{tonoClaro}\hrule height 0.4pt width\headwidth}\vskip -2.7pt}
+
+% Listas
+\setlist[itemize,1]{label=\textcolor{tonoPrincipal}{\scriptsize$\blacksquare$}}
+\setlist[enumerate,1]{label=\textcolor{tonoPrincipal}{\sffamily\bfseries\arabic*.}}
+
+% Tablas: cabecera oscura y filas alternas en tono pálido
+\arrayrulecolor{tonoPrincipal}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\cab}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+\newcommand{\filasalternas}{\rowcolors{2}{white}{tonoPalido}}
+
+% Encabezados de párrafo en color
+\newcommand{\destacado}[1]{{\sffamily\bfseries\color{tonoPrincipal}#1}}
+
+% Franja decorativa con la gama
+\newcommand{\franjas}[1][3pt]{%
+  \noindent\begin{tikzpicture}
+    \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+      \fill[\c] (\i*\linewidth/8,0) rectangle ++(\linewidth/8,#1);
+  \end{tikzpicture}\par}
+
+%---------------------------------------------------------------- comandos ----
+% Etiqueta de libro: recuadro de color con la sigla
+\newcommand{\etiqueta}[2]{%
+  {\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\sffamily\bfseries\color{white}\strut#2}}}
+% Referencias abreviadas a cada libro
+\newcommand{\FB}[1]{\etiqueta{colorFB}{FB}\nobreak\hspace{0.25em}\textcolor{colorFB}{#1}}
+\newcommand{\TI}[1]{\etiqueta{colorTI}{TI}\nobreak\hspace{0.25em}\textcolor{colorTI}{#1}}
+\newcommand{\VHS}[1]{\etiqueta{colorVHS}{VHS}\nobreak\hspace{0.25em}\textcolor{colorVHS}{#1}}
+\newcommand{\AS}[1]{\etiqueta{colorAS}{AS}\nobreak\hspace{0.25em}\textcolor{colorAS}{#1}}
+\newcommand{\BA}[1]{\etiqueta{colorBA}{BA}\nobreak\hspace{0.25em}\textcolor{colorBA}{#1}}
+\newcommand{\LA}[1]{\etiqueta{colorLA}{LA}\nobreak\hspace{0.25em}\textcolor{colorLA}{#1}}
+\newcommand{\ACV}[1]{\etiqueta{colorACV}{ACV}\nobreak\hspace{0.25em}\textcolor{colorACV}{#1}}
+\newcommand{\FR}[1]{\etiqueta{colorFR}{FR}\nobreak\hspace{0.25em}\textcolor{colorFR}{#1}}
+\newcommand{\KP}[1]{\etiqueta{colorKP}{KP}\nobreak\hspace{0.25em}\textcolor{colorKP}{#1}}
+\newcommand{\HIO}[1]{\etiqueta{colorHIO}{HIO}\nobreak\hspace{0.25em}\textcolor{colorHIO}{#1}}
+\newcommand{\AB}[1]{\etiqueta{colorAB}{AB}\nobreak\hspace{0.25em}\textcolor{colorAB}{#1}}
+
+% Un tema: número en recuadro de color + título
+\newcommand{\tema}[1]{\temaaux#1\relax}
+\def\temaaux#1 #2\relax{%
+  \par\addvspace{1.1em}\noindent
+  {\sffamily\bfseries\large\raggedright
+   \hangindent=2.9em\hangafter=1
+   \makebox[2.9em][l]{{\setlength{\fboxsep}{2.5pt}\colorbox{tonoPrincipal}{\color{white}#1}}}%
+   {\color{tonoOscuro}#2}\par}%
+  \nobreak\vspace{0.25em}\noindent{\color{tonoClaro}\rule{\linewidth}{0.6pt}}\par\nobreak\vspace{0.35em}}
+
+% Línea de lecturas con marcador y etiqueta de color
+\newcommand{\linealectura}[3]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\small
+    \textcolor{#1}{\rule[0.1ex]{0.45em}{0.45em}}\hspace{0.45em}%
+    {\sffamily\bfseries\color{#1}#2}\enspace#3%
+  \end{minipage}\par\vspace{0.3em}}
+\newcommand{\lecturas}[1]{\linealectura{tonoPrincipal}{Lecturas:}{#1}}
+\newcommand{\apoyo}[1]{\linealectura{tonoA}{Profundización:}{#1}}
+\newcommand{\juegos}[1]{\linealectura{tonoB}{Teoría de juegos:}{#1}}
+\newcommand{\supl}[1]{\linealectura{tonoC}{Suplemento:}{#1}}
+\newtcolorbox{cajanota}{enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=tonoPalido, borderline west={2.5pt}{0pt}{tonoClaro},
+  left=8pt, right=6pt, top=4pt, bottom=4pt, before skip=0pt, after skip=0pt,
+  fontupper=\small\color{tonoGrafito}}
+\newcommand{\nota}[1]{%
+  \par\nobreak\noindent\hspace{1.2em}%
+  \begin{minipage}{0.92\textwidth}\begin{cajanota}#1\end{cajanota}\end{minipage}\par\vspace{0.3em}}
+\newcommand{\consultalib}[1]{\linealectura{tonoPizarra}{Consulta:}{{\color{tonoGrafito}#1}}}
+% Artículos y textos tomados de los programas PUCP
+\newcommand{\articulos}[1]{\linealectura{colorPUCP}{Artículos (PUCP):}{#1}}
+\newcommand{\consulta}[1]{\linealectura{colorPUCP}{Consulta (PUCP):}{{\color{tonoGrafito}#1}}}
+
+% Encabezado de bloque: banda oscura, franja de la gama y recuadro de presentación
+\newif\ifrecienparte
+\newcommand{\bloque}[2]{%
+  \ifrecienparte\global\recienpartefalse\else\par\needspace{0.4\textheight}\fi
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoOscuro, borderline west={7pt}{0pt}{tonoClaro},
+      left=14pt, right=10pt, top=10pt, bottom=10pt, before skip=0pt, after skip=0pt]
+    {\raggedright\sffamily\Large\bfseries\color{white}#1\par}
+  \end{tcolorbox}%
+  \nointerlineskip\franjas[4pt]
+  \vspace{0.8em}
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPalido, borderline west={3pt}{0pt}{tonoPrincipal},
+      borderline south={0.6pt}{0pt}{tonoClaro},
+      left=10pt, right=8pt, top=6pt, bottom=6pt, before skip=0pt, after skip=0pt,
+      fontupper=\small\color{tonoGrafito}]
+    #2
+  \end{tcolorbox}%
+  \par\medskip}
+
+% Encabezado de parte: banda a todo el ancho en el tono principal
+\newcommand{\parte}[1]{%
+  \clearpage
+  \phantomsection\addcontentsline{toc}{section}{\textbf{#1}}%
+  \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden,
+      colback=tonoPrincipal, halign=center, top=16pt, bottom=16pt,
+      borderline north={3pt}{0pt}{tonoClaro}, borderline south={3pt}{0pt}{tonoClaro},
+      before skip=0pt, after skip=0pt]
+    {\sffamily\LARGE\bfseries\color{white}#1}
+  \end{tcolorbox}\par\bigskip
+  \global\recienpartetrue}
+
+%================================================================== documento ==
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  % banda superior
+  \fill[tonoOscuro] (current page.north west) rectangle ([yshift=-5.4cm]current page.north east);
+  \fill[tonoClaro] (current page.north west) rectangle ([xshift=1.1cm,yshift=-5.4cm]current page.north west);
+  % franja de la gama bajo la banda
+  \foreach \c [count=\i from 0] in {tonoOscuro,tonoProfundo,tonoPrincipal,tonoA,tonoB,tonoC,tonoClaro,tonoHielo}
+    \fill[\c] ([xshift=\i*\paperwidth/8,yshift=-5.4cm]current page.north west)
+      rectangle ++(\paperwidth/8,-0.35cm);
+  % franja inferior
+  \foreach \c [count=\i from 0] in {tonoHielo,tonoClaro,tonoC,tonoB,tonoA,tonoPrincipal,tonoProfundo,tonoOscuro}
+    \fill[\c] ([xshift=\i*\paperwidth/8]current page.south west)
+      rectangle ++(\paperwidth/8,0.6cm);
+\end{tikzpicture}%
+\centering
+\vspace*{0.5cm}
+{\sffamily\Huge\bfseries\color{white} Sílabo de Organización Industrial\par}
+\vspace{0.4cm}
+{\sffamily\Large\color{tonoHielo} Plan de estudio integrado\par}
+\vspace{1.9cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Textos base\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorFB}{FB} \quad {\color{tonoOscuro}Jorge Fernández-Baca}\par}
+{\normalsize \emph{Organización industrial}, vol.~1\par}
+{\small\color{tonoPizarra} Fondo Editorial de la Universidad del Pacífico, 2006 --- 11 capítulos\par}
+\vspace{0.2cm}
+{\large\etiqueta{colorTI}{TI} \quad {\color{tonoOscuro}Jean Tirole}\par}
+{\normalsize \emph{\color{colorTI}The Theory of Industrial Organization}\par}
+{\small\color{tonoPizarra} The MIT Press, 1988 --- teoría de la empresa y 11 capítulos\par}
+\vspace{0.6cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Política de competencia y regulación\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\large\etiqueta{colorVHS}{VHS} \quad {\color{tonoOscuro}W. Kip Viscusi, Joseph E. Harrington y David E. M. Sappington}\par}
+{\normalsize \emph{\color{colorVHS}Economics of Regulation and Antitrust}\par}
+{\small\color{tonoPizarra} The MIT Press, 5.ª edición, 2018 --- 24 capítulos\par}
+\vspace{0.2cm}
+{\small\etiqueta{colorAS}{AS}~Armstrong y Sappington
+\quad \etiqueta{colorBA}{BA}~Barrantes
+\quad \etiqueta{colorLA}{LA}~Laffont
+\quad \etiqueta{colorACV}{ACV}~Armstrong, Cowan y Vickers\par}
+{\small\etiqueta{colorFR}{FR}~Fernández-Baca (ed.), \emph{Experiencias de regulación en el Perú}\par}
+\vspace{0.6cm}
+{\sffamily\large\bfseries\color{tonoPrincipal}\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\quad Teoría de la empresa y organización industrial empírica\quad\textcolor{tonoClaro}{\rule[0.5ex]{1.5cm}{0.6pt}}\par}
+\vspace{0.3cm}
+{\small\etiqueta{colorKP}{KP}~Kroszner y Putterman (eds.), \emph{The Economic Nature of the Firm}\par}
+{\small\etiqueta{colorHIO}{HIO}~Schmalensee y Willig (eds.), \emph{Handbook of Industrial Organization}, vol.~II\par}
+{\small\etiqueta{colorAB}{AB}~Ackerberg, Benkard, Berry y Pakes, \emph{Econometric Tools for Analyzing Market Outcomes}\par}
+\vspace{0.5cm}
+{\normalsize\color{colorPUCP} Con temas y lecturas de cuatro programas de la PUCP y uno de la Universidad del Pacífico\par}
+\vfill
+{\setlength{\fboxsep}{6pt}\colorbox{tonoPrincipal}{\normalsize\sffamily\bfseries\color{white} Doce bloques temáticos --- 4 meses}\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+\section*{Cómo usar este sílabo}
+\addcontentsline{toc}{section}{Cómo usar este sílabo}
+
+El plan está organizado en \textbf{doce bloques temáticos}, agrupados en tres
+partes. La \textbf{Parte I} (Bloques 1 a 4) estudia la empresa y el ejercicio
+del poder de mercado sin rivales estratégicos: por qué existen las empresas,
+el monopolio, la discriminación de precios y el control vertical. La
+\textbf{Parte II} (Bloques 5 a 9) es la interacción estratégica: oligopolio,
+colusión, diferenciación de productos, entrada y depredación, y la
+competencia por medio de la publicidad y la innovación. La \textbf{Parte III}
+(Bloques 10 a 12) pasa a la política: la defensa de la competencia, la
+regulación económica de los monopolios naturales y los métodos empíricos con
+que se mide el poder de mercado. Conviene cerrar cada bloque antes de abrir
+el siguiente.
+
+\medskip
+\noindent\destacado{Las dos columnas del plan.} Los Bloques 1 a 9 siguen el orden
+de los once capítulos de Fernández-Baca, que coincide casi uno a uno con la
+Parte I y la Parte II de Tirole: cada tema se lee primero en castellano, con
+la intuición y los casos, y después en Tirole, con los modelos. La Parte III
+sale de esos dos libros, que no tratan la regulación ni la organización
+industrial empírica, y se apoya en Viscusi, Harrington y Sappington, en los
+textos de regulación de los programas y en los casos peruanos de la carpeta.
+
+\medskip
+\noindent\destacado{Relación con los demás sílabos.} El Bloque 8 del sílabo de
+microeconomía (monopolio, oligopolio, colusión y entrada) es la introducción
+a las Partes I y II de este plan, y sus Bloques 6 y 7 dan la teoría de juegos
+que aquí se repasa en el tema 1.2. Los temas 12.7 (regulación con información
+asimétrica) y 12.8 (teorías de la empresa) de ese sílabo se amplían en los
+temas 11.2 y 1.3--1.4; las subastas de su Bloque 13 se dan por conocidas. El
+sílabo de economía pública dejó para este curso la organización industrial y
+la regulación (su Anexo B y el programa 1ECO82). La estimación de demanda del
+tema 12.2 se programa con los métodos del sílabo de métodos numéricos
+(Bloques 3 y 4).
+
+\medskip
+\noindent\destacado{Criterio general de reparto} (en el orden en que se lee cada tema):
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textcolor{colorFB}{\textbf{Fernández-Baca}} es el texto base de las
+        Partes I y II: once capítulos en castellano que van de la teoría de
+        la empresa a la propiedad intelectual, con ejemplos peruanos. Se lee
+        \emph{primero}.
+  \item \textcolor{colorTI}{\textbf{Tirole}} es la referencia formal y el
+        libro que citan los cuatro programas de la PUCP. Sus secciones
+        principales son lectura; las secciones suplementarias, que exigen
+        más técnica, van como profundización. Sus ejercicios con respuestas
+        y pistas cierran cada capítulo.
+  \item \textcolor{colorVHS}{\textbf{Viscusi, Harrington y Sappington}} es el
+        texto de la política de competencia y de la regulación (el libro de
+        ECO381); entra en la Parte II cuando un tema tiene su lado
+        antimonopolio y domina la Parte III.
+  \item \textcolor{colorAS}{\textbf{Armstrong y Sappington}},
+        \textcolor{colorBA}{\textbf{Barrantes}} y
+        \textcolor{colorLA}{\textbf{Laffont}} son la teoría de la regulación
+        de los programas ECO381 y 1ECO82; \textcolor{colorFR}{\textbf{Experiencias
+        de regulación en el Perú}} y los casos de Urrunaga y Bonifaz la
+        llevan al caso peruano.
+  \item \textcolor{colorKP}{\textbf{Kroszner y Putterman}} reúne los artículos
+        clásicos de la teoría de la empresa (Coase, Williamson, Alchian y
+        Demsetz, Jensen y Meckling, Hart); el
+        \textcolor{colorHIO}{\textbf{Handbook}} y
+        \textcolor{colorAB}{\textbf{Ackerberg et al.}} son la organización
+        industrial empírica de 1ECO80.
+\end{itemize}
+
+\medskip
+\noindent\destacado{Sobre Fernández-Baca.} El libro no está en la carpeta: se cita
+por capítulos, con el índice y las páginas de su ficha en RePEc (Anexo A.1).
+Si se consigue el ejemplar, conviene anotar en el Anexo A sus secciones.
+
+\medskip
+\noindent\destacado{Qué entra en las horas.} Las líneas \emph{Lecturas} y
+\emph{Profundización} entran en el cómputo de horas, igual que las
+\emph{Prácticas} de las notas. Las líneas \emph{Consulta} y \emph{Consulta
+(PUCP)} remiten a libros de la carpeta y a referencias de los programas que
+no entran; los \emph{Artículos (PUCP)} se leen si el tiempo de la semana lo
+permite (Anexo E).
+
+\medskip
+\noindent\destacado{Sobre los ejercicios.} La organización industrial se aprende
+resolviendo modelos pequeños. Tirole cierra cada capítulo con ejercicios y una
+sección de respuestas y pistas, y el capítulo 11 trae ejercicios de repaso;
+Viscusi, Harrington y Sappington cierran cada capítulo con preguntas y
+problemas. Se recomienda reservar al menos tres de las diez horas semanales
+para ejercicios.
+
+\medskip
+\noindent\destacado{Notación.} \FB{n} remite al capítulo $n$ de Fernández-Baca;
+\TI{n.m}, a la sección $m$ del capítulo $n$ de Tirole; \TI{F.m}, a la sección
+$m$ de su capítulo preliminar sobre la teoría de la empresa (\emph{The Theory
+of the Firm}), y \TI{Introducción general}, a la introducción del libro.
+\VHS{n}, \ACV{n} y \KP{n} remiten a capítulos (en Kroszner y Putterman, a la
+lectura $n$). \HIO{n} es el capítulo $n$ del volumen II del \emph{Handbook},
+numerado del 16 al 26, y \HIO{n.m}, su sección $m$. \AS{n.m}, \BA{n.m},
+\LA{n.m} y \AB{n.m} son secciones; \FR{N}, el capítulo en números romanos de
+\emph{Experiencias de regulación en el Perú}.
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Cronograma por semanas}
+\addcontentsline{toc}{section}{Cronograma por semanas}
+
+Calendario del plan: 170 horas distribuidas en \textbf{17 semanas de
+contenido}, que equivalen a \textbf{4 meses de calendario}, a un ritmo de diez
+horas semanales.
+
+\medskip
+\noindent Todas las semanas son de materia nueva y no hay semanas de colchón.
+La columna de horas es la que gobierna el reparto. Si hay semanas perdidas por
+feriados, viajes o imprevistos, el ajuste correcto es alargar el calendario,
+no comprimir los bloques.
+
+\medskip
+{\filasalternas
+\noindent\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Semanas} & \cab{Contenido} & \cab{Sem.} & \cab{Horas} \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte I --- La empresa y el poder de mercado}}} \\
+1--2   & Bloque 1 --- Introducción y teoría de la empresa & 2 & 20 \\
+3      & Bloque 2 --- Monopolio & 1 & 10 \\
+4--5   & Bloque 3 --- Discriminación de precios y selección de producto & 2 & 20 \\
+6      & Bloque 4 --- Integración y control vertical & 1 & 10 \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte II --- Interacción estratégica}}} \\
+7      & Bloque 5 --- Oligopolio en el corto plazo & 1 & 10 \\
+8      & Bloque 6 --- Colusión & 1 & 10 \\
+9      & Bloque 7 --- Diferenciación de productos & 1 & 10 \\
+\rowcolor{tonoHielo}\textbf{10--11} & \textbf{Bloque 8 --- Entrada, disuasión y depredación} & \textbf{2} & \textbf{20} \\
+12--13 & Bloque 9 --- Publicidad, innovación y propiedad intelectual & 2 & 20 \\
+\midrule
+\rowcolor{tonoA}\multicolumn{4}{l}{\cab{\textit{Parte III --- Política de competencia, regulación y evidencia}}} \\
+14     & Bloque 10 --- Política de competencia & 1 & 10 \\
+\rowcolor{tonoHielo}\textbf{15--16} & \textbf{Bloque 11 --- Regulación económica} & \textbf{2} & \textbf{20} \\
+17     & Bloque 12 --- Organización industrial empírica & 1 & 10 \\
+\midrule
+\rowcolor{tonoHielo}\multicolumn{2}{l}{\textbf{Total}} & \textbf{17} & \textbf{170} \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Ritmo supuesto.} Diez horas por semana, todas de contenido
+nuevo: por ejemplo, cuatro sesiones de dos horas entre semana para las
+lecturas y una sesión de dos horas el sábado para ejercicios.
+
+\medskip
+\noindent\destacado{El reparto entre las tres partes.} La Parte I ocupa 6 semanas,
+la Parte II, 7 y la Parte III, 4. El peso de la segunda es deliberado: la
+interacción estratégica es el núcleo de la organización industrial moderna y
+el lugar donde Fernández-Baca y Tirole dedican más páginas. Los temas de
+política (fusiones, cárteles, restricciones verticales, depredación) se leen
+junto a la teoría correspondiente en la Parte II; la Parte III reúne lo que
+queda: el marco legal, la regulación y la evidencia.
+
+\medskip
+\noindent\destacado{Los tramos difíciles.} El primero son los bienes durables y la
+discriminación de segundo grado (semanas 3 y 4), donde Tirole usa
+información asimétrica. El segundo es la entrada con información asimétrica
+(semana 11): precios límite de Milgrom y Roberts y depredación, que requieren
+el equilibrio bayesiano perfecto del tema 1.2.
+
+\medskip
+\noindent\destacado{Hitos de control.} Conviene verificar el avance al terminar las
+semanas 6, 11 y 14. Si en alguno de esos cortes se acumula más de una semana de
+retraso, se alarga el calendario y no se comprime el bloque siguiente.
+
+\subsection*{Detalle semana a semana}
+
+{\small\filasalternas
+\renewcommand{\arraystretch}{1.1}\noindent\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\rowcolor{tonoOscuro}\cab{Sem.} & \cab{Bloque} & \cab{Temas} & \cab{Horas} \\
+\midrule
+1  & 1 & 1.1 Qué estudia la organización industrial: estructura, conducta y desempeño; 1.2 Teoría de juegos para la organización industrial & 10 \\
+2  & 1 & 1.3 Por qué existen las empresas: costos de transacción y derechos de propiedad; 1.4 Maximizan beneficios las empresas: agencia y gobierno corporativo & 10 \\
+\midrule
+3  & 2 & 2.1 Precios de monopolio, distorsiones de costos y búsqueda de rentas; 2.2 Bienes durables y la conjetura de Coase & 10 \\
+\midrule
+4  & 3 & 3.1 Discriminación perfecta y de tercer grado; 3.2 Discriminación de segundo grado, precios no lineales y ventas en paquete & 10 \\
+5  & 3 & 3.3 Selección de producto por un monopolista; 3.4 Calidad, información y compras repetidas & 10 \\
+\midrule
+6  & 4 & 4.1 Externalidades verticales y restricciones verticales; 4.2 Restricciones que reducen la competencia y cierre de mercado & 10 \\
+\midrule
+7  & 5 & 5.1 Competencia en precios y en cantidades: Bertrand, capacidades y Cournot; 5.2 Concentración, poder de mercado y fusiones horizontales & 10 \\
+8  & 6 & 6.1 Colusión tácita y superjuegos; 6.2 Estabilidad de los cárteles y política anticárteles & 10 \\
+9  & 7 & 7.1 Competencia espacial: Hotelling y Salop; 7.2 Competencia monopolística y diferenciación vertical & 10 \\
+10 & 8 & 8.1 Barreras a la entrada, costos hundidos y mercados disputables; 8.2 Taxonomía de estrategias de negocio & 10 \\
+11 & 8 & 8.3 Información asimétrica: precios límite y depredación; 8.4 Barreras a la movilidad y abuso de posición de dominio & 10 \\
+12 & 9 & 9.1 Publicidad, información y persuasión; 9.2 Innovación, estructura de mercado y carreras de patentes & 10 \\
+13 & 9 & 9.3 La economía de la propiedad intelectual; 9.4 Externalidades de red, estándares y plataformas de dos lados & 10 \\
+\midrule
+14 & 10 & 10.1 Fundamentos de la política de competencia: mercado relevante y posición de dominio; 10.2 La política de competencia en el Perú & 10 \\
+15 & 11 & 11.1 Monopolio natural y tarificación óptima; 11.2 Regulación por incentivos e información asimétrica & 10 \\
+16 & 11 & 11.3 Competencia por el mercado, acceso y liberalización; 11.4 Regulación en países en desarrollo y la experiencia peruana & 10 \\
+17 & 12 & 12.1 Estructura, desempeño y medición del poder de mercado; 12.2 Estimación de demanda, entrada y producción & 10 \\
+\bottomrule
+\end{tabularx}
+}
+
+%==============================================================================
+\parte{Parte I --- La empresa y el poder de mercado}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 1 --- Introducción y teoría de la empresa --- 2 semanas}
+{Qué estudia la organización industrial, la teoría de juegos con que se
+escriben sus modelos y la pregunta previa a todo lo demás: qué es una empresa
+y qué maximiza. Capítulos 1 y 2 de Fernández-Baca y el capítulo preliminar
+de Tirole, con los clásicos de Kroszner y Putterman. Cubre el tema 1 de
+1ECO15 y la sumilla de 1ECO80 (teorías contemporáneas de la empresa y el
+paradigma estructura-conducta-desempeño).}
+
+\tema{1.1 Qué estudia la organización industrial: estructura, conducta y desempeño}
+\lecturas{\TI{Introducción general} \quad \HIO{16.1--16.3}}
+\apoyo{\HIO{16.4--16.7}}
+\articulos{Bain (1951) \quad Einav y Levin (2010)}
+\consulta{Scherer y Ross (1990), cap.~1 \quad Carlton y Perloff (2005), caps.~1--2}
+\nota{El paradigma estructura-conducta-desempeño, sus problemas de
+endogeneidad y el paso a la nueva organización industrial empírica; medidas
+de concentración y de rentabilidad (\HIO{16.3}). El índice de Herfindahl
+reaparece en el tema 5.2.}
+
+\tema{1.2 Teoría de juegos para la organización industrial}
+\lecturas{\TI{11.1--11.5}}
+\apoyo{\TI{11.6}}
+\nota{Juegos y estrategias, equilibrio de Nash, perfección en subjuegos,
+equilibrio bayesiano y bayesiano perfecto. Si ya se estudiaron los Bloques 6
+y 7 del sílabo de microeconomía, basta resolver los ejercicios de repaso del
+capítulo y usar el resto de la semana para \TI{11.6}.}
+
+\tema{1.3 Por qué existen las empresas: costos de transacción y derechos de propiedad}
+\lecturas{\FB{1} \quad \TI{F.1}}
+\apoyo{\KP{7--9} \quad \KP{12--13}}
+\articulos{Cheung (1969) \quad Joskow (1987)}
+\nota{La empresa como alternativa al mercado (Coase), los activos
+específicos y el problema de retención (Klein, Crawford y Alchian), las
+estructuras de gobierno (Williamson) y la producción en equipo (Alchian y
+Demsetz). \TI{F.1} añade la empresa como sinergia estática y como relación de
+largo plazo.}
+
+\tema{1.4 Maximizan beneficios las empresas: agencia y gobierno corporativo}
+\lecturas{\FB{2} \quad \TI{F.2--F.3}}
+\apoyo{\KP{6} \quad \KP{20--21} \quad \KP{25}}
+\nota{Separación entre propiedad y control, el problema de agencia entre
+accionistas, directores y gerentes, los límites a la discrecionalidad
+gerencial y la teoría de los derechos de propiedad de Hart. \TI{F.3} es la
+relación principal-agente que se usa en el Bloque 11.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 2 --- Monopolio --- 1 semana}
+{Capítulo 3 de Fernández-Baca y capítulo 1 de Tirole. Cubre los temas 3 y 4
+de 1ECO15 (monopolio y durabilidad) y la teoría del monopolio de la sumilla
+de 1ECO80.}
+
+\tema{2.1 Precios de monopolio, distorsiones de costos y búsqueda de rentas}
+\lecturas{\FB{3} \quad \TI{1.1--1.4}}
+\nota{La regla de la elasticidad inversa, el monopolio multiproducto, la
+ineficiencia X y la disipación de rentas por búsqueda de rentas. \FB{3} añade
+la empresa dominante y las estrategias para bloquear la entrada, que se
+retoman en el Bloque 8.}
+
+\tema{2.2 Bienes durables y la conjetura de Coase}
+\lecturas{\TI{1.5}}
+\articulos{Coase (1972) \quad Bulow (1986) \quad Waldman (2003)}
+\nota{El monopolista de un bien durable compite con su propio futuro: sin
+compromiso, el precio cae al costo marginal (Coase). Alquiler frente a venta,
+obsolescencia planificada y reciclaje.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 3 --- Discriminación de precios y selección de producto --- 2 semanas}
+{Capítulo 4 de Fernández-Baca y capítulos 2 y 3 de Tirole. Cubre el tema 3 de
+1ECO15 y la discriminación de precios que el sílabo de microeconomía
+introduce en el tema 8.1.}
+
+\tema{3.1 Discriminación perfecta y de tercer grado}
+\lecturas{\FB{4} \quad \TI{3.1--3.2}}
+\consulta{Armstrong (2008) \quad McAfee (2008)}
+\nota{Discriminación perfecta, discriminación entre mercados, la regla de la
+elasticidad inversa por segmento, efectos sobre el bienestar y
+discriminación en mercados de bienes intermedios.}
+
+\tema{3.2 Discriminación de segundo grado, precios no lineales y ventas en paquete}
+\lecturas{\TI{3.3} \quad \TI{3.5}}
+\apoyo{\HIO{23.4} \quad \HIO{23.7}}
+\nota{Tarifas en dos partes, autoselección y discriminación por calidad;
+ventas atadas y en paquete. \FB{4} trata las ventas en paquete y las subastas
+como formas de discriminación. Braeutigam (\HIO{23}) muestra el mismo
+instrumento como herramienta de regulación (tema 11.1).}
+
+\tema{3.3 Selección de producto por un monopolista}
+\lecturas{\TI{2.1--2.2}}
+\nota{El espacio de productos: diferenciación horizontal y vertical; si el
+monopolista ofrece demasiados o muy pocos productos, y la elección de
+calidad. Es la base de la diferenciación en competencia del Bloque 7.}
+
+\tema{3.4 Calidad, información y compras repetidas}
+\lecturas{\TI{2.3}}
+\apoyo{\TI{2.6}}
+\nota{Riesgo moral y selección adversa en la calidad, reputación con compras
+repetidas y la política pública de calidad.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 4 --- Integración y control vertical --- 1 semana}
+{Capítulo 5 de Fernández-Baca y capítulo 4 de Tirole, con Viscusi,
+Harrington y Sappington para el lado antimonopolio. Tema 2 de 1ECO15.}
+
+\tema{4.1 Externalidades verticales y restricciones verticales}
+\lecturas{\FB{5} \quad \TI{4.1--4.5}}
+\consulta{Rey y Vergé (2008) \quad Lafontaine y Slade (2008) \quad Motta (2004), cap.~6}
+\nota{Doble marginalización, precios de reventa, franquicias, exclusividad
+territorial y competencia intramarca e intermarca.}
+
+\tema{4.2 Restricciones que reducen la competencia y cierre de mercado}
+\lecturas{\TI{4.6} \quad \VHS{7}}
+\articulos{Hortaçsu y Syverson (2007)}
+\consulta{Rey y Tirole (2007)}
+\nota{Fusiones verticales, cierre de mercado (\emph{foreclosure}) y
+restricciones verticales como instrumento anticompetitivo; la evidencia de
+Hortaçsu y Syverson en el cemento.}
+
+%==============================================================================
+\parte{Parte II --- Interacción estratégica}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 5 --- Oligopolio en el corto plazo --- 1 semana}
+{Capítulo 6 de Fernández-Baca y capítulo 5 de Tirole. Cubre el tema 5 de
+1ECO15, el repaso de modelos de oligopolio de 1ECO80 (Unidad 1) y su
+análisis de fusiones horizontales (Unidad 3).}
+
+\tema{5.1 Competencia en precios y en cantidades: Bertrand, capacidades y Cournot}
+\lecturas{\FB{6} \quad \TI{5.1--5.4}}
+\apoyo{\TI{5.7}}
+\consulta{Shapiro (1989)}
+\consultalib{Barrantes (2019), secc.~1.5}
+\nota{La paradoja de Bertrand y sus soluciones, restricciones de capacidad y
+la elección de capacidad seguida de competencia en precios (Kreps y
+Scheinkman), que justifica Cournot.}
+
+\tema{5.2 Concentración, poder de mercado y fusiones horizontales}
+\lecturas{\TI{5.5} \quad \VHS{6}}
+\articulos{Farrell y Shapiro (1990) \quad Nevo (2000b)}
+\consulta{Kühn (2008)}
+\nota{Índices de concentración y su relación con el margen en Cournot; efectos
+unilaterales y coordinados de las fusiones y su control. El régimen peruano
+de control de concentraciones se ve en el tema 10.2.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 6 --- Colusión --- 1 semana}
+{Capítulo 7 de Fernández-Baca y capítulo 6 de Tirole, con el capítulo 4 de
+Viscusi, Harrington y Sappington. Cubre el tema 6 de 1ECO15, los modelos
+dinámicos de 1ECO80 (Unidad 3) y la economía de la colusión (Unidad 4).}
+
+\tema{6.1 Colusión tácita y superjuegos}
+\lecturas{\FB{7} \quad \TI{6.1--6.3}}
+\apoyo{\TI{6.7}}
+\articulos{Green y Porter (1984) \quad Rotemberg y Saloner (1986)}
+\nota{Factores que facilitan la colusión, estrategias de castigo, recortes
+secretos de precios y guerras de precios durante los auges.}
+
+\tema{6.2 Estabilidad de los cárteles y política anticárteles}
+\lecturas{\TI{6.4--6.5} \quad \VHS{4}}
+\articulos{Porter (1983) \quad Bernheim y Whinston (1990)}
+\consulta{Harrington (2008) \quad Harrington (2017)}
+\nota{Rigideces de precios, reputación, contacto multimercado, detección de
+cárteles y programas de clemencia. El Joint Executive Committee de Porter es
+el caso empírico clásico.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 7 --- Diferenciación de productos --- 1 semana}
+{Capítulo 8 de Fernández-Baca y capítulo 7 de Tirole. Cubre el tema 7 de
+1ECO15 y el tema 1 de la Unidad 1 de 1ECO80 (modelos con y sin ubicación).}
+
+\tema{7.1 Competencia espacial: Hotelling y Salop}
+\lecturas{\FB{8} \quad \TI{7.1}}
+\articulos{Salop (1979)}
+\consulta{Belleflamme y Peitz (2015), caps.~5--6}
+\nota{La ciudad lineal y la circular, diferenciación máxima o mínima y el
+número de variedades con libre entrada.}
+
+\tema{7.2 Competencia monopolística y diferenciación vertical}
+\lecturas{\TI{7.2} \quad \TI{7.5}}
+\articulos{Dixit y Stiglitz (1977)}
+\nota{Competencia monopolística de Chamberlin y de Dixit--Stiglitz, y la
+competencia en calidad con consumidores que difieren en su disposición a
+pagar.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 8 --- Entrada, disuasión y depredación --- 2 semanas}
+{Capítulo 9 de Fernández-Baca y capítulos 8 y 9 de Tirole, con los capítulos
+5 y 8 de Viscusi, Harrington y Sappington. Es la Unidad 1 de 1ECO80
+(barreras a la entrada y costos hundidos) y el abuso de posición de dominio
+de su Unidad 4.}
+
+\tema{8.1 Barreras a la entrada, costos hundidos y mercados disputables}
+\lecturas{\FB{9} \quad \TI{8.1--8.2} \quad \VHS{5}}
+\articulos{Dixit (1980) \quad Mankiw y Whinston (1986) \quad Baumol, Panzar y Willig (1983)}
+\consulta{Sutton (1991), caps.~1--5 \quad Gilbert (1989)}
+\nota{Economías de escala y monopolio natural, mercados disputables, el
+modelo de Stackelberg--Spence--Dixit y la entrada excesiva con libre entrada.
+Costos hundidos exógenos y endógenos (Sutton).}
+
+\tema{8.2 Taxonomía de estrategias de negocio}
+\lecturas{\TI{8.3--8.5}}
+\articulos{Aghion y Bolton (1987)}
+\nota{Las estrategias del «gato gordo», del «perro guardián» y del «cachorro»
+(Fudenberg y Tirole): cómo una inversión ex ante cambia la competencia ex
+post según los precios o las cantidades sean complementos o sustitutos
+estratégicos. Los contratos de largo plazo como barrera a la entrada.}
+
+\tema{8.3 Información asimétrica: precios límite y depredación}
+\lecturas{\TI{9.1--9.7}}
+\apoyo{\TI{9.9}}
+\nota{El modelo de precios límite de Milgrom y Roberts, la depredación para
+fusionarse, la reputación multimercado y la teoría del «bolsillo profundo».
+Usa el equilibrio bayesiano perfecto del tema 1.2.}
+
+\tema{8.4 Barreras a la movilidad y abuso de posición de dominio}
+\lecturas{\TI{8.6} \quad \VHS{8}}
+\nota{Comportamiento estratégico y barreras a la movilidad; en la práctica
+antimonopolio, la monopolización, los precios predatorios, la negativa de
+trato y la doctrina de las facilidades esenciales, que vuelve en la
+regulación del acceso (tema 11.3).}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 9 --- Publicidad, innovación y propiedad intelectual --- 2 semanas}
+{Capítulos 10 y 11 de Fernández-Baca y capítulo 10 de Tirole, con el
+capítulo 9 de Viscusi, Harrington y Sappington. Cubre los temas 8 a 11 de
+1ECO15 y la Unidad 2 de 1ECO80 (investigación y desarrollo).}
+
+\tema{9.1 Publicidad, información y persuasión}
+\lecturas{\FB{10} \quad \TI{2.4} \quad \TI{7.3}}
+\articulos{Milyo y Waldfogel (1999)}
+\consulta{Bagwell (2001)}
+\nota{Publicidad informativa y persuasiva, bienes de búsqueda y de
+experiencia, y efectos sobre el bienestar de los consumidores.}
+
+\tema{9.2 Innovación, estructura de mercado y carreras de patentes}
+\lecturas{\TI{10.1--10.2}}
+\apoyo{\HIO{18}}
+\articulos{Dasgupta y Stiglitz (1980) \quad Gilbert y Newbery (1982)}
+\consulta{Scotchmer (2004), caps.~2--6}
+\nota{El valor de innovar según la estructura de mercado (efecto reemplazo
+de Arrow), carreras de patentes y patentamiento preventivo; la evidencia
+schumpeteriana de Cohen y Levin.}
+
+\tema{9.3 La economía de la propiedad intelectual}
+\lecturas{\FB{11} \quad \TI{10.3--10.4}}
+\apoyo{\TI{10.8}}
+\articulos{Gilbert y Shapiro (1990) \quad Klemperer (1990)}
+\consulta{Belleflamme y Peitz (2015), caps.~18--19 \quad Boldrin y Levine (2008)}
+\nota{Patentes, derechos de autor, marcas y secretos industriales; duración
+y amplitud óptimas de una patente, licencias y empresas conjuntas de
+investigación.}
+
+\tema{9.4 Externalidades de red, estándares y plataformas de dos lados}
+\lecturas{\TI{10.5--10.6} \quad \VHS{9}}
+\articulos{Katz y Shapiro (1985) \quad Farrell y Saloner (1985) \quad David (1985) \quad Rochet y Tirole (2006)}
+\nota{Adopción estratégica de tecnologías, compatibilidad y estandarización,
+y la economía de las plataformas; \VHS{9} añade los datos masivos y las
+industrias de innovación disruptiva.}
+
+%==============================================================================
+\parte{Parte III --- Política de competencia, regulación y evidencia}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 10 --- Política de competencia --- 1 semana}
+{El marco común de los temas antimonopolio que se leyeron en la Parte II.
+Capítulo 3 de Viscusi, Harrington y Sappington y los casos peruanos. Cubre
+el tema 12 de 1ECO15, la Unidad 4 de 1ECO80 y la regulación ex post de
+ECO381.}
+
+\tema{10.1 Fundamentos de la política de competencia: mercado relevante y posición de dominio}
+\lecturas{\VHS{3}}
+\consulta{Motta (2004), caps.~1--2}
+\nota{Competencia y bienestar, objetivos de la política de competencia,
+mercado relevante, poder de mercado y posición de dominio, y la legislación
+de Estados Unidos y de la Unión Europea (los apéndices de \VHS{3} reproducen
+los textos de las leyes Sherman y Clayton).}
+
+\tema{10.2 La política de competencia en el Perú}
+\lecturas{\FR{V}}
+\consulta{Fernández-Baca (2012), caps.~3--6}
+\nota{El Decreto Legislativo 1034 (Texto Único Ordenado, D.\,S.
+030-2019-PCM) y la Ley 31112 de control previo de concentraciones; los
+casos que usa 1ECO80: Arcos Dorados contra Jockey Plaza
+(Res.~059-2017-CLC), Atria contra ENSA, oxígeno medicinal, el SOAT y la
+concentración Grupo Gloria--Grupo Romero denegada por el Indecopi
+(Res.~140-2024/CLC). \FR{V} es el caso de contratos de exclusividad Telecable
+contra Cable Mágico.}
+\nota{\textbf{Práctica:} leer una resolución del Indecopi y escribir una nota
+de dos páginas sobre el mercado relevante, la conducta y la teoría del daño
+que aplica, como en el trabajo semestral de ECO381.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 11 --- Regulación económica --- 2 semanas}
+{La regulación de los monopolios naturales y de los mercados que se abren a
+la competencia. Capítulos 10 a 14 de Viscusi, Harrington y Sappington, el
+capítulo de Braeutigam del \emph{Handbook}, Armstrong y Sappington, el
+material de enseñanza de Barrantes y Laffont. Cubre ECO381, las cuatro
+unidades de 1ECO82 y el curso de regulación de la Universidad del
+Pacífico; amplía el tema 12.7 del sílabo de microeconomía.}
+
+\tema{11.1 Monopolio natural y tarificación óptima}
+\lecturas{\VHS{10} \quad \VHS{12} \quad \HIO{23.2--23.6} \quad \BA{2--3} \quad \BA{5.1}}
+\apoyo{\ACV{2}}
+\nota{Fallas de mercado y la prueba de fracaso de mercado, subaditividad de
+costos, soluciones de primer y segundo mejor, precios de Ramsey--Boiteux,
+tarifas de hora punta y el problema de los costos comunes.}
+
+\tema{11.2 Regulación por incentivos e información asimétrica}
+\lecturas{\VHS{13} \quad \AS{2.1--2.3} \quad \AS{3.1--3.2} \quad \BA{5.2--5.3}}
+\apoyo{\LA{2} \quad \ACV{3}}
+\consulta{Laffont y Tirole (1993), introducción y caps.~1--2}
+\nota{Tasa de retorno y efecto Averch--Johnson, precios tope y el factor X,
+regulación por comparación y empresa modelo eficiente; el dilema entre
+extracción de rentas y eficiencia (Baron y Myerson; Laffont y Tirole).}
+
+\tema{11.3 Competencia por el mercado, acceso y liberalización}
+\lecturas{\VHS{11} \quad \AS{4.1--4.2} \quad \AS{5.1--5.3} \quad \BA{4} \quad \BA{6}}
+\apoyo{\ACV{4--5} \quad \LA{5} \quad \VHS{14}}
+\articulos{Demsetz (1968) \quad Armstrong, Doyle y Vickers (1996) \quad Laffont, Rey y Tirole (1998a)}
+\nota{Licitación de franquicias a lo Demsetz y la crítica de Williamson,
+regulación por comparación entre empresas, precios de acceso en una y dos
+direcciones (regla ECPR), separación vertical y la regulación asimétrica en
+telecomunicaciones.}
+
+\tema{11.4 Regulación en países en desarrollo y la experiencia peruana}
+\lecturas{\LA{1} \quad \LA{7} \quad \BA{7--8} \quad \FR{I}}
+\apoyo{\LA{6} \quad \FR{III} \quad \FR{VI}}
+\consultalib{Urrunaga y Bonifaz (2008), casos 1--12 \quad Torres Trujillo, «Introducción a la regulación del transporte en el Perú»}
+\consulta{Engel, Fischer y Galetovic (2024)}
+\nota{Capacidad institucional, compromiso y captura; servicio universal,
+subsidios cruzados y tarifas sociales; asociaciones público-privadas y
+renegociación de concesiones. \FR{I} discute privatización y regulación;
+\FR{III} es la controversia del valor nuevo de reemplazo en la distribución
+eléctrica y \FR{VI}, el fondo de servicio universal en telecomunicaciones.
+Los casos de Urrunaga y Bonifaz cubren agua, electricidad,
+telecomunicaciones, puertos, aeropuertos y ferrocarriles.}
+
+%------------------------------------------------------------------------------
+\bloque{Bloque 12 --- Organización industrial empírica --- 1 semana}
+{La Unidad 3 de 1ECO80: cómo se mide el poder de mercado y cómo se estiman
+la demanda, la entrada y la producción. El capítulo de Bresnahan del
+\emph{Handbook} y Ackerberg, Benkard, Berry y Pakes, que también cita
+1ECO15.}
+
+\tema{12.1 Estructura, desempeño y medición del poder de mercado}
+\lecturas{\HIO{17}}
+\apoyo{\HIO{25}}
+\articulos{Bresnahan (1987) \quad Corts (1999)}
+\nota{Identificación del poder de mercado con datos de una industria: el
+parámetro de conducta y la estática comparativa de la demanda y los costos.
+\HIO{25} (Joskow y Rose) aplica la misma lógica a los efectos de la
+regulación.}
+
+\tema{12.2 Estimación de demanda, entrada y producción}
+\lecturas{\AB{1} \quad \AB{3.5}}
+\apoyo{\AB{2} \quad \AB{3.1--3.4}}
+\articulos{Berry (1994) \quad Berry, Levinsohn y Pakes (1995) \quad Bresnahan y Reiss (1991)}
+\consulta{Berry y Reiss (2007)}
+\nota{Demanda en el espacio de características (logit y coeficientes
+aleatorios), la ecuación de precios, juegos discretos de entrada y salida, y
+el método de Olley y Pakes para funciones de producción. La contracción de
+BLP es un ejercicio natural para el sílabo de métodos numéricos.}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Anexo A. De los capítulos a los bloques}
+\addcontentsline{toc}{section}{Anexo A. De los capítulos a los bloques}
+
+Capítulos de cada libro que entran en el plan y temas donde se leen. Lo que
+queda fuera se detalla en el Anexo B.
+
+\newcommand{\mapa}[2]{%
+\subsection*{#1}
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.3cm}X>{\raggedright\arraybackslash}p{3.6cm}}
+\toprule
+\rowcolor{tonoOscuro}\cab{Cap.} & \cab{Título} & \cab{Temas} \\
+\midrule
+#2
+\bottomrule
+\end{tabularx}
+}}
+
+\mapa{A.1 Fernández-Baca, \emph{Organización industrial}, vol.~1 (texto base; índice de RePEc)}{%
+1 & Teoría de la empresa. Primera parte: ¿por qué existen las empresas? (pp.~17--68) & 1.3 \\
+2 & Teoría de la empresa. Segunda parte: ¿maximizan ganancias las empresas? (pp.~69--110) & 1.4 \\
+3 & Monopolio (pp.~111--168) & 2.1 \\
+4 & Discriminación de precios (pp.~169--218) & 3.1, 3.2 \\
+5 & Integración y control vertical (pp.~219--284) & 4.1 \\
+6 & La competencia oligopólica en el corto plazo (pp.~285--330) & 5.1 \\
+7 & La competencia oligopólica en el largo plazo: la solución colusiva (pp.~331--376) & 6.1 \\
+8 & Competencia con productos diferenciados (pp.~377--420) & 7.1 \\
+9 & Barreras al ingreso de nuevos competidores (pp.~421--468) & 8.1 \\
+10 & Publicidad, información y persuasión (pp.~469--498) & 9.1 \\
+11 & La economía de la propiedad intelectual (pp.~499--554) & 9.3 \\
+}
+
+\mapa{A.2 Tirole, \emph{The Theory of Industrial Organization} (texto base)}{%
+--- & Introduction & 1.1 \\
+F & The Theory of the Firm (F.1--F.3) & 1.3, 1.4 \\
+1 & Monopoly (1.1--1.5) & 2.1, 2.2 \\
+2 & Product Selection, Quality, and Advertising (2.1--2.4, 2.6) & 3.3, 3.4, 9.1 \\
+3 & Price Discrimination (3.1--3.3, 3.5) & 3.1, 3.2 \\
+4 & Vertical Control (4.1--4.6) & 4.1, 4.2 \\
+5 & Short-Run Price Competition (5.1--5.5, 5.7) & 5.1, 5.2 \\
+6 & Dynamic Price Competition and Tacit Collusion (6.1--6.5, 6.7) & 6.1, 6.2 \\
+7 & Product Differentiation: Price Competition and Non-Price Competition (7.1--7.3, 7.5) & 7.1, 7.2, 9.1 \\
+8 & Entry, Accommodation, and Exit (8.1--8.6) & 8.1, 8.2, 8.4 \\
+9 & Information and Strategic Behavior (9.1--9.7, 9.9) & 8.3 \\
+10 & Research and Development and the Adoption of New Technologies (10.1--10.6, 10.8) & 9.2--9.4 \\
+11 & Noncooperative Game Theory: A User's Manual (11.1--11.6) & 1.2 \\
+}
+
+\mapa{A.3 Viscusi, Harrington y Sappington, \emph{Economics of Regulation and Antitrust}}{%
+3 & Introduction to Antitrust & 10.1 \\
+4 & Oligopoly, Collusion, and Antitrust & 6.2 \\
+5 & Market Structure and Dynamic Competition & 8.1 \\
+6 & Horizontal Mergers & 5.2 \\
+7 & Vertical Mergers and Vertical Restraints & 4.2 \\
+8 & Monopolization and Price Discrimination & 8.4 \\
+9 & Antitrust in the New Economy & 9.4 \\
+10 & Introduction to Economic Regulation & 11.1 \\
+11 & Alternatives to Regulation in the Market: Public Enterprise and Franchise Bidding & 11.3 \\
+12 & Optimal Pricing & 11.1 \\
+13 & Incentive Regulation & 11.2 \\
+14 & Dynamic Issues in Natural Monopoly Regulation: Telecommunications & 11.3 \\
+}
+
+\mapa{A.4 Textos de regulación}{%
+--- & Armstrong y Sappington, \emph{Recent Developments in the Theory of Regulation}: secc.~2.1--2.3, 3.1--3.2, 4.1--4.2, 5.1--5.3 & 11.2, 11.3 \\
+--- & Barrantes, \emph{Teoría de la regulación}: caps.~2--8 (y secc.~1.5) & 5.1, 11.1--11.4 \\
+--- & Laffont, \emph{Regulation and Development}: caps.~1, 2 y 5--7 & 11.2--11.4 \\
+--- & Armstrong, Cowan y Vickers, \emph{Regulatory Reform}: caps.~2--5 & 11.1--11.3 \\
+--- & Fernández-Baca (ed.), \emph{Experiencias de regulación en el Perú}: caps.~I, III, V y VI & 10.2, 11.4 \\
+}
+
+\mapa{A.5 Teoría de la empresa y organización industrial empírica}{%
+--- & Kroszner y Putterman, \emph{The Economic Nature of the Firm}: lecturas 6--9, 12--13, 20--21 y 25 & 1.3, 1.4 \\
+--- & \emph{Handbook of Industrial Organization}, vol.~II: caps.~16 (Schmalensee), 17 (Bresnahan), 18 (Cohen y Levin), 23 (Braeutigam) y 25 (Joskow y Rose) & 1.1, 3.2, 9.2, 11.1, 12.1 \\
+--- & Ackerberg, Benkard, Berry y Pakes: secc.~1, 2 y 3.1--3.5 & 12.2 \\
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo B. Lo que no entra en el plan}
+\addcontentsline{toc}{section}{Anexo B. Lo que no entra en el plan}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Materia} & \cab{Capítulos, secciones y programas} \\
+\midrule
+Regulación social (salud, seguridad y medio ambiente) & \VHS{19--24}; \HIO{26}. Corresponde a la economía pública y ambiental \\
+Regulación sectorial en Estados Unidos & \VHS{15--18} (transporte, energía y sector financiero); \ACV{6--10} (experiencia británica por sectores). Material de consulta para casos \\
+Proceso regulatorio y análisis de impacto & \VHS{1--2}; \HIO{22} (economía política de la regulación); el tema 4 de la Unidad 1 de 1ECO82 (Anexo D.2) \\
+Mecanismos de regulación avanzados & \HIO{24} (Baron); \AS{2.4--2.6}, \AS{3.3--3.5}, \AS{4.3--4.6}; \LA{3--4}, \LA{8} (Anexo D.1) \\
+Otros capítulos del \emph{Handbook}, vol.~II & \HIO{19} (experimentos), \HIO{20--21} (organización industrial y comercio internacional); este último enlaza con el sílabo de economía internacional \\
+Teoría de la empresa ampliada & \KP{1--5} (clásicos: Smith, Marx, Knight, Berle y Means, Hayek), \KP{10--11}, \KP{14--19}, \KP{22--24}, \KP{26}. El tema 12.8 del sílabo de microeconomía cubre los contratos incompletos \\
+Estimación dinámica & \AB{3.6--3.8} (juegos de inversión y subastas dinámicas); corresponde al sílabo de microeconometría \\
+Subastas y diseño de mecanismos & Bloque 13 del sílabo de microeconomía; \FB{4} las trata como discriminación de precios \\
+\bottomrule
+\end{tabularx}
+}
+
+\medskip
+\noindent\destacado{Archivos de la carpeta que no se usaron por ser imágenes sin
+texto}: la copia de Tirole de 1988 de 55~MB (\texttt{Jean Tirole - The Theory
+of Industrial Organization (1988).pdf}); se usó la otra copia, que sí tiene
+capa de texto. \texttt{Toc.pdf} es solo el índice de Viscusi, Harrington y
+Sappington.
+
+\medskip
+\noindent\destacado{Libro base que no está en la carpeta}: Fernández-Baca,
+\emph{Organización industrial}, vol.~1. En la carpeta de microeconomía hay
+otro libro del mismo autor (\emph{Microeconomía}, tomo II), que no es este.
+
+%------------------------------------------------------------------------------
+\section*{Anexo C. Programas utilizados}
+\addcontentsline{toc}{section}{Anexo C. Programas utilizados}
+
+{\small\filasalternas
+\noindent\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{5.6cm}X}
+\toprule
+\rowcolor{tonoOscuro}\cab{Programa} & \cab{Temas del plan} \\
+\midrule
+1ECO15, Organización Industrial (pregrado, 2025-2, J.~A.~Tavera) & Tema 1, Bloque 1; 2, Bloque 4; 3, Bloque 3; 4, tema 2.2; 5 y 6, Bloques 5 y 6; 7, Bloque 7; 8, 9.1; 9 y 10, 9.4; 11, 9.2--9.3; 12, Bloque 10. Ackerberg et al., 12.2 \\
+1ECO80, Organización Industrial (Maestría en Economía, 2026-1; R.~García, H.~Ortiz, C.~Noton, R.~Escudero y J.~Coronado) & Unidad 1 (barreras a la entrada), Bloques 7 y 8; Unidad 2 (investigación y desarrollo), Bloque 9; Unidad 3 (organización industrial empírica), 4.2, 5.2, 6.1 y Bloque 12; Unidad 4 (políticas de competencia), 6.2, 8.4 y Bloque 10 \\
+ECO381, Teoría de la Regulación (pregrado, 2025-1, R.~Barrantes) & Unidades I a VII, Bloque 11; Unidad VIII (regulación ex post), Bloque 10 \\
+1ECO82, Teoría de la Regulación (Maestría en Economía, 2026-1; R.~Barrantes, S.~Cifuentes, G.~Ruiz y E.~Saavedra) & Unidad 1, 11.1--11.2; Unidad 2 (acceso e interconexión), 11.3; Unidad 3 (asociaciones público-privadas), 11.2 y 11.4; Unidad 4 (competencia en redes), 11.3 \\
+Teoría de la Regulación Económica (Universidad del Pacífico, 2018-I, R.~Urrunaga) & Temas 1 a 5, Bloque 11; de él vienen Armstrong, Cowan y Vickers, los casos de Urrunaga y Bonifaz y \emph{Experiencias de regulación en el Perú} \\
+\bottomrule
+\end{tabularx}
+}
+
+%------------------------------------------------------------------------------
+\section*{Anexo D. Material opcional}
+\addcontentsline{toc}{section}{Anexo D. Material opcional}
+
+Todo lo de este anexo es opcional: no entra en el cómputo de horas ni modifica
+el cronograma.
+
+\subsection*{D.1 Teoría avanzada de la regulación}
+\HIO{24} (Baron, diseño de mecanismos regulatorios), las secciones restantes
+de Armstrong y Sappington (\AS{2.4--2.6}: auditorías, captura, información
+multidimensional y dinámica) y \LA{3--4} y \LA{8} (privatización,
+cumplimiento y separación de poderes regulatorios). Requiere el Bloque 11 y
+el Bloque 12 del sílabo de microeconomía.
+
+\subsection*{D.2 Economía política de la regulación y análisis de impacto}
+\HIO{22} (Noll) y el tema 4 de la Unidad 1 de 1ECO82; la teoría de la captura
+de \VHS{2}. Enlaza con la economía política del sílabo de economía pública.
+
+\subsection*{D.3 Regulación por sectores}
+\ACV{6--10} (precios tope y regulación británica de telecomunicaciones, gas,
+electricidad y agua) y \VHS{15--17} (transporte y energía). Útil como
+complemento de los casos peruanos del tema 11.4.
+
+\subsection*{D.4 Proyecto aplicado: una revisión regulatoria peruana}
+Como el trabajo de ECO381 y del curso de la Universidad del Pacífico: elegir
+una resolución de Osinergmin, Osiptel, Ositrán, Sunass o el Indecopi, o uno
+de los casos de Urrunaga y Bonifaz (2008), y evaluarla con los instrumentos
+de los Bloques 10 y 11. Momento sugerido: después de la semana 16.
+
+\subsection*{D.5 Estimación de demanda en la computadora}
+Programar un logit y la contracción de BLP con datos simulados (\AB{1};
+Nevo, 2000a) usando los métodos de los Bloques 3 y 4 del sílabo de métodos
+numéricos.
+
+%------------------------------------------------------------------------------
+\section*{Anexo E. Referencias}
+\addcontentsline{toc}{section}{Anexo E. Referencias}
+
+\subsection*{E.1 Textos del plan}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Ackerberg, D., C. L. Benkard, S. Berry y A. Pakes (2006). Econometric Tools for Analyzing Market Outcomes. Versión de trabajo del cap.~63 del \emph{Handbook of Econometrics}, vol.~6A (2007), J.~J.~Heckman y E.~E.~Leamer (eds.). Elsevier.
+\item Armstrong, M., S. Cowan y J. Vickers (1994). \emph{Regulatory Reform: Economic Analysis and British Experience}. The MIT Press.
+\item Armstrong, M. y D. E. M. Sappington (2005). Recent Developments in the Theory of Regulation. Versión de trabajo del cap.~27 del \emph{Handbook of Industrial Organization}, vol.~III (2007), M.~Armstrong y R.~Porter (eds.). Elsevier.
+\item Barrantes, R. (2019). \emph{Teoría de la regulación}. Material de Enseñanza 4, Departamento de Economía, PUCP.
+\item Fernández-Baca, J. (2006). \emph{Organización industrial}, vol.~1. Fondo Editorial de la Universidad del Pacífico.
+\item Fernández-Baca, J. (ed.) (2004). \emph{Experiencias de regulación en el Perú}. Centro de Investigación de la Universidad del Pacífico.
+\item Kroszner, R. S. y L. Putterman (eds.) (2009). \emph{The Economic Nature of the Firm: A Reader}, 3.ª ed. Cambridge University Press.
+\item Laffont, J.-J. (2005). \emph{Regulation and Development}. Cambridge University Press.
+\item Schmalensee, R. y R. D. Willig (eds.) (1989). \emph{Handbook of Industrial Organization}, vol.~II. North-Holland.
+\item Tirole, J. (1988). \emph{The Theory of Industrial Organization}. The MIT Press. Traducción castellana: \emph{La teoría de la organización industrial}, Ariel, 1990.
+\item Viscusi, W. K., J. E. Harrington y D. E. M. Sappington (2018). \emph{Economics of Regulation and Antitrust}, 5.ª ed. The MIT Press.
+\end{itemize}
+}
+
+\subsection*{E.2 Libros y documentos de consulta de la carpeta (sin horas)}
+{\small
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Torres Trujillo, R. Introducción a la regulación del transporte en el Perú. \emph{Revista de Derecho Administrativo} (Círculo de Derecho Administrativo, PUCP), pp.~301--308.
+\item Urrunaga, R. y J. L. Bonifaz (eds.) (2008). \emph{Estudios de caso sobre regulación en infraestructura y servicios públicos en el Perú}. Apuntes de Estudio 67, Universidad del Pacífico.
+\end{itemize}
+}
+
+\subsection*{E.3 Referencias tomadas de los programas}
+{\small\sloppy
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt,label={}]
+\item Aghion, P. y P. Bolton (1987). Contracts as a Barrier to Entry. \emph{American Economic Review}, 77(3), 388--401. [1ECO80; 8.2]
+\item Armstrong, M. (2008). Price Discrimination. En P.~Buccirossi (ed.), \emph{Handbook of Antitrust Economics}, cap.~12. The MIT Press. [1ECO15; 3.1]
+\item Armstrong, M., C. Doyle y J. Vickers (1996). The Access Pricing Problem: A Synthesis. \emph{Journal of Industrial Economics}, 44(2), 131--150. [1ECO82; 11.3]
+\item Bagwell, K. (2001). \emph{The Economics of Advertising}. Edward Elgar (introducción). [1ECO15; 9.1]
+\item Bain, J. S. (1951). Relation of Profit Rate to Industry Concentration: American Manufacturing, 1936--1940. \emph{Quarterly Journal of Economics}, 65(3), 293--324. [1ECO80; 1.1]
+\item Baumol, W. J., J. C. Panzar y R. D. Willig (1983). Contestable Markets: An Uprising in the Theory of Industry Structure: Reply. \emph{American Economic Review}, 73(3), 491--496. [1ECO80; 8.1]
+\item Belleflamme, P. y M. Peitz (2015). \emph{Industrial Organization: Markets and Strategies}, 2.ª ed. Cambridge University Press. [1ECO15, 1ECO80; 7.1, 9.3]
+\item Bernheim, B. D. y M. D. Whinston (1990). Multimarket Contact and Collusive Behavior. \emph{RAND Journal of Economics}, 21(1), 1--26. [1ECO80; 6.2]
+\item Berry, S. (1994). Estimating Discrete-Choice Models of Product Differentiation. \emph{RAND Journal of Economics}, 25(2), 242--262. [1ECO80; 12.2]
+\item Berry, S., J. Levinsohn y A. Pakes (1995). Automobile Prices in Market Equilibrium. \emph{Econometrica}, 63(4), 841--890. [1ECO15, 1ECO80; 12.2]
+\item Berry, S. y P. Reiss (2007). Empirical Models of Entry and Market Structure. En M.~Armstrong y R.~Porter (eds.), \emph{Handbook of Industrial Organization}, vol.~III, cap.~29. [1ECO80; 12.2]
+\item Boldrin, M. y D. K. Levine (2008). \emph{Against Intellectual Monopoly}. Cambridge University Press. [1ECO15; 9.3]
+\item Bresnahan, T. (1987). Competition and Collusion in the American Automobile Industry: The 1955 Price War. \emph{Journal of Industrial Economics}, 35(4), 457--482. [1ECO80; 12.1]
+\item Bresnahan, T. y P. Reiss (1991). Entry and Competition in Concentrated Markets. \emph{Journal of Political Economy}, 99(5), 977--1009. [1ECO80; 12.2]
+\item Bulow, J. (1986). An Economic Theory of Planned Obsolescence. \emph{Quarterly Journal of Economics}, 101(4), 729--750. [1ECO15; 2.2]
+\item Carlton, D. y J. Perloff (2005). \emph{Modern Industrial Organization}, 4.ª ed. Pearson. [1ECO15; 1.1]
+\item Cheung, S. N. S. (1969). Transaction Costs, Risk Aversion, and the Choice of Contractual Arrangements. \emph{Journal of Law and Economics}, 12(1), 23--42. [1ECO15; 1.3]
+\item Coase, R. H. (1972). Durability and Monopoly. \emph{Journal of Law and Economics}, 15(1), 143--149. [1ECO15; 2.2]
+\item Corts, K. S. (1999). Conduct Parameters and the Measurement of Market Power. \emph{Journal of Econometrics}, 88(2), 227--250. [1ECO80; 12.1]
+\item Dasgupta, P. y J. Stiglitz (1980). Industrial Structure and the Nature of Innovative Activity. \emph{Economic Journal}, 90(358), 266--293. [1ECO80; 9.2]
+\item David, P. A. (1985). Clio and the Economics of QWERTY. \emph{American Economic Review}, 75(2), 332--337. [1ECO15, 1ECO80; 9.4]
+\item Demsetz, H. (1968). Why Regulate Utilities? \emph{Journal of Law and Economics}, 11(1), 55--65. [1ECO82; 11.3]
+\item Dixit, A. (1980). The Role of Investment in Entry-Deterrence. \emph{Economic Journal}, 90(357), 95--106. [1ECO80; 8.1]
+\item Dixit, A. y J. Stiglitz (1977). Monopolistic Competition and Optimum Product Diversity. \emph{American Economic Review}, 67(3), 297--308. [1ECO80; 7.2]
+\item Einav, L. y J. Levin (2010). Empirical Industrial Organization: A Progress Report. \emph{Journal of Economic Perspectives}, 24(2), 145--162. [1ECO15; 1.1]
+\item Engel, E., R. Fischer y A. Galetovic (2024). \emph{Economía de las asociaciones público-privadas: una guía básica}. Fondo de Cultura Económica. [ECO381; 11.4]
+\item Farrell, J. y G. Saloner (1985). Standardization, Compatibility, and Innovation. \emph{RAND Journal of Economics}, 16(1), 70--83. [1ECO15; 9.4]
+\item Farrell, J. y C. Shapiro (1990). Horizontal Mergers: An Equilibrium Analysis. \emph{American Economic Review}, 80(1), 107--126. [1ECO80; 5.2]
+\item Fernández-Baca, J. (2012). \emph{Experiencias de política antimonopólica en el Perú}. Universidad del Pacífico y CIES. [1ECO15; 10.2]
+\item Gilbert, R. (1989). Mobility Barriers and the Value of Incumbency. En R.~Schmalensee y R.~Willig (eds.), \emph{Handbook of Industrial Organization}, vol.~I, cap.~8. [1ECO80; 8.1]
+\item Gilbert, R. y D. Newbery (1982). Preemptive Patenting and the Persistence of Monopoly. \emph{American Economic Review}, 72(3), 514--526. [1ECO80; 9.2]
+\item Gilbert, R. y C. Shapiro (1990). Optimal Patent Length and Breadth. \emph{RAND Journal of Economics}, 21(1), 106--112. [1ECO80; 9.3]
+\item Green, E. J. y R. H. Porter (1984). Noncooperative Collusion under Imperfect Price Information. \emph{Econometrica}, 52(1), 87--100. [1ECO80; 6.1]
+\item Harrington, J. (2008). Detecting Cartels. En P.~Buccirossi (ed.), \emph{Handbook of Antitrust Economics}, cap.~6. The MIT Press. [1ECO15; 6.2]
+\item Harrington, J. (2017). \emph{The Theory of Collusion and Competition Policy}. The MIT Press. [1ECO15; 6.2]
+\item Hortaçsu, A. y C. Syverson (2007). Cementing Relationships: Vertical Integration, Foreclosure, Productivity, and Prices. \emph{Journal of Political Economy}, 115(2), 250--301. [1ECO80; 4.2]
+\item Joskow, P. (1987). Contract Duration and Relationship-Specific Investments: Empirical Evidence from Coal Markets. \emph{American Economic Review}, 77(1), 168--185. [1ECO15; 1.3]
+\item Katz, M. y C. Shapiro (1985). Network Externalities, Competition, and Compatibility. \emph{American Economic Review}, 75(3), 424--440. [1ECO15; 9.4]
+\item Klemperer, P. (1990). How Broad Should the Scope of Patent Protection Be? \emph{RAND Journal of Economics}, 21(1), 113--130. [1ECO80; 9.3]
+\item Kühn, K.-U. (2008). The Coordinated Effects of Mergers. En P.~Buccirossi (ed.), \emph{Handbook of Antitrust Economics}, cap.~3. The MIT Press. [1ECO15; 5.2]
+\item Lafontaine, F. y M. Slade (2008). Exclusive Contracts and Vertical Restraints: Empirical Evidence and Public Policy. En P.~Buccirossi (ed.), \emph{Handbook of Antitrust Economics}. The MIT Press. [1ECO15; 4.1]
+\item Laffont, J.-J., P. Rey y J. Tirole (1998a). Network Competition: I. Overview and Nondiscriminatory Pricing. \emph{RAND Journal of Economics}, 29(1), 1--37. [1ECO82; 11.3]
+\item Laffont, J.-J. y J. Tirole (1993). \emph{A Theory of Incentives in Procurement and Regulation}. The MIT Press. [1ECO82; 11.2]
+\item Mankiw, N. G. y M. D. Whinston (1986). Free Entry and Social Inefficiency. \emph{RAND Journal of Economics}, 17(1), 48--58. [1ECO80; 8.1]
+\item McAfee, R. P. (2008). Price Discrimination. En \emph{Issues in Competition Law and Policy}, vol.~1, 465--484. ABA Section of Antitrust Law. [1ECO15; 3.1]
+\item Milyo, J. y J. Waldfogel (1999). The Effect of Price Advertising on Prices: Evidence in the Wake of 44 Liquormart. \emph{American Economic Review}, 89(5), 1081--1096. [1ECO15; 9.1]
+\item Motta, M. (2004). \emph{Competition Policy: Theory and Practice}. Cambridge University Press. [1ECO15; 4.1, 10.1]
+\item Nevo, A. (2000a). A Practitioner's Guide to Estimation of Random-Coefficients Logit Models of Demand. \emph{Journal of Economics \& Management Strategy}, 9(4), 513--548. [1ECO80; Anexo D.5]
+\item Nevo, A. (2000b). Mergers with Differentiated Products: The Case of the Ready-to-Eat Cereal Industry. \emph{RAND Journal of Economics}, 31(3), 395--421. [1ECO80; 5.2]
+\item Porter, R. H. (1983). A Study of Cartel Stability: The Joint Executive Committee, 1880--1886. \emph{Bell Journal of Economics}, 14(2), 301--314. [1ECO15, 1ECO80; 6.2]
+\item Rey, P. y J. Tirole (2007). A Primer on Foreclosure. En M.~Armstrong y R.~Porter (eds.), \emph{Handbook of Industrial Organization}, vol.~III, cap.~33. [1ECO80; 4.2]
+\item Rey, P. y T. Vergé (2008). Economics of Vertical Restraints. En P.~Buccirossi (ed.), \emph{Handbook of Antitrust Economics}. The MIT Press. [1ECO15; 4.1]
+\item Rochet, J.-C. y J. Tirole (2006). Two-Sided Markets: A Progress Report. \emph{RAND Journal of Economics}, 37(3), 645--667. [1ECO15; 9.4]
+\item Rotemberg, J. y G. Saloner (1986). A Supergame-Theoretic Model of Price Wars during Booms. \emph{American Economic Review}, 76(3), 390--407. [1ECO80; 6.1]
+\item Salop, S. (1979). Monopolistic Competition with Outside Goods. \emph{Bell Journal of Economics}, 10(1), 141--156. [1ECO80; 7.1]
+\item Scherer, F. M. y D. Ross (1990). \emph{Industrial Market Structure and Economic Performance}, 3.ª ed. Houghton Mifflin. [1ECO15; 1.1]
+\item Scotchmer, S. (2004). \emph{Innovation and Incentives}. The MIT Press. [1ECO80; 9.2]
+\item Shapiro, C. (1989). Theories of Oligopoly Behavior. En R.~Schmalensee y R.~Willig (eds.), \emph{Handbook of Industrial Organization}, vol.~I, cap.~6. [1ECO80; 5.1]
+\item Sutton, J. (1991). \emph{Sunk Costs and Market Structure}. The MIT Press. [1ECO80; 8.1]
+\item Waldman, M. (2003). Durable Goods Theory for Real World Markets. \emph{Journal of Economic Perspectives}, 17(1), 131--154. [1ECO15; 2.2]
+\end{itemize}
+}
+
+\vspace{1.2cm}
+\franjas[2pt]
+\begin{center}\small\color{tonoPizarra}
+Plan de lectura de elaboración propia. Los títulos de los capítulos
+corresponden a las obras citadas y se reproducen únicamente con fines de
+referencia bibliográfica. La asignación de capítulos y secciones se basa en
+los índices de los libros de la carpeta y, para Fernández-Baca (2006), en su
+índice de capítulos en RePEc; los temas de los cursos proceden de los
+programas citados en el Anexo C.
+\end{center}
+
+\end{document}
