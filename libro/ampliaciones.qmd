@@ -14,6 +14,17 @@ La identificación inicial de los distritos con oro (capítulo [-@sec-yacimiento
 | Registro de Declaraciones de Compromisos (2012) y REINFO (Ministerio de Energía y Minas) | Presencia de minería informal en proceso de formalización, previa al periodo | La inscripción responde a incentivos legales; acceso por solicitud de transparencia |
 | Deforestación por minería (imágenes satelitales) | Validación de la minería aluvial informal | Solo útil en la Amazonía |
 
+## Precio del oro
+
+La serie inicial del precio (capítulo [-@sec-precio]) es nominal, en dólares, y proviene de un contrato de futuros. Se propone complementarla con:
+
+| Fuente | Qué aporta | Limitación principal |
+|---|---|---|
+| Banco Mundial, *Commodity Price Data* (Pink Sheet): "Gold (UK), 99.5 % fine, London afternoon fixing" | Precio spot de referencia (LBMA), el más citado en la literatura; serie mensual desde 1960 | Ninguna relevante; se publica con un mes de rezago |
+| Índice de precios al consumidor de EE. UU. (Bureau of Labor Statistics) | Precio real en dólares | — |
+| Tipo de cambio e índice de precios de Lima (Banco Central de Reserva del Perú) | Precio real en soles: lo que recibe un productor peruano por onza | — |
+| Serie anterior a 2014 | Rezagos del precio y evolución previa al periodo de estudio | — |
+
 ## Otros indicadores de bienestar
 
 Además de los resultados principales (capítulo [-@sec-enaho]), se propone evaluar otros indicadores del bienestar de los distritos:

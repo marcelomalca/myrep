@@ -18,6 +18,7 @@ Este libro documenta las bases de datos del proyecto. Cada capítulo presenta un
 | Capítulo | Base | Rol en la investigación | Unidad de observación | Periodo |
 |---|---|---|---|---|
 | [-@sec-yacimientos] | Yacimientos Mineros de GEOCATMIN (INGEMMET) | Identificar los distritos con oro | Yacimiento | Registros anteriores a 2014 |
+| [-@sec-precio] | Precio del oro (Yahoo Finance, futuros de COMEX) | Medir el cambio en el valor del oro | Mes y año | 2014–2026 |
 | [-@sec-enaho] | Encuesta Nacional de Hogares (INEI) | Medir los resultados: gasto, ingreso, informalidad y mercado laboral | Hogar y persona | 2014–2025 |
 
 Las bases de población y delincuencia se incorporarán en capítulos posteriores. El capítulo [-@sec-ampliaciones] reúne las fuentes propuestas para ampliar la investigación en etapas siguientes.

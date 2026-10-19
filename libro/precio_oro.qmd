@@ -1,0 +1,149 @@
+# Precio del oro {#sec-precio}
+
+```{r}
+#| label: setup-precio
+#| include: false
+source("R/comun.R")
+
+dir_precio <- "../precio_oro"
+mensual <- read_csv(file.path(dir_precio, "datos_procesados/precio_oro_mensual.csv"),
+                    show_col_types = FALSE) |>
+  mutate(fecha = as.Date(paste0(periodo, "-01")))
+anual <- read_csv(file.path(dir_precio, "datos_procesados/precio_oro_anual.csv"),
+                  show_col_types = FALSE)
+registro <- read_csv(file.path(dir_precio, "datos_brutos/registro_descargas.csv"),
+                     show_col_types = FALSE)
+
+completo <- anual |> filter(anio_completo)
+p <- setNames(completo$precio_promedio_usd_oz, completo$anio)
+var_pct <- function(a, b) round(100 * (p[[as.character(b)]] / p[[as.character(a)]] - 1), 1)
+
+ult_mes <- mensual |> filter(fecha == max(fecha))
+max_mes <- mensual |> filter(mes_completo) |> slice_max(precio_promedio_usd_oz, n = 1)
+min_mes <- mensual |> filter(mes_completo) |> slice_min(precio_promedio_usd_oz, n = 1)
+
+meses_es <- c("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
+              "setiembre", "octubre", "noviembre", "diciembre")
+mes_anio <- function(f) paste(meses_es[as.integer(format(f, "%m"))], "de", format(f, "%Y"))
+```
+
+Este capítulo documenta la segunda pieza del tratamiento: el precio internacional del oro. Es una sola serie de tiempo, común a todos los distritos, que se combina con la clasificación de distritos del capítulo [-@sec-yacimientos].
+
+::: {.callout-note appearance="simple"}
+## Resumen de la base
+
+- **Fuente:** Yahoo Finance, contrato de futuros de oro de COMEX (`GC=F`), precios diarios descargados el `r format(as.Date(registro$fecha_descarga_utc[1]), "%d/%m/%Y")`.
+- **Unidad de observación:** el mes y el año; las series se construyen a partir de los cierres diarios.
+- **Cobertura:** de enero de `r min(mensual$anio)` a octubre de `r max(mensual$anio)` (`r nrow(mensual)` meses); el último mes y el último año están incompletos.
+- **Variables:** precio promedio y precio de cierre, en dólares corrientes por onza troy.
+- **Uso en la investigación:** medir los cambios en el valor del oro que enfrentan los distritos con yacimientos.
+:::
+
+## Fuente
+
+Los datos provienen de la interfaz de gráficos de Yahoo Finance, para el símbolo `GC=F`: el contrato continuo de futuros de oro de COMEX (CME Group) con vencimiento más cercano. Se descargaron los precios diarios y, como control, las barras mensuales que publica Yahoo. La descarga, la construcción de las series y el gráfico están en los scripts de la carpeta `precio_oro/` del repositorio, que registran la URL, la fecha y una huella (MD5) de cada archivo descargado.
+
+Yahoo Finance ya no publica el precio spot del oro, por lo que se usa el contrato de futuros más cercano. Su precio sigue de cerca al spot, aunque suele estar ligeramente por encima por el costo de mantener la posición. La referencia más usada en la literatura es el precio spot de Londres (LBMA), que publica el Banco Mundial; el capítulo [-@sec-ampliaciones] propone contrastar ambas series.
+
+## Unidad de observación
+
+La serie se construye en dos frecuencias:
+
+| Base | Unidad | Filas | Precio |
+|---|---|---|---|
+| Mensual | Año-mes | `r nrow(mensual)` | Promedio de los cierres diarios del mes y cierre del último día con cotización |
+| Anual | Año | `r nrow(anual)` | Promedio de los promedios mensuales del año y cierre del último mes |
+
+La frecuencia anual coincide con la de la ENAHO y es la que se usará en el análisis principal: a cada año de encuesta le corresponde el precio promedio de ese año. La frecuencia mensual permite una medida alternativa, porque la ENAHO registra el mes de la entrevista: a cada hogar se le puede asignar el promedio de los doce meses previos a su entrevista.
+
+## Cobertura
+
+**Temporal.** La serie empieza el 2 de enero de 2014, el primer día de cotización del periodo de estudio, y termina el día de la descarga. El año `r max(anual$anio)` tiene `r anual$meses[anual$anio == max(anual$anio)]` meses, y su último mes solo `r ult_mes$dias_cotizacion` días de cotización; ambos están marcados como incompletos. Como la ENAHO llega hasta 2025, el análisis usará los años 2014 a 2025, que están completos.
+
+**Espacial.** No aplica: es un precio internacional, el mismo para todos los distritos.
+
+## Variables
+
+| Variable | Definición | Frecuencia |
+|---|---|---|
+| `precio_promedio_usd_oz` | Promedio de los cierres diarios (mensual) o de los promedios mensuales (anual), en US$ corrientes por onza troy | Mensual y anual |
+| `precio_cierre_usd_oz` | Cierre del último día con cotización del mes o del año | Mensual y anual |
+| `dias_cotizacion` | Días con cierre que entran en el promedio mensual | Mensual |
+| `meses` | Meses con datos en el año | Anual |
+| `mes_completo`, `anio_completo` | Indican si el periodo está completo | Mensual y anual |
+
+Todas las series son **nominales**. En la estimación, el precio entra interactuado con la presencia de oro de cada distrito, de modo que lo que identifica el efecto es cómo se mueven los resultados de los distritos con oro frente a los demás cuando cambia el precio. Por eso la elección entre precio nominal y real no es neutra: deflactar cambia la evolución de la serie en el tiempo. Para expresar el precio en términos de lo que recibe un productor peruano conviene construir también versiones reales y en soles (capítulo [-@sec-ampliaciones]).
+
+## Qué observaciones entran a la base
+
+A diferencia de las otras bases, aquí no hay selección de unidades: la serie cubre todos los días de cotización del periodo. Los criterios de construcción son los siguientes:
+
+- **Días de cotización.** Entran los días hábiles de la bolsa con precio de cierre. Se descartaron cinco días que Yahoo publica sin cierre, la mayoría feriados de Estados Unidos.
+- **Contrato continuo.** Cuando vence un contrato, la serie pasa al siguiente, lo que puede producir saltos pequeños en las fechas de vencimiento. Al promediar los cierres del mes, esos saltos pesan poco.
+- **Barras mensuales de Yahoo.** No se usan para construir la serie porque les faltan meses. Sirvieron como control: en los meses en que existen, su cierre coincide exactamente con el cierre diario del último día del mes.
+- **Fechas.** Se asignan en la hora de Nueva York, la de la bolsa.
+
+## Estadísticas descriptivas
+
+```{r}
+#| label: tbl-precio-anual
+#| tbl-cap: "Precio anual del oro (US$ corrientes por onza troy)"
+
+anual |>
+  arrange(anio) |>
+  mutate(variacion = round(100 * (precio_promedio_usd_oz / lag(precio_promedio_usd_oz) - 1), 1),
+         indice = round(100 * precio_promedio_usd_oz / precio_promedio_usd_oz[anio == 2014], 1),
+         nota = ifelse(anio_completo, "", paste0("Incompleto (", meses, " meses)"))) |>
+  transmute(anio, promedio = num(precio_promedio_usd_oz),
+            variacion = ifelse(is.na(variacion), "—", format(variacion, nsmall = 1)), indice,
+            cierre = num(precio_cierre_usd_oz), nota) |>
+  kable(col.names = c("Año", "Precio promedio", "Variación anual (%)",
+                      "Índice (2014 = 100)", "Precio de cierre", "Nota"),
+        align = "rrrrrl")
+```
+
+```{r}
+#| label: fig-precio
+#| fig-cap: "Precio del oro, 2014–2026 (US$ corrientes por onza troy)"
+#| fig-width: 8
+#| fig-height: 4.5
+
+anual_pts <- anual |>
+  mutate(fecha = as.Date(paste0(anio, "-07-01")),
+         tipo = ifelse(anio_completo, "Promedio anual", "Promedio anual (incompleto)"))
+
+ggplot() +
+  geom_line(data = mensual, aes(fecha, precio_promedio_usd_oz),
+            colour = "#8a8984", linewidth = 0.5) +
+  geom_point(data = anual_pts, aes(fecha, precio_promedio_usd_oz, shape = tipo),
+             colour = "#1c5cab", size = 2.4) +
+  scale_shape_manual(values = c("Promedio anual" = 16, "Promedio anual (incompleto)" = 1),
+                     name = NULL) +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
+  scale_y_continuous(labels = function(x) format(x, big.mark = " ")) +
+  labs(x = NULL, y = NULL,
+       caption = "En gris, promedio mensual de los cierres diarios. Fuente: Yahoo Finance (GC=F, futuros de oro de COMEX).") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "top",
+        panel.grid.minor = element_blank(),
+        plot.caption = element_text(hjust = 0, colour = "#52514e", size = 8))
+```
+
+El periodo de estudio tiene una variación del precio amplia y en ambas direcciones (@tbl-precio-anual y @fig-precio), algo útil para la identificación:
+
+- **2014–2015: caída.** El precio promedio baja `r abs(var_pct(2014, 2015))` % y toca su punto más bajo del periodo en `r mes_anio(min_mes$fecha)`, con `r num(min_mes$precio_promedio_usd_oz)` dólares por onza.
+- **2016–2018: estabilidad**, alrededor de 1 250 dólares por onza.
+- **2019–2020: alza**, de `r var_pct(2018, 2020)` % entre 2018 y 2020.
+- **2021–2022: estabilidad**, alrededor de 1 800 dólares.
+- **2023–2025: alza muy fuerte.** El promedio de 2025 es `r var_pct(2022, 2025)` % mayor que el de 2022 y `r var_pct(2014, 2025)` % mayor que el de 2014.
+
+Fuera del periodo de estudio, el precio siguió subiendo: el máximo mensual de la serie se alcanza en `r mes_anio(max_mes$fecha)`, con `r num(max_mes$precio_promedio_usd_oz)` dólares por onza.
+
+Que la serie tenga caídas, periodos estables y alzas en la misma ventana ayuda a distinguir el efecto del precio de las tendencias propias de los distritos mineros, que no deberían cambiar de dirección al mismo tiempo que el precio.
+
+## Limitaciones
+
+- **Futuros en lugar de spot.** El precio del contrato más cercano no es el precio spot de referencia, aunque ambos se mueven casi igual en promedios mensuales y anuales.
+- **Valores nominales en dólares.** No reflejan la inflación ni el tipo de cambio, que determinan cuántos soles reales recibe un productor peruano por onza.
+- **Términos de uso.** Los datos de Yahoo Finance son para uso personal y no tienen licencia de redistribución. Para una publicación conviene contrastarlos con una fuente oficial, como el Banco Mundial.
+- **Serie desde 2014.** No permite analizar el precio antes del periodo de estudio ni construir rezagos para los primeros años.
