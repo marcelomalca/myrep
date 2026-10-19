@@ -1,0 +1,305 @@
+# Yacimientos de oro {#sec-yacimientos}
+
+```{r}
+#| label: setup-yacimientos
+#| include: false
+source("R/comun.R")
+
+n_capa <- nrow(capa); n_oro <- nrow(oro); n_pre <- nrow(pre)
+n_dist_pre <- n_distinct(pre$DISTRITO)
+n_prov_pre <- n_distinct(pre$PROVINCIA)
+n_dep_pre  <- n_distinct(pre$REGION)
+
+pre <- pre |>
+  left_join(leer_csv(file.path(dir_datos, "insumos/ubigeo_distrito.csv")) |>
+              select(DISTRITO = inei, departamento), by = "DISTRITO")
+
+creacion_pre    <- fecha_ms(pre$CREATIONDATE)
+edit_desde_2014 <- sum(anio_ms(pre$EDITDATE) >= 2014)
+edit_desde_2021 <- sum(anio_ms(pre$EDITDATE) >= 2021)
+```
+
+Este capítulo documenta la base con la que se mide la presencia de oro en cada distrito: la capa de Yacimientos Mineros de GEOCATMIN, del Instituto Geológico, Minero y Metalúrgico (INGEMMET).
+
+::: {.callout-note appearance="simple"}
+## Resumen de la base
+
+- **Fuente:** INGEMMET, GEOCATMIN, capa Yacimientos Mineros [@ingemmet2026], consultada el 12 de octubre de 2026.
+- **Unidad de observación:** un yacimiento (mina, proyecto, prospecto u ocurrencia), representado como un punto.
+- **Registros usados:** `r num(n_pre)` yacimientos cuyo primer elemento principal es el oro y que se incorporaron a la base antes de 2014.
+- **Cobertura:** nacional; los registros se ubican en `r n_dep_pre` departamentos, `r n_prov_pre` provincias y `r n_dist_pre` distritos.
+- **Uso en la investigación:** identificar los distritos con oro conocido antes del periodo de estudio.
+:::
+
+## Fuente
+
+La base es producida por el Programa de Metalogenia de la Dirección de Recursos Minerales y Energéticos de INGEMMET [@huanacuni2010guia] y es el insumo del Mapa Metalogenético del Perú [@acosta2020]. Se publica en GEOCATMIN, el sistema de información geológica y catastral de INGEMMET, como la capa 1 del servicio de mapas `SERV_METALOGENETICO` [@ingemmet2026servicio]. Los registros se descargaron completos mediante la interfaz REST del servicio (`r num(n_capa)` registros de todos los minerales), con código reproducible en Python y R disponible en el repositorio del proyecto.
+
+La base no proviene de un censo ni de una encuesta. INGEMMET la compila a partir de fuentes secundarias: anuarios y reportes del Ministerio de Energía y Minas, memorias de compañías mineras, boletines técnicos del propio INGEMMET, artículos especializados, tesis universitarias y prensa del sector minero [@huanacuni2010guia; @huanacuni2010cpg]. Esta forma de recolección es central para entender qué registros entran a la base (sección [-@sec-yac-seleccion]).
+
+## Unidad de observación
+
+Cada registro es un punto que representa una concentración mineral conocida. INGEMMET distingue cuatro tipos de registro, que corresponden a situaciones económicas muy distintas [@huanacuni2010guia]:
+
+- **Mina:** mina activa donde se extrae mineral, o mina cerrada.
+- **Proyecto:** depósito en estado avanzado de exploración, con recursos reconocidos.
+- **Prospecto:** zona prospectada con resultados de interés económico que requiere estudios de mayor detalle para confirmarse.
+- **Ocurrencia:** concentración natural de minerales cuya explotación no sería rentable en las condiciones vigentes.
+
+En algunos casos el punto representa un distrito minero que agrupa varias unidades, como Orcopampa o Yanacocha. Por eso un registro no equivale a una operación ni indica su tamaño.
+
+## Cobertura
+
+**Temporal.** La capa no es una serie de tiempo: es un inventario acumulado que INGEMMET actualiza de forma continua, y cada consulta devuelve su estado en ese momento. La fecha de creación de cada registro (`CREATIONDATE`) indica cuándo se cargó a la base actual, no cuándo se descubrió el yacimiento. En la base usada, las fechas de creación van del `r format(min(creacion_pre), "%d/%m/%Y")` al `r format(max(creacion_pre), "%d/%m/%Y")`, y el `r pct(sum(format(creacion_pre, "%Y") == "2012"), n_pre)` % de los registros se creó en 2012, lo que sugiere una carga masiva en ese año.
+
+**Espacial.** La cobertura es nacional. Cada registro tiene coordenadas geográficas (WGS84) y los códigos de ubigeo del INEI de su departamento, provincia y distrito.
+
+## Variables
+
+@tbl-variables resume los campos más relevantes de los 78 que contiene la capa y el porcentaje de registros que los tienen completos en la base usada. Los campos de identificación, tipo, elementos y ubicación están completos; los campos sobre el tamaño o la situación económica del yacimiento casi no tienen información.
+
+```{r}
+#| label: tbl-variables
+#| tbl-cap: "Campos principales de la capa y su completitud"
+
+campos <- tribble(
+  ~campo,         ~descripcion,
+  "UNIDAD",       "Nombre de la unidad minera o del yacimiento",
+  "COD_TIPO",     "Tipo de registro: mina, proyecto, prospecto u ocurrencia",
+  "T_YACIM",      "Tipo de depósito (clasificación de INGEMMET en 11 tipos)",
+  "ST_YACIM",     "Subtipo de depósito (vetas, placer, epitermal, etc.)",
+  "ELE_PRINC",    "Elementos económicos principales, ordenados por importancia",
+  "ELE_ACOMPA",   "Elementos acompañantes",
+  "REGION, PROVINCIA, DISTRITO", "Códigos de ubigeo del INEI",
+  "LATITUD, LONGITUD", "Coordenadas geográficas (WGS84)",
+  "FRANJAMET",    "Franja metalogenética",
+  "CREATIONDATE", "Fecha de incorporación del registro a la base",
+  "EDITDATE",     "Fecha de la última edición del registro",
+  "FECHA_REV",    "Fecha de revisión",
+  "CD_CALIDAD",   "Código de calidad de la información",
+  "ESTADO",       "Estado de la operación, a la fecha de la última edición",
+  "CATEGORIA",    "Escala de producción minera",
+  "ALTITUD",      "Altitud (m s. n. m.)",
+  "PRODUCCION, RECURSO, RESERVA", "Producción, recursos y reservas"
+)
+
+completitud <- function(campo) {
+  cols <- trimws(strsplit(campo, ",")[[1]])
+  # Un grupo de campos se considera completo si todos sus campos lo están
+  ok <- Reduce(`&`, lapply(cols, function(cl) lleno(pre[[cl]])))
+  pct(sum(ok), n_pre)
+}
+
+campos |>
+  mutate(completo = sapply(campo, completitud)) |>
+  kable(col.names = c("Campo", "Descripción", "Completo (%)"))
+```
+
+## Qué registros entran a la base {#sec-yac-seleccion}
+
+### Cómo se compila la información
+
+Un yacimiento entra a la base cuando alguna de las fuentes que compila INGEMMET informa sobre él: un anuario del Ministerio de Energía y Minas, la memoria de una empresa, un estudio técnico o una nota de prensa. El oro existe en el subsuelo con independencia de esas fuentes, pero su registro depende de que alguien lo haya explorado, explotado o estudiado. De esto se derivan dos sesgos de selección:
+
+1. **Sesgo hacia la minería formal.** Las empresas formales publican memorias y reportan al Ministerio de Energía y Minas; la minería informal e ilegal no. La minería informal entra a la base solo de forma parcial, sobre todo a través de las ocurrencias de tipo placer.
+2. **Sesgo asociado al precio.** La exploración minera aumenta cuando sube el precio del oro, y con ella el número de prospectos y proyectos registrados. Un registro incorporado durante el periodo de estudio podría existir *a causa* del alza del precio, que es justamente el tratamiento.
+
+### Filtros aplicados
+
+Se aplicaron dos filtros sucesivos (@tbl-filtros):
+
+1. **Oro como elemento principal.** Se conservan los registros cuyo primer elemento principal (`ELE_PRINC`) es el oro. INGEMMET ordena los elementos por importancia, por lo que este criterio identifica los yacimientos que son, ante todo, de oro.
+2. **Registros anteriores a 2014.** Se conservan los registros creados antes del 1 de enero de 2014, para que la presencia de oro se mida con información conocida antes del periodo de estudio. Como la fecha de creación indica la carga y no el descubrimiento, el criterio es conservador: lo cargado antes de 2014 era conocido antes del periodo; lo cargado después puede ser información antigua o nueva.
+
+```{r}
+#| label: tbl-filtros
+#| tbl-cap: "Registros y distritos según los filtros aplicados"
+
+tribble(
+  ~etapa, ~registros, ~distritos,
+  "Capa completa (todos los minerales)", n_capa, n_distinct(capa$DISTRITO),
+  "Oro como primer elemento principal", n_oro, n_distinct(oro$DISTRITO),
+  "Oro como primer elemento principal, creados antes de 2014", n_pre, n_dist_pre
+) |>
+  mutate(across(c(registros, distritos), num)) |>
+  kable(col.names = c("Etapa", "Registros", "Distritos"), align = "lrr")
+```
+
+### Qué cambia con el filtro de fecha
+
+El filtro de 2014 no elimina registros al azar (@tbl-comparacion). La mayoría de los proyectos de oro se incorporó a la base desde 2014, mientras que casi todas las ocurrencias ya estaban registradas antes. Este patrón es consistente con el sesgo asociado al precio: la exploración formal respondió al alza del precio durante el periodo de estudio, y sin el filtro esos registros formarían parte de la medida del tratamiento. El costo del filtro es que la base resultante queda más cargada hacia ocurrencias y depósitos aluviales.
+
+```{r}
+#| label: tbl-comparacion
+#| tbl-cap: "Yacimientos de oro según tipo de registro, antes y después del filtro de 2014"
+
+comp <- full_join(
+  oro |> count(COD_TIPO, name = "todos"),
+  pre |> count(COD_TIPO, name = "antes"),
+  by = "COD_TIPO"
+) |>
+  mutate(antes = coalesce(antes, 0L),
+         excluidos = todos - antes,
+         pct_excl = pct(excluidos, todos),
+         COD_TIPO = factor(COD_TIPO, levels = orden_tipo)) |>
+  arrange(COD_TIPO)
+
+comp |>
+  bind_rows(summarise(comp, COD_TIPO = "Total", todos = sum(todos), antes = sum(antes),
+                      excluidos = sum(excluidos), pct_excl = pct(excluidos, todos))) |>
+  kable(col.names = c("Tipo de registro", "Capa completa", "Creados antes de 2014",
+                      "Excluidos", "Excluidos (%)"),
+        align = "lrrrr")
+```
+
+### Sesgos y limitaciones que permanecen
+
+- **Conteo frente a importancia económica.** La base permite contar registros, pero no medir su tamaño: casi ningún registro tiene datos de producción, recursos o reservas (@tbl-variables).
+- **Minería informal.** El sesgo hacia la minería formal no se corrige con los filtros. La cobertura de la minería informal depende de las ocurrencias y de los depósitos aluviales.
+- **Ediciones posteriores.** Un registro creado antes de 2014 puede haberse editado después: `r edit_desde_2014` registros (`r pct(edit_desde_2014, n_pre)` %) tuvieron su última edición en 2014 o después, y `r edit_desde_2021` de ellos después de 2020. En esos casos, atributos como el tipo de registro o el estado podrían reflejar información del periodo de estudio.
+- **Código frente a coordenadas.** Algunos puntos caen en un distrito distinto al indicado por su código de ubigeo. Se usa el código registrado por INGEMMET, que es la asignación oficial de la fuente.
+
+## Estadísticas descriptivas
+
+### Tipo de registro y tipo de depósito
+
+```{r}
+#| label: tbl-tipos
+#| tbl-cap: "Yacimientos de oro registrados antes de 2014, según tipo de registro y tipo de depósito"
+
+pre |>
+  mutate(COD_TIPO = factor(COD_TIPO, levels = orden_tipo)) |>
+  count(COD_TIPO, deposito) |>
+  pivot_wider(names_from = deposito, values_from = n, values_fill = 0) |>
+  mutate(Total = rowSums(across(where(is.numeric)))) |>
+  arrange(COD_TIPO) |>
+  (\(d) bind_rows(d, summarise(d, COD_TIPO = "Total",
+                               across(where(is.numeric), sum))))() |>
+  mutate(`%` = pct(Total, n_pre)) |>
+  rename(`Tipo de registro` = COD_TIPO) |>
+  kable(align = "lrrrr")
+```
+
+Las ocurrencias son el tipo de registro más frecuente, seguidas de las minas (@tbl-tipos). Los depósitos aluviales (placeres y aluviales) son característicos de la minería de pequeña escala y artesanal, que requiere poco capital; los depósitos en roca (vetas y depósitos epitermales, entre otros) se asocian más a la minería mediana y grande. Esta distinción permitirá estudiar si los efectos del precio difieren según el tipo de minería.
+
+### Distribución territorial
+
+```{r}
+#| label: tbl-departamentos
+#| tbl-cap: "Yacimientos de oro registrados antes de 2014, por departamento"
+
+pre |>
+  count(departamento, name = "n") |>
+  arrange(desc(n)) |>
+  mutate(porc = pct(n, sum(n)), acum = round(cumsum(100 * n / sum(n)), 1)) |>
+  kable(col.names = c("Departamento", "Yacimientos", "%", "% acumulado"),
+        align = "lrrr")
+```
+
+```{r}
+#| label: distribucion-distrital
+por_distrito <- pre |> count(DISTRITO, name = "n")
+clases_dist <- cut(por_distrito$n, breaks = c(0, 1, 2, 4, 9, Inf),
+                   labels = c("1", "2", "3–4", "5–9", "10 o más"))
+resumen <- summary(por_distrito$n)
+top10 <- sum(sort(por_distrito$n, decreasing = TRUE)[1:10])
+```
+
+Los yacimientos se concentran en pocos lugares (@tbl-departamentos): cuatro departamentos (Madre de Dios, Arequipa, Puno y La Libertad) reúnen más de la mitad de los registros. A nivel distrital, la distribución es muy asimétrica. De los `r n_dist_pre` distritos con al menos un yacimiento, `r sum(por_distrito$n == 1)` (`r pct(sum(por_distrito$n == 1), n_dist_pre)` %) tienen uno solo; la mediana es `r resumen[["Median"]]`, el promedio `r round(resumen[["Mean"]], 1)` y el máximo `r resumen[["Max."]]`. Los diez distritos con más yacimientos reúnen `r top10` registros (`r pct(top10, n_pre)` % del total).
+
+```{r}
+#| label: tbl-distritos
+#| tbl-cap: "Distritos según número de yacimientos de oro registrados antes de 2014"
+
+as.data.frame(table(clases_dist)) |>
+  mutate(porc = pct(Freq, sum(Freq))) |>
+  kable(col.names = c("Yacimientos por distrito", "Distritos", "%"), align = "lrr")
+```
+
+```{r}
+#| label: fig-mapa
+#| fig-cap: "Yacimientos de oro registrados antes de 2014, por distrito"
+#| fig-width: 7
+#| fig-height: 8.5
+
+clases <- c("1", "2", "3–4", "5–9", "10 o más")
+colores <- setNames(c("#86b6ef", "#5598e7", "#2a78d6", "#1c5cab", "#0d366b"), clases)
+
+# Cada polígono toma el número de yacimientos de su unidad distrital
+conteo <- pre |> filter(!is.na(ubigeo_base)) |> count(ubigeo_base)
+
+limites |>
+  left_join(conteo, by = "ubigeo_base") |>
+  mutate(clase = cut(coalesce(n, 0L), breaks = c(0, 1, 2, 4, 9, Inf),
+                     labels = clases, include.lowest = FALSE)) |>
+  ggplot() +
+  geom_sf(aes(fill = clase), colour = "#fcfcfb", linewidth = 0.05) +
+  geom_sf(data = departamentos, fill = NA, colour = "#52514e", linewidth = 0.25) +
+  scale_fill_manual(values = colores, na.value = "#ebeae6", drop = FALSE,
+                    breaks = clases, name = "Yacimientos\npor distrito",
+                    guide = guide_legend(override.aes = list(colour = NA))) +
+  labs(caption = "Fuente: INGEMMET, GEOCATMIN (capa Yacimientos Mineros). Límites: INEI.\nEn gris, distritos sin yacimientos de oro registrados antes de 2014.") +
+  coord_sf(datum = NA) +
+  theme_void(base_size = 11) +
+  theme(legend.position = c(0.14, 0.22),
+        plot.caption = element_text(hjust = 0, colour = "#52514e", size = 8))
+```
+
+## De los registros a los distritos {#sec-yac-distritos}
+
+La unidad de análisis de la investigación es el distrito-año, de modo que los yacimientos deben convertirse en una clasificación de distritos. Para tener un mapa fijo durante todo el periodo se usa la división distrital de 2014, la misma que se aplica a la ENAHO (capítulo [-@sec-enaho]):
+
+- Los yacimientos ubicados en distritos creados después de 2014 se asignan al distrito del que estos se separaron.
+- Mazamari y Pangoa se tratan como una sola unidad, porque la ENAHO los registra juntos en parte del periodo.
+
+Con estas reglas, los `r num(nrow(limites))` polígonos de la cartografía del INEI forman `r num(nrow(unidades))` unidades distritales. @tbl-clasificacion presenta la clasificación resultante.
+
+```{r}
+#| label: tbl-clasificacion
+#| tbl-cap: "Clasificación de las unidades distritales según sus yacimientos de oro"
+
+n_uni <- nrow(unidades)
+tribble(
+  ~categoria, ~n,
+  "Con algún yacimiento de oro registrado antes de 2014", length(ids_pre),
+  "   Con al menos una mina o proyecto", length(ids_mina),
+  "   Solo prospectos u ocurrencias", length(setdiff(ids_pre, ids_mina)),
+  "   Con al menos un depósito aluvial", length(ids_aluvial),
+  "Con oro registrado solo desde 2014", length(ids_post),
+  "Sin yacimientos de oro registrados", sum(unidades$categoria == niveles_cat[4]),
+  "Total de unidades distritales", n_uni
+) |>
+  mutate(porc = pct(n, n_uni)) |>
+  kable(col.names = c("Categoría", "Distritos", "% del total"), align = "lrr")
+```
+
+```{r}
+#| label: fig-clasificacion
+#| fig-cap: "Clasificación de los distritos según sus yacimientos de oro"
+#| fig-width: 7
+#| fig-height: 8.5
+
+colores_cat <- setNames(c("#0d366b", "#86b6ef", "#d9822b", "#ebeae6"), niveles_cat)
+
+limites |>
+  left_join(unidades, by = "ubigeo_base") |>
+  ggplot() +
+  geom_sf(aes(fill = categoria), colour = "#fcfcfb", linewidth = 0.05) +
+  geom_sf(data = departamentos, fill = NA, colour = "#52514e", linewidth = 0.25) +
+  scale_fill_manual(values = colores_cat, name = NULL,
+                    guide = guide_legend(override.aes = list(colour = NA))) +
+  labs(caption = "Fuente: INGEMMET, GEOCATMIN (capa Yacimientos Mineros). Límites: INEI.") +
+  coord_sf(datum = NA) +
+  theme_void(base_size = 11) +
+  theme(legend.position = c(0.25, 0.18),
+        legend.text = element_text(size = 8),
+        plot.caption = element_text(hjust = 0, colour = "#52514e", size = 8))
+```
+
+Esta clasificación deja planteadas tres decisiones para la etapa de estimación:
+
+1. **Qué tipos de registro definen el tratamiento.** En esta etapa se conservan todos los tipos. Como ejercicio de robustez se plantean definiciones anidadas: primero minas y proyectos; luego, además, prospectos; y finalmente también ocurrencias. Si el efecto se atenúa al ampliar la definición, es consistente con que los registros de menor desarrollo económico representan una exposición más débil.
+2. **Los distritos con oro registrado solo desde 2014.** No deberían formar parte del grupo de comparación como si no tuvieran oro, porque su registro pudo responder al propio precio. Se propone tratarlos como una categoría aparte y excluirlos del grupo de comparación.
+3. **Aluvial frente a roca.** La distinción entre depósitos aluviales y en roca permite estudiar por separado los efectos asociados a la minería de pequeña escala e informal y a la minería mediana y grande.
+
+Las fuentes propuestas para mejorar la medición de la exposición, en particular de la minería informal, se presentan en el capítulo [-@sec-ampliaciones].

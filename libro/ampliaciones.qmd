@@ -1,0 +1,30 @@
+# Ampliaciones futuras {#sec-ampliaciones}
+
+Las bases presentadas permiten una primera versión de la investigación. Este capítulo reúne las fuentes propuestas para ampliarla en etapas posteriores.
+
+## Medición de la exposición
+
+La identificación inicial de los distritos con oro (capítulo [-@sec-yacimientos]) capta sobre todo la minería formal y solo de manera parcial la minería informal e ilegal. Se propone complementarla con las siguientes fuentes:
+
+| Fuente | Qué aporta | Limitación principal |
+|---|---|---|
+| Producción de oro por unidad minera (Ministerio de Energía y Minas), años previos a 2014 | Intensidad de la exposición formal, no solo presencia | Solo minería que declara producción |
+| Mapa Metalogenético del Oro (INGEMMET, 2010) | Potencial geológico, menos dependiente de la exploración; grupo de comparación con geología similar | Escala regional (1:3 000 000) y franjas polimetálicas |
+| Censo de Población 2007 (INEI): empleo en minería por distrito | Empleo minero formal e informal, previo al periodo | No distingue el mineral; requiere cruce con GEOCATMIN |
+| Registro de Declaraciones de Compromisos (2012) y REINFO (Ministerio de Energía y Minas) | Presencia de minería informal en proceso de formalización, previa al periodo | La inscripción responde a incentivos legales; acceso por solicitud de transparencia |
+| Deforestación por minería (imágenes satelitales) | Validación de la minería aluvial informal | Solo útil en la Amazonía |
+
+## Otros indicadores de bienestar
+
+Además de los resultados principales (capítulo [-@sec-enaho]), se propone evaluar otros indicadores del bienestar de los distritos:
+
+| Indicador | Fuente | Qué aporta |
+|---|---|---|
+| Pobreza monetaria (incidencia y brecha) | ENAHO, sumaria | Resumen estándar del bienestar de los hogares |
+| Necesidades básicas insatisfechas | ENAHO, sumaria | Carencias estructurales, que cambian más lento que el ingreso |
+| Vivienda y activos del hogar | ENAHO, módulo de vivienda y equipamiento | Inversión de los hogares, no solo consumo |
+| Asistencia escolar de 12 a 17 años | ENAHO, módulo de educación | Costo de bienestar si los adolescentes dejan el colegio para trabajar |
+| Afiliación a seguro y acceso a salud | ENAHO, módulo de salud | Acceso a servicios |
+| Migración (lugar de nacimiento y años de residencia) | ENAHO, módulo de miembros del hogar | Vínculo con el resultado de población |
+| Luminosidad nocturna | Imágenes satelitales (VIIRS) | Actividad económica de todos los distritos, todos los años |
+| Transferencias de canon minero | Ministerio de Economía y Finanzas | Mecanismo: distingue el canal del mercado laboral del canal del gasto público |

@@ -1,0 +1,38 @@
+project:
+  type: book
+  output-dir: _book
+
+lang: es
+
+book:
+  title: "Precio del oro y bienestar en los distritos con yacimientos de oro del Perú, 2014–2025"
+  subtitle: "Bases de datos"
+  author: "Marcelo Malca"
+  date: last-modified
+  date-format: "D [de] MMMM [de] YYYY"
+  search: true
+  chapters:
+    - index.qmd
+    - yacimientos.qmd
+    - enaho.qmd
+    - ampliaciones.qmd
+    - referencias.qmd
+
+bibliography:
+  - ../informe/referencias.bib
+  - referencias_enaho.bib
+
+execute:
+  warning: false
+  message: false
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-title: "En este capítulo"
+    code-fold: true
+    code-summary: "Ver código"
+    fig-dpi: 150
+    tbl-cap-location: top

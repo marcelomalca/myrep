@@ -20,3 +20,8 @@ enaho/cache/
 enaho/datos_procesados/hogares.csv
 enaho/datos_procesados/personas.csv
 enaho/datos_procesados/*.rds
+
+# Libro Quarto (salidas generadas)
+libro/_book/
+libro/.quarto/
+libro/*_files/

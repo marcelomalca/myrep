@@ -1,0 +1,358 @@
+# Encuesta Nacional de Hogares {#sec-enaho}
+
+```{r}
+#| label: setup-enaho
+#| include: false
+source("R/comun.R")
+
+hog <- leer_enaho("hogares", c("anio", "ubigeo_base", "area", "factor07", "factor_pob",
+                               "mieperho", "cuestionario_reducido", "tipoentrevista",
+                               "gasto_real_pc", "ingreso_real_pc")) |>
+  mutate(categoria = clasificar(ubigeo_base))
+
+per <- leer_enaho("personas", c("anio", "ubigeo_base", "area", "fac500a", "pea", "ocupado",
+                                "cuestionario_reducido",
+                                "horas_total", "ingreso_laboral_real", "mineria_metalifera",
+                                "categoria_ocupacional", "empleo_informal",
+                                "empleo_sector_informal", "afiliado_pension",
+                                "seguro_salud_empleo")) |>
+  mutate(categoria = clasificar(ubigeo_base))
+
+dist_anio <- read_csv(file.path(dir_enaho, "datos_procesados/distrito_anio.csv"),
+                      col_types = cols(ubigeo_base = "c", .default = col_guess()),
+                      progress = FALSE)
+
+validacion   <- read_csv(file.path(dir_enaho, "datos_procesados/validacion_informalidad.csv"),
+                         show_col_types = FALSE)
+verificacion <- read_csv(file.path(dir_enaho, "datos_procesados/verificacion_oficial.csv"),
+                         show_col_types = FALSE)
+
+anios <- sort(unique(hog$anio))
+n_oro_pre <- sum(unidades$categoria %in% niveles_cat[1:2])
+
+# Indicadores de personas (14 años o más) para cualquier subconjunto
+indicadores_personas <- function(d) {
+  oc <- d$ocupado == 1
+  tibble(
+    actividad = 100 * media_pond(d$pea, d$fac500a),
+    ocupacion = 100 * media_pond(d$ocupado, d$fac500a),
+    informal  = 100 * media_pond(d$empleo_informal[oc], d$fac500a[oc]),
+    sector    = 100 * media_pond(d$empleo_sector_informal[oc], d$fac500a[oc]),
+    horas     = media_pond(ifelse(d$horas_total[oc] > 0, d$horas_total[oc], NA), d$fac500a[oc]),
+    ing_lab   = media_pond(d$ingreso_laboral_real[oc], d$fac500a[oc]),
+    mineria   = 100 * media_pond(d$mineria_metalifera[oc], d$fac500a[oc])
+  )
+}
+indicadores_hogares <- function(d) {
+  tibble(
+    gasto   = media_pond(d$gasto_real_pc, d$factor_pob),
+    ingreso = media_pond(d$ingreso_real_pc, d$factor_pob)
+  )
+}
+```
+
+Este capítulo documenta la base con la que se miden cuatro de los resultados de la investigación: el gasto y el ingreso de los hogares, la informalidad laboral y el mercado laboral. La fuente es la Encuesta Nacional de Hogares (ENAHO) del Instituto Nacional de Estadística e Informática (INEI).
+
+::: {.callout-note appearance="simple"}
+## Resumen de la base
+
+- **Fuente:** INEI, ENAHO, metodología actualizada, anual [@inei_enaho], descargada el 19 de octubre de 2026.
+- **Unidades de observación:** el hogar (gasto e ingreso) y la persona de 14 años o más (informalidad y mercado laboral), con un año de encuesta.
+- **Observaciones:** `r num(nrow(hog))` hogares-año y `r num(nrow(per))` personas-año, entre `r min(anios)` y `r max(anios)`.
+- **Cobertura:** nacional; representativa a nivel nacional, por área y por departamento, pero **no a nivel distrital**.
+- **Uso en la investigación:** medir los resultados en los distritos con y sin oro, antes y después de los cambios en el precio.
+:::
+
+## Fuente
+
+La ENAHO es la encuesta continua de condiciones de vida del INEI y la fuente oficial de las cifras de pobreza, empleo e ingreso del Perú. Se basa en una muestra probabilística de viviendas, estratificada y por conglomerados, que se levanta durante todo el año. Se usan los microdatos anuales (enero a diciembre) de la metodología actualizada, que el INEI publica en su portal de microdatos.
+
+Se descargaron cinco módulos para cada uno de los doce años, sin modificarlos:
+
+| Módulo | Contenido | Uso |
+|---|---|---|
+| 01 | Características de la vivienda y del hogar | Identificadores y área |
+| 02 | Características de los miembros del hogar | Residencia habitual |
+| 04 | Salud | Seguro de salud pagado por el empleador (informalidad) |
+| 05 | Empleo e ingresos | Mercado laboral, ingreso laboral e informalidad |
+| 34 | Sumarias (variables calculadas por el INEI) | Gasto e ingreso del hogar, deflactores |
+
+La descarga, la limpieza y la construcción de las variables están en los scripts de la carpeta `enaho/` del repositorio, que corren de principio a fin sin pasos manuales. El detalle de cada variable por año está en `enaho/inventario.md` y `enaho/diccionario.md`.
+
+## Unidad de observación
+
+A partir de la encuesta se construyeron tres bases:
+
+```{r}
+#| label: tbl-bases-enaho
+#| tbl-cap: "Bases construidas a partir de la ENAHO"
+
+tribble(
+  ~base, ~unidad, ~universo, ~filas,
+  "Hogares", "Hogar en un año", "Todos los hogares de la sumaria", nrow(hog),
+  "Personas", "Persona en un año", "Residentes habituales de 14 años o más", nrow(per),
+  "Distrito-año", "Distrito (división de 2014) en un año", "Distritos con al menos un hogar en la muestra", nrow(dist_anio)
+) |>
+  mutate(filas = num(filas)) |>
+  kable(col.names = c("Base", "Unidad de observación", "Universo", "Filas"), align = "lllr")
+```
+
+La ENAHO no es un panel de distritos: cada año encuesta hogares distintos, y los hogares de un distrito representan a ese distrito solo de manera aproximada. Por eso las bases de hogares y personas son las unidades principales, y la base distrito-año resume sus promedios ponderados junto con el número de observaciones que sustenta cada uno.
+
+## Cobertura
+
+**Temporal.** Doce años, de `r min(anios)` a `r max(anios)`, con el mismo cuestionario y las mismas variables. La excepción es 2020: por la pandemia, el `r pct(sum(hog$anio == 2020 & hog$tipoentrevista == 2, na.rm = TRUE), sum(hog$anio == 2020))` % de los hogares se entrevistó por teléfono con un cuestionario reducido, entre marzo y setiembre. En febrero de 2021 se volvió a usar ese cuestionario durante la segunda cuarentena.
+
+**Espacial.** La muestra cubre todo el país, pero está diseñada para estimar a nivel nacional, por área urbana y rural y por departamento. Cada año aparece solo una parte de los distritos, con pocos hogares cada uno (@tbl-cobertura).
+
+```{r}
+#| label: tbl-cobertura
+#| tbl-cap: "Cobertura de la muestra por año"
+
+cob <- hog |>
+  group_by(anio) |>
+  summarise(hogares = n(),
+            distritos = n_distinct(ubigeo_base),
+            hog_mediana = median(table(ubigeo_base)),
+            .groups = "drop")
+
+cob_oro <- hog |>
+  filter(categoria %in% niveles_cat[1:2]) |>
+  group_by(anio) |>
+  summarise(dist_oro = n_distinct(ubigeo_base),
+            hog_oro = n(),
+            hog_oro_mediana = median(table(ubigeo_base)),
+            .groups = "drop")
+
+# El indicador de cuestionario reducido se toma de la base de personas, que lo
+# registra en 2020 y en febrero de 2021
+pers <- per |>
+  group_by(anio) |>
+  summarise(personas = n(),
+            reducido = pct(sum(cuestionario_reducido == 1, na.rm = TRUE), n()),
+            .groups = "drop")
+
+cob |>
+  left_join(pers, by = "anio") |>
+  left_join(cob_oro, by = "anio") |>
+  transmute(anio, hogares = num(hogares), personas = num(personas), distritos,
+            hog_mediana, dist_oro, hog_oro = num(hog_oro), hog_oro_mediana, reducido) |>
+  kable(col.names = c("Año", "Hogares", "Personas de 14 años o más", "Distritos en la muestra",
+                      "Hogares por distrito (mediana)",
+                      paste0("Distritos con oro antes de 2014 (de ", n_oro_pre, ")"),
+                      "Hogares en distritos con oro", "Hogares por distrito con oro (mediana)",
+                      "Cuestionario reducido (% de personas)"),
+        align = "rrrrrrrrr")
+```
+
+## Variables
+
+### Resultados
+
+Se construyeron cuatro grupos de resultados. Los valores monetarios están en soles de 2025 a precios de Lima Metropolitana: se deflactan en el tiempo con el índice de precios de cada departamento y en el espacio con el deflactor de cada dominio geográfico, ambos publicados por el INEI con la sumaria de 2025.
+
+| Indicador | Definición | Universo | Variables de origen |
+|---|---|---|---|
+| **Gasto** | | | |
+| Gasto real per cápita | Gasto total del hogar al mes, por miembro, en soles de 2025 | Hogares | `gashog2d`, `mieperho` |
+| **Ingreso** | | | |
+| Ingreso real per cápita | Ingreso bruto del hogar al mes, por miembro, en soles de 2025 | Hogares | `inghog1d`, `mieperho` |
+| Ingreso laboral real | Ingreso mensual de la ocupación principal y la secundaria (monetario, en especie y extraordinario) | Ocupados, excepto trabajadores familiares no remunerados | Módulo 05 (`i524a1`, `d529t`, `i530a`, `d536` y otras) |
+| Ingreso laboral por hora | Ingreso laboral entre las horas trabajadas en el mes | Ocupados con ingreso y horas | Derivada |
+| **Informalidad laboral** | | | |
+| Empleo informal | Ocupado en el sector informal, trabajador familiar no remunerado o asalariado sin seguro de salud pagado por el empleador | Ocupados | Reconstruida con los criterios del INEI |
+| Empleo en el sector informal | Ocupado informal en una unidad productiva no registrada en SUNAT o agropecuaria | Ocupados | Reconstruida con los criterios del INEI |
+| Afiliación a pensiones | Afiliado a AFP, ONP u otro sistema | Ocupados | `p558a1`–`p558a4` |
+| Seguro de salud por el empleo | Algún seguro de salud pagado por el centro de trabajo | Ocupados | `p419a1`–`p419a8` |
+| **Mercado laboral** | | | |
+| Tasa de actividad | Ocupados y desocupados abiertos, sobre la población de 14 años o más | 14 años o más | `ocu500` |
+| Tasa de ocupación | Ocupados sobre la población de 14 años o más | 14 años o más | `ocu500` |
+| Horas trabajadas | Horas de la semana pasada en todas las ocupaciones | Ocupados | `i513t`, `i518` |
+| Rama de actividad | Sección de la CIIU rev. 4; incluye el empleo en extracción de minerales metalíferos (división 07) | Ocupados | `p506r4` |
+| Categoría ocupacional | Empleador, asalariado, independiente, trabajador familiar no remunerado u otro | Ocupados | `p507` |
+
+### Decisiones de construcción
+
+- **Ingreso bruto del hogar.** Es el que usa la serie oficial de ingreso real del INEI, y la reproduce exactamente.
+- **Población económicamente activa.** Incluye a los ocupados y a los desocupados abiertos, como en la definición oficial; los desocupados ocultos se consideran inactivos.
+- **Trabajadores familiares no remunerados.** Su ingreso laboral queda vacío, no en cero, porque por definición no lo perciben.
+- **Residencia habitual.** La base de personas incluye solo a los residentes habituales del hogar, según el criterio del INEI.
+- **Factores de expansión.** Se usa la serie anual del INEI, consistente en todo el periodo: el factor del hogar multiplicado por sus miembros para los indicadores per cápita, y el factor de personas para los indicadores laborales.
+- **Geografía.** Cada observación se asigna a su distrito de la división de 2014 (`ubigeo_base`), con las mismas reglas que la base de yacimientos (sección [-@sec-yac-distritos]). Así, ambas bases se cruzan sin pérdidas.
+
+### Reconstrucción de la informalidad
+
+El INEI dejó de incluir sus variables de informalidad (`ocupinf` y `emplpsec`) en la ENAHO de 2024 y 2025. Para tener una sola definición en todo el periodo, se reconstruyeron para los doce años a partir de sus componentes, siguiendo el procedimiento publicado por el INEI [@inei_informal]: tipo de empleador, tamaño de la unidad, registro en SUNAT, rama agropecuaria y seguro de salud pagado por el empleador. En los años en que existe la variable oficial, la reconstrucción coincide caso por caso con ella en más del 99.8 % de los ocupados (@tbl-validacion). Las variables oficiales se conservan en las bases para comparar.
+
+```{r}
+#| label: tbl-validacion
+#| tbl-cap: "Informalidad reconstruida frente a la variable oficial del INEI"
+
+validacion |>
+  transmute(anio, ocupados = num(ocupados),
+            coincidencia_informal_pct, tasa_informal_oficial, tasa_informal_reconstruida,
+            coincidencia_sector_pct, tasa_sector_oficial, tasa_sector_reconstruida) |>
+  kable(col.names = c("Año", "Ocupados en la muestra",
+                      "Empleo informal: coincidencia (%)", "Tasa oficial (%)", "Tasa reconstruida (%)",
+                      "Sector informal: coincidencia (%)", "Tasa oficial (%)", "Tasa reconstruida (%)"),
+        align = "rrrrrrrr")
+```
+
+## Qué observaciones entran a la base
+
+### El diseño de la muestra
+
+Un hogar entra a la base si su vivienda fue seleccionada en la muestra de ese año. La selección es aleatoria, pero no uniforme entre distritos: la muestra se distribuye para representar a cada departamento y área, por lo que los distritos más poblados aparecen todos los años y muchos distritos pequeños o rurales aparecen solo algunos años o nunca. Esto tiene tres consecuencias:
+
+1. **Los distritos que nunca aparecen quedan fuera del análisis.** No es una pérdida aleatoria: son, en general, los distritos más pequeños.
+2. **Los promedios distritales tienen mucho error muestral.** La mediana es de alrededor de 14 hogares por distrito y año (@tbl-cobertura).
+3. **Un distrito puede entrar y salir de la muestra.** Las comparaciones en el tiempo dentro de un distrito se basan en hogares distintos cada año.
+
+@tbl-anios-muestra muestra cuántos años aparece cada unidad distrital, según su clasificación por yacimientos de oro.
+
+```{r}
+#| label: tbl-anios-muestra
+#| tbl-cap: "Unidades distritales según el número de años en que aparecen en la muestra"
+
+anios_dist <- hog |> distinct(ubigeo_base, anio) |> count(ubigeo_base, name = "anios")
+
+unidades |>
+  left_join(anios_dist, by = "ubigeo_base") |>
+  mutate(anios = coalesce(anios, 0L),
+         tramo = cut(anios, breaks = c(-Inf, 0, 5, 11, 12),
+                     labels = c("Nunca", "1 a 5 años", "6 a 11 años", "Los 12 años"))) |>
+  count(categoria, tramo) |>
+  pivot_wider(names_from = tramo, values_from = n, values_fill = 0) |>
+  mutate(Total = rowSums(across(where(is.numeric)))) |>
+  rename(`Clasificación del distrito` = categoria) |>
+  kable(align = "lrrrrr")
+```
+
+### Otros criterios de inclusión
+
+- **Personas.** Solo residentes habituales de 14 años o más, que es la población a la que el módulo de empleo hace las preguntas laborales.
+- **2020–2021.** Los hogares con cuestionario reducido tienen menos detalle en el ingreso de la ocupación secundaria; las bases los identifican para poder excluirlos en ejercicios de robustez.
+
+## Estadísticas descriptivas
+
+### Evolución nacional
+
+```{r}
+#| label: tbl-nacional
+#| tbl-cap: "Indicadores nacionales por año (promedios ponderados)"
+
+nac_h <- hog |> group_by(anio) |> group_modify(~ indicadores_hogares(.x)) |> ungroup()
+nac_p <- per |> group_by(anio) |> group_modify(~ indicadores_personas(.x)) |> ungroup()
+
+nac_h |>
+  left_join(nac_p, by = "anio") |>
+  mutate(across(c(gasto, ingreso, ing_lab), ~ num(.x)),
+         across(c(actividad, ocupacion, informal, sector, horas, mineria), ~ num(.x, 1))) |>
+  select(anio, gasto, ingreso, actividad, ocupacion, informal, sector, horas, ing_lab, mineria) |>
+  kable(col.names = c("Año", "Gasto real per cápita (S/)", "Ingreso real per cápita (S/)",
+                      "Tasa de actividad (%)", "Tasa de ocupación (%)", "Empleo informal (%)",
+                      "Sector informal (%)", "Horas semanales", "Ingreso laboral real (S/)",
+                      "Empleo en minería metalífera (%)"),
+        align = "rrrrrrrrrr")
+```
+
+A nivel nacional (@tbl-nacional), el gasto y el ingreso real per cápita caen con fuerza en 2020 por la pandemia y en 2025 todavía no recuperan el nivel de 2019. La informalidad sube en 2020–2021 y baja desde 2022, aunque al final del periodo sigue por encima de su nivel previo a la pandemia. El empleo en minería metalífera representa alrededor del 1 % de los ocupados del país.
+
+### Distritos con y sin oro al inicio del periodo
+
+```{r}
+#| label: tbl-linea-base
+#| tbl-cap: "Indicadores en 2014 según la clasificación del distrito por yacimientos de oro (promedios ponderados)"
+
+base_h <- hog |> filter(anio == 2014) |> group_by(categoria) |>
+  group_modify(~ bind_cols(indicadores_hogares(.x),
+                           tibble(rural = 100 * media_pond(.x$area == 2, .x$factor_pob),
+                                  hogares = nrow(.x)))) |> ungroup()
+base_p <- per |> filter(anio == 2014) |> group_by(categoria) |>
+  group_modify(~ indicadores_personas(.x)) |> ungroup()
+
+base_h |>
+  left_join(base_p, by = "categoria") |>
+  transmute(categoria, hogares = num(hogares), rural = num(rural, 1), gasto = num(gasto),
+            ingreso = num(ingreso), ocupacion = num(ocupacion, 1), informal = num(informal, 1),
+            sector = num(sector, 1), ing_lab = num(ing_lab), mineria = num(mineria, 1)) |>
+  kable(col.names = c("Clasificación del distrito", "Hogares en la muestra",
+                      "Población rural (%)", "Gasto real per cápita (S/)",
+                      "Ingreso real per cápita (S/)", "Tasa de ocupación (%)",
+                      "Empleo informal (%)", "Sector informal (%)",
+                      "Ingreso laboral real (S/)", "Empleo en minería metalífera (%)"),
+        align = "lrrrrrrrrr")
+```
+
+Al inicio del periodo (@tbl-linea-base), los distritos con oro son más rurales, tienen menor gasto e ingreso y más informalidad que los distritos sin oro. El empleo en minería metalífera distingue con claridad a los distritos con minas o proyectos, donde es varias veces mayor que en el resto; en los distritos que solo tienen prospectos u ocurrencias es apenas superior al de los distritos sin oro. Esto respalda usar las minas y proyectos como definición principal del tratamiento, y los demás tipos de registro como exposición más débil. Las diferencias de nivel no son un problema en sí para el diseño, que compara cambios en el tiempo, pero muestran que los distritos sin oro no son un grupo de comparación directo: la comparación debe controlar por las características fijas de cada distrito y por las tendencias regionales.
+
+```{r}
+#| label: fig-evolucion
+#| fig-cap: "Evolución de indicadores seleccionados en distritos con y sin oro (promedios ponderados)"
+#| fig-width: 8
+#| fig-height: 6
+
+grupo <- function(cat) case_when(
+  cat %in% niveles_cat[1:2] ~ "Con oro antes de 2014",
+  cat == niveles_cat[4]     ~ "Sin oro registrado",
+  TRUE                      ~ NA_character_
+)
+
+ev_h <- hog |> mutate(grupo = grupo(categoria)) |> filter(!is.na(grupo)) |>
+  group_by(anio, grupo) |> group_modify(~ indicadores_hogares(.x)) |> ungroup()
+ev_p <- per |> mutate(grupo = grupo(categoria)) |> filter(!is.na(grupo)) |>
+  group_by(anio, grupo) |> group_modify(~ indicadores_personas(.x)) |> ungroup()
+
+ev_h |>
+  left_join(ev_p, by = c("anio", "grupo")) |>
+  select(anio, grupo,
+         `Gasto real per cápita (S/)` = gasto,
+         `Empleo informal (%)` = informal,
+         `Tasa de ocupación (%)` = ocupacion,
+         `Empleo en minería metalífera (%)` = mineria) |>
+  pivot_longer(-c(anio, grupo), names_to = "indicador", values_to = "valor") |>
+  ggplot(aes(anio, valor, colour = grupo)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 1.4) +
+  facet_wrap(~ indicador, scales = "free_y") +
+  scale_colour_manual(values = c("Con oro antes de 2014" = "#1c5cab",
+                                 "Sin oro registrado" = "#8a8984"), name = NULL) +
+  scale_x_continuous(breaks = seq(2014, 2025, 2)) +
+  labs(x = NULL, y = NULL,
+       caption = "Fuente: INEI, ENAHO 2014–2025; INGEMMET, GEOCATMIN. Se excluyen los distritos con oro registrado solo desde 2014.") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "top",
+        panel.grid.minor = element_blank(),
+        strip.text = element_text(face = "bold", hjust = 0),
+        plot.caption = element_text(hjust = 0, colour = "#52514e", size = 8))
+```
+
+@fig-evolucion compara la evolución de cuatro indicadores. Las diferencias de nivel entre ambos grupos se mantienen en todo el periodo. Un patrón llamativo es la recuperación tras la pandemia: en 2025, el gasto real per cápita de los distritos con oro está cerca de su nivel de 2019, mientras que en los distritos sin oro sigue claramente por debajo, en años en que el precio del oro subió con fuerza. Es una descripción, no una estimación del efecto: los promedios de cada grupo provienen de muestras de distritos que cambian de un año a otro, y no controlan por otras diferencias entre ellos.
+
+## Verificación contra cifras oficiales
+
+Los indicadores nacionales se compararon con las cifras publicadas por el INEI [@inei_empleo2018; @inei_pobreza2025]. Las diferencias son pequeñas (@tbl-verificacion). Para los indicadores laborales no hay cifras oficiales calculadas con la ENAHO después de 2018, porque desde entonces el INEI las publica con otra encuesta.
+
+```{r}
+#| label: tbl-verificacion
+#| tbl-cap: "Indicadores construidos frente a las cifras oficiales del INEI"
+
+verificacion |>
+  filter(!grepl("oficial ocupinf|método INEI", version)) |>
+  mutate(indicador = recode(indicador,
+    "empleo_informal (%)" = "Empleo informal (%)",
+    "gasto_real_pc (S/ 2025)" = "Gasto real per cápita (S/ de 2025)",
+    "ingreso_laboral nominal (S/)" = "Ingreso laboral nominal (S/)",
+    "tasa_actividad (%)" = "Tasa de actividad (%)")) |>
+  transmute(indicador, anio, oficial, valor, diferencia_pct) |>
+  kable(col.names = c("Indicador", "Año", "Cifra oficial", "Construido", "Diferencia (%)"),
+        align = "lrrrr")
+```
+
+## Limitaciones
+
+- **Representatividad distrital.** La ENAHO no está diseñada para estimar a nivel distrital. Por eso la estimación debe hacerse con los datos de hogares y personas, con efectos fijos de distrito y errores estándar agrupados por distrito, y no con los promedios distritales.
+- **Distritos con oro fuera de la muestra.** Parte de los distritos con oro nunca aparece en la encuesta (@tbl-anios-muestra), y otros aparecen pocos años.
+- **2020–2021.** Las entrevistas telefónicas y el cuestionario reducido pueden afectar la comparabilidad; los resultados deberán probarse excluyendo esos años.
+- **Informalidad 2024–2025.** La reconstrucción reproduce la variable oficial en los años en que existe, pero no puede validarse directamente en 2024 y 2025. Conviene confirmar que las preguntas en que se basa no cambiaron en esos años y probar los resultados sin ellos.
+- **Diferencias pequeñas sin explicar.** La tasa de actividad queda entre 0.1 y 0.2 puntos por debajo de la oficial, y el ingreso laboral nominal, 0.3 % por debajo (`enaho/diccionario.md`).

@@ -1,0 +1,25 @@
+# Presentación {.unnumbered}
+
+Esta investigación analiza cómo la variación del precio internacional del oro afecta a la población de los distritos peruanos con yacimientos de oro entre 2014 y 2025. Los resultados de interés son la población, el mercado laboral, la informalidad laboral, el ingreso y el gasto de los hogares y la delincuencia.
+
+La variación proviene de combinar dos elementos. El primero es el precio del oro, que se fija en el mercado internacional y es el mismo para todos los distritos. El segundo es la presencia de oro en cada distrito, que se mide antes del periodo de estudio para que no dependa del propio precio. Un distrito con oro debería verse afectado por las subidas y bajadas del precio; uno sin oro, no.
+
+## Las bases de datos
+
+Este libro documenta las bases de datos del proyecto. Cada capítulo presenta una base con la misma ficha:
+
+1. **Fuente:** quién produce la información y cómo se obtuvo.
+2. **Unidad de observación:** qué representa cada fila.
+3. **Cobertura:** qué periodo y qué territorio abarca.
+4. **Variables:** qué se observa y cómo se construye.
+5. **Criterios de inclusión:** qué determina que una observación entre a la base, y los sesgos de selección que eso implica.
+6. **Estadísticas descriptivas.**
+
+| Capítulo | Base | Rol en la investigación | Unidad de observación | Periodo |
+|---|---|---|---|---|
+| [-@sec-yacimientos] | Yacimientos Mineros de GEOCATMIN (INGEMMET) | Identificar los distritos con oro | Yacimiento | Registros anteriores a 2014 |
+| [-@sec-enaho] | Encuesta Nacional de Hogares (INEI) | Medir los resultados: gasto, ingreso, informalidad y mercado laboral | Hogar y persona | 2014–2025 |
+
+Las bases de población y delincuencia se incorporarán en capítulos posteriores. El capítulo [-@sec-ampliaciones] reúne las fuentes propuestas para ampliar la investigación en etapas siguientes.
+
+Todas las cifras de este libro se calculan con código en R a partir de los archivos del repositorio del proyecto, de modo que se actualizan si cambian los datos. El código de cada tabla y figura puede verse con el botón *Ver código*.
