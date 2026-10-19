@@ -12,3 +12,8 @@ __pycache__/
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+
+# Quarto (salidas generadas)
+.quarto/
+quarto/*.html
+quarto/*_files/
