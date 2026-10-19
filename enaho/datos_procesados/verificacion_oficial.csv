@@ -1,0 +1,25 @@
+indicador,version,anio,oficial,valor,diferencia,diferencia_pct,fuente
+empleo_informal (%),construido (reconstruido),2014,72.8,72.8,-0,-0,"E, cuadro 7.4"
+empleo_informal (%),construido (reconstruido),2015,73.2,73.13,-0.07,-0.09,"E, cuadro 7.4"
+empleo_informal (%),construido (reconstruido),2016,72,71.94,-0.06,-0.09,"E, cuadro 7.4"
+empleo_informal (%),construido (reconstruido),2017,72.5,72.52,0.02,0.02,"E, cuadro 7.4"
+empleo_informal (%),construido (reconstruido),2018,72.4,72.43,0.03,0.04,"E, cuadro 7.4"
+empleo_informal (%),variable oficial ocupinf [M],2014,72.8,72.84,0.04,0.05,"E, cuadro 7.4"
+empleo_informal (%),variable oficial ocupinf [M],2015,73.2,73.15,-0.05,-0.07,"E, cuadro 7.4"
+empleo_informal (%),variable oficial ocupinf [M],2016,72,71.97,-0.03,-0.04,"E, cuadro 7.4"
+empleo_informal (%),variable oficial ocupinf [M],2017,72.5,72.55,0.05,0.06,"E, cuadro 7.4"
+empleo_informal (%),variable oficial ocupinf [M],2018,72.4,72.44,0.04,0.05,"E, cuadro 7.4"
+gasto_real_pc (S/ 2025),construido (gashog2d con i00),2024,903,903.87,0.87,0.1,P
+gasto_real_pc (S/ 2025),construido (gashog2d con i00),2025,920,920.43,0.43,0.05,P
+gasto_real_pc (S/ 2025),método INEI por grupos,2024,903,902.62,-0.38,-0.04,P
+gasto_real_pc (S/ 2025),método INEI por grupos,2025,920,920.43,0.43,0.05,P
+ingreso_laboral nominal (S/),construido,2014,1239.9,1235.81,-4.09,-0.33,"E, cuadro 10.1"
+ingreso_laboral nominal (S/),construido,2015,1304.9,1301.39,-3.51,-0.27,"E, cuadro 10.1"
+ingreso_laboral nominal (S/),construido,2016,1370.7,1366.72,-3.98,-0.29,"E, cuadro 10.1"
+ingreso_laboral nominal (S/),construido,2017,1376.8,1372.61,-4.19,-0.3,"E, cuadro 10.1"
+ingreso_laboral nominal (S/),construido,2018,1400.1,1396.48,-3.62,-0.26,"E, cuadro 10.1"
+tasa_actividad (%),construido,2014,72.3,72.21,-0.09,-0.13,"E, cuadro 1.27"
+tasa_actividad (%),construido,2015,71.6,71.45,-0.15,-0.21,"E, cuadro 1.27"
+tasa_actividad (%),construido,2016,72.2,72.01,-0.19,-0.26,"E, cuadro 1.27"
+tasa_actividad (%),construido,2017,72.4,72.32,-0.08,-0.11,"E, cuadro 1.27"
+tasa_actividad (%),construido,2018,72.3,72.22,-0.08,-0.11,"E, cuadro 1.27"

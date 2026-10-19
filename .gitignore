@@ -17,3 +17,6 @@ __pycache__/
 enaho/datos_brutos/**/*.zip
 enaho/cache/
 *.part
+enaho/datos_procesados/hogares.csv
+enaho/datos_procesados/personas.csv
+enaho/datos_procesados/*.rds

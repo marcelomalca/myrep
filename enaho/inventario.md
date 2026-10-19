@@ -243,8 +243,10 @@ Ingreso laboral mensual entre las horas trabajadas en el mes (decisión 5).
 | `p506` | Rama, CIIU rev. 3 | x | Ninguno |
 | `p507` | Categoría ocupacional (1 empleador, 2 independiente, 3 empleado, 4 obrero, 5 TFNR, 6 trabajador del hogar, 7 otro) | x | Ninguno |
 
-- **Tasas.** Tasa de actividad = PEA (`ocu500` 1–3) / población de 14 años o más.
-  Tasa de ocupación = ocupados (`ocu500 == 1`) / población de 14 años o más.
+- **Tasas.** Tasa de actividad = PEA / población de 14 años o más. Tasa de
+  ocupación = ocupados (`ocu500 == 1`) / población de 14 años o más.
+  *Corrección de la fase 2:* la PEA oficial del INEI es `ocu500` 1–2 (ocupados y
+  desocupados abiertos), no 1–3; ver `diccionario.md`.
 - **Rama y división 07.** `p506r4` es numérica, así que el cero inicial se pierde
   (0710 se guarda como 710). División = `floor(p506r4 / 100)`; la división 07
   (extracción de minerales metalíferos) corresponde a los códigos 710–729.
