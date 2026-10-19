@@ -12,3 +12,8 @@ __pycache__/
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+
+# ENAHO: microdatos descargados (~0.9 GB) y copia extraída (~7 GB); se regeneran con enaho/01_descarga.R
+enaho/datos_brutos/**/*.zip
+enaho/cache/
+*.part
