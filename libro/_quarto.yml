@@ -16,12 +16,15 @@ book:
     - yacimientos.qmd
     - precio_oro.qmd
     - enaho.qmd
+    - delincuencia.qmd
+    - grupos.qmd
     - ampliaciones.qmd
     - referencias.qmd
 
 bibliography:
   - ../informe/referencias.bib
   - referencias_enaho.bib
+  - referencias_delincuencia.bib
 
 execute:
   warning: false

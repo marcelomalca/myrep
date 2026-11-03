@@ -20,7 +20,8 @@ Este libro documenta las bases de datos del proyecto. Cada capítulo presenta un
 | [-@sec-yacimientos] | Yacimientos Mineros de GEOCATMIN (INGEMMET) | Identificar los distritos con oro | Yacimiento | Registros anteriores a 2014 |
 | [-@sec-precio] | Precio del oro (Yahoo Finance, futuros de COMEX) | Medir el cambio en el valor del oro | Mes y año | 2014–2026 |
 | [-@sec-enaho] | Encuesta Nacional de Hogares (INEI) | Medir los resultados: gasto, ingreso, informalidad y mercado laboral | Hogar y persona | 2014–2025 |
+| [-@sec-delincuencia] | ENAPRES y módulo de gobernabilidad de la ENAHO (INEI) | Medir la delincuencia: victimización, percepción de inseguridad y confianza en la Policía | Persona y hogar | 2014–2025 |
 
-Las bases de población y delincuencia se incorporarán en capítulos posteriores. El capítulo [-@sec-ampliaciones] reúne las fuentes propuestas para ampliar la investigación en etapas siguientes.
+El capítulo [-@sec-grupos] reúne las bases para definir los grupos de tratamiento y de comparación, y cuenta cuántos distritos de cada grupo aparecen en las encuestas. La base de población y los registros administrativos de denuncias se incorporarán en etapas posteriores. El capítulo [-@sec-ampliaciones] reúne las fuentes propuestas para ampliar la investigación en etapas siguientes.
 
 Todas las cifras de este libro se calculan con código en R a partir de los archivos del repositorio del proyecto, de modo que se actualizan si cambian los datos. El código de cada tabla y figura puede verse con el botón *Ver código*.

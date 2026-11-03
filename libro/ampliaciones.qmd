@@ -24,6 +24,7 @@ La serie inicial del precio (capítulo [-@sec-precio]) es nominal, en dólares, 
 | Índice de precios al consumidor de EE. UU. (Bureau of Labor Statistics) | Precio real en dólares | — |
 | Tipo de cambio e índice de precios de Lima (Banco Central de Reserva del Perú) | Precio real en soles: lo que recibe un productor peruano por onza | — |
 | Serie anterior a 2014 | Rezagos del precio y evolución previa al periodo de estudio | — |
+| Precios del cobre, la plata y el zinc (Banco Mundial, Pink Sheet) | Controlar la exposición a otros metales en la comparación con distritos mineros sin oro (capítulo [-@sec-grupos]) | — |
 
 ## Otros indicadores de bienestar
 

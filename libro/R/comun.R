@@ -13,6 +13,7 @@ sf_use_s2(FALSE)
 
 dir_datos <- "../datos"
 dir_enaho <- "../enaho"
+dir_delito <- "../delincuencia"
 
 # ---------------------------------------------------------------------------
 # Utilidades
@@ -21,10 +22,11 @@ leer_csv <- function(ruta) {
   read_csv(ruta, col_types = cols(.default = col_character()), progress = FALSE)
 }
 
-# Lee una base procesada de la ENAHO. Usa el .parquet si el paquete arrow está
+# Lee una base procesada de la ENAHO (o de otra carpeta con la misma estructura,
+# como delincuencia/). Usa el .parquet si el paquete arrow está
 # instalado; si no, el .csv que generan los scripts de enaho/ en la misma carpeta.
-leer_enaho <- function(nombre, columnas) {
-  base <- file.path(dir_enaho, "datos_procesados", nombre)
+leer_enaho <- function(nombre, columnas, dir = dir_enaho) {
+  base <- file.path(dir, "datos_procesados", nombre)
   if (requireNamespace("arrow", quietly = TRUE) && file.exists(paste0(base, ".parquet"))) {
     as_tibble(arrow::read_parquet(paste0(base, ".parquet"), col_select = all_of(columnas)))
   } else {
@@ -32,6 +34,7 @@ leer_enaho <- function(nombre, columnas) {
              col_types = cols(ubigeo = "c", ubigeo_base = "c", .default = col_guess()))
   }
 }
+leer_delito <- function(nombre, columnas) leer_enaho(nombre, columnas, dir = dir_delito)
 
 lleno <- function(x) !is.na(x) & trimws(x) != ""
 pct   <- function(x, total) round(100 * x / total, 1)
@@ -122,3 +125,43 @@ clasificar <- function(ubigeo_base) {
 
 unidades <- tibble(ubigeo_base = unique(limites$ubigeo_base)) |>
   mutate(categoria = clasificar(ubigeo_base))
+
+# ---------------------------------------------------------------------------
+# Subgrupos del grupo de comparación (distritos sin oro registrado)
+# ---------------------------------------------------------------------------
+# Se usan todos los registros de la capa, de cualquier fecha.
+elementos <- strsplit(gsub(" ", "", coalesce(capa$ELE_PRINC, "")), ",")
+capa_base <- capa |>
+  mutate(au_secundario = vapply(elementos, function(e) "Au" %in% e[-1], logical(1)),
+         primer_elemento = vapply(elementos, function(e) e[1], character(1))) |>
+  asignar_base()
+
+ids_control    <- unidades$ubigeo_base[unidades$categoria == niveles_cat[4]]
+ids_trat       <- unidades$ubigeo_base[unidades$categoria %in% niveles_cat[1:2]]
+reg_control    <- capa_base |> filter(ubigeo_base %in% ids_control)
+ids_au_sec     <- unique(reg_control$ubigeo_base[reg_control$au_secundario])
+ids_otros_met  <- setdiff(unique(reg_control$ubigeo_base), ids_au_sec)
+
+# Distritos que comparten límite con un distrito con oro antes de 2014
+poligonos   <- limites |> group_by(ubigeo_base) |> summarise(.groups = "drop")
+ids_vecinos <- poligonos$ubigeo_base[
+  lengths(st_touches(poligonos, poligonos[poligonos$ubigeo_base %in% ids_trat, ])) > 0
+]
+ids_vecinos <- setdiff(ids_vecinos, ids_trat)
+
+niveles_control <- c("Con oro como elemento secundario",
+                     "Solo con otros metales",
+                     "Sin yacimientos registrados")
+sub_control <- function(ubigeo_base) {
+  factor(case_when(
+    !ubigeo_base %in% ids_control  ~ NA_character_,
+    ubigeo_base %in% ids_au_sec    ~ niveles_control[1],
+    ubigeo_base %in% ids_otros_met ~ niveles_control[2],
+    TRUE                           ~ niveles_control[3]
+  ), levels = niveles_control)
+}
+
+unidades <- unidades |>
+  mutate(sub_control = sub_control(ubigeo_base),
+         vecino = ubigeo_base %in% ids_vecinos,
+         departamento = substr(ubigeo_base, 1, 2))

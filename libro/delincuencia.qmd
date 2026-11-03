@@ -1,0 +1,386 @@
+# Delincuencia {#sec-delincuencia}
+
+```{r}
+#| label: setup-delincuencia
+#| include: false
+source("R/comun.R")
+
+ep <- leer_delito("enapres_personas",
+                  c("anio", "mes", "ubigeo_base", "factor", "modalidad", "victima_comun",
+                    "victima_completa", "robo_dinero", "robo_vehiculo", "amenazas",
+                    "extorsion", "estafa", "robo_negocio", "ofensas_sexuales", "arma_fuego",
+                    "denuncio", "percepcion", "factor_percepcion")) |>
+  mutate(categoria = clasificar(ubigeo_base))
+eh_viv <- leer_delito("enapres_hogares", c("anio", "ubigeo_base", "factor", "robo_vivienda")) |>
+  mutate(categoria = clasificar(ubigeo_base))
+eh <- leer_delito("enaho_hogares", c("anio", "ubigeo_base", "area", "factor07",
+                                     "hecho_delictivo", "cuestionario_reducido")) |>
+  mutate(categoria = clasificar(ubigeo_base))
+eo <- leer_delito("enaho_opinion", c("anio", "ubigeo_base", "area", "factor",
+                                     "delincuencia_problema", "inseguridad_problema",
+                                     "confia_pnp")) |>
+  mutate(categoria = clasificar(ubigeo_base))
+
+da <- read_csv(file.path(dir_delito, "datos_procesados/distrito_anio.csv"),
+               col_types = cols(ubigeo_base = "c", .default = col_guess()), progress = FALSE) |>
+  mutate(categoria = clasificar(ubigeo_base))
+verif <- read_csv(file.path(dir_delito, "datos_procesados/verificacion_oficial.csv"),
+                  show_col_types = FALSE)
+registro_d <- read_csv(file.path(dir_delito, "datos_brutos/registro_descargas.csv"),
+                       show_col_types = FALSE)
+
+anios <- 2014:2025
+n_oro_pre <- sum(unidades$categoria %in% niveles_cat[1:2])
+con_oro <- function(cat) cat %in% niveles_cat[1:2]
+
+# Distritos con oro que aparecen alguna vez en cada encuesta
+oro_enapres <- n_distinct(ep$ubigeo_base[con_oro(ep$categoria)])
+oro_enaho   <- n_distinct(eh$ubigeo_base[con_oro(eh$categoria) & !is.na(eh$hecho_delictivo)])
+mina_enapres <- n_distinct(ep$ubigeo_base[ep$categoria == niveles_cat[1]])
+n_2020 <- sum(eh$anio == 2020 & !is.na(eh$hecho_delictivo))
+fecha_desc <- format(as.Date(min(registro_d$fecha_descarga_utc)), "%d/%m/%Y")
+```
+
+Este capítulo documenta la base con la que se mide la delincuencia, el último de los resultados de la investigación. Usa dos encuestas del Instituto Nacional de Estadística e Informática (INEI): la Encuesta Nacional de Programas Presupuestales (ENAPRES), cuyo capítulo de seguridad ciudadana es la fuente oficial de la victimización en el Perú, y el módulo de gobernabilidad de la ENAHO, que llega también a las zonas rurales. Los registros administrativos de denuncias de la Policía Nacional (SIDPOL) se incorporarán a este capítulo más adelante.
+
+::: {.callout-note appearance="simple"}
+## Resumen de la base
+
+- **Fuente:** INEI, ENAPRES, capítulos de seguridad ciudadana y de vivienda [@inei_enapres], y ENAHO, módulo 85 de Gobernabilidad, Democracia y Transparencia [@inei_enaho]; descargadas el `r fecha_desc`.
+- **Unidades de observación:** la persona de 15 años o más del área urbana (ENAPRES), el hogar urbano (robo de vivienda, ENAPRES), el hogar urbano y rural (ENAHO) y una persona de 18 años o más por hogar (opinión, ENAHO), cada una con un año de encuesta.
+- **Observaciones:** `r num(nrow(ep))` personas-año en la ENAPRES y `r num(nrow(eh))` hogares-año en la ENAHO, entre `r min(anios)` y `r max(anios)`.
+- **Cobertura:** la ENAPRES mide la delincuencia **solo en el área urbana** y llega a `r oro_enapres` de los `r n_oro_pre` distritos con oro; la ENAHO cubre lo urbano y lo rural y llega a `r oro_enaho`. Ninguna es representativa a nivel distrital.
+- **Uso en la investigación:** medir la victimización, la percepción de inseguridad y la confianza en la Policía en los distritos con y sin oro.
+:::
+
+## Fuente
+
+**ENAPRES.** Es la encuesta que el INEI usa para medir los resultados de los programas presupuestales del Estado; su capítulo de seguridad ciudadana es la fuente de las cifras oficiales de victimización y percepción de inseguridad [@inei_victimizacion2024]. Se levanta todo el año con una muestra probabilística de viviendas. Se usaron tres partes de la encuesta en cada año:
+
+| Parte | Contenido | Uso |
+|---|---|---|
+| Capítulo 100 | Vivienda y hogar | Robo o intento de robo en la vivienda |
+| Capítulo 200 | Residentes del hogar | Edad |
+| Seguridad ciudadana (capítulo 600 en 2014–2024; 400 en 2025) | Victimización por tipo de delito, denuncia, uso de armas y percepción de inseguridad | Victimización y percepción |
+
+**ENAHO, módulo 85.** Es el módulo de Gobernabilidad, Democracia y Transparencia, que la ENAHO aplica a los mismos hogares del capítulo [-@sec-enaho]. Tiene dos partes: una pregunta al hogar sobre los problemas que lo afectaron en el último año, entre ellos un hecho delictivo, y un cuestionario de opinión a un miembro de 18 años o más, con los principales problemas del país y la confianza en las instituciones.
+
+Se descargaron `r nrow(registro_d)` archivos del portal de microdatos del INEI, sin modificarlos. La descarga, la construcción de las variables y la verificación están en los scripts de la carpeta `delincuencia/` del repositorio; el detalle por año está en `delincuencia/inventario.md` y `delincuencia/diccionario.md`.
+
+## Unidad de observación
+
+```{r}
+#| label: tbl-bases-delito
+#| tbl-cap: "Bases construidas para medir la delincuencia"
+
+tribble(
+  ~base, ~unidad, ~universo, ~filas,
+  "ENAPRES, personas", "Persona en un año", "Población urbana de 15 años o más", nrow(ep),
+  "ENAPRES, hogares", "Hogar en un año", "Hogares urbanos", nrow(eh_viv),
+  "ENAHO, hogares", "Hogar en un año", "Todos los hogares (urbanos y rurales)", nrow(eh),
+  "ENAHO, opinión", "Persona en un año", "Una persona de 18 años o más por hogar", nrow(eo),
+  "Distrito-año", "Distrito (división de 2014) en un año", "Distritos con al menos una observación en alguna de las cuatro bases", nrow(da)
+) |>
+  mutate(filas = num(filas)) |>
+  kable(col.names = c("Base", "Unidad de observación", "Universo", "Filas"), align = "lllr")
+```
+
+Como en la ENAHO, ninguna de las dos encuestas es un panel de distritos: cada año se entrevista a personas y hogares distintos. Las bases de personas y hogares son las unidades principales, y la base distrito-año resume sus proporciones ponderadas con el número de observaciones (`n_`) y la suma de factores (`peso_`) de cada indicador.
+
+## Cobertura
+
+**Temporal.** Doce años, de `r min(anios)` a `r max(anios)`, en ambas encuestas. Las preguntas de victimización mantienen la misma redacción y el mismo periodo de referencia, los últimos 12 meses, pero la lista de delitos de la ENAPRES cambia en 2016, 2023, 2024 y 2025 (sección [-@sec-delito-cambios]).
+
+**Espacial.** Las dos encuestas cubren todo el país, pero con diferencias importantes:
+
+- **ENAPRES:** el capítulo de seguridad y la pregunta de robo de vivienda se aplican **solo en el área urbana**. La encuesta visita alrededor de 540 distritos por año, sobre todo capitales de provincia y ciudades; en ellos se entrevista a una mediana de unas 40 personas.
+- **ENAHO:** la pregunta del hogar y la de opinión se aplican en lo urbano y lo rural. La muestra visita alrededor de 1 200 distritos por año, con una mediana de unos 14 hogares.
+
+```{r}
+#| label: tbl-cobertura-delito
+#| tbl-cap: "Cobertura de la muestra por año"
+
+cob <- function(d, ok) {
+  d |>
+    filter(ok) |>
+    group_by(anio) |>
+    summarise(obs = n(), dist = n_distinct(ubigeo_base),
+              mediana = median(table(ubigeo_base)),
+              oro = n_distinct(ubigeo_base[con_oro(categoria)]),
+              mina = n_distinct(ubigeo_base[categoria == niveles_cat[1]]),
+              .groups = "drop")
+}
+c_ep <- cob(ep, !is.na(ep$victima_comun))
+c_eh <- cob(eh, !is.na(eh$hecho_delictivo))
+
+c_ep |>
+  left_join(c_eh, by = "anio", suffix = c("_ep", "_eh")) |>
+  transmute(anio, num(obs_ep), dist_ep, mediana_ep, oro_ep, mina_ep,
+            num(obs_eh), dist_eh, mediana_eh, oro_eh, mina_eh) |>
+  kable(col.names = c("Año",
+                      "ENAPRES: personas", "Distritos", "Personas por distrito (mediana)",
+                      paste0("Distritos con oro (de ", n_oro_pre, ")"), "Con mina o proyecto (de 120)",
+                      "ENAHO: hogares con dato", "Distritos", "Hogares por distrito (mediana)",
+                      paste0("Distritos con oro (de ", n_oro_pre, ")"), "Con mina o proyecto (de 120)"),
+        align = "rrrrrrrrrrr")
+```
+
+## Variables
+
+### Indicadores
+
+Todos los indicadores valen 1 o 0 en las bases de personas y hogares, y son proporciones ponderadas en la base distrito-año.
+
+| Indicador | Definición | Universo | Encuesta |
+|---|---|---|---|
+| **Victimización** | | | |
+| `victima_comun` | Víctima de al menos un delito en los últimos 12 meses, con la lista de delitos presente los 12 años. **Indicador principal de la ENAPRES** | Personas urbanas de 15 años o más | ENAPRES |
+| `victima_completa` | Igual, con todos los delitos de la lista de cada año; reproduce la cifra oficial de cada año | Igual | ENAPRES |
+| `robo_dinero` | Robo o intento de robo de dinero, cartera o celular | Igual | ENAPRES |
+| `robo_vehiculo` | Robo de vehículo automotor, motocicleta o mototaxi | Igual | ENAPRES |
+| `amenazas`, `extorsion`, `estafa`, `robo_negocio`, `ofensas_sexuales` | Víctima de cada tipo de delito; la extorsión es solo la consumada | Igual | ENAPRES |
+| `arma_fuego` | Víctima de algún delito en que se usó un arma de fuego | Igual | ENAPRES |
+| `robo_vivienda` | El hogar sufrió un robo o un intento de robo en la vivienda | Hogares urbanos | ENAPRES |
+| `hecho_delictivo` | El hogar "se vio afectado" por un hecho delictivo (robo, asalto, etc.). **Único indicador de victimización con cobertura rural** | Hogares urbanos y rurales | ENAHO |
+| **Denuncia** | | | |
+| `denuncio` | Denunció al menos uno de los delitos sufridos | Víctimas | ENAPRES |
+| **Percepción y confianza** | | | |
+| `percepcion` | Cree que podría ser víctima de algún delito en los próximos 12 meses | Personas urbanas de 15 años o más | ENAPRES |
+| `delincuencia_problema` | Menciona la delincuencia entre los principales problemas del país | Una persona de 18 años o más por hogar | ENAHO |
+| `inseguridad_problema` | Menciona la delincuencia o la falta de seguridad ciudadana | Igual | ENAHO |
+| `confia_pnp` | Confía "suficiente" o "bastante" en la Policía Nacional | Igual | ENAHO |
+
+Las dos medidas de victimización no son comparables entre sí. La ENAPRES pregunta a cada persona, delito por delito, si fue víctima. La ENAHO pregunta si el hogar se vio afectado por un hecho delictivo, como un ítem dentro de una lista de problemas económicos del hogar, como la pérdida de empleo o una enfermedad. Por eso la ENAHO capta solo los hechos que el hogar percibe como un golpe, y su nivel es mucho menor: 2 a 4 % de los hogares, frente a 18 a 31 % de las personas en la ENAPRES.
+
+### Cambios en el cuestionario {#sec-delito-cambios}
+
+- **Lista de delitos de la ENAPRES.** En 2016 se agrega el intento de extorsión; en 2023, los delitos informáticos, que en 2024 se desagregan en seis tipos; en 2024 aparece el vandalismo, que pregunta por "víctima o testigo" y no se usa. `victima_comun` mantiene fija la lista de los 12 años; `victima_completa` sigue la del INEI y sube en 2016 y en 2023–2024 por los tipos nuevos.
+- **Estafa en 2025.** Baja de 3.8 % a 2.0 % junto con la reorganización de los delitos informáticos; no es comparable con los años anteriores sin cuidado.
+- **Percepción en 2024–2025.** Se pregunta solo a una submuestra de unas 24 mil personas, con su propio factor; en la mediana quedan unas 15 personas por distrito. En 2025 se agrega además una pregunta general nueva, que se guarda aparte (`percepcion_general_2025`) y no se mezcla con la serie.
+- **ENAHO.** La redacción y las categorías del módulo 85 no cambian en los 12 años.
+
+### Decisiones de construcción
+
+- **Edad.** Se usa la población de 15 años o más en todos los años, como en las cifras del INEI, aunque hasta 2024 la ENAPRES también entrevista a personas de 14 años.
+- **Factores de expansión.** Los de cada base. En 2020–2021 se usa el factor que incluye las entrevistas telefónicas de la ENAPRES; la diferencia con el factor calibrado solo para entrevistas presenciales es de 0.1 a 0.3 puntos a nivel nacional.
+- **Denuncia.** Se mide entre las víctimas, sin identificar un hecho principal, porque la ENAPRES no lo distingue.
+- **Arma de fuego.** Se mide sobre toda la población, no solo sobre las víctimas. Los delitos informáticos y la estafa de 2025 no tienen pregunta de arma.
+- **"No sabe".** En la confianza en la Policía cuenta como "no confía", como en los reportes del INEI.
+- **Geografía.** Cada observación se asigna a su distrito de 2014 (`ubigeo_base`), con la misma tabla de correspondencia que las demás bases (sección [-@sec-yac-distritos]). Todos los códigos de ambas encuestas encontraron su distrito.
+
+## Qué observaciones entran a la base
+
+### Solo distritos urbanos en la ENAPRES
+
+El principal sesgo de selección de esta base es que la ENAPRES solo mide la delincuencia en las zonas urbanas. Muchos distritos con oro son rurales y pequeños, y no tienen zona urbana en la muestra. Por eso la ENAPRES llega a `r oro_enapres` de los `r n_oro_pre` distritos con oro, y a `r mina_enapres` de los 120 con mina o proyecto. Los que sí aparecen son en su mayoría capitales de provincia, donde la minería puede pesar menos que en el resto del distrito. La ENAHO llega a muchos más distritos con oro (@tbl-presencia-delito).
+
+```{r}
+#| label: tbl-presencia-delito
+#| tbl-cap: "Unidades distritales según el número de años en que aparecen en cada encuesta"
+
+presencia <- function(d, ok, fuente) {
+  anios_d <- d |> filter(ok) |> distinct(ubigeo_base, anio) |> count(ubigeo_base, name = "anios")
+  unidades |>
+    left_join(anios_d, by = "ubigeo_base") |>
+    mutate(anios = coalesce(anios, 0L)) |>
+    group_by(categoria) |>
+    summarise(total = n(), nunca = sum(anios == 0), algun = sum(anios > 0),
+              seis = sum(anios >= 6), doce = sum(anios == 12), .groups = "drop") |>
+    mutate(fuente = fuente)
+}
+
+bind_rows(presencia(ep, !is.na(ep$victima_comun), "ENAPRES (personas urbanas)"),
+          presencia(eh, !is.na(eh$hecho_delictivo), "ENAHO (hogares)")) |>
+  select(fuente, categoria, total, nunca, algun, seis, doce) |>
+  kable(col.names = c("Encuesta", "Clasificación del distrito", "Distritos", "Nunca",
+                      "Algún año", "6 años o más", "Los 12 años"),
+        align = "llrrrrr")
+```
+
+Esto deja dos medidas complementarias, cada una con un sesgo distinto:
+
+- La **ENAPRES** mide bien la delincuencia, con preguntas detalladas a cada persona, pero solo en las ciudades. Sirve para estudiar los efectos en los centros urbanos de las zonas con oro, como las capitales de provincia, que reciben población y comercio cuando la minería crece.
+- La **ENAHO** cubre casi todos los distritos con oro, también en lo rural, pero con una pregunta mucho más gruesa y con muchos ceros.
+
+### Otros criterios de inclusión
+
+- **Opinión en la ENAHO.** Responde una sola persona por hogar, de 18 años o más, elegida por el cumpleaños más reciente. Se excluyen las filas sin respuesta ni factor (unas 2 000 a 3 000 por año).
+- **2020.** La ENAPRES se hizo por teléfono de abril a agosto, con menos entrevistas. El cuestionario telefónico de la ENAHO no incluyó la pregunta del hecho delictivo, así que en 2020 solo hay `r num(n_2020)` hogares con dato, casi todos de enero a marzo y de octubre a diciembre. La opinión sí se preguntó por teléfono. La base distrito-año trae la proporción de entrevistas telefónicas y de cuestionarios reducidos de cada distrito.
+- **Entrevistas incompletas de la ENAPRES.** Se incluyen si tienen respuesta a la victimización y factor de expansión, como hace el INEI.
+
+## Estadísticas descriptivas
+
+### Evolución nacional
+
+```{r}
+#| label: tbl-nacional-delito
+#| tbl-cap: "Indicadores nacionales por año (%, promedios ponderados)"
+
+p100 <- function(x, w) 100 * media_pond(x, w)
+nac_ep <- ep |> group_by(anio) |>
+  summarise(victima = p100(victima_comun, factor), robo = p100(robo_dinero, factor),
+            arma = p100(arma_fuego, factor), denuncia = p100(denuncio, factor),
+            percepcion = p100(percepcion, factor_percepcion), .groups = "drop")
+nac_viv <- eh_viv |> group_by(anio) |> summarise(vivienda = p100(robo_vivienda, factor))
+nac_eh  <- eh |> group_by(anio) |> summarise(hecho = p100(hecho_delictivo, factor07))
+nac_eo  <- eo |> group_by(anio) |>
+  summarise(problema = p100(delincuencia_problema, factor), pnp = p100(confia_pnp, factor))
+
+nac_ep |>
+  left_join(nac_viv, by = "anio") |> left_join(nac_eh, by = "anio") |> left_join(nac_eo, by = "anio") |>
+  mutate(across(-anio, ~ num(.x, 1))) |>
+  select(anio, victima, robo, arma, denuncia, percepcion, vivienda, hecho, problema, pnp) |>
+  kable(col.names = c("Año", "Víctima de algún delito", "Robo o intento de robo de dinero",
+                      "Víctima con arma de fuego", "Denunció (entre víctimas)",
+                      "Percepción de inseguridad", "Robo o intento en vivienda",
+                      "Hogar afectado por hecho delictivo (ENAHO)",
+                      "Delincuencia, problema principal (ENAHO)", "Confía en la PNP (ENAHO)"),
+        align = "rrrrrrrrrr")
+```
+
+En las zonas urbanas (@tbl-nacional-delito), la victimización baja de alrededor de 30 % en 2014–2015 a su punto más bajo en 2021, durante la pandemia, y luego sube sin volver al nivel inicial. El robo de dinero, cartera o celular es el delito más frecuente. Solo una de cada siete víctimas denuncia, y más de cuatro de cada cinco personas creen que podrían ser víctimas en el próximo año. En la ENAHO, la mención de la delincuencia como problema del país cae en 2020–2021 y llega en 2025 a su máximo del periodo, mientras la confianza en la Policía alcanza su mínimo.
+
+### Distritos con y sin oro al inicio del periodo
+
+```{r}
+#| label: tbl-linea-base-delito
+#| tbl-cap: "Indicadores en 2014 según la clasificación del distrito por yacimientos de oro (%, promedios ponderados)"
+
+lb <- function(d, v, w) d |> filter(anio == 2014, !is.na(.data[[v]])) |> group_by(categoria) |>
+  summarise(!!v := p100(.data[[v]], .data[[w]]), !!paste0("n_", v) := n(), .groups = "drop")
+
+lb(ep, "victima_comun", "factor") |>
+  left_join(lb(ep, "robo_dinero", "factor") |> select(-n_robo_dinero), by = "categoria") |>
+  left_join(lb(ep, "percepcion", "factor_percepcion") |> select(-n_percepcion), by = "categoria") |>
+  left_join(lb(eh, "hecho_delictivo", "factor07"), by = "categoria") |>
+  left_join(lb(eo, "delincuencia_problema", "factor") |> select(-n_delincuencia_problema), by = "categoria") |>
+  left_join(lb(eo, "confia_pnp", "factor") |> select(-n_confia_pnp), by = "categoria") |>
+  transmute(categoria, num(n_victima_comun), num(victima_comun, 1), num(robo_dinero, 1),
+            num(percepcion, 1), num(n_hecho_delictivo), num(hecho_delictivo, 1),
+            num(delincuencia_problema, 1), num(confia_pnp, 1)) |>
+  kable(col.names = c("Clasificación del distrito", "ENAPRES: personas",
+                      "Víctima de algún delito", "Robo o intento de robo de dinero",
+                      "Percepción de inseguridad", "ENAHO: hogares",
+                      "Hogar afectado por hecho delictivo", "Delincuencia, problema principal",
+                      "Confía en la PNP"),
+        align = "lrrrrrrrr")
+```
+
+En 2014 (@tbl-linea-base-delito), la victimización es menor en los distritos con oro que en los distritos sin oro, en ambas encuestas. La diferencia refleja sobre todo que el grupo sin oro incluye a Lima y a las grandes ciudades de la costa, donde la delincuencia es mayor. En cambio, en los distritos con mina o proyecto la confianza en la Policía es la más baja de los cuatro grupos, y la percepción de inseguridad, de las más altas. Como en la ENAHO, esto muestra que la comparación debe hacerse dentro de cada región y con efectos fijos de distrito (capítulo [-@sec-grupos]).
+
+```{r}
+#| label: fig-evolucion-delito
+#| fig-cap: "Evolución de indicadores seleccionados en distritos con y sin oro (%, promedios ponderados)"
+#| fig-width: 8
+#| fig-height: 6
+
+grupo <- function(cat) case_when(
+  cat %in% niveles_cat[1:2] ~ "Con oro antes de 2014",
+  cat == niveles_cat[4]     ~ "Sin oro registrado",
+  TRUE                      ~ NA_character_
+)
+evol <- function(d, v, w, etiqueta) {
+  d |> mutate(grupo = grupo(categoria)) |> filter(!is.na(grupo), !is.na(.data[[v]])) |>
+    group_by(anio, grupo) |> summarise(valor = p100(.data[[v]], .data[[w]]), .groups = "drop") |>
+    mutate(indicador = etiqueta)
+}
+
+bind_rows(evol(ep, "victima_comun", "factor", "Víctima de algún delito (ENAPRES, urbano)"),
+          evol(ep, "robo_dinero", "factor", "Robo o intento de robo de dinero (ENAPRES, urbano)"),
+          evol(eh, "hecho_delictivo", "factor07", "Hogar afectado por hecho delictivo (ENAHO)"),
+          evol(eo, "delincuencia_problema", "factor", "Delincuencia, problema principal (ENAHO)")) |>
+  ggplot(aes(anio, valor, colour = grupo)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 1.4) +
+  facet_wrap(~ indicador, scales = "free_y") +
+  scale_colour_manual(values = c("Con oro antes de 2014" = "#1c5cab",
+                                 "Sin oro registrado" = "#8a8984"), name = NULL) +
+  scale_x_continuous(breaks = seq(2014, 2025, 2)) +
+  labs(x = NULL, y = NULL,
+       caption = "Fuente: INEI, ENAPRES y ENAHO 2014–2025; INGEMMET, GEOCATMIN. Se excluyen los distritos con oro registrado solo desde 2014.") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "top",
+        panel.grid.minor = element_blank(),
+        strip.text = element_text(face = "bold", hjust = 0),
+        plot.caption = element_text(hjust = 0, colour = "#52514e", size = 8))
+```
+
+Los dos grupos siguen trayectorias parecidas (@fig-evolucion-delito): caída hasta 2021 y alza posterior. En la ENAPRES, la brecha en la victimización urbana oscila entre 4 y 7 puntos, sin una tendencia clara. En la ENAHO, el hecho delictivo es casi igual en ambos grupos en 2018–2020 y se separa desde 2021, con menos hechos en los distritos con oro, en los años en que el precio sube con fuerza. Es solo una descripción: los distritos de la muestra cambian de un año a otro, los distritos con oro de la ENAPRES son pocos y los promedios no controlan por otras diferencias entre los grupos.
+
+### Distrito-año sin casos
+
+Como cada distrito tiene pocas observaciones por año, muchos indicadores valen cero en la mayoría de los distrito-año. @tbl-ceros muestra qué proporción de los distrito-año con observaciones no registra ningún caso.
+
+```{r}
+#| label: tbl-ceros
+#| tbl-cap: "Distrito-año sin ningún caso en la muestra, 2014–2025"
+
+indic <- c(victima_comun = "Víctima de algún delito (ENAPRES)",
+           robo_dinero = "Robo o intento de robo de dinero (ENAPRES)",
+           estafa = "Estafa (ENAPRES)", amenazas = "Amenazas (ENAPRES)",
+           arma_fuego = "Víctima con arma de fuego (ENAPRES)",
+           robo_negocio = "Robo de negocio (ENAPRES)",
+           ofensas_sexuales = "Ofensas sexuales (ENAPRES)",
+           robo_vehiculo = "Robo de vehículo (ENAPRES)", extorsion = "Extorsión (ENAPRES)",
+           robo_vivienda = "Robo o intento en vivienda (ENAPRES)",
+           hecho_delictivo = "Hogar afectado por hecho delictivo (ENAHO)")
+
+lapply(names(indic), function(v) {
+  d <- da |> filter(.data[[paste0("n_", v)]] > 0)
+  o <- d |> filter(con_oro(categoria))
+  tibble(indicador = indic[[v]], filas = nrow(d),
+         n_mediana = median(d[[paste0("n_", v)]]),
+         cero = pct(sum(d[[v]] == 0), nrow(d)),
+         filas_oro = nrow(o), cero_oro = pct(sum(o[[v]] == 0), nrow(o)))
+}) |>
+  bind_rows() |>
+  mutate(across(c(filas, filas_oro), num)) |>
+  kable(col.names = c("Indicador", "Distrito-año con observaciones", "Observaciones (mediana)",
+                      "Sin casos (%)", "Distrito-año con oro", "Sin casos, distritos con oro (%)"),
+        align = "lrrrrr")
+```
+
+Solo la victimización general y el robo de dinero tienen variación útil entre distritos. Los delitos más graves o menos frecuentes, como la extorsión, el robo de vehículo o las ofensas sexuales, son cero en la gran mayoría de los distrito-año, y el hecho delictivo de la ENAHO lo es en dos de cada tres. Para esos indicadores, la estimación debe hacerse con las observaciones individuales y no con tasas distritales.
+
+## Verificación contra cifras oficiales
+
+Los indicadores nacionales se compararon con los publicados por el INEI con la ENAPRES [@inei_victimizacion2024] y con el módulo de gobernabilidad de la ENAHO, para el segundo semestre [@inei_gobernabilidad2024]. @tbl-verificacion-delito presenta la cifra oficial y la construida en cada año con dato oficial.
+
+```{r}
+#| label: tbl-verificacion-delito
+#| tbl-cap: "Indicadores construidos frente a las cifras oficiales del INEI (%, oficial / construido)"
+
+etiquetas <- c(
+  "victimizacion|victima_comun" = "Víctima de algún delito: lista fija (`victima_comun`)",
+  "victimizacion|victima_completa" = "Víctima de algún delito: lista de cada año (`victima_completa`)",
+  "arma_fuego_entre_victimas|arma_fuego entre víctimas de la lista común" = "Arma de fuego, entre víctimas",
+  "denuncia|denuncio entre víctimas de la lista común" = "Denunció, entre víctimas",
+  "percepcion|percepcion" = "Percepción de inseguridad",
+  "robo_vivienda|robo_vivienda" = "Robo o intento en vivienda",
+  "delincuencia_problema (jul-dic)|delincuencia_problema" = "Delincuencia, problema principal (ENAHO, jul.–dic.)",
+  "confia_pnp (jul-dic)|confia_pnp" = "Confía en la PNP (ENAHO, jul.–dic.)")
+
+tabla_v <- verif |>
+  mutate(clave = paste(indicador, version, sep = "|")) |>
+  filter(clave %in% names(etiquetas), !is.na(oficial)) |>
+  mutate(indicador = factor(etiquetas[clave], levels = etiquetas),
+         valor = paste(format(oficial, nsmall = 1), "/", format(construido, nsmall = 1))) |>
+  select(indicador, anio, valor) |>
+  arrange(anio) |>
+  pivot_wider(names_from = anio, values_from = valor, values_fill = "") |>
+  arrange(indicador)
+kable(tabla_v, col.names = c("Indicador", names(tabla_v)[-1]),
+      align = paste0("l", strrep("r", ncol(tabla_v) - 1)))
+```
+
+Las coincidencias son exactas en 2015 y muy cercanas en el resto de años. Desde 2016, la victimización y la percepción quedan entre 0.2 y 0.9 puntos por debajo de la cifra oficial. Como la proporción de víctimas con arma de fuego coincide, las víctimas identificadas son las mismas y la diferencia parece estar en los totales de población que usa el INEI; es pequeña y estable, así que no afecta las comparaciones entre años o distritos. En 2023–2024 la brecha de `victima_comun` es mayor porque el INEI agrega los delitos nuevos a su lista; con la lista de cada año (`victima_completa`) la brecha vuelve a ser pequeña. El hecho delictivo de la ENAHO no tiene una cifra oficial publicada con la cual compararlo.
+
+## Limitaciones
+
+- **Cobertura urbana de la ENAPRES.** La mejor medida de victimización llega solo a una parte de los distritos con oro, y solo a su zona urbana. Los efectos que se estimen con ella corresponden a las ciudades de las zonas con oro, no a los asentamientos mineros.
+- **Medida gruesa en la ENAHO.** El hecho delictivo de la ENAHO cubre lo rural, pero mide solo los delitos que el hogar percibe como un golpe, con muchos ceros por distrito.
+- **Representatividad distrital.** Ninguna encuesta está diseñada para estimar a nivel distrital; las tasas distritales tienen mucho error muestral. La estimación debe hacerse con los datos de personas y hogares, con efectos fijos de distrito y errores agrupados por distrito.
+- **Lugar del delito.** Las encuestas registran dónde vive la víctima, no dónde ocurrió el delito. Si la delincuencia asociada a la minería afecta a personas de paso, como trabajadores temporales, las encuestas de hogares no la captan.
+- **Delitos poco frecuentes.** Extorsión, robo de vehículo y delitos con arma de fuego son muy raros por distrito-año; sus efectos solo podrán estimarse con mucha imprecisión.
+- **Quiebres de serie.** La estafa en 2025 y la percepción en 2024–2025 no son comparables con los años anteriores sin ajustes; 2020 tiene entrevistas telefónicas y una muestra reducida en la ENAHO.
+- **Registros administrativos.** Las denuncias del SIDPOL, que se agregarán después, darán cobertura completa de distritos desde 2018, pero dependen de que la víctima denuncie y de la presencia policial, que pueden cambiar con la propia minería.

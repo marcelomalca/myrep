@@ -1,0 +1,217 @@
+# Grupos de tratamiento y de comparación {#sec-grupos}
+
+```{r}
+#| label: setup-grupos
+#| include: false
+source("R/comun.R")
+
+hog <- leer_enaho("hogares", c("anio", "ubigeo_base", "area", "factor_pob", "gasto_real_pc"))
+per <- leer_enaho("personas", c("anio", "ubigeo_base", "fac500a", "ocupado",
+                                "empleo_informal", "mineria_metalifera")) |>
+  filter(ocupado == 1)
+ep  <- leer_delito("enapres_personas", c("anio", "ubigeo_base", "factor", "victima_comun"))
+eh  <- leer_delito("enaho_hogares", c("anio", "ubigeo_base", "factor07", "hecho_delictivo"))
+
+nombres_dep <- leer_csv(file.path(dir_datos, "insumos/ubigeo_distrito.csv")) |>
+  transmute(cod = substr(inei, 1, 2), nombre = tools::toTitleCase(tolower(departamento))) |>
+  distinct(cod, .keep_all = TRUE) |>
+  rename(departamento = cod)
+
+# Grupos del diseño
+ids_comp    <- setdiff(ids_control, ids_au_sec)          # comparación principal
+ids_excl    <- unidades$ubigeo_base[unidades$categoria == niveles_cat[3]]
+grupos <- list(
+  "Tratamiento: mina o proyecto antes de 2014"        = ids_mina,
+  "Tratamiento: solo prospectos u ocurrencias"        = setdiff(ids_trat, ids_mina),
+  "Comparación principal"                             = ids_comp,
+  "  · solo con yacimientos de otros metales"        = intersect(ids_comp, ids_otros_met),
+  "  · vecinos de un distrito con oro"               = intersect(ids_comp, ids_vecinos),
+  "  · no vecinos"                                   = setdiff(ids_comp, ids_vecinos),
+  "Excluidos: oro registrado solo desde 2014"         = ids_excl,
+  "Excluidos: oro como elemento secundario"           = ids_au_sec
+)
+
+n_comp  <- length(ids_comp)
+n_vec   <- length(intersect(ids_comp, ids_vecinos))
+n_otros <- length(intersect(ids_comp, ids_otros_met))
+n_ausec <- length(ids_au_sec)
+n_excl  <- length(ids_excl)
+
+deps_trat   <- unique(substr(ids_trat, 1, 2))
+comp_sin_dep <- sum(!substr(ids_comp, 1, 2) %in% deps_trat)
+```
+
+Los capítulos anteriores presentan cada base por separado. Este capítulo define los grupos que se comparan en la investigación y cuenta cuántos distritos de cada grupo hay en cada base. La idea del diseño es que, cuando sube o baja el precio del oro, los distritos con oro deberían cambiar más que los distritos sin oro. Para que esa comparación sea creíble, el grupo de comparación debe parecerse lo más posible al grupo de tratamiento en todo, salvo en la presencia de oro.
+
+::: {.callout-note appearance="simple"}
+## Resumen de los grupos
+
+- **Tratamiento:** los `r length(ids_trat)` distritos con un yacimiento de oro registrado en GEOCATMIN antes de 2014, en dos intensidades: `r length(ids_mina)` con mina o proyecto y `r length(ids_trat) - length(ids_mina)` con solo prospectos u ocurrencias.
+- **Comparación principal:** los `r num(n_comp)` distritos sin ningún yacimiento registrado con oro, de cualquier fecha y como elemento principal o secundario.
+- **Excluidos:** los `r n_excl` distritos con oro registrado solo desde 2014 y los `r n_ausec` con oro solo como elemento secundario.
+- **Comparaciones alternativas:** los `r n_otros` distritos con yacimientos solo de otros metales, y los distritos que no son vecinos de un distrito con oro.
+- **Comparación dentro de cada región:** con efectos fijos de distrito y de departamento por año.
+:::
+
+## Definición de los grupos
+
+@tbl-grupos resume los grupos y la razón de cada decisión.
+
+```{r}
+#| label: tbl-grupos
+#| tbl-cap: "Grupos de distritos del diseño"
+
+tribble(
+  ~grupo, ~definicion, ~n, ~rol,
+  "Tratamiento: mina o proyecto", "Al menos una mina o un proyecto de oro (oro como primer elemento) registrado antes de 2014", length(ids_mina), "Tratamiento principal",
+  "Tratamiento: prospectos u ocurrencias", "Solo prospectos u ocurrencias de oro registrados antes de 2014", length(ids_trat) - length(ids_mina), "Exposición de menor intensidad",
+  "Comparación principal", "Ningún yacimiento con oro registrado, de cualquier fecha", n_comp, "Grupo de comparación",
+  "  · solo otros metales", "Yacimientos registrados de otros metales (cobre, zinc, plata, hierro y otros), sin oro", n_otros, "Comparación alternativa: distritos mineros sin oro",
+  "  · vecinos", "Comparten límite con un distrito con oro antes de 2014", n_vec, "Se excluyen en una prueba de efectos de derrame",
+  "Excluidos: oro desde 2014", "Oro como primer elemento, registrado solo desde 2014", n_excl, "Su registro pudo responder al propio precio",
+  "Excluidos: oro secundario", "Oro solo como elemento secundario, en cualquier fecha", n_ausec, "Exposición ambigua al precio del oro"
+) |>
+  mutate(n = num(n)) |>
+  kable(col.names = c("Grupo", "Definición", "Distritos", "Rol en el diseño"), align = "llrl")
+```
+
+Las decisiones detrás de cada grupo son las siguientes:
+
+- **Dos intensidades de tratamiento.** En 2014, el empleo en minería metalífera es varias veces mayor en los distritos con mina o proyecto que en los que solo tienen prospectos u ocurrencias (@tbl-linea-base). Por eso los primeros son el tratamiento principal, y los segundos permiten ver si el efecto crece con la intensidad de la exposición.
+- **Exclusión de los distritos con oro registrado solo desde 2014.** El registro de nuevos yacimientos responde en parte a la exploración, que aumenta cuando sube el precio. Estos distritos no pueden ser tratamiento, porque su exposición podría ser consecuencia del precio, ni comparación, porque tienen oro.
+- **Exclusión de los distritos con oro como elemento secundario.** En yacimientos de cobre y oro o de plata y oro, el precio del oro también cambia el valor del depósito, aunque en menor medida. Tratarlos como distritos sin oro mezclaría el efecto en el grupo de comparación; como son pocos, se dejan fuera. Los capítulos de la ENAHO y de delincuencia los incluyen en el grupo "sin oro" solo para describir.
+- **Una comparación con otros distritos mineros.** La comparación principal incluye distritos muy distintos de los distritos con oro, como los de Lima. Los distritos con yacimientos solo de otros metales comparten la vocación minera, pero su exposición es al precio de otros minerales. Son pocos y su registro en GEOCATMIN es casi todo de 2014 en adelante, así que sirven como prueba de robustez y no como grupo principal. Como el precio del cobre también subió en el periodo, esa comparación debe controlar por él.
+- **Una prueba sin vecinos.** Si la minería atrae trabajadores o delincuencia de los distritos cercanos, los vecinos de los distritos con oro también se ven afectados, y la comparación subestimaría el efecto. De los `r num(n_comp)` distritos de comparación, `r n_vec` son vecinos de un distrito con oro; una prueba de robustez los excluye.
+
+## Ubicación
+
+```{r}
+#| label: fig-grupos
+#| fig-cap: "Grupos de tratamiento y de comparación"
+#| fig-width: 7
+#| fig-height: 8.5
+
+niveles_mapa <- c("Tratamiento: mina o proyecto", "Tratamiento: prospectos u ocurrencias",
+                  "Comparación: solo otros metales", "Comparación: vecino de un distrito con oro",
+                  "Comparación: resto", "Excluido")
+mapa <- limites |>
+  mutate(grupo = factor(case_when(
+    ubigeo_base %in% ids_mina                    ~ niveles_mapa[1],
+    ubigeo_base %in% ids_trat                    ~ niveles_mapa[2],
+    ubigeo_base %in% intersect(ids_comp, ids_otros_met) ~ niveles_mapa[3],
+    ubigeo_base %in% intersect(ids_comp, ids_vecinos)   ~ niveles_mapa[4],
+    ubigeo_base %in% ids_comp                    ~ niveles_mapa[5],
+    TRUE                                         ~ niveles_mapa[6]
+  ), levels = niveles_mapa))
+
+ggplot() +
+  geom_sf(data = mapa, aes(fill = grupo), colour = "white", linewidth = 0.05) +
+  geom_sf(data = departamentos, fill = NA, colour = "#52514e", linewidth = 0.25) +
+  scale_fill_manual(values = c("#b0352b", "#e8a33d", "#1c5cab", "#9cc0e6", "#e6e4dc", "#8a8984"),
+                    name = NULL, drop = FALSE) +
+  labs(caption = "Los distritos con solo otros metales que también son vecinos aparecen como \"solo otros metales\".\nFuente: INGEMMET, GEOCATMIN. Distritos de 2014.") +
+  theme_void(base_size = 10) +
+  theme(legend.position = "right",
+        plot.caption = element_text(hjust = 0, colour = "#52514e", size = 8))
+```
+
+Los distritos con oro se concentran en la sierra norte y sur, en la costa de Arequipa e Ica y en Madre de Dios, y sus vecinos los rodean (@fig-grupos). Los distritos con solo otros metales están en la sierra central, en el extremo sur y en algunos puntos de la costa norte. La Amazonía norte casi no tiene distritos de ningún grupo minero. Casi todos los departamentos tienen distritos tratados; en los que no los tienen quedan `r comp_sin_dep` distritos de comparación, que con efectos fijos de departamento por año no aportan a la comparación.
+
+## Presencia en las encuestas
+
+Los distritos de cada grupo solo cuentan para la estimación si aparecen en la muestra de las encuestas. @tbl-presencia-grupos muestra cuántos aparecen en la ENAHO y en la ENAPRES.
+
+```{r}
+#| label: tbl-presencia-grupos
+#| tbl-cap: "Distritos de cada grupo que aparecen en la ENAHO y en la ENAPRES, 2014–2025"
+
+pres <- function(d, ids) {
+  d <- d |> filter(ubigeo_base %in% ids)
+  por_anio <- d |> group_by(anio) |> summarise(dist = n_distinct(ubigeo_base), obs = n(), .groups = "drop")
+  c(algun = n_distinct(d$ubigeo_base), dist = median(por_anio$dist), obs = median(por_anio$obs))
+}
+eh_ok <- eh |> filter(!is.na(hecho_delictivo))
+
+lapply(names(grupos), function(g) {
+  ids <- grupos[[g]]
+  a <- pres(hog, ids); b <- pres(ep, ids)
+  tibble(grupo = g, n = length(ids),
+         enaho_algun = a[["algun"]], enaho_dist = a[["dist"]], enaho_obs = a[["obs"]],
+         enapres_algun = b[["algun"]], enapres_dist = b[["dist"]], enapres_obs = b[["obs"]])
+}) |>
+  bind_rows() |>
+  mutate(across(-grupo, ~ num(.x))) |>
+  kable(col.names = c("Grupo", "Distritos",
+                      "ENAHO: aparecen algún año", "Distritos por año (mediana)", "Hogares por año (mediana)",
+                      "ENAPRES: aparecen algún año", "Distritos por año (mediana)", "Personas por año (mediana)"),
+        align = "lrrrrrrr")
+```
+
+En la ENAHO, el grupo de comparación tiene muchos más distritos y hogares que el de tratamiento, así que la precisión dependerá sobre todo del número de distritos tratados en la muestra. En la ENAPRES, que es solo urbana, el tratamiento se reduce a unas 70 unidades por año, entre ambas intensidades, y los distritos de solo otros metales a unos 30; las comparaciones alternativas serán poco precisas con esta encuesta.
+
+## Comparación al inicio del periodo
+
+```{r}
+#| label: tbl-balance
+#| tbl-cap: "Indicadores en 2014 según el grupo (promedios ponderados)"
+
+bal <- function(ids) {
+  h <- hog |> filter(anio == 2014, ubigeo_base %in% ids)
+  p <- per |> filter(anio == 2014, ubigeo_base %in% ids)
+  e <- ep  |> filter(anio == 2014, ubigeo_base %in% ids)
+  v <- eh  |> filter(anio == 2014, ubigeo_base %in% ids)
+  tibble(hogares = nrow(h),
+         rural = 100 * media_pond(h$area == 2, h$factor_pob),
+         gasto = media_pond(h$gasto_real_pc, h$factor_pob),
+         informal = 100 * media_pond(p$empleo_informal, p$fac500a),
+         mineria = 100 * media_pond(p$mineria_metalifera, p$fac500a),
+         hecho = 100 * media_pond(v$hecho_delictivo, v$factor07),
+         victima = 100 * media_pond(e$victima_comun, e$factor))
+}
+
+lapply(names(grupos), function(g) bind_cols(tibble(grupo = g), bal(grupos[[g]]))) |>
+  bind_rows() |>
+  mutate(hogares = num(hogares), gasto = num(gasto),
+         across(c(rural, informal, mineria, hecho, victima), ~ num(.x, 1))) |>
+  kable(col.names = c("Grupo", "Hogares en la ENAHO", "Población rural (%)",
+                      "Gasto real per cápita (S/)", "Empleo informal (%)",
+                      "Empleo en minería metalífera (%)", "Hogar afectado por hecho delictivo (%)",
+                      "Víctima de algún delito, urbano (%)"),
+        align = "lrrrrrrr")
+```
+
+En 2014 (@tbl-balance), los distritos tratados son más rurales, más pobres y más informales que la comparación principal. La comparación con los distritos de otros metales y con los vecinos es más cercana en esas características. Los distritos con otros metales tienen además un empleo minero mayor que el resto de la comparación, lo que confirma que capturan distritos mineros. Los vecinos se parecen más a los tratados que los no vecinos, lo que es una ventaja como comparación, pero también los hace más expuestos a efectos de derrame.
+
+Estas diferencias de nivel no invalidan el diseño, que compara cambios en el tiempo y no niveles. Lo que el diseño necesita es que, sin cambios en el precio del oro, ambos grupos hubieran evolucionado de forma parecida. Eso no se puede comprobar directamente, pero sí en parte: el precio se mantiene estable entre 2016 y 2018 (capítulo [-@sec-precio]), y en esos años los resultados de ambos grupos no deberían separarse.
+
+## Comparación dentro de cada departamento
+
+Como los distritos tratados se concentran en ciertas regiones, la comparación debe hacerse dentro de cada departamento, con efectos fijos de departamento por año. Así, un distrito con oro de Puno se compara con los distritos sin oro de Puno, que comparten el clima, la economía regional y los choques de cada año. @tbl-departamentos-grupos muestra cuántos distritos de cada grupo hay por departamento y cuántos aparecen en la ENAHO.
+
+```{r}
+#| label: tbl-departamentos-grupos
+#| tbl-cap: "Distritos de tratamiento y de comparación por departamento"
+
+en_enaho <- unique(hog$ubigeo_base)
+tibble(ubigeo_base = c(ids_trat, ids_comp),
+       grupo = ifelse(ubigeo_base %in% ids_trat, "trat", "comp")) |>
+  mutate(departamento = substr(ubigeo_base, 1, 2),
+         enaho = ubigeo_base %in% en_enaho) |>
+  group_by(departamento) |>
+  summarise(trat = sum(grupo == "trat"), trat_enaho = sum(grupo == "trat" & enaho),
+            comp = sum(grupo == "comp"), comp_enaho = sum(grupo == "comp" & enaho),
+            .groups = "drop") |>
+  left_join(nombres_dep, by = "departamento") |>
+  arrange(desc(trat), nombre) |>
+  select(nombre, trat, trat_enaho, comp, comp_enaho) |>
+  kable(col.names = c("Departamento", "Tratamiento", "Tratamiento en la ENAHO",
+                      "Comparación", "Comparación en la ENAHO"),
+        align = "lrrrr")
+```
+
+## Pendientes para la estimación
+
+- **Tendencias previas.** Comprobar que los grupos no se separan en los años de precio estable (2016–2018), con un estudio de eventos o con una tendencia por grupo.
+- **Precio del cobre.** Para la comparación con distritos de otros metales hace falta una serie del precio del cobre y, si es posible, de la plata y el zinc (capítulo [-@sec-ampliaciones]).
+- **Población.** La base de población, aún pendiente, permitirá ponderar los distritos y medir la migración hacia los distritos con oro y sus vecinos.
+- **Registros administrativos de delincuencia.** El SIDPOL cubrirá todos los distritos desde 2018, también los que no aparecen en las encuestas.
