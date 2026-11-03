@@ -25,3 +25,7 @@ enaho/datos_procesados/*.rds
 libro/_book/
 libro/.quarto/
 libro/*_files/
+
+# Delincuencia: microdatos descargados y copia extraída (se regeneran con los scripts)
+delincuencia/datos_brutos/**/*.zip
+delincuencia/cache/

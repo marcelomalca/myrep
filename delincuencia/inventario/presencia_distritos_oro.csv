@@ -1,0 +1,9 @@
+categoria,fuente,distritos_alguna_vez,distritos_12_anios,distritos_6_o_mas,anios_mediana,distritos_universo
+oro_mina_proyecto,"ENAPRES personas (urbano, 15+)",43,24,36,12,120
+oro_solo_prospecto_ocurrencia,"ENAPRES personas (urbano, 15+)",49,29,40,12,156
+oro_mina_proyecto,"ENAPRES hogares, robo de vivienda (urbano)",43,24,36,12,120
+oro_solo_prospecto_ocurrencia,"ENAPRES hogares, robo de vivienda (urbano)",49,29,40,12,156
+oro_mina_proyecto,"ENAHO hogares, hecho delictivo",110,46,91,11,120
+oro_solo_prospecto_ocurrencia,"ENAHO hogares, hecho delictivo",141,56,116,11,156
+oro_mina_proyecto,ENAHO opinión (módulo 85),110,56,91,12,120
+oro_solo_prospecto_ocurrencia,ENAHO opinión (módulo 85),142,68,121,11,156

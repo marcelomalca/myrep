@@ -1,0 +1,61 @@
+anio,fuente,unidad,distritos,obs,obs_mediana,obs_min,obs_max,oro_distritos,oro_obs,oro_obs_mediana,oro_obs_min,oro_obs_max,mina_distritos,mina_obs,prosp_distritos,prosp_obs
+2014,"ENAPRES personas (urbano, 15+)",personas,526,71187,50,8,2766,68,8523,50.5,8,1580,31,5470,37,3053
+2015,"ENAPRES personas (urbano, 15+)",personas,541,65550,42,9,2048,71,7674,46,11,1406,34,4675,37,2999
+2016,"ENAPRES personas (urbano, 15+)",personas,541,66572,44,7,2088,71,7807,46,9,1498,34,4822,37,2985
+2017,"ENAPRES personas (urbano, 15+)",personas,541,66561,42,12,2050,71,7779,48,12,1461,34,4828,37,2951
+2018,"ENAPRES personas (urbano, 15+)",personas,541,67700,44,10,2072,71,8184,50,12,1527,34,5108,37,3076
+2019,"ENAPRES personas (urbano, 15+)",personas,541,67296,43,9,1962,71,8005,44,10,1590,34,5060,37,2945
+2020,"ENAPRES personas (urbano, 15+)",personas,539,46108,30,5,1458,72,5347,31.5,5,1009,34,3378,38,1969
+2021,"ENAPRES personas (urbano, 15+)",personas,546,63484,40,7,1746,77,7782,44,13,1462,35,4956,42,2826
+2022,"ENAPRES personas (urbano, 15+)",personas,556,62809,40,8,1779,77,7548,41,13,1406,34,4762,43,2786
+2023,"ENAPRES personas (urbano, 15+)",personas,561,64480,41,10,1859,77,7514,40,10,1427,34,4844,43,2670
+2024,"ENAPRES personas (urbano, 15+)",personas,561,62349,39,6,1874,77,7198,37,8,1353,34,4636,43,2562
+2025,"ENAPRES personas (urbano, 15+)",personas,561,60214,39,7,1791,77,6843,39,10,1175,34,4322,43,2521
+2014,ENAPRES percepción,personas,526,71187,50,8,2766,68,8523,50.5,8,1580,31,5470,37,3053
+2015,ENAPRES percepción,personas,541,65550,42,9,2048,71,7674,46,11,1406,34,4675,37,2999
+2016,ENAPRES percepción,personas,541,66572,44,7,2088,71,7807,46,9,1498,34,4822,37,2985
+2017,ENAPRES percepción,personas,541,66561,42,12,2050,71,7779,48,12,1461,34,4828,37,2951
+2018,ENAPRES percepción,personas,541,67700,44,10,2072,71,8184,50,12,1527,34,5108,37,3076
+2019,ENAPRES percepción,personas,541,67296,43,9,1962,71,8005,44,10,1590,34,5060,37,2945
+2020,ENAPRES percepción,personas,539,46108,30,5,1458,72,5347,31.5,5,1009,34,3378,38,1969
+2021,ENAPRES percepción,personas,546,63484,40,7,1746,77,7782,44,13,1462,35,4956,42,2826
+2022,ENAPRES percepción,personas,556,62809,40,8,1779,77,7548,41,13,1406,34,4762,43,2786
+2023,ENAPRES percepción,personas,561,64480,41,10,1859,77,7514,40,10,1427,34,4844,43,2670
+2024,ENAPRES percepción,personas,561,24129,15,1,687,77,2886,15,4,526,34,1845,43,1041
+2025,ENAPRES percepción,personas,561,24021,16,3,674,77,2867,16,4,508,34,1834,43,1033
+2014,"ENAPRES hogares, robo de vivienda (urbano)",hogares,526,27421,22,5,991,68,3516,24,6,685,31,2283,37,1233
+2015,"ENAPRES hogares, robo de vivienda (urbano)",hogares,541,27004,16,4,810,71,3304,20,6,655,34,2083,37,1221
+2016,"ENAPRES hogares, robo de vivienda (urbano)",hogares,541,27373,17,5,815,71,3374,22,6,678,34,2162,37,1212
+2017,"ENAPRES hogares, robo de vivienda (urbano)",hogares,541,27249,16,6,817,71,3348,21,6,673,34,2132,37,1216
+2018,"ENAPRES hogares, robo de vivienda (urbano)",hogares,541,27407,16,6,810,71,3417,22,7,680,34,2188,37,1229
+2019,"ENAPRES hogares, robo de vivienda (urbano)",hogares,541,27269,16,6,791,71,3382,22,6,685,34,2170,37,1212
+2020,"ENAPRES hogares, robo de vivienda (urbano)",hogares,539,27154,16,5,769,72,3293,16.5,5,654,34,2136,38,1157
+2021,"ENAPRES hogares, robo de vivienda (urbano)",hogares,546,27116,16,6,762,77,3388,18,7,664,35,2169,42,1219
+2022,"ENAPRES hogares, robo de vivienda (urbano)",hogares,556,26676,16,5,748,77,3312,22,6,635,34,2127,43,1185
+2023,"ENAPRES hogares, robo de vivienda (urbano)",hogares,561,26958,16,5,746,77,3289,17,7,636,34,2157,43,1132
+2024,"ENAPRES hogares, robo de vivienda (urbano)",hogares,561,26593,16,4,751,77,3219,16,5,629,34,2095,43,1124
+2025,"ENAPRES hogares, robo de vivienda (urbano)",hogares,561,25979,16,4,732,77,3117,16,5,562,34,2015,43,1102
+2014,"ENAHO hogares, hecho delictivo",hogares,1161,28826,14,2,363,187,4290,14,5,311,86,2175,101,2115
+2015,"ENAHO hogares, hecho delictivo",hogares,1209,30416,14,1,358,188,4235,12,4,279,83,2114,105,2121
+2016,"ENAHO hogares, hecho delictivo",hogares,1249,33345,14,3,461,196,4837,15,4,348,84,2446,112,2391
+2017,"ENAHO hogares, hecho delictivo",hogares,1255,31870,14,1,368,196,4568,15,4,268,83,2263,113,2305
+2018,"ENAHO hogares, hecho delictivo",hogares,1309,33942,15,1,457,212,5386,15,3,457,91,2788,121,2598
+2019,"ENAHO hogares, hecho delictivo",hogares,1251,31805,14,1,359,196,4590,14,2,273,82,2250,114,2340
+2020,"ENAHO hogares, hecho delictivo",hogares,878,16475,8,1,231,140,2336,9,4,167,61,1050,79,1286
+2021,"ENAHO hogares, hecho delictivo",hogares,1205,31075,14,2,382,187,4234,14,4,331,81,2161,106,2073
+2022,"ENAHO hogares, hecho delictivo",hogares,1226,32368,14,1,383,193,4408,14,2,307,85,2245,108,2163
+2023,"ENAHO hogares, hecho delictivo",hogares,1234,31943,14,1,369,196,4390,14,3,321,86,2259,110,2131
+2024,"ENAHO hogares, hecho delictivo",hogares,1241,30774,13,1,340,200,4415,14,2,295,88,2276,112,2139
+2025,"ENAHO hogares, hecho delictivo",hogares,1241,31261,13,1,328,199,4342,13,1,295,87,2202,112,2140
+2014,ENAHO opinión (módulo 85),personas,1161,27816,13,1,363,187,4243,14,4,306,86,2140,101,2103
+2015,ENAHO opinión (módulo 85),personas,1209,29385,14,1,360,188,4170,12.5,4,255,83,2084,105,2086
+2016,ENAHO opinión (módulo 85),personas,1249,31839,14,2,412,196,4704,14,4,345,84,2356,112,2348
+2017,ENAHO opinión (módulo 85),personas,1254,30245,14,1,367,196,4427,14,3,239,83,2180,113,2247
+2018,ENAHO opinión (módulo 85),personas,1308,32089,14,1,393,212,5167,15,3,393,91,2633,121,2534
+2019,ENAHO opinión (módulo 85),personas,1251,30257,14,1,350,196,4436,14,2,244,82,2154,114,2282
+2020,ENAHO opinión (módulo 85),personas,1196,32447,15,1,369,188,4645,15,3,310,81,2246,107,2399
+2021,ENAHO opinión (módulo 85),personas,1227,31596,14,2,384,190,4372,15,4,322,82,2222,108,2150
+2022,ENAHO opinión (módulo 85),personas,1224,31226,14,1,380,193,4301,13,2,290,85,2188,108,2113
+2023,ENAHO opinión (módulo 85),personas,1233,30940,13,1,367,196,4290,13,3,287,86,2192,110,2098
+2024,ENAHO opinión (módulo 85),personas,1241,29546,13,1,340,200,4304,13,2,266,88,2204,112,2100
+2025,ENAHO opinión (módulo 85),personas,1241,30748,13,1,327,199,4302,13,1,288,87,2177,112,2125

@@ -1,0 +1,1204 @@
+anio,pregunta,variable,tipo
+2014,victima,P601_1,robo de vehiculo automotor
+2014,victima,P601_2,intento de robo de vehiculo automotor
+2014,victima,P601_3A,robo de autopartes del vehiculo automotor
+2014,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2014,victima,P601_4A,robo de motocicleta/ mototaxi
+2014,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2014,victima,P601_5A,robo de bicicleta
+2014,victima,P601_5B,intento de robo de bicicleta
+2014,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2014,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2014,victima,P601_7,amenazas e intimidaciones
+2014,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2014,victima,P601_9,ofensas sexuales
+2014,victima,P601_10,secuestro
+2014,victima,P601_11,intento de secuestro
+2014,victima,P601_12,extorsion
+2014,victima,P601_13,estafa
+2014,victima,P601_14,robo del negocio
+2014,victima,P601_15,otro
+2014,victima,P601_15_O,otrootro/especifique
+2014,denuncio,P606_1,robo de vehiculo automotor
+2014,denuncio,P606_2,intento de robo de vehiculo automotor
+2014,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2014,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2014,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2014,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2014,denuncio,P606_5A,robo de bicicleta
+2014,denuncio,P606_5B,intento de robo de bicicleta
+2014,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2014,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2014,denuncio,P606_7,amenazas e intimidaciones
+2014,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2014,denuncio,P606_9,ofensas sexuales
+2014,denuncio,P606_10,secuestro
+2014,denuncio,P606_11,intento de secuestro
+2014,denuncio,P606_12,extorsion
+2014,denuncio,P606_13,extorsion
+2014,denuncio,P606_14,robo del negocio
+2014,denuncio,P606_15,otro
+2014,arma_mano,P605_1_1,robo de vehiculo automotor
+2014,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2014,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2014,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2014,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2014,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2014,arma_mano,P605_5A_1,robo de bicicleta
+2014,arma_mano,P605_5B_1,intento de robo de bicicleta
+2014,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2014,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2014,arma_mano,P605_7_1,amenazas e intimidaciones
+2014,arma_mano,P605_8_1,maltrato fisico y/o psicologico de algun miem
+2014,arma_mano,P605_9_1,ofensas sexuales
+2014,arma_mano,P605_10_1,secuestro
+2014,arma_mano,P605_11_1,intento de secuestro
+2014,arma_mano,P605_12_1,extorsion
+2014,arma_mano,P605_13_1,estafa
+2014,arma_mano,P605_14_1,robo del negocio
+2014,arma_mano,P605_15_1,otro
+2014,arma_largo,P605_1_2,robo de vehiculo automotor
+2014,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2014,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2014,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2014,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2014,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2014,arma_largo,P605_5A_2,robo de bicicleta
+2014,arma_largo,P605_5B_2,intento de robo de bicicleta
+2014,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2014,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2014,arma_largo,P605_7_2,amenazas e intimidaciones
+2014,arma_largo,P605_8_2,maltrato fisico y/o psicologico de algun miem
+2014,arma_largo,P605_9_2,ofensas sexuales
+2014,arma_largo,P605_10_2,secuestro
+2014,arma_largo,P605_11_2,intento de secuestro
+2014,arma_largo,P605_12_2,extorsion
+2014,arma_largo,P605_13_2,estafa
+2014,arma_largo,P605_14_2,robo del negocio
+2014,arma_largo,P605_15_2,otro
+2014,percepcion,P611_1,robo a su vivienda
+2014,percepcion,P611_2,robo de vehiculo automotor
+2014,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2014,percepcion,P611_4,robo de motocicleta o mototaxi
+2014,percepcion,P611_5,robo de bicicleta
+2014,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2014,percepcion,P611_7,amenazas e intimidaciones
+2014,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2014,percepcion,P611_9,ofensas sexuales
+2014,percepcion,P611_10,secuestro
+2014,percepcion,P611_11,otro
+2014,percepcion,P611_11_O,otro
+2014,percepcion,P611_12,extorsion - recodificado
+2014,percepcion,P611_13,estafa - recodificado
+2014,percepcion,P611_14,robo de negocio - recodificado
+2015,victima,P601_1,robo de vehiculo automotor
+2015,victima,P601_2,intento de robo de vehiculo automotor
+2015,victima,P601_3A,robo de autopartes del vehiculo automotor
+2015,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2015,victima,P601_4A,robo de motocicleta/ mototaxi
+2015,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2015,victima,P601_5A,robo de bicicleta
+2015,victima,P601_5B,intento de robo de bicicleta
+2015,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2015,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2015,victima,P601_7,amenazas e intimidaciones
+2015,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2015,victima,P601_9,ofensas sexuales
+2015,victima,P601_10,secuestro
+2015,victima,P601_11,intento de secuestro
+2015,victima,P601_12,extorsion
+2015,victima,P601_13,estafa
+2015,victima,P601_14,robo del negocio
+2015,victima,P601_15,otro
+2015,victima,P601_15_O,otro_especifique
+2015,denuncio,P606_1,robo de vehiculo automotor
+2015,denuncio,P606_2,intento de robo de vehiculo automotor
+2015,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2015,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2015,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2015,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2015,denuncio,P606_5A,robo de bicicleta
+2015,denuncio,P606_5B,intento de robo de bicicleta
+2015,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2015,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2015,denuncio,P606_7,amenazas e intimidaciones
+2015,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2015,denuncio,P606_9,ofensas sexuales
+2015,denuncio,P606_10,secuestro
+2015,denuncio,P606_11,intento de secuestro
+2015,denuncio,P606_12,extorsion
+2015,denuncio,P606_13,extorsion
+2015,denuncio,P606_14,robo del negocio
+2015,denuncio,P606_15,otro
+2015,arma_mano,P605_1_1,robo de vehiculo automotor
+2015,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2015,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2015,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2015,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2015,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2015,arma_mano,P605_5A_1,robo de bicicleta
+2015,arma_mano,P605_5B_1,intento de robo de bicicleta
+2015,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2015,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2015,arma_mano,P605_7_1,amenazas e intimidaciones
+2015,arma_mano,P605_8_1,maltrato fisico y/o psicologico de algun miem
+2015,arma_mano,P605_9_1,ofensas sexuales
+2015,arma_mano,P605_10_1,secuestro
+2015,arma_mano,P605_11_1,intento de secuestro
+2015,arma_mano,P605_12_1,extorsion
+2015,arma_mano,P605_13_1,estafa
+2015,arma_mano,P605_14_1,robo del negocio
+2015,arma_mano,P605_15_1,otro
+2015,arma_largo,P605_1_2,robo de vehiculo automotor
+2015,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2015,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2015,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2015,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2015,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2015,arma_largo,P605_5A_2,robo de bicicleta
+2015,arma_largo,P605_5B_2,intento de robo de bicicleta
+2015,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2015,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2015,arma_largo,P605_7_2,amenazas e intimidaciones
+2015,arma_largo,P605_8_2,maltrato fisico y/o psicologico de algun miem
+2015,arma_largo,P605_9_2,ofensas sexuales
+2015,arma_largo,P605_10_2,secuestro
+2015,arma_largo,P605_11_2,intento de secuestro
+2015,arma_largo,P605_12_2,extorsion
+2015,arma_largo,P605_13_2,estafa
+2015,arma_largo,P605_14_2,robo del negocio
+2015,arma_largo,P605_15_2,otro
+2015,percepcion,P611_1,robo a su vivienda
+2015,percepcion,P611_2,robo de vehiculo automotor
+2015,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2015,percepcion,P611_4,robo de motocicleta o mototaxi
+2015,percepcion,P611_5,robo de bicicleta
+2015,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2015,percepcion,P611_7,amenazas e intimidaciones
+2015,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2015,percepcion,P611_9,ofensas sexuales
+2015,percepcion,P611_10,secuestro
+2015,percepcion,P611_11,extorsion
+2015,percepcion,P611_12,estafa
+2015,percepcion,P611_13,robo del negocio
+2015,percepcion,P611_14,otro
+2015,percepcion,P611_14_O,otro/especifique
+2016,victima,P601_1,robo de vehiculo automotor
+2016,victima,P601_2,intento de robo de vehiculo automotor
+2016,victima,P601_3A,robo de autopartes del vehiculo automotor
+2016,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2016,victima,P601_4A,robo de motocicleta/ mototaxi
+2016,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2016,victima,P601_5A,robo de bicicleta
+2016,victima,P601_5B,intento de robo de bicicleta
+2016,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2016,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2016,victima,P601_7,amenazas e intimidaciones
+2016,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2016,victima,P601_9,ofensas sexuales
+2016,victima,P601_10,secuestro
+2016,victima,P601_11,intento de secuestro
+2016,victima,P601_12,extorsion
+2016,victima,P601_12A,intento de extorsion
+2016,victima,P601_13,estafa
+2016,victima,P601_14,robo del negocio
+2016,victima,P601_15,otro
+2016,victima,P601_15_O,otro_especifique
+2016,denuncio,P606_1,robo de vehiculo automotor
+2016,denuncio,P606_2,intento de robo de vehiculo automotor
+2016,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2016,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2016,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2016,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2016,denuncio,P606_5A,robo de bicicleta
+2016,denuncio,P606_5B,intento de robo de bicicleta
+2016,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2016,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2016,denuncio,P606_7,amenazas e intimidaciones
+2016,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2016,denuncio,P606_9,ofensas sexuales
+2016,denuncio,P606_10,secuestro
+2016,denuncio,P606_11,intento de secuestro
+2016,denuncio,P606_12,extorsion
+2016,denuncio,P606_12A,intento de extorsion
+2016,denuncio,P606_13,estafa
+2016,denuncio,P606_14,robo del negocio
+2016,denuncio,P606_15,otro
+2016,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2016,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2016,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2016,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2016,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2016,arma_mano,P605_5A_1,robo de bicicleta
+2016,arma_mano,P605_5B_1,intento de robo de bicicleta
+2016,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2016,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2016,arma_mano,P605_7_1,amenazas e intimidaciones
+2016,arma_mano,P605_8_1,:maltrato fisico y/o psicologico de algun mie
+2016,arma_mano,P605_9_1,:ofensas sexuales
+2016,arma_mano,P605_10_1,:secuestro
+2016,arma_mano,P605_11_1,: intento de secuestro
+2016,arma_mano,P605_12_1,: extorsion
+2016,arma_mano,P605_12A_1,: intento de extorsion
+2016,arma_mano,P605_13_1,: estafa
+2016,arma_mano,P605_14_1,: robo del negocio
+2016,arma_mano,P605_15_1,: otro
+2016,arma_largo,P605_1_1,robo de vehiculo automotor
+2016,arma_largo,P605_1_2,robo de vehiculo automotor
+2016,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2016,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2016,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2016,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2016,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2016,arma_largo,P605_5A_2,robo de bicicleta
+2016,arma_largo,P605_5B_2,intento de robo de bicicleta
+2016,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2016,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2016,arma_largo,P605_7_2,amenazas e intimidaciones
+2016,arma_largo,P605_8_2,:maltrato fisico y/o psicologico de algun mie
+2016,arma_largo,P605_9_2,:ofensas sexuales
+2016,arma_largo,P605_10_2,:secuestro
+2016,arma_largo,P605_11_2,: intento de secuestro
+2016,arma_largo,P605_12_2,: extorsion
+2016,arma_largo,P605_12A_2,: intento de extorsion
+2016,arma_largo,P605_13_2,: estafa
+2016,arma_largo,P605_14_2,: robo del negocio
+2016,arma_largo,P605_15_2,: otro
+2016,percepcion,P611_1,robo a su vivienda
+2016,percepcion,P611_2,robo de vehiculo automotor
+2016,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2016,percepcion,P611_4,robo de motocicleta o mototaxi
+2016,percepcion,P611_5,robo de bicicleta
+2016,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2016,percepcion,P611_7,amenazas e intimidaciones
+2016,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2016,percepcion,P611_9,ofensas sexuales
+2016,percepcion,P611_10,secuestro
+2016,percepcion,P611_11,extorsion
+2016,percepcion,P611_12,estafa
+2016,percepcion,P611_13,robo del negocio
+2016,percepcion,P611_14,otro
+2016,percepcion,P611_14_O,otro/especifique
+2017,victima,P601_1,robo de vehiculo automotor
+2017,victima,P601_2,intento de robo de vehiculo automotor
+2017,victima,P601_3A,robo de autopartes del vehiculo automotor
+2017,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2017,victima,P601_4A,robo de motocicleta/ mototaxi
+2017,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2017,victima,P601_5A,robo de bicicleta
+2017,victima,P601_5B,intento de robo de bicicleta
+2017,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2017,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2017,victima,P601_7,amenazas e intimidaciones
+2017,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2017,victima,P601_9,ofensas sexuales
+2017,victima,P601_10,secuestro
+2017,victima,P601_11,intento de secuestro
+2017,victima,P601_12,extorsion
+2017,victima,P601_12A,intento de extorsion
+2017,victima,P601_13,estafa
+2017,victima,P601_14,robo del negocio
+2017,victima,P601_15,otro
+2017,victima,P601_15_O,otro_especifique
+2017,denuncio,P606_1,robo de vehiculo automotor
+2017,denuncio,P606_2,intento de robo de vehiculo automotor
+2017,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2017,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2017,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2017,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2017,denuncio,P606_5A,robo de bicicleta
+2017,denuncio,P606_5B,intento de robo de bicicleta
+2017,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2017,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2017,denuncio,P606_7,amenazas e intimidaciones
+2017,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2017,denuncio,P606_9,ofensas sexuales
+2017,denuncio,P606_10,secuestro
+2017,denuncio,P606_11,intento de secuestro
+2017,denuncio,P606_12,extorsion
+2017,denuncio,P606_12A,intento de extorsion
+2017,denuncio,P606_13,estafa
+2017,denuncio,P606_14,robo del negocio
+2017,denuncio,P606_15,otro
+2017,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2017,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2017,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2017,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2017,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2017,arma_mano,P605_5A_1,robo de bicicleta
+2017,arma_mano,P605_5B_1,intento de robo de bicicleta
+2017,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2017,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2017,arma_mano,P605_7_1,amenazas e intimidaciones
+2017,arma_mano,P605_8_1,:maltrato fisico y/o psicologico de algun mie
+2017,arma_mano,P605_9_1,:ofensas sexuales
+2017,arma_mano,P605_10_1,:secuestro
+2017,arma_mano,P605_11_1,: intento de secuestro
+2017,arma_mano,P605_12_1,: extorsion
+2017,arma_mano,P605_12A_1,: intento de extorsion
+2017,arma_mano,P605_13_1,: estafa
+2017,arma_mano,P605_14_1,: robo del negocio
+2017,arma_mano,P605_15_1,: otro
+2017,arma_largo,P605_1_1,robo de vehiculo automotor
+2017,arma_largo,P605_1_2,robo de vehiculo automotor
+2017,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2017,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2017,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2017,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2017,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2017,arma_largo,P605_5A_2,robo de bicicleta
+2017,arma_largo,P605_5B_2,intento de robo de bicicleta
+2017,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2017,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2017,arma_largo,P605_7_2,amenazas e intimidaciones
+2017,arma_largo,P605_8_2,:maltrato fisico y/o psicologico de algun mie
+2017,arma_largo,P605_9_2,:ofensas sexuales
+2017,arma_largo,P605_10_2,:secuestro
+2017,arma_largo,P605_11_2,: intento de secuestro
+2017,arma_largo,P605_12_2,: extorsion
+2017,arma_largo,P605_12A_2,: intento de extorsion
+2017,arma_largo,P605_13_2,: estafa
+2017,arma_largo,P605_14_2,: robo del negocio
+2017,arma_largo,P605_15_2,: otro
+2017,percepcion,P611_1,robo a su vivienda
+2017,percepcion,P611_2,robo de vehiculo automotor
+2017,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2017,percepcion,P611_4,robo de motocicleta o mototaxi
+2017,percepcion,P611_5,robo de bicicleta
+2017,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2017,percepcion,P611_7,amenazas e intimidaciones
+2017,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2017,percepcion,P611_9,ofensas sexuales
+2017,percepcion,P611_10,secuestro
+2017,percepcion,P611_11,extorsion
+2017,percepcion,P611_12,estafa
+2017,percepcion,P611_13,robo del negocio
+2017,percepcion,P611_14,otro
+2017,percepcion,P611_14_O,otro/especifique
+2018,victima,P601_1,robo de vehiculo automotor
+2018,victima,P601_2,intento de robo de vehiculo automotor
+2018,victima,P601_3A,robo de autopartes del vehiculo automotor
+2018,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2018,victima,P601_4A,robo de motocicleta/ mototaxi
+2018,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2018,victima,P601_5A,robo de bicicleta
+2018,victima,P601_5B,intento de robo de bicicleta
+2018,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2018,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2018,victima,P601_7,amenazas e intimidaciones
+2018,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2018,victima,P601_9,ofensas sexuales
+2018,victima,P601_10,secuestro
+2018,victima,P601_11,intento de secuestro
+2018,victima,P601_12,extorsion
+2018,victima,P601_12A,intento de extorsion
+2018,victima,P601_13,estafa
+2018,victima,P601_13_ESPECIF,estafa_especifique
+2018,victima,P601_14,robo del negocio
+2018,victima,P601_15,otro
+2018,victima,P601_15_O,otro_especifique
+2018,denuncio,P606_1,robo de vehiculo automotor
+2018,denuncio,P606_2,intento de robo de vehiculo automotor
+2018,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2018,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2018,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2018,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2018,denuncio,P606_5A,robo de bicicleta
+2018,denuncio,P606_5B,intento de robo de bicicleta
+2018,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2018,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2018,denuncio,P606_7,amenazas e intimidaciones
+2018,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2018,denuncio,P606_9,ofensas sexuales
+2018,denuncio,P606_10,secuestro
+2018,denuncio,P606_11,intento de secuestro
+2018,denuncio,P606_12,extorsion
+2018,denuncio,P606_12A,intento de extorsion
+2018,denuncio,P606_13,extorsion
+2018,denuncio,P606_14,robo del negocio
+2018,denuncio,P606_15,otro
+2018,arma_mano,P605_1_1,robo de vehiculo automotor
+2018,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2018,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2018,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2018,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2018,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2018,arma_mano,P605_5A_1,robo de bicicleta
+2018,arma_mano,P605_5B_1,intento de robo de bicicleta
+2018,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2018,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2018,arma_mano,P605_7_1,amenazas e intimidaciones
+2018,arma_mano,P605_8_1,maltrato fisico y/o psicologico de algun miem
+2018,arma_mano,P605_9_1,ofensas sexuales
+2018,arma_mano,P605_10_1,secuestro
+2018,arma_mano,P605_11_1,intento de secuestro
+2018,arma_mano,P605_12_1,extorsion
+2018,arma_mano,P605_12A_1,intento de extorsion
+2018,arma_mano,P605_13_1,estafa
+2018,arma_mano,P605_14_1,robo del negocio
+2018,arma_mano,P605_15_1,otro
+2018,arma_largo,P605_1_2,robo de vehiculo automotor
+2018,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2018,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2018,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2018,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2018,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2018,arma_largo,P605_5A_2,robo de bicicleta
+2018,arma_largo,P605_5B_2,intento de robo de bicicleta
+2018,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2018,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2018,arma_largo,P605_7_2,amenazas e intimidaciones
+2018,arma_largo,P605_8_2,maltrato fisico y/o psicologico de algun miem
+2018,arma_largo,P605_9_2,ofensas sexuales
+2018,arma_largo,P605_10_2,secuestro
+2018,arma_largo,P605_11_2,intento de secuestro
+2018,arma_largo,P605_12_2,extorsion
+2018,arma_largo,P605_12A_2,intento de extorsion
+2018,arma_largo,P605_13_2,estafa
+2018,arma_largo,P605_14_2,robo del negocio
+2018,arma_largo,P605_15_2,otro
+2018,percepcion,P611_1,robo a su vivienda
+2018,percepcion,P611_2,robo de vehiculo automotor
+2018,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2018,percepcion,P611_4,robo de motocicleta o mototaxi
+2018,percepcion,P611_5,robo de bicicleta
+2018,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2018,percepcion,P611_7,amenazas e intimidaciones
+2018,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2018,percepcion,P611_9,ofensas sexuales
+2018,percepcion,P611_10,secuestro
+2018,percepcion,P611_11,extorsion
+2018,percepcion,P611_12,estafa
+2018,percepcion,P611_13,robo del negocio
+2018,percepcion,P611_14,otro
+2018,percepcion,P611_14_O,otro/especifique
+2019,victima,P601_1,robo de vehiculo automotor
+2019,victima,P601_2,intento de robo de vehiculo automotor
+2019,victima,P601_3A,robo de autopartes del vehiculo automotor
+2019,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2019,victima,P601_4A,robo de motocicleta/ mototaxi
+2019,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2019,victima,P601_5A,robo de bicicleta
+2019,victima,P601_5B,intento de robo de bicicleta
+2019,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2019,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2019,victima,P601_7,amenazas e intimidaciones
+2019,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2019,victima,P601_9,ofensas sexuales
+2019,victima,P601_10,secuestro
+2019,victima,P601_11,intento de secuestro
+2019,victima,P601_12,extorsion
+2019,victima,P601_12A,intento de extorsion
+2019,victima,P601_13,estafa
+2019,victima,P601_13_ESPECIF,estafa_especifique
+2019,victima,P601_14,robo del negocio
+2019,victima,P601_15,otro
+2019,victima,P601_15_O,otro_especifique
+2019,denuncio,P606_1,robo de vehiculo automotor
+2019,denuncio,P606_2,intento de robo de vehiculo automotor
+2019,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2019,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2019,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2019,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2019,denuncio,P606_5A,robo de bicicleta
+2019,denuncio,P606_5B,intento de robo de bicicleta
+2019,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2019,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2019,denuncio,P606_7,amenazas e intimidaciones
+2019,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2019,denuncio,P606_9,ofensas sexuales
+2019,denuncio,P606_10,secuestro
+2019,denuncio,P606_11,intento de secuestro
+2019,denuncio,P606_12,extorsion
+2019,denuncio,P606_12A,intento de extorsion
+2019,denuncio,P606_13,extorsion
+2019,denuncio,P606_14,robo del negocio
+2019,denuncio,P606_15,otro
+2019,arma_mano,P605_1_1,robo de vehiculo automotor
+2019,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2019,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2019,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2019,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2019,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2019,arma_mano,P605_5A_1,robo de bicicleta
+2019,arma_mano,P605_5B_1,intento de robo de bicicleta
+2019,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2019,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2019,arma_mano,P605_7_1,amenazas e intimidaciones
+2019,arma_mano,P605_8_1,maltrato fisico y/o psicologico de algun miem
+2019,arma_mano,P605_9_1,ofensas sexuales
+2019,arma_mano,P605_10_1,secuestro
+2019,arma_mano,P605_11_1,intento de secuestro
+2019,arma_mano,P605_12_1,extorsion
+2019,arma_mano,P605_12A_1,intento de extorsion
+2019,arma_mano,P605_13_1,estafa
+2019,arma_mano,P605_14_1,robo del negocio
+2019,arma_mano,P605_15_1,otro
+2019,arma_largo,P605_1_2,robo de vehiculo automotor
+2019,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2019,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2019,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2019,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2019,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2019,arma_largo,P605_5A_2,robo de bicicleta
+2019,arma_largo,P605_5B_2,intento de robo de bicicleta
+2019,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2019,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2019,arma_largo,P605_7_2,amenazas e intimidaciones
+2019,arma_largo,P605_8_2,maltrato fisico y/o psicologico de algun miem
+2019,arma_largo,P605_9_2,ofensas sexuales
+2019,arma_largo,P605_10_2,secuestro
+2019,arma_largo,P605_11_2,intento de secuestro
+2019,arma_largo,P605_12_2,extorsion
+2019,arma_largo,P605_12A_2,intento de extorsion
+2019,arma_largo,P605_13_2,estafa
+2019,arma_largo,P605_14_2,robo del negocio
+2019,arma_largo,P605_15_2,otro
+2019,percepcion,P611_1,robo a su vivienda
+2019,percepcion,P611_2,robo de vehiculo automotor
+2019,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2019,percepcion,P611_4,robo de motocicleta o mototaxi
+2019,percepcion,P611_5,robo de bicicleta
+2019,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2019,percepcion,P611_7,amenazas e intimidaciones
+2019,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2019,percepcion,P611_9,ofensas sexuales
+2019,percepcion,P611_10,secuestro
+2019,percepcion,P611_11,extorsion
+2019,percepcion,P611_12,estafa
+2019,percepcion,P611_13,robo del negocio
+2019,percepcion,P611_14,otro
+2019,percepcion,P611_14_O,otro/especifique
+2020,victima,P601_1,robo de vehiculo automotor
+2020,victima,P601_2,intento de robo de vehiculo automotor
+2020,victima,P601_3A,robo de autopartes del vehiculo automotor
+2020,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2020,victima,P601_4A,robo de motocicleta/ mototaxi
+2020,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2020,victima,P601_5A,robo de bicicleta
+2020,victima,P601_5B,intento de robo de bicicleta
+2020,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2020,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2020,victima,P601_7,amenazas e intimidaciones
+2020,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2020,victima,P601_9,ofensas sexuales
+2020,victima,P601_10,secuestro
+2020,victima,P601_11,intento de secuestro
+2020,victima,P601_12,extorsion
+2020,victima,P601_12A,intento de extorsion
+2020,victima,P601_13,estafa
+2020,victima,P601_13_ESPECIF,estafa_especifique
+2020,victima,P601_14,robo del negocio
+2020,victima,P601_15,otro
+2020,victima,P601_15_O,otro_especifique
+2020,denuncio,P606_1,robo de vehiculo automotor
+2020,denuncio,P606_2,intento de robo de vehiculo automotor
+2020,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2020,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2020,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2020,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2020,denuncio,P606_5A,robo de bicicleta
+2020,denuncio,P606_5B,intento de robo de bicicleta
+2020,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2020,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2020,denuncio,P606_7,amenazas e intimidaciones
+2020,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2020,denuncio,P606_9,ofensas sexuales
+2020,denuncio,P606_10,secuestro
+2020,denuncio,P606_11,intento de secuestro
+2020,denuncio,P606_12,extorsion
+2020,denuncio,P606_12A,intento de extorsion
+2020,denuncio,P606_13,extorsion
+2020,denuncio,P606_14,robo del negocio
+2020,denuncio,P606_15,otro
+2020,arma_mano,P605_1_1,robo de vehiculo automotor
+2020,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2020,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2020,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2020,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2020,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2020,arma_mano,P605_5A_1,robo de bicicleta
+2020,arma_mano,P605_5B_1,intento de robo de bicicleta
+2020,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2020,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2020,arma_mano,P605_7_1,amenazas e intimidaciones
+2020,arma_mano,P605_8_1,maltrato fisico y/o psicologico de algun miem
+2020,arma_mano,P605_9_1,ofensas sexuales
+2020,arma_mano,P605_10_1,secuestro
+2020,arma_mano,P605_11_1,intento de secuestro
+2020,arma_mano,P605_12_1,extorsion
+2020,arma_mano,P605_12A_1,intento de extorsion
+2020,arma_mano,P605_13_1,estafa
+2020,arma_mano,P605_14_1,robo del negocio
+2020,arma_mano,P605_15_1,otro
+2020,arma_largo,P605_1_2,robo de vehiculo automotor
+2020,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2020,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2020,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2020,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2020,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2020,arma_largo,P605_5A_2,robo de bicicleta
+2020,arma_largo,P605_5B_2,intento de robo de bicicleta
+2020,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2020,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2020,arma_largo,P605_7_2,amenazas e intimidaciones
+2020,arma_largo,P605_8_2,maltrato fisico y/o psicologico de algun miem
+2020,arma_largo,P605_9_2,ofensas sexuales
+2020,arma_largo,P605_10_2,secuestro
+2020,arma_largo,P605_11_2,intento de secuestro
+2020,arma_largo,P605_12_2,extorsion
+2020,arma_largo,P605_12A_2,intento de extorsion
+2020,arma_largo,P605_13_2,estafa
+2020,arma_largo,P605_14_2,robo del negocio
+2020,arma_largo,P605_15_2,otro
+2020,percepcion,P611_1,robo a su vivienda
+2020,percepcion,P611_2,robo de vehiculo automotor
+2020,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2020,percepcion,P611_4,robo de motocicleta o mototaxi
+2020,percepcion,P611_5,robo de bicicleta
+2020,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2020,percepcion,P611_7,amenazas e intimidaciones
+2020,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2020,percepcion,P611_9,ofensas sexuales
+2020,percepcion,P611_10,secuestro
+2020,percepcion,P611_11,extorsion
+2020,percepcion,P611_12,estafa
+2020,percepcion,P611_13,robo del negocio
+2020,percepcion,P611_14,otro
+2020,percepcion,P611_14_O,otro/especifique
+2021,victima,P601_1,robo de vehiculo automotor
+2021,victima,P601_2,intento de robo de vehiculo automotor
+2021,victima,P602C_2,robo de autopartes del vehiculo automotor
+2021,victima,P601_3A,robo de autopartes del vehiculo automotor
+2021,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2021,victima,P601_4A,robo de motocicleta/ mototaxi
+2021,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2021,victima,P601_5A,robo de bicicleta
+2021,victima,P601_5B,intento de robo de bicicleta
+2021,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2021,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2021,victima,P601_7,amenazas e intimidaciones
+2021,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2021,victima,P601_9,ofensas sexuales
+2021,victima,P601_10,secuestro
+2021,victima,P601_11,intento de secuestro
+2021,victima,P601_12,extorsion
+2021,victima,P601_12A,intento de extorsion
+2021,victima,P601_13,estafa
+2021,victima,P601_13_ESPECIF,estafa_especifique
+2021,victima,P601_14,robo del negocio
+2021,victima,P601_15,otro
+2021,victima,P601_15_O,otro_especifique
+2021,denuncio,P606_1,robo de vehiculo automotor
+2021,denuncio,P606_2,intento de robo de vehiculo automotor
+2021,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2021,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2021,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2021,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2021,denuncio,P606_5A,robo de bicicleta
+2021,denuncio,P606_5B,intento de robo de bicicleta
+2021,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2021,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2021,denuncio,P606_7,amenazas e intimidaciones
+2021,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2021,denuncio,P606_9,ofensas sexuales
+2021,denuncio,P606_10,secuestro
+2021,denuncio,P606_11,intento de secuestro
+2021,denuncio,P606_12,extorsion
+2021,denuncio,P606_12A,intento de extorsion
+2021,denuncio,P606_13,estafa
+2021,denuncio,P606_14,robo del negocio
+2021,denuncio,P606_15,otro
+2021,arma_mano,P605_1_1,robo de vehiculo automotor
+2021,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2021,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2021,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2021,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2021,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2021,arma_mano,P605_5A_1,robo de bicicleta
+2021,arma_mano,P605_5B_1,intento de robo de bicicleta
+2021,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2021,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2021,arma_mano,P605_7_1,amenazas e intimidaciones
+2021,arma_mano,P605_8_1,:maltrato fisico y/o psicologico de algun mie
+2021,arma_mano,P605_9_1,:ofensas sexuales
+2021,arma_mano,P605_10_1,:secuestro
+2021,arma_mano,P605_11_1,: intento de secuestro
+2021,arma_mano,P605_12_1,: extorsion
+2021,arma_mano,P605_12A_1,: intento de extorsion
+2021,arma_mano,P605_13_1,: estafa
+2021,arma_mano,P605_14_1,: robo del negocio
+2021,arma_mano,P605_15_1,: otro
+2021,arma_largo,P605_1_2,robo de vehiculo automotor
+2021,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2021,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2021,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2021,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2021,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2021,arma_largo,P605_5A_2,robo de bicicleta
+2021,arma_largo,P605_5B_2,intento de robo de bicicleta
+2021,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2021,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2021,arma_largo,P605_7_2,amenazas e intimidaciones
+2021,arma_largo,P605_8_2,:maltrato fisico y/o psicologico de algun mie
+2021,arma_largo,P605_9_2,:ofensas sexuales
+2021,arma_largo,P605_10_2,:secuestro
+2021,arma_largo,P605_11_2,: intento de secuestro
+2021,arma_largo,P605_12_2,: extorsion
+2021,arma_largo,P605_12A_2,: intento de extorsion
+2021,arma_largo,P605_13_2,: estafa
+2021,arma_largo,P605_14_2,: robo del negocio
+2021,arma_largo,P605_15_2,: otro
+2021,percepcion,P611_1,robo a su vivienda
+2021,percepcion,P611_2,robo de vehiculo automotor
+2021,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2021,percepcion,P611_4,robo de motocicleta o mototaxi
+2021,percepcion,P611_5,robo de bicicleta
+2021,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2021,percepcion,P611_7,amenazas e intimidaciones
+2021,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2021,percepcion,P611_9,ofensas sexuales
+2021,percepcion,P611_10,secuestro
+2021,percepcion,P611_11,extorsion
+2021,percepcion,P611_12,estafa
+2021,percepcion,P611_13,robo del negocio
+2021,percepcion,P611_14,otro
+2021,percepcion,P611_14_O,otro/especifique
+2022,victima,P601_1,robo de vehiculo automotor
+2022,victima,P601_2,intento de robo de vehiculo automotor
+2022,victima,P602C_2,robo de autopartes del vehiculo automotor
+2022,victima,P601_3A,robo de autopartes del vehiculo automotor
+2022,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2022,victima,P601_4A,robo de motocicleta/ mototaxi
+2022,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2022,victima,P601_5A,robo de bicicleta
+2022,victima,P601_5B,intento de robo de bicicleta
+2022,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2022,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2022,victima,P601_7,amenazas e intimidaciones
+2022,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2022,victima,P601_9,ofensas sexuales
+2022,victima,P601_10,secuestro
+2022,victima,P601_11,intento de secuestro
+2022,victima,P601_12,extorsion
+2022,victima,P601_12A,intento de extorsion
+2022,victima,P601_13,estafa
+2022,victima,P601_13_ESPECIF,estafa_especifique
+2022,victima,P601_14,robo del negocio
+2022,victima,P601_15,otro
+2022,victima,P601_15_O,otro_especifique
+2022,denuncio,P606_1,robo de vehiculo automotor
+2022,denuncio,P606_2,intento de robo de vehiculo automotor
+2022,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2022,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2022,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2022,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2022,denuncio,P606_5A,robo de bicicleta
+2022,denuncio,P606_5B,intento de robo de bicicleta
+2022,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2022,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2022,denuncio,P606_7,amenazas e intimidaciones
+2022,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2022,denuncio,P606_9,ofensas sexuales
+2022,denuncio,P606_10,secuestro
+2022,denuncio,P606_11,intento de secuestro
+2022,denuncio,P606_12,extorsion
+2022,denuncio,P606_12A,intento de extorsion
+2022,denuncio,P606_13,estafa
+2022,denuncio,P606_14,robo del negocio
+2022,denuncio,P606_15,otro
+2022,arma_mano,P605_1_1,robo de vehiculo automotor
+2022,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2022,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2022,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2022,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2022,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2022,arma_mano,P605_5A_1,robo de bicicleta
+2022,arma_mano,P605_5B_1,intento de robo de bicicleta
+2022,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2022,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2022,arma_mano,P605_7_1,amenazas e intimidaciones
+2022,arma_mano,P605_8_1,:maltrato fisico y/o psicologico de algun mie
+2022,arma_mano,P605_9_1,:ofensas sexuales
+2022,arma_mano,P605_10_1,:secuestro
+2022,arma_mano,P605_11_1,: intento de secuestro
+2022,arma_mano,P605_12_1,: extorsion
+2022,arma_mano,P605_12A_1,: intento de extorsion
+2022,arma_mano,P605_13_1,: estafa
+2022,arma_mano,P605_14_1,: robo del negocio
+2022,arma_mano,P605_15_1,: otro
+2022,arma_largo,P605_1_2,robo de vehiculo automotor
+2022,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2022,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2022,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2022,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2022,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2022,arma_largo,P605_5A_2,robo de bicicleta
+2022,arma_largo,P605_5B_2,intento de robo de bicicleta
+2022,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2022,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2022,arma_largo,P605_7_2,amenazas e intimidaciones
+2022,arma_largo,P605_8_2,:maltrato fisico y/o psicologico de algun mie
+2022,arma_largo,P605_9_2,:ofensas sexuales
+2022,arma_largo,P605_10_2,:secuestro
+2022,arma_largo,P605_11_2,: intento de secuestro
+2022,arma_largo,P605_12_2,: extorsion
+2022,arma_largo,P605_12A_2,: intento de extorsion
+2022,arma_largo,P605_13_2,: estafa
+2022,arma_largo,P605_14_2,: robo del negocio
+2022,arma_largo,P605_15_2,: otro
+2022,percepcion,P611_1,robo a su vivienda
+2022,percepcion,P611_2,robo de vehiculo automotor
+2022,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2022,percepcion,P611_4,robo de motocicleta o mototaxi
+2022,percepcion,P611_5,robo de bicicleta
+2022,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2022,percepcion,P611_7,amenazas e intimidaciones
+2022,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2022,percepcion,P611_9,ofensas sexuales
+2022,percepcion,P611_10,secuestro
+2022,percepcion,P611_11,extorsion
+2022,percepcion,P611_12,estafa
+2022,percepcion,P611_13,robo del negocio
+2022,percepcion,P611_14,otro
+2022,percepcion,P611_14_O,otro/especifique
+2023,victima,P601_1,robo de vehiculo automotor
+2023,victima,P601_2,intento de robo de vehiculo automotor
+2023,victima,P602C_2,robo de autopartes del vehiculo automotor
+2023,victima,P601_3A,robo de autopartes del vehiculo automotor
+2023,victima,P601_3B,intento de robo de autopartes del vehiculo au
+2023,victima,P601_4A,robo de motocicleta/ mototaxi
+2023,victima,P601_4B,intento de robo de motocicleta/ mototaxi
+2023,victima,P601_5A,robo de bicicleta
+2023,victima,P601_5B,intento de robo de bicicleta
+2023,victima,P601_6A,"robo de dinero, cartera, celular, etc."
+2023,victima,P601_6B,"intento de robo de dinero, cartera, celular, "
+2023,victima,P601_7,amenazas e intimidaciones
+2023,victima,P601_8,maltrato fisico y/o psicologico de algun miem
+2023,victima,P601_9,ofensas sexuales
+2023,victima,P601_10,secuestro
+2023,victima,P601_11,intento de secuestro
+2023,victima,P601_12,extorsion
+2023,victima,P601_12A,intento de extorsion
+2023,victima,P601_13,estafa
+2023,victima,P601_13_ESPECIF,estafa_especifique
+2023,victima,P601_14,robo del negocio
+2023,victima,P601_15,otro
+2023,victima,P601_15_O,otro_especifique
+2023,victima,P601_16,delitos informaticos
+2023,victima,P601_16_ESPECIF,delitos informaticos_especifique
+2023,denuncio,P606_1,robo de vehiculo automotor
+2023,denuncio,P606_2,intento de robo de vehiculo automotor
+2023,denuncio,P606_3A,robo de autopartes del vehiculo automotor
+2023,denuncio,P606_3B,intento de robo de autopartes del vehiculo au
+2023,denuncio,P606_4A,robo de motocicleta/ mototaxi
+2023,denuncio,P606_4B,intento de robo de motocicleta/ mototaxi
+2023,denuncio,P606_5A,robo de bicicleta
+2023,denuncio,P606_5B,intento de robo de bicicleta
+2023,denuncio,P606_6A,"robo de dinero, cartera, celular, etc."
+2023,denuncio,P606_6B,"intento de robo de dinero, cartera, celular, "
+2023,denuncio,P606_7,amenazas e intimidaciones
+2023,denuncio,P606_8,maltrato fisico y/o psicologico de algun miem
+2023,denuncio,P606_9,ofensas sexuales
+2023,denuncio,P606_10,secuestro
+2023,denuncio,P606_11,intento de secuestro
+2023,denuncio,P606_12,extorsion
+2023,denuncio,P606_12A,intento de extorsion
+2023,denuncio,P606_13,estafa
+2023,denuncio,P606_14,robo del negocio
+2023,denuncio,P606_15,otro
+2023,denuncio,P606_16,denuncio el
+2023,arma_mano,P605_1_1,robo de vehiculo automotor
+2023,arma_mano,P605_2_1,intento de robo de vehiculo automotor
+2023,arma_mano,P605_3A_1,robo de autopartes del vehiculo automotor
+2023,arma_mano,P605_3B_1,intento de robo de autopartes del vehiculo au
+2023,arma_mano,P605_4A_1,robo de motocicleta/ mototaxi
+2023,arma_mano,P605_4B_1,intento de robo de motocicleta/ mototaxi
+2023,arma_mano,P605_5A_1,robo de bicicleta
+2023,arma_mano,P605_5B_1,intento de robo de bicicleta
+2023,arma_mano,P605_6A_1,"robo de dinero, cartera, celular, etc."
+2023,arma_mano,P605_6B_1,"intento de robo de dinero, cartera, celular, "
+2023,arma_mano,P605_7_1,amenazas e intimidaciones
+2023,arma_mano,P605_8_1,:maltrato fisico y/o psicologico de algun mie
+2023,arma_mano,P605_9_1,:ofensas sexuales
+2023,arma_mano,P605_10_1,:secuestro
+2023,arma_mano,P605_11_1,: intento de secuestro
+2023,arma_mano,P605_12_1,: extorsion
+2023,arma_mano,P605_12A_1,: intento de extorsion
+2023,arma_mano,P605_13_1,: estafa
+2023,arma_mano,P605_14_1,: robo del negocio
+2023,arma_mano,P605_15_1,: otro
+2023,arma_largo,P605_1_2,robo de vehiculo automotor
+2023,arma_largo,P605_2_2,intento de robo de vehiculo automotor
+2023,arma_largo,P605_3A_2,robo de autopartes del vehiculo automotor
+2023,arma_largo,P605_3B_2,intento de robo de autopartes del vehiculo au
+2023,arma_largo,P605_4A_2,robo de motocicleta/ mototaxi
+2023,arma_largo,P605_4B_2,intento de robo de motocicleta/ mototaxi
+2023,arma_largo,P605_5A_2,robo de bicicleta
+2023,arma_largo,P605_5B_2,intento de robo de bicicleta
+2023,arma_largo,P605_6A_2,"robo de dinero, cartera, celular, etc."
+2023,arma_largo,P605_6B_2,"intento de robo de dinero, cartera, celular, "
+2023,arma_largo,P605_7_2,amenazas e intimidaciones
+2023,arma_largo,P605_8_2,:maltrato fisico y/o psicologico de algun mie
+2023,arma_largo,P605_9_2,:ofensas sexuales
+2023,arma_largo,P605_10_2,:secuestro
+2023,arma_largo,P605_11_2,: intento de secuestro
+2023,arma_largo,P605_12_2,: extorsion
+2023,arma_largo,P605_12A_2,: intento de extorsion
+2023,arma_largo,P605_13_2,: estafa
+2023,arma_largo,P605_14_2,: robo del negocio
+2023,arma_largo,P605_15_2,: otro
+2023,percepcion,P611_1,robo a su vivienda
+2023,percepcion,P611_2,robo de vehiculo automotor
+2023,percepcion,P611_3,robo de autopartes del vehiculo automotor
+2023,percepcion,P611_4,robo de motocicleta o mototaxi
+2023,percepcion,P611_5,robo de bicicleta
+2023,percepcion,P611_6,"robo de dinero, cartera, celular, etc."
+2023,percepcion,P611_7,amenazas e intimidaciones
+2023,percepcion,P611_8,maltrato fisico y/o psicologico de algun miem
+2023,percepcion,P611_9,ofensas sexuales
+2023,percepcion,P611_10,secuestro
+2023,percepcion,P611_11,extorsion
+2023,percepcion,P611_12,estafa
+2023,percepcion,P611_13,robo del negocio
+2023,percepcion,P611_14,otro
+2023,percepcion,P611_14_O,otro/especifique
+2024,victima,P615_1,robo de vehiculo automotor
+2024,victima,P615_2,intento de robo de vehiculo automotor
+2024,victima,P615_3,robo de autopartes del vehiculo automotor
+2024,victima,P615_4,intento de robo de autopartes del vehiculo au
+2024,victima,P615_5,robo de motocicleta/mototaxi
+2024,victima,P615_6,intento de robo de motocicleta/mototaxi
+2024,victima,P615_7,robo de bicicleta
+2024,victima,P615_8,intento de robo de bicicleta
+2024,victima,P615_9,"robo de dinero, cartera, celular, etc."
+2024,victima,P615_10,"intento de robo de dinero, cartera, celular, "
+2024,victima,P615_11,robo de negocio
+2024,victima,P615_12,otro patrimonial
+2024,victima,P615_12_O,otro patrimonial/especifique
+2024,victima,P615_13_O,vandalismo_especifique
+2024,victima,P615_14,amenazas e intimidaciones
+2024,victima,P615_15,maltrato fisico y/o psicologico de algun miem
+2024,victima,P615_16,ofensas sexuales
+2024,victima,P615_17,secuestro
+2024,victima,P615_18,intento de secuestro
+2024,victima,P615_19,extorsion
+2024,victima,P615_19_O,extorsion_especifique
+2024,victima,P615_20,intento de extorsion
+2024,victima,P615_20_O,intento de extorsion_especifique
+2024,victima,P615_21,estafa
+2024,victima,P615_21_O,estafa_especifique
+2024,victima,P615_22,otro no patrimonial
+2024,victima,P615_22_O,otro no patrimonial_especifique
+2024,victima,P615_23,fraude bancario
+2024,victima,P615_23_O,fraude bancario _especifique
+2024,victima,P615_24,fraude al consumidor
+2024,victima,P615_24_O,fraude al consumidor _especifique
+2024,victima,P615_25,estafas por medios tecnologicos
+2024,victima,P615_25_O,estafas por medios tecnologicos _especifique
+2024,victima,P615_26,suplantacion de identidad
+2024,victima,P615_26_O,suplantacion de identidad _especifique
+2024,victima,P615_27,ciberacoso
+2024,victima,P615_27_O,ciberacoso _especifique
+2024,victima,P615_28,otras modalidades de delito informatico
+2024,victima,P615_28_O,otras modalidades de delito informatico _espe
+2024,denuncio,P619_1,robo de vehiculo automotor
+2024,denuncio,P619_2,intento de robo de vehiculo automotor
+2024,denuncio,P619_3,robo de autopartes del vehiculo automotor
+2024,denuncio,P619_4,intento de robo de autopartes del vehiculo au
+2024,denuncio,P619_5,robo de motocicleta/mototaxi
+2024,denuncio,P619_6,intento de robo de motocicleta/mototaxi
+2024,denuncio,P619_7,robo de bicicleta
+2024,denuncio,P619_8,intento de robo de bicicleta
+2024,denuncio,P619_9,"robo de dinero, cartera, celular, etc."
+2024,denuncio,P619_10,"intento de robo de dinero, cartera, celular, "
+2024,denuncio,P619_11,robo de negocio
+2024,denuncio,P619_12,otro patrimonial
+2024,denuncio,P619_13,vandalismo
+2024,denuncio,P619_14,amenazas e intimidaciones
+2024,denuncio,P619_15,maltrato fisico y/o psicologico de algun miem
+2024,denuncio,P619_16,ofensas sexuales
+2024,denuncio,P619_17,secuestro
+2024,denuncio,P619_18,intento de secuestro
+2024,denuncio,P619_19,extorsion
+2024,denuncio,P619_20,intento de extorsion
+2024,denuncio,P619_21,estafa
+2024,denuncio,P619_22,otro no patrimonial
+2024,denuncio,P619_23,fraude bancario
+2024,denuncio,P619_24,fraude al consumidor
+2024,denuncio,P619_25,estafas por medios tecnologicos
+2024,denuncio,P619_26,suplantacion de identidad
+2024,denuncio,P619_27,ciberacoso
+2024,denuncio,P619_28,otras modalidades de delito informatico
+2024,arma_mano,P632_1_1,robo de vehiculo automotor
+2024,arma_mano,P632_2_1,intento de robo de vehiculo automotor
+2024,arma_mano,P632_3_1,robo de autopartes del vehiculo automotor
+2024,arma_mano,P632_4_1,intento de robo de autopartes del vehiculo au
+2024,arma_mano,P632_5_1,robo de motocicleta/mototaxi
+2024,arma_mano,P632_6_1,intento de robo de motocicleta/mototaxi
+2024,arma_mano,P632_7_1,robo de bicicleta
+2024,arma_mano,P632_8_1,intento de robo de bicicleta
+2024,arma_mano,P632_9_1,"robo de dinero, cartera, celular, etc."
+2024,arma_mano,P632_10_1,"intento de robo de dinero, cartera, celular, "
+2024,arma_mano,P632_11_1,robo de negocio
+2024,arma_mano,P632_12_1,otro patrimonial
+2024,arma_mano,P632_13_1,vandalismo
+2024,arma_mano,P632_14_1,amenazas e intimidaciones
+2024,arma_mano,P632_15_1,maltrato fisico y/o psicologico de algun miem
+2024,arma_mano,P632_16_1,ofensas sexuales
+2024,arma_mano,P632_17_1,secuestro
+2024,arma_mano,P632_18_1,intento de secuestro
+2024,arma_mano,P632_19_1,extorsion
+2024,arma_mano,P632_20_1,intento de extorsion
+2024,arma_mano,P632_21_1,estafa
+2024,arma_mano,P632_22_1,otro no patrimonial
+2024,arma_largo,P632_1_2,robo de vehiculo automotor
+2024,arma_largo,P632_2_2,intento de robo de vehiculo automotor
+2024,arma_largo,P632_3_2,robo de autopartes del vehiculo automotor
+2024,arma_largo,P632_4_2,intento de robo de autopartes del vehiculo au
+2024,arma_largo,P632_5_2,robo de motocicleta/mototaxi
+2024,arma_largo,P632_6_2,intento de robo de motocicleta/mototaxi
+2024,arma_largo,P632_7_2,robo de bicicleta
+2024,arma_largo,P632_8_2,intento de robo de bicicleta
+2024,arma_largo,P632_9_2,"robo de dinero, cartera, celular, etc."
+2024,arma_largo,P632_10_2,"intento de robo de dinero, cartera, celular, "
+2024,arma_largo,P632_11_2,robo de negocio
+2024,arma_largo,P632_12_2,otro patrimonial
+2024,arma_largo,P632_13_2,vandalismo
+2024,arma_largo,P632_14_2,amenazas e intimidaciones
+2024,arma_largo,P632_15_2,maltrato fisico y/o psicologico de algun miem
+2024,arma_largo,P632_16_2,ofensas sexuales
+2024,arma_largo,P632_17_2,secuestro
+2024,arma_largo,P632_18_2,intento de secuestro
+2024,arma_largo,P632_19_2,extorsion
+2024,arma_largo,P632_20_2,intento de extorsion
+2024,arma_largo,P632_21_2,estafa
+2024,arma_largo,P632_22_2,otro no patrimonial
+2024,percepcion,P601_1,robo a su vivienda
+2024,percepcion,P601_2,robo de vehiculo automotor
+2024,percepcion,P601_3,robo de autopartes del vehiculo automotor
+2024,percepcion,P601_4,robo de motocicleta o mototaxi
+2024,percepcion,P601_5,robo de bicicleta
+2024,percepcion,P601_6,"robo de dinero, cartera, celular, etc."
+2024,percepcion,P601_7,amenazas e intimidaciones
+2024,percepcion,P601_8,maltrato fisico y/o psicologico de algun miem
+2024,percepcion,P601_9,ofensas sexuales
+2024,percepcion,P601_10,secuestro
+2024,percepcion,P601_11,extorsion
+2024,percepcion,P601_12,estafa
+2024,percepcion,P601_13,robo del negocio
+2024,percepcion,P601_14,vandalismo
+2024,percepcion,P601_14_O,vandalismo_especifique
+2024,percepcion,P601_15,delitos informaticos
+2024,percepcion,P601_15_O,delitos informaticos_especifique
+2024,percepcion,P601_16,otro
+2024,percepcion,P601_16_O,otro/especifique
+2025,victima,P424_1,robo de vehiculo automotor
+2025,victima,P424_2,intento de robo de vehiculo automotor
+2025,victima,P424_3,robo de autopartes del vehiculo automotor
+2025,victima,P424_4,intento de robo de autopartes del vehiculo au
+2025,victima,P424_5,robo de motocicleta/mototaxi
+2025,victima,P424_6,intento de robo de motocicleta/mototaxi
+2025,victima,P424_7,robo de bicicleta
+2025,victima,P424_8,intento de robo de bicicleta
+2025,victima,P424_9,"robo de dinero, cartera, celular, etc."
+2025,victima,P424_10,"intento de robo de dinero, cartera, celular, "
+2025,victima,P424_11,robo de negocio
+2025,victima,P424_12,otro patrimonial
+2025,victima,P424_12_O,otro patrimonial/especifique
+2025,victima,P424_14,amenazas e intimidaciones
+2025,victima,P424_15,maltrato fisico y/o psicologico de algun miem
+2025,victima,P424_16,ofensas sexuales
+2025,victima,P424_17,secuestro
+2025,victima,P424_18,intento de secuestro
+2025,victima,P424_19,extorsion
+2025,victima,P424_20,intento de extorsion
+2025,victima,P424_21,estafa
+2025,victima,P424_22,otro no patrimonial
+2025,victima,P424_22_O,otro no patrimonial_especifique
+2025,victima,P424_23,fraude bancario
+2025,victima,P424_26,suplantacion de identidad
+2025,victima,P424_27,ciberacoso
+2025,victima,P424_28,otras modalidades de delito informatico
+2025,victima,P424_28_O,otras modalidades de delito informatico _espe
+2025,denuncio,P428_1,robo de vehiculo automotor
+2025,denuncio,P428_2,intento de robo de vehiculo automotor
+2025,denuncio,P428_3,robo de autopartes del vehiculo automotor
+2025,denuncio,P428_4,intento de robo de autopartes del vehiculo au
+2025,denuncio,P428_5,robo de motocicleta/mototaxi
+2025,denuncio,P428_6,intento de robo de motocicleta/mototaxi
+2025,denuncio,P428_7,robo de bicicleta
+2025,denuncio,P428_8,intento de robo de bicicleta
+2025,denuncio,P428_9,"robo de dinero, cartera, celular, etc."
+2025,denuncio,P428_10,"intento de robo de dinero, cartera, celular, "
+2025,denuncio,P428_11,robo de negocio
+2025,denuncio,P428_12,otro patrimonial
+2025,denuncio,P428_14,amenazas e intimidaciones
+2025,denuncio,P428_15,maltrato fisico y/o psicologico de algun miem
+2025,denuncio,P428_16,ofensas sexuales
+2025,denuncio,P428_17,secuestro
+2025,denuncio,P428_18,intento de secuestro
+2025,denuncio,P428_19,extorsion
+2025,denuncio,P428_20,intento de extorsion
+2025,denuncio,P428_21,estafa
+2025,denuncio,P428_22,otro no patrimonial
+2025,denuncio,P428_23,fraude bancario
+2025,denuncio,P428_26,suplantacion de identidad
+2025,denuncio,P428_27,ciberacoso
+2025,denuncio,P428_28,otras modalidades de delito informatico
+2025,arma_mano,P451_1_1,robo de vehiculo automotor
+2025,arma_mano,P451_2_1,intento de robo de vehiculo automotor
+2025,arma_mano,P451_3_1,robo de autopartes del vehiculo automotor
+2025,arma_mano,P451_4_1,intento de robo de autopartes del vehiculo au
+2025,arma_mano,P451_5_1,robo de motocicleta/mototaxi
+2025,arma_mano,P451_6_1,intento de robo de motocicleta/mototaxi
+2025,arma_mano,P451_7_1,robo de bicicleta
+2025,arma_mano,P451_8_1,intento de robo de bicicleta
+2025,arma_mano,P451_9_1,"robo de dinero, cartera, celular, etc."
+2025,arma_mano,P451_10_1,"intento de robo de dinero, cartera, celular, "
+2025,arma_mano,P451_11_1,robo de negocio
+2025,arma_mano,P451_12_1,otro patrimonial
+2025,arma_mano,P451_14_1,amenazas e intimidaciones
+2025,arma_mano,P451_15_1,maltrato fisico y/o psicologico de algun miem
+2025,arma_mano,P451_16_1,ofensas sexuales
+2025,arma_mano,P451_17_1,secuestro
+2025,arma_mano,P451_18_1,intento de secuestro
+2025,arma_mano,P451_19_1,extorsion
+2025,arma_mano,P451_20_1,intento de extorsion
+2025,arma_mano,P451_22_1,otro no patrimonial
+2025,arma_largo,P451_1_2,robo de vehiculo automotor
+2025,arma_largo,P451_2_2,intento de robo de vehiculo automotor
+2025,arma_largo,P451_3_2,robo de autopartes del vehiculo automotor
+2025,arma_largo,P451_4_2,intento de robo de autopartes del vehiculo au
+2025,arma_largo,P451_5_2,robo de motocicleta/mototaxi
+2025,arma_largo,P451_6_2,intento de robo de motocicleta/mototaxi
+2025,arma_largo,P451_7_2,robo de bicicleta
+2025,arma_largo,P451_8_2,intento de robo de bicicleta
+2025,arma_largo,P451_9_2,"robo de dinero, cartera, celular, etc."
+2025,arma_largo,P451_10_2,"intento de robo de dinero, cartera, celular, "
+2025,arma_largo,P451_11_2,robo de negocio
+2025,arma_largo,P451_12_2,otro patrimonial
+2025,arma_largo,P451_14_2,amenazas e intimidaciones
+2025,arma_largo,P451_15_2,maltrato fisico y/o psicologico de algun miem
+2025,arma_largo,P451_16_2,ofensas sexuales
+2025,arma_largo,P451_17_2,secuestro
+2025,arma_largo,P451_18_2,intento de secuestro
+2025,arma_largo,P451_19_2,extorsion
+2025,arma_largo,P451_20_2,intento de extorsion
+2025,arma_largo,P451_22_2,otro no patrimonial
+2025,percepcion,P401,algun hecho delictivo
+2025,percepcion,P402_1,robo a su vivienda
+2025,percepcion,P402_2,robo de vehiculo automotor
+2025,percepcion,P402_3,robo de autopartes del vehiculo automotor
+2025,percepcion,P402_4,robo de motocicleta o mototaxi
+2025,percepcion,P402_5,robo de bicicleta
+2025,percepcion,P402_6,"robo de dinero, cartera, celular, etc."
+2025,percepcion,P402_7,amenazas e intimidaciones
+2025,percepcion,P402_8,maltrato fisico y/o psicologico de algun miem
+2025,percepcion,P402_9,ofensas sexuales
+2025,percepcion,P402_10,secuestro
+2025,percepcion,P402_11,extorsion
+2025,percepcion,P402_12,estafa
+2025,percepcion,P402_13,robo del negocio
+2025,percepcion,P402_15,otro
+2025,percepcion,P402_15_O,otro/especifique

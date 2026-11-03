@@ -1,0 +1,325 @@
+indicador,anio,modulo,archivo,n_variables,variables,faltantes,etiqueta,codificacion
+victima_lista_comun,2014,enapres_seguridad,07_CAP_600_URBANO.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Sí; 2=No; 3=NO TIENE
+victima_lista_comun,2015,enapres_seguridad,CAP_600_URBANO.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_comun,2016,enapres_seguridad,CAP_600_URBANO.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_comun,2017,enapres_seguridad,CAP_600_URBANO_7.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=NO TIENE
+victima_lista_comun,2018,enapres_seguridad,CAP_600_URBANO_7.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_comun,2019,enapres_seguridad,CAP_600_URBANO_7.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_comun,2020,enapres_seguridad,CAP_600_URBANO_7.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=NO TIENE
+victima_lista_comun,2021,enapres_seguridad,CAP_600_URBANO_7.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Sí; 2=No; 3=No tiene
+victima_lista_comun,2022,enapres_seguridad,CAP_600_URBANO_7.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_comun,2023,enapres_seguridad,CAP_600_URBANO_7.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_comun,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,20,P615_1 P615_2 P615_3 P615_4 P615_5 P615_6 P615_7 P615_8 P615_9 P615_10 P615_11 P615_14 P615_15 P615_16 P615_17 P615_18 P615_19 P615_21 P615_12 P615_22,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de vehículo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_comun,2025,enapres_seguridad,CAP_400_URBANO_4.sav,20,P424_1 P424_2 P424_3 P424_4 P424_5 P424_6 P424_7 P424_8 P424_9 P424_10 P424_11 P424_14 P424_15 P424_16 P424_17 P424_18 P424_19 P424_21 P424_12 P424_22,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de vehículo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_completa,2014,enapres_seguridad,07_CAP_600_URBANO.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Sí; 2=No; 3=NO TIENE
+victima_lista_completa,2015,enapres_seguridad,CAP_600_URBANO.sav,19,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_completa,2016,enapres_seguridad,CAP_600_URBANO.sav,20,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_12A P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_completa,2017,enapres_seguridad,CAP_600_URBANO_7.sav,20,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_12A P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=NO TIENE
+victima_lista_completa,2018,enapres_seguridad,CAP_600_URBANO_7.sav,20,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_12A P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_completa,2019,enapres_seguridad,CAP_600_URBANO_7.sav,20,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_12A P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_completa,2020,enapres_seguridad,CAP_600_URBANO_7.sav,20,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_12A P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=NO TIENE
+victima_lista_completa,2021,enapres_seguridad,CAP_600_URBANO_7.sav,20,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_12A P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Sí; 2=No; 3=No tiene
+victima_lista_completa,2022,enapres_seguridad,CAP_600_URBANO_7.sav,20,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_12A P601_13 P601_15,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_completa,2023,enapres_seguridad,CAP_600_URBANO_7.sav,21,P601_1 P601_2 P601_3A P601_3B P601_4A P601_4B P601_5A P601_5B P601_6A P601_6B P601_14 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_12A P601_13 P601_15 P601_16,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_completa,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,27,P615_1 P615_2 P615_3 P615_4 P615_5 P615_6 P615_7 P615_8 P615_9 P615_10 P615_11 P615_14 P615_15 P615_16 P615_17 P615_18 P615_19 P615_20 P615_21 P615_12 P615_22 P615_23 P615_24 P615_25 P615_26 P615_27 P615_28,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de vehículo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+victima_lista_completa,2025,enapres_seguridad,CAP_400_URBANO_4.sav,25,P424_1 P424_2 P424_3 P424_4 P424_5 P424_6 P424_7 P424_8 P424_9 P424_10 P424_11 P424_14 P424_15 P424_16 P424_17 P424_18 P424_19 P424_20 P424_21 P424_12 P424_22 P424_23 P424_26 P424_27 P424_28,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de vehículo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+robo_dinero,2014,enapres_seguridad,07_CAP_600_URBANO.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Sí; 2=No; 3=NO TIENE
+robo_dinero,2015,enapres_seguridad,CAP_600_URBANO.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=No tiene
+robo_dinero,2016,enapres_seguridad,CAP_600_URBANO.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=No tiene
+robo_dinero,2017,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=NO TIENE
+robo_dinero,2018,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=No tiene
+robo_dinero,2019,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=No tiene
+robo_dinero,2020,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=NO TIENE
+robo_dinero,2021,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Sí; 2=No; 3=No tiene
+robo_dinero,2022,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=No tiene
+robo_dinero,2023,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_6A P601_6B,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=No tiene
+robo_dinero,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,2,P615_9 P615_10,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=No tiene
+robo_dinero,2025,enapres_seguridad,CAP_400_URBANO_4.sav,2,P424_9 P424_10,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de dinero, cartera, celular, etc.?",1=Si; 2=No; 3=No tiene
+robo_vehiculo,2014,enapres_seguridad,07_CAP_600_URBANO.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Sí; 2=No; 3=NO TIENE
+robo_vehiculo,2015,enapres_seguridad,CAP_600_URBANO.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+robo_vehiculo,2016,enapres_seguridad,CAP_600_URBANO.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+robo_vehiculo,2017,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=NO TIENE
+robo_vehiculo,2018,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+robo_vehiculo,2019,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+robo_vehiculo,2020,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=NO TIENE
+robo_vehiculo,2021,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Sí; 2=No; 3=No tiene
+robo_vehiculo,2022,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+robo_vehiculo,2023,enapres_seguridad,CAP_600_URBANO_7.sav,2,P601_1 P601_4A,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+robo_vehiculo,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,2,P615_1 P615_5,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de vehículo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+robo_vehiculo,2025,enapres_seguridad,CAP_400_URBANO_4.sav,2,P424_1 P424_5,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de vehículo automotor (auto, camioneta, etc.)?",1=Si; 2=No; 3=No tiene
+amenazas,2014,enapres_seguridad,07_CAP_600_URBANO.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Sí; 2=No; 3=NO TIENE
+amenazas,2015,enapres_seguridad,CAP_600_URBANO.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Si; 2=No; 3=No tiene
+amenazas,2016,enapres_seguridad,CAP_600_URBANO.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Si; 2=No; 3=No tiene
+amenazas,2017,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Si; 2=No; 3=NO TIENE
+amenazas,2018,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Si; 2=No; 3=No tiene
+amenazas,2019,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Si; 2=No; 3=No tiene
+amenazas,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Si; 2=No; 3=NO TIENE
+amenazas,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Sí; 2=No; 3=No tiene
+amenazas,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Si; 2=No; 3=No tiene
+amenazas,2023,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_7,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?,1=Si; 2=No; 3=No tiene
+amenazas,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,1,P615_14,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?",1=Si; 2=No; 3=No tiene
+amenazas,2025,enapres_seguridad,CAP_400_URBANO_4.sav,1,P424_14,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Amenazas e intimidaciones?",1=Si; 2=No; 3=No tiene
+extorsion,2014,enapres_seguridad,07_CAP_600_URBANO.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Sí; 2=No; 3=NO TIENE
+extorsion,2015,enapres_seguridad,CAP_600_URBANO.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Si; 2=No; 3=No tiene
+extorsion,2016,enapres_seguridad,CAP_600_URBANO.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Si; 2=No; 3=No tiene
+extorsion,2017,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Si; 2=No; 3=NO TIENE
+extorsion,2018,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Si; 2=No; 3=No tiene
+extorsion,2019,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Si; 2=No; 3=No tiene
+extorsion,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Si; 2=No; 3=NO TIENE
+extorsion,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Sí; 2=No; 3=No tiene
+extorsion,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Si; 2=No; 3=No tiene
+extorsion,2023,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Extorsion?,1=Si; 2=No; 3=No tiene
+extorsion,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,1,P615_19,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Extorsión?",1=Si; 2=No; 3=No tiene
+extorsion,2025,enapres_seguridad,CAP_400_URBANO_4.sav,1,P424_19,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Extorsión?",1=Si; 2=No; 3=No tiene
+intento_extorsion,2014,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+intento_extorsion,2015,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+intento_extorsion,2016,enapres_seguridad,CAP_600_URBANO.sav,1,P601_12A,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Intento de extorsion?,1=Si; 2=No; 3=No tiene
+intento_extorsion,2017,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12A,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Intento de extorsion?,1=Si; 2=No; 3=NO TIENE
+intento_extorsion,2018,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12A,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Intento de extorsion?,1=Si; 2=No; 3=No tiene
+intento_extorsion,2019,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12A,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Intento de extorsion?,1=Si; 2=No; 3=No tiene
+intento_extorsion,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12A,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Intento de extorsion?,1=Si; 2=No; 3=NO TIENE
+intento_extorsion,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12A,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Intento de extorsion?,1=Sí; 2=No; 3=No tiene
+intento_extorsion,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12A,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Intento de extorsion?,1=Si; 2=No; 3=No tiene
+intento_extorsion,2023,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_12A,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Intento de extorsion?,1=Si; 2=No; 3=No tiene
+intento_extorsion,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,1,P615_20,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Intento de extorsión?",1=Si; 2=No; 3=No tiene
+intento_extorsion,2025,enapres_seguridad,CAP_400_URBANO_4.sav,1,P424_20,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Intento de extorsión?",1=Si; 2=No; 3=No tiene
+estafa,2014,enapres_seguridad,07_CAP_600_URBANO.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Sí; 2=No; 3=NO TIENE
+estafa,2015,enapres_seguridad,CAP_600_URBANO.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=No tiene
+estafa,2016,enapres_seguridad,CAP_600_URBANO.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=No tiene
+estafa,2017,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=NO TIENE
+estafa,2018,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=No tiene
+estafa,2019,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=No tiene
+estafa,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=NO TIENE
+estafa,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=No tiene
+estafa,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=No tiene
+estafa,2023,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_13,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Estafa?,1=Si; 2=No; 3=No tiene
+estafa,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,1,P615_21,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Estafa?",1=Si; 2=No; 3=No tiene
+estafa,2025,enapres_seguridad,CAP_400_URBANO_4.sav,1,P424_21,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Estafa?",1=Si; 2=No; 3=No tiene
+robo_negocio,2014,enapres_seguridad,07_CAP_600_URBANO.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Sí; 2=No; 3=NO TIENE
+robo_negocio,2015,enapres_seguridad,CAP_600_URBANO.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Si; 2=No; 3=No tiene
+robo_negocio,2016,enapres_seguridad,CAP_600_URBANO.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Si; 2=No; 3=No tiene
+robo_negocio,2017,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Si; 2=No; 3=NO TIENE
+robo_negocio,2018,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Si; 2=No; 3=No tiene
+robo_negocio,2019,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Si; 2=No; 3=No tiene
+robo_negocio,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Si; 2=No; 3=NO TIENE
+robo_negocio,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Sí; 2=No; 3=No tiene
+robo_negocio,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Si; 2=No; 3=No tiene
+robo_negocio,2023,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_14,,EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Robo del negocio?,1=Si; 2=No; 3=No tiene
+robo_negocio,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,1,P615_11,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de negocio?",1=Si; 2=No; 3=No tiene
+robo_negocio,2025,enapres_seguridad,CAP_400_URBANO_4.sav,1,P424_11,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Robo de negocio?",1=Si; 2=No; 3=No tiene
+ofensas_sexuales,2014,enapres_seguridad,07_CAP_600_URBANO.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Sí; 2=No; 3=NO TIENE
+ofensas_sexuales,2015,enapres_seguridad,CAP_600_URBANO.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=No tiene
+ofensas_sexuales,2016,enapres_seguridad,CAP_600_URBANO.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE:Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=No tiene
+ofensas_sexuales,2017,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE:Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=NO TIENE
+ofensas_sexuales,2018,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=No tiene
+ofensas_sexuales,2019,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=No tiene
+ofensas_sexuales,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE: Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=NO TIENE
+ofensas_sexuales,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE:Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Sí; 2=No; 3=No tiene
+ofensas_sexuales,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE:Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=No tiene
+ofensas_sexuales,2023,enapres_seguridad,CAP_600_URBANO_7.sav,1,P601_9,,"EN LOS ÚLTIMOS 12 MESES ¿UD. HA SIDO VÍCTIMA DE:Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=No tiene
+ofensas_sexuales,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,1,P615_16,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=No tiene
+ofensas_sexuales,2025,enapres_seguridad,CAP_400_URBANO_4.sav,1,P424_16,,"EN LOS ÚLTIMOS 12 MESES DE….A…,¿USTED HA SIDO VÍCTIMA DE: Ofensas sexuales (acoso, abuso, violación, etc.)?",1=Si; 2=No; 3=No tiene
+arma_fuego,2014,enapres_seguridad,07_CAP_600_URBANO.sav,38,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Armas de fuego de mano_Robo de vehiculo automotor (auto, camioneta, etc.)",NA
+arma_fuego,2015,enapres_seguridad,CAP_600_URBANO.sav,38,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Armas de fuego de mano_Robo de vehiculo automotor (auto, camioneta, etc.)",0=Pase; 1=¿QUÉ TIPO DE ARMA PORTABA? ARMAS DE FUEGO DE MANO
+arma_fuego,2016,enapres_seguridad,CAP_600_URBANO.sav,40,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_12A_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_12A_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Armas de fuego largo (escopeta, rifle, ametralladora) (escopeta, rifle, ametralladora)_Robo de vehiculo automotor(auto, camioneta, etc.)",0=Pase; 1=Seleccion
+arma_fuego,2017,enapres_seguridad,CAP_600_URBANO_7.sav,40,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_12A_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_12A_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Armas de fuego largo (escopeta, rifle, ametralladora) (escopeta, rifle, ametralladora)_Robo de vehiculo automotor(auto, camioneta, etc.)",NA
+arma_fuego,2018,enapres_seguridad,CAP_600_URBANO_7.sav,40,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_12A_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_12A_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Armas de fuego de mano_Robo de vehiculo automotor (auto, camioneta, etc.)","0=Pase; 1=ARMAS DE FUEGO DE MANO (REVÓLVER, PISTOLA U OTRO)"
+arma_fuego,2019,enapres_seguridad,CAP_600_URBANO_7.sav,40,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_12A_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_12A_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Armas de fuego de mano_Robo de vehiculo automotor (auto, camioneta, etc.)","0=Pase; 1=ARMAS DE FUEGO DE MANO (REVÓLVER, PISTOLA U OTRO)"
+arma_fuego,2020,enapres_seguridad,CAP_600_URBANO_7.sav,40,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_12A_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_12A_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Armas de fuego de mano_Robo de vehiculo automotor (auto, camioneta, etc.)","0=Pase; 1=Arma de fuego de mano (revólver, pistola u otro)"
+arma_fuego,2021,enapres_seguridad,CAP_600_URBANO_7.sav,40,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_12A_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_12A_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Arma de fuego de mano (revólver, pistola u otro)_Robo de vehiculo automotor(auto, camioneta, etc.)","0=Pase; 1=Arma de fuego de mano (revólver, pistola u otro)"
+arma_fuego,2022,enapres_seguridad,CAP_600_URBANO_7.sav,40,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_12A_1 P605_13_1 P605_15_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_12A_2 P605_13_2 P605_15_2,,"¿QUÉ TIPO DE ARMA PORTABA? Arma de fuego de mano (revólver, pistola u otro)_Robo de vehiculo automotor(auto, camioneta, etc.)","0=Pase; 1=ARMAS DE FUEGO DE MANO (REVÓLVER, PISTOLA U OTRO)"
+arma_fuego,2023,enapres_seguridad,CAP_600_URBANO_7.sav,42,P605_1_1 P605_2_1 P605_3A_1 P605_3B_1 P605_4A_1 P605_4B_1 P605_5A_1 P605_5B_1 P605_6A_1 P605_6B_1 P605_14_1 P605_7_1 P605_8_1 P605_9_1 P605_10_1 P605_11_1 P605_12_1 P605_12A_1 P605_13_1 P605_15_1 P605_16_1 P605_1_2 P605_2_2 P605_3A_2 P605_3B_2 P605_4A_2 P605_4B_2 P605_5A_2 P605_5B_2 P605_6A_2 P605_6B_2 P605_14_2 P605_7_2 P605_8_2 P605_9_2 P605_10_2 P605_11_2 P605_12_2 P605_12A_2 P605_13_2 P605_15_2 P605_16_2,P605_16_1 P605_16_2,"¿QUÉ TIPO DE ARMA PORTABA? Arma de fuego de mano (revólver, pistola u otro)_Robo de vehiculo automotor(auto, camioneta, etc.)","0=Pase; 1=ARMAS DE FUEGO DE MANO (REVÓLVER, PISTOLA U OTRO)"
+arma_fuego,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,54,P632_1_1 P632_2_1 P632_3_1 P632_4_1 P632_5_1 P632_6_1 P632_7_1 P632_8_1 P632_9_1 P632_10_1 P632_11_1 P632_14_1 P632_15_1 P632_16_1 P632_17_1 P632_18_1 P632_19_1 P632_20_1 P632_21_1 P632_12_1 P632_22_1 P632_23_1 P632_24_1 P632_25_1 P632_26_1 P632_27_1 P632_28_1 P632_1_2 P632_2_2 P632_3_2 P632_4_2 P632_5_2 P632_6_2 P632_7_2 P632_8_2 P632_9_2 P632_10_2 P632_11_2 P632_14_2 P632_15_2 P632_16_2 P632_17_2 P632_18_2 P632_19_2 P632_20_2 P632_21_2 P632_12_2 P632_22_2 P632_23_2 P632_24_2 P632_25_2 P632_26_2 P632_27_2 P632_28_2,P632_23_1 P632_24_1 P632_25_1 P632_26_1 P632_27_1 P632_28_1 P632_23_2 P632_24_2 P632_25_2 P632_26_2 P632_27_2 P632_28_2,"¿QUÉ TIPO DE ARMA PORTABA? Arma de fuego de mano (revólver, pistola u otro) _Robo de vehículo automotor (auto, camioneta, etc.)","0=Pase; 1=ARMAS DE FUEGO DE MANO (REVÓLVER, PISTOLA U OTRO)"
+arma_fuego,2025,enapres_seguridad,CAP_400_URBANO_4.sav,50,P451_1_1 P451_2_1 P451_3_1 P451_4_1 P451_5_1 P451_6_1 P451_7_1 P451_8_1 P451_9_1 P451_10_1 P451_11_1 P451_14_1 P451_15_1 P451_16_1 P451_17_1 P451_18_1 P451_19_1 P451_20_1 P451_21_1 P451_12_1 P451_22_1 P451_23_1 P451_26_1 P451_27_1 P451_28_1 P451_1_2 P451_2_2 P451_3_2 P451_4_2 P451_5_2 P451_6_2 P451_7_2 P451_8_2 P451_9_2 P451_10_2 P451_11_2 P451_14_2 P451_15_2 P451_16_2 P451_17_2 P451_18_2 P451_19_2 P451_20_2 P451_21_2 P451_12_2 P451_22_2 P451_23_2 P451_26_2 P451_27_2 P451_28_2,P451_21_1 P451_23_1 P451_26_1 P451_27_1 P451_28_1 P451_21_2 P451_23_2 P451_26_2 P451_27_2 P451_28_2,"¿QUÉ TIPO DE ARMA PORTABA? Arma de fuego de mano (revólver, pistola u otro) _Robo de vehículo automotor (auto, camioneta, etc.)","0=Pase; 1=ARMAS DE FUEGO DE MANO (REVÓLVER, PISTOLA U OTRO)"
+denuncio,2014,enapres_seguridad,07_CAP_600_URBANO.sav,19,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Sí; 2=No
+denuncio,2015,enapres_seguridad,CAP_600_URBANO.sav,19,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No
+denuncio,2016,enapres_seguridad,CAP_600_URBANO.sav,20,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_12A P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor(auto, camioneta, etc.)?",1=Si; 2=No; 3=NO SABE
+denuncio,2017,enapres_seguridad,CAP_600_URBANO_7.sav,20,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_12A P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor(auto, camioneta, etc.)?",1=Si; 2=No
+denuncio,2018,enapres_seguridad,CAP_600_URBANO_7.sav,20,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_12A P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No
+denuncio,2019,enapres_seguridad,CAP_600_URBANO_7.sav,20,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_12A P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No
+denuncio,2020,enapres_seguridad,CAP_600_URBANO_7.sav,20,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_12A P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor (auto, camioneta, etc.)?",1=Si; 2=No
+denuncio,2021,enapres_seguridad,CAP_600_URBANO_7.sav,20,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_12A P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor(auto, camioneta, etc.)?",1=Sí; 2=No
+denuncio,2022,enapres_seguridad,CAP_600_URBANO_7.sav,20,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_12A P606_13 P606_15,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor(auto, camioneta, etc.)?",1=Si; 2=No
+denuncio,2023,enapres_seguridad,CAP_600_URBANO_7.sav,21,P606_1 P606_2 P606_3A P606_3B P606_4A P606_4B P606_5A P606_5B P606_6A P606_6B P606_14 P606_7 P606_8 P606_9 P606_10 P606_11 P606_12 P606_12A P606_13 P606_15 P606_16,,"¿DENUNCIÓ EL /LAS: Robo de vehiculo automotor(auto, camioneta, etc.)?",1=Si; 2=No
+denuncio,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,27,P619_1 P619_2 P619_3 P619_4 P619_5 P619_6 P619_7 P619_8 P619_9 P619_10 P619_11 P619_14 P619_15 P619_16 P619_17 P619_18 P619_19 P619_20 P619_21 P619_12 P619_22 P619_23 P619_24 P619_25 P619_26 P619_27 P619_28,,"¿DENUNCIÓ EL/LAS: Robo de vehículo automotor (auto, camioneta, etc.)?",1=Si; 2=No
+denuncio,2025,enapres_seguridad,CAP_400_URBANO_4.sav,25,P428_1 P428_2 P428_3 P428_4 P428_5 P428_6 P428_7 P428_8 P428_9 P428_10 P428_11 P428_14 P428_15 P428_16 P428_17 P428_18 P428_19 P428_20 P428_21 P428_12 P428_22 P428_23 P428_26 P428_27 P428_28,,"¿DENUNCIÓ EL/LAS: Robo de vehículo automotor (auto, camioneta, etc.)?",1=Si; 2=No
+percepcion,2014,enapres_seguridad,07_CAP_600_URBANO.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Si; 2=No; 4=No sabe
+percepcion,2015,enapres_seguridad,CAP_600_URBANO.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES ¿CREE USTED QUE PUEDE SER VÍCTIMA DE: Robo a su vivienda?,1=Sí; 2=No
+percepcion,2016,enapres_seguridad,CAP_600_URBANO.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Sí; 2=No
+percepcion,2017,enapres_seguridad,CAP_600_URBANO_7.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Si; 2=No
+percepcion,2018,enapres_seguridad,CAP_600_URBANO_7.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES DE......A...... ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Sí; 2=No
+percepcion,2019,enapres_seguridad,CAP_600_URBANO_7.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES DE......A...... ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Sí; 2=No
+percepcion,2020,enapres_seguridad,CAP_600_URBANO_7.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES DE......A...... ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Sí; 2=No
+percepcion,2021,enapres_seguridad,CAP_600_URBANO_7.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Sí; 2=No
+percepcion,2022,enapres_seguridad,CAP_600_URBANO_7.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Sí; 2=No
+percepcion,2023,enapres_seguridad,CAP_600_URBANO_7.sav,14,P611_1 P611_2 P611_3 P611_4 P611_5 P611_6 P611_7 P611_8 P611_9 P611_10 P611_11 P611_12 P611_13 P611_14,,EN LOS PRÓXIMOS 12 MESES ¿ CREE USTED QUE PUEDE SER VÍCTIMA DE:Robo a su vivienda?,1=Sí; 2=No
+percepcion,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,16,P601_1 P601_2 P601_3 P601_4 P601_5 P601_6 P601_7 P601_8 P601_9 P601_10 P601_11 P601_12 P601_13 P601_14 P601_15 P601_16,,EN LOS PRÓXIMOS 12 MESES DE......A...... ¿CREE USTED QUE PUEDE SER VÍCTIMA DE: Robo a su vivienda?,1=Sí; 2=No
+percepcion,2025,enapres_seguridad,CAP_400_URBANO_4.sav,15,P401 P402_1 P402_2 P402_3 P402_4 P402_5 P402_6 P402_7 P402_8 P402_9 P402_10 P402_11 P402_12 P402_13 P402_15,,"EN LOS PRÓXIMOS 12 MESES DE…… A……, ¿CREE USTED QUE PODRÍA SER VÍCTIMA DE ALGÚN HECHO DELICTIVO?",NA
+peso_personas,2014,enapres_seguridad,07_CAP_600_URBANO.sav,1,FACTORANUALCAP600,,FACTOR ANUAL CAPITULO 600,NA
+peso_personas,2015,enapres_seguridad,CAP_600_URBANO.sav,1,FACTORANUALCAP600,,FACTOR ANUAL CAPITULO 600,NA
+peso_personas,2016,enapres_seguridad,CAP_600_URBANO.sav,1,FACTORANUAL,,FACTOR ANUAL,NA
+peso_personas,2017,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTORANUAL,,FACTOR ANUAL,NA
+peso_personas,2018,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_personas,2019,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_personas,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_personas,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_personas,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_personas,2023,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_personas,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_personas,2025,enapres_seguridad,CAP_400_URBANO_4.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_percepcion,2014,enapres_seguridad,07_CAP_600_URBANO.sav,1,FACTORANUALCAP600,,FACTOR ANUAL CAPITULO 600,NA
+peso_percepcion,2015,enapres_seguridad,CAP_600_URBANO.sav,1,FACTORANUALCAP600,,FACTOR ANUAL CAPITULO 600,NA
+peso_percepcion,2016,enapres_seguridad,CAP_600_URBANO.sav,1,FACTORANUAL,,FACTOR ANUAL,NA
+peso_percepcion,2017,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTORANUAL,,FACTOR ANUAL,NA
+peso_percepcion,2018,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_percepcion,2019,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_percepcion,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_percepcion,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_percepcion,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_percepcion,2023,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_percepcion,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,1,FACTOR_CAP600B,,FACTOR DE EXPANSIÓN ANUAL DEL CAPÍTULO 600B,NA
+peso_percepcion,2025,enapres_seguridad,CAP_400_URBANO_4.sav,1,FACTOR_CAP400,,"FACTOR DE EXPANSIÓN ANUAL DEL CAPÍTULO 400 PERCEPCIÓN, CONFIANZA EN LAS INSTITUCIONES Y TENENCIA DE VEHÍCULO Y/O NEGOCIO",NA
+peso_calibrado_2020_21,2014,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2015,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2016,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2017,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2018,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2019,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR_CALIBRADO,,FACTOR DE EXPANSIÓN ANUAL CALIBRADO CON INFORMACIÓN DE ENERO A MARZO Y SETIEMBRE A DICIEMBRE,NA
+peso_calibrado_2020_21,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,FACTOR_CALIBRADO,,FACTOR DE EXPANSIÓN ANUAL CALIBRADO A ENTREVISTAS PRESENCIALES,NA
+peso_calibrado_2020_21,2022,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2023,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2024,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+peso_calibrado_2020_21,2025,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2014,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2015,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2016,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2017,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2018,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2019,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2020,enapres_seguridad,CAP_600_URBANO_7.sav,1,MOD_ENC,,MODALIDAD DE LA ENCUESTA,1=Presencial; 2=No Presencial
+modalidad_entrevista,2021,enapres_seguridad,CAP_600_URBANO_7.sav,1,MOD_ENC,,MODALIDAD DE LA ENCUESTA,1=Presencial; 2=No Presencial
+modalidad_entrevista,2022,enapres_seguridad,CAP_600_URBANO_7.sav,1,MOD_ENC,,MODALIDAD DE LA ENCUESTA,1=PRESENCIAL; 2=NO PRESENCIAL (Telefono)
+modalidad_entrevista,2023,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2024,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+modalidad_entrevista,2025,enapres_seguridad,NA,0,(no existe este año),,NA,NA
+robo_vivienda,2014,enapres_cap100,01_CAP_100_URBANO_RURAL.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES DE  A  ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Sí; 2=No
+robo_vivienda,2015,enapres_cap100,CAP_100_URBANO_RURAL.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Si; 2=No
+robo_vivienda,2016,enapres_cap100,CAP_100_URBANO_RURAL.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Si; 2=No
+robo_vivienda,2017,enapres_cap100,CAP100_URBANO_RURAL_3.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Si; 2=No
+robo_vivienda,2018,enapres_cap100,CAP100_URBANO_RURAL_3.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Si; 2=No
+robo_vivienda,2019,enapres_cap100,CAP100_URBANO_RURAL_2019.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Sí; 2=No
+robo_vivienda,2020,enapres_cap100,CAP100_URBANO_RURAL_3.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Si; 2=No
+robo_vivienda,2021,enapres_cap100,CAP100_URBANO_RURAL_3.sav,2,P112_1 P112_2,,"EN LOS ÚLTIMOS 12 MESES DE………A………,¿HAN SIDO VÍCTIMAS DE: ROBO EN LA VIVIENDA?",1=Si; 2=No
+robo_vivienda,2022,enapres_cap100,CAP_100_URBANO_RURAL_3.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Si; 2=No
+robo_vivienda,2023,enapres_cap100,CAP_100_URBANO_RURAL_3.sav,2,P112_1 P112_2,,EN LOS ÚLTIMOS 12 MESES ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Si; 2=No
+robo_vivienda,2024,enapres_cap100,CAP_100E_URBANO_RURAL_3.sav,2,P116_1 P116_2,,EN LOS ÚLTIMOS 12 MESES DE        A        ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA?,1=Si; 2=No
+robo_vivienda,2025,enapres_cap100,CAP_100E_URBANO_RURAL_1.sav,2,P116_1 P116_2,,EN LOS ÚLTIMOS 12 MESES DE        A        ¿HAN SIDO VÍCTIMAS DE:..ROBO EN LA VIVIENDA,1=Si; 2=No
+peso_hogares_enapres,2014,enapres_cap100,01_CAP_100_URBANO_RURAL.sav,1,FACTORANUAL,,FACTOR ANUAL,NA
+peso_hogares_enapres,2015,enapres_cap100,CAP_100_URBANO_RURAL.sav,1,FACTORANUAL,,FACTOR ANUAL,NA
+peso_hogares_enapres,2016,enapres_cap100,CAP_100_URBANO_RURAL.sav,1,FACTORANUAL,,FACTOR ANUAL,NA
+peso_hogares_enapres,2017,enapres_cap100,CAP100_URBANO_RURAL_3.sav,1,FACTORANUAL,,FACTOR ANUAL,NA
+peso_hogares_enapres,2018,enapres_cap100,CAP100_URBANO_RURAL_3.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_hogares_enapres,2019,enapres_cap100,CAP100_URBANO_RURAL_2019.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_hogares_enapres,2020,enapres_cap100,CAP100_URBANO_RURAL_3.sav,1,FACTOR,,FACTOR DE EXPANSION ANUAL,NA
+peso_hogares_enapres,2021,enapres_cap100,CAP100_URBANO_RURAL_3.sav,1,FACTOR,,FACTOR,NA
+peso_hogares_enapres,2022,enapres_cap100,CAP_100_URBANO_RURAL_3.sav,1,FACTOR,,FACTOR,NA
+peso_hogares_enapres,2023,enapres_cap100,CAP_100_URBANO_RURAL_3.sav,1,FACTOR,,FACTOR,NA
+peso_hogares_enapres,2024,enapres_cap100,CAP_100E_URBANO_RURAL_3.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+peso_hogares_enapres,2025,enapres_cap100,CAP_100E_URBANO_RURAL_1.sav,1,FACTOR,,FACTOR DE EXPANSIÓN ANUAL,NA
+ubigeo_enapres,2014,enapres_seguridad,07_CAP_600_URBANO.sav,3,CCDD CCPP CCDI,,Código de Departamento,NA
+ubigeo_enapres,2015,enapres_seguridad,CAP_600_URBANO.sav,3,CCDD CCPP CCDI,,Código de Departamento,NA
+ubigeo_enapres,2016,enapres_seguridad,CAP_600_URBANO.sav,3,CCDD CCPP CCDI,,Código de Departamento,NA
+ubigeo_enapres,2017,enapres_seguridad,CAP_600_URBANO_7.sav,3,CCDD CCPP CCDI,,Código de Departamento,NA
+ubigeo_enapres,2018,enapres_seguridad,CAP_600_URBANO_7.sav,3,CCDD CCPP CCDI,,Código de Departamento,NA
+ubigeo_enapres,2019,enapres_seguridad,CAP_600_URBANO_7.sav,3,CCDD CCPP CCDI,,Código de Departamento,NA
+ubigeo_enapres,2020,enapres_seguridad,CAP_600_URBANO_7.sav,3,CCDD CCPP CCDI,,CÓDIGO DE DEPARTAMENTO,10=HUÁNUCO; 20=PIURA; 01=AMAZONAS; 11=ICA; 21=PUNO; 02=ANCASH; 12=JUNÍN; 22=SAN MARTÍN; 03=APURÍMAC; 13=LA LIBERTAD; 23=TACNA; 04=AREQUIPA; 14=LAMBAYEQUE; 24=TUMBES; 05=AYACUCHO; 15=LIMA; 25=UCAYALI; 06=CAJAMARCA; 16=LORETO; 07=CALLAO; 17=MADRE DE DIOS; 08=CUSCO; 18=MOQUEGUA; 09=HUANCAVELICA; 19=PASCO; 99=NO ESPECIFICADO
+ubigeo_enapres,2021,enapres_seguridad,CAP_600_URBANO_7.sav,3,CCDD CCPP CCDI,,CÓDIGO DE DEPARTAMENTO,NA
+ubigeo_enapres,2022,enapres_seguridad,CAP_600_URBANO_7.sav,3,CCDD CCPP CCDI,,Código de Departamento,NA
+ubigeo_enapres,2023,enapres_seguridad,CAP_600_URBANO_7.sav,3,CCDD CCPP CCDI,,CÓDIGO DE DEPARTAMENTO,NA
+ubigeo_enapres,2024,enapres_seguridad,CAP_600_ANUAL_7.sav,3,CCDD CCPP CCDI,,CÓDIGO DE DEPARTAMENTO,NA
+ubigeo_enapres,2025,enapres_seguridad,CAP_400_URBANO_4.sav,3,CCDD CCPP CCDI,,CÓDIGO DE DEPARTAMENTO,NA
+enaho_hecho_delictivo,2014,enaho_m85_2,enaho01b-2014-2.dta,1,p40_5,,en los últimos 12 meses de ... a ... ¿su hogar se vio afectado por alguno de los,"1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2015,enaho_m85_2,enaho01b-2015-2.dta,1,p40_5,,en los últimos 12 meses de ... a ... ¿su hogar se vio afectado por alguno de los,"1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2016,enaho_m85_2,enaho01b-2016-2.dta,1,p40_5,,en los últimos 12 meses de ... a ... ¿su hogar se vio afectado por alguno de los,"1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2017,enaho_m85_2,enaho01b-2017-2.dta,1,p40_5,,en los últimos 12 meses de...a...¿su hogar se vio afectado por alguno de los sig,"0=pase; 1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2018,enaho_m85_2,enaho01b-2018-2.dta,1,p40_5,,en los últimos 12 meses de...a...¿su hogar se vio afectado por alguno de los sig,"0=pase; 1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2019,enaho_m85_2,enaho01b-2019-2.dta,1,p40_5,,en los últimos 12 meses de...a...¿su hogar se vio afectado por alguno de los sig,"0=pase; 1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2020,enaho_m85_2,enaho01b-2020-2.dta,1,p40_5,,en los últimos 12 meses de...a...¿su hogar se vio afectado por alguno de los sig,"0=pase; 1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2021,enaho_m85_2,enaho01b-2021-2.dta,1,p40_5,,en los últimos 12 meses de...a...¿su hogar se vio afectado por alguno de los sig,"0=pase; 1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2022,enaho_m85_2,enaho01b-2022-2.dta,1,p40_5,,en los ultimos 12 meses de...a...¿su hogar se vio afectado por alguno de los sig,"0=pase; 1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2023,enaho_m85_2,enaho01b-2023-2.dta,1,p40_5,,en los ultimos 12 meses de...a...¿su hogar se vio afectado por alguno de los sig,"0=pase; 1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2024,enaho_m85_2,enaho01b-2024-2.dta,1,p40_5,,en los ultimos 12 meses de...a...¿su hogar se vio afectado por alguno de los sig,"0=pase; 1=hecho delicitivo (robo, asalto, etc.)"
+enaho_hecho_delictivo,2025,enaho_m85_2,enaho01b-2025-2.dta,1,p40_5,,"en los ultimos 12 meses, su hogar se vio afectado por: hecho delictivo","0=pase; 1=hecho delictivo (robo, asalto, etc.)"
+enaho_peso_hogar,2014,enaho_m85_2,enaho01b-2014-2.dta,1,factor07,,factor ajustado a las proyecciones cpv 2007,NA
+enaho_peso_hogar,2015,enaho_m85_2,enaho01b-2015-2.dta,1,factor07,,factor de expansión anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2016,enaho_m85_2,enaho01b-2016-2.dta,1,factor07,,factor de expansión anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2017,enaho_m85_2,enaho01b-2017-2.dta,1,factor07,,factor de expansión anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2018,enaho_m85_2,enaho01b-2018-2.dta,1,factor07,,factor de expansión anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2019,enaho_m85_2,enaho01b-2019-2.dta,1,factor07,,factor de expansión anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2020,enaho_m85_2,enaho01b-2020-2.dta,1,factor07,,factor de expansión anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2021,enaho_m85_2,enaho01b-2021-2.dta,1,factor07,,factor de expansión anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2022,enaho_m85_2,enaho01b-2022-2.dta,1,factor07,,factor de expansion anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2023,enaho_m85_2,enaho01b-2023-2.dta,1,factor07,,factor de expansion anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2024,enaho_m85_2,enaho01b-2024-2.dta,1,factor07,,factor de expansion anual proyecciones cpv-2007,NA
+enaho_peso_hogar,2025,enaho_m85_2,enaho01b-2025-2.dta,1,factor07,,factor de expansion anual proyecciones cpv-2007,NA
+enaho_problema_delincuencia,2014,enaho_m85_1,enaho01b-2014-1.dta,2,p2_1_15 p2_2_15,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? - de",NA
+enaho_problema_delincuencia,2015,enaho_m85_1,enaho01b-2015-1.dta,2,p2_1_15 p2_2_15,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? - d",NA
+enaho_problema_delincuencia,2016,enaho_m85_1,enaho01b-2016-1.dta,2,p2_1_15 p2_2_15,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? - de",NA
+enaho_problema_delincuencia,2017,enaho_m85_1,enaho01b-2017-1.dta,2,p2_1_15 p2_2_15,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? - de",0=pase; 15=delincuencia
+enaho_problema_delincuencia,2018,enaho_m85_1,enaho01b-2018-1.dta,2,p2_1_15 p2_2_15,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? deli",0=pase; 15=delincuencia
+enaho_problema_delincuencia,2019,enaho_m85_1,enaho01b-2019-1.dta,2,p2_1_15 p2_2_15,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? deli",0=pase; 15=delincuencia
+enaho_problema_delincuencia,2020,enaho_m85_1,enaho01b-2020-1.dta,2,p2_1_15 p2_2_15,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? deli",0=pase; 15=delincuencia
+enaho_problema_delincuencia,2021,enaho_m85_1,enaho01b-2021-1.dta,2,p2_1_15 p2_2_15,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? deli",0=pase; 15=delincuencia
+enaho_problema_delincuencia,2022,enaho_m85_1,enaho01b-2022-1.dta,2,p2_1_15 p2_2_15,,"en su opinion, actualmente, ¿cuáles son los principales problemas del pais? deli",0=pase; 15=delincuencia
+enaho_problema_delincuencia,2023,enaho_m85_1,enaho01b-2023-1.dta,2,p2_1_15 p2_2_15,,"en su opinion, actualmente, ¿cuales son los principales problemas del pais? deli",0=pase; 15=delincuencia
+enaho_problema_delincuencia,2024,enaho_m85_1,enaho01b-2024-1.dta,2,p2_1_15 p2_2_15,,"en su opinion, actualmente, ¿cuales son los principales problemas del pais? deli",0=pase; 15=delincuencia
+enaho_problema_delincuencia,2025,enaho_m85_1,enaho01b-2025-1.dta,2,p2_1_15 p2_2_15,,"en su opinion, actualmente, cuales son los principales problemas del pais delinc",0=pase; 15=delincuencia
+enaho_problema_falta_seguridad,2014,enaho_m85_1,enaho01b-2014-1.dta,2,p2_1_04 p2_2_04,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? - fa",NA
+enaho_problema_falta_seguridad,2015,enaho_m85_1,enaho01b-2015-1.dta,2,p2_1_04 p2_2_04,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? - fa",NA
+enaho_problema_falta_seguridad,2016,enaho_m85_1,enaho01b-2016-1.dta,2,p2_1_04 p2_2_04,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? - fa",NA
+enaho_problema_falta_seguridad,2017,enaho_m85_1,enaho01b-2017-1.dta,2,p2_1_04 p2_2_04,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? - fa",0=pase; 4=falta de seguridad ciudadana
+enaho_problema_falta_seguridad,2018,enaho_m85_1,enaho01b-2018-1.dta,2,p2_1_04 p2_2_04,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? falt",0=pase; 4=falta de seguridad ciudadana
+enaho_problema_falta_seguridad,2019,enaho_m85_1,enaho01b-2019-1.dta,2,p2_1_04 p2_2_04,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? falt",0=pase; 4=falta de seguridad ciudadana
+enaho_problema_falta_seguridad,2020,enaho_m85_1,enaho01b-2020-1.dta,2,p2_1_04 p2_2_04,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? falt",0=pase; 4=falta de seguridad ciudadana
+enaho_problema_falta_seguridad,2021,enaho_m85_1,enaho01b-2021-1.dta,2,p2_1_04 p2_2_04,,"en su opinión, actualmente, ¿cuáles son los principales problemas del país? falt",0=pase; 4=falta de seguridad ciudadana
+enaho_problema_falta_seguridad,2022,enaho_m85_1,enaho01b-2022-1.dta,2,p2_1_04 p2_2_04,,"en su opinion, actualmente, ¿cuáles son los principales problemas del pais? falt",0=pase; 4=falta de seguridad ciudadana
+enaho_problema_falta_seguridad,2023,enaho_m85_1,enaho01b-2023-1.dta,2,p2_1_04 p2_2_04,,"en su opinion, actualmente, ¿cuales son los principales problemas del pais? falt",0=pase; 4=falta de seguridad ciudadana
+enaho_problema_falta_seguridad,2024,enaho_m85_1,enaho01b-2024-1.dta,2,p2_1_04 p2_2_04,,"en su opinion, actualmente, ¿cuales son los principales problemas del pais? falt",0=pase; 4=falta de seguridad ciudadana
+enaho_problema_falta_seguridad,2025,enaho_m85_1,enaho01b-2025-1.dta,2,p2_1_04 p2_2_04,,"en su opinion, actualmente, cuales son los principales problemas del pais falta",0=pase; 4=falta de seguridad ciudadana
+enaho_confianza_pnp,2014,enaho_m85_1,enaho01b-2014-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2015,enaho_m85_1,enaho01b-2015-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2016,enaho_m85_1,enaho01b-2016-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2017,enaho_m85_1,enaho01b-2017-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2018,enaho_m85_1,enaho01b-2018-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2019,enaho_m85_1,enaho01b-2019-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2020,enaho_m85_1,enaho01b-2020-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2021,enaho_m85_1,enaho01b-2021-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2022,enaho_m85_1,enaho01b-2022-1.dta,1,p1_06,,"actualmente, ¿tiene usted confianza en instituciones tales como: la policia naci",1=nada; 2=poco; 3=suficiente; 4=bastante; 5= no sabe
+enaho_confianza_pnp,2023,enaho_m85_1,enaho01b-2023-1.dta,1,p1_06,,"actualmente, ¿tiene ud. confianza en instituciones tales como: la policia nacion",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2024,enaho_m85_1,enaho01b-2024-1.dta,1,p1_06,,"actualmente, ¿tiene ud. confianza en instituciones tales como: la policia nacion",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_confianza_pnp,2025,enaho_m85_1,enaho01b-2025-1.dta,1,p1_06,,"actualmente, tiene ud. confianza en instituciones : la policia nacional del peru",1=nada; 2=poco; 3=suficiente; 4=bastante; 5=no sabe
+enaho_peso_opinion,2014,enaho_m85_1,enaho01b-2014-1.dta,1,facgob07,,factor de expansión anual de gobernabilidad. proyecciones cpv-2007,NA
+enaho_peso_opinion,2015,enaho_m85_1,enaho01b-2015-1.dta,1,famiegob07,,factor de expansión anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2016,enaho_m85_1,enaho01b-2016-1.dta,1,famiegob07,,factor de expansión anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2017,enaho_m85_1,enaho01b-2017-1.dta,1,famiegob07,,factor de expansión anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2018,enaho_m85_1,enaho01b-2018-1.dta,1,famiegob07,,factor de expansión anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2019,enaho_m85_1,enaho01b-2019-1.dta,1,famiegob07,,factor de expansión anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2020,enaho_m85_1,enaho01b-2020-1.dta,1,famiegob07,,factor de expansión anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2021,enaho_m85_1,enaho01b-2021-1.dta,1,famiegob07,,factor de expansión anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2022,enaho_m85_1,enaho01b-2022-1.dta,1,famiegob07,,factor de expansion anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2023,enaho_m85_1,enaho01b-2023-1.dta,1,famiegob07,,factor de expansion anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2024,enaho_m85_1,enaho01b-2024-1.dta,1,famiegob07,,factor de expansion anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_peso_opinion,2025,enaho_m85_1,enaho01b-2025-1.dta,1,famiegob07,,factor de expansion anual de gobernabilidad proyecciones cpv-2007,NA
+enaho_ubigeo,2014,enaho_m85_2,enaho01b-2014-2.dta,1,ubigeo,,código de ubicación geográfica,NA
+enaho_ubigeo,2015,enaho_m85_2,enaho01b-2015-2.dta,1,ubigeo,,código de distrito (ubicación geográfica),NA
+enaho_ubigeo,2016,enaho_m85_2,enaho01b-2016-2.dta,1,ubigeo,,código de ubicación geográfica,NA
+enaho_ubigeo,2017,enaho_m85_2,enaho01b-2017-2.dta,1,ubigeo,,código de ubicación geográfica,NA
+enaho_ubigeo,2018,enaho_m85_2,enaho01b-2018-2.dta,1,ubigeo,,código de ubicación geográfica,NA
+enaho_ubigeo,2019,enaho_m85_2,enaho01b-2019-2.dta,1,ubigeo,,código de ubicación geográfica,NA
+enaho_ubigeo,2020,enaho_m85_2,enaho01b-2020-2.dta,1,ubigeo,,código de ubicación geográfica,NA
+enaho_ubigeo,2021,enaho_m85_2,enaho01b-2021-2.dta,1,ubigeo,,código de ubicación geográfica,NA
+enaho_ubigeo,2022,enaho_m85_2,enaho01b-2022-2.dta,1,ubigeo,,codigo de ubicacion geografica,NA
+enaho_ubigeo,2023,enaho_m85_2,enaho01b-2023-2.dta,1,ubigeo,,codigo de ubicacion geografica,NA
+enaho_ubigeo,2024,enaho_m85_2,enaho01b-2024-2.dta,1,ubigeo,,codigo de ubicacion geografica,NA
+enaho_ubigeo,2025,enaho_m85_2,enaho01b-2025-2.dta,1,ubigeo,,codigo de ubicacion geografica,NA

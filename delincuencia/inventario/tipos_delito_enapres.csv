@@ -1,0 +1,31 @@
+tipo,descripcion,sufijo_2014_2023,sufijo_2024,sufijo_2025,desde,hasta,lista_comun,nota
+robo_vehiculo,Robo de vehículo automotor,1,1,1,2014,2025,1,
+intento_robo_vehiculo,Intento de robo de vehículo automotor,2,2,2,2014,2025,1,
+robo_autopartes,Robo de autopartes del vehículo,3A,3,3,2014,2025,1,
+intento_robo_autopartes,Intento de robo de autopartes,3B,4,4,2014,2025,1,
+robo_moto,Robo de motocicleta o mototaxi,4A,5,5,2014,2025,1,
+intento_robo_moto,Intento de robo de motocicleta o mototaxi,4B,6,6,2014,2025,1,
+robo_bicicleta,Robo de bicicleta,5A,7,7,2014,2025,1,
+intento_robo_bicicleta,Intento de robo de bicicleta,5B,8,8,2014,2025,1,
+robo_dinero,"Robo de dinero, cartera, celular",6A,9,9,2014,2025,1,
+intento_robo_dinero,"Intento de robo de dinero, cartera, celular",6B,10,10,2014,2025,1,
+robo_negocio,Robo de negocio,14,11,11,2014,2025,1,
+amenazas,Amenazas e intimidaciones,7,14,14,2014,2025,1,
+maltrato,Maltrato físico o psicológico de algún miembro del hogar,8,15,15,2014,2025,1,
+ofensas_sexuales,"Ofensas sexuales (acoso, abuso, violación)",9,16,16,2014,2025,1,
+secuestro,Secuestro,10,17,17,2014,2025,1,
+intento_secuestro,Intento de secuestro,11,18,18,2014,2025,1,
+extorsion,Extorsión,12,19,19,2014,2025,1,
+intento_extorsion,Intento de extorsión,12A,20,20,2016,2025,0,Se agrega en 2016
+estafa,Estafa,13,21,21,2014,2025,1,
+otro,Otro (2014-2023),15,,,2014,2023,1,En 2024-2025 se divide en otro patrimonial y otro no patrimonial
+otro_patrimonial,Otro patrimonial,,12,12,2024,2025,1,Reemplaza a 'otro' desde 2024
+otro_no_patrimonial,Otro no patrimonial,,22,22,2024,2025,1,Reemplaza a 'otro' desde 2024
+delitos_informaticos,Delitos informáticos,16,,,2023,2023,0,Solo 2023; desde 2024 se desagrega en los tipos siguientes
+fraude_bancario,Fraude bancario,,23,23,2024,2025,0,
+fraude_consumidor,Fraude al consumidor,,24,,2024,2024,0,Solo 2024
+estafa_tecnologica,Estafas por medios tecnológicos,,25,,2024,2024,0,Solo 2024
+suplantacion_identidad,Suplantación de identidad,,26,26,2024,2025,0,
+ciberacoso,Ciberacoso,,27,27,2024,2025,0,
+otro_informatico,Otras modalidades de delito informático,,28,28,2024,2025,0,
+vandalismo,Vandalismo (víctima o testigo),,13,,2024,2024,0,"Pregunta por víctima o testigo; no es victimización personal"
