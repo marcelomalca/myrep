@@ -65,7 +65,7 @@ Este capítulo documenta la base con la que se mide la delincuencia, el último 
 
 **ENAHO, módulo 85.** Es el módulo de Gobernabilidad, Democracia y Transparencia, que la ENAHO aplica a los mismos hogares del capítulo [-@sec-enaho]. Tiene dos partes: una pregunta al hogar sobre los problemas que lo afectaron en el último año, entre ellos un hecho delictivo, y un cuestionario de opinión a un miembro de 18 años o más, con los principales problemas del país y la confianza en las instituciones.
 
-Se descargaron `r nrow(registro_d)` archivos del portal de microdatos del INEI, sin modificarlos.
+Se descargaron `r nrow(registro_d)` archivos del portal de microdatos del INEI, sin modificarlos. La descarga, la construcción de las variables y la verificación están en los scripts de la carpeta `delincuencia/` del repositorio; el detalle por año está en `delincuencia/inventario.md` y `delincuencia/diccionario.md`.
 
 ## Unidad de observación
 
