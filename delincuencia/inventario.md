@@ -1,8 +1,11 @@
 # Indicadores de delincuencia: inventario (fase 1)
 
-Este inventario cubre la ENAPRES y la ENAHO de 2014 a 2025 y deja pendientes de
-aprobación las decisiones de construcción (sección 7). **La fase 2 (bases apiladas,
-base distrito-año, diccionario y verificación) no se ha empezado.**
+Este inventario cubre la ENAPRES y la ENAHO de 2014 a 2025 y propone las
+decisiones de construcción (sección 7).
+
+**Estado:** las decisiones D1–D16 se aprobaron tal como se propusieron. La fase 2
+(bases apiladas, base distrito-año y verificación) está documentada en
+[`diccionario.md`](diccionario.md).
 
 Todas las tasas de este documento son **provisionales**: sirven para ver
 disponibilidad, cobertura y órdenes de magnitud, y usan las definiciones

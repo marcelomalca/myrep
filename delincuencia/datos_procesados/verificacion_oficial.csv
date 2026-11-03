@@ -1,0 +1,135 @@
+indicador,version,anio,oficial,construido,diferencia,fuente
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2014,,8.5,,
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2015,8.1,8.1,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2016,8.9,8.1,-0.8,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2017,9.2,8.4,-0.8,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2018,9.1,8.5,-0.6,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2019,11.3,10.9,-0.4,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2020,12.6,12.3,-0.3,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2021,12.6,12.3,-0.3,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2022,11.3,11.2,-0.1,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2023,12.7,12.5,-0.2,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2024,10.1,10.1,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista completa,2025,,11.2,,
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2014,,8.5,,
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2015,8.1,8.1,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2016,8.9,8.9,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2017,9.2,9.2,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2018,9.1,9.1,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2019,11.3,11.3,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2020,12.6,12.6,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2021,12.6,12.6,0,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2022,11.3,11.4,0.1,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2023,12.7,13.2,0.5,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2024,10.1,11,0.9,"V, cuadro 1.17"
+arma_fuego_entre_victimas,arma_fuego entre víctimas de la lista común,2025,,12,,
+confia_pnp (jul-dic),confia_pnp,2014,,19.1,,
+confia_pnp (jul-dic),confia_pnp,2015,,17.9,,
+confia_pnp (jul-dic),confia_pnp,2016,,17.3,,
+confia_pnp (jul-dic),confia_pnp,2017,,17.8,,
+confia_pnp (jul-dic),confia_pnp,2018,,16.5,,
+confia_pnp (jul-dic),confia_pnp,2019,,18.6,,
+confia_pnp (jul-dic),confia_pnp,2020,,25.4,,
+confia_pnp (jul-dic),confia_pnp,2021,,24.3,,
+confia_pnp (jul-dic),confia_pnp,2022,,21.5,,
+confia_pnp (jul-dic),confia_pnp,2023,20.1,19.6,-0.5,"G, confianza en las instituciones"
+confia_pnp (jul-dic),confia_pnp,2024,18,16.9,-1.1,"G, confianza en las instituciones (preliminar)"
+confia_pnp (jul-dic),confia_pnp,2025,,12.8,,
+delincuencia_problema (jul-dic),delincuencia_problema,2014,,43.1,,
+delincuencia_problema (jul-dic),delincuencia_problema,2015,,49.1,,
+delincuencia_problema (jul-dic),delincuencia_problema,2016,,50.1,,
+delincuencia_problema (jul-dic),delincuencia_problema,2017,,44,,
+delincuencia_problema (jul-dic),delincuencia_problema,2018,,39.6,,
+delincuencia_problema (jul-dic),delincuencia_problema,2019,,42.3,,
+delincuencia_problema (jul-dic),delincuencia_problema,2020,,23.9,,
+delincuencia_problema (jul-dic),delincuencia_problema,2021,,28.4,,
+delincuencia_problema (jul-dic),delincuencia_problema,2022,,32.1,,
+delincuencia_problema (jul-dic),delincuencia_problema,2023,38,37.9,-0.1,"G, principales problemas"
+delincuencia_problema (jul-dic),delincuencia_problema,2024,45,45.1,0.1,"G, principales problemas (preliminar)"
+delincuencia_problema (jul-dic),delincuencia_problema,2025,,54.4,,
+denuncia,denuncio (víctimas de la lista completa),2014,,13.8,,
+denuncia,denuncio (víctimas de la lista completa),2015,14,14,0,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2016,12.8,12.1,-0.7,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2017,14.5,12.6,-1.9,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2018,16.2,14.5,-1.7,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2019,16.7,15.1,-1.6,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2020,17,16.2,-0.8,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2021,15.3,14.1,-1.2,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2022,14.9,14,-0.9,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2023,15.6,14.8,-0.8,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2024,16.1,15.1,-1,"V, cuadro 1.10"
+denuncia,denuncio (víctimas de la lista completa),2025,,19.4,,
+denuncia,denuncio entre víctimas de la lista común,2014,,13.8,,
+denuncia,denuncio entre víctimas de la lista común,2015,14,14,0,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2016,12.8,12.9,0.1,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2017,14.5,13.6,-0.9,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2018,16.2,15.2,-1,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2019,16.7,15.6,-1.1,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2020,17,16.5,-0.5,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2021,15.3,14.4,-0.9,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2022,14.9,14.1,-0.8,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2023,15.6,14.8,-0.8,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2024,16.1,15.3,-0.8,"V, cuadro 1.10"
+denuncia,denuncio entre víctimas de la lista común,2025,,19.8,,
+enaho_hecho_delictivo,hecho_delictivo,2014,,3.8,,
+enaho_hecho_delictivo,hecho_delictivo,2015,,3.4,,
+enaho_hecho_delictivo,hecho_delictivo,2016,,4,,
+enaho_hecho_delictivo,hecho_delictivo,2017,,3.5,,
+enaho_hecho_delictivo,hecho_delictivo,2018,,2.7,,
+enaho_hecho_delictivo,hecho_delictivo,2019,,2.8,,
+enaho_hecho_delictivo,hecho_delictivo,2020,,2.8,,
+enaho_hecho_delictivo,hecho_delictivo,2021,,2.2,,
+enaho_hecho_delictivo,hecho_delictivo,2022,,2.9,,
+enaho_hecho_delictivo,hecho_delictivo,2023,,3.4,,
+enaho_hecho_delictivo,hecho_delictivo,2024,,2.9,,
+enaho_hecho_delictivo,hecho_delictivo,2025,,2.4,,
+falta_seguridad_problema (jul-dic),p2_1_04 = 4 (solo para verificar),2023,13.5,13.6,0.1,"G, principales problemas"
+falta_seguridad_problema (jul-dic),p2_1_04 = 4 (solo para verificar),2024,17.6,17.4,-0.2,"G, principales problemas (preliminar)"
+percepcion,percepcion,2014,,85.7,,
+percepcion,percepcion,2015,88.4,88.4,0,"V, cuadro 3.1"
+percepcion,percepcion,2016,90,89.5,-0.5,"V, cuadro 3.1"
+percepcion,percepcion,2017,86.9,86.4,-0.5,"V, cuadro 3.1"
+percepcion,percepcion,2018,86.3,85.7,-0.6,"V, cuadro 3.1"
+percepcion,percepcion,2019,85.8,85.1,-0.7,"V, cuadro 3.1"
+percepcion,percepcion,2020,83.2,82.5,-0.7,"V, cuadro 3.1"
+percepcion,percepcion,2021,83.9,83,-0.9,"V, cuadro 3.1"
+percepcion,percepcion,2022,85.2,84.6,-0.6,"V, cuadro 3.1"
+percepcion,percepcion,2023,83.6,82.8,-0.8,"V, cuadro 3.1"
+percepcion,percepcion,2024,86,85.2,-0.8,"V, cuadro 3.1"
+percepcion,percepcion,2025,,83.4,,
+robo_vivienda,robo_vivienda,2014,,12.3,,
+robo_vivienda,robo_vivienda,2015,11.4,11.6,0.2,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2016,10.8,10.7,-0.1,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2017,10.5,10.5,0,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2018,9.5,9.5,0,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2019,9.4,9.4,0,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2020,10.4,10.4,0,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2021,8.8,8.7,-0.1,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2022,9.9,10.1,0.2,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2023,12.9,12.8,-0.1,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2024,10.8,10.8,0,"V, cuadro 2.1"
+robo_vivienda,robo_vivienda,2025,,8.8,,
+victimizacion,victima_completa,2014,,30.5,,
+victimizacion,victima_completa,2015,30.8,30.8,0,"V, cuadro 1.1"
+victimizacion,victima_completa,2016,28.8,31.2,2.4,"V, cuadro 1.1"
+victimizacion,victima_completa,2017,26.4,28.6,2.2,"V, cuadro 1.1"
+victimizacion,victima_completa,2018,25.7,27.1,1.4,"V, cuadro 1.1"
+victimizacion,victima_completa,2019,26.6,27.3,0.7,"V, cuadro 1.1"
+victimizacion,victima_completa,2020,23.4,23.6,0.2,"V, cuadro 1.1"
+victimizacion,victima_completa,2021,18.2,18.4,0.2,"V, cuadro 1.1"
+victimizacion,victima_completa,2022,22.9,23.1,0.2,"V, cuadro 1.1"
+victimizacion,victima_completa,2023,27.1,27.3,0.2,"V, cuadro 1.1"
+victimizacion,victima_completa,2024,27.1,26.7,-0.4,"V, cuadro 1.1"
+victimizacion,victima_completa,2025,,25,,
+victimizacion,victima_comun,2014,,30.5,,
+victimizacion,victima_comun,2015,30.8,30.8,0,"V, cuadro 1.1"
+victimizacion,victima_comun,2016,28.8,28.6,-0.2,"V, cuadro 1.1"
+victimizacion,victima_comun,2017,26.4,26.1,-0.3,"V, cuadro 1.1"
+victimizacion,victima_comun,2018,25.7,25.4,-0.3,"V, cuadro 1.1"
+victimizacion,victima_comun,2019,26.6,26.3,-0.3,"V, cuadro 1.1"
+victimizacion,victima_comun,2020,23.4,23,-0.4,"V, cuadro 1.1"
+victimizacion,victima_comun,2021,18.2,18,-0.2,"V, cuadro 1.1"
+victimizacion,victima_comun,2022,22.9,22.7,-0.2,"V, cuadro 1.1"
+victimizacion,victima_comun,2023,27.1,25.6,-1.5,"V, cuadro 1.1"
+victimizacion,victima_comun,2024,27.1,24.5,-2.6,"V, cuadro 1.1"
+victimizacion,victima_comun,2025,,23.3,,
