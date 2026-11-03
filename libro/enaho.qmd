@@ -77,7 +77,7 @@ Se descargaron cinco módulos para cada uno de los doce años, sin modificarlos:
 | 05 | Empleo e ingresos | Mercado laboral, ingreso laboral e informalidad |
 | 34 | Sumarias (variables calculadas por el INEI) | Gasto e ingreso del hogar, deflactores |
 
-La descarga, la limpieza y la construcción de las variables están en los scripts de la carpeta `enaho/` del repositorio, que corren de principio a fin sin pasos manuales. El detalle de cada variable por año está en `enaho/inventario.md` y `enaho/diccionario.md`.
+La descarga, la limpieza y la construcción de las variables se hacen con código, de principio a fin y sin pasos manuales.
 
 ## Unidad de observación
 
@@ -355,4 +355,4 @@ verificacion |>
 - **Distritos con oro fuera de la muestra.** Parte de los distritos con oro nunca aparece en la encuesta (@tbl-anios-muestra), y otros aparecen pocos años.
 - **2020–2021.** Las entrevistas telefónicas y el cuestionario reducido pueden afectar la comparabilidad; los resultados deberán probarse excluyendo esos años.
 - **Informalidad 2024–2025.** La reconstrucción reproduce la variable oficial en los años en que existe, pero no puede validarse directamente en 2024 y 2025. Conviene confirmar que las preguntas en que se basa no cambiaron en esos años y probar los resultados sin ellos.
-- **Diferencias pequeñas sin explicar.** La tasa de actividad queda entre 0.1 y 0.2 puntos por debajo de la oficial, y el ingreso laboral nominal, 0.3 % por debajo (`enaho/diccionario.md`).
+- **Diferencias pequeñas sin explicar.** La tasa de actividad queda entre 0.1 y 0.2 puntos por debajo de la oficial, y el ingreso laboral nominal, 0.3 % por debajo.

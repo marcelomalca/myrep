@@ -33,7 +33,7 @@ Este capítulo documenta la base con la que se mide la presencia de oro en cada 
 
 ## Fuente
 
-La base es producida por el Programa de Metalogenia de la Dirección de Recursos Minerales y Energéticos de INGEMMET [@huanacuni2010guia] y es el insumo del Mapa Metalogenético del Perú [@acosta2020]. Se publica en GEOCATMIN, el sistema de información geológica y catastral de INGEMMET, como la capa 1 del servicio de mapas `SERV_METALOGENETICO` [@ingemmet2026servicio]. Los registros se descargaron completos mediante la interfaz REST del servicio (`r num(n_capa)` registros de todos los minerales), con código reproducible en Python y R disponible en el repositorio del proyecto.
+La base es producida por el Programa de Metalogenia de la Dirección de Recursos Minerales y Energéticos de INGEMMET [@huanacuni2010guia] y es el insumo del Mapa Metalogenético del Perú [@acosta2020]. Se publica en GEOCATMIN, el sistema de información geológica y catastral de INGEMMET, como la capa 1 del servicio de mapas `SERV_METALOGENETICO` [@ingemmet2026servicio]. Los registros se descargaron completos mediante la interfaz REST del servicio (`r num(n_capa)` registros de todos los minerales), con código reproducible en Python y R.
 
 La base no proviene de un censo ni de una encuesta. INGEMMET la compila a partir de fuentes secundarias: anuarios y reportes del Ministerio de Energía y Minas, memorias de compañías mineras, boletines técnicos del propio INGEMMET, artículos especializados, tesis universitarias y prensa del sector minero [@huanacuni2010guia; @huanacuni2010cpg]. Esta forma de recolección es central para entender qué registros entran a la base (sección [-@sec-yac-seleccion]).
 

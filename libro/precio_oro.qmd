@@ -41,7 +41,7 @@ Este capítulo documenta la segunda pieza del tratamiento: el precio internacion
 
 ## Fuente
 
-Los datos provienen de la interfaz de gráficos de Yahoo Finance, para el símbolo `GC=F`: el contrato continuo de futuros de oro de COMEX (CME Group) con vencimiento más cercano. Se descargaron los precios diarios y, como control, las barras mensuales que publica Yahoo. La descarga, la construcción de las series y el gráfico están en los scripts de la carpeta `precio_oro/` del repositorio, que registran la URL, la fecha y una huella (MD5) de cada archivo descargado.
+Los datos provienen de la interfaz de gráficos de Yahoo Finance, para el símbolo `GC=F`: el contrato continuo de futuros de oro de COMEX (CME Group) con vencimiento más cercano. Se descargaron los precios diarios y, como control, las barras mensuales que publica Yahoo. La descarga registra la URL, la fecha y una huella (MD5) de cada archivo descargado.
 
 Yahoo Finance ya no publica el precio spot del oro, por lo que se usa el contrato de futuros más cercano. Su precio sigue de cerca al spot, aunque suele estar ligeramente por encima por el costo de mantener la posición. La referencia más usada en la literatura es el precio spot de Londres (LBMA), que publica el Banco Mundial; el capítulo [-@sec-ampliaciones] propone contrastar ambas series.
 

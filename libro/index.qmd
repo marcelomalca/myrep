@@ -44,4 +44,4 @@ Este libro documenta las bases de datos del proyecto. Cada capítulo presenta un
 
 El capítulo [-@sec-grupos] reúne las bases para definir los grupos de tratamiento y de comparación, y cuenta cuántos distritos de cada grupo aparecen en las encuestas. La base de población y los registros administrativos de denuncias se incorporarán en etapas posteriores. El capítulo [-@sec-ampliaciones] reúne las fuentes propuestas para ampliar la investigación en etapas siguientes.
 
-Todas las cifras de este libro se calculan con código en R a partir de los archivos del repositorio del proyecto, de modo que se actualizan si cambian los datos. El código de cada tabla y figura puede verse con el botón *Ver código*.
+Todas las cifras de este libro se calculan con código en R a partir de las bases de datos del proyecto, de modo que se actualizan si cambian los datos. El código de cada tabla y figura puede verse con el botón *Ver código*.
