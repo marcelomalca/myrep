@@ -26,6 +26,10 @@ bibliography:
   - referencias_enaho.bib
   - referencias_delincuencia.bib
 
+crossref:
+  lof-title: "Índice de figuras y mapas"
+  lot-title: "Índice de tablas"
+
 execute:
   warning: false
   message: false
@@ -40,3 +44,27 @@ format:
     code-summary: "Ver código"
     fig-dpi: 150
     tbl-cap-location: top
+  pdf:
+    documentclass: scrreprt
+    pdf-engine: xelatex
+    fontfamily: fontspec
+    mainfont: Latin Modern Roman
+    sansfont: Latin Modern Sans
+    monofont: Latin Modern Mono
+    papersize: a4
+    geometry:
+      - margin=2cm
+    toc: true
+    toc-depth: 2
+    toc-title: "Índice"
+    lof: true
+    lot: true
+    echo: false
+    callout-icon: false
+    fig-dpi: 200
+    tbl-cap-location: top
+    colorlinks: true
+    include-in-header:
+      text: |
+        \usepackage{etoolbox}
+        \AtBeginEnvironment{longtable}{\scriptsize}

@@ -11,6 +11,10 @@ suppressPackageStartupMessages({
 })
 sf_use_s2(FALSE)
 
+# En el PDF, las tablas se pasan como tablas de pandoc para que el texto de las
+# celdas se ajuste al ancho de la página
+if (knitr::is_latex_output()) options(knitr.table.format = "pipe")
+
 dir_datos <- "../datos"
 dir_enaho <- "../enaho"
 dir_delito <- "../delincuencia"
@@ -38,7 +42,7 @@ leer_delito <- function(nombre, columnas) leer_enaho(nombre, columnas, dir = dir
 
 lleno <- function(x) !is.na(x) & trimws(x) != ""
 pct   <- function(x, total) round(100 * x / total, 1)
-num   <- function(x, d = 0) format(round(x, d), big.mark = " ", decimal.mark = ".",
+num   <- function(x, d = 0) format(round(x, d), big.mark = "\u00a0", decimal.mark = ".",
                                    nsmall = d, trim = TRUE)
 media_pond <- function(x, w) {
   ok <- !is.na(x) & !is.na(w)

@@ -4,6 +4,26 @@ Esta investigación analiza cómo la variación del precio internacional del oro
 
 La variación proviene de combinar dos elementos. El primero es el precio del oro, que se fija en el mercado internacional y es el mismo para todos los distritos. El segundo es la presencia de oro en cada distrito, que se mide antes del periodo de estudio para que no dependa del propio precio. Un distrito con oro debería verse afectado por las subidas y bajadas del precio; uno sin oro, no.
 
+## Variables del estudio
+
+@tbl-variables-estudio resume las variables de la investigación y la base de datos de la que proviene cada una.
+
+| Rol | Variable | Indicadores | Base de datos | Unidad | Periodo | Cap. |
+|-----------|------------|------------------------------|--------------------|----------|---------|----|
+| Exposición | Presencia de oro en el distrito | Mina o proyecto de oro; solo prospectos u ocurrencias | Yacimientos Mineros, GEOCATMIN (INGEMMET) | Distrito | Registros anteriores a 2014 | [-@sec-yacimientos] |
+| Exposición | Precio del oro | Precio promedio anual y mensual (US\$ por onza) | Yahoo Finance, futuros de COMEX (`GC=F`) | Año y mes | 2014–2025 | [-@sec-precio] |
+| Resultado | Gasto | Gasto real per cápita | ENAHO, sumaria (INEI) | Hogar | 2014–2025 | [-@sec-enaho] |
+| Resultado | Ingreso | Ingreso real per cápita; ingreso laboral real y por hora | ENAHO, sumaria y módulo de empleo | Hogar y persona | 2014–2025 | [-@sec-enaho] |
+| Resultado | Informalidad laboral | Empleo informal; empleo en el sector informal; afiliación a pensiones; seguro de salud por el empleo | ENAHO, módulos de empleo y salud | Persona ocupada | 2014–2025 | [-@sec-enaho] |
+| Resultado | Mercado laboral | Tasa de actividad; tasa de ocupación; horas trabajadas; empleo en minería metalífera; categoría ocupacional | ENAHO, módulo de empleo | Persona de 14 años o más | 2014–2025 | [-@sec-enaho] |
+| Resultado | Delincuencia: victimización | Víctima de algún delito; robo de dinero, de vehículo y de negocio; amenazas; extorsión; estafa; ofensas sexuales; arma de fuego; robo de vivienda; denuncia | ENAPRES, seguridad ciudadana (INEI), solo urbana | Persona de 15 años o más y hogar | 2014–2025 | [-@sec-delincuencia] |
+| Resultado | Delincuencia: victimización del hogar | Hogar afectado por un hecho delictivo | ENAHO, módulo de gobernabilidad | Hogar | 2014–2025 | [-@sec-delincuencia] |
+| Resultado | Delincuencia: percepción y confianza | Percepción de inseguridad; delincuencia como problema del país; confianza en la Policía | ENAPRES y ENAHO, módulo de gobernabilidad | Persona | 2014–2025 | [-@sec-delincuencia] |
+| Resultado | Población | Población del distrito y migración | Por definir (censos de 2007, 2017 y 2025) | Distrito | Pendiente | — |
+| Comparación | Grupos de comparación | Distritos sin oro; distritos con solo otros metales; vecinos de distritos con oro | GEOCATMIN (todos los registros) y límites distritales de 2014 | Distrito | — | [-@sec-grupos] |
+
+: Variables del estudio y bases de datos {#tbl-variables-estudio}
+
 ## Las bases de datos
 
 Este libro documenta las bases de datos del proyecto. Cada capítulo presenta una base con la misma ficha:
